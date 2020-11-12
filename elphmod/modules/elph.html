@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>elph: electron-phonon coupling from EPW &#8212; elphmod  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="elel: Coulomb interaction from VASP" href="elel.html" />
+    <link rel="prev" title="ph: mass-spring models from Quantum ESPRESSO" href="ph.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="elel.html" title="elel: Coulomb interaction from VASP"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ph.html" title="ph: mass-spring models from Quantum ESPRESSO"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">elph: electron-phonon coupling from EPW</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-elphmod.elph">
+<span id="elph-electron-phonon-coupling-from-epw"></span><h1>elph: electron-phonon coupling from EPW<a class="headerlink" href="#module-elphmod.elph" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="elphmod.elph.Model">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epmatwp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wigner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">el</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_ws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Localized model for electron-phonon coupling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>epmatwp</strong><span class="classifier">str</span></dt><dd><p>File with electron-phonon coupling in localized bases from EPW.</p>
+</dd>
+<dt><strong>wigner</strong><span class="classifier">str</span></dt><dd><p>File with definition of Wigner-Seitz supercells from modified EPW.</p>
+</dd>
+<dt><strong>el</strong><span class="classifier">object</span></dt><dd><p>Tight-binding model for the electrons.</p>
+</dd>
+<dt><strong>ph</strong><span class="classifier">object</span></dt><dd><p>Mass-spring model for the phonons.</p>
+</dd>
+<dt><strong>old_ws</strong><span class="classifier">bool</span></dt><dd><p>Use previous definition of Wigner-Seitz cells?</p>
+</dd>
+<dt><strong>divide_mass</strong><span class="classifier">bool</span></dt><dd><p>Divide electron-phonon coupling by square root of atomic masses?</p>
+</dd>
+<dt><strong>divide_ndegen</strong><span class="classifier">bool</span></dt><dd><p>Divide real-space coupling by degeneracy of Wigner-Seitz point? Only
+<code class="docutils literal notranslate"><span class="pre">True</span></code> yields correct couplings. <code class="docutils literal notranslate"><span class="pre">False</span></code> should only be used for
+debugging.</p>
+</dd>
+<dt><strong>shared_memory</strong><span class="classifier">bool</span></dt><dd><p>Read coupling from EPW into shared memory?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>el, ph</strong><span class="classifier">object</span></dt><dd><p>Tight-binding and mass-spring models.</p>
+</dd>
+<dt><strong>Rk, Rg</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors of Wigner-Seitz supercells.</p>
+</dd>
+<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding electron-phonon matrix elements.</p>
+</dd>
+<dt><strong>q</strong><span class="classifier">ndarray</span></dt><dd><p>Previously sampled q point, if any.</p>
+</dd>
+<dt><strong>gq</strong><span class="classifier">ndarray</span></dt><dd><p>Rk-dependent coupling for above q point for possible reuse.</p>
+</dd>
+<dt><strong>cells</strong><span class="classifier">list of tuple of int, optional</span></dt><dd><p>Lattice vectors of unit cells if the model describes a supercell.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.elph.Model.g">
+<span class="sig-name descname"><span class="pre">g</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q1=0</span></em>, <em class="sig-param"><span class="pre">q2=0</span></em>, <em class="sig-param"><span class="pre">q3=0</span></em>, <em class="sig-param"><span class="pre">k1=0</span></em>, <em class="sig-param"><span class="pre">k2=0</span></em>, <em class="sig-param"><span class="pre">k3=0</span></em>, <em class="sig-param"><span class="pre">elbnd=False</span></em>, <em class="sig-param"><span class="pre">phbnd=False</span></em>, <em class="sig-param"><span class="pre">broadcast=True</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.g" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate electron-phonon coupling for arbitary points k and k + q.</p>
+<div class="math notranslate nohighlight">
+\[\sqrt{2 \omega} g_{\nu m n} = \frac \hbar {\sqrt M}
+    \bra{\vec k + \vec q m}
+        \frac{\partial V}{\partial u_\nu}
+    \ket{\vec k n}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>q1, q2, q2</strong><span class="classifier">float</span></dt><dd><p>q point in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
+</dd>
+<dt><strong>k1, k2, k3</strong><span class="classifier">float</span></dt><dd><p>Ingoing k point in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
+</dd>
+<dt><strong>elbnd</strong><span class="classifier">bool</span></dt><dd><p>Transform to electronic band basis? Provided for convenience. Since
+the Hamiltonian is diagonalized on the fly for each requested matrix
+element, this option lacks efficiency and control of complex phases.
+Consider the method <cite>sample</cite> of this class instead.</p>
+</dd>
+<dt><strong>phbnd</strong><span class="classifier">bool</span></dt><dd><p>Transform to phononic band basis? Provided for convenience. Since
+the dynamical matrix is diagonalized on the fly for each requested
+matrix element, this option lacks efficiency and control of complex
+phases. Consider the method <cite>sample</cite> of this class instead.</p>
+</dd>
+<dt><strong>broadcast</strong><span class="classifier">bool</span></dt><dd><p>Broadcast result to all processors? If <code class="docutils literal notranslate"><span class="pre">False</span></code>, returns <code class="docutils literal notranslate"><span class="pre">None</span></code>
+on all but the first processor.</p>
+</dd>
+<dt><strong>comm</strong><span class="classifier">MPI communicator</span></dt><dd><p>Group of processors running this function (for parallelization of
+Fourier transforms).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Electron-phonon matrix element <span class="math notranslate nohighlight">\(\sqrt{2 \omega} g_{\nu m n}\)</span>
+in Ry<sup>3/2</sup>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.elph.Model.gR">
+<span class="sig-name descname"><span class="pre">gR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Rq1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rq2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rq3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rk3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.gR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get electron-phonon matrix elements for arbitrary lattice vectors.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.elph.Model.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample coupling.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.elph.sample" title="elphmod.elph.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.elph.Model.supercell">
+<span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.supercell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map localized model for electron-phonon coupling onto supercell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>N1, N2, N3</strong><span class="classifier">tuple of int or int, default 1</span></dt><dd><p>Supercell lattice vectors in units of primitive lattice vectors.
+Multiples of single primitive vector can be defined via a scalar
+integer, linear combinations via a 3-tuple of integers.</p>
+</dd>
+<dt><strong>shared_memory</strong><span class="classifier">bool, default False</span></dt><dd><p>Store mapped coupling in shared memory?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>object</dt><dd><p>Localized model for electron-phonon coupling for supercell.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elph.coupling">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">coupling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nQ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">complete_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squeeze</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.coupling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read and complete electron-phonon matrix elements.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elph.read_EPW_output">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_EPW_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epw_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squeeze</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_EPW_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read electron-phonon coupling from EPW output file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elph.read_data">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read array to ASCII file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elph.read_patterns">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_patterns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read XML files with displacement patterns from QE.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elph.read_xml_files">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_xml_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squeeze</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_xml_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read XML files with coupling in displacement basis from QE (<em>nosym</em>).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elph.sample">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample coupling for given q and k points and transform to band basis.</p>
+<p>One purpose of this routine is full control of the complex phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>g</strong><span class="classifier">function</span></dt><dd><p>Electron-phonon coupling in the basis of electronic orbitals and
+Cartesian ionic displacements as a function of q and k in crystal
+coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
+</dd>
+<dt><strong>q</strong><span class="classifier">list of tuple</span></dt><dd><p>List of q points in crystal coordinates <span class="math notranslate nohighlight">\(q_i \in [0, 2 \pi)\)</span>.</p>
+</dd>
+<dt><strong>nk</strong><span class="classifier">int or tuple of int</span></dt><dd><p>Number of k points per dimension, i.e., size of uniform mesh. Different
+numbers of k points along different axes can be specified via a tuple.
+Alternatively, <cite>nk</cite> is inferred from the shape of <cite>U</cite>.</p>
+</dd>
+<dt><strong>U</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Electron eigenvectors for given k mesh.
+If present, transform from orbital to band basis.</p>
+</dd>
+<dt><strong>u</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Phonon eigenvectors for given q points.
+If present, transform from displacement to band basis.</p>
+</dd>
+<dt><strong>broadcast</strong><span class="classifier">bool</span></dt><dd><p>Broadcast result from rank 0 to all processes?</p>
+</dd>
+<dt><strong>shared_memory</strong><span class="classifier">bool, optional</span></dt><dd><p>Store transformed coupling in shared memory?</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elph.transform">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform q- and k-dependent coupling to band basis.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.elph.sample" title="elphmod.elph.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elph.write_data">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">write_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.write_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write array to ASCII file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elph.write_xml_files">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">write_xml_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.write_xml_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write XML files with coupling in displacement basis.</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ph.html"
+                        title="previous chapter">ph: mass-spring models from Quantum ESPRESSO</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="elel.html"
+                        title="next chapter">elel: Coulomb interaction from VASP</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/elph.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="elel.html" title="elel: Coulomb interaction from VASP"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ph.html" title="ph: mass-spring models from Quantum ESPRESSO"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">elph: electron-phonon coupling from EPW</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Uni Bremen.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+    </div>
+  </body>
+</html>

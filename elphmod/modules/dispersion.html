@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>dispersion: diagonalization on paths and meshes &#8212; elphmod  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="dos: 2D tetrahedron methods" href="dos.html" />
+    <link rel="prev" title="bravais: lattices, symmetries, and interpolation" href="bravais.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="dos.html" title="dos: 2D tetrahedron methods"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="bravais.html" title="bravais: lattices, symmetries, and interpolation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">dispersion: diagonalization on paths and meshes</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-elphmod.dispersion">
+<span id="dispersion-diagonalization-on-paths-and-meshes"></span><h1>dispersion: diagonalization on paths and meshes<a class="headerlink" href="#module-elphmod.dispersion" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.dispersion.band_order">
+<span class="sig-prename descclassname"><span class="pre">elphmod.dispersion.</span></span><span class="sig-name descname"><span class="pre">band_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.dispersion.band_order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort bands by overlap of eigenvectors at neighboring k points.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.dispersion.dispersion">
+<span class="sig-prename descclassname"><span class="pre">elphmod.dispersion.</span></span><span class="sig-name descname"><span class="pre">dispersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gauge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermitian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.dispersion.dispersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Diagonalize Hamiltonian or dynamical matrix for given k points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>matrix</strong><span class="classifier">function</span></dt><dd><p>Matrix to be diagonalized as a function of k in crystal coordinates with
+period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
+</dd>
+<dt><strong>k</strong><span class="classifier">ndarray</span></dt><dd><p>k points in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>. Wave-vector
+components are stored along the last axis; the leading axes describe
+the mesh. The shapes of <cite>matrix</cite> and <cite>k</cite> together determine the shape
+of the results.</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">float</span></dt><dd><p>Angle between the axes of the reciprocal lattice.</p>
+</dd>
+<dt><strong>vectors</strong><span class="classifier">bool</span></dt><dd><p>Return eigenvectors?</p>
+</dd>
+<dt><strong>gauge</strong><span class="classifier">bool</span></dt><dd><p>Choose largest element of each eigenvector to be real? Not stable!</p>
+</dd>
+<dt><strong>rotate</strong><span class="classifier">bool</span></dt><dd><p>Align (phonon) eigenvectors with wave vector k via in-plane rotation.
+This is experimental and supposed to support the band-order algorithm.</p>
+</dd>
+<dt><strong>order</strong><span class="classifier">bool</span></dt><dd><p>Order/disentangle bands via their k-local character? Depending on the
+topology of the band structure, this may not be possible. Adjacent
+points in <cite>k</cite> must be adjacent in the Brillouin zone too.</p>
+</dd>
+<dt><strong>hermitian</strong><span class="classifier">bool</span></dt><dd><p>Assume <cite>matrix</cite> to be Hermitian, i.e., calculate real eigenvalues?</p>
+</dd>
+<dt><strong>broadcast</strong><span class="classifier">bool</span></dt><dd><p>Broadcast result from rank 0 to all processes?</p>
+</dd>
+<dt><strong>shared_memory</strong><span class="classifier">bool</span></dt><dd><p>Store results in shared memory?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Eigenvalues for the given k points.</p>
+</dd>
+<dt>ndarray, optional</dt><dd><p>Corresponding eigenvectors.</p>
+</dd>
+<dt>ndarray, optional</dt><dd><p>Indices which have been used to order the bands.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.dispersion.dispersion_full">
+<span class="sig-prename descclassname"><span class="pre">elphmod.dispersion.</span></span><span class="sig-name descname"><span class="pre">dispersion_full</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gauge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hermitian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.dispersion.dispersion_full" title="Permalink to this definition">¶</a></dt>
+<dd><p>Diagonalize Hamiltonian or dynamical matrix on uniform k-point mesh.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.dispersion.dispersion_full_nosym">
+<span class="sig-prename descclassname"><span class="pre">elphmod.dispersion.</span></span><span class="sig-name descname"><span class="pre">dispersion_full_nosym</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.dispersion.dispersion_full_nosym" title="Permalink to this definition">¶</a></dt>
+<dd><p>Diagonalize Hamiltonian or dynamical matrix on uniform k-point mesh.</p>
+<p>Use this routine to get eigenvectors less symmetric than the eigenvalues!</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.dispersion.map_dispersions">
+<span class="sig-prename descclassname"><span class="pre">elphmod.dispersion.</span></span><span class="sig-name descname"><span class="pre">map_dispersions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">V1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.dispersion.map_dispersions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map two similar arrays of eigenvectors onto each other.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.dispersion.sample">
+<span class="sig-prename descclassname"><span class="pre">elphmod.dispersion.</span></span><span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.dispersion.sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate Hamiltonian or dynamical matrix for given k points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>matrix</strong><span class="classifier">function</span></dt><dd><p>Matrix as a function of k.</p>
+</dd>
+<dt><strong>k</strong><span class="classifier">ndarray</span></dt><dd><p>k points.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.dispersion.unfolding_weights">
+<span class="sig-prename descclassname"><span class="pre">elphmod.dispersion.</span></span><span class="sig-name descname"><span class="pre">unfolding_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocks0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sgn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.dispersion.unfolding_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate weights for “unfolding” of supercell dispersions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>k</strong><span class="classifier">list of d-tuples</span></dt><dd><p>k points in arbitrary representation.</p>
+</dd>
+<dt><strong>R</strong><span class="classifier">list of d-tuples</span></dt><dd><p>Positions of the unit cells in the supercell. The representation must
+be compatible with the k points: If <cite>k</cite> is given in crystal coordinates
+with a period of <span class="math notranslate nohighlight">\(2 \pi\)</span>, <cite>R</cite> must be given in crystal
+coordinates with a period of 1. <cite>k</cite> and <cite>R</cite> can also be defined in
+Cartesian coordinates.</p>
+</dd>
+<dt><strong>U0: ndarray</strong></dt><dd><p>Eigenvectors of the symmetric system.</p>
+</dd>
+<dt><strong>U: ndarray</strong></dt><dd><p>Eigenvectors of the supercell system.</p>
+</dd>
+<dt><strong>blocks0</strong><span class="classifier">list of indexing objects, optional</span></dt><dd><p>Mapping from indices of <cite>R</cite> to slices of <cite>U0</cite>. By default, all orbitals
+are selected.</p>
+</dd>
+<dt><strong>blocks</strong><span class="classifier">list of indexing objects, optional</span></dt><dd><p>Mapping from indices of <cite>R</cite> to slices of <cite>U</cite>. By default, it is assumed
+that the orbitals are grouped into blocks corresponding to unit cells.
+Within the blocks, the order of the orbitals is as in <cite>U0</cite>. The order
+of the blocks is as in <cite>R</cite>.</p>
+</dd>
+<dt><strong>sgn</strong><span class="classifier">int</span></dt><dd><p>Sign convention for Fourier transform in tight-binding model.
+The default sign <code class="docutils literal notranslate"><span class="pre">-1</span></code> is suitable for data from Wannier90 as provided
+by <code class="xref py py-meth docutils literal notranslate"><span class="pre">el.Model.H()</span></code>.
+<a class="reference external" href="https://doi.org/10.26092/elib/250">Other conventions</a> require <code class="docutils literal notranslate"><span class="pre">+1</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Weights of the supercell states.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="bravais.html"
+                        title="previous chapter">bravais: lattices, symmetries, and interpolation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dos.html"
+                        title="next chapter">dos: 2D tetrahedron methods</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/dispersion.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="dos.html" title="dos: 2D tetrahedron methods"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="bravais.html" title="bravais: lattices, symmetries, and interpolation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">dispersion: diagonalization on paths and meshes</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Uni Bremen.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>misc: status bars etc. &#8212; elphmod  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="plot: BZ plots, color models, and fatbands" href="plot.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="plot.html" title="plot: BZ plots, color models, and fatbands"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">misc: status bars etc.</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-elphmod.misc">
+<span id="misc-status-bars-etc"></span><h1>misc: status bars etc.<a class="headerlink" href="#module-elphmod.misc" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.misc.group">
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Group points into neighborhoods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>points</strong><span class="classifier">ndarray</span></dt><dd><p>Points to be grouped.</p>
+</dd>
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Maximal distance between points in the same group.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>list of lists</dt><dd><p>Groups of indices.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.misc.read_cube">
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">read_cube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.read_cube" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read Gaussian cube file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.misc.read_xsf">
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">read_xsf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">xsf</span></em>, <em class="sig-param"><span class="pre">only_header=False</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.read_xsf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read file in XCrySDen format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>xsf</strong><span class="classifier">str</span></dt><dd><p>Name of XCrySDen file.</p>
+</dd>
+<dt><strong>only_header</strong><span class="classifier">bool, default False</span></dt><dd><p>Skip reading data?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>r0</strong><span class="classifier">ndarray</span></dt><dd><p>Origin of the data grid.</p>
+</dd>
+<dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Spanning vectors of the data grid.</p>
+</dd>
+<dt><strong>X</strong><span class="classifier">list of str</span></dt><dd><p>Atomic numbers or symbols.</p>
+</dd>
+<dt><strong>r</strong><span class="classifier">ndarray</span></dt><dd><p>Cartesian atomic coordinates.</p>
+</dd>
+<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Data-grid values or, if <cite>only_header</cite>, shape of data grid.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.misc.write_xsf" title="elphmod.misc.write_xsf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_xsf</span></code></a></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.misc.split">
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">','</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">od</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'{'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'}'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split expression with separators and brackets using distributive law.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>expr</strong><span class="classifier">str</span></dt><dd><p>Expression to be expanded and split.</p>
+</dd>
+<dt><strong>sd</strong><span class="classifier">str</span></dt><dd><p>Separating delimiter.</p>
+</dd>
+<dt><strong>od</strong><span class="classifier">str</span></dt><dd><p>Opening delimiter.</p>
+</dd>
+<dt><strong>cd</strong><span class="classifier">str</span></dt><dd><p>Closing delimiter.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>generator</dt><dd><p>Separated elements of expression.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.misc.vector_index">
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">vector_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vectors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.vector_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find index of vector in list of vectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>vectors</strong><span class="classifier">ndarray</span></dt><dd><p>List of vectors.</p>
+</dd>
+<dt><strong>vector</strong><span class="classifier">ndarray</span></dt><dd><p>Vector.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>int</dt><dd><p>Index of vector in list of vectors.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.misc.write_xsf">
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">write_xsf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">xsf</span></em>, <em class="sig-param"><span class="pre">r0</span></em>, <em class="sig-param"><span class="pre">a</span></em>, <em class="sig-param"><span class="pre">X</span></em>, <em class="sig-param"><span class="pre">r</span></em>, <em class="sig-param"><span class="pre">data</span></em>, <em class="sig-param"><span class="pre">only_header=False</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.write_xsf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write file in XCrySDen format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>xsf</strong><span class="classifier">str</span></dt><dd><p>Name of XCrySDen file.</p>
+</dd>
+<dt><strong>r0</strong><span class="classifier">ndarray</span></dt><dd><p>Origin of the data grid.</p>
+</dd>
+<dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Spanning vectors of the data grid.</p>
+</dd>
+<dt><strong>X</strong><span class="classifier">list of str</span></dt><dd><p>Atomic numbers or symbols.</p>
+</dd>
+<dt><strong>r</strong><span class="classifier">ndarray</span></dt><dd><p>Cartesian atomic coordinates.</p>
+</dd>
+<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Data-grid values or, if <cite>only_header</cite>, shape of data grid.</p>
+</dd>
+<dt><strong>only_header</strong><span class="classifier">bool, default False</span></dt><dd><p>Skip writing data?</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.misc.read_xsf" title="elphmod.misc.read_xsf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_xsf</span></code></a></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="plot.html"
+                        title="previous chapter">plot: BZ plots, color models, and fatbands</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/misc.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="plot.html" title="plot: BZ plots, color models, and fatbands"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">misc: status bars etc.</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Uni Bremen.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+    </div>
+  </body>
+</html>

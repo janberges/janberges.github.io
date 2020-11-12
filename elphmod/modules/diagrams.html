@@ -1,0 +1,555 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>diagrams: susceptibilities, self-energies, etc. &#8212; elphmod  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="occupations: step and delta smearing functions" href="occupations.html" />
+    <link rel="prev" title="dos: 2D tetrahedron methods" href="dos.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="occupations.html" title="occupations: step and delta smearing functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dos.html" title="dos: 2D tetrahedron methods"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">diagrams: susceptibilities, self-energies, etc.</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-elphmod.diagrams">
+<span id="diagrams-susceptibilities-self-energies-etc"></span><h1>diagrams: susceptibilities, self-energies, etc.<a class="headerlink" href="#module-elphmod.diagrams" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.diagrams.Pi_g">
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">Pi_g</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">g</span></em>, <em class="sig-param"><span class="pre">U</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-15</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">dd=True</span></em>, <em class="sig-param"><span class="pre">status=True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.Pi_g" title="Permalink to this definition">¶</a></dt>
+<dd><p>Join electron-phonon coupling and Lindhard bubble in orbital basis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>q</strong><span class="classifier">list of 2-tuples</span></dt><dd><p>Considered q points defined via crystal coordinates <span class="math notranslate nohighlight">\(q_1, q_2 \in
+[0, 2 \pi)\)</span>.</p>
+</dd>
+<dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
+</dd>
+<dt><strong>g</strong><span class="classifier">ndarray</span></dt><dd><p>Bare electron-phonon coupling in orbital basis.</p>
+</dd>
+<dt><strong>U</strong><span class="classifier">ndarray</span></dt><dd><p>Eigenvectors of Wannier Hamiltonian belonging to considered bands.</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature.</p>
+</dd>
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Smallest allowed absolute value of divisor.</p>
+</dd>
+<dt><strong>occupations</strong><span class="classifier">function</span></dt><dd><p>Particle distribution as a function of energy divided by <cite>kT</cite>.</p>
+</dd>
+<dt><strong>dd</strong><span class="classifier">bool</span></dt><dd><p>Consider only density-density terms?</p>
+</dd>
+<dt><strong>status</strong><span class="classifier">bool</span></dt><dd><p>Print status messages during the calculation?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>(k-independent) product of electron-phonon coupling and Lindhard bubble.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.diagrams.double_fermi_surface_average">
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">double_fermi_surface_average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">g2</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.double_fermi_surface_average" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate double Fermi-surface average.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>q</strong><span class="classifier">list of 2-tuples</span></dt><dd><p>Considered q points defined via crystal coordinates <span class="math notranslate nohighlight">\(q_1, q_2 \in
+[0, 2 \pi)\)</span>.</p>
+</dd>
+<dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
+</dd>
+<dt><strong>g2</strong><span class="classifier">ndarray</span></dt><dd><p>Quantity to be averaged, typically electron-phonon coupling.</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature.</p>
+</dd>
+<dt><strong>occupations</strong><span class="classifier">function</span></dt><dd><p>Particle distribution as a function of energy divided by <cite>kT</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Double Fermi-surface average.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.diagrams.phonon_self_energy">
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">phonon_self_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">g2=None</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-15</span></em>, <em class="sig-param"><span class="pre">omega=0.0</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">fluctuations=False</span></em>, <em class="sig-param"><span class="pre">Delta=None</span></em>, <em class="sig-param"><span class="pre">Delta_diff=False</span></em>, <em class="sig-param"><span class="pre">Delta_occupations=&lt;function</span> <span class="pre">gauss&gt;</span></em>, <em class="sig-param"><span class="pre">Delta_kT=0.025</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.phonon_self_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate phonon self-energy.</p>
+<div class="math notranslate nohighlight">
+\[\Pi_{\vec q \nu}(\omega) = \frac 2 N \sum_{\vec k m n}
+    |g_{\vec q \nu \vec k m n}|^2 \frac
+        {f(\epsilon_{\vec k n}) - f(\epsilon_{\vec k + \vec q m})}
+        {\epsilon_{\vec k n} - \epsilon_{\vec k + \vec q m} + \omega}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>q</strong><span class="classifier">list of tuple</span></dt><dd><p>List of q points in crystal coordinates <span class="math notranslate nohighlight">\(q_i \in [0, 2 \pi)\)</span>.</p>
+</dd>
+<dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
+</dd>
+<dt><strong>g2</strong><span class="classifier">ndarray</span></dt><dd><p>Squared electron-phonon coupling.</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature.</p>
+</dd>
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Smallest allowed absolute value of divisor.</p>
+</dd>
+<dt><strong>omega</strong><span class="classifier">float</span></dt><dd><p>Nonadiabatic frequency argument; shall include small imaginary
+regulator if nonzero.</p>
+</dd>
+<dt><strong>occupations</strong><span class="classifier">function</span></dt><dd><p>Particle distribution as a function of energy divided by <cite>kT</cite>.</p>
+</dd>
+<dt><strong>fluctuations</strong><span class="classifier">bool</span></dt><dd><p>Return integrand too (for fluctuation analysis)?</p>
+</dd>
+<dt><strong>Delta</strong><span class="classifier">float</span></dt><dd><p>Half the width of energy window around Fermi level to be excluded.</p>
+</dd>
+<dt><strong>Delta_diff</strong><span class="classifier">bool</span></dt><dd><p>Calculate derivative of phonon self-energy w.r.t. <cite>Delta</cite>?</p>
+</dd>
+<dt><strong>Delta_occupations</strong><span class="classifier">function</span></dt><dd><p>Smoothened Heaviside function to realize excluded energy window.</p>
+</dd>
+<dt><strong>Delta_kT</strong><span class="classifier">float</span></dt><dd><p>Temperature to smoothen Heaviside function.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Phonon self-energy.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.diagrams.phonon_self_energy2">
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">phonon_self_energy2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyb_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyb_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GB</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.phonon_self_energy2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate phonon self-energy using the Green’s functions explicitly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>q</strong><span class="classifier">list of 2-tuples</span></dt><dd><p>Considered q points defined via crystal coordinates <span class="math notranslate nohighlight">\(q_1, q_2 \in
+[0, 2 \pi)\)</span>.</p>
+</dd>
+<dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
+</dd>
+<dt><strong>g2</strong><span class="classifier">ndarray</span></dt><dd><p>Squared electron-phonon coupling.</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature.</p>
+</dd>
+<dt><strong>nmats</strong><span class="classifier">int</span></dt><dd><p>Number of fermionic Matsubara frequencies.</p>
+</dd>
+<dt><strong>hyb_width</strong><span class="classifier">float</span></dt><dd><p>Width of box-shaped hybridization function.</p>
+</dd>
+<dt><strong>hyb_height</strong><span class="classifier">float</span></dt><dd><p>Height of box-shaped hybridization function.</p>
+</dd>
+<dt><strong>GB</strong><span class="classifier">float</span></dt><dd><p>Memory limit in gigabytes. Exit if exceeded.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Phonon self-energy.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.diagrams.susceptibility2" title="elphmod.diagrams.susceptibility2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">susceptibility2</span></code></a></dt><dd><p>Similar function with <cite>g2</cite> set to one.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.diagrams.polarization">
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">polarization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">U</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-15</span></em>, <em class="sig-param"><span class="pre">subspace=None</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.polarization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate RPA polarization in orbital basis (density-density).</p>
+<div class="math notranslate nohighlight">
+\[\Pi_{\vec q \alpha \beta} = \frac 2 N \sum_{\vec k m n}
+    \bracket{\vec k + \vec q \alpha}{\vec k + \vec q m}
+    \bracket{\vec k n}{\vec k \alpha}
+    \frac
+        {f(\epsilon_{\vec k + \vec q m}) - f(\epsilon_{\vec k n})}
+        {\epsilon_{\vec k + \vec q m} - \epsilon_{\vec k n}}
+    \bracket{\vec k + \vec q m}{\vec k + \vec q \beta}
+    \bracket{\vec k \beta}{\vec k n}\]</div>
+<p>The resolution in q is limited by the resolution in k.</p>
+<p>If <cite>subspace</cite> is given, a cRPA calculation is performed. <cite>subspace</cite> must be
+a boolean array with the same shape as <cite>e</cite>, where <code class="docutils literal notranslate"><span class="pre">True</span></code> marks states of
+the target subspace, interactions between which are excluded.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
+</dd>
+<dt><strong>U</strong><span class="classifier">ndarray</span></dt><dd><p>Coefficients for transform to orbital basis. These are given by the
+eigenvectors of the Wannier Hamiltonian.</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature.</p>
+</dd>
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Smallest allowed absolute value of divisor.</p>
+</dd>
+<dt><strong>subspace</strong><span class="classifier">ndarray or None</span></dt><dd><p>Boolean array to select k points and/or bands in cRPA target subspace.</p>
+</dd>
+<dt><strong>occupations</strong><span class="classifier">function</span></dt><dd><p>Particle distribution as a function of energy divided by <cite>kT</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>function</dt><dd><p>RPA polarization in orbital basis as a function of <span class="math notranslate nohighlight">\(q_1, q_2 \in
+[0, 2 \pi)\)</span>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.diagrams.renormalize_coupling_band">
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">renormalize_coupling_band</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">g</span></em>, <em class="sig-param"><span class="pre">W</span></em>, <em class="sig-param"><span class="pre">U</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-15</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">nbnd_sub=None</span></em>, <em class="sig-param"><span class="pre">status=True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.renormalize_coupling_band" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate renormalized electron-phonon coupling in band basis.</p>
+<div class="math notranslate nohighlight">
+\[\tilde g_{\vec q \nu \vec k m n} = g_{\vec q \nu \vec k m n}
+    + \frac 2 N \sum_{\vec k' m' n' \alpha \beta \gamma \delta}
+    U_{\vec k + \vec q \alpha m}^* U_{\vec k \beta n}
+    W_{\vec q \alpha \beta \gamma \delta}
+    U_{\vec k' + \vec q \gamma m'} U_{\vec k' \delta n'}^*
+    \frac
+        {f(\epsilon_{\vec k' + \vec q m'}) - f(\epsilon_{\vec k' n'})}
+        {\epsilon_{\vec k' + \vec q m'} - \epsilon_{\vec k' n'}}
+    g_{\vec q \nu \vec k' m' n'}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>q</strong><span class="classifier">list of 2-tuples</span></dt><dd><p>Considered q points defined via crystal coordinates <span class="math notranslate nohighlight">\(q_1, q_2 \in
+[0, 2 \pi)\)</span>.</p>
+</dd>
+<dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
+</dd>
+<dt><strong>g</strong><span class="classifier">ndarray</span></dt><dd><p>Bare electron-phonon coupling in band basis.</p>
+</dd>
+<dt><strong>W</strong><span class="classifier">ndarray</span></dt><dd><p>Dressed q-dependent Coulomb interaction in orbital basis.</p>
+</dd>
+<dt><strong>U</strong><span class="classifier">ndarray</span></dt><dd><p>Eigenvectors of Wannier Hamiltonian belonging to considered bands.</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature.</p>
+</dd>
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Smallest allowed absolute value of divisor.</p>
+</dd>
+<dt><strong>occupations</strong><span class="classifier">function</span></dt><dd><p>Particle distribution as a function of energy divided by <cite>kT</cite>.</p>
+</dd>
+<dt><strong>nbnd_sub</strong><span class="classifier">int</span></dt><dd><p>Number of bands for Lindhard bubble. Defaults to all bands.</p>
+</dd>
+<dt><strong>status</strong><span class="classifier">bool</span></dt><dd><p>Print status messages during the calculation?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Dressed electron-phonon coupling in band basis.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.diagrams.renormalize_coupling_orbital" title="elphmod.diagrams.renormalize_coupling_orbital"><code class="xref py py-obj docutils literal notranslate"><span class="pre">renormalize_coupling_orbital</span></code></a></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.diagrams.renormalize_coupling_orbital">
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">renormalize_coupling_orbital</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.renormalize_coupling_orbital" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate renormalized electron-phonon coupling in orbital basis.</p>
+<div class="math notranslate nohighlight">
+\[\tilde g_{\vec q \nu \vec k \alpha \beta}
+    = g_{\vec q \nu \vec k \alpha \beta}
+    + \frac 2 N \sum_{\vec k m n \alpha' \beta' \gamma \delta}
+    W_{\vec q \alpha \beta \gamma \delta}
+    U_{\vec k + \vec q \gamma m} U_{\vec k \delta n}^*
+    \frac
+        {f(\epsilon_{\vec k + \vec q m}) - f(\epsilon_{\vec k n})}
+        {\epsilon_{\vec k + \vec q m} - \epsilon_{\vec k n}}
+    U_{\vec k + \vec q \alpha' m}^* U_{\vec k \beta' n}
+    g_{\vec q \nu \vec k \alpha' \beta'}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>q</strong><span class="classifier">list of 2-tuples</span></dt><dd><p>Considered q points defined via crystal coordinates <span class="math notranslate nohighlight">\(q_1, q_2 \in
+[0, 2 \pi)\)</span>.</p>
+</dd>
+<dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
+</dd>
+<dt><strong>g</strong><span class="classifier">ndarray</span></dt><dd><p>Bare electron-phonon coupling in orbital basis.</p>
+</dd>
+<dt><strong>W</strong><span class="classifier">ndarray</span></dt><dd><p>Dressed q-dependent Coulomb interaction in orbital basis.</p>
+</dd>
+<dt><strong>U</strong><span class="classifier">ndarray</span></dt><dd><p>Eigenvectors of Wannier Hamiltonian belonging to considered bands.</p>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Parameters passed to <a class="reference internal" href="#elphmod.diagrams.Pi_g" title="elphmod.diagrams.Pi_g"><code class="xref py py-func docutils literal notranslate"><span class="pre">Pi_g()</span></code></a>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Dressed electron-phonon coupling in orbital basis.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.diagrams.Pi_g" title="elphmod.diagrams.Pi_g"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pi_g</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="#elphmod.diagrams.renormalize_coupling_orbital" title="elphmod.diagrams.renormalize_coupling_orbital"><code class="xref py py-obj docutils literal notranslate"><span class="pre">renormalize_coupling_orbital</span></code></a></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.diagrams.susceptibility">
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">susceptibility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eta=1e-10</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.susceptibility" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate real part of static electronic susceptibility.</p>
+<div class="math notranslate nohighlight">
+\[\chi_{\vec q} = \frac 2 N \sum_{\vec k} \frac
+    {f(\epsilon_{\vec k + \vec q}) - f(\epsilon_{\vec k})}
+    {\epsilon_{\vec k + \vec q} - \epsilon_{\vec k} + \I \eta}\]</div>
+<p>The resolution in q is limited by the resolution in k.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature.</p>
+</dd>
+<dt><strong>eta</strong><span class="classifier">float</span></dt><dd><p>Absolute value of “infinitesimal” imaginary number in denominator.</p>
+</dd>
+<dt><strong>occupations</strong><span class="classifier">function</span></dt><dd><p>Particle distribution as a function of energy divided by <cite>kT</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>function</dt><dd><p>Static electronic susceptibility as a function of <span class="math notranslate nohighlight">\(q_1, q_2 \in
+[0, 2 \pi)\)</span>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.diagrams.susceptibility2">
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">susceptibility2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyb_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyb_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.susceptibility2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the Lindhard bubble using the Green’s functions explicitly.</p>
+<div class="math notranslate nohighlight">
+\[\chi = \frac \beta 4 - \frac 1 \beta
+    \sum_n G(\nu_n) - \frac 1 {(\I \nu_n)^2}\]</div>
+<p>Only omega = 0 (static) calculation is performed.</p>
+<p>For the treatment of the <span class="math notranslate nohighlight">\(1 / \I \nu_n\)</span> tail, see:</p>
+<blockquote>
+<div><p>Appendix B of the thesis of Hartmut Hafermann.</p>
+</div></blockquote>
+<p>Multiply by 2 for spin.</p>
+<p>The resolution in q is limited by the resolution in k.</p>
+<p>Original implementation by Erik G.C.P. van Loon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature.</p>
+</dd>
+<dt><strong>nmats</strong><span class="classifier">int</span></dt><dd><p>Number of fermionic Matsubara frequencies.</p>
+</dd>
+<dt><strong>hyb_width</strong><span class="classifier">float</span></dt><dd><p>Width of box-shaped hybridization function.</p>
+</dd>
+<dt><strong>hyb_height</strong><span class="classifier">float</span></dt><dd><p>Height of box-shaped hybridization function.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>function</dt><dd><p>Static electronic susceptibility as a function of <span class="math notranslate nohighlight">\(q_1, q_2 \in
+[0, 2 \pi)\)</span>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.diagrams.triangle">
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">triangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q1</span></em>, <em class="sig-param"><span class="pre">q2</span></em>, <em class="sig-param"><span class="pre">q3</span></em>, <em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">g1</span></em>, <em class="sig-param"><span class="pre">g2</span></em>, <em class="sig-param"><span class="pre">g3</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-14</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.triangle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate triangle diagram.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\chi_{\vec q \mu \vec q' \nu}
+    &amp;= \sum_{\vec k \alpha \beta \gamma} \frac
+    {
+        \epsilon_{\vec k \alpha}
+            (f_{\vec k + \vec q \beta} - f_{\vec k + \vec q' \gamma})
+        + \epsilon_{\vec k + \vec q \beta}
+            (f_{\vec k + \vec q' \gamma} - f_{\vec k \alpha})
+        + \epsilon_{\vec k + \vec q' \gamma}
+            (f_{\vec k \alpha} - f_{\vec k + \vec q \beta})
+    }{
+        (\epsilon_{\vec k + \vec q \beta}
+            - \epsilon_{\vec k + \vec q' \gamma})
+        (\epsilon_{\vec k + \vec q' \gamma}
+            - \epsilon_{\vec k \alpha})
+        (\epsilon_{\vec k \alpha}
+            - \epsilon_{\vec k + \vec q \beta})
+    }
+    \\ &amp;\times
+    g^*_{\vec q \mu \vec k \beta \alpha}
+    g_{\vec q' \nu \vec k \gamma \alpha}
+    g_{\vec q - \vec q' \nu \vec k + \vec q' \beta \gamma}\end{split}\]</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>           q u
+            o
+           / \
+          /   \
+         /     \
+   k a  v       ^  k+q b
+       /         \
+      /           \
+     /             \
+    o-------&gt;-------o
+q&#39; v     k+q&#39; c      q-q&#39; v
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>q1, q2, q3</strong><span class="classifier">2-tuples</span></dt><dd><p>q points of the vertices in crystal coordinates <span class="math notranslate nohighlight">\(q_1, q_2 \in [0,
+2 \pi)\)</span>.  In the above diagram, <span class="math notranslate nohighlight">\(q_1 = q, q_2 = q', q3 = q - q'\)</span>.</p>
+</dd>
+<dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
+</dd>
+<dt><strong>g1, g2, g3</strong><span class="classifier">ndarray</span></dt><dd><p>Electron-phonon coupling for given q points.</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature.</p>
+</dd>
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Smallest allowed absolute value of divisor.</p>
+</dd>
+<dt><strong>occupations</strong><span class="classifier">function</span></dt><dd><p>Particle distribution as a function of energy divided by <cite>kT</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Value of triangle.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dos.html"
+                        title="previous chapter">dos: 2D tetrahedron methods</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="occupations.html"
+                        title="next chapter">occupations: step and delta smearing functions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/diagrams.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="occupations.html" title="occupations: step and delta smearing functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dos.html" title="dos: 2D tetrahedron methods"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">diagrams: susceptibilities, self-energies, etc.</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Uni Bremen.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+    </div>
+  </body>
+</html>

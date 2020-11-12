@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>dos: 2D tetrahedron methods &#8212; elphmod  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="diagrams: susceptibilities, self-energies, etc." href="diagrams.html" />
+    <link rel="prev" title="dispersion: diagonalization on paths and meshes" href="dispersion.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="diagrams.html" title="diagrams: susceptibilities, self-energies, etc."
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dispersion.html" title="dispersion: diagonalization on paths and meshes"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">dos: 2D tetrahedron methods</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-elphmod.dos">
+<span id="dos-2d-tetrahedron-methods"></span><h1>dos: 2D tetrahedron methods<a class="headerlink" href="#module-elphmod.dos" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.dos.double_delta">
+<span class="sig-prename descclassname"><span class="pre">elphmod.dos.</span></span><span class="sig-name descname"><span class="pre">double_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.dos.double_delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate double-delta integrals via 2D tetrahedron method .</p>
+<div class="math notranslate nohighlight">
+\[I(z) = \frac 1 N \sum_{\vec k}
+    \delta(x_{\vec k} - z) \delta(y_{\vec k} - z) f_{\vec k}\]</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x, y, f</strong><span class="classifier">ndarray</span></dt><dd><p>Three functions sampled on uniform N x N mesh.</p>
+</dd>
+<dt><strong>eps</strong><span class="classifier">ndarray</span></dt><dd><p>Negligible difference between fractional mesh-point indices.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl>
+<dt><strong>function</strong><span class="classifier">float -&gt; dict</span></dt><dd><p>Intersection points of <span class="math notranslate nohighlight">\(x, y = z\)</span> isolines and corresponding
+weights as a function of <span class="math notranslate nohighlight">\(z\)</span>. The above double-delta integral
+<span class="math notranslate nohighlight">\(I(z)\)</span> can be calculated as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">I_z</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">double_delta</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">)(</span><span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.dos.hexDOS">
+<span class="sig-prename descclassname"><span class="pre">elphmod.dos.</span></span><span class="sig-name descname"><span class="pre">hexDOS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.dos.hexDOS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate DOS from energies on triangular mesh (2D tetrahedron method).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>energies</strong><span class="classifier">ndarray</span></dt><dd><p>Energies on triangular mesh.</p>
+</dd>
+<dt><strong>minimum, maximum</strong><span class="classifier">float, optional</span></dt><dd><p>Energy window of interest (for efficiency).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>function</dt><dd><p>Density of states as a function of energy.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Integration over all energies yields unity.</p>
+<p>Derivation: The density of states can be expressed as</p>
+<div class="math notranslate nohighlight">
+\[\rho(E) = \frac 1 V \int_{W(k) = E} \frac{\D k}{|\vec \nabla W(k)|},\]</div>
+<p>where <span class="math notranslate nohighlight">\(V\)</span> is the volume of a reciprocal unit cell, <span class="math notranslate nohighlight">\(W(k)\)</span> is
+the dispersion relation and the integral is over an energy isosurface/line
+in k space.</p>
+<p>In the following, consider a two dimensional reciprocal unit cell which can
+be divided into <span class="math notranslate nohighlight">\(2 \times N \times N\)</span> equilateral triangles of
+reciprocal side length <span class="math notranslate nohighlight">\(a\)</span>, on each of which the energy is
+interpolated linearly. On a triangle with the energies <span class="math notranslate nohighlight">\(A, B, C\)</span> at
+its corners, the gradient of the energy plane is</p>
+<div class="math notranslate nohighlight">
+\[|\vec \nabla W| = \frac 2 {\sqrt 3 a}
+    \sqrt{A^2 + B^2 + C^2 - A B - A C - B C}.\]</div>
+<p>For the special case <span class="math notranslate nohighlight">\(A &lt; B &lt; E &lt; C\)</span>, the reciprocal length of the
+<span class="math notranslate nohighlight">\(E\)</span> isoline within the triangle reads</p>
+<div class="math notranslate nohighlight">
+\[\D k = a \sqrt{A^2 + B^2 + C^2 - A B - A C - B C}
+    \frac{C - E}{(C - A) (C - B)}.\]</div>
+<p>Taking into account that <span class="math notranslate nohighlight">\(V = N^2 a^2 \sqrt 3 / 2\)</span>, one finds the
+contribution of this triangle to the density of states:</p>
+<div class="math notranslate nohighlight">
+\[\frac 1 {N^2} \frac{C - E}{(C - A) (C - B)}.\]</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.dos.hexa2F">
+<span class="sig-prename descclassname"><span class="pre">elphmod.dos.</span></span><span class="sig-name descname"><span class="pre">hexa2F</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couplings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.dos.hexa2F" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate <span class="math notranslate nohighlight">\(\alpha^2 F\)</span> from energies and coupling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>energies</strong><span class="classifier">ndarray</span></dt><dd><p>Energies on triangular mesh.</p>
+</dd>
+<dt><strong>couplings</strong><span class="classifier">ndarray</span></dt><dd><p>Couplings on triangular mesh.</p>
+</dd>
+<dt><strong>minimum, maximum</strong><span class="classifier">float, optional</span></dt><dd><p>Energy window of interest (for efficiency).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>function</dt><dd><p><span class="math notranslate nohighlight">\(\alpha^2 F\)</span> as a function of energy.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Integration over all energies yields the arithmetic mean of the coupling.</p>
+<p>Note that it may be more convenient to calculate the mass renormalization</p>
+<div class="math notranslate nohighlight">
+\[\lambda_n = \int_0^\infty \D \omega
+    \frac{2 \omega \alpha^2 F(\omega)}
+        {\omega^2 + \omega_n^2}
+    = N(0) \sum_{\vec q \nu}
+    \frac{2 \omega_{\vec q \nu} g^2_{\vec q \nu}}
+        {\omega_{\vec q \nu}^2 + \omega_n^2}\]</div>
+<p>directly from energies and couplings, without integrating this function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.dos.isoline">
+<span class="sig-prename descclassname"><span class="pre">elphmod.dos.</span></span><span class="sig-name descname"><span class="pre">isoline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energies</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.dos.isoline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate isoline on triangular mesh (2D tetrahedron method).</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dispersion.html"
+                        title="previous chapter">dispersion: diagonalization on paths and meshes</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="diagrams.html"
+                        title="next chapter">diagrams: susceptibilities, self-energies, etc.</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/dos.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="diagrams.html" title="diagrams: susceptibilities, self-energies, etc."
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dispersion.html" title="dispersion: diagonalization on paths and meshes"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">dos: 2D tetrahedron methods</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Uni Bremen.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+<!-- Creator     : groff version 1.22.4 -->
+<!-- CreationDate: Mon Dec 13 19:16:21 2021 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>GUITAR</title>
+
+</head>
+<body>
+
+<h1 align="center">GUITAR</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#SYNTAX">SYNTAX</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">guitar - read
+guitar tablature</p>
+
+<h2>SYNOPSIS
+<a name="SYNOPSIS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>guitar</b>
+[<i>infile</i> [<i>outfile</i>]]</p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Preprocess
+input for the program <b>mel</b> to allow for guitar
+tablatures. <i>infile</i> and <i>outfile</i> default to
+<b>/dev/stdin</b> and <b>/dev/stdout</b>, respectively. The
+dash (<b>-</b>) is a shorthand for the default value.</p>
+
+<h2>SYNTAX
+<a name="SYNTAX"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The syntax of
+<i>infile</i> is as described in <b>mel</b>(1), with the
+following exception: Text between two <b>|</b>s that
+contains at least one hyphen-minus (<b>-</b>) or tilde
+(<b>~</b>), represents one bar/measure. Here, the commands
+<b>|</b><i>n</i>, <b>-</b><i>n</i>, and
+<b>~</b><i>w</i>[<i>n</i>] cannot be applied as usual and
+the <b>U</b> of the <b>U</b><i>n</i> command can be omitted.
+The bar duration, defined beforehand via the
+<b>|</b><i>n</i> command, is evenly distributed among the
+enclosed characters. The hyphen-minus (<b>-</b>) represents
+a string at rest (a pause), all other characters, in
+particular the tilde (<b>~</b>), represent a vibrating
+string (sound is played), in addition to their actual
+meanings. Lines with tablature that are not separated by an
+empty line start at the same point in time. This is realized
+via the <b>M0</b> mark, which shall not be used
+manually.</p>
+<hr>
+</body>
+</html>

@@ -1,0 +1,564 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>el: tight-binding models from Wannier90 &#8212; elphmod  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ph: mass-spring models from Quantum ESPRESSO" href="ph.html" />
+    <link rel="prev" title="Installation" href="../index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ph.html" title="ph: mass-spring models from Quantum ESPRESSO"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Installation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">el: tight-binding models from Wannier90</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-elphmod.el">
+<span id="el-tight-binding-models-from-wannier90"></span><h1>el: tight-binding models from Wannier90<a class="headerlink" href="#module-elphmod.el" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="elphmod.el.Model">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read_xsf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_ortho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tight-binding model for the electrons.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>seedname</strong><span class="classifier">str</span></dt><dd><p>Common prefix of Wannier90 output files: <em>seedname_hr.dat</em> with the
+Hamiltonian in the Wannier basis and, optionally, <em>seedname_wsvec.dat</em>
+with superlattice vectors used to symmetrize the long-range hopping.</p>
+</dd>
+<dt><strong>divide_ndegen</strong><span class="classifier">bool, default True</span></dt><dd><p>Divide hopping by degeneracy of Wigner-Seitz point and apply the
+abovementioned correction? Only <code class="docutils literal notranslate"><span class="pre">True</span></code> yields correct bands.
+<code class="docutils literal notranslate"><span class="pre">False</span></code> is only used in combination with <a class="reference internal" href="#elphmod.el.decayH" title="elphmod.el.decayH"><code class="xref py py-func docutils literal notranslate"><span class="pre">decayH()</span></code></a>.</p>
+</dd>
+<dt><strong>read_xsf</strong><span class="classifier">bool, default False</span></dt><dd><p>Read Wannier functions in position representation in the XCrySDen
+structure format (XSF)?</p>
+</dd>
+<dt><strong>normalize_wf</strong><span class="classifier">bool, default False</span></dt><dd><p>Normalize Wannier functions? This is only recommended if a single and
+complete image of each Wannier function is contained in the supercell
+written to the XSF file. This may not be the case for a small number of
+k points along one direction (e.g., a single k point in the out-of-plane
+direction in the case of 2D materials), especially in combination with a
+large supercell.</p>
+</dd>
+<dt><strong>buffer_wf</strong><span class="classifier">bool, default False</span></dt><dd><p>After reading XSF files, store Wannier functions and corresponding
+real-space mesh in binary files, which will be read next time? Since
+reading the XSF files is slow, this can save a lot of time for large
+systems. Make sure to delete the binary files <em>seedname_wf.npy</em> and
+<em>seedname_xyz.npy</em> whensoever the XSF files change.</p>
+</dd>
+<dt><strong>check_ortho</strong><span class="classifier">bool, default False</span></dt><dd><p>Check if Wannier functions are orthogonal?</p>
+</dd>
+<dt><strong>shared_memory</strong><span class="classifier">bool, default False</span></dt><dd><p>Store Wannier functions in shared memory?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors of Wigner-Seitz supercell.</p>
+</dd>
+<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding on-site energies and hoppings.</p>
+</dd>
+<dt><strong>size</strong><span class="classifier">int</span></dt><dd><p>Number of Wannier functions/bands.</p>
+</dd>
+<dt><strong>cells</strong><span class="classifier">list of tuple of int, optional</span></dt><dd><p>Lattice vectors of unit cells if the model describes a supercell.</p>
+</dd>
+<dt><strong>N</strong><span class="classifier">list of tuple of int, optional</span></dt><dd><p>Primitive vectors of supercell if the model describes a supercell.</p>
+</dd>
+<dt><strong>W</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Wannier functions in position representation if <cite>read_xsf</cite>.</p>
+</dd>
+<dt><strong>r</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Cartesian positions belonging to Wannier functions if <cite>read_xsf</cite>.</p>
+</dd>
+<dt><strong>tau</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Positions of basis atoms if <cite>read_xsf</cite>.</p>
+</dd>
+<dt><strong>atom_order</strong><span class="classifier">list of str, optional</span></dt><dd><p>Ordered list of atoms if <cite>read_xsf</cite>.</p>
+</dd>
+<dt><strong>dV</strong><span class="classifier">float, optional</span></dt><dd><p>Volume element/voxel volume belonging to <cite>r</cite> if <cite>read_xsf</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.el.Model.H">
+<span class="sig-name descname"><span class="pre">H</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.H" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up Hamilton operator for arbitrary k point.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.el.Model.order_orbitals">
+<span class="sig-name descname"><span class="pre">order_orbitals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">order</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.order_orbitals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reorder Wannier functions.</p>
+<p>Warning: Wannier functions in position representation and related
+attributes remain unchanged!</p>
+<p>Together with <a class="reference internal" href="#elphmod.el.Model.shift_orbitals" title="elphmod.el.Model.shift_orbitals"><code class="xref py py-func docutils literal notranslate"><span class="pre">shift_orbitals()</span></code></a>, this function helps reconcile
+inconsistent definitions of the basis/motif of the Bravais lattice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>*order</strong><span class="classifier">int</span></dt><dd><p>New order of Wannier functions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.el.Model.shift_orbitals">
+<span class="sig-name descname"><span class="pre">shift_orbitals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.shift_orbitals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move selected Wannier functions across unit-cell boundary.</p>
+<p>Warning: Wannier functions in position representation and related
+attributes remain unchanged!</p>
+<p>Together with <a class="reference internal" href="#elphmod.el.Model.order_orbitals" title="elphmod.el.Model.order_orbitals"><code class="xref py py-func docutils literal notranslate"><span class="pre">order_orbitals()</span></code></a>, this function helps reconcile
+inconsistent definitions of the basis/motif of the Bravais lattice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>s</strong><span class="classifier">slice</span></dt><dd><p>Slice of orbital indices corresponding to selected basis atom(s).</p>
+</dd>
+<dt><strong>S</strong><span class="classifier">tuple of int</span></dt><dd><p>Shift of as multiple of primitive lattice vectors.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.el.Model.standardize">
+<span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.standardize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standardize tight-binding data.</p>
+<ul class="simple">
+<li><p>Keep only nonzero hopping matrices.</p></li>
+<li><p>Sum over repeated lattice vectors.</p></li>
+<li><p>Sort lattice vectors.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.el.Model.supercell">
+<span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.supercell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map tight-binding model onto supercell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>N1, N2, N3</strong><span class="classifier">tuple of int or int, default 1</span></dt><dd><p>Supercell lattice vectors in units of primitive lattice vectors.
+Multiples of single primitive vector can be defined via a scalar
+integer, linear combinations via a 3-tuple of integers.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>object</dt><dd><p>Tight-binding model for supercell.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.el.Model.t">
+<span class="sig-name descname"><span class="pre">t</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get on-site or hopping energy for arbitrary lattice vector.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.el.Model.unit_cell">
+<span class="sig-name descname"><span class="pre">unit_cell</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.unit_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map tight-binding model back to unit cell.</p>
+<p>Original idea by Bin Shao.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.el.Model.supercell" title="elphmod.el.Model.supercell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">supercell</span></code></a></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.decayH">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">decayH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.decayH" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the decay of the Hamiltonian.</p>
+<p>This function should yield the same data as <a class="reference internal" href="#elphmod.el.read_decayH" title="elphmod.el.read_decayH"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_decayH()</span></code></a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>seedname</strong><span class="classifier">str</span></dt><dd><p>Prefix of Wannier90 output file.</p>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Arguments for <code class="xref py py-func docutils literal notranslate"><span class="pre">bravais.primitives()</span></code>: Choose the right Bravais
+lattice (<code class="docutils literal notranslate"><span class="pre">ibrav</span></code>) and lattice constants (<code class="docutils literal notranslate"><span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">c,</span> <span class="pre">...</span></code>).</p>
+<p>For a simple cubic lattice: <code class="docutils literal notranslate"><span class="pre">decayH(seedname,</span> <span class="pre">ibrav=1,</span> <span class="pre">a=a)</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>The distance of every Wigner-Seitz grid point measured from the center
+in angstrom.</p>
+</dd>
+<dt><strong>H</strong><span class="classifier">ndarray</span></dt><dd><p>The maximum absolute value of the elements of the Hamiltonian matrix in
+rydberg.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.eband_from_qe_pwo">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">eband_from_qe_pwo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.eband_from_qe_pwo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate <code class="docutils literal notranslate"><span class="pre">eband</span></code> part of one-electron energy.</p>
+<p>The ‘one-electron contribution’ energy in the Quantum ESPRESSO PWscf output
+is a sum <code class="docutils literal notranslate"><span class="pre">eband</span> <span class="pre">+</span> <span class="pre">deband</span></code>. Here, we can calculate the <code class="docutils literal notranslate"><span class="pre">eband</span></code> part.</p>
+<p>To compare it with the Quantum ESPRESSO result, you need to modify
+the <code class="docutils literal notranslate"><span class="pre">SUBROUTINE</span> <span class="pre">print_energies</span> <span class="pre">(</span> <span class="pre">printout</span> <span class="pre">)</span></code> from <em>electrons.f90</em>.</p>
+<p>Change:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WRITE</span><span class="p">(</span> <span class="n">stdout</span><span class="p">,</span> <span class="mi">9060</span> <span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span> <span class="n">eband</span> <span class="o">+</span> <span class="n">deband</span> <span class="p">),</span> <span class="n">ehart</span><span class="p">,</span> <span class="p">(</span> <span class="n">etxc</span> <span class="o">-</span> <span class="n">etxcc</span> <span class="p">),</span> <span class="n">ewld</span>
+</pre></div>
+</div>
+<p>to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WRITE</span><span class="p">(</span> <span class="n">stdout</span><span class="p">,</span> <span class="mi">9060</span> <span class="p">)</span> <span class="o">&amp;</span>
+    <span class="n">eband</span><span class="p">,</span> <span class="p">(</span> <span class="n">eband</span> <span class="o">+</span> <span class="n">deband</span> <span class="p">),</span> <span class="n">ehart</span><span class="p">,</span> <span class="p">(</span> <span class="n">etxc</span> <span class="o">-</span> <span class="n">etxcc</span> <span class="p">),</span> <span class="n">ewld</span>
+</pre></div>
+</div>
+<p>and:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">9060</span> <span class="n">FORMAT</span><span class="p">(</span><span class="o">/</span><span class="s1">&#39;     The total energy is the sum of the following terms:&#39;</span><span class="p">,</span><span class="o">/</span><span class="p">,</span><span class="o">&amp;</span>
+        <span class="o">/</span><span class="s1">&#39;     one-electron contribution =&#39;</span><span class="p">,</span><span class="n">F17</span><span class="mf">.8</span><span class="p">,</span><span class="s1">&#39; Ry&#39;</span> <span class="o">&amp;</span>
+</pre></div>
+</div>
+<p>to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">9060</span> <span class="n">FORMAT</span><span class="p">(</span><span class="o">/</span><span class="s1">&#39;     The total energy is the sum of the following terms:&#39;</span><span class="p">,</span><span class="o">/</span><span class="p">,</span><span class="o">&amp;</span>
+        <span class="o">/</span><span class="s1">&#39;     sum bands                 =&#39;</span><span class="p">,</span><span class="n">F17</span><span class="mf">.8</span><span class="p">,</span><span class="s1">&#39; Ry&#39;</span> <span class="o">&amp;</span>
+        <span class="o">/</span><span class="s1">&#39;     one-electron contribution =&#39;</span><span class="p">,</span><span class="n">F17</span><span class="mf">.8</span><span class="p">,</span><span class="s1">&#39; Ry&#39;</span> <span class="o">&amp;</span>
+</pre></div>
+</div>
+<p>At some point, we should add the <code class="docutils literal notranslate"><span class="pre">deband</span></code> routine as well…</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>pw_scf_out</strong><span class="classifier">str</span></dt><dd><p>The name of the output file (typically ‘pw.out’).</p>
+</dd>
+<dt><strong>subset</strong><span class="classifier">list or array</span></dt><dd><p>List of indices to pick only a subset of the bands
+for the integration</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>eband</strong><span class="classifier">float</span></dt><dd><p>The band energy.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.proj_sum">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">proj_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orbitals</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.proj_sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sum over selected atomic projections.</p>
+<p>Examples:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">proj</span> <span class="o">=</span> <span class="n">read_atomic_projections</span><span class="p">(</span><span class="s1">&#39;atomic_proj.xml&#39;</span><span class="p">)</span>
+<span class="n">orbitals</span> <span class="o">=</span> <span class="n">read_projwf_out</span><span class="p">(</span><span class="s1">&#39;projwfc.out&#39;</span><span class="p">)</span>
+<span class="n">proj</span> <span class="o">=</span> <span class="n">proj_sum</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">orbitals</span><span class="p">,</span> <span class="s1">&#39;S-p&#39;</span><span class="p">,</span> <span class="s1">&#39;Ta-d{z2, x2-y2, xy}&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_Fermi_level">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_Fermi_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_Fermi_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read Fermi level from output of self-consistent PW run.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_atomic_projections">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_atomic_projections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_proj_xml</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_fermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">order_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_atomic_projections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read projected bands from <em>outdir/prefix.save/atomic_proj.xml</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>atomic_proj_xml</strong><span class="classifier">str</span></dt><dd><p>XML file with atomic projections generated by <code class="docutils literal notranslate"><span class="pre">projwfc.x</span></code>.</p>
+</dd>
+<dt><strong>order</strong><span class="classifier">bool</span></dt><dd><p>Order/disentangle bands via their k-local character?</p>
+</dd>
+<dt><strong>from_fermi</strong><span class="classifier">bool</span></dt><dd><p>Subtract Fermi level from electronic energies?</p>
+</dd>
+<dt><strong>other</strong><span class="classifier">bool</span></dt><dd><p>Estimate projection onto “other” orbitals as difference of band weights
+to one?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>k points.</p>
+</dd>
+<dt>ndarray</dt><dd><p>Cumulative path distance.</p>
+</dd>
+<dt>ndarray</dt><dd><p>Electronic energies.</p>
+</dd>
+<dt>ndarray</dt><dd><p>Projections onto (pseudo) atomic orbitals.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_atomic_projections_old">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_atomic_projections_old</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_proj_xml</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_fermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">order_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_atomic_projections_old" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read projected bands from <em>outdir/prefix.save/atomic_proj.xml</em>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_bands">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_bands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filband</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_bands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read bands from <em>filband</em> just like Quantum ESRESSO’s <code class="docutils literal notranslate"><span class="pre">plotband.x</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_bands_plot">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_bands_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filbandgnu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_bands_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read bands from <em>filband.gnu</em> produced by Quantum ESPRESSO’s <code class="docutils literal notranslate"><span class="pre">bands.x</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filbandgnu</strong><span class="classifier">str</span></dt><dd><p>Name of file with plotted bands.</p>
+</dd>
+<dt><strong>bands</strong><span class="classifier">int</span></dt><dd><p>Number of bands.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Cumulative reciprocal distance.</p>
+</dd>
+<dt>ndarray</dt><dd><p>Band energies.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_decayH">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_decayH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_decayH" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read <em>decay.H</em> output from EPW.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>file</strong><span class="classifier">str</span></dt><dd><p>The name of the <em>decay.H</em> output from EPW.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>The distance of every Wigner-Seitz grid point measured from the center
+in angstrom.</p>
+</dd>
+<dt><strong>H</strong><span class="classifier">ndarray</span></dt><dd><p>The maximum absolute value of the elements of the Hamiltonian matrix in
+rydberg.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_energy_contributions_scf_out">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_energy_contributions_scf_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_energy_contributions_scf_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read energy contributions to the total energy
+from Quantum ESPRESSO’s scf output file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>scf output file name.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict</dt><dd><p>energy contributions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_hrdat">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_hrdat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hrdat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_hrdat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read <em>_hr.dat</em> file from Wannier90.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_projwfc_out">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_projwfc_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">projwfc_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_projwfc_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identify orbitals in <em>atomic_proj.xml</em> via output of <code class="docutils literal notranslate"><span class="pre">projwfc.x</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>projwfc_out</strong><span class="classifier">str</span></dt><dd><p>Output file of <code class="docutils literal notranslate"><span class="pre">projwfc.x</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>list of str</dt><dd><p>Comman names of (pseudo) atomic orbitals listed in <cite>projwfc_out</cite> (in
+that order).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_pwo">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_pwo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_pwo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read energies from PW output file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_symmetry_points">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_symmetry_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bandsout</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_symmetry_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read positions of symmetry points along path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>bandsout</strong><span class="classifier">str</span></dt><dd><p>File with standard output from Quantum ESPRESSO’s <code class="docutils literal notranslate"><span class="pre">bands.x</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>list</dt><dd><p>Positions of symmetry points.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_wannier90_eig_file">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_wannier90_eig_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nkpts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_wannier90_eig_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read Kohn-Sham energies (eV) from the Wannier90 output seedname.eig file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>seedname</strong><span class="classifier">str</span></dt><dd><p>For example ‘tas2’, if the file is named ‘tas2.eig’.</p>
+</dd>
+<dt><strong>num_bands</strong><span class="classifier">int</span></dt><dd><p>Number of bands in your pseudopotential.</p>
+</dd>
+<dt><strong>nkpts</strong><span class="classifier">int</span></dt><dd><p>Number of k-points in your Wannier90 calculations.
+For example 1296 for 36x36x1.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Kohn-Sham energies: <code class="docutils literal notranslate"><span class="pre">eig[num_bands,</span> <span class="pre">nkpts]</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_wsvecdat">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_wsvecdat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wsvecdat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_wsvecdat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read <em>_wsvec.dat</em> file from Wannier90.</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter">Installation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ph.html"
+                        title="next chapter">ph: mass-spring models from Quantum ESPRESSO</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/el.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ph.html" title="ph: mass-spring models from Quantum ESPRESSO"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Installation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">el: tight-binding models from Wannier90</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Uni Bremen.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+    </div>
+  </body>
+</html>

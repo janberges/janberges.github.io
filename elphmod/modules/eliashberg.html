@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>eliashberg: parameters for McMillan’s formula &#8212; elphmod  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="plot: BZ plots, color models, and fatbands" href="plot.html" />
+    <link rel="prev" title="occupations: step and delta smearing functions" href="occupations.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="plot.html" title="plot: BZ plots, color models, and fatbands"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="occupations.html" title="occupations: step and delta smearing functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">eliashberg: parameters for McMillan’s formula</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-elphmod.eliashberg">
+<span id="eliashberg-parameters-for-mcmillan-s-formula"></span><h1>eliashberg: parameters for McMillan’s formula<a class="headerlink" href="#module-elphmod.eliashberg" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.eliashberg.McMillan">
+<span class="sig-prename descclassname"><span class="pre">elphmod.eliashberg.</span></span><span class="sig-name descname"><span class="pre">McMillan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mustar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.eliashberg.McMillan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate parameters and result of McMillan’s formula.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>nq</strong><span class="classifier">int</span></dt><dd><p>Number of q points per dimension.</p>
+</dd>
+<dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
+</dd>
+<dt><strong>w2</strong><span class="classifier">ndarray</span></dt><dd><p>Squared phonon frequencies for irreducible q points.</p>
+</dd>
+<dt><strong>g2</strong><span class="classifier">ndarray</span></dt><dd><p>Squared electron-phonon coupling (energy to the power of three).</p>
+</dd>
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Phonon frequencies squared below <cite>eps</cite> are set to <cite>eps</cite>; corresponding
+coupling are set to zero.</p>
+</dd>
+<dt><strong>mustar</strong><span class="classifier">float</span></dt><dd><p>Coulomb pseudopotential.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Effective electron-phonon coupling strength <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+</dd>
+<dt>float</dt><dd><p>Effective phonon frequency <span class="math notranslate nohighlight">\(\langle \omega \rangle\)</span>.</p>
+</dd>
+<dt>float</dt><dd><p>Estimated critical temperature of superconductivity.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.eliashberg.Tc">
+<span class="sig-prename descclassname"><span class="pre">elphmod.eliashberg.</span></span><span class="sig-name descname"><span class="pre">Tc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamda</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wlog</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mustar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.eliashberg.Tc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate critical temperature using McMillan’s formula.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>lamda</strong><span class="classifier">float</span></dt><dd><p>Effective electron-phonon coupling strength.</p>
+</dd>
+<dt><strong>wlog</strong><span class="classifier">float</span></dt><dd><p>Effective phonon energy in eV.</p>
+</dd>
+<dt><strong>mustar</strong><span class="classifier">float</span></dt><dd><p>Coulomb pseudopotential.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Critical temperature in kelvin.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="occupations.html"
+                        title="previous chapter">occupations: step and delta smearing functions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="plot.html"
+                        title="next chapter">plot: BZ plots, color models, and fatbands</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/eliashberg.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="plot.html" title="plot: BZ plots, color models, and fatbands"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="occupations.html" title="occupations: step and delta smearing functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">eliashberg: parameters for McMillan’s formula</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Uni Bremen.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+    </div>
+  </body>
+</html>

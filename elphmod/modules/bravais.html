@@ -1,0 +1,1045 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>bravais: lattices, symmetries, and interpolation &#8212; elphmod  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="dispersion: diagonalization on paths and meshes" href="dispersion.html" />
+    <link rel="prev" title="MPI: work distribution and shared memory" href="MPI.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="dispersion.html" title="dispersion: diagonalization on paths and meshes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="MPI.html" title="MPI: work distribution and shared memory"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">bravais: lattices, symmetries, and interpolation</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-elphmod.bravais">
+<span id="bravais-lattices-symmetries-and-interpolation"></span><h1>bravais: lattices, symmetries, and interpolation<a class="headerlink" href="#module-elphmod.bravais" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.BZ">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">BZ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.BZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw Brillouin zone outline.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.Fourier_interpolation">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">Fourier_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hr_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.Fourier_interpolation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform Fourier interpolation on triangular or rectangular lattice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Data on uniform triangular or rectangular lattice.</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">number</span></dt><dd><p>Angle between lattice vectors in degrees.</p>
+</dd>
+<dt><strong>sign</strong><span class="classifier">number</span></dt><dd><p>Sign in exponential function in first Fourier transform.</p>
+</dd>
+<dt><strong>hr_file</strong><span class="classifier">str</span></dt><dd><p>Filename. If given, save <em>_hr.dat</em> file as produced by Wannier90.</p>
+</dd>
+<dt><strong>function</strong><span class="classifier">bool</span></dt><dd><p>Return interpolation function or parameter dictionary?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>function</dt><dd><p>Interpolant for <cite>data</cite>. <code class="docutils literal notranslate"><span class="pre">Fourier_interpolation(data)(i,</span> <span class="pre">j)</span></code> yields
+the same value as <code class="docutils literal notranslate"><span class="pre">data[i,</span> <span class="pre">j]</span></code>. Thus the data array is “generalized”
+with respect to fractional indices.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.bravais.linear_interpolation" title="elphmod.bravais.linear_interpolation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linear_interpolation</span></code></a></dt><dd><p>Alternative interpolation routine.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.GMKG">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">GMKG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">corner_indices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">straight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lift_degen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.GMKG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate path Γ-M-K-Γ through Brillouin zone.</p>
+<p>(This function should be replaced by a more general one to produce arbitrary
+paths through both triangular and rectangular Brillouin zones, where special
+points can be defined using labels such as <code class="docutils literal notranslate"><span class="pre">'G'</span></code>, <code class="docutils literal notranslate"><span class="pre">'M'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'K'</span></code>.)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>N</strong><span class="classifier">int</span></dt><dd><p>Number of mesh points per dimension if <cite>mesh</cite> is <code class="docutils literal notranslate"><span class="pre">True</span></code> and <cite>N</cite> is a
+multiple of 6. Otherwise the number of points per <span class="math notranslate nohighlight">\(2 \pi / a\)</span>.</p>
+</dd>
+<dt><strong>corner_indices</strong><span class="classifier">bool</span></dt><dd><p>Return indices of corner/high-symmetry points?</p>
+</dd>
+<dt><strong>mesh</strong><span class="classifier">bool</span></dt><dd><p>Return points of uniform mesh that exactly lie on the path? If <code class="docutils literal notranslate"><span class="pre">True</span></code>,
+<cite>N</cite> must be a multiple of 6.</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">number</span></dt><dd><p>Angle between reciprocal basis lattice vectors.</p>
+</dd>
+<dt><strong>straight</strong><span class="classifier">bool</span></dt><dd><p>Cross K in a straight line? In this case, the path does not enclose the
+irreducible wedge.</p>
+</dd>
+<dt><strong>lift_degen</strong><span class="classifier">bool</span></dt><dd><p>Lift degeneracy at K by infinitesimal shift toward Γ?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Points in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
+</dd>
+<dt>ndarray</dt><dd><p>Cumulative path distance.</p>
+</dd>
+<dt>list, optional</dt><dd><p>Indices of corner/high-symmetry points.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.cartesian_to_crystal">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">cartesian_to_crystal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R_CARTESIAN</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.cartesian_to_crystal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform a lattice structure from crystal to Cartesian coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>R_CARTESIAN</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice structure in Cartesian coordinates.</p>
+</dd>
+<dt><strong>a1, a2, a3</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>R_CRYSTAL: ndarray</dt><dd><p>Lattice structure in crystal coordinates.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.complete">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">complete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.complete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Complete data on Monkhorst-Pack mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Incomplete data on uniform mesh. Missing values are represented by NaN.</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">float</span></dt><dd><p>Angle between mesh axes in degrees.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Input data with missing values determined via the symmetries found.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.complete_k">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">complete_k</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wedge</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.complete_k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate k dependence for equivalent q points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>wedge</strong><span class="classifier">ndarray</span></dt><dd><p>Data on irreducible q wedge and uniform k mesh.</p>
+</dd>
+<dt><strong>nq</strong><span class="classifier">int</span></dt><dd><p>Number of q points per dimension.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Data on uniform q and k meshes.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.crystal_to_cartesian">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">crystal_to_cartesian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R_CRYSTAL</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.crystal_to_cartesian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform a lattice structure from crystal to Cartesian coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>R_CRYSTAL</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice structure in crystal coordinates.</p>
+</dd>
+<dt><strong>a1, a2, a3</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>R_CARTESIAN</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice structure in Cartesian coordinates.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.images">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate symmetry-equivalent k points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>k1, k2</strong><span class="classifier">int</span></dt><dd><p>Indices of point in uniform mesh.</p>
+</dd>
+<dt><strong>nk</strong><span class="classifier">int</span></dt><dd><p>Number of mesh points per dimension.</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">float</span></dt><dd><p>Angle between mesh axes in degrees.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>set</dt><dd><p>Mesh-point indices of all equivalent k points.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.irreducibles">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">irreducibles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.irreducibles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate set of irreducible k points.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>nk</strong><span class="classifier">int</span></dt><dd><p>Number of mesh points per dimension.</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">float</span></dt><dd><p>Angle between mesh axes in degrees.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl>
+<dt>set</dt><dd><p>Mesh-point indices of irreducible k points.</p>
+<p>Of all equivalent points, the first occurrence in the sequence</p>
+<div class="math notranslate nohighlight">
+\[(0, 0), (0, 1), \dots, (0, n_k - 1), (1, 0), (1, 1), \dots\]</div>
+<p>is chosen. <code class="xref py py-func docutils literal notranslate"><span class="pre">sorted()</span></code> should yield the same irreducible q points as
+used by Quantum ESPRESSO’s PHonon code and found in the file <em>fildyn0</em>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.linear_interpolation">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">linear_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.linear_interpolation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform linear interpolation on triangular or rectangular lattice.</p>
+<p>The edges are interpolated using periodic boundary conditions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Data on uniform triangular or rectangular lattice.</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">number</span></dt><dd><p>Angle between lattice vectors in degrees.</p>
+</dd>
+<dt><strong>axes</strong><span class="classifier">2-tuple of int</span></dt><dd><p>Axes of <cite>data</cite> along which to interpolate (lattice vectors).</p>
+</dd>
+<dt><strong>period</strong><span class="classifier">number</span></dt><dd><p>If the values of <cite>data</cite> are defined on a periodic axis (i.e., only with
+respect to the modulo operation), the period of this axis. This is used
+in combination with <cite>stack</cite> to always interpolate across the shortest
+distance of two neighboring points.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>function</dt><dd><p>Interpolant for <cite>data</cite>. <code class="docutils literal notranslate"><span class="pre">linear_interpolation(data)(i,</span> <span class="pre">j)</span></code> yields the
+same value as <code class="docutils literal notranslate"><span class="pre">data[i,</span> <span class="pre">j]</span></code>. Thus the data array is “generalized” with
+respect to fractional indices.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.bravais.stack" title="elphmod.bravais.stack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stack</span></code></a></dt><dd><p>Condense point cloud on periodic axis.</p>
+</dd>
+<dt><a class="reference internal" href="#elphmod.bravais.resize" title="elphmod.bravais.resize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resize</span></code></a></dt><dd><p>Compress or stretch data via linear interpolation.</p>
+</dd>
+<dt><a class="reference internal" href="#elphmod.bravais.Fourier_interpolation" title="elphmod.bravais.Fourier_interpolation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fourier_interpolation</span></code></a></dt><dd><p>Alternative interpolation routine.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.path">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ibrav</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recvec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate arbitrary path through Brillouin zone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>points</strong><span class="classifier">ndarray</span></dt><dd><p>List of high-symmetry points in crystal coordinates. Some well-known
+labels such as <code class="docutils literal notranslate"><span class="pre">G</span></code> (Γ), <code class="docutils literal notranslate"><span class="pre">M</span></code>, or <code class="docutils literal notranslate"><span class="pre">K</span></code> may also be used.</p>
+</dd>
+<dt><strong>ibrav</strong><span class="classifier">int</span></dt><dd><p>Bravais-lattice index.</p>
+</dd>
+<dt><strong>N</strong><span class="classifier">float</span></dt><dd><p>Number of points per <span class="math notranslate nohighlight">\(2 \pi / a\)</span>.</p>
+</dd>
+<dt><strong>recvec</strong><span class="classifier">ndarray, optional</span></dt><dd><p>List of reciprocal lattice vectors.</p>
+</dd>
+<dt><strong>qe</strong><span class="classifier">bool, default False</span></dt><dd><p>Also return path in QE input format?</p>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Arguments passed to <a class="reference internal" href="#elphmod.bravais.primitives" title="elphmod.bravais.primitives"><code class="xref py py-func docutils literal notranslate"><span class="pre">primitives()</span></code></a>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Points in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
+</dd>
+<dt>ndarray</dt><dd><p>Cumulative path distance.</p>
+</dd>
+<dt>list</dt><dd><p>Indices of corner/high-symmetry points.</p>
+</dd>
+<dt>dict, optional</dt><dd><p>Path in format suitable for <a class="reference internal" href="#elphmod.bravais.write_pwi" title="elphmod.bravais.write_pwi"><code class="xref py py-func docutils literal notranslate"><span class="pre">write_pwi()</span></code></a>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.bravais.primitives" title="elphmod.bravais.primitives"><code class="xref py py-obj docutils literal notranslate"><span class="pre">primitives</span></code></a>, <a class="reference internal" href="#elphmod.bravais.reciprocals" title="elphmod.bravais.reciprocals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reciprocals</span></code></a></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.point_on_path">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">point_on_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-14</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.point_on_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test whether a <cite>test_point</cite> is between the points A and B.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Numerical parameter, in case the cross product is not exactly 0.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>bool</dt><dd><p>Is the test_point on a straight line between point A and B?</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.primitives">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">primitives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ibrav</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cosab</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cosbc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cosac</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">celldm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bohr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">ignore</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.primitives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get primitive vectors of Bravais lattice as in QE.</p>
+<p>Adapted from Modules/latgen.f90 of Quantum ESPRESSO.</p>
+<p>For documentation, see <a class="reference external" href="http://www.quantum-espresso.org/Doc/INPUT_PW.html">http://www.quantum-espresso.org/Doc/INPUT_PW.html</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>ibrav</strong><span class="classifier">int</span></dt><dd><p>Bravais-lattice index.</p>
+</dd>
+<dt><strong>a, b, c, cosab, cosbc, cosac</strong><span class="classifier">float</span></dt><dd><p>Traditional crystallographic constants in angstrom.</p>
+</dd>
+<dt><strong>celldm</strong><span class="classifier">list of float</span></dt><dd><p>Alternative crystallographic constants. The first element is the
+lattice constant in Bohr; the other elements are dimensionless.</p>
+</dd>
+<dt><strong>bohr</strong><span class="classifier">bool, default False</span></dt><dd><p>Return lattice vectors in angstrom or bohr?</p>
+</dd>
+<dt><strong>**ignore</strong></dt><dd><p>Ignored keyword arguments, e.g., parameters from ‘func’<cite>read_pwi</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Matrix of primitive Bravais lattice vectors.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.readPOSCAR">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">readPOSCAR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.readPOSCAR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read crystal structure from VASP input file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict</dt><dd><p>Crystal structure.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.read_epw">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">read_epw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.read_epw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read input parameters from Quantum ESPRESSO’s epw file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>epw file name.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict</dt><dd><p>Input parameters.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.read_matdyn">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">read_matdyn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.read_matdyn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read input parameters from Quantum ESPRESSO’s matdyn file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>matdyn file name.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict</dt><dd><p>Input parameters.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.read_ph">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">read_ph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.read_ph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read input parameters from Quantum ESPRESSO’s ph file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>ph file name.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict</dt><dd><p>Input parameters.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.read_pwi">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">read_pwi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pwi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.read_pwi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read crystal structure from PW input file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>pwi</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict</dt><dd><p>Crystal structure.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.read_q2r">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">read_q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.read_q2r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read input parameters from Quantum ESPRESSO’s q2r file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>q2r file name.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict</dt><dd><p>Input parameters.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.read_wigner_file">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">read_wigner_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_ws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.read_wigner_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read binary file with Wigner-Seitz data as used by EPW.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Name of file with Wigner-Seitz data.</p>
+</dd>
+<dt><strong>old_ws</strong><span class="classifier">bool</span></dt><dd><p>Use previous definition of Wigner-Seitz cells?</p>
+</dd>
+<dt><strong>nat</strong><span class="classifier">int</span></dt><dd><p>Number of atoms per unit cell.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.bravais.write_wigner_file" title="elphmod.bravais.write_wigner_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_wigner_file</span></code></a>, <a class="reference internal" href="#elphmod.bravais.wigner_seitz_x" title="elphmod.bravais.wigner_seitz_x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wigner_seitz_x</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">elph.Model</span></code></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.read_win">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">read_win</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">win</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.read_win" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read input data from .win file (Wannier90).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>win</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict</dt><dd><p>Crystal structure.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.reciprocals">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">reciprocals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.reciprocals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate translation vectors of reciprocal lattice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>a1, a2</strong><span class="classifier">ndarray</span></dt><dd><p>Translation vectors of Bravais lattice.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray, ndarray</dt><dd><p>Translation vectors of reciprocal lattice (without <span class="math notranslate nohighlight">\(2 \pi\)</span>).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.resize">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">resize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resize array via linear interpolation along two axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>shape</strong><span class="classifier">2-tuple of int</span></dt><dd><p>New lattice shape. Defaults to the original shape.</p>
+</dd>
+<dt><strong>shape, angle, axes, period</strong></dt><dd><p>Parameters for <a class="reference internal" href="#elphmod.bravais.linear_interpolation" title="elphmod.bravais.linear_interpolation"><code class="xref py py-func docutils literal notranslate"><span class="pre">linear_interpolation()</span></code></a>.</p>
+</dd>
+<dt><strong>periodic</strong><span class="classifier">bool, default True</span></dt><dd><p>Interpolate between last and first data point of each axis?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Resized data array.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.bravais.linear_interpolation" title="elphmod.bravais.linear_interpolation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linear_interpolation</span></code></a></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.rotate">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">two_dimensional</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.rotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotate vector anti-clockwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>vector</strong><span class="classifier">array_like</span></dt><dd><p>Two-dimensional vector.</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">float</span></dt><dd><p>Rotation angle in radians.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Rotated vector.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.squared_distance">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">squared_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.squared_distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate squared distance of lattice point from origin.</p>
+<p>If the coordinates are given as integers, the result is numerically exact.
+For 60 or 120 deg. (triangular lattice) this yields the Loeschian numbers.
+Non-equivalent lattice sites may have the same distance from the origin!
+(E.g., there are non-equivalent 20th neighbors in a triangular lattice.)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>k1, k2</strong><span class="classifier">int</span></dt><dd><p>Point in lattice coordinates (crystal coordinates, mesh-indices, …).</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">number</span></dt><dd><p>Angle between lattice axes.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>number</dt><dd><p>Squared distance of point from origin.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.stack">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">stack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.stack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimize distance of points on periodic axis via full-period shifts.</p>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stack</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">[13, 15, 9, 12]</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> In: ... | ox x   x| xo o   o| oo o   o| ...
+Out: ... | oo o   x| xx x   o| oo o   o| ...
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>*points</strong></dt><dd><p>Points on periodic axis.</p>
+</dd>
+<dt><strong>period</strong><span class="classifier">float</span></dt><dd><p>Period of axis. Specified via <cite>**kwargs</cite> for Python-2 compatibility.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Points equivalent to input, with minimal distance on non-periodic axis.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.symmetries">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">symmetries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.symmetries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find symmetries of data on Monkhorst-Pack mesh.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Data on uniform k mesh.</p>
+</dd>
+<dt><strong>epsilon</strong><span class="classifier">float</span></dt><dd><p>Maximum absolute difference of “equal” floats.</p>
+</dd>
+<dt><strong>unity</strong><span class="classifier">bool</span></dt><dd><p>Return identity as first symmetry?</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">float</span></dt><dd><p>Angle between mesh axes in degrees.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl>
+<dt>iterator</dt><dd><p>All symmetries found are returned one after the other.</p>
+<p>Each symmetry is described by a Boolean (“reflection?”) and a rotation
+angle in degrees, followed by a mapping between the k-point indices of
+the original and the transformed mesh.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.to_Voronoi">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">to_Voronoi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.to_Voronoi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map any lattice point to the Voronoi cell* around the origin.</p>
+<p>(*) Wigner-Seitz cell/Brillouin zone for Bravais/reciprocal lattice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>k1, k2</strong><span class="classifier">int</span></dt><dd><p>Mesh-point indices.</p>
+</dd>
+<dt><strong>nk</strong><span class="classifier">int</span></dt><dd><p>Number of points per dimension.</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">number</span></dt><dd><p>Angle between lattice vectors.</p>
+</dd>
+<dt><strong>dk1, dk2</strong><span class="classifier">number</span></dt><dd><p>Shift of Voronoi cell.</p>
+</dd>
+<dt><strong>epsilon</strong><span class="classifier">float</span></dt><dd><p>Maximum absolute difference of “equal” floats.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>set</dt><dd><p>All equivalent point within or on the edge of the Voronoi cell.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.translations">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">translations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">two_dimensional</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.translations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate translation vectors of Bravais lattice.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>angle</strong><span class="classifier">float</span></dt><dd><p>Angle between first and second vector in degrees:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">VALUE</span>  <span class="n">LATTICE</span>
+   <span class="mi">60</span>  <span class="n">hexagonal</span>
+   <span class="mi">90</span>  <span class="n">square</span>
+  <span class="mi">120</span>  <span class="n">hexagonal</span> <span class="p">(</span><span class="n">ibrav</span> <span class="o">=</span> <span class="mi">4</span> <span class="ow">in</span> <span class="n">Quantum</span> <span class="n">ESPRESSO</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+<dt><strong>angle0</strong><span class="classifier">float</span></dt><dd><p>Angle between x axis and first vector in degrees.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray, ndarray</dt><dd><p>Translation vectors of Bravais lattice.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.volume">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate unit-cell volume/area/length.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>a1, a2, a3</strong><span class="classifier">ndarray</span></dt><dd><p>Primite lattice vectors.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Unit-cell volume/area/length.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.wigner_seitz">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">wigner_seitz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.wigner_seitz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find lattice points in Wigner-Seitz cell (including boundary).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>nk</strong><span class="classifier">int</span></dt><dd><p>Number of points per dimension.</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">number</span></dt><dd><p>Angle between lattice vectors.</p>
+</dd>
+<dt><strong>dk1, dk2</strong><span class="classifier">float</span></dt><dd><p>Shift of Wigner-Seitz cell.</p>
+</dd>
+<dt><strong>epsilon</strong><span class="classifier">float</span></dt><dd><p>Maximum absolute difference of “equal” floats.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>list of tuple of int</dt><dd><p>Mesh-point indices.</p>
+</dd>
+<dt>list of int</dt><dd><p>Degeneracies.</p>
+</dd>
+<dt>list of float</dt><dd><p>Lattice-vector lengths.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.wigner_seitz_x">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">wigner_seitz_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.wigner_seitz_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Emulate the EPW subroutine <em>wigner_seitz{x}</em> in <em>wigner.f90</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x</strong><span class="classifier">str</span></dt><dd><p>Type of Wigner-Seitz cell:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'k'</span></code>: cell-centered</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'q'</span></code>: bond-centered</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'g'</span></code>: atom-centered</p></li>
+</ul>
+</dd>
+<dt><strong>nk</strong><span class="classifier">int</span></dt><dd><p>Number of points per dimension.</p>
+</dd>
+<dt><strong>at, tau</strong><span class="classifier">ndarray</span></dt><dd><p>Geometry as returned by <code class="xref py py-func docutils literal notranslate"><span class="pre">ph.read_flfrc()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">ph.model()</span></code>.</p>
+</dd>
+<dt><strong>epsilon</strong><span class="classifier">float</span></dt><dd><p>Maximum absolute difference of “equal” floats.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>list of tuple of int</dt><dd><p>Mesh-point indices.</p>
+</dd>
+<dt>list of int</dt><dd><p>Degeneracies.</p>
+</dd>
+<dt>list of float</dt><dd><p>Lattice-vector lengths.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.write_epw">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">write_epw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.write_epw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write input data to epw file (Quantum ESPRRESO).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>epw</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
+</dd>
+<dt><strong>struct</strong><span class="classifier">dict</span></dt><dd><p>Input data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.write_matdyn">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">write_matdyn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matdyn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.write_matdyn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write input data to matdyn file (Quantum ESPRRESO).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>matdyn</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
+</dd>
+<dt><strong>struct</strong><span class="classifier">dict</span></dt><dd><p>Input data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.write_ph">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">write_ph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.write_ph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write input data to ph file (Quantum ESPRESSO).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>ph</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
+</dd>
+<dt><strong>struct</strong><span class="classifier">dict</span></dt><dd><p>Input data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.write_pwi">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">write_pwi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pwi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.write_pwi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write crystal structure to PW input file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>pwi</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
+</dd>
+<dt><strong>struct</strong><span class="classifier">dict</span></dt><dd><p>Crystal structure.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.write_q2r">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">write_q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q2r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.write_q2r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write input data to q2r file (Quantum ESPRRESO).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>q2r</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
+</dd>
+<dt><strong>struct</strong><span class="classifier">dict</span></dt><dd><p>Input data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.write_wigner_file">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">write_wigner_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.write_wigner_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write binary file with Wigner-Seitz data as used by EPW.</p>
+<p><strong>ATTENTION:</strong> This function is compatible with <cite>read_wigner_file</cite> for
+<code class="docutils literal notranslate"><span class="pre">old_ws=True</span></code> only!</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.bravais.read_wigner_file" title="elphmod.bravais.read_wigner_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_wigner_file</span></code></a>, <a class="reference internal" href="#elphmod.bravais.wigner_seitz_x" title="elphmod.bravais.wigner_seitz_x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wigner_seitz_x</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">elph.Model</span></code></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.write_win">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">write_win</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">win</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.write_win" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write input data to .win file (Wannier90).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>win</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
+</dd>
+<dt><strong>struct</strong><span class="classifier">dict</span></dt><dd><p>Input data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="MPI.html"
+                        title="previous chapter">MPI: work distribution and shared memory</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dispersion.html"
+                        title="next chapter">dispersion: diagonalization on paths and meshes</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/bravais.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="dispersion.html" title="dispersion: diagonalization on paths and meshes"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="MPI.html" title="MPI: work distribution and shared memory"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">bravais: lattices, symmetries, and interpolation</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Uni Bremen.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+    </div>
+  </body>
+</html>

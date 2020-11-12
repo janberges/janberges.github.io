@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>occupations: step and delta smearing functions &#8212; elphmod  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="eliashberg: parameters for McMillan’s formula" href="eliashberg.html" />
+    <link rel="prev" title="diagrams: susceptibilities, self-energies, etc." href="diagrams.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="eliashberg.html" title="eliashberg: parameters for McMillan’s formula"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="diagrams.html" title="diagrams: susceptibilities, self-energies, etc."
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">occupations: step and delta smearing functions</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-elphmod.occupations">
+<span id="occupations-step-and-delta-smearing-functions"></span><h1>occupations: step and delta smearing functions<a class="headerlink" href="#module-elphmod.occupations" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.fermi_dirac">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate Fermi function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.fermi_dirac_delta">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate negative derivative of Fermi function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.fermi_dirac_matsubara">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_matsubara</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_matsubara" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate Fermi function as Matsubara sum.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.fermi_dirac_matsubara_delta">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_matsubara_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_matsubara_delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate negative derivative of Fermi function as Matsubara sum.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.gauss">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">gauss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.gauss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate Gaussian step function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.gauss_delta">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">gauss_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.gauss_delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate negative derivative of Gaussian step function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.heaviside">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">heaviside</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.heaviside" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate (reflected) Heaviside function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.heaviside_delta">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">heaviside_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.heaviside_delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate negative derivative of (reflected) Heaviside function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.lorentz">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">lorentz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.lorentz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate Lorentz step function.</p>
+<p>Used to simulate the influence of a wide box-shaped hybridization function
+at low temperatures. Formula derived by Tim O. Wehling and Erik G.C.P. van
+Loon. Here, we have <span class="math notranslate nohighlight">\(x = \epsilon / h\)</span> with the height <span class="math notranslate nohighlight">\(h\)</span> of
+the hybridization, instead of <span class="math notranslate nohighlight">\(x = \epsilon / k T\)</span> with the
+temperature <span class="math notranslate nohighlight">\(T\)</span>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.lorentz_delta">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">lorentz_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.lorentz_delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate negative derivative of Lorentz step function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.marzari_vanderbilt">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">marzari_vanderbilt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.marzari_vanderbilt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate Marzari-Vanderbilt (cold smearing) step function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.marzari_vanderbilt_delta">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">marzari_vanderbilt_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.marzari_vanderbilt_delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate negative derivative of Marzari-Vanderbilt step function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.methfessel_paxton">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate first-order Methfessel-Paxton step function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.methfessel_paxton_delta">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate negative derivative of first-order MP step function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.methfessel_paxton_general">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_general</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_general" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate Methfessel-Paxton step function and its negative derivative.</p>
+<p>From Phys. Rev. B 40, 3616 (1989):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S_0(x) &amp;= \frac {1 - erf(x)} 2 \\
+S_N(x) &amp;= S_0(x) + \sum_{n = 1}^N A_n H_{2 n - 1}(x) \exp(-x^2) \\
+D_N(x) &amp;= -S'(N, x) = \sum{n = 0}^N A_n H_{2 n}(x) \exp(-x^2) \\
+A_n &amp;= \frac{(-1)^n}{\sqrt \pi n! 4^n}\end{split}\]</div>
+<p>Hermite polynomials:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H_0(x) &amp;= 1 \\
+H_1(x) &amp;= 2 x \\
+H_{n + 1}(x) &amp;= 2 x H_n(x) - 2 n H_{n - 1}(x) \\\end{split}\]</div>
+<p>For <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">=</span> <span class="pre">0</span></code>, the Gaussian step function is returned.</p>
+<p>This routine has been adapted from Quantum ESPRESSO:</p>
+<ul class="simple">
+<li><p>Step function: Modules/wgauss.f90</p></li>
+<li><p>Delta function: Modules/w0gauss.f90</p></li>
+</ul>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="diagrams.html"
+                        title="previous chapter">diagrams: susceptibilities, self-energies, etc.</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="eliashberg.html"
+                        title="next chapter">eliashberg: parameters for McMillan’s formula</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/occupations.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="eliashberg.html" title="eliashberg: parameters for McMillan’s formula"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="diagrams.html" title="diagrams: susceptibilities, self-energies, etc."
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">occupations: step and delta smearing functions</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Uni Bremen.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+    </div>
+  </body>
+</html>

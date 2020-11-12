@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>elel: Coulomb interaction from VASP &#8212; elphmod  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MPI: work distribution and shared memory" href="MPI.html" />
+    <link rel="prev" title="elph: electron-phonon coupling from EPW" href="elph.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="MPI.html" title="MPI: work distribution and shared memory"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="elph.html" title="elph: electron-phonon coupling from EPW"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">elel: Coulomb interaction from VASP</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-elphmod.elel">
+<span id="elel-coulomb-interaction-from-vasp"></span><h1>elel: Coulomb interaction from VASP<a class="headerlink" href="#module-elphmod.elel" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="elphmod.elel.Model">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uijkl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Localized model for electron-electron interaction.</p>
+<p>Currently, only square and hexagonal Bravais lattices are supported.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>uijkl</strong><span class="classifier">str</span></dt><dd><p>File with Coulomb tensor in orbital basis on uniform q mesh.</p>
+</dd>
+<dt><strong>nq</strong><span class="classifier">int</span></dt><dd><p>Dimension of q mesh.</p>
+</dd>
+<dt><strong>no</strong><span class="classifier">int</span></dt><dd><p>Number of orbitals.</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">numbe, optional</span></dt><dd><p>Angle between lattice vectors.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors of Wigner-Seitz supercell.</p>
+</dd>
+<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding density-density interaction in orbital basis.</p>
+</dd>
+<dt><strong>size</strong><span class="classifier">int</span></dt><dd><p>Number of Wannier functions.</p>
+</dd>
+<dt><strong>cells</strong><span class="classifier">list of tuple of int, optional</span></dt><dd><p>Lattice vectors of unit cells if the model describes a supercell.</p>
+</dd>
+<dt><strong>N</strong><span class="classifier">list of tuple of int, optional</span></dt><dd><p>Primitive vectors of supercell if the model describes a supercell.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.elel.Model.W">
+<span class="sig-name descname"><span class="pre">W</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model.W" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up density-density Coulomb matrix for arbitrary q point.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.elel.Model.supercell">
+<span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model.supercell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map localized model for electron-electron interaction onto supercell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>N1, N2, N3</strong><span class="classifier">tuple of int or int, default 1</span></dt><dd><p>Supercell lattice vectors in units of primitive lattice vectors.
+Multiples of single primitive vector can be defined via a scalar
+integer, linear combinations via a 3-tuple of integers.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>object</dt><dd><p>Localized model for electron-electron interaction for supercell.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elel.orbital2band">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">orbital2band</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">U</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">share</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.orbital2band" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform Coulomb interaction from orbital basis onto single band.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elel.read_band_Coulomb_interaction">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">read_band_Coulomb_interaction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nQ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">share</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.read_band_Coulomb_interaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read Coulomb interaction for single band in band basis.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elel.read_local_Coulomb_tensor">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">read_local_Coulomb_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.read_local_Coulomb_tensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read local Coulomb tensor from VASP.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elel.read_orbital_Coulomb_interaction">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">read_orbital_Coulomb_interaction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.read_orbital_Coulomb_interaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read Coulomb interaction in orbital basis.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elel.write_band_Coulomb_interaction">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">write_band_Coulomb_interaction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.write_band_Coulomb_interaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write Coulomb interaction for single band in band basis.</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="elph.html"
+                        title="previous chapter">elph: electron-phonon coupling from EPW</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="MPI.html"
+                        title="next chapter">MPI: work distribution and shared memory</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/elel.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="MPI.html" title="MPI: work distribution and shared memory"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="elph.html" title="elph: electron-phonon coupling from EPW"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">elel: Coulomb interaction from VASP</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Uni Bremen.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+    </div>
+  </body>
+</html>

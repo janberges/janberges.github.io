@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>MPI: work distribution and shared memory &#8212; elphmod  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="bravais: lattices, symmetries, and interpolation" href="bravais.html" />
+    <link rel="prev" title="elel: Coulomb interaction from VASP" href="elel.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bravais.html" title="bravais: lattices, symmetries, and interpolation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="elel.html" title="elel: Coulomb interaction from VASP"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MPI: work distribution and shared memory</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-elphmod.MPI">
+<span id="mpi-work-distribution-and-shared-memory"></span><h1>MPI: work distribution and shared memory<a class="headerlink" href="#module-elphmod.MPI" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="elphmod.MPI.SharedArray">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">SharedArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.SharedArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create array whose memory is shared among all processes on same node.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.MPI.shared_array" title="elphmod.MPI.shared_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shared_array</span></code></a></dt><dd></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.MPI.distribute">
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">distribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">size</span></em>, <em class="sig-param"><span class="pre">bounds=False</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em>, <em class="sig-param"><span class="pre">chunks=None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.distribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distribute work among processes.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.MPI.info">
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">message</span></em>, <em class="sig-param"><span class="pre">error=False</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print status message from first process.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.MPI.load">
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">filename</span></em>, <em class="sig-param"><span class="pre">shared_memory=False</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read and broadcast NumPy data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.MPI.matrix">
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">size</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create sub-communicators.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.MPI.shared_array">
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">shared_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">shape</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'float'&gt;</span></em>, <em class="sig-param"><span class="pre">shared_memory=True</span></em>, <em class="sig-param"><span class="pre">single_memory=False</span></em>, <em class="sig-param"><span class="pre">only_info=False</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.shared_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create array whose memory is shared among all processes on same node.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">shared_memory=False</span></code> (<code class="docutils literal notranslate"><span class="pre">single_memory=True</span></code>) a conventional array
+is created on each (only one) processor, which however allows for the same
+broadcasting syntax as shown below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up huge array:</span>
+<span class="n">node</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">array</span> <span class="o">=</span> <span class="n">shared_array</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">30</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+<span class="c1"># Write data on one node:</span>
+<span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">array</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Broadcast data to other nodes:</span>
+<span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">images</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+
+<span class="c1"># Wait if node.rank != 0:</span>
+<span class="n">comm</span><span class="o">.</span><span class="n">Barrier</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.MPI.shm_split">
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">shm_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em>, <em class="sig-param"><span class="pre">shared_memory=True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.shm_split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create communicators for use with shared memory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>comm</strong><span class="classifier">MPI.Intracomm</span></dt><dd><p>Overarching communicator.</p>
+</dd>
+<dt><strong>shared_memory</strong><span class="classifier">bool, default True</span></dt><dd><p>Use shared memory? Provided for convenience.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>node</strong><span class="classifier">MPI.Intracomm</span></dt><dd><p>Communicator between processes that share memory (on the same node).</p>
+</dd>
+<dt><strong>images</strong><span class="classifier">MPI.Intracomm</span></dt><dd><p>Communicator between processes that have the same <code class="docutils literal notranslate"><span class="pre">node.rank</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If shared memory is not implemented, each process shares memory only with
+itself. A warning is issued.</p>
+</div>
+<p class="rubric">Notes</p>
+<p>Visualization for a machine with 2 nodes with 4 processors each:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">________________</span> <span class="n">________________</span> <span class="n">________________</span> <span class="n">________________</span>
+<span class="o">|</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">0</span>   <span class="o">|</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">1</span>   <span class="o">|</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">2</span>   <span class="o">|</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">3</span>   <span class="o">|</span>
+<span class="o">|</span> <span class="n">node</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">0</span>   <span class="o">|</span> <span class="n">node</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">1</span>   <span class="o">|</span> <span class="n">node</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">2</span>   <span class="o">|</span> <span class="n">node</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">3</span>   <span class="o">|</span>
+<span class="o">|</span> <span class="n">images</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">images</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">images</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">images</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span>
+<span class="o">|</span><span class="n">________________</span><span class="o">|</span><span class="n">________________</span><span class="o">|</span><span class="n">________________</span><span class="o">|</span><span class="n">________________</span><span class="o">|</span>
+ <span class="n">________________</span> <span class="n">________________</span> <span class="n">________________</span> <span class="n">________________</span>
+<span class="o">|</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">4</span>   <span class="o">|</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">5</span>   <span class="o">|</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">6</span>   <span class="o">|</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">7</span>   <span class="o">|</span>
+<span class="o">|</span> <span class="n">node</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">0</span>   <span class="o">|</span> <span class="n">node</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">1</span>   <span class="o">|</span> <span class="n">node</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">2</span>   <span class="o">|</span> <span class="n">node</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">3</span>   <span class="o">|</span>
+<span class="o">|</span> <span class="n">images</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">1</span> <span class="o">|</span> <span class="n">images</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">1</span> <span class="o">|</span> <span class="n">images</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">1</span> <span class="o">|</span> <span class="n">images</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span> <span class="mi">1</span> <span class="o">|</span>
+<span class="o">|</span><span class="n">________________</span><span class="o">|</span><span class="n">________________</span><span class="o">|</span><span class="n">________________</span><span class="o">|</span><span class="n">________________</span><span class="o">|</span>
+</pre></div>
+</div>
+<p>Since both <code class="docutils literal notranslate"><span class="pre">node.rank</span></code> and <code class="docutils literal notranslate"><span class="pre">images.rank</span></code> are sorted by <code class="docutils literal notranslate"><span class="pre">comm.rank</span></code>,
+<code class="docutils literal notranslate"><span class="pre">comm.rank</span> <span class="pre">==</span> <span class="pre">0</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">node.rank</span> <span class="pre">==</span> <span class="pre">images.rank</span> <span class="pre">==</span> <span class="pre">0</span></code>.</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="elel.html"
+                        title="previous chapter">elel: Coulomb interaction from VASP</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="bravais.html"
+                        title="next chapter">bravais: lattices, symmetries, and interpolation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/MPI.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bravais.html" title="bravais: lattices, symmetries, and interpolation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="elel.html" title="elel: Coulomb interaction from VASP"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MPI: work distribution and shared memory</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Uni Bremen.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+    </div>
+  </body>
+</html>
