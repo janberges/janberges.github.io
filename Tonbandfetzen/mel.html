@@ -1,694 +1,226 @@
-<!-- Creator     : groff version 1.22.4 -->
-<!-- CreationDate: Mon Dec 13 19:16:22 2021 -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
-<meta name="generator" content="groff -Thtml, see www.gnu.org">
-<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<meta name="Content-Style" content="text/css">
-<style type="text/css">
-       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
-       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
-       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
-       h1      { text-align: center }
-</style>
-<title>MEL</title>
-
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>MEL</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-<h1 align="center">MEL</h1>
-
-<a href="#NAME">NAME</a><br>
-<a href="#SYNOPSIS">SYNOPSIS</a><br>
-<a href="#DESCRIPTION">DESCRIPTION</a><br>
-<a href="#SYNTAX">SYNTAX</a><br>
-
-<hr>
-
-
-<h2>NAME
-<a name="NAME"></a>
-</h2>
-
-
-<p style="margin-left:11%; margin-top: 1em">mel - generate
-sound fragments from plain text</p>
-
-<h2>SYNOPSIS
-<a name="SYNOPSIS"></a>
-</h2>
-
-
-<p style="margin-left:11%; margin-top: 1em"><b>mel</b>
-[[[<i>wavefile</i> ...] <i>infile</i>] <i>outfile</i>]</p>
-
-<h2>DESCRIPTION
-<a name="DESCRIPTION"></a>
-</h2>
-
-
-<p style="margin-left:11%; margin-top: 1em">Interpret ASCII
-input in <i>infile</i> as audio and save it to
-<i>outfile</i> in the WAVE format, optionally using samples
-provided in <i>wavefile</i>s. The syntax for <i>infile</i>
-is given below. Filenames default to <b>/dev/stdin</b> or
-<b>/dev/stdout</b>. The dash (<b>-</b>) is a shorthand for
-the default value.</p>
-
-<h2>SYNTAX
-<a name="SYNTAX"></a>
-</h2>
-
-
-<p style="margin-left:11%; margin-top: 1em"><i>infile</i>
-shall contain words <i>w</i> (sequences of lowercase letters
-<b>a</b> to <b>z</b> and hashes <b>#</b>), numbers <i>n</i>
-(sequences of digits <b>0</b> to <b>9</b>, decimal points
-<b>.</b>, and a dividing colon <b>:</b>), and commands
-(other single ASCII characters). Commands are followed by
-words and/or numbers as arguments, as listed below. The
-input is processed linearly, whereby unexpected characters,
-including whitespace, act as separators and are otherwise
-ignored.</p>
-
-<table width="100%" border="0" rules="none" frame="void"
-       cellspacing="0" cellpadding="0">
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="7%">
-
-
-<p><b>~</b><i>w</i>[<i>n</i>]</p></td>
-<td width="2%"></td>
-<td width="80%">
-
-
-<p>Choose wave sample of shape <i>w</i> and duration
-<i>n</i> in seconds. This is the building block for sound at
-arbitrary frequency and amplitude. Predefined values for
-<i>w</i> are listed below. The corresponding spectra are
-shown by the command <b>harmonics</b> <i>w</i>. If <i>w</i>
-reads <b>#</b>, the first channel of the <i>n</i>th
-<i>wavefile</i> given on the command line is loaded instead.
-<i>n</i> defaults to <b>1</b>. The default is a
-<b>circular</b> wave that lasts <b>1</b> second.</p></td></tr>
-</table>
-
-<p style="margin-left:25%;"><b>harmonic</b></p>
-
-<p style="margin-left:29%;">sin(x) for x in (0, 2&pi;]</p>
-
-<p style="margin-left:25%;"><b>power</b></p>
-
-<p style="margin-left:29%;">sin&sup3;(x) for x in (0,
-2&pi;]</p>
-
-<p style="margin-left:25%;"><b>major</b></p>
-
-<p style="margin-left:29%;">sin&#8309;(x) for x in (0,
-2&pi;]</p>
-
-<p style="margin-left:25%;"><b>constant</b></p>
-
-<p style="margin-left:29%;">sgn(sin(x)) for x in (0,
-2&pi;]</p>
-
-<p style="margin-left:25%;"><b>linear</b></p>
-
-<p style="margin-left:29%;">2/&pi; arcsin(sin(x)) for x in
-(0, 2&pi;]</p>
-
-<p style="margin-left:25%;"><b>quadratic</b></p>
-
-<p style="margin-left:29%;">sgn(x) (2|x| - x&sup2;) for x
-in (-2, 2]</p>
-
-<p style="margin-left:25%;"><b>circular</b></p>
-
-<p style="margin-left:29%;">sgn(x) sqrt(2|x| - x&sup2;) for
-x in (-2, 2]</p>
-
-<p style="margin-left:25%;"><b>cubic</b></p>
-
-<p style="margin-left:29%;">3/2 sqrt(3) (x&sup3; - x) for x
-in (-1, 1]</p>
-
-<p style="margin-left:25%;"><b>random</b></p>
-
-<p style="margin-left:29%;">white noise</p>
-
-<table width="100%" border="0" rules="none" frame="void"
-       cellspacing="0" cellpadding="0">
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="7%">
-
-
-<p><b>S</b><i>w</i>[<i>n</i>]</p></td>
-<td width="2%"></td>
-<td width="80%">
-
-
-<p>Choose attack envelope. Arguments as above. Predefined
-values for <i>w</i> are listed below. The default is a
-<b>circular</b> envelope that lasts <b>0.1</b> seconds.</p></td></tr>
-</table>
-
-<p style="margin-left:25%;"><b>harmonic</b></p>
-
-<p style="margin-left:29%;">sin(x) for x in (0, &pi;/2)</p>
-
-<p style="margin-left:25%;"><b>smooth</b></p>
-
-<p style="margin-left:29%;">sin&sup2;(x) for x in (0,
-&pi;/2)</p>
-
-<p style="margin-left:25%;"><b>power</b></p>
-
-<p style="margin-left:29%;">sin&sup3;(x) for x in (0,
-&pi;/2)</p>
-
-<p style="margin-left:25%;"><b>major</b></p>
-
-<p style="margin-left:29%;">sin&#8309;(x) for x in (0,
-&pi;/2)</p>
-
-<p style="margin-left:25%;"><b>linear</b></p>
-
-<p style="margin-left:29%;">x for x in (0, 1)</p>
-
-<p style="margin-left:25%;"><b>quadratic</b></p>
-
-<p style="margin-left:29%;">1 - x&sup2; for x in (-1,
-0)</p>
-
-<p style="margin-left:25%;"><b>circular</b></p>
-
-<p style="margin-left:29%;">sqrt(1 - x&sup2;) for x in (-1,
-0)</p>
-
-<p style="margin-left:25%;"><b>cubic</b></p>
-
-<p style="margin-left:29%;">3x&sup2; - 2x&sup2; for x in
-(0, 1)</p>
-
-<table width="100%" border="0" rules="none" frame="void"
-       cellspacing="0" cellpadding="0">
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="7%">
-
-
-<p><b>Z</b><i>w</i>[<i>n</i>]</p></td>
-<td width="2%"></td>
-<td width="80%">
-
-
-<p>Choose release envelope. Arguments as above.</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="7%">
-
-
-<p><b>N</b><i>w</i>[<i>n</i>]</p></td>
-<td width="2%"></td>
-<td width="80%">
-
-
-<p>Choose attack and release envelope at once. Arguments as
-above.</p> </td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="7%">
-
-
-<p><b>*</b></p></td>
-<td width="2%"></td>
-<td width="80%">
-
-
-<p>Start/end a comment.</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="7%">
-
-
-<p><b>$</b><i>n</i></p></td>
-<td width="2%"></td>
-<td width="80%">
-
-
-<p>Set a sample rate of <i>n</i> samples per second. The
-default is <b>44100</b> samples per second. This setting
-holds globally and is ignored after first note played.</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="7%">
-
-
-<p><b>O</b><i>n</i></p></td>
-<td width="2%"></td>
-<td width="80%">
-
-
-<p>Set number of channels to <i>n</i>. Allowed values are
-<b>1</b> (mono) and <b>2</b> (stereo). By default, the
-number of channels is determined automatically.</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="7%">
-
-
-<p><b>|</b><i>n</i></p></td>
-<td width="2%"></td>
-<td width="80%">
-
-
-<p>Set duration of a beat to <i>n</i> seconds. The default
-is <b>0.5</b> seconds.</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="7%">
-
-
-<p><b>@</b><i>n</i></p></td>
-<td width="2%"></td>
-<td width="80%">
-
-
-<p>Set concert pitch <b>A4</b> to <i>n</i> Hz. The default
-is <b>440</b> Hz.</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="7%">
-
-
-<p><b>T</b><i>w</i></p></td>
-<td width="2%"></td>
-<td width="80%">
-
-
-<p>Choose tuning from the below options.</p></td></tr>
-</table>
-
-<p style="margin-left:25%;"><b>equal</b></p>
-
-<p style="margin-left:29%;">Equal temperament.</p>
-
-<p style="margin-left:25%;"><b>pyth</b></p>
-
-<p style="margin-left:29%;">Pythagorean tuning. All notes
-are reached combining fifths and octaves.</p>
-
-<p style="margin-left:25%;"><b>just</b></p>
-
-<p style="margin-left:29%;">Just intonation. All notes are
-reached combining thirds, -1 to 2 fifths from keynote, and
-octaves.</p>
-
-<p style="margin-left:25%;"><b>close</b></p>
-
-<p style="margin-left:29%;">Five-limit tuning closest to
-twelve-tone equal temperament.</p>
-
-<table width="100%" border="0" rules="none" frame="void"
-       cellspacing="0" cellpadding="0">
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="3%">
-
-
-<p><b>H</b><i>n</i></p></td>
-<td width="6%"></td>
-<td width="80%">
-
-
-<p>Divide one octave into <i>n</i> halftones/steps of equal
-frequency ratio. The default is <b>12</b> halftones
-(twelve-tone equal temperament).</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="3%">
-
-
-<p><b>=</b><i>n</i></p></td>
-<td width="6%"></td>
-<td width="80%">
-
-
-<p>Set reference frequency to <i>n</i> Hz. The default is
-the concert pitch <b>A4</b>.</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="3%">
-
-
-<p><b>&amp;</b><i>n</i></p></td>
-<td width="6%"></td>
-<td width="80%">
-
-
-<p>Set reference amplitude sqrt(L&sup2; + R&sup2;) to
-<i>n</i> arb. units. The default is <b>1</b> arb. unit.</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="3%">
-
-
-<p><b>%</b><i>n</i></p></td>
-<td width="6%"></td>
-<td width="80%">
-
-
-<p>Set reference amplitude ratio R:L between right and left
-channel to <i>n</i>. The default is <b>1</b>.</p></td></tr>
-</table>
-
-<p style="margin-left:11%;"><b>C D E F G A
-B</b>[<i>w</i>][<i>n</i>][<i>n&rsquo;</i>]</p>
-
-<p style="margin-left:20%;">Set reference frequency via
-note name. <i>w</i> marks accidentals and can be <b>#</b>,
-<b>x</b>, <b>b</b>, <b>bb</b>, and so on. To raise and lower
-the frequency by a diatonic (septimal) [eleven]
-{Pythagorean} comma 81:80 (64:63) [33:32] {531441:524288},
-use <b>u</b> and <b>v</b> (<b>s</b> and <b>z</b>) [<b>i</b>
-and <b>j</b>] {<b>p</b> and <b>d</b>}, respectively. Please
-note that the note name already implies a certain number of
-diatonic commas for the tunings <b>just</b> and <b>best</b>.
-<i>n</i> is the octave number and defaults to <b>4</b>. If
-omitted, also set the keynote. <i>n&rsquo;</i> is an
-optional microtonal accidental as used in the Functional
-Just System (FJS) by misotanni
-(<i>https://misotanni.github.io/fjs</i>). Here, compound
-accidentals must be written as a product and otonal and
-utonal accidentals are separated by a colon (<b>:</b>).
-<b>A4</b> is the concert pitch.</p>
-
-<table width="100%" border="0" rules="none" frame="void"
-       cellspacing="0" cellpadding="0">
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>'</b>[<i>n</i>]</p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Play sound for a duration of <i>n</i> beats. <i>n</i>
-defaults to <b>1</b>.</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>&quot;</b>[<i>n</i>]</p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Pause for a duration of <i>n</i> beats. <i>n</i>
-defaults to <b>1</b>.</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>`</b>[<i>n</i>]</p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Rewind by <i>n</i> beats. <i>n</i> defaults to <b>1</b>.
-(Negative pause.)</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>Q</b><i>n</i></p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Set frequency to <i>n</i> times the reference
-frequency.</p> </td></tr>
-</table>
-
-<p style="margin-left:11%;"><b>V
-U</b>[<i>w</i>]<i>n</i></p>
-
-<p style="margin-left:20%;">Set frequency to <i>n</i>
-chromatic steps below/above the reference. You can use the
-same commas <i>w</i> as with note names. The 12-tone scale
-is made of the -5 to 6th fifths from the keynote.</p>
-
-<table width="100%" border="0" rules="none" frame="void"
-       cellspacing="0" cellpadding="0">
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>- +</b><i>n</i></p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Set frequency to <i>n</i> halftones below/above the
-reference.</p> </td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>\ /</b><i>n</i></p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Continuously lower/raise frequency by <i>n</i> halftones
-during the next play period (<b>'</b>).</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>_ ^</b><i>n</i></p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Continuously lower/raise frequency by <i>n</i> halftones
-per beat from now on.</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>? !</b><i>n</i></p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Set amplitude to <i>n</i> dB below/above the
-reference.</p> </td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>&lt; &gt;</b><i>n</i></p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Continuously lower/raise amplitude by <i>n</i> dB during
-the next play period (<b>'</b>).</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>, ;</b><i>n</i></p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Continuously lower/raise amplitude by <i>n</i> dB per
-beat from now on.</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>[ ]</b><i>n</i></p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Set amplitude ratio to <i>n</i> dB below/above the
-reference.</p> </td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>( )</b><i>n</i></p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Continuously lower/raise amplitude ratio by <i>n</i> dB
-during the next play period (<b>'</b>).</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>{ }</b><i>n</i></p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Continuously lower/raise amplitude ratio by <i>n</i> dB
-per beat from now on.</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>M</b>[<i>n</i>]</p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Set <i>n</i>th time mark. <i>n</i> must be an integer
-between <b>0</b> and <b>99</b> and defaults to <b>0</b>.</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>W</b>[<i>n</i>]</p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Wind back to <i>n</i>th time mark, if set. <i>n</i>
-defaults to <b>0</b>.</p></td></tr>
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>R</b>[<i>n</i>]</p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Forget <i>n</i>th time mark. <i>n</i> defaults to
-<b>0</b>.</p> </td></tr>
-</table>
-
-<p style="margin-left:11%;"><b>P</b><i>n
-n&rsquo;</i>[<i>n&quot;</i>]</p>
-
-<p style="margin-left:20%;">Paste copy of sound between
-<i>n</i>th and <i>n&rsquo;</i>th time mark <i>n&quot;</i>
-times, if marks have been set. <i>n&quot;</i> defaults to
-<b>1</b>.</p>
-
-<table width="100%" border="0" rules="none" frame="void"
-       cellspacing="0" cellpadding="0">
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>I</b>[<i>n</i>]</p></td>
-<td width="3%"></td>
-<td width="80%">
-
-
-<p>Set <i>n</i>th text mark. <i>n</i> must be an integer
-between <b>0</b> and <b>99</b> and defaults to <b>0</b>.</p></td></tr>
-</table>
-
-
-<p style="margin-left:11%;"><b>J</b>[<i>n</i>[<i>n&rsquo;</i>]]</p>
-
-<p style="margin-left:20%;">Jump back to <i>n</i>th text
-mark, if set. This works <i>n&rsquo;</i> times in a row.
-<i>n</i> and <i>n&rsquo;</i> default to <b>0</b> and
-<b>1</b>, respectively.</p>
-
-<table width="100%" border="0" rules="none" frame="void"
-       cellspacing="0" cellpadding="0">
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="6%">
-
-
-<p><b>K</b>[<i>n</i>]</p></td>
-<td width="3%"></td>
-<td width="60%">
-
-
-<p>Forget <i>n</i>th text mark. <i>n</i> defaults to
-<b>0</b>.</p> </td>
-<td width="20%">
-</td></tr>
-</table>
-
-<p style="margin-left:11%;"><b>X</b><i>w</i>[...]</p>
-
-<p style="margin-left:20%;">Do something special.</p>
-
-<p style="margin-left:25%;"><b>report</b></p>
-
-<p style="margin-left:29%;">Print note counts (since last
-report) to standard output. Only notes defined via the
-commands <b>C D E F G A B</b> and <b>U V</b> are counted.
-This is useful to, e.g., to determine the keynote of a piece
-of music.</p>
-
-<p style="margin-left:25%;"><b>detune</b><i>n</i></p>
-
-<p style="margin-left:29%;">Randomly detune frequency,
-including concert pitch <b>A4</b>, by up to <i>n</i>
-halftones. In combination with text and time marks, this is
-useful to generate non-white noise.</p>
-
-<p style="margin-left:11%;"><b>L</b><i>n n&rsquo; m
-m&rsquo;</i></p>
-
-<p style="margin-left:20%;">Apply flanger to sound between
-<i>n</i>th and <i>n&rsquo;</i>th time mark, if marks have
-been set. The sample is periodically delayed (and advanced)
-with an amplitude of <i>m</i> seconds and a frequency of
-<i>m&rsquo;</i> per sample length, using the current wave
-sample, and superimposed with itself.</p>
-
-<table width="100%" border="0" rules="none" frame="void"
-       cellspacing="0" cellpadding="0">
-<tr valign="top" align="left">
-<td width="11%"></td>
-<td width="7%">
-
-
-<p><b>Y</b><i>n n&rsquo;</i></p></td>
-<td width="2%"></td>
-<td width="80%">
-
-
-<p>Set vibrato with amplitude of <i>n</i> Hz and frequency
-of <i>n&rsquo;</i> Hz.</p></td></tr>
- </table>
-<hr>
+<header id="title-block-header">
+<h1 class="title">MEL</h1>
+<p class="date">2010–2022</p>
+</header>
+<h1>NAME</h1>
+<p>mel - generate sound fragments from plain text</p>
+<h1>SYNOPSIS</h1>
+<p><strong>mel</strong> [[[<em>wavefile</em> ...] <em>infile</em>] <em>outfile</em>]</p>
+<h1>DESCRIPTION</h1>
+<p>Interpret ASCII input in <em>infile</em> as audio and save it to <em>outfile</em> in the WAVE format, optionally using samples provided in <em>wavefile</em>s. The syntax for <em>infile</em> is given below. Filenames default to <strong>/dev/stdin</strong> or <strong>/dev/stdout</strong>. The dash (<strong>-</strong>) is a shorthand for the default value.</p>
+<h1>SYNTAX</h1>
+<p><em>infile</em> shall contain words <em>w</em> (sequences of lowercase letters <strong>a</strong> to <strong>z</strong> and hashes <strong>#</strong>), numbers <em>n</em> (sequences of digits <strong>0</strong> to <strong>9</strong>, decimal points <strong>.</strong>, and a dividing colon <strong>:</strong>), and commands (other single ASCII characters). Commands are followed by words and/or numbers as arguments, as listed below. The input is processed linearly, whereby unexpected characters, including whitespace, act as separators and are otherwise ignored.</p>
+<dl>
+<dt><strong>~</strong><em>w</em>[<em>n</em>]</dt>
+<dd><p>Choose wave sample of shape <em>w</em> and duration <em>n</em> in seconds. This is the building block for sound at arbitrary frequency and amplitude. Predefined values for <em>w</em> are listed below. The corresponding spectra are shown by the command <strong>harmonics</strong> <em>w</em>. If <em>w</em> reads <strong>#</strong>, the first channel of the <em>n</em>th <em>wavefile</em> given on the command line is loaded instead. <em>n</em> defaults to <strong>1</strong>. The default is a <strong>circular</strong> wave that lasts <strong>1</strong> second.</p>
+<dl>
+<dt><strong>harmonic</strong></dt>
+<dd><p>sin(x) for x in (0, 2π]</p>
+</dd>
+<dt><strong>power</strong></dt>
+<dd><p>sin³(x) for x in (0, 2π]</p>
+</dd>
+<dt><strong>major</strong></dt>
+<dd><p>sin⁵(x) for x in (0, 2π]</p>
+</dd>
+<dt><strong>constant</strong></dt>
+<dd><p>sgn(sin(x)) for x in (0, 2π]</p>
+</dd>
+<dt><strong>linear</strong></dt>
+<dd><p>2/π arcsin(sin(x)) for x in (0, 2π]</p>
+</dd>
+<dt><strong>quadratic</strong></dt>
+<dd><p>sgn(x) (2|x| - x²) for x in (-2, 2]</p>
+</dd>
+<dt><strong>circular</strong></dt>
+<dd><p>sgn(x) sqrt(2|x| - x²) for x in (-2, 2]</p>
+</dd>
+<dt><strong>cubic</strong></dt>
+<dd><p>3/2 sqrt(3) (x³ - x) for x in (-1, 1]</p>
+</dd>
+<dt><strong>random</strong></dt>
+<dd><p>white noise</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>S</strong><em>w</em>[<em>n</em>]</dt>
+<dd><p>Choose attack envelope. Arguments as above. Predefined values for <em>w</em> are listed below. The default is a <strong>circular</strong> envelope that lasts <strong>0.1</strong> seconds.</p>
+<dl>
+<dt><strong>harmonic</strong></dt>
+<dd><p>sin(x) for x in (0, π/2)</p>
+</dd>
+<dt><strong>smooth</strong></dt>
+<dd><p>sin²(x) for x in (0, π/2)</p>
+</dd>
+<dt><strong>power</strong></dt>
+<dd><p>sin³(x) for x in (0, π/2)</p>
+</dd>
+<dt><strong>major</strong></dt>
+<dd><p>sin⁵(x) for x in (0, π/2)</p>
+</dd>
+<dt><strong>linear</strong></dt>
+<dd><p>x for x in (0, 1)</p>
+</dd>
+<dt><strong>quadratic</strong></dt>
+<dd><p>1 - x² for x in (-1, 0)</p>
+</dd>
+<dt><strong>circular</strong></dt>
+<dd><p>sqrt(1 - x²) for x in (-1, 0)</p>
+</dd>
+<dt><strong>cubic</strong></dt>
+<dd><p>3x² - 2x² for x in (0, 1)</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>Z</strong><em>w</em>[<em>n</em>]</dt>
+<dd><p>Choose release envelope. Arguments as above.</p>
+</dd>
+<dt><strong>N</strong><em>w</em>[<em>n</em>]</dt>
+<dd><p>Choose attack and release envelope at once. Arguments as above.</p>
+</dd>
+<dt><strong>*</strong></dt>
+<dd><p>Start/end a comment.</p>
+</dd>
+<dt><strong>$</strong><em>n</em></dt>
+<dd><p>Set a sample rate of <em>n</em> samples per second. The default is <strong>44100</strong> samples per second. This setting holds globally and is ignored after first note played.</p>
+</dd>
+<dt><strong>O</strong><em>n</em></dt>
+<dd><p>Set number of channels to <em>n</em>. Allowed values are <strong>1</strong> (mono) and <strong>2</strong> (stereo). By default, the number of channels is determined automatically.</p>
+</dd>
+<dt><strong>|</strong><em>n</em></dt>
+<dd><p>Set duration of a beat to <em>n</em> seconds. The default is <strong>0.5</strong> seconds.</p>
+</dd>
+<dt><strong>@</strong><em>n</em></dt>
+<dd><p>Set concert pitch <strong>A4</strong> to <em>n</em> Hz. The default is <strong>440</strong> Hz.</p>
+</dd>
+<dt><strong>T</strong><em>w</em></dt>
+<dd><p>Choose tuning from the below options.</p>
+<dl>
+<dt><strong>equal</strong></dt>
+<dd><p>Equal temperament.</p>
+</dd>
+<dt><strong>pyth</strong></dt>
+<dd><p>Pythagorean tuning. All notes are reached combining fifths and octaves.</p>
+</dd>
+<dt><strong>just</strong></dt>
+<dd><p>Just intonation. All notes are reached combining thirds, -1 to 2 fifths from keynote, and octaves.</p>
+</dd>
+<dt><strong>close</strong></dt>
+<dd><p>Five-limit tuning closest to twelve-tone equal temperament.</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>H</strong><em>n</em></dt>
+<dd><p>Divide one octave into <em>n</em> halftones/steps of equal frequency ratio. The default is <strong>12</strong> halftones (twelve-tone equal temperament).</p>
+</dd>
+<dt><strong>=</strong><em>n</em></dt>
+<dd><p>Set reference frequency to <em>n</em> Hz. The default is the concert pitch <strong>A4</strong>.</p>
+</dd>
+<dt><strong>&amp;</strong><em>n</em></dt>
+<dd><p>Set reference amplitude sqrt(L² + R²) to <em>n</em> arb. units. The default is <strong>1</strong> arb. unit.</p>
+</dd>
+<dt><strong>%</strong><em>n</em></dt>
+<dd><p>Set reference amplitude ratio R:L between right and left channel to <em>n</em>. The default is <strong>1</strong>.</p>
+</dd>
+<dt><strong>C D E F G A B</strong>[<em>w</em>][<em>n</em>][<em>n'</em>]</dt>
+<dd><p>Set reference frequency via note name. <em>w</em> marks accidentals and can be <strong>#</strong>, <strong>x</strong>, <strong>b</strong>, <strong>bb</strong>, and so on. To raise and lower the frequency by a diatonic (septimal) [eleven] {Pythagorean} comma 81:80 (64:63) [33:32] {531441:524288}, use <strong>u</strong> and <strong>v</strong> (<strong>s</strong> and <strong>z</strong>) [<strong>i</strong> and <strong>j</strong>] {<strong>p</strong> and <strong>d</strong>}, respectively. Please note that the note name already implies a certain number of diatonic commas for the tunings <strong>just</strong> and <strong>close</strong>. <em>n</em> is the octave number and defaults to <strong>4</strong>. If omitted, also set the keynote. <em>n'</em> is an optional microtonal accidental as used in the Functional Just System (FJS) by misotanni (<em>https://misotanni.github.io/fjs</em>). Here, compound accidentals must be written as a product and otonal and utonal accidentals are separated by a colon (<strong>:</strong>). <strong>A4</strong> is the concert pitch.</p>
+</dd>
+<dt><strong>'</strong>[<em>n</em>]</dt>
+<dd><p>Play sound for a duration of <em>n</em> beats. <em>n</em> defaults to <strong>1</strong>.</p>
+</dd>
+<dt><strong>"</strong>[<em>n</em>]</dt>
+<dd><p>Pause for a duration of <em>n</em> beats. <em>n</em> defaults to <strong>1</strong>.</p>
+</dd>
+<dt><strong>`</strong>[<em>n</em>]</dt>
+<dd><p>Rewind by <em>n</em> beats. <em>n</em> defaults to <strong>1</strong>. (Negative pause.)</p>
+</dd>
+<dt><strong>Q</strong><em>n</em></dt>
+<dd><p>Set frequency to <em>n</em> times the reference frequency.</p>
+</dd>
+<dt><strong>V U</strong>[<em>w</em>]<em>n</em></dt>
+<dd><p>Set frequency to <em>n</em> chromatic steps below/above the reference. You can use the same commas <em>w</em> as with note names. The 12-tone scale is made of the -5 to 6th fifths from the keynote.</p>
+</dd>
+<dt><strong>- +</strong><em>n</em></dt>
+<dd><p>Set frequency to <em>n</em> halftones below/above the reference.</p>
+</dd>
+<dt><strong>\ /</strong><em>n</em></dt>
+<dd><p>Continuously lower/raise frequency by <em>n</em> halftones during the next play period (<strong>'</strong>).</p>
+</dd>
+<dt><strong>_ ^</strong><em>n</em></dt>
+<dd><p>Continuously lower/raise frequency by <em>n</em> halftones per beat from now on.</p>
+</dd>
+<dt><strong>? !</strong><em>n</em></dt>
+<dd><p>Set amplitude to <em>n</em> dB below/above the reference.</p>
+</dd>
+<dt><strong>&lt; &gt;</strong><em>n</em></dt>
+<dd><p>Continuously lower/raise amplitude by <em>n</em> dB during the next play period (<strong>'</strong>).</p>
+</dd>
+<dt><strong>, ;</strong><em>n</em></dt>
+<dd><p>Continuously lower/raise amplitude by <em>n</em> dB per beat from now on.</p>
+</dd>
+<dt><strong>[ ]</strong><em>n</em></dt>
+<dd><p>Set amplitude ratio to <em>n</em> dB below/above the reference.</p>
+</dd>
+<dt><strong>( )</strong><em>n</em></dt>
+<dd><p>Continuously lower/raise amplitude ratio by <em>n</em> dB during the next play period (<strong>'</strong>).</p>
+</dd>
+<dt><strong>{ }</strong><em>n</em></dt>
+<dd><p>Continuously lower/raise amplitude ratio by <em>n</em> dB per beat from now on.</p>
+</dd>
+<dt><strong>M</strong>[<em>n</em>]</dt>
+<dd><p>Set <em>n</em>th time mark. <em>n</em> must be an integer between <strong>0</strong> and <strong>99</strong> and defaults to <strong>0</strong>.</p>
+</dd>
+<dt><strong>W</strong>[<em>n</em>]</dt>
+<dd><p>Wind back to <em>n</em>th time mark, if set. <em>n</em> defaults to <strong>0</strong>.</p>
+</dd>
+<dt><strong>R</strong>[<em>n</em>]</dt>
+<dd><p>Forget <em>n</em>th time mark. <em>n</em> defaults to <strong>0</strong>.</p>
+</dd>
+<dt><strong>P</strong><em>n</em> <em>n'</em>[<em>n"</em>]</dt>
+<dd><p>Paste copy of sound between <em>n</em>th and <em>n'</em>th time mark <em>n"</em> times, if marks have been set. <em>n"</em> defaults to <strong>1</strong>.</p>
+</dd>
+<dt><strong>I</strong>[<em>n</em>]</dt>
+<dd><p>Set <em>n</em>th text mark. <em>n</em> must be an integer between <strong>0</strong> and <strong>99</strong> and defaults to <strong>0</strong>.</p>
+</dd>
+<dt><strong>J</strong>[<em>n</em>[<em>n'</em>]]</dt>
+<dd><p>Jump back to <em>n</em>th text mark, if set. This works <em>n'</em> times in a row. <em>n</em> and <em>n'</em> default to <strong>0</strong> and <strong>1</strong>, respectively.</p>
+</dd>
+<dt><strong>K</strong>[<em>n</em>]</dt>
+<dd><p>Forget <em>n</em>th text mark. <em>n</em> defaults to <strong>0</strong>.</p>
+</dd>
+<dt><strong>X</strong><em>w</em>[...]</dt>
+<dd><p>Do something special.</p>
+<dl>
+<dt><strong>report</strong></dt>
+<dd><p>Print note counts (since last report) to standard error stream. Only notes defined via the commands <strong>C D E F G A B</strong> and <strong>U V</strong> are counted. This is useful to, e.g., to determine the keynote of a piece of music.</p>
+</dd>
+<dt><strong>detune</strong><em>n</em></dt>
+<dd><p>Randomly detune frequency, including concert pitch <strong>A4</strong>, by up to <em>n</em> halftones. In combination with text and time marks, this is useful to generate non-white noise.</p>
+</dd>
+<dt><strong>vibrato</strong><em>n</em><strong> </strong><em>n'</em><strong> </strong><em>m</em><strong> </strong><em>m'</em></dt>
+<dd><p>Apply vibrato to sound between <em>n</em>th and <em>n'</em>th time mark, if marks have been set. The sample is periodically delayed (and advanced) with an amplitude of <em>m</em> seconds and a frequency of <em>m'</em> per sample length, using the current wave sample.</p>
+</dd>
+<dt><strong>flanger</strong><em>n</em><strong> </strong><em>n'</em><strong> </strong><em>m</em><strong> </strong><em>m'</em></dt>
+<dd><p>Apply flanger to sound between <em>n</em>th and <em>n'</em>th time mark, if marks have been set. The sample is periodically delayed (and advanced) with an amplitude of <em>m</em> seconds and a frequency of <em>m'</em> per sample length, using the current wave sample, and superimposed with itself.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </body>
 </html>
