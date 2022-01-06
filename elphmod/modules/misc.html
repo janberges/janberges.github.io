@@ -67,8 +67,39 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.misc.read_cube">
-<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">read_cube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.read_cube" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">read_cube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">cube</span></em>, <em class="sig-param"><span class="pre">only_header=False</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.read_cube" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read Gaussian cube file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>cube</strong><span class="classifier">str</span></dt><dd><p>Name of Gaussian cube file.</p>
+</dd>
+<dt><strong>only_header</strong><span class="classifier">bool, default False</span></dt><dd><p>Skip reading data?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>r0</strong><span class="classifier">ndarray</span></dt><dd><p>Origin of the data grid.</p>
+</dd>
+<dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Spanning vectors of the data grid.</p>
+</dd>
+<dt><strong>X</strong><span class="classifier">list of str</span></dt><dd><p>Atomic numbers.</p>
+</dd>
+<dt><strong>tau</strong><span class="classifier">ndarray</span></dt><dd><p>Cartesian atomic coordinates.</p>
+</dd>
+<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Data-grid values or, if <cite>only_header</cite>, shape of data grid.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.misc.read_xsf" title="elphmod.misc.read_xsf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_xsf</span></code></a></dt><dd><p>Equivalent function for XCrySDen format.</p>
+</dd>
+</dl>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -92,7 +123,7 @@
 </dd>
 <dt><strong>X</strong><span class="classifier">list of str</span></dt><dd><p>Atomic numbers or symbols.</p>
 </dd>
-<dt><strong>r</strong><span class="classifier">ndarray</span></dt><dd><p>Cartesian atomic coordinates.</p>
+<dt><strong>tau</strong><span class="classifier">ndarray</span></dt><dd><p>Cartesian atomic coordinates.</p>
 </dd>
 <dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Data-grid values or, if <cite>only_header</cite>, shape of data grid.</p>
 </dd>
@@ -102,9 +133,38 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#elphmod.misc.write_xsf" title="elphmod.misc.write_xsf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_xsf</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="#elphmod.misc.read_cube" title="elphmod.misc.read_cube"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_cube</span></code></a></dt><dd><p>Equivalent function for Gaussian cube format.</p>
+</dd>
+<dt><a class="reference internal" href="#elphmod.misc.write_xsf" title="elphmod.misc.write_xsf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_xsf</span></code></a></dt><dd><p>Write file in XCrySDen format.</p>
+</dd>
 </dl>
 </div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.misc.real_space_grid">
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">real_space_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.real_space_grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample real-space grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>shape</strong><span class="classifier">tuple of int</span></dt><dd><p>Shape of the 3D real-space grid.</p>
+</dd>
+<dt><strong>r0</strong><span class="classifier">ndarray</span></dt><dd><p>Origin of the real-space grid.</p>
+</dd>
+<dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Cartesian spanning vectors of the real-space grid.</p>
+</dd>
+<dt><strong>shared_memory</strong><span class="classifier">bool, default False</span></dt><dd><p>Store real-space grid in shared memory?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Cartesian coordinates for all grid points.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -157,7 +217,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.misc.write_xsf">
-<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">write_xsf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">xsf</span></em>, <em class="sig-param"><span class="pre">r0</span></em>, <em class="sig-param"><span class="pre">a</span></em>, <em class="sig-param"><span class="pre">X</span></em>, <em class="sig-param"><span class="pre">r</span></em>, <em class="sig-param"><span class="pre">data</span></em>, <em class="sig-param"><span class="pre">only_header=False</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.write_xsf" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">write_xsf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">xsf</span></em>, <em class="sig-param"><span class="pre">r0</span></em>, <em class="sig-param"><span class="pre">a</span></em>, <em class="sig-param"><span class="pre">X</span></em>, <em class="sig-param"><span class="pre">tau</span></em>, <em class="sig-param"><span class="pre">data</span></em>, <em class="sig-param"><span class="pre">only_header=False</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.write_xsf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write file in XCrySDen format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -170,7 +230,7 @@
 </dd>
 <dt><strong>X</strong><span class="classifier">list of str</span></dt><dd><p>Atomic numbers or symbols.</p>
 </dd>
-<dt><strong>r</strong><span class="classifier">ndarray</span></dt><dd><p>Cartesian atomic coordinates.</p>
+<dt><strong>tau</strong><span class="classifier">ndarray</span></dt><dd><p>Cartesian atomic coordinates.</p>
 </dd>
 <dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Data-grid values or, if <cite>only_header</cite>, shape of data grid.</p>
 </dd>
@@ -182,7 +242,8 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#elphmod.misc.read_xsf" title="elphmod.misc.read_xsf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_xsf</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="#elphmod.misc.read_xsf" title="elphmod.misc.read_xsf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_xsf</span></code></a></dt><dd><p>Read file in XCrySDen format.</p>
+</dd>
 </dl>
 </div>
 </dd></dl>
@@ -237,7 +298,7 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2021, Uni Bremen.
+        &#169; Copyright 2017-2022 University of Bremen.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
     </div>
   </body>
