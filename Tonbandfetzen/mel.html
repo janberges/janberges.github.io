@@ -25,10 +25,10 @@
 <h1>DESCRIPTION</h1>
 <p>Interpret ASCII input in <em>infile</em> as audio and save it to <em>outfile</em> in the WAVE format, optionally using samples provided in <em>wavefile</em>s. The syntax for <em>infile</em> is given below. Filenames default to <strong>/dev/stdin</strong> or <strong>/dev/stdout</strong>. The dash (<strong>-</strong>) is a shorthand for the default value.</p>
 <h1>SYNTAX</h1>
-<p><em>infile</em> shall contain words <em>w</em> (sequences of lowercase letters <strong>a</strong> to <strong>z</strong> and hashes <strong>#</strong>), numbers <em>n</em> (sequences of digits <strong>0</strong> to <strong>9</strong>, decimal points <strong>.</strong>, and a dividing colon <strong>:</strong>), and commands (other single ASCII characters). Commands are followed by words and/or numbers as arguments, as listed below. The input is processed linearly, whereby unexpected characters, including whitespace, act as separators and are otherwise ignored.</p>
+<p><em>infile</em> shall contain words <em>w</em> (sequences of lowercase letters <strong>a</strong> to <strong>z</strong> and hashes <strong>#</strong>), numbers <em>n</em> (sequences of digits <strong>0</strong> to <strong>9</strong>, decimal points <strong>.</strong>, and a dividing colon <strong>:</strong>), and commands (other single ASCII characters). Commands are followed by words and/or numbers as arguments, as listed below. The input is processed linearly, whereby unexpected characters, including whitespace, act as separators and are otherwise ignored. Reference values imply initial values, and initial values imply current values.</p>
 <dl>
 <dt><strong>~</strong><em>w</em>[<em>n</em>]</dt>
-<dd><p>Choose wave sample of shape <em>w</em> and duration <em>n</em> in seconds. This is the building block for sound at arbitrary frequency and amplitude. Predefined values for <em>w</em> are listed below. The corresponding spectra are shown by the command <strong>harmonics</strong> <em>w</em>. If <em>w</em> reads <strong>#</strong>, the first channel of the <em>n</em>th <em>wavefile</em> given on the command line is loaded instead. <em>n</em> defaults to <strong>1</strong>. The default is a <strong>circular</strong> wave that lasts <strong>1</strong> second.</p>
+<dd><p>Choose wave sample of shape <em>w</em> and duration <em>n</em> in seconds. This is the building block for sound at arbitrary frequency and amplitude. Predefined values for <em>w</em> are listed below. The corresponding spectra are shown by the command <strong>harmonics</strong> <em>w</em>. If <em>w</em> reads <strong>#</strong>, the first channel of the <em>n</em>th <em>wavefile</em> given on the command line is loaded instead. <em>n</em> defaults to <strong>1</strong>. The preset value is a <strong>circular</strong> wave that lasts <strong>1</strong> second.</p>
 <dl>
 <dt><strong>harmonic</strong></dt>
 <dd><p>sin(x) for x in (0, 2π]</p>
@@ -55,12 +55,12 @@
 <dd><p>3/2 sqrt(3) (x³ - x) for x in (-1, 1]</p>
 </dd>
 <dt><strong>random</strong></dt>
-<dd><p>White noise if followed by <strong>=</strong> without argument.</p>
+<dd><p>White noise if followed by <strong>@</strong> without argument.</p>
 </dd>
 </dl>
 </dd>
 <dt><strong>S</strong><em>w</em>[<em>n</em>]</dt>
-<dd><p>Choose attack envelope. Arguments as above. Predefined values for <em>w</em> are listed below. The default is a <strong>circular</strong> envelope that lasts <strong>0.1</strong> seconds.</p>
+<dd><p>Choose attack envelope. Arguments as above. Predefined values for <em>w</em> are listed below. The preset value is a <strong>circular</strong> envelope that lasts <strong>0.1</strong> seconds.</p>
 <dl>
 <dt><strong>harmonic</strong></dt>
 <dd><p>sin(x) for x in (0, π/2)</p>
@@ -98,16 +98,13 @@
 <dd><p>Start/end a comment.</p>
 </dd>
 <dt><strong>$</strong><em>n</em></dt>
-<dd><p>Set a sample rate of <em>n</em> samples per second. The default is <strong>44100</strong> samples per second. This setting holds globally and is ignored after first note played.</p>
+<dd><p>Set a sample rate of <em>n</em> samples per second. The preset value is <strong>44100</strong> samples per second. This setting holds globally and is ignored after first note played.</p>
 </dd>
 <dt><strong>O</strong><em>n</em></dt>
-<dd><p>Set number of channels to <em>n</em>. Allowed values are <strong>1</strong> (mono) and <strong>2</strong> (stereo). By default, the number of channels is determined automatically.</p>
+<dd><p>Set number of channels to <em>n</em>. Allowed values are <strong>1</strong> (mono) and <strong>2</strong> (stereo). If absent, the number of channels is determined automatically.</p>
 </dd>
 <dt><strong>|</strong><em>n</em></dt>
-<dd><p>Set duration of a beat to <em>n</em> seconds. The default is <strong>0.5</strong> seconds.</p>
-</dd>
-<dt><strong>@</strong><em>n</em></dt>
-<dd><p>Set concert pitch <strong>A4</strong> to <em>n</em> Hz. The default is <strong>440</strong> Hz.</p>
+<dd><p>Set duration of a beat to <em>n</em> seconds. The preset value is <strong>0.5</strong> seconds.</p>
 </dd>
 <dt><strong>T</strong><em>w</em></dt>
 <dd><p>Choose tuning from the below options.</p>
@@ -127,19 +124,22 @@
 </dl>
 </dd>
 <dt><strong>H</strong><em>n</em></dt>
-<dd><p>Divide one octave into <em>n</em> halftones/steps of equal frequency ratio. The default is <strong>12</strong> halftones (twelve-tone equal temperament).</p>
+<dd><p>Divide one octave into <em>n</em> halftones/steps of equal frequency ratio. The preset value is <strong>12</strong> halftones (twelve-tone equal temperament).</p>
 </dd>
-<dt><strong>=</strong>[<em>n</em>]</dt>
-<dd><p>Set reference frequency to <em>n</em> Hz. <em>n</em> defaults to the inverse length of the current wave sample. The default is the concert pitch <strong>A4</strong>.</p>
+<dt><strong>@</strong>[<em>n</em>]</dt>
+<dd><p>Set reference frequency and concert pitch <strong>A4</strong> to <em>n</em> Hz. <em>n</em> defaults to the inverse length of the current wave sample. This allows for playing this sample at its original speed. The preset value is <strong>440</strong> Hz.</p>
 </dd>
 <dt><strong>&amp;</strong><em>n</em></dt>
-<dd><p>Set reference amplitude sqrt(L² + R²) to <em>n</em> arb. units. The default is <strong>1</strong> arb. unit.</p>
+<dd><p>Set reference amplitude sqrt(L² + R²) to <em>n</em> arb. units. The preset value is <strong>1</strong> arb. unit.</p>
 </dd>
 <dt><strong>%</strong><em>n</em></dt>
-<dd><p>Set reference amplitude ratio R:L between right and left channel to <em>n</em>. The default is <strong>1</strong>.</p>
+<dd><p>Set reference amplitude ratio R:L between right and left channel to <em>n</em>. The preset value is <strong>1</strong>.</p>
 </dd>
 <dt><strong>C D E F G A B</strong>[<em>w</em>][<em>n</em>[<em>n'</em>]]</dt>
-<dd><p>Set reference frequency via note name. <em>w</em> marks accidentals and can be <strong>#</strong>, <strong>x</strong>, <strong>b</strong>, <strong>bb</strong>, and so on. To raise and lower the frequency by a diatonic (septimal) [eleven] {Pythagorean} comma 81:80 (64:63) [33:32] {531441:524288}, use <strong>u</strong> and <strong>v</strong> (<strong>s</strong> and <strong>z</strong>) [<strong>i</strong> and <strong>j</strong>] {<strong>p</strong> and <strong>d</strong>}, respectively. Please note that the note name already implies a certain number of diatonic commas for the tunings <strong>just</strong> and <strong>close</strong>. <em>n</em> is the octave number and defaults to <strong>4</strong>. If omitted, also set the keynote. <em>n'</em> is an optional microtonal accidental as used in the Functional Just System (FJS) by misotanni (<em>https://misotanni.github.io/fjs</em>). Here, compound accidentals must be written as a product and otonal and utonal accidentals are separated by a colon (<strong>:</strong>). <strong>A4</strong> is the concert pitch.</p>
+<dd><p>Set reference frequency via note name. <em>w</em> marks accidentals and can be <strong>#</strong>, <strong>x</strong>, <strong>b</strong>, <strong>bb</strong>, and so on. To raise and lower the frequency by a diatonic (septimal) [eleven] {Pythagorean} comma 81:80 (64:63) [33:32] {531441:524288}, use <strong>u</strong> and <strong>v</strong> (<strong>s</strong> and <strong>z</strong>) [<strong>i</strong> and <strong>j</strong>] {<strong>p</strong> and <strong>d</strong>}, respectively. Please note that the note name already implies a certain number of diatonic commas for the tunings <strong>just</strong> and <strong>close</strong>. <em>n</em> is the octave number and defaults to <strong>4</strong>. If omitted, also set the keynote. The preset keynote is <strong>C</strong>. <em>n'</em> is an optional microtonal accidental as used in the Functional Just System (FJS) by misotanni (<em>https://misotanni.github.io/fjs</em>). Here, compound accidentals must be written as a product and otonal and utonal accidentals are separated by a colon (<strong>:</strong>). <strong>A4</strong> is the concert pitch.</p>
+</dd>
+<dt><strong>R</strong></dt>
+<dd><p>Set reference frequency, amplitude, and amplitude ratio to current values. E.g., as a prefix to <strong>-</strong> or <strong>+</strong>, this allows for relative frequency shifts.</p>
 </dd>
 <dt><strong>'</strong>[<em>n</em>]</dt>
 <dd><p>Play sound for a duration of <em>n</em> beats. <em>n</em> defaults to <strong>1</strong>.</p>
@@ -151,37 +151,43 @@
 <dd><p>Rewind by <em>n</em> beats. <em>n</em> defaults to <strong>1</strong>. (Negative pause.)</p>
 </dd>
 <dt><strong>Q</strong><em>n</em></dt>
-<dd><p>Set frequency to <em>n</em> times the reference frequency.</p>
+<dd><p>Set initial frequency to <em>n</em> times the reference frequency.</p>
 </dd>
 <dt><strong>V U</strong>[<em>w</em>]<em>n</em></dt>
-<dd><p>Set frequency to <em>n</em> chromatic steps below/above the reference. You can use the same commas <em>w</em> as with note names. The 12-tone scale is made of the -5 to 6th fifths from the keynote.</p>
+<dd><p>Set initial frequency to <em>n</em> chromatic steps below/above the reference. You can use the same commas <em>w</em> as with note names. The 12-tone scale is made of the -5 to 6th fifths from the keynote.</p>
 </dd>
 <dt><strong>- +</strong><em>n</em></dt>
-<dd><p>Set frequency to <em>n</em> halftones below/above the reference.</p>
+<dd><p>Set initial frequency to <em>n</em> halftones below/above the reference.</p>
 </dd>
 <dt><strong>\ /</strong><em>n</em></dt>
-<dd><p>Continuously lower/raise frequency by <em>n</em> halftones during the next play period (<strong>'</strong>).</p>
+<dd><p>Continuously lower/raise current frequency by <em>n</em> halftones during the next play period (<strong>'</strong>).</p>
 </dd>
 <dt><strong>_ ^</strong><em>n</em></dt>
-<dd><p>Continuously lower/raise frequency by <em>n</em> halftones per beat from now on.</p>
+<dd><p>Continuously lower/raise current frequency by <em>n</em> halftones per beat from now on.</p>
 </dd>
 <dt><strong>? !</strong><em>n</em></dt>
-<dd><p>Set amplitude to <em>n</em> dB below/above the reference.</p>
+<dd><p>Set initial amplitude to <em>n</em> dB below/above the reference.</p>
 </dd>
 <dt><strong>&lt; &gt;</strong><em>n</em></dt>
-<dd><p>Continuously lower/raise amplitude by <em>n</em> dB during the next play period (<strong>'</strong>).</p>
+<dd><p>Continuously lower/raise current amplitude by <em>n</em> dB during the next play period (<strong>'</strong>).</p>
 </dd>
 <dt><strong>, ;</strong><em>n</em></dt>
-<dd><p>Continuously lower/raise amplitude by <em>n</em> dB per beat from now on.</p>
+<dd><p>Continuously lower/raise current amplitude by <em>n</em> dB per beat from now on.</p>
 </dd>
 <dt><strong>[ ]</strong><em>n</em></dt>
-<dd><p>Set amplitude ratio to <em>n</em> dB below/above the reference.</p>
+<dd><p>Set initial amplitude ratio to <em>n</em> dB below/above the reference.</p>
 </dd>
 <dt><strong>( )</strong><em>n</em></dt>
-<dd><p>Continuously lower/raise amplitude ratio by <em>n</em> dB during the next play period (<strong>'</strong>).</p>
+<dd><p>Continuously lower/raise current amplitude ratio by <em>n</em> dB during the next play period (<strong>'</strong>).</p>
 </dd>
 <dt><strong>{ }</strong><em>n</em></dt>
-<dd><p>Continuously lower/raise amplitude ratio by <em>n</em> dB per beat from now on.</p>
+<dd><p>Continuously lower/raise current amplitude ratio by <em>n</em> dB per beat from now on.</p>
+</dd>
+<dt><strong>=</strong></dt>
+<dd><p>Introduce discontinuity. (Play the same note again.)</p>
+</dd>
+<dt><strong>P</strong>[<em>n</em>]</dt>
+<dd><p>Set phase, i.e., the time integral of the frequency, to <em>n</em>. It is only defined modulo one.</p>
 </dd>
 <dt><strong>M</strong>[<em>n</em>]</dt>
 <dd><p>Set <em>n</em>th time mark. <em>n</em> must be an integer between <strong>0</strong> and <strong>99</strong> and defaults to <strong>0</strong>.</p>
@@ -189,11 +195,8 @@
 <dt><strong>W</strong>[<em>n</em>]</dt>
 <dd><p>Wind back to <em>n</em>th time mark, if set. <em>n</em> defaults to <strong>0</strong>.</p>
 </dd>
-<dt><strong>R</strong>[<em>n</em>]</dt>
-<dd><p>Forget <em>n</em>th time mark. <em>n</em> defaults to <strong>0</strong>.</p>
-</dd>
-<dt><strong>P</strong><em>n</em> <em>n'</em>[<em>n"</em>]</dt>
-<dd><p>Paste copy of sound between <em>n</em>th and <em>n'</em>th time mark <em>n"</em> times, if marks have been set. <em>n"</em> defaults to <strong>1</strong>.</p>
+<dt><strong>Y</strong><em>n</em> <em>n'</em>[<em>n"</em>]</dt>
+<dd><p>Yank sound between <em>n</em>th and <em>n'</em>th time mark and insert it <em>n"</em> times, if marks have been set. <em>n"</em> defaults to <strong>1</strong>.</p>
 </dd>
 <dt><strong>I</strong>[<em>n</em>]</dt>
 <dd><p>Set <em>n</em>th text mark. <em>n</em> must be an integer between <strong>0</strong> and <strong>99</strong> and defaults to <strong>0</strong>.</p>
@@ -201,8 +204,8 @@
 <dt><strong>J</strong>[<em>n</em>[<em>n'</em>]]</dt>
 <dd><p>Jump back to <em>n</em>th text mark, if set. This works <em>n'</em> times in a row. <em>n</em> and <em>n'</em> default to <strong>0</strong> and <strong>1</strong>, respectively.</p>
 </dd>
-<dt><strong>K</strong>[<em>n</em>]</dt>
-<dd><p>Forget <em>n</em>th text mark. <em>n</em> defaults to <strong>0</strong>.</p>
+<dt><strong>K L</strong>[<em>n</em> ...]</dt>
+<dd><p>Skip/only consider subsequent command if the number of the current iteration matches any of the integers <em>n</em> ...</p>
 </dd>
 <dt><strong>X</strong><em>w</em>[...]</dt>
 <dd><p>Do something special.</p>
@@ -211,7 +214,7 @@
 <dd><p>Print note counts (since last report) to standard error stream. Only notes defined via the commands <strong>C D E F G A B</strong> and <strong>U V</strong> are counted. This is useful to, e.g., to determine the keynote of a piece of music.</p>
 </dd>
 <dt><strong>detune</strong><em>n</em></dt>
-<dd><p>Randomly detune frequency, including concert pitch <strong>A4</strong>, by up to <em>n</em> halftones. In combination with text and time marks, this is useful to generate non-white noise.</p>
+<dd><p>Randomly detune reference frequency and concert pitch <strong>A4</strong>, by up to <em>n</em> halftones. In combination with text and time marks, this is useful to generate non-white noise.</p>
 </dd>
 <dt><strong>vibrato</strong><em>n</em><strong> </strong><em>n'</em><strong> </strong><em>m</em><strong> </strong><em>m'</em></dt>
 <dd><p>Apply vibrato to sound between <em>n</em>th and <em>n'</em>th time mark, if marks have been set. The sample is periodically delayed (and advanced) with an amplitude of <em>m</em> seconds and a frequency of <em>m'</em> per sample length, using the current wave sample.</p>
