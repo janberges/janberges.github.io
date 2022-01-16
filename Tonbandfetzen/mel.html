@@ -55,7 +55,7 @@
 <dd><p>3/2 sqrt(3) (x³ - x) for x in (-1, 1]</p>
 </dd>
 <dt><strong>random</strong></dt>
-<dd><p>white noise</p>
+<dd><p>White noise if followed by <strong>=</strong> without argument.</p>
 </dd>
 </dl>
 </dd>
@@ -129,8 +129,8 @@
 <dt><strong>H</strong><em>n</em></dt>
 <dd><p>Divide one octave into <em>n</em> halftones/steps of equal frequency ratio. The default is <strong>12</strong> halftones (twelve-tone equal temperament).</p>
 </dd>
-<dt><strong>=</strong><em>n</em></dt>
-<dd><p>Set reference frequency to <em>n</em> Hz. The default is the concert pitch <strong>A4</strong>.</p>
+<dt><strong>=</strong>[<em>n</em>]</dt>
+<dd><p>Set reference frequency to <em>n</em> Hz. <em>n</em> defaults to the inverse length of the current wave sample. The default is the concert pitch <strong>A4</strong>.</p>
 </dd>
 <dt><strong>&amp;</strong><em>n</em></dt>
 <dd><p>Set reference amplitude sqrt(L² + R²) to <em>n</em> arb. units. The default is <strong>1</strong> arb. unit.</p>
@@ -138,7 +138,7 @@
 <dt><strong>%</strong><em>n</em></dt>
 <dd><p>Set reference amplitude ratio R:L between right and left channel to <em>n</em>. The default is <strong>1</strong>.</p>
 </dd>
-<dt><strong>C D E F G A B</strong>[<em>w</em>][<em>n</em>][<em>n'</em>]</dt>
+<dt><strong>C D E F G A B</strong>[<em>w</em>][<em>n</em>[<em>n'</em>]]</dt>
 <dd><p>Set reference frequency via note name. <em>w</em> marks accidentals and can be <strong>#</strong>, <strong>x</strong>, <strong>b</strong>, <strong>bb</strong>, and so on. To raise and lower the frequency by a diatonic (septimal) [eleven] {Pythagorean} comma 81:80 (64:63) [33:32] {531441:524288}, use <strong>u</strong> and <strong>v</strong> (<strong>s</strong> and <strong>z</strong>) [<strong>i</strong> and <strong>j</strong>] {<strong>p</strong> and <strong>d</strong>}, respectively. Please note that the note name already implies a certain number of diatonic commas for the tunings <strong>just</strong> and <strong>close</strong>. <em>n</em> is the octave number and defaults to <strong>4</strong>. If omitted, also set the keynote. <em>n'</em> is an optional microtonal accidental as used in the Functional Just System (FJS) by misotanni (<em>https://misotanni.github.io/fjs</em>). Here, compound accidentals must be written as a product and otonal and utonal accidentals are separated by a colon (<strong>:</strong>). <strong>A4</strong> is the concert pitch.</p>
 </dd>
 <dt><strong>'</strong>[<em>n</em>]</dt>
