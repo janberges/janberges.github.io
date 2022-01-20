@@ -21,8 +21,8 @@
 <h1>NAME</h1>
 <p>aiff2riff - convert .aif(f) into .wav(e) files</p>
 <h1>SYNOPSIS</h1>
-<p><strong>aiff2riff</strong> [[<em>infile</em>] <em>outfile</em>]</p>
+<p><strong>aiff2riff</strong> [[<em>infile</em>] <em>outfile</em>[<strong>/</strong>]]</p>
 <h1>DESCRIPTION</h1>
-<p>Convert <em>infile</em> in the Audio Interchange File Format (AIFF, developed by Apple) into <em>outfile</em> in the Waveform Audio File Format (RIFF/WAVE, developed by IBM and Microsoft). Both store uncompressed audio data in a chunk-based container format. The main difference is that AIFF and WAVE employ the big-endian and little-endian byte order, respectively. <em>infile</em> and <em>outfile</em> default to <strong>/dev/stdin</strong> and <strong>/dev/stdout</strong>, respectively. The dash (<strong>-</strong>) is a shorthand for the default value.</p>
+<p>Convert <em>infile</em> in the Audio Interchange File Format (AIFF, developed by Apple) into <em>outfile</em> in the Waveform Audio File Format (RIFF/WAVE, developed by IBM and Microsoft). Both store uncompressed audio data in a chunk-based container format. The main difference is that AIFF and WAVE employ the big-endian and little-endian byte order, respectively. Filenames default to <strong>/dev/stdin</strong> or <strong>/dev/stdout</strong>. The dash (<strong>-</strong>) is a shorthand for the default value. If <em>outfile</em> is followed by a slash (<strong>/</strong>)<strong>,</strong> application-specific metadata is omitted.</p>
 </body>
 </html>

@@ -21,8 +21,8 @@
 <h1>NAME</h1>
 <p>stretch - rescale audio data</p>
 <h1>SYNOPSIS</h1>
-<p><strong>stretch</strong> [<em>factor</em> [<em>infile</em> [<em>outfile</em>]]]</p>
+<p><strong>stretch</strong> [<em>factor</em> [<em>infile</em> [<em>outfile</em>[<strong>/</strong>]]]]</p>
 <h1>DESCRIPTION</h1>
-<p>Speed up the audio data in <em>infile</em> by the given <em>factor</em> and store the result in <em>outfile</em>. Fractional <em>factor</em>s like <strong>0.5</strong>, <strong>1/3</strong>, or <strong>1:4</strong> are permitted. For negative <em>factor</em>s, the audio data is reversed. All files must be in the WAVE format. <em>factor</em> defaults to <strong>-1</strong>. <em>infile</em> and <em>outfile</em> default to <strong>/dev/stdin</strong> and <strong>/dev/stdout</strong>, respectively. The dash (<strong>-</strong>) is a shorthand for the default value.</p>
+<p>Speed up the audio data in <em>infile</em> by the given <em>factor</em> and store the result in <em>outfile</em>. Fractional <em>factor</em>s like <strong>0.5</strong>, <strong>1/3</strong>, or <strong>1:4</strong> are permitted. For negative <em>factor</em>s, the audio data is reversed. All files must be in the WAVE format. <em>factor</em> defaults to <strong>-1</strong>. Filenames default to <strong>/dev/stdin</strong> or <strong>/dev/stdout</strong>. The dash (<strong>-</strong>) is a shorthand for the default value. If <em>outfile</em> is followed by a slash (<strong>/</strong>)<strong>,</strong> application-specific metadata is omitted.</p>
 </body>
 </html>
