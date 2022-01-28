@@ -88,17 +88,28 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.diagrams.double_fermi_surface_average">
-<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">double_fermi_surface_average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">g2</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.double_fermi_surface_average" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">double_fermi_surface_average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">g2=None</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.double_fermi_surface_average" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate double Fermi-surface average.</p>
+<p>Please note that not the average itself is returned!</p>
+<div class="math notranslate nohighlight">
+\[\langle g^2 \rangle = \frac {
+    \sum_{\vec q \nu \vec k m n}
+    |g_{\vec q \nu \vec k m n}|^2
+    \delta(\epsilon_{\vec k n})
+    \delta(\epsilon_{\vec k + \vec q m})
+}{
+    \sum_{\vec q \vec k m n}
+    \delta(\epsilon_{\vec k n})
+    \delta(\epsilon_{\vec k + \vec q m})
+}\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>q</strong><span class="classifier">list of 2-tuples</span></dt><dd><p>Considered q points defined via crystal coordinates <span class="math notranslate nohighlight">\(q_1, q_2 \in
-[0, 2 \pi)\)</span>.</p>
+<dt><strong>q</strong><span class="classifier">list of tuple</span></dt><dd><p>List of q points in crystal coordinates <span class="math notranslate nohighlight">\(q_i \in [0, 2 \pi)\)</span>.</p>
 </dd>
 <dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
 </dd>
-<dt><strong>g2</strong><span class="classifier">ndarray</span></dt><dd><p>Quantity to be averaged, typically electron-phonon coupling.</p>
+<dt><strong>g2</strong><span class="classifier">ndarray</span></dt><dd><p>Quantity to be averaged, typically squared electron-phonon coupling.</p>
 </dd>
 <dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature.</p>
 </dd>
@@ -108,7 +119,11 @@
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>float</dt><dd><p>Double Fermi-surface average.</p>
+<dt>ndarray</dt><dd><p>Enumerator of double Fermi-surface average before <span class="math notranslate nohighlight">\(\vec q \nu\)</span>
+summation.</p>
+</dd>
+<dt>ndarray</dt><dd><p>Denominator of double Fermi-surface average before <span class="math notranslate nohighlight">\(\vec q\)</span>
+summation.</p>
 </dd>
 </dl>
 </dd>
