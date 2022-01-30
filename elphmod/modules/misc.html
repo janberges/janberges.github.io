@@ -103,6 +103,46 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="elphmod.misc.read_input_data">
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">read_input_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.read_input_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read Quantum ESPRESSO input data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Name of input file.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict</dt><dd><p>Input data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.misc.read_namelists">
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">read_namelists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.read_namelists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract all Fortran namelists from file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Name of file with namelists.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict of dict</dt><dd><p>Namelist data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="elphmod.misc.read_xsf">
 <span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">read_xsf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">xsf</span></em>, <em class="sig-param"><span class="pre">only_header=False</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.read_xsf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read file in XCrySDen format.</p>
