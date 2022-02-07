@@ -93,6 +93,8 @@ debugging.</p>
 </dd>
 <dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors of Wigner-Seitz supercell.</p>
 </dd>
+<dt><strong>l</strong><span class="classifier">ndarray.</span></dt><dd><p>Bond lengths.</p>
+</dd>
 <dt><strong>atom_order</strong><span class="classifier">list of str</span></dt><dd><p>Ordered list of atoms.</p>
 </dd>
 <dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding self and interatomic force constants.</p>
@@ -116,6 +118,22 @@ debugging.</p>
 <dt class="sig sig-object py" id="elphmod.ph.Model.D">
 <span class="sig-name descname"><span class="pre">D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set up dynamical matrix for arbitrary q point.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.ph.Model.decay">
+<span class="sig-name descname"><span class="pre">decay</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.decay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot force constants as a function of bond length.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ndarray</dt><dd><p>Bond lengths.</p>
+</dd>
+<dt>ndarray</dt><dd><p>Frobenius norm of force-constant matrices.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
