@@ -104,12 +104,14 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.misc.read_input_data">
-<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">read_input_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.read_input_data" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">read_input_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.read_input_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read Quantum ESPRESSO input data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Name of input file.</p>
+</dd>
+<dt><strong>broadcast</strong><span class="classifier">bool</span></dt><dd><p>Broadcast result from rank 0 to all processes?</p>
 </dd>
 </dl>
 </dd>

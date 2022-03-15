@@ -82,7 +82,12 @@ debugging.</p>
 </dd>
 <dt><strong>Rk, Rg</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors of Wigner-Seitz supercells.</p>
 </dd>
+<dt><strong>dk, dg</strong><span class="classifier">ndarray</span></dt><dd><p>Degeneracies of Wigner-Seitz points.</p>
+</dd>
 <dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding electron-phonon matrix elements.</p>
+</dd>
+<dt><strong>node, images</strong><span class="classifier">MPI.Intracomm</span></dt><dd><p>Communicators between processes that share memory or same <code class="docutils literal notranslate"><span class="pre">node.rank</span></code>
+if <cite>shared_memory</cite>.</p>
 </dd>
 <dt><strong>q</strong><span class="classifier">ndarray</span></dt><dd><p>Previously sampled q point, if any.</p>
 </dd>
@@ -90,9 +95,25 @@ debugging.</p>
 </dd>
 <dt><strong>cells</strong><span class="classifier">list of tuple of int, optional</span></dt><dd><p>Lattice vectors of unit cells if the model describes a supercell.</p>
 </dd>
+<dt><strong>Rk0</strong><span class="classifier">int</span></dt><dd><p>Index of electronic lattice vector at origin if <cite>ph.lr</cite>.</p>
+</dd>
 </dl>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.elph.Model.divide_ndegen">
+<span class="sig-name descname"><span class="pre">divide_ndegen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.divide_ndegen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divide real-space coupling by degeneracy of Wigner-Seitz point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>g</strong><span class="classifier">ndarray</span></dt><dd><p>Real-space coupling.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.g">
 <span class="sig-name descname"><span class="pre">g</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q1=0</span></em>, <em class="sig-param"><span class="pre">q2=0</span></em>, <em class="sig-param"><span class="pre">q3=0</span></em>, <em class="sig-param"><span class="pre">k1=0</span></em>, <em class="sig-param"><span class="pre">k2=0</span></em>, <em class="sig-param"><span class="pre">k3=0</span></em>, <em class="sig-param"><span class="pre">elbnd=False</span></em>, <em class="sig-param"><span class="pre">phbnd=False</span></em>, <em class="sig-param"><span class="pre">broadcast=True</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.g" title="Permalink to this definition">¶</a></dt>
@@ -144,6 +165,12 @@ in Ry<sup>3/2</sup>.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="elphmod.elph.Model.g_lr">
+<span class="sig-name descname"><span class="pre">g_lr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.g_lr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate long-range part of electron-phonon coupling.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.sample">
 <span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sample coupling.</p>
@@ -179,6 +206,15 @@ integer, linear combinations via a 3-tuple of integers.</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.elph.Model.symmetrize">
+<span class="sig-name descname"><span class="pre">symmetrize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.symmetrize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Symmetrize electron-phonon coupling.</p>
+<div class="math notranslate nohighlight">
+\[g_{\vec q, \vec k} = g_{-\vec q, \vec k + \vec q}^\dagger,
+g_{\vec R, \vec R'} = g_{\vec R - \vec R', -\vec R'}^\dagger\]</div>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py function">
@@ -188,9 +224,65 @@ integer, linear combinations via a 3-tuple of integers.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elph.q2r">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.q2r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fourier-transform electron-phonon coupling from reciprocal to real space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>elph</strong><span class="classifier">object</span></dt><dd><p>Localized model for electron-phonon coupling.</p>
+</dd>
+<dt><strong>nq, nk</strong><span class="classifier">tuple of int</span></dt><dd><p>Number of q and k points along axes, i.e., shapes of uniform meshes.</p>
+</dd>
+<dt><strong>g</strong><span class="classifier">ndarray</span></dt><dd><p>Electron-phonon coupling on complete uniform q- and k-point meshes.</p>
+</dd>
+<dt><strong>divide_ndegen</strong><span class="classifier">bool</span></dt><dd><p>Divide real-space coupling by degeneracy of Wigner-Seitz point? Only
+<code class="docutils literal notranslate"><span class="pre">True</span></code> yields correct couplings. <code class="docutils literal notranslate"><span class="pre">False</span></code> should only be used for
+debugging.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.read_EPW_output">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_EPW_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epw_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squeeze</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_EPW_output" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read electron-phonon coupling from EPW output file.</p>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_EPW_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epw_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squeeze</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defpot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_EPW_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read electron-phonon coupling from EPW output file (using <code class="docutils literal notranslate"><span class="pre">prtgkk</span></code>).</p>
+<p>Currently, the coupling must be defined on a uniform 2D k mesh
+(corresponding to triangular or square lattice).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>epw_out</strong><span class="classifier">str</span></dt><dd><p>Name of EPW output file.</p>
+</dd>
+<dt><strong>q</strong><span class="classifier">list of int</span></dt><dd><p>List of q points as integer recriprocal lattice units.</p>
+</dd>
+<dt><strong>nq</strong><span class="classifier">int</span></dt><dd><p>Number of q points per dimension.</p>
+</dd>
+<dt><strong>nmodes</strong><span class="classifier">int</span></dt><dd><p>Number of phonon modes.</p>
+</dd>
+<dt><strong>nk</strong><span class="classifier">int</span></dt><dd><p>Number of k points per dimension.</p>
+</dd>
+<dt><strong>bands</strong><span class="classifier">int</span></dt><dd><p>Number of electronic bands.</p>
+</dd>
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Tolerance for q and k points.</p>
+</dd>
+<dt><strong>squeeze</strong><span class="classifier">bool</span></dt><dd><p>In single-band case, skip dimensions of output arrary corresponding to
+electronic bands?</p>
+</dd>
+<dt><strong>status</strong><span class="classifier">bool</span></dt><dd><p>Report currently processed q point?</p>
+</dd>
+<dt><strong>epf</strong><span class="classifier">bool</span></dt><dd><p>Read real and imaginary part of the coupling of dimension energy to the
+power of 2/3 from last two columns? A modified version of EPW is needed.
+Otherwise, the modulus of the coupling of dimension energy is read.</p>
+</dd>
+<dt><strong>defpot</strong><span class="classifier">bool</span></dt><dd><p>Multiply coupling by square root of twice the phonon energy to obtain a
+quantity of dimension energy to the power of 2/3?</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
