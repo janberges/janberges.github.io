@@ -14,6 +14,8 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -184,6 +186,15 @@ integer, linear combinations via a 3-tuple of integers.</p>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.el.Model.symmetrize">
+<span class="sig-name descname"><span class="pre">symmetrize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.symmetrize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Symmetrize Hamiltonian.</p>
+<div class="math notranslate nohighlight">
+\[H_{\vec k} = H_{\vec k}^\dagger,
+H_{\vec R} = H_{-\vec R}^\dagger\]</div>
 </dd></dl>
 
 <dl class="py method">
