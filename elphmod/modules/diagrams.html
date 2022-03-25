@@ -51,13 +51,12 @@
 <span id="diagrams-susceptibilities-self-energies-etc"></span><h1>diagrams: susceptibilities, self-energies, etc.<a class="headerlink" href="#module-elphmod.diagrams" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.diagrams.Pi_g">
-<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">Pi_g</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">g</span></em>, <em class="sig-param"><span class="pre">U</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-15</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">dd=True</span></em>, <em class="sig-param"><span class="pre">status=True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.Pi_g" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">Pi_g</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">g</span></em>, <em class="sig-param"><span class="pre">U</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-10</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">dd=True</span></em>, <em class="sig-param"><span class="pre">status=True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.Pi_g" title="Permalink to this definition">¶</a></dt>
 <dd><p>Join electron-phonon coupling and Lindhard bubble in orbital basis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>q</strong><span class="classifier">list of 2-tuples</span></dt><dd><p>Considered q points defined via crystal coordinates <span class="math notranslate nohighlight">\(q_1, q_2 \in
-[0, 2 \pi)\)</span>.</p>
+<dt><strong>q</strong><span class="classifier">list of tuple</span></dt><dd><p>List of q points in crystal coordinates <span class="math notranslate nohighlight">\(q_i \in [0, 2 \pi)\)</span>.</p>
 </dd>
 <dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
 </dd>
@@ -132,7 +131,7 @@ summation.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.diagrams.first_order">
-<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">first_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">g</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-14</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.first_order" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">first_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">g</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-10</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.first_order" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate first-order diagram of grand potential.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -160,7 +159,7 @@ summation.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.diagrams.phonon_self_energy">
-<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">phonon_self_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">g2=None</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-15</span></em>, <em class="sig-param"><span class="pre">omega=0.0</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">fluctuations=False</span></em>, <em class="sig-param"><span class="pre">Delta=None</span></em>, <em class="sig-param"><span class="pre">Delta_diff=False</span></em>, <em class="sig-param"><span class="pre">Delta_occupations=&lt;function</span> <span class="pre">gauss&gt;</span></em>, <em class="sig-param"><span class="pre">Delta_kT=0.025</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.phonon_self_energy" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">phonon_self_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">g2=None</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-10</span></em>, <em class="sig-param"><span class="pre">omega=0.0</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">fluctuations=False</span></em>, <em class="sig-param"><span class="pre">Delta=None</span></em>, <em class="sig-param"><span class="pre">Delta_diff=False</span></em>, <em class="sig-param"><span class="pre">Delta_occupations=&lt;function</span> <span class="pre">gauss&gt;</span></em>, <em class="sig-param"><span class="pre">Delta_kT=0.025</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.phonon_self_energy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate phonon self-energy.</p>
 <div class="math notranslate nohighlight">
 \[\Pi_{\vec q \nu}(\omega) = \frac 2 N \sum_{\vec k m n}
@@ -250,7 +249,7 @@ regulator if nonzero.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.diagrams.polarization">
-<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">polarization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">U</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-15</span></em>, <em class="sig-param"><span class="pre">subspace=None</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.polarization" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">polarization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">U</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-10</span></em>, <em class="sig-param"><span class="pre">subspace=None</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.polarization" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate RPA polarization in orbital basis (density-density).</p>
 <div class="math notranslate nohighlight">
 \[\Pi_{\vec q \alpha \beta} = \frac 2 N \sum_{\vec k m n}
@@ -285,8 +284,8 @@ eigenvectors of the Wannier Hamiltonian.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>function</dt><dd><p>RPA polarization in orbital basis as a function of <span class="math notranslate nohighlight">\(q_1, q_2 \in
-[0, 2 \pi)\)</span>.</p>
+<dt>function</dt><dd><p>RPA polarization in orbital basis as a function of <span class="math notranslate nohighlight">\(q_1, q_2, q_3
+\in [0, 2 \pi)\)</span>.</p>
 </dd>
 </dl>
 </dd>
@@ -295,7 +294,7 @@ eigenvectors of the Wannier Hamiltonian.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.diagrams.renormalize_coupling_band">
-<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">renormalize_coupling_band</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">g</span></em>, <em class="sig-param"><span class="pre">W</span></em>, <em class="sig-param"><span class="pre">U</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-15</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">nbnd_sub=None</span></em>, <em class="sig-param"><span class="pre">status=True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.renormalize_coupling_band" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">renormalize_coupling_band</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">g</span></em>, <em class="sig-param"><span class="pre">W</span></em>, <em class="sig-param"><span class="pre">U</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-10</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">nbnd_sub=None</span></em>, <em class="sig-param"><span class="pre">status=True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.renormalize_coupling_band" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate renormalized electron-phonon coupling in band basis.</p>
 <div class="math notranslate nohighlight">
 \[\tilde g_{\vec q \nu \vec k m n} = g_{\vec q \nu \vec k m n}
@@ -310,8 +309,7 @@ eigenvectors of the Wannier Hamiltonian.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>q</strong><span class="classifier">list of 2-tuples</span></dt><dd><p>Considered q points defined via crystal coordinates <span class="math notranslate nohighlight">\(q_1, q_2 \in
-[0, 2 \pi)\)</span>.</p>
+<dt><strong>q</strong><span class="classifier">list of tuple</span></dt><dd><p>List of q points in crystal coordinates <span class="math notranslate nohighlight">\(q_i \in [0, 2 \pi)\)</span>.</p>
 </dd>
 <dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
 </dd>
@@ -366,8 +364,7 @@ eigenvectors of the Wannier Hamiltonian.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>q</strong><span class="classifier">list of 2-tuples</span></dt><dd><p>Considered q points defined via crystal coordinates <span class="math notranslate nohighlight">\(q_1, q_2 \in
-[0, 2 \pi)\)</span>.</p>
+<dt><strong>q</strong><span class="classifier">list of tuple</span></dt><dd><p>List of q points in crystal coordinates <span class="math notranslate nohighlight">\(q_i \in [0, 2 \pi)\)</span>.</p>
 </dd>
 <dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
 </dd>
@@ -471,7 +468,7 @@ eigenvectors of the Wannier Hamiltonian.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.diagrams.triangle">
-<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">triangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">Q</span></em>, <em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">gq</span></em>, <em class="sig-param"><span class="pre">gQ</span></em>, <em class="sig-param"><span class="pre">gqQ</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-14</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.triangle" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">triangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">Q</span></em>, <em class="sig-param"><span class="pre">e</span></em>, <em class="sig-param"><span class="pre">gq</span></em>, <em class="sig-param"><span class="pre">gQ</span></em>, <em class="sig-param"><span class="pre">gqQ</span></em>, <em class="sig-param"><span class="pre">kT=0.025</span></em>, <em class="sig-param"><span class="pre">eps=1e-10</span></em>, <em class="sig-param"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.triangle" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate triangle diagram (third order of grand potential).</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\chi_{\vec q \mu \vec q' \nu}

@@ -144,7 +144,8 @@ phases. Consider the method <cite>sample</cite> of this class instead.</p>
 on all but the first processor.</p>
 </dd>
 <dt><strong>comm</strong><span class="classifier">MPI communicator</span></dt><dd><p>Group of processors running this function (for parallelization of
-Fourier transforms).</p>
+Fourier transforms). Please note: To run this function serially,
+e.g., when parallelizing over q or k points, use <code class="docutils literal notranslate"><span class="pre">elphmod.MPI.I</span></code>.</p>
 </dd>
 </dl>
 </dd>
@@ -295,6 +296,36 @@ quantity of dimension energy to the power of 2/3?</p>
 <dt class="sig sig-object py" id="elphmod.elph.read_patterns">
 <span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_patterns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read XML files with displacement patterns from QE.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elph.read_prtgkk">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_prtgkk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epw_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbnd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_prtgkk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read frequencies and coupling from EPW output (using <code class="docutils literal notranslate"><span class="pre">prtgkk</span></code>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>epw_out</strong><span class="classifier">str</span></dt><dd><p>Name of EPW output file.</p>
+</dd>
+<dt><strong>nq</strong><span class="classifier">int</span></dt><dd><p>Number of q points.</p>
+</dd>
+<dt><strong>nmodes</strong><span class="classifier">int</span></dt><dd><p>Number of phonon modes.</p>
+</dd>
+<dt><strong>nk</strong><span class="classifier">int</span></dt><dd><p>Number of k points.</p>
+</dd>
+<dt><strong>nbnd</strong><span class="classifier">int</span></dt><dd><p>Number of electronic bands.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Phonon frequencies (meV).</p>
+</dd>
+<dt>ndarray</dt><dd><p>Electron-phonon coupling (meV).</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
