@@ -67,7 +67,7 @@ python3 -m pip install --upgrade pip setuptools wheel
 (without left and right margins). If zero, the x-axis scale is set
 equal to the y-axis scale and the width is inferred from the height.</p>
 </dd>
-<dt><strong>height</strong><span class="classifier">float, default 6.0</span></dt><dd><p>Figure height in cm. A negative value is interpreted as the innter
+<dt><strong>height</strong><span class="classifier">float, default 6.0</span></dt><dd><p>Figure height in cm. A negative value is interpreted as the inner
 height (without bottom and top margins). If zero, the y-axis scale is
 set equal to the x-axis scale and the height is inferred from the
 width.</p>
@@ -176,10 +176,10 @@ coordinates.</p>
 </dd>
 <dt><strong>grid</strong><span class="classifier">bool, default False</span></dt><dd><p>Add grid lines (at tick positions)?</p>
 </dd>
-<dt><strong>colorbar</strong><span class="classifier">bool or str, default None</span></dt><dd><p>Draw colorbar? If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the colobar is drawn if any line is given a
+<dt><strong>colorbar</strong><span class="classifier">bool or str, default None</span></dt><dd><p>Draw colorbar? If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the colorbar is drawn if any line is given a
 z value or if both <cite>zmin</cite> and <cite>zmax</cite> are given. Alternatively, the path
-to an image with a color gradient can be specified. Here, an image
-width of one pixel is sufficient.</p>
+to an image with a color gradient can be specified. Here, an image width
+of one pixel is sufficient.</p>
 </dd>
 <dt><strong>outline</strong><span class="classifier">bool, default False</span></dt><dd><p>Draw dashed figure outline?</p>
 </dd>
@@ -187,14 +187,14 @@ width of one pixel is sufficient.</p>
 </dd>
 <dt><strong>preamble</strong><span class="classifier">str, default ‘’</span></dt><dd><p>Definitions for standalone figures.</p>
 </dd>
-<dt><strong>inputenc</strong><span class="classifier">str, default None</span></dt><dd><p>Text endocing, e.g., <code class="docutils literal notranslate"><span class="pre">'utf8'</span></code>.</p>
+<dt><strong>inputenc</strong><span class="classifier">str, default None</span></dt><dd><p>Text encoding, e.g., <code class="docutils literal notranslate"><span class="pre">'utf8'</span></code>.</p>
 </dd>
-<dt><strong>fontenc</strong><span class="classifier">str, default None</span></dt><dd><p>Font endocing. The default is <code class="docutils literal notranslate"><span class="pre">'T1'</span></code> if <cite>font</cite> is specified, none
+<dt><strong>fontenc</strong><span class="classifier">str, default None</span></dt><dd><p>Font encoding. The default is <code class="docutils literal notranslate"><span class="pre">'T1'</span></code> if <cite>font</cite> is specified, none
 otherwise.</p>
 </dd>
-<dt><strong>font</strong><span class="classifier">str, default None</span></dt><dd><p>Prefined font selection. Imitates well-known fonts. Possible values are
-<code class="docutils literal notranslate"><span class="pre">'Gill</span> <span class="pre">Sans'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Helvetica'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Iwona'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Latin</span> <span class="pre">Modern'</span></code>, and
-<code class="docutils literal notranslate"><span class="pre">'Times'</span></code>.</p>
+<dt><strong>font</strong><span class="classifier">str, default None</span></dt><dd><p>Predefined font selection. Imitates well-known fonts. Possible values
+are <code class="docutils literal notranslate"><span class="pre">'Gill</span> <span class="pre">Sans'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Helvetica'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Iwona'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Latin</span> <span class="pre">Modern'</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">'Times'</span></code>.</p>
 </dd>
 <dt><strong>fontsize</strong><span class="classifier">int, default 10</span></dt><dd><p>Font size for standalone figures in pt.</p>
 </dd>
@@ -356,7 +356,7 @@ of the curve. This is only used if <cite>shortcut</cite> is nonzero.</p>
 <dt><strong>xref, yref</strong><span class="classifier">float, default None</span></dt><dd><p>Reference values for filled curves. This is useful to visualize
 integrands such as a density of states.</p>
 </dd>
-<dt><strong>zindes</strong><span class="classifier">int, default None</span></dt><dd><p>Index of list of lines where new line is inserted. By default, the
+<dt><strong>zindex</strong><span class="classifier">int, default None</span></dt><dd><p>Index of list of lines where new line is inserted. By default, the
 new line is appended to the list, i.e., has the highest <cite>zindex</cite>.</p>
 </dd>
 <dt><strong>**options</strong></dt><dd><p>Local TikZ options.</p>
