@@ -49,7 +49,7 @@
 <span id="plot-bz-plots-color-models-and-fatbands"></span><h1>plot: BZ plots, color models, and fatbands<a class="headerlink" href="#module-elphmod.plot" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.plot.Color">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">Color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.Color" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">Color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.Color" title="Permalink to this definition">¶</a></dt>
 <dd><p>Representation of a color.</p>
 <p>Colors can be defined using different models:</p>
 <blockquote>
@@ -94,6 +94,34 @@ The value is the amplitude of the wave from 0 to 255.</p>
 <dt class="sig sig-object py" id="elphmod.plot.RGB2HSV">
 <span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">RGB2HSV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.RGB2HSV" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform red, green, blue to hue, saturation, value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.plot.adjust_pixels">
+<span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">adjust_pixels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distances</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.adjust_pixels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Even out image with block-wise equidistant columns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>image</strong><span class="classifier">ndarray</span></dt><dd><p>Image with inconsistent horizontal (2nd axis) sampling.</p>
+</dd>
+<dt><strong>points</strong><span class="classifier">list of int</span></dt><dd><p>Indices of columns where equidistant sampling changes.</p>
+</dd>
+<dt><strong>distances</strong><span class="classifier">list of float</span></dt><dd><p>Desired cumulative distance of <cite>points</cite>.</p>
+</dd>
+<dt><strong>width</strong><span class="classifier">int</span></dt><dd><p>Desired width of adjusted image.</p>
+</dd>
+<dt><strong>height</strong><span class="classifier">int, optional</span></dt><dd><p>Desired height of adjusted image. Unchanged by default.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Adjusted image with overall equidistant columns.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -142,7 +170,7 @@ defined.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.plot.double_plot">
-<span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">double_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">mesh</span></em>, <em class="sig-param"><span class="pre">q</span></em>, <em class="sig-param"><span class="pre">nq</span></em>, <em class="sig-param"><span class="pre">qxmin=-0.8</span></em>, <em class="sig-param"><span class="pre">qxmax=0.8</span></em>, <em class="sig-param"><span class="pre">qymin=-0.8</span></em>, <em class="sig-param"><span class="pre">qymax=0.8</span></em>, <em class="sig-param"><span class="pre">resolution=500</span></em>, <em class="sig-param"><span class="pre">interpolation=&lt;function</span> <span class="pre">linear_interpolation&gt;</span></em>, <em class="sig-param"><span class="pre">angle=60</span></em>, <em class="sig-param"><span class="pre">outside=0.0</span></em>, <em class="sig-param"><span class="pre">broadcast=True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.double_plot" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">double_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qxmin=-0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qxmax=0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qymin=-0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qymax=0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution=500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation=&lt;function</span> <span class="pre">linear_interpolation&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle=60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outside=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.double_plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Show f(q1, q2, k1, k2) on “Brillouin zone made of Brillouin zones”.</p>
 </dd></dl>
 
@@ -187,7 +215,7 @@ defined.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.plot.plot">
-<span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">mesh</span></em>, <em class="sig-param"><span class="pre">kxmin=-1.0</span></em>, <em class="sig-param"><span class="pre">kxmax=1.0</span></em>, <em class="sig-param"><span class="pre">kymin=-1.0</span></em>, <em class="sig-param"><span class="pre">kymax=1.0</span></em>, <em class="sig-param"><span class="pre">resolution=100</span></em>, <em class="sig-param"><span class="pre">interpolation=&lt;function</span> <span class="pre">linear_interpolation&gt;</span></em>, <em class="sig-param"><span class="pre">angle=60</span></em>, <em class="sig-param"><span class="pre">return_k=False</span></em>, <em class="sig-param"><span class="pre">broadcast=True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.plot" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kxmin=-1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kxmax=1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kymin=-1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kymax=1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution=100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation=&lt;function</span> <span class="pre">linear_interpolation&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle=60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_k=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot in Cartesian reciprocal coordinates.</p>
 </dd></dl>
 
@@ -255,7 +283,7 @@ Inspired by Blender thumbnailer code.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.plot.toBZ">
-<span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">toBZ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">data=None</span></em>, <em class="sig-param"><span class="pre">points=1000</span></em>, <em class="sig-param"><span class="pre">interpolation=&lt;function</span> <span class="pre">linear_interpolation&gt;</span></em>, <em class="sig-param"><span class="pre">angle=120</span></em>, <em class="sig-param"><span class="pre">angle0=0</span></em>, <em class="sig-param"><span class="pre">outside=0.0</span></em>, <em class="sig-param"><span class="pre">return_k=False</span></em>, <em class="sig-param"><span class="pre">return_only_k=False</span></em>, <em class="sig-param"><span class="pre">even=False</span></em>, <em class="sig-param"><span class="pre">broadcast=True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.toBZ" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">toBZ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points=1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation=&lt;function</span> <span class="pre">linear_interpolation&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle=120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle0=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outside=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_k=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_only_k=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">even=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.toBZ" title="Permalink to this definition">¶</a></dt>
 <dd><p>Map data on uniform grid onto (wedge of) Brillouin zone.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -278,12 +306,16 @@ Inspired by Blender thumbnailer code.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="eliashberg.html"
-                        title="previous chapter">eliashberg: parameters for McMillan’s formula</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="misc.html"
-                        title="next chapter">misc: status bars etc.</a></p>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="eliashberg.html"
+                          title="previous chapter">eliashberg: parameters for McMillan’s formula</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="misc.html"
+                          title="next chapter">misc: status bars etc.</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -295,7 +327,7 @@ Inspired by Blender thumbnailer code.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -326,7 +358,7 @@ Inspired by Blender thumbnailer code.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017-2022 University of Bremen.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
     </div>
   </body>
 </html>

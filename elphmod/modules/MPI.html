@@ -49,7 +49,7 @@
 <span id="mpi-work-distribution-and-shared-memory"></span><h1>MPI: work distribution and shared memory<a class="headerlink" href="#module-elphmod.MPI" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.MPI.SharedArray">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">SharedArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.SharedArray" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">SharedArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.SharedArray" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create array whose memory is shared among all processes on same node.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -61,31 +61,31 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.MPI.distribute">
-<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">distribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">size</span></em>, <em class="sig-param"><span class="pre">bounds=False</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em>, <em class="sig-param"><span class="pre">chunks=None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.distribute" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">distribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunks=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.distribute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Distribute work among processes.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.MPI.info">
-<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">message</span></em>, <em class="sig-param"><span class="pre">error=False</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.info" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print status message from first process.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.MPI.load">
-<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">filename</span></em>, <em class="sig-param"><span class="pre">shared_memory=False</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.load" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read and broadcast NumPy data.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.MPI.matrix">
-<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">size</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.matrix" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create sub-communicators.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.MPI.shared_array">
-<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">shared_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">shape</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'float'&gt;</span></em>, <em class="sig-param"><span class="pre">shared_memory=True</span></em>, <em class="sig-param"><span class="pre">single_memory=False</span></em>, <em class="sig-param"><span class="pre">only_info=False</span></em>, <em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.shared_array" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">shared_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'float'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_memory=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_info=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.shared_array" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create array whose memory is shared among all processes on same node.</p>
 <p>With <code class="docutils literal notranslate"><span class="pre">shared_memory=False</span></code> (<code class="docutils literal notranslate"><span class="pre">single_memory=True</span></code>) a conventional array
 is created on each (only one) processor, which however allows for the same
@@ -109,7 +109,7 @@ broadcasting syntax as shown below.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.MPI.shm_split">
-<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">shm_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></em>, <em class="sig-param"><span class="pre">shared_memory=True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.shm_split" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">shm_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.shm_split" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create communicators for use with shared memory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -161,12 +161,16 @@ itself. A warning is issued.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="elel.html"
-                        title="previous chapter">elel: Coulomb interaction from VASP</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="bravais.html"
-                        title="next chapter">bravais: lattices, symmetries, and interpolation</a></p>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="elel.html"
+                          title="previous chapter">elel: Coulomb interaction from VASP</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="bravais.html"
+                          title="next chapter">bravais: lattices, symmetries, and interpolation</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -178,7 +182,7 @@ itself. A warning is issued.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -209,7 +213,7 @@ itself. A warning is issued.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017-2022 University of Bremen.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
     </div>
   </body>
 </html>

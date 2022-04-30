@@ -57,14 +57,12 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">occupations</span></code> - step and delta smearing functions</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">eliashberg</span></code> - parameters for McMillan’s formula</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">plot</span></code> - BZ plots, color models, and fatbands</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">misc</span></code> - status bars etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">misc</span></code> - constants, status bars, parsing, etc.</p></li>
 </ul>
 <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>To install the latest version of elphmod in a virtual environment:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m venv venv
-<span class="nb">source</span> venv/bin/activate
-python3 -m pip install elphmod
+<p>To install the latest version of elphmod:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install elphmod
 </pre></div>
 </div>
 <p>Alternatively, to install the latest development version:</p>
@@ -151,8 +149,9 @@ this program. If not, see <a class="reference external" href="https://www.gnu.or
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="#">Table of Contents</a></h3>
-  <ul>
+  <div>
+    <h3><a href="#">Table of Contents</a></h3>
+    <ul>
 <li><a class="reference internal" href="#">Installation</a></li>
 <li><a class="reference internal" href="#documentation">Documentation</a></li>
 <li><a class="reference internal" href="#licence">Licence</a><ul>
@@ -162,9 +161,12 @@ this program. If not, see <a class="reference external" href="https://www.gnu.or
 </li>
 </ul>
 
-  <h4>Next topic</h4>
-  <p class="topless"><a href="modules/el.html"
-                        title="next chapter">el: tight-binding models from Wannier90</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="modules/el.html"
+                          title="next chapter">el: tight-binding models from Wannier90</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -176,7 +178,7 @@ this program. If not, see <a class="reference external" href="https://www.gnu.or
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -204,7 +206,7 @@ this program. If not, see <a class="reference external" href="https://www.gnu.or
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017-2022 University of Bremen.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
     </div>
   </body>
 </html>
