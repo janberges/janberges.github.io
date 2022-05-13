@@ -103,6 +103,13 @@ integer or float is passed instead of a string.</p>
 </dd>
 <dt><strong>margmin</strong><span class="classifier">float, default 0.15</span></dt><dd><p>Minimum automatic margin in cm.</p>
 </dd>
+<dt><strong>ratio</strong><span class="classifier">float, default None</span></dt><dd><p>Figure width divided by figure height. The desired aspect ratio is
+obtained by adding extra margins as needed.</p>
+</dd>
+<dt><strong>align</strong><span class="classifier">float, default 0.5</span></dt><dd><p>If <cite>ratio</cite> is used, this value aligns the original plot relative to the
+new viewport. A value of <code class="docutils literal notranslate"><span class="pre">0.0</span></code>, <code class="docutils literal notranslate"><span class="pre">0.5</span></code>, and <code class="docutils literal notranslate"><span class="pre">1.0</span></code> moves it to the
+lower side, to the center, and to the upper side, respectively.</p>
+</dd>
 <dt><strong>xlabel, ylabel, zlabel</strong><span class="classifier">str, default None</span></dt><dd><p>Axis labels.</p>
 </dd>
 <dt><strong>xticks, yticks, zticks</strong><span class="classifier">list, default None</span></dt><dd><p>List of ticks, e.g., <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">(0.5,</span> <span class="pre">'$\\frac12$'),</span> <span class="pre">1]</span></code>.</p>
@@ -182,6 +189,8 @@ to an image with a color gradient can be specified. Here, an image width
 of one pixel is sufficient.</p>
 </dd>
 <dt><strong>outline</strong><span class="classifier">bool, default False</span></dt><dd><p>Draw dashed figure outline?</p>
+</dd>
+<dt><strong>canvas</strong><span class="classifier">str, default None</span></dt><dd><p>Background color of whole document.</p>
 </dd>
 <dt><strong>background</strong><span class="classifier">str, default None</span></dt><dd><p>Path to background image.</p>
 </dd>
@@ -404,7 +413,7 @@ new line is appended to the list, i.e., has the highest <cite>zindex</cite>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="storylines.Plot.save">
-<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">external</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standalone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.Plot.save" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">external</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standalone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">png</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.Plot.save" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save plot to file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -417,7 +426,13 @@ may be omitted.</p>
 <dt><strong>standalone</strong><span class="classifier">bool, default False</span></dt><dd><p>Create file that can be typeset with <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code>, i.e., include
 document header etc.?</p>
 </dd>
-<dt><strong>pdf</strong><span class="classifier">bool, default False</span></dt><dd><p>Typeset TeX file via <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code>? This implies <cite>standalone</cite>.</p>
+<dt><strong>pdf</strong><span class="classifier">bool, default False</span></dt><dd><p>Typeset TeX file via <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code>? This implies <cite>standalone</cite>.
+Automatically set to <code class="docutils literal notranslate"><span class="pre">True</span></code> if <cite>filename</cite> ends with <code class="docutils literal notranslate"><span class="pre">.pdf</span></code>.</p>
+</dd>
+<dt><strong>png</strong><span class="classifier">bool, default False</span></dt><dd><p>Rasterize PDF file via <code class="docutils literal notranslate"><span class="pre">pdftoppm</span></code>? This implies <cite>pdf</cite>.
+Automatically set to <code class="docutils literal notranslate"><span class="pre">True</span></code> if <cite>filename</cite> ends with <code class="docutils literal notranslate"><span class="pre">.png</span></code>.</p>
+</dd>
+<dt><strong>dpi</strong><span class="classifier">float, default 300.0</span></dt><dd><p>Image resolution in dots per inch.</p>
 </dd>
 </dl>
 </dd>
@@ -452,7 +467,7 @@ document header etc.?</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="storylines.combine">
-<span class="sig-prename descclassname"><span class="pre">storylines.</span></span><span class="sig-name descname"><span class="pre">combine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdfs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">align</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">halign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'left'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.combine" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">storylines.</span></span><span class="sig-name descname"><span class="pre">combine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdfs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">align</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">halign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'left'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">png</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.combine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Arrange multiple PDFs in single file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -469,7 +484,13 @@ center, and top of the individual figures.</p>
 <dt><strong>halign</strong><span class="classifier">str, default ‘left’</span></dt><dd><p>Horizontal alignment of PDFs. Possible values are <code class="docutils literal notranslate"><span class="pre">'left'</span></code>,
 <code class="docutils literal notranslate"><span class="pre">'center'</span></code> and <code class="docutils literal notranslate"><span class="pre">'right'</span></code>.</p>
 </dd>
-<dt><strong>pdf</strong><span class="classifier">bool, default False</span></dt><dd><p>Convert resulting TeX file to PDF?</p>
+<dt><strong>pdf</strong><span class="classifier">bool, default False</span></dt><dd><p>Convert resulting TeX file to PDF? Automatically set to <code class="docutils literal notranslate"><span class="pre">True</span></code> if
+<cite>filename</cite> ends with <code class="docutils literal notranslate"><span class="pre">.pdf</span></code>.</p>
+</dd>
+<dt><strong>png</strong><span class="classifier">bool, default False</span></dt><dd><p>Convert resulting PDF file to PNG? This implies <cite>pdf</cite>. Automatically set
+to <code class="docutils literal notranslate"><span class="pre">True</span></code> if <cite>filename</cite> ends with <code class="docutils literal notranslate"><span class="pre">.png</span></code>.</p>
+</dd>
+<dt><strong>dpi</strong><span class="classifier">float, default 300.0</span></dt><dd><p>Image resolution in dots per inch.</p>
 </dd>
 </dl>
 </dd>
@@ -654,7 +675,7 @@ directions of adjacent line segments.</p>
 <dd class="field-even"><dl class="simple">
 <dt><strong>stem</strong><span class="classifier">str</span></dt><dd><p>File name without path and extension.</p>
 </dd>
-<dt><strong>typeset</strong><span class="classifier">function</span></dt><dd><p>Function to run <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> and remove <code class="docutils literal notranslate"><span class="pre">.aux</span></code> and <code class="docutils literal notranslate"><span class="pre">.log</span></code> files.</p>
+<dt><strong>typ</strong><span class="classifier">str</span></dt><dd><p>Desired file type (extension).</p>
 </dd>
 <dt><strong>home</strong><span class="classifier">function</span></dt><dd><p>Function to return to previous working directory.</p>
 </dd>
@@ -885,6 +906,22 @@ adjusted styles.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="storylines.rasterize">
+<span class="sig-prename descclassname"><span class="pre">storylines.</span></span><span class="sig-name descname"><span class="pre">rasterize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.rasterize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run <code class="docutils literal notranslate"><span class="pre">pdftoppm</span></code> and remove <code class="docutils literal notranslate"><span class="pre">-1</span></code> from name of resulting PNG file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>stem</strong><span class="classifier">str</span></dt><dd><p>File name without path and extension (in current working directory).</p>
+</dd>
+<dt><strong>dpi</strong><span class="classifier">float, default 300.0</span></dt><dd><p>Image resolution in dots per inch.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="storylines.relevant">
 <span class="sig-prename descclassname"><span class="pre">storylines.</span></span><span class="sig-name descname"><span class="pre">relevant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.relevant" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove irrelevant vertices of linear spline.</p>
@@ -925,6 +962,20 @@ the curve.</p>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>list of 2-tuple</dt><dd><p>Linear spline with self-intersection loops removed.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.typeset">
+<span class="sig-prename descclassname"><span class="pre">storylines.</span></span><span class="sig-name descname"><span class="pre">typeset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stem</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.typeset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> and remove <code class="docutils literal notranslate"><span class="pre">.aux</span></code> and <code class="docutils literal notranslate"><span class="pre">.log</span></code> files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>stem</strong><span class="classifier">str</span></dt><dd><p>File name without path and extension (in current working directory).</p>
 </dd>
 </dl>
 </dd>
