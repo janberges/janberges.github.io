@@ -457,8 +457,26 @@ from Quantum ESPRESSO’s scf output file.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_hrdat">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_hrdat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hrdat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_hrdat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read <em>_hr.dat</em> file from Wannier90.</p>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_hrdat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_hrdat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read <em>_hr.dat</em> (or <em>_tb.dat</em>) file from Wannier90.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>seedname</strong><span class="classifier">str</span></dt><dd><p>Common prefix of Wannier90 input and output files.</p>
+</dd>
+<dt><strong>divide_ndegen</strong><span class="classifier">bool</span></dt><dd><p>Divide hopping by degeneracy of Wigner-Seitz point?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Lattice vectors.</p>
+</dd>
+<dt>ndarray</dt><dd><p>On-site and hopping parameters.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">

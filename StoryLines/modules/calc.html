@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Calculations &#8212; StoryLines  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Colors" href="color.html" />
+    <link rel="prev" title="Plotting" href="storylines.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-storylines.calc">
+<span id="calculations"></span><h1>Calculations<a class="headerlink" href="#module-storylines.calc" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.calc.bonds">
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">bonds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.bonds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find lines that connect two sets of points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>R1, R2</strong><span class="classifier">list of tuple</span></dt><dd><p>Two (ordered) sets of points.</p>
+</dd>
+<dt><strong>d1, d2</strong><span class="classifier">float</span></dt><dd><p>Shortening on the two line ends.</p>
+</dd>
+<dt><strong>dmin, dmax</strong><span class="classifier">float</span></dt><dd><p>Minimum and maximum line length.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>list of list of tuple</dt><dd><p>Connecting lines.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.calc.cross">
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">cross</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.cross" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate cross product of two vectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>A, B</strong><span class="classifier">list of float</span></dt><dd><p>Vectors to be multiplied.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Cross product of <cite>A</cite> and <cite>B</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.calc.dot">
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate dot product of two vectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>A, B</strong><span class="classifier">list of float</span></dt><dd><p>Vectors to be multiplied.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Dot product of <cite>A</cite> and <cite>B</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.calc.multiples">
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">multiples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divisor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.multiples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate over all integer multiples of given number on closed interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>lower, upper</strong><span class="classifier">float</span></dt><dd><p>Bounds of closed interval.</p>
+</dd>
+<dt><strong>divisor</strong><span class="classifier">float</span></dt><dd><p>Number the results shall be multiples of.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Multiple of <cite>divisor</cite> between <cite>lower</cite> and <cite>upper</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.calc.order_of_magnitude">
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">order_of_magnitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.order_of_magnitude" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the decimal order of magnitude.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x</strong><span class="classifier">float</span></dt><dd><p>Number of which to calculate the decimal order of magnitude.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>int</dt><dd><p>Order of magnitude of <cite>x</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.calc.power_of_ten">
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">power_of_ten</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.power_of_ten" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the power of ten of the same order of magnitude.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x</strong><span class="classifier">float</span></dt><dd><p>Number of which to calculate the power of ten of the same order of
+magnitude.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Power of ten of the same order of magnitude as <cite>x</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.calc.xround">
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">xround</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divisor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.xround" title="Permalink to this definition">¶</a></dt>
+<dd><p>Round to multiple of given number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x</strong><span class="classifier">float</span></dt><dd><p>Number to round.</p>
+</dd>
+<dt><strong>divisor</strong><span class="classifier">float</span></dt><dd><p>Number the result shall be a multiple of.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p><cite>x</cite> rounded to the closest multiple of <cite>divisor</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.calc.xround_mantissa">
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">xround_mantissa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divisor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.xround_mantissa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Round mantissa to multiple of given number.</p>
+<p>The mantissa is the part before the power of ten in scientific notation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x</strong><span class="classifier">float</span></dt><dd><p>Number the mantissa of which to round.</p>
+</dd>
+<dt><strong>divisor</strong><span class="classifier">float</span></dt><dd><p>Number the rounded mantissa shall be a multiple of.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p><cite>x</cite> with the mantissa rounded to the closest multiple of <cite>divisor</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">StoryLines</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="storylines.html">Plotting</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="color.html">Colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convert.html">Conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cut.html">Cutting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fatband.html">Fatbands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">Grouping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="png.html">PNG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proj.html">Projection</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="storylines.html" title="previous chapter">Plotting</a></li>
+      <li>Next: <a href="color.html" title="next chapter">Colors</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016-2022 Jan Berges.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/modules/calc.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

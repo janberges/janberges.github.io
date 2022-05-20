@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Colors &#8212; StoryLines  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Conversion" href="convert.html" />
+    <link rel="prev" title="Calculations" href="calc.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-storylines.color">
+<span id="colors"></span><h1>Colors<a class="headerlink" href="#module-storylines.color" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="storylines.color.Color">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">storylines.color.</span></span><span class="sig-name descname"><span class="pre">Color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.color.Color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Representation of a color.</p>
+<p>Colors can be defined using different models:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>RGB (red, green, blue):</dt><dd><p>The three RGB channels take values from 0 to 255.</p>
+</dd>
+<dt>HSV (hue, saturation, value):</dt><dd><p>The hue is the color angle in degrees from 0 to 360.
+Values of 0, 120, and 240 correspond to red, green, and blue.
+The saturation takes values from -1 to 1.
+A value of 0 is white; negative values yield complementary colors.
+The value is the RGB amplitude from 0 to 255.
+A value of 0 is black.</p>
+</dd>
+<dt>PSV (phase, shift, value):</dt><dd><p>Superposition of shifted RGB “waves”.
+The phase and the phase shift from R to G (G to B) are in radians.
+The value is the amplitude of the wave from 0 to 255.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Colors can be mixed:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">red</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
+<span class="n">green</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="s1">&#39;HSV&#39;</span><span class="p">)</span>
+<span class="n">yellow</span> <span class="o">=</span> <span class="p">(</span><span class="n">red</span> <span class="o">+</span> <span class="n">green</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Here, colors of different models are converted to RGB first.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.color.HSV2RGB">
+<span class="sig-prename descclassname"><span class="pre">storylines.color.</span></span><span class="sig-name descname"><span class="pre">HSV2RGB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.color.HSV2RGB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform hue, saturation, value to red, green, blue.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>H</strong><span class="classifier">float</span></dt><dd><p>Hue with period of 360 (degrees).</p>
+</dd>
+<dt><strong>S</strong><span class="classifier">float</span></dt><dd><p>Saturation between 0 and 1.</p>
+</dd>
+<dt><strong>V</strong><span class="classifier">float</span></dt><dd><p>Value/brightness between 0 and 255.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float, float, float</dt><dd><p>Red, green, and blue values between 0 an 255.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.color.PSV2RGB">
+<span class="sig-prename descclassname"><span class="pre">storylines.color.</span></span><span class="sig-name descname"><span class="pre">PSV2RGB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.color.PSV2RGB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set color via phase, shift, and value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>P</strong><span class="classifier">float</span></dt><dd><p>Phase between 0 and 2 pi.</p>
+</dd>
+<dt><strong>S</strong><span class="classifier">float</span></dt><dd><p>Phase shift from red to green and from green to blue channel between 0
+and 2 pi.</p>
+</dd>
+<dt><strong>V</strong><span class="classifier">float</span></dt><dd><p>Value/brightness between 0 and 255.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float, float, float</dt><dd><p>Red, green, and blue values between 0 an 255.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.color.RGB2HSV">
+<span class="sig-prename descclassname"><span class="pre">storylines.color.</span></span><span class="sig-name descname"><span class="pre">RGB2HSV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.color.RGB2HSV" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform red, green, blue to hue, saturation, value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>R, G, B</strong><span class="classifier">float</span></dt><dd><p>Red, green, and blue values between 0 an 255.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Hue with period of 360 (degrees).</p>
+</dd>
+<dt>float</dt><dd><p>Saturation between 0 and 1.</p>
+</dd>
+<dt>float</dt><dd><p>Value/brightness between 0 and 255.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.color.colorize">
+<span class="sig-prename descclassname"><span class="pre">storylines.color.</span></span><span class="sig-name descname"><span class="pre">colorize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.color.colorize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Colorize data using colormap.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">list of list</span></dt><dd><p>Data on two-dimensional mesh.</p>
+</dd>
+<dt><strong>cmap</strong><span class="classifier">function</span></dt><dd><p>Colormap.</p>
+</dd>
+<dt><strong>minimum, maxmimum</strong><span class="classifier">float</span></dt><dd><p>Data values corresponding to minimum and maximum of color scale.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>list of list of list</dt><dd><p>RGB image.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.color.colormap">
+<span class="sig-prename descclassname"><span class="pre">storylines.color.</span></span><span class="sig-name descname"><span class="pre">colormap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.color.colormap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map interval [0, 1] to colors.</p>
+<p>Colors can be defined for an arbitrary number of points in the interval. In
+between, colors are interpolated linearly. The color for the point <code class="docutils literal notranslate"><span class="pre">None</span></code>
+is used for NaNs and beyond the outermost points where colors have been
+defined.</p>
+<p>Examples:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bluebrown</span> <span class="o">=</span> <span class="n">colormap</span><span class="p">(</span> <span class="c1"># PRB 101, 155107 (2020)</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="s1">&#39;PSV&#39;</span><span class="p">),</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="s1">&#39;PSV&#39;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="s1">&#39;RGB&#39;</span><span class="p">)),</span>
+    <span class="p">)</span>
+
+<span class="n">AFMhot</span> <span class="o">=</span> <span class="n">colormap</span><span class="p">(</span> <span class="c1"># Gnuplot</span>
+    <span class="p">(</span><span class="mf">0.00</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span>  <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">)),</span>
+    <span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">)),</span>
+    <span class="p">(</span><span class="mf">0.50</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span>   <span class="mi">0</span><span class="p">)),</span>
+    <span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">128</span><span class="p">)),</span>
+    <span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)),</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">StoryLines</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="storylines.html">Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calc.html">Calculations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convert.html">Conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cut.html">Cutting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fatband.html">Fatbands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">Grouping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="png.html">PNG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proj.html">Projection</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="calc.html" title="previous chapter">Calculations</a></li>
+      <li>Next: <a href="convert.html" title="next chapter">Conversion</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016-2022 Jan Berges.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/modules/color.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

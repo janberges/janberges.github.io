@@ -82,18 +82,73 @@ The value is the amplitude of the wave from 0 to 255.</p>
 <dt class="sig sig-object py" id="elphmod.plot.HSV2RGB">
 <span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">HSV2RGB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.HSV2RGB" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform hue, saturation, value to red, green, blue.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>H</strong><span class="classifier">float</span></dt><dd><p>Hue with period of 360 (degrees).</p>
+</dd>
+<dt><strong>S</strong><span class="classifier">float</span></dt><dd><p>Saturation between 0 and 1.</p>
+</dd>
+<dt><strong>V</strong><span class="classifier">float</span></dt><dd><p>Value/brightness between 0 and 255.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float, float, float</dt><dd><p>Red, green, and blue values between 0 an 255.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.plot.PSV2RGB">
 <span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">PSV2RGB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.PSV2RGB" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set color via phase, shift, and value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>P</strong><span class="classifier">float</span></dt><dd><p>Phase between 0 and 2 pi.</p>
+</dd>
+<dt><strong>S</strong><span class="classifier">float</span></dt><dd><p>Phase shift from red to green and from green to blue channel between 0
+and 2 pi.</p>
+</dd>
+<dt><strong>V</strong><span class="classifier">float</span></dt><dd><p>Value/brightness between 0 and 255.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float, float, float</dt><dd><p>Red, green, and blue values between 0 an 255.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.plot.RGB2HSV">
 <span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">RGB2HSV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.RGB2HSV" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform red, green, blue to hue, saturation, value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>R, G, B</strong><span class="classifier">float</span></dt><dd><p>Red, green, and blue values between 0 an 255.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Hue with period of 360 (degrees).</p>
+</dd>
+<dt>float</dt><dd><p>Saturation between 0 and 1.</p>
+</dd>
+<dt>float</dt><dd><p>Value/brightness between 0 and 255.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -128,6 +183,30 @@ The value is the amplitude of the wave from 0 to 255.</p>
 <dt class="sig sig-object py" id="elphmod.plot.choose_backend">
 <span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">choose_backend</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.choose_backend" title="Permalink to this definition">¶</a></dt>
 <dd><p>Switch to non-GUI Matplotlib backend if necessary.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.plot.color">
+<span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Colorize data using colormap.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">list of list</span></dt><dd><p>Data on two-dimensional mesh.</p>
+</dd>
+<dt><strong>cmap</strong><span class="classifier">function</span></dt><dd><p>Colormap.</p>
+</dd>
+<dt><strong>minimum, maxmimum</strong><span class="classifier">float</span></dt><dd><p>Data values corresponding to minimum and maximum of color scale.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>list of list of list</dt><dd><p>RGB image.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
