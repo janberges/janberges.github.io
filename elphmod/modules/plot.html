@@ -6,151 +6,35 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>plot: BZ plots, color models, and fatbands &#8212; elphmod  documentation</title>
+    <title>Plot &#8212; elphmod  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="misc: status bars etc." href="misc.html" />
-    <link rel="prev" title="eliashberg: parameters for McMillan’s formula" href="eliashberg.html" /> 
+    <link rel="next" title="Miscellaneous" href="misc.html" />
+    <link rel="prev" title="Eliashberg" href="eliashberg.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="misc.html" title="misc: status bars etc."
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="eliashberg.html" title="eliashberg: parameters for McMillan’s formula"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">plot: BZ plots, color models, and fatbands</a></li> 
-      </ul>
-    </div>  
+  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <section id="module-elphmod.plot">
-<span id="plot-bz-plots-color-models-and-fatbands"></span><h1>plot: BZ plots, color models, and fatbands<a class="headerlink" href="#module-elphmod.plot" title="Permalink to this headline">¶</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="elphmod.plot.Color">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">Color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.Color" title="Permalink to this definition">¶</a></dt>
-<dd><p>Representation of a color.</p>
-<p>Colors can be defined using different models:</p>
-<blockquote>
-<div><dl class="simple">
-<dt>RGB (red, green, blue):</dt><dd><p>The three RGB channels take values from 0 to 255.</p>
-</dd>
-<dt>HSV (hue, saturation, value):</dt><dd><p>The hue is the color angle in degrees from 0 to 360.
-Values of 0, 120, and 240 correspond to red, green, and blue.
-The saturation takes values from -1 to 1.
-A value of 0 is white; negative values yield complementary colors.
-The value is the RGB amplitude from 0 to 255.
-A value of 0 is black.</p>
-</dd>
-<dt>PSV (phase, shift, value):</dt><dd><p>Superposition of shifted RGB “waves”.
-The phase and the phase shift from R to G (G to B) are in radians.
-The value is the amplitude of the wave from 0 to 255.</p>
-</dd>
-</dl>
-</div></blockquote>
-<p>Colors can be mixed:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">red</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
-<span class="n">green</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="s1">&#39;HSV&#39;</span><span class="p">)</span>
-<span class="n">yellow</span> <span class="o">=</span> <span class="p">(</span><span class="n">red</span> <span class="o">+</span> <span class="n">green</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-</pre></div>
-</div>
-<p>Here, colors of different models are converted to RGB first.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="elphmod.plot.HSV2RGB">
-<span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">HSV2RGB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.HSV2RGB" title="Permalink to this definition">¶</a></dt>
-<dd><p>Transform hue, saturation, value to red, green, blue.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>H</strong><span class="classifier">float</span></dt><dd><p>Hue with period of 360 (degrees).</p>
-</dd>
-<dt><strong>S</strong><span class="classifier">float</span></dt><dd><p>Saturation between 0 and 1.</p>
-</dd>
-<dt><strong>V</strong><span class="classifier">float</span></dt><dd><p>Value/brightness between 0 and 255.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>float, float, float</dt><dd><p>Red, green, and blue values between 0 an 255.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="elphmod.plot.PSV2RGB">
-<span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">PSV2RGB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.PSV2RGB" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set color via phase, shift, and value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>P</strong><span class="classifier">float</span></dt><dd><p>Phase between 0 and 2 pi.</p>
-</dd>
-<dt><strong>S</strong><span class="classifier">float</span></dt><dd><p>Phase shift from red to green and from green to blue channel between 0
-and 2 pi.</p>
-</dd>
-<dt><strong>V</strong><span class="classifier">float</span></dt><dd><p>Value/brightness between 0 and 255.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>float, float, float</dt><dd><p>Red, green, and blue values between 0 an 255.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="elphmod.plot.RGB2HSV">
-<span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">RGB2HSV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.RGB2HSV" title="Permalink to this definition">¶</a></dt>
-<dd><p>Transform red, green, blue to hue, saturation, value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>R, G, B</strong><span class="classifier">float</span></dt><dd><p>Red, green, and blue values between 0 an 255.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>float</dt><dd><p>Hue with period of 360 (degrees).</p>
-</dd>
-<dt>float</dt><dd><p>Saturation between 0 and 1.</p>
-</dd>
-<dt>float</dt><dd><p>Value/brightness between 0 and 255.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
+<span id="plot"></span><h1>Plot<a class="headerlink" href="#module-elphmod.plot" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.plot.adjust_pixels">
 <span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">adjust_pixels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distances</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.adjust_pixels" title="Permalink to this definition">¶</a></dt>
@@ -188,13 +72,13 @@ and 2 pi.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.plot.color">
 <span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.color" title="Permalink to this definition">¶</a></dt>
-<dd><p>Colorize data using colormap.</p>
+<dd><p>Colorize data using colormap from StoryLines (parallelized version).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>data</strong><span class="classifier">list of list</span></dt><dd><p>Data on two-dimensional mesh.</p>
 </dd>
-<dt><strong>cmap</strong><span class="classifier">function</span></dt><dd><p>Colormap.</p>
+<dt><strong>cmap</strong><span class="classifier">function</span></dt><dd><p>Colormap from StoryLines.</p>
 </dd>
 <dt><strong>minimum, maxmimum</strong><span class="classifier">float</span></dt><dd><p>Data values corresponding to minimum and maximum of color scale.</p>
 </dd>
@@ -213,32 +97,6 @@ and 2 pi.</p>
 <dt class="sig sig-object py" id="elphmod.plot.colorbar">
 <span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">colorbar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.colorbar" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add colorbar to image.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="elphmod.plot.colormap">
-<span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">colormap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.colormap" title="Permalink to this definition">¶</a></dt>
-<dd><p>Map interval [0, 1] to colors.</p>
-<p>Colors can be defined for an arbitrary number of points in the interval. In
-between, colors are interpolated linearly. The color for the point <code class="docutils literal notranslate"><span class="pre">None</span></code>
-is used for NaNs and beyond the outermost points where colors have been
-defined.</p>
-<p>Examples:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bluebrown</span> <span class="o">=</span> <span class="n">colormap</span><span class="p">(</span> <span class="c1"># PRB 101, 155107 (2020)</span>
-    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="s1">&#39;PSV&#39;</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="s1">&#39;PSV&#39;</span><span class="p">)),</span>
-    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="s1">&#39;RGB&#39;</span><span class="p">)),</span>
-    <span class="p">)</span>
-
-<span class="n">AFMhot</span> <span class="o">=</span> <span class="n">colormap</span><span class="p">(</span> <span class="c1"># Gnuplot</span>
-    <span class="p">(</span><span class="mf">0.00</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span>  <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">)),</span>
-    <span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">)),</span>
-    <span class="p">(</span><span class="mf">0.50</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span>   <span class="mi">0</span><span class="p">)),</span>
-    <span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">128</span><span class="p">)),</span>
-    <span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)),</span>
-    <span class="p">)</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py function">
@@ -269,27 +127,6 @@ defined.</p>
 <dt class="sig sig-object py" id="elphmod.plot.label_pie_with_TeX">
 <span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">label_pie_with_TeX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">stem,</span> <span class="pre">width=7.0,</span> <span class="pre">preamble='\\usepackage[math]{iwona}',</span> <span class="pre">width_L=5.0,</span> <span class="pre">width_R=1.0,</span> <span class="pre">width_C=0.5,</span> <span class="pre">spacing=0.5,</span> <span class="pre">spacing_T=0.7,</span> <span class="pre">title=None,</span> <span class="pre">label=None,</span> <span class="pre">labels=['Label</span> <span class="pre">1',</span> <span class="pre">'Label</span> <span class="pre">2',</span> <span class="pre">'Label</span> <span class="pre">3',</span> <span class="pre">'Label</span> <span class="pre">4',</span> <span class="pre">'Label</span> <span class="pre">5',</span> <span class="pre">'Label</span> <span class="pre">6'],</span> <span class="pre">upper=1.0,</span> <span class="pre">lower=-1.0,</span> <span class="pre">ticks=[-1.0,</span> <span class="pre">0.0,</span> <span class="pre">1.0],</span> <span class="pre">form=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;,</span> <span class="pre">unit='Unit',</span> <span class="pre">nCDW=10,</span> <span class="pre">standalone=True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.label_pie_with_TeX" title="Permalink to this definition">¶</a></dt>
 <dd><p>Label ‘pie diagram’ of different data on Brillouin zone.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="elphmod.plot.load">
-<span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load grayscale, RGB, or RGBA image from 8-bit PNG.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Name of PNG file to be written.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>ndarray</dt><dd><p>8-bit image data of shape (height, width, colors), where colors may be
-1 (grayscale), 3 (RGB), or 4 (RGBA).</p>
-</dd>
-</dl>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -342,25 +179,6 @@ content alone (similar to common scan applications).</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="elphmod.plot.save">
-<span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.save" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save grayscale, RGB, or RGBA image as 8-bit PNG.</p>
-<p>Specified at <a class="reference external" href="https://www.w3.org/TR/PNG/">https://www.w3.org/TR/PNG/</a>.
-Inspired by Blender thumbnailer code.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Name of PNG file to be written.</p>
-</dd>
-<dt><strong>image</strong><span class="classifier">ndarray</span></dt><dd><p>8-bit image data of shape (height, width, colors), where colors may be
-1 (grayscale), 3 (RGB), or 4 (RGBA).</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="elphmod.plot.toBZ">
 <span class="sig-prename descclassname"><span class="pre">elphmod.plot.</span></span><span class="sig-name descname"><span class="pre">toBZ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points=1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation=&lt;function</span> <span class="pre">linear_interpolation&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle=120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle0=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outside=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_k=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_only_k=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">even=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.plot.toBZ" title="Permalink to this definition">¶</a></dt>
 <dd><p>Map data on uniform grid onto (wedge of) Brillouin zone.</p>
@@ -379,29 +197,47 @@ Inspired by Blender thumbnailer code.</p>
 </section>
 
 
-            <div class="clearer"></div>
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <div>
-    <h4>Previous topic</h4>
-    <p class="topless"><a href="eliashberg.html"
-                          title="previous chapter">eliashberg: parameters for McMillan’s formula</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="misc.html"
-                          title="next chapter">misc: status bars etc.</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/modules/plot.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
+<h1 class="logo"><a href="../index.html">elphmod</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="el.html">Electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ph.html">Phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elph.html">Electron–phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elel.html">Electron–electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MPI.html">MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bravais.html">Bravais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dispersion.html">Dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dos.html">DOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams.html">Diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eliashberg.html">Eliashberg</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="eliashberg.html" title="previous chapter">Eliashberg</a></li>
+      <li>Next: <a href="misc.html" title="next chapter">Miscellaneous</a></li>
+  </ul></li>
+</ul>
+</div>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -412,32 +248,32 @@ Inspired by Blender thumbnailer code.</p>
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="misc.html" title="misc: status bars etc."
-             >next</a> |</li>
-        <li class="right" >
-          <a href="eliashberg.html" title="eliashberg: parameters for McMillan’s formula"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">elphmod  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">plot: BZ plots, color models, and fatbands</a></li> 
-      </ul>
+    <div class="footer">
+      &copy;2017-2022 University of Bremen.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/modules/plot.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017-2022 University of Bremen.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
-    </div>
+
+    
+
+    
   </body>
 </html>
