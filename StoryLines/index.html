@@ -35,26 +35,44 @@
   <section id="line-plots-with-python-tikz">
 <h1>Line plots with Python &amp; TikZ<a class="headerlink" href="#line-plots-with-python-tikz" title="Permalink to this headline">¶</a></h1>
 <a class="reference external image-reference" href="https://raw.githubusercontent.com/janberges/StoryLines/master/logo/logo.svg"><img alt="StoryLines logo" src="https://raw.githubusercontent.com/janberges/StoryLines/master/logo/logo.svg" /></a>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 example.py
-pdflatex example.tex
-</pre></div>
-</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">storylines</span></code> - plot object</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">calc</span></code> - mathematical helpers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code> - blendable colors and colormaps</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">convert</span></code> - inches to centimeters etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cut</span></code> - remove redundant or unwanted points</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fatband</span></code> - plot weights along line</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">files</span></code> - typeset TeX, rasterize PDF</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">group</span></code> - chunk sequences of points</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">png</span></code> - save and load RGB(A) graphics</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">proj</span></code> - project 3D object onto plane</p></li>
+</ul>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>Using a virtual environment:</p>
+<p>Optionally using a virtual environment:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m venv venv
 <span class="nb">source</span> venv/bin/activate
 python3 -m pip install --upgrade pip setuptools wheel
 </pre></div>
 </div>
-<p>Either from GitHub:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install git+https://github.com/janberges/StoryLines
-</pre></div>
-</div>
-<p>Or from PyPI:</p>
+<p>Either from PyPI:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install storylines
 </pre></div>
 </div>
+<p>Or from GitHub:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install git+https://github.com/janberges/StoryLines
+</pre></div>
+</div>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>The documentation and example scripts along with output can be found at
+<a class="reference external" href="https://janberges.github.io/StoryLines">https://janberges.github.io/StoryLines</a>.</p>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>This program is free software under the terms of the BSD Zero Clause License.</p>
+<p>Copyright (C) 2016-2022 Jan Berges</p>
 </section>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
