@@ -87,7 +87,9 @@ if <cite>shared_memory</cite>.</p>
 </dd>
 <dt><strong>cells</strong><span class="classifier">list of tuple of int, optional</span></dt><dd><p>Lattice vectors of unit cells if the model describes a supercell.</p>
 </dd>
-<dt><strong>Rk0</strong><span class="classifier">int</span></dt><dd><p>Index of electronic lattice vector at origin if <cite>ph.lr</cite>.</p>
+<dt><strong>g0</strong><span class="classifier">ndarray</span></dt><dd><p>Coupling on original q and k meshes.</p>
+</dd>
+<dt><strong>Rk0</strong><span class="classifier">int</span></dt><dd><p>Index of electronic lattice vector at origin.</p>
 </dd>
 </dl>
 </dd>
@@ -176,6 +178,12 @@ in Ry<sup>3/2</sup>.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="elphmod.elph.Model.sample_orig">
+<span class="sig-name descname"><span class="pre">sample_orig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.sample_orig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample coupling on original q and k meshes.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.standardize">
 <span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.standardize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standardize real-space coupling data.</p>
@@ -229,6 +237,12 @@ in Ry<sup>3/2</sup>.</p>
 <div class="math notranslate nohighlight">
 \[g_{\vec q, \vec k} = g_{-\vec q, \vec k + \vec q}^\dagger,
 g_{\vec R, \vec R'} = g_{\vec R - \vec R', -\vec R'}^\dagger\]</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.elph.Model.update_short_range">
+<span class="sig-name descname"><span class="pre">update_short_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.update_short_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update short-range part of real-space coupling.</p>
 </dd></dl>
 
 </dd></dl>
