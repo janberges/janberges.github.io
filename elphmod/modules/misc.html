@@ -34,6 +34,38 @@
             
   <section id="module-elphmod.misc">
 <span id="miscellaneous"></span><h1>Miscellaneous<a class="headerlink" href="#module-elphmod.misc" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="elphmod.misc.StatusBar">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">StatusBar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'progress'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.StatusBar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Progress bar that does without carriage return or backspace.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>count</strong><span class="classifier">int</span></dt><dd><p>Number of times the progress bar will be updated.</p>
+</dd>
+<dt><strong>width</strong><span class="classifier">int, default 60</span></dt><dd><p>Number of text columns the progress bar will span.</p>
+</dd>
+<dt><strong>title</strong><span class="classifier">str, default ‘progress’</span></dt><dd><p>Title line of the progress bar. Should be shorter than <cite>width</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>in_progress</strong><span class="classifier">StatusBar</span></dt><dd><p>Instance of the active progress bar or <code class="docutils literal notranslate"><span class="pre">False</span></code> for the first process;
+always <code class="docutils literal notranslate"><span class="pre">True</span></code> for the other processes. Used to ensure that only one
+progress bar is output at a time.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.misc.StatusBar.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.StatusBar.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update progress bar.</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.misc.group">
 <span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.group" title="Permalink to this definition">¶</a></dt>

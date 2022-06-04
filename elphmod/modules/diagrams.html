@@ -521,7 +521,7 @@ eigenvectors of the Wannier Hamiltonian.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.diagrams.triangle">
-<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">triangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gQ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gqQ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps=1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.triangle" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">triangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gQ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gqQ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps=1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluctuations=False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.triangle" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate triangle diagram (third order of grand potential).</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\chi_{\vec q \mu \vec q' \nu}
@@ -572,6 +572,8 @@ q&#39; v     k+q&#39; c      q-q&#39; v
 <dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Smallest allowed absolute value of divisor.</p>
 </dd>
 <dt><strong>occupations</strong><span class="classifier">function</span></dt><dd><p>Particle distribution as a function of energy divided by <cite>kT</cite>.</p>
+</dd>
+<dt><strong>fluctuations</strong><span class="classifier">bool</span></dt><dd><p>Return integrand too (for fluctuation analysis)?</p>
 </dd>
 </dl>
 </dd>
