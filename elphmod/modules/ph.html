@@ -37,6 +37,7 @@
             
   <section id="module-elphmod.ph">
 <span id="phonon"></span><h1>Phonon<a class="headerlink" href="#module-elphmod.ph" title="Permalink to this headline">¶</a></h1>
+<p>Mass-spring models from Quantum ESPRESSO.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.ph.Model">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.ph.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flfrc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quadrupole_fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_zasr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_rsr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr2d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[[[[[[0.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">0.]]]]]]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([1.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[1.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">1.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">1.]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[0.,</span> <span class="pre">0.,</span> <span class="pre">0.]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['X']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsil</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zeu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model" title="Permalink to this definition">¶</a></dt>
@@ -499,6 +500,27 @@ and <cite>apply_rsr</cite>.</p>
 <dt class="sig sig-object py" id="elphmod.ph.read_quadrupole_fmt">
 <span class="sig-prename descclassname"><span class="pre">elphmod.ph.</span></span><span class="sig-name descname"><span class="pre">read_quadrupole_fmt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quadrupole_fmt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.read_quadrupole_fmt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read file <em>quadrupole.fmt</em> suitable for <code class="docutils literal notranslate"><span class="pre">epw.x</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>quadrupole_fmt</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>Q</strong><span class="classifier">ndarray</span></dt><dd><p>Quadrupole tensor.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.ph.write_quadrupole_fmt" title="elphmod.ph.write_quadrupole_fmt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_quadrupole_fmt</span></code></a></dt><dd><p>Inverse function.</p>
+</dd>
+</dl>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -579,6 +601,29 @@ directions and the frequency argument.</p>
 <dt class="sig sig-object py" id="elphmod.ph.write_q">
 <span class="sig-prename descclassname"><span class="pre">elphmod.ph.</span></span><span class="sig-name descname"><span class="pre">write_q</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fildyn0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.write_q" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write list of irreducible q points to <em>fildyn0</em>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.ph.write_quadrupole_fmt">
+<span class="sig-prename descclassname"><span class="pre">elphmod.ph.</span></span><span class="sig-name descname"><span class="pre">write_quadrupole_fmt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quadrupole_fmt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.write_quadrupole_fmt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write file <em>quadrupole.fmt</em> suitable for <code class="docutils literal notranslate"><span class="pre">epw.x</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>quadrupole_fmt</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
+</dd>
+<dt><strong>Q</strong><span class="classifier">ndarray</span></dt><dd><p>Quadrupole tensor.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#elphmod.ph.read_quadrupole_fmt" title="elphmod.ph.read_quadrupole_fmt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_quadrupole_fmt</span></code></a></dt><dd><p>Inverse function.</p>
+</dd>
+</dl>
+</div>
 </dd></dl>
 
 <dl class="py function">
