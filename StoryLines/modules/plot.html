@@ -60,7 +60,7 @@ is not always the best option.</p>
 <dt><strong>style</strong><span class="classifier">str, default None</span></dt><dd><p>Predefined style. Possible values are <code class="docutils literal notranslate"><span class="pre">'Nature'</span></code>, <code class="docutils literal notranslate"><span class="pre">'NatCommun'</span></code>,
 and <code class="docutils literal notranslate"><span class="pre">'APS'</span></code>. This changes some of the below default values.</p>
 </dd>
-<dt><strong>**more</strong></dt><dd><p>Global TikZ options.</p>
+<dt><strong>**more</strong></dt><dd><p>Initial values of attributes (see below) or global TikZ options.</p>
 </dd>
 </dl>
 </dd>
@@ -283,6 +283,26 @@ fill color is the same as the stroke color.</p>
 <dt><strong>shifts</strong><span class="classifier">list of float or float</span></dt><dd><p>Displacements in weight direction.</p>
 </dd>
 <dt><strong>**options</strong></dt><dd><p>Options passed to <cite>line</cite> function.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="storylines.plot.Plot.image">
+<span class="sig-name descname"><span class="pre">image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.plot.Plot.image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert image between given data coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>File name of image.</p>
+</dd>
+<dt><strong>x1, y1</strong><span class="classifier">float</span></dt><dd><p>Position of bottom-left corner in data coordinates.</p>
+</dd>
+<dt><strong>x2, y2</strong><span class="classifier">float</span></dt><dd><p>Position of top-right corner in data coordinates.</p>
+</dd>
+<dt><strong>**options</strong></dt><dd><p>Options passed to <cite>line</cite>.</p>
 </dd>
 </dl>
 </dd>
