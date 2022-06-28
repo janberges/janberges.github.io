@@ -57,6 +57,12 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.fermi_dirac_entropy">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_entropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate electronic entropy.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.fermi_dirac_matsubara">
 <span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_matsubara</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_matsubara" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate Fermi function as Matsubara sum.</p>
@@ -93,6 +99,12 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.gauss_entropy">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">gauss_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.gauss_entropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate Gaussian generalized electronic entropy.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.heaviside">
 <span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">heaviside</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.heaviside" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate (reflected) Heaviside function.</p>
@@ -108,6 +120,22 @@
 <dt class="sig sig-object py" id="elphmod.occupations.heaviside_delta_prime">
 <span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">heaviside_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.heaviside_delta_prime" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate negative 2nd derivative of (reflected) Heaviside function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.heaviside_entropy">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">heaviside_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.heaviside_entropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate negative Heaviside generalized electronic entropy.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.hermite_polynomials">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">hermite_polynomials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.hermite_polynomials" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate Hermite polynomials.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H_0(x) &amp;= 1 \\
+H_1(x) &amp;= 2 x \\
+H_{n + 1}(x) &amp;= 2 x H_n(x) - 2 n H_{n - 1}(x)\end{split}\]</div>
 </dd></dl>
 
 <dl class="py function">
@@ -152,39 +180,45 @@ temperature <span class="math notranslate nohighlight">\(T\)</span>.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.marzari_vanderbilt_entropy">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">marzari_vanderbilt_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.marzari_vanderbilt_entropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate Marzari-Vanderbilt generalized electronic entropy.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.methfessel_paxton">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate first-order Methfessel-Paxton step function.</p>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate Methfessel-Paxton step function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.methfessel_paxton_delta">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_delta" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate negative derivative of first-order MP step function.</p>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate negative derivative of Methfessel-Paxton step function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.methfessel_paxton_delta_prime">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_delta_prime" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate negative 2nd derivative of first-order MP step function.</p>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_delta_prime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate negative 2nd derivative of Methfessel-Paxton step function.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="elphmod.occupations.methfessel_paxton_general">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_general</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_general" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate Methfessel-Paxton step function and its negative derivative.</p>
+<dt class="sig sig-object py" id="elphmod.occupations.methfessel_paxton_entropy">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_entropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate Methfessel-Paxton generalized electronic entropy.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.methfessel_paxton_term">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_term" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate Methfessel-Paxton term (without zeroth order).</p>
 <p>From Phys. Rev. B 40, 3616 (1989):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}S_0(x) &amp;= \frac {1 - erf(x)} 2 \\
 S_N(x) &amp;= S_0(x) + \sum_{n = 1}^N A_n H_{2 n - 1}(x) \exp(-x^2) \\
 D_N(x) &amp;= -S'(N, x) = \sum{n = 0}^N A_n H_{2 n}(x) \exp(-x^2) \\
 A_n &amp;= \frac{(-1)^n}{\sqrt \pi n! 4^n}\end{split}\]</div>
-<p>Hermite polynomials:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}H_0(x) &amp;= 1 \\
-H_1(x) &amp;= 2 x \\
-H_{n + 1}(x) &amp;= 2 x H_n(x) - 2 n H_{n - 1}(x) \\\end{split}\]</div>
-<p>For <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">=</span> <span class="pre">0</span></code>, the Gaussian step function is returned.</p>
 <p>This routine has been adapted from Quantum ESPRESSO:</p>
 <ul class="simple">
 <li><p>Step function: Modules/wgauss.f90</p></li>

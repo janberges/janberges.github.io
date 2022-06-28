@@ -243,6 +243,29 @@ rydberg.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.demet_from_qe_pwo">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">demet_from_qe_pwo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.demet_from_qe_pwo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the ‘-TS’ contribution of the total free energy from Quantum ESPRESSO.</p>
+<p>In Quantum ESPRESSO ‘demet’ is calculated in ‘gweights.f90’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>pw_scf_out</strong><span class="classifier">str</span></dt><dd><p>The name of the output file (typically ‘pw.out’).</p>
+</dd>
+<dt><strong>subset</strong><span class="classifier">list or array</span></dt><dd><p>List of indices to pick only a subset of the bands for the integration.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>demet</strong><span class="classifier">float</span></dt><dd><p>The -TS contribution of the total free energy.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.eband_from_qe_pwo">
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">eband_from_qe_pwo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.eband_from_qe_pwo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate <code class="docutils literal notranslate"><span class="pre">eband</span></code> part of one-electron energy.</p>
