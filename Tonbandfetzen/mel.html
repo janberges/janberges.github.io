@@ -5,11 +5,13 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>MEL</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -215,6 +217,12 @@
 </dd>
 <dt><strong>detune</strong><em>n</em></dt>
 <dd><p>Randomly detune reference frequency and concert pitch <strong>A4</strong>, by up to <em>n</em> halftones. In combination with text and time marks, this is useful to generate non-white noise.</p>
+</dd>
+<dt><strong>delete</strong><em>n</em><strong> </strong><em>n'</em></dt>
+<dd><p>Delete sound between <em>n</em>th and <em>n'</em>th time mark, if marks have been set.</p>
+</dd>
+<dt><strong>reverse</strong><em>n</em><strong> </strong><em>n'</em></dt>
+<dd><p>Reverse sound between <em>n</em>th and <em>n'</em>th time mark, if marks have been set.</p>
 </dd>
 <dt><strong>vibrato</strong><em>n</em><strong> </strong><em>n'</em><strong> </strong><em>m</em><strong> </strong><em>m'</em></dt>
 <dd><p>Apply vibrato to sound between <em>n</em>th and <em>n'</em>th time mark, if marks have been set. The sample is periodically delayed (and advanced) with an amplitude of <em>m</em> seconds and a frequency of <em>m'</em> per sample length, using the current wave sample.</p>
