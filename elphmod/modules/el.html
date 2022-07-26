@@ -245,12 +245,12 @@ rydberg.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.demet_from_qe_pwo">
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">demet_from_qe_pwo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.demet_from_qe_pwo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the ‘-TS’ contribution of the total free energy from Quantum ESPRESSO.</p>
-<p>In Quantum ESPRESSO ‘demet’ is calculated in ‘gweights.f90’.</p>
+<dd><p>Calculate the entropy contribution <span class="math notranslate nohighlight">\(-TS\)</span> to the total free energy.</p>
+<p>In Quantum ESPRESSO <code class="docutils literal notranslate"><span class="pre">demet</span></code> is calculated in <code class="docutils literal notranslate"><span class="pre">gweights.f90</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>pw_scf_out</strong><span class="classifier">str</span></dt><dd><p>The name of the output file (typically ‘pw.out’).</p>
+<dt><strong>pw_scf_out</strong><span class="classifier">str</span></dt><dd><p>The name of the output file (typically <code class="docutils literal notranslate"><span class="pre">'pw.out'</span></code>).</p>
 </dd>
 <dt><strong>subset</strong><span class="classifier">list or array</span></dt><dd><p>List of indices to pick only a subset of the bands for the integration.</p>
 </dd>
@@ -258,7 +258,7 @@ rydberg.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>demet</strong><span class="classifier">float</span></dt><dd><p>The -TS contribution of the total free energy.</p>
+<dt><strong>demet</strong><span class="classifier">float</span></dt><dd><p>The <span class="math notranslate nohighlight">\(-TS\)</span> contribution to the total free energy.</p>
 </dd>
 </dl>
 </dd>
@@ -266,8 +266,8 @@ rydberg.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="elphmod.el.eband_from_qe_pwo">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">eband_from_qe_pwo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.eband_from_qe_pwo" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="elphmod.el.eband">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">eband</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.eband" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate <code class="docutils literal notranslate"><span class="pre">eband</span></code> part of one-electron energy.</p>
 <p>The ‘one-electron contribution’ energy in the Quantum ESPRESSO PWscf output
 is a sum <code class="docutils literal notranslate"><span class="pre">eband</span> <span class="pre">+</span> <span class="pre">deband</span></code>. Here, we can calculate the <code class="docutils literal notranslate"><span class="pre">eband</span></code> part.</p>
@@ -294,14 +294,10 @@ the <code class="docutils literal notranslate"><span class="pre">SUBROUTINE</spa
         <span class="o">/</span><span class="s1">&#39;     one-electron contribution =&#39;</span><span class="p">,</span><span class="n">F17</span><span class="mf">.8</span><span class="p">,</span><span class="s1">&#39; Ry&#39;</span> <span class="o">&amp;</span>
 </pre></div>
 </div>
-<p>At some point, we should add the <code class="docutils literal notranslate"><span class="pre">deband</span></code> routine as well…</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>pw_scf_out</strong><span class="classifier">str</span></dt><dd><p>The name of the output file (typically ‘pw.out’).</p>
-</dd>
-<dt><strong>subset</strong><span class="classifier">list or array</span></dt><dd><p>List of indices to pick only a subset of the bands
-for the integration</p>
+<dt><strong>pw_scf_out</strong><span class="classifier">str</span></dt><dd><p>Name of the output file (typically <code class="docutils literal notranslate"><span class="pre">'pw.out'</span></code> or <code class="docutils literal notranslate"><span class="pre">'scf.out'</span></code>).</p>
 </dd>
 </dl>
 </dd>
@@ -451,18 +447,49 @@ rydberg.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_energy_contributions_scf_out">
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_energy_contributions_scf_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_energy_contributions_scf_out" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read energy contributions to the total energy
-from Quantum ESPRESSO’s scf output file.</p>
+<dd><p>Read energy contributions to the total energy <code class="docutils literal notranslate"><span class="pre">scf</span></code> output file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>scf output file name.</p>
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Name of Quantum ESPRESSO’s <code class="docutils literal notranslate"><span class="pre">scf</span></code> output file.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>dict</dt><dd><p>energy contributions.</p>
+<dt>dict</dt><dd><p>Energy contributions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_eps_nk_from_qe_pwo">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_eps_nk_from_qe_pwo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_eps_nk_from_qe_pwo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read electronic eigenenergies and k points and calculate the occupations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>pw_scf_out</strong><span class="classifier">str</span></dt><dd><p>Name of the output file (typically <code class="docutils literal notranslate"><span class="pre">'pw.out'</span></code> or <code class="docutils literal notranslate"><span class="pre">'scf.out'</span></code>).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>energies</strong><span class="classifier">ndarray</span></dt><dd><p>Electronic eigenenergies (<code class="docutils literal notranslate"><span class="pre">eps_nk</span></code>) from <code class="docutils literal notranslate"><span class="pre">scf</span></code> output, shape <code class="docutils literal notranslate"><span class="pre">(nk,</span>
+<span class="pre">nbnd)</span></code>.</p>
+</dd>
+<dt><strong>kpoints</strong><span class="classifier">ndarray</span></dt><dd><p>k points and weights from <code class="docutils literal notranslate"><span class="pre">scf</span></code> output, shape <code class="docutils literal notranslate"><span class="pre">(nk,</span> <span class="pre">4)</span></code>, where the
+4th column contains the weights.</p>
+</dd>
+<dt><strong>f_occ</strong><span class="classifier">ndarray</span></dt><dd><p>Occupations of <code class="docutils literal notranslate"><span class="pre">eps_nk</span></code> (same shape as <cite>energies</cite>).</p>
+</dd>
+<dt><strong>smearing_type</strong><span class="classifier">str</span></dt><dd><p>Type of smearing (for example <code class="docutils literal notranslate"><span class="pre">'Fermi-Dirac'</span></code>).</p>
+</dd>
+<dt><strong>mu</strong><span class="classifier">float</span></dt><dd><p>Chemical potential in eV.</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Value of smearing (<code class="docutils literal notranslate"><span class="pre">degauss</span></code>) in eV.</p>
 </dd>
 </dl>
 </dd>
@@ -494,9 +521,38 @@ from Quantum ESPRESSO’s scf output file.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_pp_density">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_pp_density</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_pp_density" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read file <em>filout</em> with charge density generated by <code class="docutils literal notranslate"><span class="pre">pp.x</span></code>.</p>
+<p>Calculate total charge</p>
+<div class="math notranslate nohighlight">
+\[Q = \int \rho(\vec r) dx dy dz =
+    = \frac \Omega {n_1 n_2 n_3} \sum_{i j k} \rho_{i j k},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Omega\)</span> is the unit-cell volume, <span class="math notranslate nohighlight">\(n_r\)</span> are the FFT grid
+dimensions, and <span class="math notranslate nohighlight">\(i, j, k\)</span> run over FFT real-space grid points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>filout output file name.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>rho</strong><span class="classifier">ndarray</span></dt><dd><p>Electronic charge density <span class="math notranslate nohighlight">\(\rho_{i j k}\)</span> on FFT real-space grid
+points.</p>
+</dd>
+<dt>tot_charge: float</dt><dd><p>Total charge calculated from charge density <span class="math notranslate nohighlight">\(\rho_{i j k}\)</span>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_projwfc_out">
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_projwfc_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">projwfc_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_projwfc_out" title="Permalink to this definition">¶</a></dt>
-<dd><p>Identify orbitals in <em>atomic_proj.xml</em> via output of <code class="docutils literal notranslate"><span class="pre">projwfc.x</span></code></p>
+<dd><p>Identify orbitals in <em>atomic_proj.xml</em> via output of <code class="docutils literal notranslate"><span class="pre">projwfc.x</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -518,6 +574,39 @@ that order).</p>
 <dt class="sig sig-object py" id="elphmod.el.read_pwo">
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_pwo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_pwo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read energies from PW output file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_rhoG_density">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_rhoG_density</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ibrav</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_rhoG_density" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the charge density output from Quantum ESPRESSO.</p>
+<p>The purpose of <span class="math notranslate nohighlight">\(\rho(\vec G)\)</span> is to calculate the charge density in
+real space <span class="math notranslate nohighlight">\(\rho(\vec r)\)</span> or the Hartree energy <code class="docutils literal notranslate"><span class="pre">ehart</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Output file name.</p>
+</dd>
+<dt><strong>ibrav</strong><span class="classifier">integer</span></dt><dd><p>Bravais lattice index (see <code class="docutils literal notranslate"><span class="pre">pw.x</span></code> input description).</p>
+</dd>
+<dt><strong>a, b, c</strong><span class="classifier">float</span></dt><dd><p>Bravais lattice parameters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>rho_g</strong><span class="classifier">ndarray</span></dt><dd><p>Electronic charge density <span class="math notranslate nohighlight">\(\rho(\vec G)\)</span> on reciprocal-space grid
+points.</p>
+</dd>
+<dt><strong>g_vect</strong><span class="classifier">ndarray</span></dt><dd><p>Reciprocal lattice vectors <span class="math notranslate nohighlight">\(\vec G\)</span>.</p>
+</dd>
+<dt><strong>ngm_g</strong><span class="classifier">integer</span></dt><dd><p>Number of reciprocal lattice vectors.</p>
+</dd>
+<dt><strong>uc_volume</strong><span class="classifier">float</span></dt><dd><p>Unit-cell volume.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">

@@ -262,22 +262,25 @@ used by Quantum ESPRESSO’s PHonon code and found in the file <em>fildyn0</em>.
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.linear_interpolation">
-<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">linear_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.linear_interpolation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Perform linear interpolation on triangular or rectangular lattice.</p>
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">linear_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.linear_interpolation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform linear interpolation in one or two dimensions.</p>
 <p>The edges are interpolated using periodic boundary conditions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Data on uniform triangular or rectangular lattice.</p>
+<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Data on uniform 1D or 2D (triangular or rectangular) lattice.</p>
 </dd>
 <dt><strong>angle</strong><span class="classifier">number</span></dt><dd><p>Angle between lattice vectors in degrees.</p>
 </dd>
-<dt><strong>axes</strong><span class="classifier">2-tuple of int</span></dt><dd><p>Axes of <cite>data</cite> along which to interpolate (lattice vectors).</p>
+<dt><strong>axes</strong><span class="classifier">int or 2-tuple of int</span></dt><dd><p>Axes of <cite>data</cite> along which to interpolate (lattice vectors).</p>
 </dd>
 <dt><strong>period</strong><span class="classifier">number</span></dt><dd><p>If the values of <cite>data</cite> are defined on a periodic axis (i.e., only with
 respect to the modulo operation), the period of this axis. This is used
 in combination with <cite>stack</cite> to always interpolate across the shortest
 distance of two neighboring points.</p>
+</dd>
+<dt><strong>polar</strong><span class="classifier">bool</span></dt><dd><p>Interpolate complex values linearly in polar coordinates? This is
+helpful if neighboring data points have arbitrary complex phases.</p>
 </dd>
 </dl>
 </dd>
@@ -305,7 +308,7 @@ respect to fractional indices.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.path">
-<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recvec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.path" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recvec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">moveG</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate arbitrary path through Brillouin zone.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -318,6 +321,9 @@ labels such as <code class="docutils literal notranslate"><span class="pre">G</s
 <dt><strong>recvec</strong><span class="classifier">ndarray, optional</span></dt><dd><p>List of reciprocal lattice vectors.</p>
 </dd>
 <dt><strong>qe</strong><span class="classifier">bool, default False</span></dt><dd><p>Also return path in QE input format?</p>
+</dd>
+<dt><strong>moveG</strong><span class="classifier">float, default 0</span></dt><dd><p>Move Gamma point to the closest nonzero point multiplied by this value.
+This is useful, e.g., to plot phonon dispersions with TO-LO splitting.</p>
 </dd>
 <dt><strong>**kwargs</strong></dt><dd><p>Arguments passed to <a class="reference internal" href="#elphmod.bravais.primitives" title="elphmod.bravais.primitives"><code class="xref py py-func docutils literal notranslate"><span class="pre">primitives()</span></code></a>, e.g., parameters from
 ‘func’<cite>read_pwi</cite>, particularly the Bravais-lattice index <cite>ibrav</cite>.</p>
@@ -582,14 +588,14 @@ lattice constant in Bohr; the other elements are dimensionless.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.resize">
-<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">resize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.resize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Resize array via linear interpolation along two axes.</p>
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">resize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resize array via linear interpolation along one or two axes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>shape</strong><span class="classifier">2-tuple of int</span></dt><dd><p>New lattice shape. Defaults to the original shape.</p>
+<dt><strong>shape</strong><span class="classifier">int or 2-tuple of int</span></dt><dd><p>New lattice shape.</p>
 </dd>
-<dt><strong>shape, angle, axes, period</strong></dt><dd><p>Parameters for <a class="reference internal" href="#elphmod.bravais.linear_interpolation" title="elphmod.bravais.linear_interpolation"><code class="xref py py-func docutils literal notranslate"><span class="pre">linear_interpolation()</span></code></a>.</p>
+<dt><strong>shape, angle, axes, period, polar</strong></dt><dd><p>Parameters for <a class="reference internal" href="#elphmod.bravais.linear_interpolation" title="elphmod.bravais.linear_interpolation"><code class="xref py py-func docutils literal notranslate"><span class="pre">linear_interpolation()</span></code></a>.</p>
 </dd>
 <dt><strong>periodic</strong><span class="classifier">bool, default True</span></dt><dd><p>Interpolate between last and first data point of each axis?</p>
 </dd>

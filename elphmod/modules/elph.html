@@ -79,6 +79,11 @@ debugging.</p>
 </dd>
 <dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding electron-phonon matrix elements.</p>
 </dd>
+<dt><strong>divide_mass</strong><span class="classifier">bool</span></dt><dd><p>Has real-space coupling been divided by atomic masses?</p>
+</dd>
+<dt><strong>divide_ndegen</strong><span class="classifier">bool</span></dt><dd><p>Has real-space coupling been divided by degeneracy of Wigner-Seitz
+point?</p>
+</dd>
 <dt><strong>node, images</strong><span class="classifier">MPI.Intracomm</span></dt><dd><p>Communicators between processes that share memory or same <code class="docutils literal notranslate"><span class="pre">node.rank</span></code>
 if <cite>shared_memory</cite>.</p>
 </dd>
@@ -96,8 +101,8 @@ if <cite>shared_memory</cite>.</p>
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="elphmod.elph.Model.divide_ndegen">
-<span class="sig-name descname"><span class="pre">divide_ndegen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.divide_ndegen" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="elphmod.elph.Model.divide_degeneracy">
+<span class="sig-name descname"><span class="pre">divide_degeneracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.divide_degeneracy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Divide real-space coupling by degeneracy of Wigner-Seitz point.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -256,7 +261,7 @@ g_{\vec R, \vec R'} = g_{\vec R - \vec R', -\vec R'}^\dagger\]</div>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.q2r">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.q2r" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.q2r" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fourier-transform electron-phonon coupling from reciprocal to real space.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -266,12 +271,6 @@ g_{\vec R, \vec R'} = g_{\vec R - \vec R', -\vec R'}^\dagger\]</div>
 <dt><strong>nq, nk</strong><span class="classifier">tuple of int</span></dt><dd><p>Number of q and k points along axes, i.e., shapes of uniform meshes.</p>
 </dd>
 <dt><strong>g</strong><span class="classifier">ndarray</span></dt><dd><p>Electron-phonon coupling on complete uniform q- and k-point meshes.</p>
-</dd>
-<dt><strong>divide_mass</strong><span class="classifier">bool</span></dt><dd><p>Divide electron-phonon coupling by square root of atomic masses?</p>
-</dd>
-<dt><strong>divide_ndegen</strong><span class="classifier">bool</span></dt><dd><p>Divide real-space coupling by degeneracy of Wigner-Seitz point? Only
-<code class="docutils literal notranslate"><span class="pre">True</span></code> yields correct couplings. <code class="docutils literal notranslate"><span class="pre">False</span></code> should only be used for
-debugging.</p>
 </dd>
 </dl>
 </dd>

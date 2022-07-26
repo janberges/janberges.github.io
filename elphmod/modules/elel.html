@@ -13,6 +13,8 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="MPI" href="MPI.html" />
@@ -106,6 +108,37 @@ integer, linear combinations via a 3-tuple of integers.</p>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elel.hartree_energy">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">hartree_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho_g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_vect</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngm_g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uc_volume</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.hartree_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the Hartree energy in units of Rydberg.</p>
+<p>This function is basically a copy of Quantum ESPRESSO’s subroutine <code class="docutils literal notranslate"><span class="pre">v_h</span></code>
+from <code class="docutils literal notranslate"><span class="pre">v_of_rho.f90</span></code>.</p>
+<p>All input parameters can be obtained from reading the formatted
+charge-density output. Use <code class="xref py py-func docutils literal notranslate"><span class="pre">el.read_rhoG_density()</span></code> for this purpose.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>rho_g</strong><span class="classifier">ndarray</span></dt><dd><p>Electronic charge density <span class="math notranslate nohighlight">\(\rho(\vec G)\)</span> on reciprocal-space grid
+points.</p>
+</dd>
+<dt><strong>g_vect</strong><span class="classifier">ndarray</span></dt><dd><p>Reciprocal lattice vectors <span class="math notranslate nohighlight">\(\vec G\)</span>.</p>
+</dd>
+<dt><strong>ngm_g</strong><span class="classifier">integer</span></dt><dd><p>Number of reciprocal lattice vectors.</p>
+</dd>
+<dt><strong>uc_volume: float</strong></dt><dd><p>Unit-cell volume.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>ehart</strong><span class="classifier">float</span></dt><dd><p>Hartree energy in units of Rydberg.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
