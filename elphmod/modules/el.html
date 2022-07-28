@@ -604,6 +604,8 @@ points.</p>
 </dd>
 <dt><strong>uc_volume</strong><span class="classifier">float</span></dt><dd><p>Unit-cell volume.</p>
 </dd>
+<dt><strong>mill_g</strong><span class="classifier">ndarray</span></dt><dd><p>Miller indices.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -640,7 +642,7 @@ points.</p>
 </dd>
 <dt><strong>num_bands</strong><span class="classifier">int</span></dt><dd><p>Number of bands in your pseudopotential.</p>
 </dd>
-<dt><strong>nkpts</strong><span class="classifier">int</span></dt><dd><p>Number of k-points in your Wannier90 calculations.
+<dt><strong>nkpts</strong><span class="classifier">int</span></dt><dd><p>Number of k points in your Wannier90 calculations.
 For example 1296 for 36x36x1.</p>
 </dd>
 </dl>
@@ -648,6 +650,43 @@ For example 1296 for 36x36x1.</p>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Kohn-Sham energies: <code class="docutils literal notranslate"><span class="pre">eig[num_bands,</span> <span class="pre">nkpts]</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.read_wfc">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_wfc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ibrav</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_wfc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the wave function output from Quantum ESPRESSO.</p>
+<div class="math notranslate nohighlight">
+\[\psi_{n \vec k}(\vec r) = \frac 1 {\sqrt V} \sum_{\vec G}
+    c_{n, \vec k + \vec G} \E^{\I (\vec k + \vec G) \vec r}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Output file name.</p>
+</dd>
+<dt><strong>ibrav</strong><span class="classifier">integer</span></dt><dd><p>Bravais lattice index (see <code class="docutils literal notranslate"><span class="pre">pw.x</span></code> input description).</p>
+</dd>
+<dt><strong>a, b, c</strong><span class="classifier">float</span></dt><dd><p>Bravais lattice parameters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>evc</strong><span class="classifier">ndarray</span></dt><dd><p>Electronic wave function <span class="math notranslate nohighlight">\(c_{n, \vec k + \vec G}\)</span>.</p>
+</dd>
+<dt><strong>igwx</strong><span class="classifier">integer</span></dt><dd><p>Number of reciprocal lattice vectors.</p>
+</dd>
+<dt><strong>xk</strong><span class="classifier">ndarray</span></dt><dd><p>k point.</p>
+</dd>
+<dt><strong>k_plus_G</strong><span class="classifier">ndarray</span></dt><dd><p>k point plus reciprocal lattice vectors <span class="math notranslate nohighlight">\(\vec G\)</span>.</p>
+</dd>
+<dt><strong>g_vect</strong><span class="classifier">ndarray</span></dt><dd><p>Reciprocal lattice vectors <span class="math notranslate nohighlight">\(\vec G\)</span>.</p>
+</dd>
+<dt><strong>mill_g</strong><span class="classifier">ndarray</span></dt><dd><p>Miller indices.</p>
 </dd>
 </dl>
 </dd>
