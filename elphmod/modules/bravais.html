@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Bravais &#8212; elphmod  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -36,7 +37,7 @@
           <div class="body" role="main">
             
   <section id="module-elphmod.bravais">
-<span id="bravais"></span><h1>Bravais<a class="headerlink" href="#module-elphmod.bravais" title="Permalink to this headline">¶</a></h1>
+<span id="bravais"></span><h1>Bravais<a class="headerlink" href="#module-elphmod.bravais" title="Permalink to this heading">¶</a></h1>
 <p>Lattices, symmetries, and interpolation.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.BZ">
@@ -46,10 +47,10 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.Fourier_interpolation">
-<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">Fourier_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hr_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.Fourier_interpolation" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">Fourier_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hr_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.Fourier_interpolation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform Fourier interpolation on triangular or rectangular lattice.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Data on uniform triangular or rectangular lattice.</p>
 </dd>
@@ -63,7 +64,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>function</dt><dd><p>Interpolant for <cite>data</cite>. <code class="docutils literal notranslate"><span class="pre">Fourier_interpolation(data)(i,</span> <span class="pre">j)</span></code> yields
 the same value as <code class="docutils literal notranslate"><span class="pre">data[i,</span> <span class="pre">j]</span></code>. Thus the data array is “generalized”
@@ -89,7 +90,7 @@ with respect to fractional indices.</p>
 paths through both triangular and rectangular Brillouin zones, where special
 points can be defined using labels such as <code class="docutils literal notranslate"><span class="pre">'G'</span></code>, <code class="docutils literal notranslate"><span class="pre">'M'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'K'</span></code>.)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>N</strong><span class="classifier">int</span></dt><dd><p>Number of mesh points per dimension if <cite>mesh</cite> is <code class="docutils literal notranslate"><span class="pre">True</span></code> and <cite>N</cite> is a
 multiple of 6. Otherwise the number of points per <span class="math notranslate nohighlight">\(2 \pi / a\)</span>.</p>
@@ -108,7 +109,7 @@ irreducible wedge.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Points in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
 </dd>
@@ -126,7 +127,7 @@ irreducible wedge.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">cartesian_to_crystal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R_CARTESIAN</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.cartesian_to_crystal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform a lattice structure from crystal to Cartesian coordinates.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>R_CARTESIAN</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice structure in Cartesian coordinates.</p>
 </dd>
@@ -134,7 +135,7 @@ irreducible wedge.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>R_CRYSTAL: ndarray</dt><dd><p>Lattice structure in crystal coordinates.</p>
 </dd>
@@ -148,7 +149,7 @@ irreducible wedge.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">complete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.complete" title="Permalink to this definition">¶</a></dt>
 <dd><p>Complete data on Monkhorst-Pack mesh.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Incomplete data on uniform mesh. Missing values are represented by NaN.</p>
 </dd>
@@ -156,7 +157,7 @@ irreducible wedge.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Input data with missing values determined via the symmetries found.</p>
 </dd>
@@ -170,7 +171,7 @@ irreducible wedge.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">complete_k</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wedge</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.complete_k" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate k dependence for equivalent q points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>wedge</strong><span class="classifier">ndarray</span></dt><dd><p>Data on irreducible q wedge and uniform k mesh.</p>
 </dd>
@@ -178,7 +179,7 @@ irreducible wedge.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Data on uniform q and k meshes.</p>
 </dd>
@@ -192,7 +193,7 @@ irreducible wedge.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">crystal_to_cartesian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R_CRYSTAL</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.crystal_to_cartesian" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform a lattice structure from crystal to Cartesian coordinates.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>R_CRYSTAL</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice structure in crystal coordinates.</p>
 </dd>
@@ -200,7 +201,7 @@ irreducible wedge.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>R_CARTESIAN</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice structure in Cartesian coordinates.</p>
 </dd>
@@ -214,7 +215,7 @@ irreducible wedge.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.images" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate symmetry-equivalent k points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>k1, k2</strong><span class="classifier">int</span></dt><dd><p>Indices of point in uniform mesh.</p>
 </dd>
@@ -224,7 +225,7 @@ irreducible wedge.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>set</dt><dd><p>Mesh-point indices of all equivalent k points.</p>
 </dd>
@@ -238,7 +239,7 @@ irreducible wedge.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">irreducibles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.irreducibles" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate set of irreducible k points.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>nk</strong><span class="classifier">int</span></dt><dd><p>Number of mesh points per dimension.</p>
 </dd>
@@ -246,7 +247,7 @@ irreducible wedge.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
 <dt>set</dt><dd><p>Mesh-point indices of irreducible k points.</p>
 <p>Of all equivalent points, the first occurrence in the sequence</p>
@@ -266,7 +267,7 @@ used by Quantum ESPRESSO’s PHonon code and found in the file <em>fildyn0</em>.
 <dd><p>Perform linear interpolation in one or two dimensions.</p>
 <p>The edges are interpolated using periodic boundary conditions.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Data on uniform 1D or 2D (triangular or rectangular) lattice.</p>
 </dd>
@@ -284,7 +285,7 @@ helpful if neighboring data points have arbitrary complex phases.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>function</dt><dd><p>Interpolant for <cite>data</cite>. <code class="docutils literal notranslate"><span class="pre">linear_interpolation(data)(i,</span> <span class="pre">j)</span></code> yields the
 same value as <code class="docutils literal notranslate"><span class="pre">data[i,</span> <span class="pre">j]</span></code>. Thus the data array is “generalized” with
@@ -311,7 +312,7 @@ respect to fractional indices.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recvec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">moveG</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate arbitrary path through Brillouin zone.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>points</strong><span class="classifier">ndarray</span></dt><dd><p>List of high-symmetry points in crystal coordinates. Some well-known
 labels such as <code class="docutils literal notranslate"><span class="pre">G</span></code> (Γ), <code class="docutils literal notranslate"><span class="pre">M</span></code>, or <code class="docutils literal notranslate"><span class="pre">K</span></code> may also be used.</p>
@@ -330,7 +331,7 @@ This is useful, e.g., to plot phonon dispersions with TO-LO splitting.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Points in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
 </dd>
@@ -356,13 +357,13 @@ This is useful, e.g., to plot phonon dispersions with TO-LO splitting.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">point_on_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-14</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.point_on_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test whether a <cite>test_point</cite> is between the points A and B.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Numerical parameter, in case the cross product is not exactly 0.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>bool</dt><dd><p>Is the test_point on a straight line between point A and B?</p>
 </dd>
@@ -378,7 +379,7 @@ This is useful, e.g., to plot phonon dispersions with TO-LO splitting.</p>
 <p>Adapted from Modules/latgen.f90 of Quantum ESPRESSO.</p>
 <p>For documentation, see <a class="reference external" href="http://www.quantum-espresso.org/Doc/INPUT_PW.html">http://www.quantum-espresso.org/Doc/INPUT_PW.html</a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ibrav</strong><span class="classifier">int</span></dt><dd><p>Bravais-lattice index.</p>
 </dd>
@@ -393,7 +394,7 @@ lattice constant in Bohr; the other elements are dimensionless.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Matrix of primitive Bravais lattice vectors.</p>
 </dd>
@@ -407,13 +408,13 @@ lattice constant in Bohr; the other elements are dimensionless.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">readPOSCAR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.readPOSCAR" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read crystal structure from VASP input file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>dict</dt><dd><p>Crystal structure.</p>
 </dd>
@@ -427,13 +428,13 @@ lattice constant in Bohr; the other elements are dimensionless.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">read_epw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.read_epw" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read input parameters from Quantum ESPRESSO’s epw file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>epw file name.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>dict</dt><dd><p>Input parameters.</p>
 </dd>
@@ -447,13 +448,13 @@ lattice constant in Bohr; the other elements are dimensionless.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">read_matdyn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.read_matdyn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read input parameters from Quantum ESPRESSO’s matdyn file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>matdyn file name.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>dict</dt><dd><p>Input parameters.</p>
 </dd>
@@ -467,13 +468,13 @@ lattice constant in Bohr; the other elements are dimensionless.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">read_ph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.read_ph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read input parameters from Quantum ESPRESSO’s ph file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>ph file name.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>dict</dt><dd><p>Input parameters.</p>
 </dd>
@@ -487,13 +488,13 @@ lattice constant in Bohr; the other elements are dimensionless.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">read_pwi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pwi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.read_pwi" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read input data and crystal structure from PW input file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>pwi</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>dict</dt><dd><p>Input data and crystal structure.</p>
 </dd>
@@ -507,13 +508,13 @@ lattice constant in Bohr; the other elements are dimensionless.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">read_q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.read_q2r" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read input parameters from Quantum ESPRESSO’s q2r file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>q2r file name.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>dict</dt><dd><p>Input parameters.</p>
 </dd>
@@ -527,7 +528,7 @@ lattice constant in Bohr; the other elements are dimensionless.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">read_wigner_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_ws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.read_wigner_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read binary file with Wigner-Seitz data as used by EPW.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Name of file with Wigner-Seitz data.</p>
 </dd>
@@ -551,13 +552,13 @@ lattice constant in Bohr; the other elements are dimensionless.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">read_win</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">win</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.read_win" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read input data from .win file (Wannier90).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>win</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>dict</dt><dd><p>Crystal structure.</p>
 </dd>
@@ -571,13 +572,13 @@ lattice constant in Bohr; the other elements are dimensionless.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">reciprocals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.reciprocals" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate translation vectors of reciprocal lattice.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>a1, a2</strong><span class="classifier">ndarray</span></dt><dd><p>Translation vectors of Bravais lattice.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray, ndarray</dt><dd><p>Translation vectors of reciprocal lattice (without <span class="math notranslate nohighlight">\(2 \pi\)</span>).</p>
 </dd>
@@ -591,7 +592,7 @@ lattice constant in Bohr; the other elements are dimensionless.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">resize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.resize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resize array via linear interpolation along one or two axes.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>shape</strong><span class="classifier">int or 2-tuple of int</span></dt><dd><p>New lattice shape.</p>
 </dd>
@@ -601,7 +602,7 @@ lattice constant in Bohr; the other elements are dimensionless.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Resized data array.</p>
 </dd>
@@ -621,7 +622,7 @@ lattice constant in Bohr; the other elements are dimensionless.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">two_dimensional</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.rotate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rotate vector anti-clockwise.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>vector</strong><span class="classifier">array_like</span></dt><dd><p>Two-dimensional vector.</p>
 </dd>
@@ -629,7 +630,7 @@ lattice constant in Bohr; the other elements are dimensionless.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Rotated vector.</p>
 </dd>
@@ -647,7 +648,7 @@ For 60 or 120 deg. (triangular lattice) this yields the Loeschian numbers.
 Non-equivalent lattice sites may have the same distance from the origin!
 (E.g., there are non-equivalent 20th neighbors in a triangular lattice.)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>k1, k2</strong><span class="classifier">int</span></dt><dd><p>Point in lattice coordinates (crystal coordinates, mesh-indices, …).</p>
 </dd>
@@ -655,7 +656,7 @@ Non-equivalent lattice sites may have the same distance from the origin!
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>number</dt><dd><p>Squared distance of point from origin.</p>
 </dd>
@@ -678,7 +679,7 @@ Out: ... | oo o   x| xx x   o| oo o   o| ...
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>*points</strong></dt><dd><p>Points on periodic axis.</p>
 </dd>
@@ -686,7 +687,7 @@ Out: ... | oo o   x| xx x   o| oo o   o| ...
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Points equivalent to input, with minimal distance on non-periodic axis.</p>
 </dd>
@@ -700,7 +701,7 @@ Out: ... | oo o   x| xx x   o| oo o   o| ...
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.supercell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set up supercell.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>N1, N2, N3</strong><span class="classifier">tuple of int or int, default 1</span></dt><dd><p>Supercell lattice vectors in units of primitive lattice vectors.
 Multiples of single primitive vector can be defined via a scalar
@@ -708,7 +709,7 @@ integer, linear combinations via a 3-tuple of integers.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>int</dt><dd><p>Number of unit cells in supercell.</p>
 </dd>
@@ -728,7 +729,7 @@ integer, linear combinations via a 3-tuple of integers.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">symmetries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.symmetries" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find symmetries of data on Monkhorst-Pack mesh.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Data on uniform k mesh.</p>
 </dd>
@@ -740,7 +741,7 @@ integer, linear combinations via a 3-tuple of integers.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
 <dt>iterator</dt><dd><p>All symmetries found are returned one after the other.</p>
 <p>Each symmetry is described by a Boolean (“reflection?”) and a rotation
@@ -758,7 +759,7 @@ the original and the transformed mesh.</p>
 <dd><p>Map any lattice point to the Voronoi cell* around the origin.</p>
 <p>(*) Wigner-Seitz cell/Brillouin zone for Bravais/reciprocal lattice.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>k1, k2</strong><span class="classifier">int</span></dt><dd><p>Mesh-point indices.</p>
 </dd>
@@ -772,7 +773,7 @@ the original and the transformed mesh.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>set</dt><dd><p>All equivalent point within or on the edge of the Voronoi cell.</p>
 </dd>
@@ -786,7 +787,7 @@ the original and the transformed mesh.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">translations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">two_dimensional</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.translations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate translation vectors of Bravais lattice.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>angle</strong><span class="classifier">float</span></dt><dd><p>Angle between first and second vector in degrees:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">VALUE</span>  <span class="n">LATTICE</span>
@@ -800,7 +801,7 @@ the original and the transformed mesh.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray, ndarray</dt><dd><p>Translation vectors of Bravais lattice.</p>
 </dd>
@@ -814,13 +815,13 @@ the original and the transformed mesh.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.volume" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate unit-cell volume/area/length.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>a1, a2, a3</strong><span class="classifier">ndarray</span></dt><dd><p>Primite lattice vectors.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float</dt><dd><p>Unit-cell volume/area/length.</p>
 </dd>
@@ -834,7 +835,7 @@ the original and the transformed mesh.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">wigner_seitz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.wigner_seitz" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find lattice points in Wigner-Seitz cell (including boundary).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>nk</strong><span class="classifier">int</span></dt><dd><p>Number of points per dimension.</p>
 </dd>
@@ -846,7 +847,7 @@ the original and the transformed mesh.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>list of tuple of int</dt><dd><p>Mesh-point indices.</p>
 </dd>
@@ -864,7 +865,7 @@ the original and the transformed mesh.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">wigner_seitz_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.wigner_seitz_x" title="Permalink to this definition">¶</a></dt>
 <dd><p>Emulate the EPW subroutine <em>wigner_seitz{x}</em> in <em>wigner.f90</em>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x</strong><span class="classifier">str</span></dt><dd><p>Type of Wigner-Seitz cell:</p>
 <ul class="simple">
@@ -875,13 +876,13 @@ the original and the transformed mesh.</p>
 </dd>
 <dt><strong>nk</strong><span class="classifier">int</span></dt><dd><p>Number of points per dimension.</p>
 </dd>
-<dt><strong>at, tau</strong><span class="classifier">ndarray</span></dt><dd><p>Geometry as returned by <code class="xref py py-func docutils literal notranslate"><span class="pre">ph.read_flfrc()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">ph.model()</span></code>.</p>
+<dt><strong>at, tau</strong><span class="classifier">ndarray</span></dt><dd><p>Geometry as returned by <code class="xref py py-func docutils literal notranslate"><span class="pre">ph.read_flfrc()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">ph.Model()</span></code>.</p>
 </dd>
 <dt><strong>epsilon</strong><span class="classifier">float</span></dt><dd><p>Maximum absolute difference of “equal” floats.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>list of tuple of int</dt><dd><p>Mesh-point indices.</p>
 </dd>
@@ -899,7 +900,7 @@ the original and the transformed mesh.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">write_epw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.write_epw" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write input data to epw file (Quantum ESPRRESO).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>epw</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
 </dd>
@@ -915,7 +916,7 @@ the original and the transformed mesh.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">write_matdyn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matdyn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.write_matdyn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write input data to matdyn file (Quantum ESPRRESO).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>matdyn</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
 </dd>
@@ -931,7 +932,7 @@ the original and the transformed mesh.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">write_ph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.write_ph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write input data to ph file (Quantum ESPRESSO).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ph</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
 </dd>
@@ -947,7 +948,7 @@ the original and the transformed mesh.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">write_pwi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pwi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.write_pwi" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write crystal structure to PW input file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>pwi</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
 </dd>
@@ -963,7 +964,7 @@ the original and the transformed mesh.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">write_q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q2r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.write_q2r" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write input data to q2r file (Quantum ESPRRESO).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>q2r</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
 </dd>
@@ -993,7 +994,7 @@ the original and the transformed mesh.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">write_win</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">win</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.write_win" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write input data to .win file (Wannier90).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>win</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
 </dd>
@@ -1057,7 +1058,7 @@ the original and the transformed mesh.</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -1074,7 +1075,7 @@ the original and the transformed mesh.</p>
       &copy;2017-2022 University of Bremen.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

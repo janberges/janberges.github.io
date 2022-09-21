@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Diagrams &#8212; elphmod  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -36,14 +37,14 @@
           <div class="body" role="main">
             
   <section id="module-elphmod.diagrams">
-<span id="diagrams"></span><h1>Diagrams<a class="headerlink" href="#module-elphmod.diagrams" title="Permalink to this headline">¶</a></h1>
+<span id="diagrams"></span><h1>Diagrams<a class="headerlink" href="#module-elphmod.diagrams" title="Permalink to this heading">¶</a></h1>
 <p>Susceptibilities, self-energies, etc.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.diagrams.Pi_g">
 <span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">Pi_g</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps=1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dd=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.Pi_g" title="Permalink to this definition">¶</a></dt>
 <dd><p>Join electron-phonon coupling and Lindhard bubble in orbital basis.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>q</strong><span class="classifier">list of tuple</span></dt><dd><p>List of q points in crystal coordinates <span class="math notranslate nohighlight">\(q_i \in [0, 2 \pi)\)</span>.</p>
 </dd>
@@ -65,7 +66,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>(k-independent) product of electron-phonon coupling and Lindhard bubble.</p>
 </dd>
@@ -91,7 +92,7 @@
     \delta(\epsilon_{\vec k + \vec q m})
 }\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>q</strong><span class="classifier">list of tuple</span></dt><dd><p>List of q points in crystal coordinates <span class="math notranslate nohighlight">\(q_i \in [0, 2 \pi)\)</span>.</p>
 </dd>
@@ -105,7 +106,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Enumerator of double Fermi-surface average before <span class="math notranslate nohighlight">\(\vec q \nu\)</span>
 summation.</p>
@@ -123,7 +124,7 @@ summation.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">first_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps=1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.first_order" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate first-order diagram of grand potential.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
 </dd>
@@ -141,7 +142,7 @@ basis as <cite>U</cite> (eigenbasis of the Hamiltonian).</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>complex</dt><dd><p>Value of first-order diagram.</p>
 </dd>
@@ -155,7 +156,7 @@ basis as <cite>U</cite> (eigenbasis of the Hamiltonian).</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">grand_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.grand_potential" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate (zeroth order of) grand potential.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
 </dd>
@@ -165,7 +166,7 @@ basis as <cite>U</cite> (eigenbasis of the Hamiltonian).</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>real</dt><dd><p>Grand potential.</p>
 </dd>
@@ -184,7 +185,7 @@ basis as <cite>U</cite> (eigenbasis of the Hamiltonian).</p>
         {f(\epsilon_{\vec k n}) - f(\epsilon_{\vec k + \vec q m})}
         {\epsilon_{\vec k n} - \epsilon_{\vec k + \vec q m} + \omega}\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>q</strong><span class="classifier">list of tuple</span></dt><dd><p>List of q points in crystal coordinates <span class="math notranslate nohighlight">\(q_i \in [0, 2 \pi)\)</span>.</p>
 </dd>
@@ -225,7 +226,7 @@ excluded from the integrand provided for fluctuation diagnostics.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Phonon self-energy.</p>
 </dd>
@@ -239,7 +240,7 @@ excluded from the integrand provided for fluctuation diagnostics.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">phonon_self_energy2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyb_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyb_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GB</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.phonon_self_energy2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate phonon self-energy using the Green’s functions explicitly.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>q</strong><span class="classifier">list of 2-tuples</span></dt><dd><p>Considered q points defined via crystal coordinates <span class="math notranslate nohighlight">\(q_1, q_2 \in
 [0, 2 \pi)\)</span>.</p>
@@ -260,7 +261,7 @@ excluded from the integrand provided for fluctuation diagnostics.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Phonon self-energy.</p>
 </dd>
@@ -284,7 +285,7 @@ excluded from the integrand provided for fluctuation diagnostics.</p>
 potential. To obtain the second derivative of the free energy, this shift
 associated with a possible change of the chemical potential has to be added.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
 </dd>
@@ -296,7 +297,7 @@ associated with a possible change of the chemical potential has to be added.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Phonon self-energy correction.</p>
 </dd>
@@ -323,7 +324,7 @@ associated with a possible change of the chemical potential has to be added.</p>
 a boolean array with the same shape as <cite>e</cite>, where <code class="docutils literal notranslate"><span class="pre">True</span></code> marks states of
 the target subspace, interactions between which are excluded.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
 </dd>
@@ -340,7 +341,7 @@ eigenvectors of the Wannier Hamiltonian.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>function</dt><dd><p>RPA polarization in orbital basis as a function of <span class="math notranslate nohighlight">\(q_1, q_2, q_3
 \in [0, 2 \pi)\)</span>.</p>
@@ -365,7 +366,7 @@ eigenvectors of the Wannier Hamiltonian.</p>
         {\epsilon_{\vec k' + \vec q m'} - \epsilon_{\vec k' n'}}
     g_{\vec q \nu \vec k' m' n'}\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>q</strong><span class="classifier">list of tuple</span></dt><dd><p>List of q points in crystal coordinates <span class="math notranslate nohighlight">\(q_i \in [0, 2 \pi)\)</span>.</p>
 </dd>
@@ -389,7 +390,7 @@ eigenvectors of the Wannier Hamiltonian.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Dressed electron-phonon coupling in band basis.</p>
 </dd>
@@ -420,7 +421,7 @@ eigenvectors of the Wannier Hamiltonian.</p>
     U_{\vec k + \vec q \alpha' m}^* U_{\vec k \beta' n}
     g_{\vec q \nu \vec k \alpha' \beta'}\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>q</strong><span class="classifier">list of tuple</span></dt><dd><p>List of q points in crystal coordinates <span class="math notranslate nohighlight">\(q_i \in [0, 2 \pi)\)</span>.</p>
 </dd>
@@ -436,7 +437,7 @@ eigenvectors of the Wannier Hamiltonian.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Dressed electron-phonon coupling in orbital basis.</p>
 </dd>
@@ -462,7 +463,7 @@ eigenvectors of the Wannier Hamiltonian.</p>
     {\epsilon_{\vec k + \vec q} - \epsilon_{\vec k} + \I \eta}\]</div>
 <p>The resolution in q is limited by the resolution in k.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
 </dd>
@@ -474,7 +475,7 @@ eigenvectors of the Wannier Hamiltonian.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>function</dt><dd><p>Static electronic susceptibility as a function of <span class="math notranslate nohighlight">\(q_1, q_2 \in
 [0, 2 \pi)\)</span>.</p>
@@ -500,7 +501,7 @@ eigenvectors of the Wannier Hamiltonian.</p>
 <p>The resolution in q is limited by the resolution in k.</p>
 <p>Original implementation by Erik G.C.P. van Loon.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
 </dd>
@@ -514,7 +515,7 @@ eigenvectors of the Wannier Hamiltonian.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>function</dt><dd><p>Static electronic susceptibility as a function of <span class="math notranslate nohighlight">\(q_1, q_2 \in
 [0, 2 \pi)\)</span>.</p>
@@ -564,7 +565,7 @@ q&#39; v     k+q&#39; c      q-q&#39; v
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>q, Q</strong><span class="classifier">tuple</span></dt><dd><p>q points in crystal coordinates <span class="math notranslate nohighlight">\(q_i, q'_i \in [0, 2 \pi)\)</span>.</p>
 </dd>
@@ -582,7 +583,7 @@ q&#39; v     k+q&#39; c      q-q&#39; v
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>complex</dt><dd><p>Value of triangle.</p>
 </dd>
@@ -644,7 +645,7 @@ q&#39; v     k+q&#39; c      q-q&#39; v
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -661,7 +662,7 @@ q&#39; v     k+q&#39; c      q-q&#39; v
       &copy;2017-2022 University of Bremen.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Eliashberg &#8212; elphmod  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -36,14 +37,14 @@
           <div class="body" role="main">
             
   <section id="module-elphmod.eliashberg">
-<span id="eliashberg"></span><h1>Eliashberg<a class="headerlink" href="#module-elphmod.eliashberg" title="Permalink to this headline">¶</a></h1>
+<span id="eliashberg"></span><h1>Eliashberg<a class="headerlink" href="#module-elphmod.eliashberg" title="Permalink to this heading">¶</a></h1>
 <p>Parameters for McMillan’s formula.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.eliashberg.McMillan">
 <span class="sig-prename descclassname"><span class="pre">elphmod.eliashberg.</span></span><span class="sig-name descname"><span class="pre">McMillan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mustar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.eliashberg.McMillan" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate parameters and result of McMillan’s formula.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>nq</strong><span class="classifier">int</span></dt><dd><p>Number of q points per dimension.</p>
 </dd>
@@ -60,7 +61,7 @@ coupling are set to zero.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float</dt><dd><p>Effective electron-phonon coupling strength <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
 </dd>
@@ -78,7 +79,7 @@ coupling are set to zero.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.eliashberg.</span></span><span class="sig-name descname"><span class="pre">Tc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamda</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wlog</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mustar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.eliashberg.Tc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate critical temperature using McMillan’s formula.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>lamda</strong><span class="classifier">float</span></dt><dd><p>Effective electron-phonon coupling strength.</p>
 </dd>
@@ -88,7 +89,7 @@ coupling are set to zero.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float</dt><dd><p>Critical temperature in kelvin.</p>
 </dd>
@@ -150,7 +151,7 @@ coupling are set to zero.</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -167,7 +168,7 @@ coupling are set to zero.</p>
       &copy;2017-2022 University of Bremen.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

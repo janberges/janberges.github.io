@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Electron &#8212; elphmod  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -36,14 +37,14 @@
           <div class="body" role="main">
             
   <section id="module-elphmod.el">
-<span id="electron"></span><h1>Electron<a class="headerlink" href="#module-elphmod.el" title="Permalink to this headline">¶</a></h1>
+<span id="electron"></span><h1>Electron<a class="headerlink" href="#module-elphmod.el" title="Permalink to this heading">¶</a></h1>
 <p>Tight-binding models from Wannier90.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.el.Model">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read_xsf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_ortho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tight-binding model for the electrons.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>seedname</strong><span class="classifier">str</span></dt><dd><p>Common prefix of Wannier90 output files: <em>seedname_hr.dat</em> with the
 Hamiltonian in the Wannier basis and, optionally, <em>seedname_wsvec.dat</em>
@@ -75,7 +76,7 @@ systems. Make sure to delete the binary files <em>seedname_wf.npy</em> and
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Attributes</dt>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors of Wigner-Seitz supercell.</p>
 </dd>
@@ -117,7 +118,7 @@ attributes remain unchanged!</p>
 <p>Together with <a class="reference internal" href="#elphmod.el.Model.shift_orbitals" title="elphmod.el.Model.shift_orbitals"><code class="xref py py-func docutils literal notranslate"><span class="pre">shift_orbitals()</span></code></a>, this function helps reconcile
 inconsistent definitions of the basis/motif of the Bravais lattice.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>*order</strong><span class="classifier">int</span></dt><dd><p>New order of Wannier functions.</p>
 </dd>
@@ -135,7 +136,7 @@ attributes remain unchanged!</p>
 <p>Together with <a class="reference internal" href="#elphmod.el.Model.order_orbitals" title="elphmod.el.Model.order_orbitals"><code class="xref py py-func docutils literal notranslate"><span class="pre">order_orbitals()</span></code></a>, this function helps reconcile
 inconsistent definitions of the basis/motif of the Bravais lattice.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>s</strong><span class="classifier">slice</span></dt><dd><p>Slice of orbital indices corresponding to selected basis atom(s).</p>
 </dd>
@@ -162,13 +163,13 @@ inconsistent definitions of the basis/motif of the Bravais lattice.</p>
 <span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.supercell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Map tight-binding model onto supercell.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>N1, N2, N3</strong><span class="classifier">tuple of int or int, default 1</span></dt><dd><p>Supercell lattice vectors in units of primitive lattice vectors.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>object</dt><dd><p>Tight-binding model for supercell.</p>
 </dd>
@@ -219,7 +220,7 @@ H_{\vec R} = H_{-\vec R}^\dagger\]</div>
 <dd><p>Calculate the decay of the Hamiltonian.</p>
 <p>This function should yield the same data as <a class="reference internal" href="#elphmod.el.read_decayH" title="elphmod.el.read_decayH"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_decayH()</span></code></a>.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>seedname</strong><span class="classifier">str</span></dt><dd><p>Prefix of Wannier90 output file.</p>
 </dd>
@@ -229,7 +230,7 @@ lattice (<code class="docutils literal notranslate"><span class="pre">ibrav</spa
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>The distance of every Wigner-Seitz grid point measured from the center
 in angstrom.</p>
@@ -248,7 +249,7 @@ rydberg.</p>
 <dd><p>Calculate the entropy contribution <span class="math notranslate nohighlight">\(-TS\)</span> to the total free energy.</p>
 <p>In Quantum ESPRESSO <code class="docutils literal notranslate"><span class="pre">demet</span></code> is calculated in <code class="docutils literal notranslate"><span class="pre">gweights.f90</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>pw_scf_out</strong><span class="classifier">str</span></dt><dd><p>The name of the output file (typically <code class="docutils literal notranslate"><span class="pre">'pw.out'</span></code>).</p>
 </dd>
@@ -256,7 +257,7 @@ rydberg.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>demet</strong><span class="classifier">float</span></dt><dd><p>The <span class="math notranslate nohighlight">\(-TS\)</span> contribution to the total free energy.</p>
 </dd>
@@ -295,13 +296,13 @@ the <code class="docutils literal notranslate"><span class="pre">SUBROUTINE</spa
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>pw_scf_out</strong><span class="classifier">str</span></dt><dd><p>Name of the output file (typically <code class="docutils literal notranslate"><span class="pre">'pw.out'</span></code> or <code class="docutils literal notranslate"><span class="pre">'scf.out'</span></code>).</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>eband</strong><span class="classifier">float</span></dt><dd><p>The band energy.</p>
 </dd>
@@ -321,7 +322,7 @@ the <code class="docutils literal notranslate"><span class="pre">SUBROUTINE</spa
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>proj</strong><span class="classifier">ndarray</span></dt><dd><p>Atomic projections from <a class="reference internal" href="#elphmod.el.read_atomic_projections" title="elphmod.el.read_atomic_projections"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_atomic_projections()</span></code></a>.</p>
 </dd>
@@ -334,7 +335,7 @@ components are summed over. Curly braces are expanded.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Summed-over atomic projections.</p>
 </dd>
@@ -354,7 +355,7 @@ components are summed over. Curly braces are expanded.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_atomic_projections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_proj_xml</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_fermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">order_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_atomic_projections" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read projected bands from <em>outdir/prefix.save/atomic_proj.xml</em>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>atomic_proj_xml</strong><span class="classifier">str</span></dt><dd><p>XML file with atomic projections generated by <code class="docutils literal notranslate"><span class="pre">projwfc.x</span></code>.</p>
 </dd>
@@ -369,7 +370,7 @@ to one?</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>k points.</p>
 </dd>
@@ -401,7 +402,7 @@ to one?</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_bands_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filbandgnu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_bands_plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read bands from <em>filband.gnu</em> produced by Quantum ESPRESSO’s <code class="docutils literal notranslate"><span class="pre">bands.x</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>filbandgnu</strong><span class="classifier">str</span></dt><dd><p>Name of file with plotted bands.</p>
 </dd>
@@ -409,7 +410,7 @@ to one?</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Cumulative reciprocal distance.</p>
 </dd>
@@ -425,13 +426,13 @@ to one?</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_decayH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_decayH" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read <em>decay.H</em> output from EPW.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>file</strong><span class="classifier">str</span></dt><dd><p>The name of the <em>decay.H</em> output from EPW.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>The distance of every Wigner-Seitz grid point measured from the center
 in angstrom.</p>
@@ -449,13 +450,13 @@ rydberg.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_energy_contributions_scf_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_energy_contributions_scf_out" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read energy contributions to the total energy <code class="docutils literal notranslate"><span class="pre">scf</span></code> output file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Name of Quantum ESPRESSO’s <code class="docutils literal notranslate"><span class="pre">scf</span></code> output file.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>dict</dt><dd><p>Energy contributions.</p>
 </dd>
@@ -469,13 +470,13 @@ rydberg.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_eps_nk_from_qe_pwo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_eps_nk_from_qe_pwo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read electronic eigenenergies and k points and calculate the occupations.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>pw_scf_out</strong><span class="classifier">str</span></dt><dd><p>Name of the output file (typically <code class="docutils literal notranslate"><span class="pre">'pw.out'</span></code> or <code class="docutils literal notranslate"><span class="pre">'scf.out'</span></code>).</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>energies</strong><span class="classifier">ndarray</span></dt><dd><p>Electronic eigenenergies (<code class="docutils literal notranslate"><span class="pre">eps_nk</span></code>) from <code class="docutils literal notranslate"><span class="pre">scf</span></code> output, shape <code class="docutils literal notranslate"><span class="pre">(nk,</span>
 <span class="pre">nbnd)</span></code>.</p>
@@ -501,7 +502,7 @@ rydberg.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_hrdat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_hrdat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read <em>_hr.dat</em> (or <em>_tb.dat</em>) file from Wannier90.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>seedname</strong><span class="classifier">str</span></dt><dd><p>Common prefix of Wannier90 input and output files.</p>
 </dd>
@@ -509,7 +510,7 @@ rydberg.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Lattice vectors.</p>
 </dd>
@@ -531,13 +532,13 @@ rydberg.</p>
 <p>where <span class="math notranslate nohighlight">\(\Omega\)</span> is the unit-cell volume, <span class="math notranslate nohighlight">\(n_r\)</span> are the FFT grid
 dimensions, and <span class="math notranslate nohighlight">\(i, j, k\)</span> run over FFT real-space grid points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>filout output file name.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>rho</strong><span class="classifier">ndarray</span></dt><dd><p>Electronic charge density <span class="math notranslate nohighlight">\(\rho_{i j k}\)</span> on FFT real-space grid
 points.</p>
@@ -554,13 +555,13 @@ points.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_projwfc_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">projwfc_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_projwfc_out" title="Permalink to this definition">¶</a></dt>
 <dd><p>Identify orbitals in <em>atomic_proj.xml</em> via output of <code class="docutils literal notranslate"><span class="pre">projwfc.x</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>projwfc_out</strong><span class="classifier">str</span></dt><dd><p>Output file of <code class="docutils literal notranslate"><span class="pre">projwfc.x</span></code>.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>list of str</dt><dd><p>Common names of (pseudo) atomic orbitals listed in <cite>projwfc_out</cite> (in
 that order).</p>
@@ -583,7 +584,7 @@ that order).</p>
 <p>The purpose of <span class="math notranslate nohighlight">\(\rho(\vec G)\)</span> is to calculate the charge density in
 real space <span class="math notranslate nohighlight">\(\rho(\vec r)\)</span> or the Hartree energy <code class="docutils literal notranslate"><span class="pre">ehart</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Output file name.</p>
 </dd>
@@ -593,7 +594,7 @@ real space <span class="math notranslate nohighlight">\(\rho(\vec r)\)</span> or
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>rho_g</strong><span class="classifier">ndarray</span></dt><dd><p>Electronic charge density <span class="math notranslate nohighlight">\(\rho(\vec G)\)</span> on reciprocal-space grid
 points.</p>
@@ -616,13 +617,13 @@ points.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_symmetry_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bandsout</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_symmetry_points" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read positions of symmetry points along path.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>bandsout</strong><span class="classifier">str</span></dt><dd><p>File with standard output from Quantum ESPRESSO’s <code class="docutils literal notranslate"><span class="pre">bands.x</span></code>.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>list</dt><dd><p>Positions of symmetry points.</p>
 </dd>
@@ -636,7 +637,7 @@ points.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_wannier90_eig_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nkpts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_wannier90_eig_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read Kohn-Sham energies (eV) from the Wannier90 output seedname.eig file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>seedname</strong><span class="classifier">str</span></dt><dd><p>For example ‘tas2’, if the file is named ‘tas2.eig’.</p>
 </dd>
@@ -647,7 +648,7 @@ For example 1296 for 36x36x1.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Kohn-Sham energies: <code class="docutils literal notranslate"><span class="pre">eig[num_bands,</span> <span class="pre">nkpts]</span></code>.</p>
 </dd>
@@ -664,7 +665,7 @@ For example 1296 for 36x36x1.</p>
 \[\psi_{n \vec k}(\vec r) = \frac 1 {\sqrt V} \sum_{\vec G}
     c_{n, \vec k + \vec G} \E^{\I (\vec k + \vec G) \vec r}\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Output file name.</p>
 </dd>
@@ -674,7 +675,7 @@ For example 1296 for 36x36x1.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>evc</strong><span class="classifier">ndarray</span></dt><dd><p>Electronic wave function <span class="math notranslate nohighlight">\(c_{n, \vec k + \vec G}\)</span>.</p>
 </dd>
@@ -752,7 +753,7 @@ For example 1296 for 36x36x1.</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -769,7 +770,7 @@ For example 1296 for 36x36x1.</p>
       &copy;2017-2022 University of Bremen.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

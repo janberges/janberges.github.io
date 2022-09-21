@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Electron–phonon &#8212; elphmod  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -36,14 +37,14 @@
           <div class="body" role="main">
             
   <section id="module-elphmod.elph">
-<span id="electron-phonon"></span><h1>Electron–phonon<a class="headerlink" href="#module-elphmod.elph" title="Permalink to this headline">¶</a></h1>
+<span id="electron-phonon"></span><h1>Electron–phonon<a class="headerlink" href="#module-elphmod.elph" title="Permalink to this heading">¶</a></h1>
 <p>Electron-phonon coupling from EPW.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.elph.Model">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epmatwp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wigner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">el</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_ws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Localized model for electron-phonon coupling.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>epmatwp</strong><span class="classifier">str</span></dt><dd><p>File with electron-phonon coupling in localized bases from EPW.</p>
 </dd>
@@ -69,7 +70,7 @@ debugging.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Attributes</dt>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>el, ph</strong><span class="classifier">object</span></dt><dd><p>Tight-binding and mass-spring models.</p>
 </dd>
@@ -105,7 +106,7 @@ if <cite>shared_memory</cite>.</p>
 <span class="sig-name descname"><span class="pre">divide_degeneracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.divide_degeneracy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Divide real-space coupling by degeneracy of Wigner-Seitz point.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>g</strong><span class="classifier">ndarray</span></dt><dd><p>Real-space coupling.</p>
 </dd>
@@ -124,7 +125,7 @@ if <cite>shared_memory</cite>.</p>
         \frac{\partial V}{\partial u_\nu}
     \ket{\vec k n}\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>q1, q2, q2</strong><span class="classifier">float</span></dt><dd><p>q point in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
 </dd>
@@ -149,7 +150,7 @@ e.g., when parallelizing over q or k points, use <code class="docutils literal n
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Electron-phonon matrix element <span class="math notranslate nohighlight">\(\sqrt{2 \omega} g_{\nu m n}\)</span>
 in Ry<sup>3/2</sup>.</p>
@@ -199,9 +200,10 @@ in Ry<sup>3/2</sup>.</p>
 <li><p>Sort lattice vectors.</p></li>
 </ul>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Threshold for “nonzero” matrix elements.</p>
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Threshold for “nonzero” matrix elements in units of the maximum
+matrix element.</p>
 </dd>
 </dl>
 </dd>
@@ -210,18 +212,22 @@ in Ry<sup>3/2</sup>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.supercell">
-<span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.supercell" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.supercell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Map localized model for electron-phonon coupling onto supercell.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>N1, N2, N3</strong><span class="classifier">tuple of int or int, default 1</span></dt><dd><p>Supercell lattice vectors in units of primitive lattice vectors.</p>
 </dd>
 <dt><strong>shared_memory</strong><span class="classifier">bool, default False</span></dt><dd><p>Store mapped coupling in shared memory?</p>
 </dd>
+<dt><strong>sparse</strong><span class="classifier">bool, default False</span></dt><dd><p>Only calculate q = k = 0 coupling as a list of sparse matrices to
+save memory? The result, which is assumed to be real, is stored in
+the attribute <code class="xref py py-attr docutils literal notranslate"><span class="pre">gs</span></code>.</p>
+</dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>object</dt><dd><p>Localized model for electron-phonon coupling for supercell.</p>
 </dd>
@@ -264,7 +270,7 @@ g_{\vec R, \vec R'} = g_{\vec R - \vec R', -\vec R'}^\dagger\]</div>
 <span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.q2r" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fourier-transform electron-phonon coupling from reciprocal to real space.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>elph</strong><span class="classifier">object</span></dt><dd><p>Localized model for electron-phonon coupling.</p>
 </dd>
@@ -284,7 +290,7 @@ g_{\vec R, \vec R'} = g_{\vec R - \vec R', -\vec R'}^\dagger\]</div>
 <p>Currently, the coupling must be defined on a uniform 2D k mesh
 (corresponding to triangular or square lattice).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>epw_out</strong><span class="classifier">str</span></dt><dd><p>Name of EPW output file.</p>
 </dd>
@@ -334,7 +340,7 @@ quantity of dimension energy to the power of 2/3?</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_prtgkk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epw_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbnd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_prtgkk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read frequencies and coupling from EPW output (using <code class="docutils literal notranslate"><span class="pre">prtgkk</span></code>).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>epw_out</strong><span class="classifier">str</span></dt><dd><p>Name of EPW output file.</p>
 </dd>
@@ -348,7 +354,7 @@ quantity of dimension energy to the power of 2/3?</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Phonon frequencies (meV).</p>
 </dd>
@@ -371,7 +377,7 @@ quantity of dimension energy to the power of 2/3?</p>
 <dd><p>Sample coupling for given q and k points and transform to band basis.</p>
 <p>One purpose of this routine is full control of the complex phase.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>g</strong><span class="classifier">function</span></dt><dd><p>Electron-phonon coupling in the basis of electronic orbitals and
 Cartesian ionic displacements as a function of q and k in crystal
@@ -475,7 +481,7 @@ If present, transform from displacement to band basis.</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -492,7 +498,7 @@ If present, transform from displacement to band basis.</p>
       &copy;2017-2022 University of Bremen.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

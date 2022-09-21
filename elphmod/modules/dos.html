@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>DOS &#8212; elphmod  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -36,7 +37,7 @@
           <div class="body" role="main">
             
   <section id="module-elphmod.dos">
-<span id="dos"></span><h1>DOS<a class="headerlink" href="#module-elphmod.dos" title="Permalink to this headline">¶</a></h1>
+<span id="dos"></span><h1>DOS<a class="headerlink" href="#module-elphmod.dos" title="Permalink to this heading">¶</a></h1>
 <p>2D tetrahedron methods.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.dos.double_delta">
@@ -46,7 +47,7 @@
 \[I(z) = \frac 1 N \sum_{\vec k}
     \delta(x_{\vec k} - z) \delta(y_{\vec k} - z) f_{\vec k}\]</div>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x, y, f</strong><span class="classifier">ndarray</span></dt><dd><p>Three functions sampled on uniform N x N mesh.</p>
 </dd>
@@ -54,7 +55,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
 <dt><strong>function</strong><span class="classifier">float -&gt; dict</span></dt><dd><p>Intersection points of <span class="math notranslate nohighlight">\(x, y = z\)</span> isolines and corresponding
 weights as a function of <span class="math notranslate nohighlight">\(z\)</span>. The above double-delta integral
@@ -73,7 +74,7 @@ weights as a function of <span class="math notranslate nohighlight">\(z\)</span>
 <span class="sig-prename descclassname"><span class="pre">elphmod.dos.</span></span><span class="sig-name descname"><span class="pre">hexDOS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.dos.hexDOS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate DOS from energies on triangular mesh (2D tetrahedron method).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>energies</strong><span class="classifier">ndarray</span></dt><dd><p>Energies on triangular mesh.</p>
 </dd>
@@ -81,7 +82,7 @@ weights as a function of <span class="math notranslate nohighlight">\(z\)</span>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>function</dt><dd><p>Density of states as a function of energy.</p>
 </dd>
@@ -120,7 +121,7 @@ contribution of this triangle to the density of states:</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.dos.</span></span><span class="sig-name descname"><span class="pre">hexa2F</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couplings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.dos.hexa2F" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate <span class="math notranslate nohighlight">\(\alpha^2 F\)</span> from energies and coupling.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>energies</strong><span class="classifier">ndarray</span></dt><dd><p>Energies on triangular mesh.</p>
 </dd>
@@ -130,7 +131,7 @@ contribution of this triangle to the density of states:</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>function</dt><dd><p><span class="math notranslate nohighlight">\(\alpha^2 F\)</span> as a function of energy.</p>
 </dd>
@@ -209,7 +210,7 @@ contribution of this triangle to the density of states:</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -226,7 +227,7 @@ contribution of this triangle to the density of states:</p>
       &copy;2017-2022 University of Bremen.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

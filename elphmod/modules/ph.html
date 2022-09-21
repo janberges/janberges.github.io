@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Phonon &#8212; elphmod  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -36,14 +37,14 @@
           <div class="body" role="main">
             
   <section id="module-elphmod.ph">
-<span id="phonon"></span><h1>Phonon<a class="headerlink" href="#module-elphmod.ph" title="Permalink to this headline">¶</a></h1>
+<span id="phonon"></span><h1>Phonon<a class="headerlink" href="#module-elphmod.ph" title="Permalink to this heading">¶</a></h1>
 <p>Mass-spring models from Quantum ESPRESSO.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.ph.Model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.ph.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flfrc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quadrupole_fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_zasr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_rsr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr2d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[[[[[[0.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">0.]]]]]]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([1.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[1.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">1.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">1.]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[0.,</span> <span class="pre">0.,</span> <span class="pre">0.]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['X']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsil</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zeu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ifc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.ph.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flfrc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quadrupole_fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_zasr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_rsr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr2d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[[[[[[0.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">0.]]]]]]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([1.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[1.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">1.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">1.]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[0.,</span> <span class="pre">0.,</span> <span class="pre">0.]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['X']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsil</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zeu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ifc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mass-spring model for the phonons.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>flfrc</strong><span class="classifier">str</span></dt><dd><p>File with interatomic force constants from <code class="docutils literal notranslate"><span class="pre">q2r.x</span></code> or prefix of files
 with dynamical matrices from <code class="docutils literal notranslate"><span class="pre">ph.x</span></code>.</p>
@@ -79,6 +80,10 @@ the self force constant to minus the sum of all other force constants.</p>
 </dd>
 <dt><strong>Q</strong><span class="classifier">ndarray</span></dt><dd><p>Quadrupole tensors if <cite>quadrupole_fmt</cite> is omitted.</p>
 </dd>
+<dt><strong>L</strong><span class="classifier">float</span></dt><dd><p>Range-separation parameter for two-dimensional electrostatics.</p>
+</dd>
+<dt><strong>perp</strong><span class="classifier">bool</span></dt><dd><p>Yield out-of-plane long-range terms if <cite>L</cite> is nonzero?</p>
+</dd>
 <dt><strong>divide_mass</strong><span class="classifier">bool</span></dt><dd><p>Divide force constants and Born effective charges by atomic masses?</p>
 </dd>
 <dt><strong>divide_ndegen</strong><span class="classifier">bool</span></dt><dd><p>Divide force constants by degeneracy of Wigner-Seitz point? Only
@@ -90,7 +95,7 @@ is prefix of files with dynamical matrices. Used to emulate <code class="docutil
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Attributes</dt>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>M</strong><span class="classifier">ndarray</span></dt><dd><p>Atomic masses.</p>
 </dd>
@@ -113,6 +118,10 @@ is prefix of files with dynamical matrices. Used to emulate <code class="docutil
 <dt><strong>Q</strong><span class="classifier">ndarray</span></dt><dd><p>Quadrupole tensors.</p>
 </dd>
 <dt><strong>q</strong><span class="classifier">ndarray</span></dt><dd><p>Quadrupole tensors divided by square root of atomic masses.</p>
+</dd>
+<dt><strong>L</strong><span class="classifier">float</span></dt><dd><p>Range-separation parameter for two-dimensional electrostatics.</p>
+</dd>
+<dt><strong>perp</strong><span class="classifier">bool</span></dt><dd><p>Yield out-of-plane long-range terms if <cite>L</cite> is nonzero?</p>
 </dd>
 <dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Interatomic force constants divided by atomic masses.</p>
 </dd>
@@ -174,7 +183,7 @@ is prefix of files with dynamical matrices. Used to emulate <code class="docutil
 <span class="sig-name descname"><span class="pre">decay</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.decay" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot force constants as a function of bond length.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>ndarray</dt><dd><p>Bond lengths.</p>
 </dd>
@@ -187,18 +196,20 @@ is prefix of files with dynamical matrices. Used to emulate <code class="docutil
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.ph.Model.generate_long_range">
-<span class="sig-name descname"><span class="pre">generate_long_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.generate_long_range" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">generate_long_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.generate_long_range" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate long-range terms.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>q</strong><span class="classifier">ndarray</span></dt><dd><p>q point in reciprocal lattice units <span class="math notranslate nohighlight">\(q_i \in [0, 2 \pi)\)</span>.</p>
+</dd>
+<dt><strong>perp</strong><span class="classifier">bool</span></dt><dd><p>Yield out-of-plane terms? Defaults to attribute <code class="xref py py-attr docutils literal notranslate"><span class="pre">perp</span></code>.</p>
 </dd>
 <dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Tolerance for vanishing lattice vectors.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Yields</dt>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float</dt><dd><p>Scalar prefactor.</p>
 </dd>
@@ -216,7 +227,7 @@ is prefix of files with dynamical matrices. Used to emulate <code class="docutil
 <p>Together with <a class="reference internal" href="#elphmod.ph.Model.shift_atoms" title="elphmod.ph.Model.shift_atoms"><code class="xref py py-func docutils literal notranslate"><span class="pre">shift_atoms()</span></code></a>, this function helps reconcile
 inconsistent definitions of the basis/motif of the Bravais lattice.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>*order</strong><span class="classifier">int</span></dt><dd><p>New atom order.</p>
 </dd>
@@ -239,9 +250,11 @@ Copyright (C) 2001-2012 Quantum ESPRESSO group</p>
 <li><p>Coupling: Verdi and Giustino, Phys. Rev. Lett. 115, 176401 (2015)</p></li>
 <li><p>2D case: Sohier, Calandra, and Mauri, Phys. Rev. B 94, 085415 (2016)</p></li>
 <li><p>Quadrupoles: Ponce’ et al., Phys. Rev. Research 3, 043022 (2021)</p></li>
+<li><p>Improved 2D phonons: Royo and Stengel, Phys. Rev. X 11, 041027 (2021)</p></li>
+<li><p>Improved 2D coupling: Ponce’ et al., arXiv:2207.10190 (2022)</p></li>
 </ul>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>alpha</strong><span class="classifier">float</span></dt><dd><p>Ewald parameter.</p>
 </dd>
@@ -265,7 +278,7 @@ Copyright (C) 2001-2012 Quantum ESPRESSO group</p>
 <p>Together with <a class="reference internal" href="#elphmod.ph.Model.order_atoms" title="elphmod.ph.Model.order_atoms"><code class="xref py py-func docutils literal notranslate"><span class="pre">order_atoms()</span></code></a>, this function helps reconcile
 inconsistent definitions of the basis/motif of the bravais lattice.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>s</strong><span class="classifier">slice</span></dt><dd><p>Slice of atom indices corresponding to selected basis atom(s).</p>
 </dd>
@@ -288,17 +301,24 @@ inconsistent definitions of the basis/motif of the bravais lattice.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="elphmod.ph.Model.sum_force_constants">
+<span class="sig-name descname"><span class="pre">sum_force_constants</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.sum_force_constants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate sum of absolute values of short-range force constants.</p>
+<p>For the optimal range-separation parameter this value is minimal.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="elphmod.ph.Model.supercell">
 <span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.supercell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Map mass-spring model onto supercell.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>N1, N2, N3</strong><span class="classifier">tuple of int or int, default 1</span></dt><dd><p>Supercell lattice vectors in units of primitive lattice vectors.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>object</dt><dd><p>Mass-spring model for supercell.</p>
 </dd>
@@ -336,12 +356,15 @@ D_{\vec R} = D_{-\vec R}^\dagger\]</div>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.ph.Model.update_short_range">
-<span class="sig-name descname"><span class="pre">update_short_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flfrc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.update_short_range" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">update_short_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flfrc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.update_short_range" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update short-range part of interatomic force constants.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>flfrc</strong><span class="classifier">str</span></dt><dd><p>Filename where short-range force constants are written.</p>
+</dd>
+<dt><strong>apply_asr_simple</strong><span class="classifier">bool</span></dt><dd><p>Apply simple acoustic sum rule correction to short-range force
+constants?</p>
 </dd>
 </dl>
 </dd>
@@ -361,7 +384,7 @@ D_{\vec R} = D_{-\vec R}^\dagger\]</div>
 <span class="sig-prename descclassname"><span class="pre">elphmod.ph.</span></span><span class="sig-name descname"><span class="pre">fildyn_freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fildyn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'matdyn'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.fildyn_freq" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create <em>fildyn.freq</em> as created by Quantum ESPRESSO’s <code class="docutils literal notranslate"><span class="pre">ph.x</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>fildyn</strong><span class="classifier">str, default ‘matdyn’</span></dt><dd><p>Prefix of files with dynamical matrices.</p>
 </dd>
@@ -397,7 +420,7 @@ space is required.</p></li>
 </ol>
 </div></blockquote>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>D</strong><span class="classifier">list of square arrays</span></dt><dd><p>Dynamical matrices for all irreducible q points.</p>
 </dd>
@@ -426,7 +449,7 @@ the self force constant to minus the sum of all other force constants.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>function</dt><dd><p>Fourier-interpolant (via force constants) for dynamical matrices.</p>
 </dd>
@@ -443,7 +466,7 @@ the self force constant to minus the sum of all other force constants.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.ph.q2r">
-<span class="sig-prename descclassname"><span class="pre">elphmod.ph.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D_irr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_irr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D_full</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_rsr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flfrc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.q2r" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.ph.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D_irr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_irr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D_full</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_rsr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flfrc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.q2r" title="Permalink to this definition">¶</a></dt>
 <dd><p>Interpolate dynamical matrices given for irreducible wedge of q points.</p>
 <p>This function replaces <cite>interpolate_dynamical_matrices</cite>, which depends on
 Quantum ESPRESSO. For 2D lattices, it is sufficient to provide dynamical
@@ -452,7 +475,7 @@ lattice, the rotation symmetry (90 degrees) is currently disabled! In turn,
 for 1D and 2D lattices, dynamical matrices <cite>D_full</cite> on the complete uniform
 q-point mesh must be given.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ph</strong><span class="classifier">object</span></dt><dd><p>Mass-spring model.</p>
 </dd>
@@ -476,8 +499,10 @@ the self force constant to minus the sum of all other force constants.</p>
 <dt><strong>apply_rsr</strong><span class="classifier">bool</span></dt><dd><p>Enforce rotation sum rule by overwriting self force constants?</p>
 </dd>
 <dt><strong>flfrc</strong><span class="classifier">str</span></dt><dd><p>Filename. If given, save file with force constants as generated by
-<code class="docutils literal notranslate"><span class="pre">q2r.x</span></code>. This is done after <cite>apply_asr_simple</cite> but before <cite>apply_asr</cite>
-and <cite>apply_rsr</cite>.</p>
+<code class="docutils literal notranslate"><span class="pre">q2r.x</span></code>. This is done before acoustic and rotation sum are applied.</p>
+</dd>
+<dt><strong>divide_mass</strong><span class="classifier">bool</span></dt><dd><p>Have input dynamical matrices been divided by atomic mass? This is
+independent of <code class="docutils literal notranslate"><span class="pre">ph.divide_mass</span></code>, which is always respected.</p>
 </dd>
 </dl>
 </dd>
@@ -491,7 +516,7 @@ and <cite>apply_rsr</cite>.</p>
 <p><cite>flfrc</cite> can be either the force-constants file generated by <code class="docutils literal notranslate"><span class="pre">q2r.x</span></code> or one
 of the dynamical-matrix files generated by <code class="docutils literal notranslate"><span class="pre">ph.x</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>ndarray or tuple of list of ndarray</dt><dd><p>Force constants for input generated by <code class="docutils literal notranslate"><span class="pre">q2r.x</span></code> or equivalent q points
 and corresponding dynamical matrices for input generated by <code class="docutils literal notranslate"><span class="pre">ph.x</span></code>.</p>
@@ -531,13 +556,13 @@ and corresponding dynamical matrices for input generated by <code class="docutil
 <span class="sig-prename descclassname"><span class="pre">elphmod.ph.</span></span><span class="sig-name descname"><span class="pre">read_quadrupole_fmt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quadrupole_fmt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.read_quadrupole_fmt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read file <em>quadrupole.fmt</em> suitable for <code class="docutils literal notranslate"><span class="pre">epw.x</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>quadrupole_fmt</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>Q</strong><span class="classifier">ndarray</span></dt><dd><p>Quadrupole tensor.</p>
 </dd>
@@ -571,7 +596,7 @@ and corresponding dynamical matrices for input generated by <code class="docutil
 <dd><p>Calculate phonon spectral function.</p>
 <p>See Eq. 76 by Monacelli et al., J. Phys. Condens. Matter 33, 363001 (2021).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>D</strong><span class="classifier">ndarray</span></dt><dd><p>Dynamical matrix. The last three axes belong to the two displacement
 directions and the frequency argument.</p>
@@ -582,7 +607,7 @@ directions and the frequency argument.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Spectral function. The first axes belongs to the frequency argument.</p>
 </dd>
@@ -596,7 +621,7 @@ directions and the frequency argument.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.ph.</span></span><span class="sig-name descname"><span class="pre">sum_rule_correction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rsr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.sum_rule_correction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply sum rule correction to force constants.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ph</strong><span class="classifier">object</span></dt><dd><p>Mass-spring model for the phonons.</p>
 </dd>
@@ -618,7 +643,7 @@ directions and the frequency argument.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.ph.</span></span><span class="sig-name descname"><span class="pre">write_flfrc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flfrc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsil</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zeu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.write_flfrc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write force constants in real or reciprocal space.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>flfrc</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
 </dd>
@@ -660,7 +685,7 @@ matrices.</p>
 <span class="sig-prename descclassname"><span class="pre">elphmod.ph.</span></span><span class="sig-name descname"><span class="pre">write_quadrupole_fmt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quadrupole_fmt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.write_quadrupole_fmt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write file <em>quadrupole.fmt</em> suitable for <code class="docutils literal notranslate"><span class="pre">epw.x</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>quadrupole_fmt</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
 </dd>
@@ -737,7 +762,7 @@ matrices.</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -754,7 +779,7 @@ matrices.</p>
       &copy;2017-2022 University of Bremen.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
