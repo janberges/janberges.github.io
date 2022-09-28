@@ -117,7 +117,7 @@ if <cite>shared_memory</cite>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.g">
-<span class="sig-name descname"><span class="pre">g</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k1=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elbnd=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phbnd=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.g" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">g</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k1=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elbnd=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phbnd=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.g" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate electron-phonon coupling for arbitary points k and k + q.</p>
 <div class="math notranslate nohighlight">
 \[\sqrt{2 \omega} g_{\nu m n} = \frac \hbar {\sqrt M}
@@ -192,18 +192,24 @@ in Ry<sup>3/2</sup>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.standardize">
-<span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.standardize" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetrize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.standardize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standardize real-space coupling data.</p>
 <ul class="simple">
 <li><p>Keep only nonzero coupling matrices.</p></li>
 <li><p>Sum over repeated lattice vectors.</p></li>
 <li><p>Sort lattice vectors.</p></li>
+<li><p>Optionally symmetrize coupling:</p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[g_{\vec q, \vec k} = g_{-\vec q, \vec k + \vec q}^\dagger,
+g_{\vec R, \vec R'} = g_{\vec R - \vec R', -\vec R'}^\dagger\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Threshold for “nonzero” matrix elements in units of the maximum
 matrix element.</p>
+</dd>
+<dt><strong>symmetrize</strong><span class="classifier">bool</span></dt><dd><p>Symmetrize coupling?</p>
 </dd>
 </dl>
 </dd>
@@ -223,7 +229,8 @@ matrix element.</p>
 </dd>
 <dt><strong>sparse</strong><span class="classifier">bool, default False</span></dt><dd><p>Only calculate q = k = 0 coupling as a list of sparse matrices to
 save memory? The result, which is assumed to be real, is stored in
-the attribute <code class="xref py py-attr docutils literal notranslate"><span class="pre">gs</span></code>.</p>
+the attribute <code class="xref py py-attr docutils literal notranslate"><span class="pre">gs</span></code>. Consider using <a class="reference internal" href="#elphmod.elph.Model.standardize" title="elphmod.elph.Model.standardize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">standardize()</span></code></a> with
+nonzero <cite>eps</cite> and <cite>symmetrize</cite> before.</p>
 </dd>
 </dl>
 </dd>
@@ -246,9 +253,6 @@ the attribute <code class="xref py py-attr docutils literal notranslate"><span c
 <dt class="sig sig-object py" id="elphmod.elph.Model.symmetrize">
 <span class="sig-name descname"><span class="pre">symmetrize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.symmetrize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Symmetrize electron-phonon coupling.</p>
-<div class="math notranslate nohighlight">
-\[g_{\vec q, \vec k} = g_{-\vec q, \vec k + \vec q}^\dagger,
-g_{\vec R, \vec R'} = g_{\vec R - \vec R', -\vec R'}^\dagger\]</div>
 </dd></dl>
 
 <dl class="py method">

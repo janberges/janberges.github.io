@@ -291,13 +291,17 @@ inconsistent definitions of the basis/motif of the bravais lattice.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.ph.Model.standardize">
-<span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.standardize" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetrize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.standardize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standardize mass-spring data.</p>
 <ul class="simple">
 <li><p>Keep only nonzero force-constant matrices.</p></li>
 <li><p>Sum over repeated lattice vectors.</p></li>
 <li><p>Sort lattice vectors.</p></li>
+<li><p>Optionally symmetrize force constants:</p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[D_{\vec q} = D_{\vec q}^\dagger,
+D_{\vec R} = D_{-\vec R}^\dagger\]</div>
 </dd></dl>
 
 <dl class="py method">
@@ -309,12 +313,17 @@ inconsistent definitions of the basis/motif of the bravais lattice.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.ph.Model.supercell">
-<span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.supercell" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.supercell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Map mass-spring model onto supercell.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>N1, N2, N3</strong><span class="classifier">tuple of int or int, default 1</span></dt><dd><p>Supercell lattice vectors in units of primitive lattice vectors.</p>
+</dd>
+<dt><strong>sparse</strong><span class="classifier">bool, default False</span></dt><dd><p>Only calculate q = 0 dynamical matrix as a sparse matrix to save
+memory? The result is stored in the attribute <code class="xref py py-attr docutils literal notranslate"><span class="pre">Ds</span></code>. Consider
+using <a class="reference internal" href="#elphmod.ph.Model.standardize" title="elphmod.ph.Model.standardize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">standardize()</span></code></a> with nonzero <cite>eps</cite> and <cite>symmetrize</cite>
+before.</p>
 </dd>
 </dl>
 </dd>
@@ -337,9 +346,6 @@ inconsistent definitions of the basis/motif of the bravais lattice.</p>
 <dt class="sig sig-object py" id="elphmod.ph.Model.symmetrize">
 <span class="sig-name descname"><span class="pre">symmetrize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.symmetrize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Symmetrize dynamical matrix.</p>
-<div class="math notranslate nohighlight">
-\[D_{\vec q} = D_{\vec q}^\dagger,
-D_{\vec R} = D_{-\vec R}^\dagger\]</div>
 </dd></dl>
 
 <dl class="py method">

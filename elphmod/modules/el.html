@@ -149,23 +149,43 @@ inconsistent definitions of the basis/motif of the Bravais lattice.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.el.Model.standardize">
-<span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.standardize" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetrize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.standardize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standardize tight-binding data.</p>
 <ul class="simple">
 <li><p>Keep only nonzero hopping matrices.</p></li>
 <li><p>Sum over repeated lattice vectors.</p></li>
 <li><p>Sort lattice vectors.</p></li>
+<li><p>Optionally symmetrize hopping:</p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[H_{\vec k} = H_{\vec k}^\dagger,
+H_{\vec R} = H_{-\vec R}^\dagger\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Threshold for “nonzero” matrix elements in units of the maximum
+matrix element.</p>
+</dd>
+<dt><strong>symmetrize</strong><span class="classifier">bool</span></dt><dd><p>Symmetrize hopping?</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.el.Model.supercell">
-<span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.supercell" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.supercell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Map tight-binding model onto supercell.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>N1, N2, N3</strong><span class="classifier">tuple of int or int, default 1</span></dt><dd><p>Supercell lattice vectors in units of primitive lattice vectors.</p>
+</dd>
+<dt><strong>sparse</strong><span class="classifier">bool, default False</span></dt><dd><p>Only calculate k = 0 Hamiltonian as a sparse matrix to save memory?
+The result, which is assumed to be real, is stored in the attribute
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">Hs</span></code>. Consider using <a class="reference internal" href="#elphmod.el.Model.standardize" title="elphmod.el.Model.standardize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">standardize()</span></code></a> with nonzero <cite>eps</cite>
+and <cite>symmetrize</cite> before.</p>
 </dd>
 </dl>
 </dd>
@@ -188,9 +208,6 @@ inconsistent definitions of the basis/motif of the Bravais lattice.</p>
 <dt class="sig sig-object py" id="elphmod.el.Model.symmetrize">
 <span class="sig-name descname"><span class="pre">symmetrize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.symmetrize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Symmetrize Hamiltonian.</p>
-<div class="math notranslate nohighlight">
-\[H_{\vec k} = H_{\vec k}^\dagger,
-H_{\vec R} = H_{-\vec R}^\dagger\]</div>
 </dd></dl>
 
 <dl class="py method">
