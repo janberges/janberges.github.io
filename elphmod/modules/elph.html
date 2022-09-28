@@ -271,7 +271,7 @@ nonzero <cite>eps</cite> and <cite>symmetrize</cite> before.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.q2r">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.q2r" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.q2r" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fourier-transform electron-phonon coupling from reciprocal to real space.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -281,6 +281,9 @@ nonzero <cite>eps</cite> and <cite>symmetrize</cite> before.</p>
 <dt><strong>nq, nk</strong><span class="classifier">tuple of int</span></dt><dd><p>Number of q and k points along axes, i.e., shapes of uniform meshes.</p>
 </dd>
 <dt><strong>g</strong><span class="classifier">ndarray</span></dt><dd><p>Electron-phonon coupling on complete uniform q- and k-point meshes.</p>
+</dd>
+<dt><strong>divide_mass</strong><span class="classifier">bool</span></dt><dd><p>Has input coupling been divided by square root of atomic mass? This is
+independent of <code class="docutils literal notranslate"><span class="pre">elph.divide_mass</span></code>, which is always respected.</p>
 </dd>
 </dl>
 </dd>
