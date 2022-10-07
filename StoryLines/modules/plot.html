@@ -338,7 +338,9 @@ of all data.</p>
 </dd>
 <dt><strong>code</strong><span class="classifier">str, default None</span></dt><dd><p>Literal TikZ code to be inserted at current position.</p>
 </dd>
-<dt><strong>cut</strong><span class="classifier">bool, default False</span></dt><dd><p>Cut off line segments beyond plotting range?</p>
+<dt><strong>cut</strong><span class="classifier">bool or tuple, default False</span></dt><dd><p>Cut off line segments beyond plotting range? It is also possible to
+pass the clipping window as a tuple <code class="docutils literal notranslate"><span class="pre">(xmin,</span> <span class="pre">xmax,</span> <span class="pre">ymin,</span> <span class="pre">ymax)</span></code> in
+data coordinates, where <code class="docutils literal notranslate"><span class="pre">None</span></code> is replaced by the plot bounds.</p>
 </dd>
 <dt><strong>frame</strong><span class="classifier">bool, default False</span></dt><dd><p>Draw frame at current z index? By default, the frame is drawn just
 below the axes.</p>
