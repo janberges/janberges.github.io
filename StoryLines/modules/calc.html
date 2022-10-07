@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Calculations &#8212; StoryLines  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -34,14 +35,14 @@
           <div class="body" role="main">
             
   <section id="module-storylines.calc">
-<span id="calculations"></span><h1>Calculations<a class="headerlink" href="#module-storylines.calc" title="Permalink to this headline">¶</a></h1>
+<span id="calculations"></span><h1>Calculations<a class="headerlink" href="#module-storylines.calc" title="Permalink to this heading">¶</a></h1>
 <p>Mathematical helpers.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="storylines.calc.bonds">
 <span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">bonds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.bonds" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find lines that connect two sets of points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>R1, R2</strong><span class="classifier">list of tuple</span></dt><dd><p>Two (ordered) sets of points.</p>
 </dd>
@@ -51,7 +52,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>list of list of tuple</dt><dd><p>Connecting lines.</p>
 </dd>
@@ -65,13 +66,13 @@
 <span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">cross</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.cross" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate cross product of two vectors.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>A, B</strong><span class="classifier">list of float</span></dt><dd><p>Vectors to be multiplied.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float</dt><dd><p>Cross product of <cite>A</cite> and <cite>B</cite>.</p>
 </dd>
@@ -85,13 +86,13 @@
 <span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.dot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate dot product of two vectors.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>A, B</strong><span class="classifier">list of float</span></dt><dd><p>Vectors to be multiplied.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float</dt><dd><p>Dot product of <cite>A</cite> and <cite>B</cite>.</p>
 </dd>
@@ -105,7 +106,7 @@
 <span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">multiples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divisor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.multiples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Iterate over all integer multiples of given number on closed interval.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>lower, upper</strong><span class="classifier">float</span></dt><dd><p>Bounds of closed interval.</p>
 </dd>
@@ -113,7 +114,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Yields</dt>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float</dt><dd><p>Multiple of <cite>divisor</cite> between <cite>lower</cite> and <cite>upper</cite>.</p>
 </dd>
@@ -127,13 +128,13 @@
 <span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">order_of_magnitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.order_of_magnitude" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the decimal order of magnitude.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x</strong><span class="classifier">float</span></dt><dd><p>Number of which to calculate the decimal order of magnitude.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>int</dt><dd><p>Order of magnitude of <cite>x</cite>.</p>
 </dd>
@@ -147,14 +148,14 @@
 <span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">power_of_ten</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.power_of_ten" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the power of ten of the same order of magnitude.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x</strong><span class="classifier">float</span></dt><dd><p>Number of which to calculate the power of ten of the same order of
 magnitude.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float</dt><dd><p>Power of ten of the same order of magnitude as <cite>x</cite>.</p>
 </dd>
@@ -168,7 +169,7 @@ magnitude.</p>
 <span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">xround</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divisor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.xround" title="Permalink to this definition">¶</a></dt>
 <dd><p>Round to multiple of given number.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x</strong><span class="classifier">float</span></dt><dd><p>Number to round.</p>
 </dd>
@@ -176,7 +177,7 @@ magnitude.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float</dt><dd><p><cite>x</cite> rounded to the closest multiple of <cite>divisor</cite>.</p>
 </dd>
@@ -191,7 +192,7 @@ magnitude.</p>
 <dd><p>Round mantissa to multiple of given number.</p>
 <p>The mantissa is the part before the power of ten in scientific notation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x</strong><span class="classifier">float</span></dt><dd><p>Number the mantissa of which to round.</p>
 </dd>
@@ -199,7 +200,7 @@ magnitude.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float</dt><dd><p><cite>x</cite> with the mantissa rounded to the closest multiple of <cite>divisor</cite>.</p>
 </dd>
@@ -266,7 +267,7 @@ magnitude.</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -283,7 +284,7 @@ magnitude.</p>
       &copy;2016-2022 Jan Berges.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

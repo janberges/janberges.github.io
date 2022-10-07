@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Colors &#8212; StoryLines  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -34,7 +35,7 @@
           <div class="body" role="main">
             
   <section id="module-storylines.color">
-<span id="colors"></span><h1>Colors<a class="headerlink" href="#module-storylines.color" title="Permalink to this headline">¶</a></h1>
+<span id="colors"></span><h1>Colors<a class="headerlink" href="#module-storylines.color" title="Permalink to this heading">¶</a></h1>
 <p>Blendable colors and colormaps.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="storylines.color.Color">
@@ -90,7 +91,7 @@ The value is the amplitude of the wave from 0 to 255.</p>
 <span class="sig-prename descclassname"><span class="pre">storylines.color.</span></span><span class="sig-name descname"><span class="pre">HSV2RGB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.color.HSV2RGB" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform hue, saturation, value to red, green, blue.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>H</strong><span class="classifier">float</span></dt><dd><p>Hue with period of 360 (degrees).</p>
 </dd>
@@ -100,7 +101,7 @@ The value is the amplitude of the wave from 0 to 255.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float, float, float</dt><dd><p>Red, green, and blue values between 0 an 255.</p>
 </dd>
@@ -114,7 +115,7 @@ The value is the amplitude of the wave from 0 to 255.</p>
 <span class="sig-prename descclassname"><span class="pre">storylines.color.</span></span><span class="sig-name descname"><span class="pre">PSV2RGB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.color.PSV2RGB" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set color via phase, shift, and value.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>P</strong><span class="classifier">float</span></dt><dd><p>Phase between 0 and 2 pi.</p>
 </dd>
@@ -125,7 +126,7 @@ and 2 pi.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float, float, float</dt><dd><p>Red, green, and blue values between 0 an 255.</p>
 </dd>
@@ -139,13 +140,13 @@ and 2 pi.</p>
 <span class="sig-prename descclassname"><span class="pre">storylines.color.</span></span><span class="sig-name descname"><span class="pre">RGB2HSV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.color.RGB2HSV" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform red, green, blue to hue, saturation, value.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>R, G, B</strong><span class="classifier">float</span></dt><dd><p>Red, green, and blue values between 0 an 255.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float</dt><dd><p>Hue with period of 360 (degrees).</p>
 </dd>
@@ -163,7 +164,7 @@ and 2 pi.</p>
 <span class="sig-prename descclassname"><span class="pre">storylines.color.</span></span><span class="sig-name descname"><span class="pre">colorize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.color.colorize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Colorize data using colormap.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>data</strong><span class="classifier">list of list</span></dt><dd><p>Data on two-dimensional mesh.</p>
 </dd>
@@ -173,7 +174,7 @@ and 2 pi.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>list of list of list</dt><dd><p>RGB image.</p>
 </dd>
@@ -266,7 +267,7 @@ defined.</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -283,7 +284,7 @@ defined.</p>
       &copy;2016-2022 Jan Berges.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

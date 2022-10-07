@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Files &#8212; StoryLines  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -34,14 +35,14 @@
           <div class="body" role="main">
             
   <section id="module-storylines.files">
-<span id="files"></span><h1>Files<a class="headerlink" href="#module-storylines.files" title="Permalink to this headline">¶</a></h1>
+<span id="files"></span><h1>Files<a class="headerlink" href="#module-storylines.files" title="Permalink to this heading">¶</a></h1>
 <p>Typeset TeX, rasterize PDF.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="storylines.files.combine">
 <span class="sig-prename descclassname"><span class="pre">storylines.files.</span></span><span class="sig-name descname"><span class="pre">combine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdfs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">align</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">halign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'left'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">png</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.files.combine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Arrange multiple PDFs in single file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Name of combined file.</p>
 </dd>
@@ -73,13 +74,13 @@ to <code class="docutils literal notranslate"><span class="pre">True</span></cod
 <span class="sig-prename descclassname"><span class="pre">storylines.files.</span></span><span class="sig-name descname"><span class="pre">goto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.files.goto" title="Permalink to this definition">¶</a></dt>
 <dd><p>Go to output directory for plot typesetting.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>LaTeX file name including possible path.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>stem</strong><span class="classifier">str</span></dt><dd><p>File name without path and extension.</p>
 </dd>
@@ -97,7 +98,7 @@ to <code class="docutils literal notranslate"><span class="pre">True</span></cod
 <span class="sig-prename descclassname"><span class="pre">storylines.files.</span></span><span class="sig-name descname"><span class="pre">rasterize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.files.rasterize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run <code class="docutils literal notranslate"><span class="pre">pdftoppm</span></code> and remove <code class="docutils literal notranslate"><span class="pre">-1</span></code> from name of resulting PNG file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>stem</strong><span class="classifier">str</span></dt><dd><p>File name without path and extension (in current working directory).</p>
 </dd>
@@ -117,7 +118,7 @@ they will also be determined by <cite>dpi</cite>.</p>
 <span class="sig-prename descclassname"><span class="pre">storylines.files.</span></span><span class="sig-name descname"><span class="pre">typeset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stem</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.files.typeset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> and remove <code class="docutils literal notranslate"><span class="pre">.aux</span></code> and <code class="docutils literal notranslate"><span class="pre">.log</span></code> files.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>stem</strong><span class="classifier">str</span></dt><dd><p>File name without path and extension (in current working directory).</p>
 </dd>
@@ -184,7 +185,7 @@ they will also be determined by <cite>dpi</cite>.</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -201,7 +202,7 @@ they will also be determined by <cite>dpi</cite>.</p>
       &copy;2016-2022 Jan Berges.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

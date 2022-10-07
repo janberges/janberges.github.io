@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Cutting &#8212; StoryLines  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -34,14 +35,14 @@
           <div class="body" role="main">
             
   <section id="module-storylines.cut">
-<span id="cutting"></span><h1>Cutting<a class="headerlink" href="#module-storylines.cut" title="Permalink to this headline">¶</a></h1>
+<span id="cutting"></span><h1>Cutting<a class="headerlink" href="#module-storylines.cut" title="Permalink to this heading">¶</a></h1>
 <p>Remove redundant or unwanted points.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="storylines.cut.cut">
 <span class="sig-prename descclassname"><span class="pre">storylines.cut.</span></span><span class="sig-name descname"><span class="pre">cut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">join</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.cut.cut" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cut off curve segments beyond y interval.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>points</strong><span class="classifier">list of 2-tuple</span></dt><dd><p>Vertices of linear spline.</p>
 </dd>
@@ -51,7 +52,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Yields</dt>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>list of 2-tuple</dt><dd><p>Remaining curve segment.</p>
 </dd>
@@ -72,7 +73,7 @@
 <span class="sig-prename descclassname"><span class="pre">storylines.cut.</span></span><span class="sig-name descname"><span class="pre">cut2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">join</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.cut.cut2d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cut off curve segments beyond x and y intervals.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>points</strong><span class="classifier">list of 2-tuple</span></dt><dd><p>Vertices of linear spline.</p>
 </dd>
@@ -84,7 +85,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Yields</dt>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>list of 2-tuple</dt><dd><p>Remaining curve segment.</p>
 </dd>
@@ -105,7 +106,7 @@
 <span class="sig-prename descclassname"><span class="pre">storylines.cut.</span></span><span class="sig-name descname"><span class="pre">jump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.cut.jump" title="Permalink to this definition">¶</a></dt>
 <dd><p>Interpret long line segments as discontinuities and omit them.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>points</strong><span class="classifier">list of 2-tuple</span></dt><dd><p>Vertices of linear spline.</p>
 </dd>
@@ -113,7 +114,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Yields</dt>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>list of 2-tuple</dt><dd><p>Separated curve segment.</p>
 </dd>
@@ -127,7 +128,7 @@
 <span class="sig-prename descclassname"><span class="pre">storylines.cut.</span></span><span class="sig-name descname"><span class="pre">relevant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.cut.relevant" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove irrelevant vertices of linear spline.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>points</strong><span class="classifier">list of 2-tuple</span></dt><dd><p>Vertices of linear spline.</p>
 </dd>
@@ -135,7 +136,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Yields</dt>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>2-tuple</dt><dd><p>Relevant vertex.</p>
 </dd>
@@ -149,7 +150,7 @@
 <span class="sig-prename descclassname"><span class="pre">storylines.cut.</span></span><span class="sig-name descname"><span class="pre">shortcut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length_rel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.cut.shortcut" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cut off loops at self-intersection points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>points</strong><span class="classifier">list of 2-tuple</span></dt><dd><p>Vertices of linear spline.</p>
 </dd>
@@ -160,7 +161,7 @@ the curve.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>list of 2-tuple</dt><dd><p>Linear spline with self-intersection loops removed.</p>
 </dd>
@@ -227,7 +228,7 @@ the curve.</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -244,7 +245,7 @@ the curve.</p>
       &copy;2016-2022 Jan Berges.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
