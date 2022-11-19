@@ -39,16 +39,20 @@
 <p>Project 3D object onto plane.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="storylines.proj.project">
-<span class="sig-prename descclassname"><span class="pre">storylines.proj.</span></span><span class="sig-name descname"><span class="pre">project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objects</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.proj.project" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">storylines.proj.</span></span><span class="sig-name descname"><span class="pre">project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.proj.project" title="Permalink to this definition">¶</a></dt>
 <dd><p>Project list of 3D objects onto 2D screen.</p>
 <p>Line width, mark sizes, and length in angle brackets are scaled according
-to the distance from the observer. The objects are sorted by distance so
-that close object overlay remote objects.</p>
+to the distance from the observer.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>objects</strong><span class="classifier">list of tuple</span></dt><dd><p>List of objects. Each object is represented by a tuple, which consists
 of a list of three-tuples <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">z)</span></code> and a style dictionary.</p>
+</dd>
+<dt><strong>by_distance</strong><span class="classifier">bool, default True</span></dt><dd><p>Sort the objects by distance so that close object overlay remote
+objects?</p>
+</dd>
+<dt><strong>return_order</strong><span class="classifier">bool, default False</span></dt><dd><p>Also return sorting order as list of indices?</p>
 </dd>
 <dt><strong>*args, **kwargs</strong></dt><dd><p>Arguments passed to <cite>projection</cite>.</p>
 </dd>
@@ -58,6 +62,8 @@ of a list of three-tuples <code class="docutils literal notranslate"><span class
 <dd class="field-even"><dl class="simple">
 <dt>list of tuple</dt><dd><p>Objects is same format, but sorted with transformed coordinates and
 adjusted styles.</p>
+</dd>
+<dt>list of int, optional</dt><dd><p>Sorting order.</p>
 </dd>
 </dl>
 </dd>

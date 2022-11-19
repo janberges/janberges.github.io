@@ -203,6 +203,12 @@ and <code class="docutils literal notranslate"><span class="pre">'Times'</span><
 </dd>
 <dt><strong>double</strong><span class="classifier">float, default 17.0</span></dt><dd><p>Full textwidth for the chosen <cite>style</cite>.</p>
 </dd>
+<dt><strong>resolution</strong><span class="classifier">float, default 1e-3</span></dt><dd><p>Smallest distance in cm expected to be discernible when looking at the
+plot. The default is acceptable when the plot is viewed or printed in
+its original size. For zooming, smaller values may be necessary. This
+parameter determines the number of vertices used to render a line and
+thus affects the file size.</p>
+</dd>
 <dt><strong>lines</strong><span class="classifier">list</span></dt><dd><p>List of all line objects.</p>
 </dd>
 <dt><strong>options</strong><span class="classifier">dict</span></dt><dd><p>Global TikZ options.</p>
