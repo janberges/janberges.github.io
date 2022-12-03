@@ -56,6 +56,9 @@
 <dt><strong>cubic</strong></dt>
 <dd><p>3/2 sqrt(3) (x³ - x) for x in (-1, 1]</p>
 </dd>
+<dt><strong>water</strong></dt>
+<dd><p>3/2 sqrt(3) (x³ - x) + 1/2 for x in (0, 1]</p>
+</dd>
 <dt><strong>random</strong></dt>
 <dd><p>White noise if followed by <strong>@</strong> without argument.</p>
 </dd>
@@ -109,7 +112,7 @@
 <dd><p>Set duration of a beat to <em>n</em> seconds. The preset value is <strong>0.5</strong> seconds.</p>
 </dd>
 <dt><strong>T</strong><em>w</em></dt>
-<dd><p>Choose tuning from the below options.</p>
+<dd><p>Choose tuning from the below options. The preset value is <strong>equal</strong>.</p>
 <dl>
 <dt><strong>equal</strong></dt>
 <dd><p>Equal temperament.</p>
@@ -212,6 +215,9 @@
 <dt><strong>X</strong><em>w</em>[...]</dt>
 <dd><p>Do something special.</p>
 <dl>
+<dt><strong>status</strong></dt>
+<dd><p>Print current time, frequency, amplitude, balance, and phase.</p>
+</dd>
 <dt><strong>report</strong></dt>
 <dd><p>Print note counts (since last report) to standard error stream. Only notes defined via the commands <strong>C D E F G A B</strong> and <strong>U V</strong> are counted. This is useful to, e.g., to determine the keynote of a piece of music.</p>
 </dd>
