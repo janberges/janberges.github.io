@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TAG</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">TAG</h1>
+<p class="date">2010–2022</p>
+</header>
+<h1>NAME</h1>
+<p>tag - add ID3v2 metadata to .wav(e) files</p>
+<h1>SYNOPSIS</h1>
+<p><strong>tag</strong> [<em>datafile</em> [<em>infile</em> [<em>outfile</em>[<strong>/</strong>]]]]</p>
+<h1>DESCRIPTION</h1>
+<p>Add metadata in the ID3v2 format to the content of <em>infile</em> and store the result in <em>outfile</em>. If <em>outfile</em> is followed by a slash (<strong>/</strong>)<strong>,</strong> application-specific metadata is omitted. The IDv3 metadata is provided via a <em>datafile</em>, where each lines consists of an ID3 frame ID followed by a single space and the actual information, for example:</p>
+<blockquote>
+<pre><code>TIT2 Explosion
+TALB Kapitulation
+TPE1 Tocotronic
+TYER 2007</code></pre>
+</blockquote>
+<p>Currently, only text-information frames, whose frame IDs start with "T", are supported. Existing IDv3 metadata is overwritten. Filenames default to <strong>meta.dat</strong>, <strong>/dev/stdin</strong>, and <strong>/dev/stdout</strong>. The dash (<strong>-</strong>) is a shorthand for the default value. If <em>outfile</em> is followed by a slash (<strong>/</strong>)<strong>,</strong> application-specific metadata is omitted.</p>
+</body>
+</html>
