@@ -23,9 +23,9 @@
 <h1>NAME</h1>
 <p>mel - generate sound fragments from plain text</p>
 <h1>SYNOPSIS</h1>
-<p><strong>mel</strong> [[[<em>wavefile</em> ...] <em>infile</em>] <em>outfile</em>[<strong>/</strong>]]</p>
+<p><strong>mel</strong> [[[<em>wavefile</em> ...] <em>infile</em>] <em>outfile</em>]</p>
 <h1>DESCRIPTION</h1>
-<p>Interpret ASCII input in <em>infile</em> as audio and save it to <em>outfile</em> in the WAVE format, optionally using samples provided in <em>wavefile</em>s. The syntax for <em>infile</em> is given below. Filenames default to <strong>/dev/stdin</strong> or <strong>/dev/stdout</strong>. The dash (<strong>-</strong>) is a shorthand for the default value. Try <strong>stdin</strong> if <strong>/dev/stdin</strong> is not available. If <em>outfile</em> is followed by a slash (<strong>/</strong>)<strong>,</strong> application-specific metadata is omitted.</p>
+<p>Interpret ASCII input in <em>infile</em> as audio and save it to <em>outfile</em> in the WAVE format, optionally using samples provided in <em>wavefile</em>s. The syntax for <em>infile</em> is given below. Filenames default to <strong>/dev/stdin</strong> or <strong>/dev/stdout</strong>. The dash (<strong>-</strong>) is a shorthand for the default value. Try <strong>stdin</strong> if <strong>/dev/stdin</strong> is not available.</p>
 <h1>SYNTAX</h1>
 <p><em>infile</em> shall contain words <em>w</em> (sequences of lowercase letters <strong>a</strong> to <strong>z</strong> and hashes <strong>#</strong>), numbers <em>n</em> (sequences of digits <strong>0</strong> to <strong>9</strong>, decimal points <strong>.</strong>, and a dividing colon <strong>:</strong>), and commands (other single ASCII characters). Commands are followed by words and/or numbers as arguments, as listed below. The input is processed linearly, whereby unexpected characters, including whitespace, act as separators and are otherwise ignored. Reference values imply initial values, and initial values imply current values.</p>
 <dl>

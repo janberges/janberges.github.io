@@ -23,15 +23,15 @@
 <h1>NAME</h1>
 <p>tag - add ID3v2 metadata to .wav(e) files</p>
 <h1>SYNOPSIS</h1>
-<p><strong>tag</strong> [<em>datafile</em> [<em>infile</em> [<em>outfile</em>[<strong>/</strong>]]]]</p>
+<p><strong>tag</strong> [<em>infile</em> [<em>datafile</em> [<em>outfile</em>]]]</p>
 <h1>DESCRIPTION</h1>
-<p>Add metadata in the ID3v2 format to the content of <em>infile</em> and store the result in <em>outfile</em>. If <em>outfile</em> is followed by a slash (<strong>/</strong>)<strong>,</strong> application-specific metadata is omitted. The IDv3 metadata is provided via a <em>datafile</em>, where each lines consists of an ID3 frame ID followed by a single space and the actual information, for example:</p>
+<p>Add metadata in the ID3v2 format to the content of <em>infile</em> and store the result in <em>outfile</em>. The IDv3 metadata is provided via a UTF-8-encoded <em>datafile</em>, where each lines consists of an ID3 frame ID followed by a single space and the actual information, for example:</p>
 <blockquote>
 <pre><code>TIT2 Explosion
 TALB Kapitulation
 TPE1 Tocotronic
 TYER 2007</code></pre>
 </blockquote>
-<p>Currently, only text-information frames, whose frame IDs start with "T", are supported. Existing IDv3 metadata is overwritten. Filenames default to <strong>meta.dat</strong>, <strong>/dev/stdin</strong>, and <strong>/dev/stdout</strong>. The dash (<strong>-</strong>) is a shorthand for the default value. If <em>outfile</em> is followed by a slash (<strong>/</strong>)<strong>,</strong> application-specific metadata is omitted.</p>
+<p>Currently, only text-information frames, whose frame IDs start with "T", are supported. Existing IDv3 metadata is overwritten. Tonbandfetzen metadata, namely the amplitude stored in the application-specific <strong>APPL</strong> chunk, is cleared. <em>infile</em> defaults to <strong>/dev/stdin</strong>. If nonexistent or empty, all metadata is cleared. <em>datafile</em> defaults to the filename stem of <em>infile</em> with the extension <strong>.id3</strong>. <em>outfile</em> defaults to <em>infile</em> where the possible substring <strong>stdin</strong> is replaced by <strong>stdout</strong>. The dash (<strong>-</strong>) is a shorthand for the default value.</p>
 </body>
 </html>
