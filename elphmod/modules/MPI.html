@@ -38,6 +38,49 @@
 <span id="mpi"></span><h1>MPI<a class="headerlink" href="#module-elphmod.MPI" title="Permalink to this heading">¶</a></h1>
 <p>Work distribution and shared memory.</p>
 <dl class="py class">
+<dt class="sig sig-object py" id="elphmod.MPI.Buffer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">Buffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.Buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper for <code class="docutils literal notranslate"><span class="pre">pickle</span></code> in parallel context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>buf</strong><span class="classifier">str, default None</span></dt><dd><p>Name of buffer file with pickled object. By default, the buffer is not
+used and <a class="reference internal" href="#elphmod.MPI.Buffer.get" title="elphmod.MPI.Buffer.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a> and <a class="reference internal" href="#elphmod.MPI.Buffer.set" title="elphmod.MPI.Buffer.set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set()</span></code></a> do nothing and return <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.MPI.Buffer.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.Buffer.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read object from buffer and broadcast it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>object</dt><dd><p>Object if buffer exists, <code class="docutils literal notranslate"><span class="pre">None</span></code> otherwise.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.MPI.Buffer.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.Buffer.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write object to buffer on single processor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>object</strong></dt><dd><p>Object to write.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="elphmod.MPI.SharedArray">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">SharedArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.SharedArray" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create array whose memory is shared among all processes on same node.</p>
@@ -172,6 +215,7 @@ itself. A warning is issued.</p>
 <li class="toctree-l1"><a class="reference internal" href="dos.html">DOS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diagrams.html">Diagrams</a></li>
 <li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">MD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eliashberg.html">Eliashberg</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot.html">Plot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>

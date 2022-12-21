@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Plot" href="plot.html" />
-    <link rel="prev" title="Occupations" href="occupations.html" />
+    <link rel="prev" title="MD" href="md.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -41,7 +41,7 @@
 <p>Parameters for McMillan’s formula.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.eliashberg.McMillan">
-<span class="sig-prename descclassname"><span class="pre">elphmod.eliashberg.</span></span><span class="sig-name descname"><span class="pre">McMillan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mustar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.eliashberg.McMillan" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.eliashberg.</span></span><span class="sig-name descname"><span class="pre">McMillan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps=1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mustar=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tetra=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.eliashberg.McMillan" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate parameters and result of McMillan’s formula.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -58,6 +58,15 @@
 coupling are set to zero.</p>
 </dd>
 <dt><strong>mustar</strong><span class="classifier">float</span></dt><dd><p>Coulomb pseudopotential.</p>
+</dd>
+<dt><strong>tetra</strong><span class="classifier">bool</span></dt><dd><p>Calculate double Fermi-surface average and density of states using 2D
+tetrahedron methods? Otherwise summations over broadened delta functions
+are performed.</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature. Only used if <cite>tetra</cite> is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+<dt><strong>f</strong><span class="classifier">function</span></dt><dd><p>Particle distribution as a function of energy divided by <cite>kT</cite>. Only used
+if <cite>tetra</cite> is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 </dd>
 </dl>
 </dd>
@@ -128,6 +137,7 @@ coupling are set to zero.</p>
 <li class="toctree-l1"><a class="reference internal" href="dos.html">DOS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diagrams.html">Diagrams</a></li>
 <li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">MD</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Eliashberg</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot.html">Plot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
@@ -137,7 +147,7 @@ coupling are set to zero.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="occupations.html" title="previous chapter">Occupations</a></li>
+      <li>Previous: <a href="md.html" title="previous chapter">MD</a></li>
       <li>Next: <a href="plot.html" title="next chapter">Plot</a></li>
   </ul></li>
 </ul>

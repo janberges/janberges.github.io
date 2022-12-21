@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>MD &#8212; elphmod  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Eliashberg" href="eliashberg.html" />
+    <link rel="prev" title="Occupations" href="occupations.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-elphmod.md">
+<span id="md"></span><h1>MD<a class="headerlink" href="#module-elphmod.md" title="Permalink to this heading">¶</a></h1>
+<p>Charge-density-wave dynamics on supercells.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="elphmod.md.Driver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.md.</span></span><span class="sig-name descname"><span class="pre">Driver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver" title="Permalink to this definition">¶</a></dt>
+<dd><p>MD driver for DFPT-based displacements dynamics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>elph</strong><span class="classifier">object</span></dt><dd><p>Localized model for electron-phonon coupling. Initialize <code class="docutils literal notranslate"><span class="pre">el</span></code> with
+<code class="docutils literal notranslate"><span class="pre">rydberg=True</span></code> and <code class="docutils literal notranslate"><span class="pre">ph</span></code> and <code class="docutils literal notranslate"><span class="pre">elph</span></code> with <code class="docutils literal notranslate"><span class="pre">divide_mass=False</span></code> and
+map everthing to the appropriate supercell before (<code class="docutils literal notranslate"><span class="pre">elph.supercell</span></code>).</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature in Ry.</p>
+</dd>
+<dt><strong>f</strong><span class="classifier">function</span></dt><dd><p>Particle distribution as a function of energy divided by <cite>kT</cite>.</p>
+</dd>
+<dt><strong>n</strong><span class="classifier">float</span></dt><dd><p>Number of electrons per primitive cell.</p>
+</dd>
+<dt><strong>nk, nq</strong><span class="classifier">tuple of int</span></dt><dd><p>Shape of k and q mesh.</p>
+</dd>
+<dt><strong>supercell</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Supercell lattice vectors as multiples of primitive lattice vectors. If
+given, the simulation is performed on a supercell for q = k = 0. Sparse
+matrices are used for Hamiltonian, dynamical matrix, and electron-phonon
+coupling to save memory. The calculation of phonons is not implemented.
+Note that <cite>elph</cite> should belong to the primitive cell in this case.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>elph, kT, f, n, nk, nq</strong></dt><dd><p>Copies of initialization parameters.</p>
+</dd>
+<dt><strong>mu</strong><span class="classifier">float</span></dt><dd><p>Current chemical potential.</p>
+</dd>
+<dt><strong>k, q</strong><span class="classifier">ndarray</span></dt><dd><p>k and q meshes.</p>
+</dd>
+<dt><strong>u</strong><span class="classifier">ndarray</span></dt><dd><p>Atomic displacements.</p>
+</dd>
+<dt><strong>C0</strong><span class="classifier">ndarray</span></dt><dd><p>Unscreened force constants.</p>
+</dd>
+<dt><strong>H0</strong><span class="classifier">ndarray</span></dt><dd><p>Unperturbed electron Hamiltonian in orbital basis.</p>
+</dd>
+<dt><strong>d0</strong><span class="classifier">ndarray</span></dt><dd><p>Electron-phonon coupling in orbital basis.</p>
+</dd>
+<dt><strong>sparse</strong><span class="classifier">bool</span></dt><dd><p>Is the simulation performed on a supercell using sparse matrices?</p>
+</dd>
+<dt><strong>interactive</strong><span class="classifier">bool, default False</span></dt><dd><p>Shall plots be updated interactively?</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">float, default 10.0</span></dt><dd><p>Displacement scaling factor for plots.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.center_mass">
+<span class="sig-name descname"><span class="pre">center_mass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.center_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subtract collective translational displacement component.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.diagonalize">
+<span class="sig-name descname"><span class="pre">diagonalize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.diagonalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Diagonalize Hamiltonian of perturbed system.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.electrons">
+<span class="sig-name descname"><span class="pre">electrons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'supercell'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.electrons" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up tight-binding model for current structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>seedname</strong><span class="classifier">str</span></dt><dd><p>Prefix of file with Hamiltonian in Wannier90 format.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.find_chemical_potential">
+<span class="sig-name descname"><span class="pre">find_chemical_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.find_chemical_potential" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update Fermi level via fixed-point iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Tolerance for the electron number.</p>
+</dd>
+<dt><strong>damp</strong><span class="classifier">float</span></dt><dd><p>Damping factor in the fixed-point equation. Large values may prevent
+convergence; small values will slow down convergence.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.free_energy">
+<span class="sig-name descname"><span class="pre">free_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.free_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate free energy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>u</strong><span class="classifier">ndarray</span></dt><dd><p>Updated atomic displacements (e.g., from optimization routine).</p>
+</dd>
+<dt><strong>show</strong><span class="classifier">bool</span></dt><dd><p>Print free energy?</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.from_xyz">
+<span class="sig-name descname"><span class="pre">from_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.from_xyz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load saved atomic positions if compatible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>xyz</strong><span class="classifier">str</span></dt><dd><p>Name of .xyz file.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.hessian">
+<span class="sig-name descname"><span class="pre">hessian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.hessian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate second derivative of free energy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>parameters</strong><span class="classifier">ndarray</span></dt><dd><p>Dummy positional argument for optimization routines.</p>
+</dd>
+<dt><strong>show</strong><span class="classifier">bool</span></dt><dd><p>Print free energy?</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.jacobian">
+<span class="sig-name descname"><span class="pre">jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.jacobian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate first derivative of free energy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>parameters</strong><span class="classifier">ndarray</span></dt><dd><p>Dummy positional argument for optimization routines.</p>
+</dd>
+<dt><strong>show</strong><span class="classifier">bool</span></dt><dd><p>Print free energy?</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.phonons">
+<span class="sig-name descname"><span class="pre">phonons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.phonons" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up mass-spring model for current structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>divide_mass</strong><span class="classifier">bool</span></dt><dd><p>Divide force constants by atomic masses?</p>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Parameters passed to <code class="xref py py-func docutils literal notranslate"><span class="pre">ph.q2r()</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot crystal structure and displacements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>interactive</strong><span class="classifier">bool, optional</span></dt><dd><p>Shall the plot be updated? If given, this sets the eponymous
+attribute, which is used by default.</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">float, optional</span></dt><dd><p>Displacement scaling factor. If given, this sets the eponymous
+attribute, which is used by default.</p>
+</dd>
+<dt><strong>padding</strong><span class="classifier">float, optional</span></dt><dd><p>Padding between crystal and plotting box in angstrom.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.random_displacements">
+<span class="sig-name descname"><span class="pre">random_displacements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amplitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.random_displacements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displace atoms randomly from unperturbed positions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>amplitude</strong><span class="classifier">float</span></dt><dd><p>Maximum displacement.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.to_xyz">
+<span class="sig-name descname"><span class="pre">to_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.to_xyz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save current atomic positions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>xyz</strong><span class="classifier">str</span></dt><dd><p>Name of .xyz file.</p>
+</dd>
+<dt><strong>append</strong><span class="classifier">bool, default False</span></dt><dd><p>Append rather than overwrite positions?</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.update_plot">
+<span class="sig-name descname"><span class="pre">update_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.update_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update open plot.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">elphmod</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="el.html">Electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ph.html">Phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elph.html">Electron–phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elel.html">Electron–electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MPI.html">MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bravais.html">Bravais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dispersion.html">Dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dos.html">DOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams.html">Diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eliashberg.html">Eliashberg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot.html">Plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="occupations.html" title="previous chapter">Occupations</a></li>
+      <li>Next: <a href="eliashberg.html" title="next chapter">Eliashberg</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017-2022 University of Bremen.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/modules/md.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

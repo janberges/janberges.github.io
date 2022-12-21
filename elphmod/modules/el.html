@@ -41,7 +41,7 @@
 <p>Tight-binding models from Wannier90.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.el.Model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read_xsf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_ortho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read_xsf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_ortho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rydberg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tight-binding model for the electrons.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -72,6 +72,8 @@ systems. Make sure to delete the binary files <em>seedname_wf.npy</em> and
 </dd>
 <dt><strong>check_ortho</strong><span class="classifier">bool, default False</span></dt><dd><p>Check if Wannier functions are orthogonal?</p>
 </dd>
+<dt><strong>rydberg</strong><span class="classifier">bool, default False</span></dt><dd><p>Convert energies from eV to Ry?</p>
+</dd>
 <dt><strong>shared_memory</strong><span class="classifier">bool, default False</span></dt><dd><p>Store Wannier functions in shared memory?</p>
 </dd>
 </dl>
@@ -99,6 +101,8 @@ systems. Make sure to delete the binary files <em>seedname_wf.npy</em> and
 <dt><strong>atom_order</strong><span class="classifier">list of str, optional</span></dt><dd><p>Ordered list of atoms if <cite>read_xsf</cite>.</p>
 </dd>
 <dt><strong>dV</strong><span class="classifier">float, optional</span></dt><dd><p>Volume element/voxel volume belonging to <cite>r</cite> if <cite>read_xsf</cite>.</p>
+</dd>
+<dt><strong>rydberg</strong><span class="classifier">bool</span></dt><dd><p>Have energies been converted from eV to Ry?</p>
 </dd>
 </dl>
 </dd>
@@ -747,6 +751,7 @@ For example 1296 for 36x36x1.</p>
 <li class="toctree-l1"><a class="reference internal" href="dos.html">DOS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diagrams.html">Diagrams</a></li>
 <li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">MD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eliashberg.html">Eliashberg</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot.html">Plot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>

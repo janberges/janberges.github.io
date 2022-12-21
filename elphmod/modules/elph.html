@@ -102,6 +102,20 @@ if <cite>shared_memory</cite>.</p>
 </dd>
 </dl>
 <dl class="py method">
+<dt class="sig sig-object py" id="elphmod.elph.Model.asr">
+<span class="sig-name descname"><span class="pre">asr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.asr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply acoustic sum rule correction to electron-phonon coupling.</p>
+<p>This will suppress all coupling of electrons to acoustic phonon modes.
+The matrix elements are subject to a constant relative change so that
+zeros remain zeros and the largest values change the most. There might
+be a better way to accomplish this.</p>
+<dl class="simple">
+<dt>report<span class="classifier">bool</span></dt><dd><p>Print sums before and after correction?</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.divide_degeneracy">
 <span class="sig-name descname"><span class="pre">divide_degeneracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.divide_degeneracy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Divide real-space coupling by degeneracy of Wigner-Seitz point.</p>
@@ -380,7 +394,7 @@ quantity of dimension energy to the power of 2/3?</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.sample">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.sample" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sample coupling for given q and k points and transform to band basis.</p>
 <p>One purpose of this routine is full control of the complex phase.</p>
 <dl class="field-list simple">
@@ -401,6 +415,9 @@ If present, transform from orbital to band basis.</p>
 </dd>
 <dt><strong>u</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Phonon eigenvectors for given q points.
 If present, transform from displacement to band basis.</p>
+</dd>
+<dt><strong>squared</strong><span class="classifier">bool</span></dt><dd><p>Sample squared complex modulus instead? This is more memory-efficient
+than sampling the complex coupling and taking the squared modulus later.</p>
 </dd>
 <dt><strong>broadcast</strong><span class="classifier">bool</span></dt><dd><p>Broadcast result from rank 0 to all processes?</p>
 </dd>
@@ -465,6 +482,7 @@ If present, transform from displacement to band basis.</p>
 <li class="toctree-l1"><a class="reference internal" href="dos.html">DOS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diagrams.html">Diagrams</a></li>
 <li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">MD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eliashberg.html">Eliashberg</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot.html">Plot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
