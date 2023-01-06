@@ -39,7 +39,7 @@
 <p>Charge-density-wave dynamics on supercells.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.md.Driver">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.md.</span></span><span class="sig-name descname"><span class="pre">Driver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.md.</span></span><span class="sig-name descname"><span class="pre">Driver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unscreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver" title="Permalink to this definition">¶</a></dt>
 <dd><p>MD driver for DFPT-based displacements dynamics.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -54,13 +54,15 @@ map everthing to the appropriate supercell before (<code class="docutils literal
 </dd>
 <dt><strong>n</strong><span class="classifier">float</span></dt><dd><p>Number of electrons per primitive cell.</p>
 </dd>
-<dt><strong>nk, nq</strong><span class="classifier">tuple of int</span></dt><dd><p>Shape of k and q mesh.</p>
+<dt><strong>nk, nq</strong><span class="classifier">tuple of int, optional</span></dt><dd><p>Shape of k and q mesh. By default, only k = q = 0 is used.</p>
 </dd>
 <dt><strong>supercell</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Supercell lattice vectors as multiples of primitive lattice vectors. If
 given, the simulation is performed on a supercell for q = k = 0. Sparse
 matrices are used for Hamiltonian, dynamical matrix, and electron-phonon
 coupling to save memory. The calculation of phonons is not implemented.
 Note that <cite>elph</cite> should belong to the primitive cell in this case.</p>
+</dd>
+<dt><strong>unscreen</strong><span class="classifier">bool, default True</span></dt><dd><p>Unscreen phonons? Otherwise, they are assumed to be unscreened already.</p>
 </dd>
 </dl>
 </dd>
@@ -116,20 +118,9 @@ Note that <cite>elph</cite> should belong to the primitive cell in this case.</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="elphmod.md.Driver.find_chemical_potential">
-<span class="sig-name descname"><span class="pre">find_chemical_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.find_chemical_potential" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update Fermi level via fixed-point iteration.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Tolerance for the electron number.</p>
-</dd>
-<dt><strong>damp</strong><span class="classifier">float</span></dt><dd><p>Damping factor in the fixed-point equation. Large values may prevent
-convergence; small values will slow down convergence.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="elphmod.md.Driver.find_Fermi_level">
+<span class="sig-name descname"><span class="pre">find_Fermi_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.find_Fermi_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update chemical potential.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -336,7 +327,7 @@ attribute, which is used by default.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017-2022 University of Bremen.
+      &copy;2017-2023 elphmod Developers.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>

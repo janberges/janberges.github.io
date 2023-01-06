@@ -106,6 +106,74 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.find_Fermi_level">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">find_Fermi_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol=1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps=1e-10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.find_Fermi_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine chemical potential via fixed-point iteration.</p>
+<p>See Eqs. 4.21 and 4.22 of <a class="reference external" href="https://janber.de/theses/Master_Jan_Berges.pdf">https://janber.de/theses/Master_Jan_Berges.pdf</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n</strong><span class="classifier">float</span></dt><dd><p>Number of electrons (with spin) per unit cell.</p>
+</dd>
+<dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electronic energies for representative k points.</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature.</p>
+</dd>
+<dt><strong>f</strong><span class="classifier">function</span></dt><dd><p>Electron distribution as a function of energy divided by <cite>kT</cite>.</p>
+</dd>
+<dt><strong>mu</strong><span class="classifier">float</span></dt><dd><p>Initial guess for chemical potential. By default, an estimate based on
+the assumption of a constant density of states is used.</p>
+</dd>
+<dt><strong>tol</strong><span class="classifier">float</span></dt><dd><p>Tolerance for the number of electrons.</p>
+</dd>
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Smallest allowed absolute value of divisor.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Chemical potential.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.occupations.find_Fermi_level_simple">
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">find_Fermi_level_simple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol=1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damp=0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.find_Fermi_level_simple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine chemical potential via simple fixed-point iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n</strong><span class="classifier">float</span></dt><dd><p>Number of electrons (with spin) per unit cell.</p>
+</dd>
+<dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electronic energies for representative k points.</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature.</p>
+</dd>
+<dt><strong>f</strong><span class="classifier">function</span></dt><dd><p>Electron distribution as a function of energy divided by <cite>kT</cite>.</p>
+</dd>
+<dt><strong>mu</strong><span class="classifier">float</span></dt><dd><p>Initial guess for chemical potential. By default, an estimate based on
+the assumption of a constant density of states is used.</p>
+</dd>
+<dt><strong>tol</strong><span class="classifier">float</span></dt><dd><p>Tolerance for the number of electrons.</p>
+</dd>
+<dt><strong>damp</strong><span class="classifier">float</span></dt><dd><p>Damping factor in the fixed-point equation. Large values may prevent
+convergence; small values will slow down convergence.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Chemical potential.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.gauss">
 <span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">gauss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.gauss" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate Gaussian step function.</p>
@@ -339,7 +407,7 @@ A_n &amp;= \frac{(-1)^n}{\sqrt \pi n! 4^n}\end{split}\]</div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017-2022 University of Bremen.
+      &copy;2017-2023 elphmod Developers.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
