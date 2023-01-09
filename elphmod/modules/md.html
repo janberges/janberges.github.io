@@ -39,7 +39,7 @@
 <p>Charge-density-wave dynamics on supercells.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.md.Driver">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.md.</span></span><span class="sig-name descname"><span class="pre">Driver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unscreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.md.</span></span><span class="sig-name descname"><span class="pre">Driver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unscreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver" title="Permalink to this definition">¶</a></dt>
 <dd><p>MD driver for DFPT-based displacements dynamics.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -63,6 +63,8 @@ coupling to save memory. The calculation of phonons is not implemented.
 Note that <cite>elph</cite> should belong to the primitive cell in this case.</p>
 </dd>
 <dt><strong>unscreen</strong><span class="classifier">bool, default True</span></dt><dd><p>Unscreen phonons? Otherwise, they are assumed to be unscreened already.</p>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Attributes to be set initially.</p>
 </dd>
 </dl>
 </dd>
@@ -88,6 +90,12 @@ Note that <cite>elph</cite> should belong to the primitive cell in this case.</p
 </dd>
 <dt><strong>scale</strong><span class="classifier">float, default 10.0</span></dt><dd><p>Displacement scaling factor for plots.</p>
 </dd>
+<dt><strong>size</strong><span class="classifier">float, default 100.0</span></dt><dd><p>Marker size for atoms in points squared.</p>
+</dd>
+<dt><strong>basis</strong><span class="classifier">list of list, default None</span></dt><dd><p>For each basis atom in the first primitive cell, indices of orbitals
+located at this atom. Matching atom and orbital orders as ensured by
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">elph.Model.supercell()</span></code> are required.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -95,6 +103,26 @@ Note that <cite>elph</cite> should belong to the primitive cell in this case.</p
 <dt class="sig sig-object py" id="elphmod.md.Driver.center_mass">
 <span class="sig-name descname"><span class="pre">center_mass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.center_mass" title="Permalink to this definition">¶</a></dt>
 <dd><p>Subtract collective translational displacement component.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.density">
+<span class="sig-name descname"><span class="pre">density</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.density" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate electron density for all orbitals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ndarray</dt><dd><p>Electron density. Should add up to the number of electrons.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.density_per_atom">
+<span class="sig-name descname"><span class="pre">density_per_atom</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.density_per_atom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate electron density per atom.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -203,7 +231,7 @@ Note that <cite>elph</cite> should belong to the primitive cell in this case.</p
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.plot">
-<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.plot" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot crystal structure and displacements.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -215,6 +243,8 @@ attribute, which is used by default.</p>
 attribute, which is used by default.</p>
 </dd>
 <dt><strong>padding</strong><span class="classifier">float, optional</span></dt><dd><p>Padding between crystal and plotting box in angstrom.</p>
+</dd>
+<dt><strong>size</strong><span class="classifier">float, optional</span></dt><dd><p>Marker size for atoms.</p>
 </dd>
 </dl>
 </dd>
