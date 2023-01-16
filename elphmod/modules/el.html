@@ -296,24 +296,21 @@ is a sum <code class="docutils literal notranslate"><span class="pre">eband</spa
 <p>To compare it with the Quantum ESPRESSO result, you need to modify
 the <code class="docutils literal notranslate"><span class="pre">SUBROUTINE</span> <span class="pre">print_energies</span> <span class="pre">(</span> <span class="pre">printout</span> <span class="pre">)</span></code> from <em>electrons.f90</em>.</p>
 <p>Change:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WRITE</span><span class="p">(</span> <span class="n">stdout</span><span class="p">,</span> <span class="mi">9060</span> <span class="p">)</span> <span class="o">&amp;</span>
-    <span class="p">(</span> <span class="n">eband</span> <span class="o">+</span> <span class="n">deband</span> <span class="p">),</span> <span class="n">ehart</span><span class="p">,</span> <span class="p">(</span> <span class="n">etxc</span> <span class="o">-</span> <span class="n">etxcc</span> <span class="p">),</span> <span class="n">ewld</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WRITE</span><span class="p">(</span> <span class="n">stdout</span><span class="p">,</span> <span class="mi">9062</span> <span class="p">)</span> <span class="p">(</span><span class="n">eband</span> <span class="o">+</span> <span class="n">deband</span><span class="p">),</span> <span class="n">ehart</span><span class="p">,</span> <span class="p">(</span> <span class="n">etxc</span> <span class="o">-</span> <span class="n">etxcc</span> <span class="p">),</span> <span class="n">ewld</span>
 </pre></div>
 </div>
 <p>to:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WRITE</span><span class="p">(</span> <span class="n">stdout</span><span class="p">,</span> <span class="mi">9060</span> <span class="p">)</span> <span class="o">&amp;</span>
-    <span class="n">eband</span><span class="p">,</span> <span class="p">(</span> <span class="n">eband</span> <span class="o">+</span> <span class="n">deband</span> <span class="p">),</span> <span class="n">ehart</span><span class="p">,</span> <span class="p">(</span> <span class="n">etxc</span> <span class="o">-</span> <span class="n">etxcc</span> <span class="p">),</span> <span class="n">ewld</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WRITE</span><span class="p">(</span> <span class="n">stdout</span><span class="p">,</span> <span class="mi">9062</span> <span class="p">)</span> <span class="n">eband</span><span class="p">,</span> <span class="o">&amp;</span>
+   <span class="p">(</span><span class="n">eband</span> <span class="o">+</span> <span class="n">deband</span><span class="p">),</span> <span class="n">ehart</span><span class="p">,</span> <span class="p">(</span> <span class="n">etxc</span> <span class="o">-</span> <span class="n">etxcc</span> <span class="p">),</span> <span class="n">ewld</span>
 </pre></div>
 </div>
 <p>and:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">9060</span> <span class="n">FORMAT</span><span class="p">(</span><span class="o">/</span><span class="s1">&#39;     The total energy is the sum of the following terms:&#39;</span><span class="p">,</span><span class="o">/</span><span class="p">,</span><span class="o">&amp;</span>
-        <span class="o">/</span><span class="s1">&#39;     one-electron contribution =&#39;</span><span class="p">,</span><span class="n">F17</span><span class="mf">.8</span><span class="p">,</span><span class="s1">&#39; Ry&#39;</span> <span class="o">&amp;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">9062</span> <span class="n">FORMAT</span><span class="p">(</span> <span class="s1">&#39;     one-electron contribution =&#39;</span><span class="p">,</span><span class="n">F17</span><span class="mf">.8</span><span class="p">,</span><span class="s1">&#39; Ry&#39;</span> <span class="o">&amp;</span>
 </pre></div>
 </div>
 <p>to:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">9060</span> <span class="n">FORMAT</span><span class="p">(</span><span class="o">/</span><span class="s1">&#39;     The total energy is the sum of the following terms:&#39;</span><span class="p">,</span><span class="o">/</span><span class="p">,</span><span class="o">&amp;</span>
-        <span class="o">/</span><span class="s1">&#39;     sum bands                 =&#39;</span><span class="p">,</span><span class="n">F17</span><span class="mf">.8</span><span class="p">,</span><span class="s1">&#39; Ry&#39;</span> <span class="o">&amp;</span>
-        <span class="o">/</span><span class="s1">&#39;     one-electron contribution =&#39;</span><span class="p">,</span><span class="n">F17</span><span class="mf">.8</span><span class="p">,</span><span class="s1">&#39; Ry&#39;</span> <span class="o">&amp;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">9062</span> <span class="n">FORMAT</span><span class="p">(</span> <span class="s1">&#39;     sum bands                 =&#39;</span><span class="p">,</span><span class="n">F17</span><span class="mf">.8</span><span class="p">,</span><span class="s1">&#39; Ry&#39;</span> <span class="o">&amp;</span>
+            <span class="o">/</span><span class="s1">&#39;     one-electron contribution =&#39;</span><span class="p">,</span><span class="n">F17</span><span class="mf">.8</span><span class="p">,</span><span class="s1">&#39; Ry&#39;</span> <span class="o">&amp;</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
