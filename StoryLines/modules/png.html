@@ -40,7 +40,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="storylines.png.load">
 <span class="sig-prename descclassname"><span class="pre">storylines.png.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.png.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load grayscale, RGB, or RGBA image from 8-bit PNG.</p>
+<dd><p>Load from 8-bit PNG without filtering.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -51,7 +51,7 @@
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>list of list of list</dt><dd><p>8-bit image data of shape (height, width, colors), where colors may be
-1 (grayscale), 3 (RGB), or 4 (RGBA).</p>
+1 (grayscale), 2 (grayscale and alpha), 3 (RGB), or 4 (RGBA).</p>
 </dd>
 </dl>
 </dd>
@@ -61,16 +61,17 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="storylines.png.save">
 <span class="sig-prename descclassname"><span class="pre">storylines.png.</span></span><span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.png.save" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save grayscale, RGB, or RGBA image as 8-bit PNG.</p>
+<dd><p>Save image as 8-bit PNG without filtering.</p>
 <p>Specified at <a class="reference external" href="https://www.w3.org/TR/PNG/">https://www.w3.org/TR/PNG/</a>.
 Inspired by Blender thumbnailer code.</p>
+<p>RGB images with less than 256 colors will be saved using indexed color.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Name of PNG file to be written.</p>
 </dd>
 <dt><strong>image</strong><span class="classifier">list of list of list</span></dt><dd><p>8-bit image data of shape (height, width, colors), where colors may be
-1 (grayscale), 3 (RGB), or 4 (RGBA).</p>
+1 (grayscale), 2 (grayscale and alpha), 3 (RGB), or 4 (RGBA).</p>
 </dd>
 </dl>
 </dd>

@@ -413,6 +413,22 @@ to one?</p>
 <dt class="sig sig-object py" id="elphmod.el.read_bands">
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_bands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filband</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_bands" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read bands from <em>filband</em> just like Quantum ESRESSO’s <code class="docutils literal notranslate"><span class="pre">plotband.x</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filband</strong><span class="classifier">str</span></dt><dd><p>Filename.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>k</strong><span class="classifier">ndarray</span></dt><dd><p>k points in Cartesian coordiantes.</p>
+</dd>
+<dt><strong>bands</strong><span class="classifier">ndarray</span></dt><dd><p>Band energies.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -552,7 +568,7 @@ dimensions, and <span class="math notranslate nohighlight">\(i, j, k\)</span> ru
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>filout output file name.</p>
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Filename.</p>
 </dd>
 </dl>
 </dd>
@@ -604,7 +620,7 @@ real space <span class="math notranslate nohighlight">\(\rho(\vec r)\)</span> or
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Output file name.</p>
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Filename.</p>
 </dd>
 <dt><strong>ibrav</strong><span class="classifier">integer</span></dt><dd><p>Bravais lattice index (see <code class="docutils literal notranslate"><span class="pre">pw.x</span></code> input description).</p>
 </dd>
@@ -685,7 +701,7 @@ For example 1296 for 36x36x1.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Output file name.</p>
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Filename.</p>
 </dd>
 <dt><strong>ibrav</strong><span class="classifier">integer</span></dt><dd><p>Bravais lattice index (see <code class="docutils literal notranslate"><span class="pre">pw.x</span></code> input description).</p>
 </dd>
@@ -716,6 +732,28 @@ For example 1296 for 36x36x1.</p>
 <dt class="sig sig-object py" id="elphmod.el.read_wsvecdat">
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_wsvecdat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wsvecdat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_wsvecdat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read <em>_wsvec.dat</em> file from Wannier90.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.write_bands">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">write_bands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filband</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%8.3f'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.write_bands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write bands to <em>filband</em> just like Quantum ESPRESSO’s <code class="docutils literal notranslate"><span class="pre">plotband.x</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filband</strong><span class="classifier">str</span></dt><dd><p>Filename.</p>
+</dd>
+<dt><strong>k</strong><span class="classifier">ndarray</span></dt><dd><p>k points in Cartesian coordiantes.</p>
+</dd>
+<dt><strong>bands</strong><span class="classifier">ndarray</span></dt><dd><p>Band energies.</p>
+</dd>
+<dt><strong>fmt</strong><span class="classifier">str</span></dt><dd><p>Format string for band energies.</p>
+</dd>
+<dt><strong>cols</strong><span class="classifier">int</span></dt><dd><p>Number of band energies per line.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

@@ -349,6 +349,22 @@ before.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="elphmod.ph.Model.to_flfrc">
+<span class="sig-name descname"><span class="pre">to_flfrc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flfrc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.to_flfrc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save mass-spring model to force-constants file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>flfrc</strong><span class="classifier">str</span></dt><dd><p>Filename.</p>
+</dd>
+<dt><strong>nr1, nr2, nr3</strong><span class="classifier">int</span></dt><dd><p>Mesh dimensions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="elphmod.ph.Model.unit_cell">
 <span class="sig-name descname"><span class="pre">unit_cell</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.unit_cell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Map mass-spring model back to unit cell.</p>
@@ -407,7 +423,7 @@ constants?</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.ph.interpolate_dynamical_matrices">
-<span class="sig-prename descclassname"><span class="pre">elphmod.ph.</span></span><span class="sig-name descname"><span class="pre">interpolate_dynamical_matrices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">D</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fildyn_template</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fildyn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flfrc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_fildyn0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_rsr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qe_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.interpolate_dynamical_matrices" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.ph.</span></span><span class="sig-name descname"><span class="pre">interpolate_dynamical_matrices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">D</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fildyn_template</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fildyn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flfrc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_fildyn0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_rsr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qe_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.interpolate_dynamical_matrices" title="Permalink to this definition">¶</a></dt>
 <dd><p>Interpolate dynamical matrices given for irreducible wedge of q points.</p>
 <p>This function still uses the Quantum ESPRESSO executables <code class="docutils literal notranslate"><span class="pre">q2qstar.x</span></code> and
 <code class="docutils literal notranslate"><span class="pre">q2r.x</span></code>.  They are called in serial by each MPI process, which leads to
@@ -448,6 +464,9 @@ space is required.</p></li>
 the self force constant to minus the sum of all other force constants.</p>
 </dd>
 <dt><strong>apply_rsr</strong><span class="classifier">bool</span></dt><dd><p>Enforce rotation sum rule by overwriting self force constants?</p>
+</dd>
+<dt><strong>divide_mass</strong><span class="classifier">bool</span></dt><dd><p>Have input dynamical matrices been divided by atomic mass? This is
+independent of <code class="docutils literal notranslate"><span class="pre">ph.divide_mass</span></code>, which is always respected.</p>
 </dd>
 <dt><strong>qe_prefix</strong><span class="classifier">str</span></dt><dd><p>String to prepend to names of Quantum ESPRESSO executables.</p>
 </dd>
@@ -564,7 +583,7 @@ and corresponding dynamical matrices for input generated by <code class="docutil
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>quadrupole_fmt</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
+<dt><strong>quadrupole_fmt</strong><span class="classifier">str</span></dt><dd><p>Filename.</p>
 </dd>
 </dl>
 </dd>
@@ -651,7 +670,7 @@ directions and the frequency argument.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>flfrc</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
+<dt><strong>flfrc</strong><span class="classifier">str</span></dt><dd><p>Filename.</p>
 </dd>
 <dt><strong>phid</strong><span class="classifier">ndarray or tuple of list of ndarray</span></dt><dd><p>Force constants or equivalent q points and corresponding dynamical
 matrices.</p>
@@ -693,7 +712,7 @@ matrices.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>quadrupole_fmt</strong><span class="classifier">str</span></dt><dd><p>File name.</p>
+<dt><strong>quadrupole_fmt</strong><span class="classifier">str</span></dt><dd><p>Filename.</p>
 </dd>
 <dt><strong>Q</strong><span class="classifier">ndarray</span></dt><dd><p>Quadrupole tensor.</p>
 </dd>
