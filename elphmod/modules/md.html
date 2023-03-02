@@ -133,12 +133,15 @@ located at this atom. Matching atom and orbital orders as ensured by
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.electrons">
-<span class="sig-name descname"><span class="pre">electrons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'supercell'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.electrons" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">electrons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'supercell'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.electrons" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set up tight-binding model for current structure.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>seedname</strong><span class="classifier">str</span></dt><dd><p>Prefix of file with Hamiltonian in Wannier90 format.</p>
+</dd>
+<dt><strong>step</strong><span class="classifier">int, optional</span></dt><dd><p>Only use data for every <cite>step</cite>-th k point along first and second
+axis? This reduces the size of the Hamiltonian file.</p>
 </dd>
 </dl>
 </dd>
@@ -231,7 +234,7 @@ located at this atom. Matching atom and orbital orders as ensured by
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.plot">
-<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.plot" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot crystal structure and displacements.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -245,6 +248,8 @@ attribute, which is used by default.</p>
 <dt><strong>padding</strong><span class="classifier">float, optional</span></dt><dd><p>Padding between crystal and plotting box in angstrom.</p>
 </dd>
 <dt><strong>size</strong><span class="classifier">float, optional</span></dt><dd><p>Marker size for atoms.</p>
+</dd>
+<dt><strong>label</strong><span class="classifier">bool, optional</span></dt><dd><p>Show atom indices?</p>
 </dd>
 </dl>
 </dd>
