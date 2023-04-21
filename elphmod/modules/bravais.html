@@ -47,7 +47,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.Fourier_interpolation">
-<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">Fourier_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hr_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.Fourier_interpolation" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">Fourier_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.Fourier_interpolation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform Fourier interpolation on triangular or rectangular lattice.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -57,8 +57,6 @@
 <dt><strong>angle</strong><span class="classifier">number</span></dt><dd><p>Angle between lattice vectors in degrees.</p>
 </dd>
 <dt><strong>sign</strong><span class="classifier">number</span></dt><dd><p>Sign in exponential function in first Fourier transform.</p>
-</dd>
-<dt><strong>hr_file</strong><span class="classifier">str</span></dt><dd><p>Filename. If given, save <em>_hr.dat</em> file as produced by Wannier90.</p>
 </dd>
 <dt><strong>function</strong><span class="classifier">bool</span></dt><dd><p>Return interpolation function or parameter dictionary?</p>
 </dd>
@@ -637,6 +635,36 @@ lattice constant in Bohr; the other elements are dimensionless.</p>
 </dd>
 </dl>
 </dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.short_range_model">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">short_range_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sgn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.short_range_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map hoppings or force constants onto Wigner-Seitz cell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Hoppings or force constants on (positive) Fourier-transform mesh. The
+first two dimensions correspond to the orbitals or atoms, the following
+three to the mesh axes, and the last two (optional, relevant for force
+constants only) to Cartesian directions.</p>
+</dd>
+<dt><strong>at</strong><span class="classifier">ndarray</span></dt><dd><p>Bravais lattice vectors.</p>
+</dd>
+<dt><strong>tau</strong><span class="classifier">ndarray</span></dt><dd><p>Positions of basis orbitals or atoms.</p>
+</dd>
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Tolerance for orbital or atomic distances to be considered equal.</p>
+</dd>
+<dt><strong>sgn</strong><span class="classifier">int</span></dt><dd><p>Do the lattice vectors shift the first (<code class="docutils literal notranslate"><span class="pre">-1</span></code>) or second (<code class="docutils literal notranslate"><span class="pre">+1</span></code>)
+orbital/atom?</p>
+</dd>
+<dt><strong>divide_ndegen</strong><span class="classifier">bool</span></dt><dd><p>Divide hoppings for force constants by lattice-vector degeneracy?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"></dd>
 </dl>
 </dd></dl>
 

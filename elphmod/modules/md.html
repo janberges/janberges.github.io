@@ -133,15 +133,15 @@ located at this atom. Matching atom and orbital orders as ensured by
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.electrons">
-<span class="sig-name descname"><span class="pre">electrons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'supercell'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.electrons" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">electrons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.electrons" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set up tight-binding model for current structure.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>seedname</strong><span class="classifier">str</span></dt><dd><p>Prefix of file with Hamiltonian in Wannier90 format.</p>
 </dd>
-<dt><strong>step</strong><span class="classifier">int, optional</span></dt><dd><p>Only use data for every <cite>step</cite>-th k point along first and second
-axis? This reduces the size of the Hamiltonian file.</p>
+<dt><strong>dk1, dk2, dk3</strong><span class="classifier">int, optional</span></dt><dd><p>Only use data for every <cite>dkn</cite>-th k point along the <em>n</em>-th axis? This
+reduces the size of the Hamiltonian file.</p>
 </dd>
 </dl>
 </dd>
