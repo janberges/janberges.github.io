@@ -145,6 +145,12 @@ reduces the size of the Hamiltonian file.</p>
 </dd>
 </dl>
 </dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>object</dt><dd><p>Tight-binding model for the electrons.</p>
+</dd>
+</dl>
+</dd>
 </dl>
 </dd></dl>
 
@@ -152,6 +158,14 @@ reduces the size of the Hamiltonian file.</p>
 <dt class="sig sig-object py" id="elphmod.md.Driver.find_Fermi_level">
 <span class="sig-name descname"><span class="pre">find_Fermi_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.find_Fermi_level" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update chemical potential.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>float</dt><dd><p>New chemical potential.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -164,6 +178,12 @@ reduces the size of the Hamiltonian file.</p>
 <dt><strong>u</strong><span class="classifier">ndarray</span></dt><dd><p>Updated atomic displacements (e.g., from optimization routine).</p>
 </dd>
 <dt><strong>show</strong><span class="classifier">bool</span></dt><dd><p>Print free energy?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Free energy in Ry.</p>
 </dd>
 </dl>
 </dd>
@@ -197,6 +217,12 @@ reduces the size of the Hamiltonian file.</p>
 </dd>
 </dl>
 </dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Force constants in Ry per Bohr squared.</p>
+</dd>
+</dl>
+</dd>
 </dl>
 </dd></dl>
 
@@ -213,6 +239,12 @@ reduces the size of the Hamiltonian file.</p>
 </dd>
 </dl>
 </dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Negative forces in Ry per Bohr.</p>
+</dd>
+</dl>
+</dd>
 </dl>
 </dd></dl>
 
@@ -226,6 +258,12 @@ reduces the size of the Hamiltonian file.</p>
 <dt><strong>divide_mass</strong><span class="classifier">bool</span></dt><dd><p>Divide force constants by atomic masses?</p>
 </dd>
 <dt><strong>**kwargs</strong></dt><dd><p>Parameters passed to <code class="xref py py-func docutils literal notranslate"><span class="pre">ph.q2r()</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>object</dt><dd><p>Mass-spring model for the phonons.</p>
 </dd>
 </dl>
 </dd>

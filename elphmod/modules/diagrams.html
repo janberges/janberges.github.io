@@ -177,7 +177,7 @@ basis as <cite>U</cite> (eigenbasis of the Hamiltonian).</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.diagrams.phonon_self_energy">
-<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">phonon_self_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g2=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps=1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluctuations=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Delta=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Delta_diff=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Delta_occupations=&lt;function</span> <span class="pre">gauss&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Delta_kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetrize=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.phonon_self_energy" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">phonon_self_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g2=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps=1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluctuations=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Delta=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Delta_diff=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Delta_occupations=&lt;function</span> <span class="pre">gauss&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Delta_kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetrize=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diagonal=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.phonon_self_energy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate phonon self-energy.</p>
 <div class="math notranslate nohighlight">
 \[\Pi_{\vec q \nu}(\omega) = \frac 2 N \sum_{\vec k m n}
@@ -191,7 +191,8 @@ basis as <cite>U</cite> (eigenbasis of the Hamiltonian).</p>
 </dd>
 <dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
 </dd>
-<dt><strong>g2</strong><span class="classifier">ndarray</span></dt><dd><p>Squared electron-phonon coupling.</p>
+<dt><strong>g2</strong><span class="classifier">ndarray</span></dt><dd><p>Squared electron-phonon coupling. The resulting phonon self-energy will
+be a vector in the space of phonon modes.</p>
 </dd>
 <dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature.</p>
 </dd>
@@ -213,12 +214,15 @@ regulator if nonzero.</p>
 <dt><strong>Delta_kT</strong><span class="classifier">float</span></dt><dd><p>Temperature to smoothen Heaviside function.</p>
 </dd>
 <dt><strong>g</strong><span class="classifier">ndarray</span></dt><dd><p>Electron-phonon coupling on one side of the bubble. If given, <cite>g2</cite> is
-ignored.</p>
+ignored. The resulting phonon self-energy will be a matrix (an outer
+product of <cite>g</cite> and <cite>G</cite>) in the space of phonon modes or displacements.</p>
 </dd>
 <dt><strong>G</strong><span class="classifier">ndarray</span></dt><dd><p>Electron-phonon coupling on the other side of the bubble. If absent, <cite>g</cite>
 is used.</p>
 </dd>
 <dt><strong>symmetrize</strong><span class="classifier">bool</span></dt><dd><p>Symmetrize phonon self-energy with respect to swapping <cite>g</cite> and <cite>G</cite>?</p>
+</dd>
+<dt><strong>diagonal</strong><span class="classifier">bool</span></dt><dd><p>Neglect off-diagonal elements when using <cite>g</cite> and <cite>G</cite>?</p>
 </dd>
 <dt><strong>U</strong><span class="classifier">ndarray</span></dt><dd><p>Contact interaction (a matrix in band indices) to model the effect of
 excitons. Only used if <cite>g</cite> is present. Associated terms are currently

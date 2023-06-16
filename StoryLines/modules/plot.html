@@ -59,8 +59,9 @@ is not always the best option.</p>
 </dd>
 <dt><strong>xyaxes</strong><span class="classifier">bool, default True</span></dt><dd><p>Draw x and y axes?</p>
 </dd>
-<dt><strong>style</strong><span class="classifier">str, default None</span></dt><dd><p>Predefined style. Possible values are <code class="docutils literal notranslate"><span class="pre">'Nature'</span></code>, <code class="docutils literal notranslate"><span class="pre">'NatCommun'</span></code>,
-and <code class="docutils literal notranslate"><span class="pre">'APS'</span></code>. This changes some of the below default values.</p>
+<dt><strong>style</strong><span class="classifier">str, default None</span></dt><dd><p>Predefined style. Possible values are <code class="docutils literal notranslate"><span class="pre">'APS'</span></code>, <code class="docutils literal notranslate"><span class="pre">'NanoLett''',</span>
+<span class="pre">``'NatCommun'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'Nature'</span></code>. This changes some of the below
+default values.</p>
 </dd>
 <dt><strong>rounded</strong><span class="classifier">bool, default True</span></dt><dd><p>Use <code class="docutils literal notranslate"><span class="pre">round</span></code> as default value for <code class="docutils literal notranslate"><span class="pre">line</span> <span class="pre">cap</span></code> and <code class="docutils literal notranslate"><span class="pre">line</span> <span class="pre">join</span></code>?
 Otherwise the TikZ initial values <code class="docutils literal notranslate"><span class="pre">miter</span></code> and <code class="docutils literal notranslate"><span class="pre">butt</span></code> are used.</p>
@@ -98,13 +99,26 @@ lower side, to the center, and to the upper side, respectively.</p>
 <dt><strong>xlabel, ylabel, zlabel</strong><span class="classifier">str, default None</span></dt><dd><p>Axis labels.</p>
 </dd>
 <dt><strong>xticks, yticks, zticks</strong><span class="classifier">list, default None</span></dt><dd><p>List of ticks, e.g., <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">(0.5,</span> <span class="pre">'$\\frac12$'),</span> <span class="pre">1]</span></code>. If the label is
-<code class="docutils literal notranslate"><span class="pre">None</span></code>, the tick mark is not drawn (but possibe grid lines are).</p>
+<code class="docutils literal notranslate"><span class="pre">None</span></code>, the tick mark is not drawn (but possibe grid lines are). If it
+otherwise evaluates to <code class="docutils literal notranslate"><span class="pre">False</span></code>, the tick mark but no label is drawn.</p>
 </dd>
 <dt><strong>xmarks, ymarks, zmarks</strong><span class="classifier">bool, default True</span></dt><dd><p>Show tick marks and labels?</p>
+</dd>
+<dt><strong>xlabels, ylabels, zlabels</strong><span class="classifier">bool, default True</span></dt><dd><p>Show tick labels?</p>
 </dd>
 <dt><strong>xspacing, yspacing, zspacing</strong><span class="classifier">float, default 1.0</span></dt><dd><p>Approximate tick spacing in cm.</p>
 </dd>
 <dt><strong>xstep, ystep, zstep</strong><span class="classifier">float, default None</span></dt><dd><p>Exact tick increment.</p>
+</dd>
+<dt><strong>xminorticks, yminorticks</strong><span class="classifier">list, default None</span></dt><dd><p>List of minor-tick positions. There is currently no intelligent way to
+set the minor ticks depending on the major ticks. However, minor ticks
+that fall on major ticks are omitted.</p>
+</dd>
+<dt><strong>xminormarks, yminormarks</strong><span class="classifier">bool, default False</span></dt><dd><p>Show minor tick marks?</p>
+</dd>
+<dt><strong>xminorspacing, yminorspacing</strong><span class="classifier">float, default 0.1</span></dt><dd><p>Approximate minor-tick spacing in cm.</p>
+</dd>
+<dt><strong>xminorstep, yminorstep</strong><span class="classifier">float, default None</span></dt><dd><p>Exact minor-tick increment.</p>
 </dd>
 <dt><strong>xmin, ymin, zmin</strong><span class="classifier">float, default None</span></dt><dd><p>Lower axis limit.</p>
 </dd>
@@ -134,6 +148,9 @@ lower side, to the center, and to the upper side, respectively.</p>
 </dd>
 <dt><strong>labelformat</strong><span class="classifier">function, default None</span></dt><dd><p>Formatter for subfigure label. Takes <cite>label</cite> as argument.</p>
 </dd>
+<dt><strong>labelpos</strong><span class="classifier">str, default ‘LT’</span></dt><dd><p>Label position, a combination of <code class="docutils literal notranslate"><span class="pre">lcrbmtLCRBMT</span></code> or a tuple of data
+coordinates.</p>
+</dd>
 <dt><strong>lali</strong><span class="classifier">str, default ‘center’</span></dt><dd><p>Alignment of legend entries.</p>
 </dd>
 <dt><strong>lbls</strong><span class="classifier">str, default ‘\\baselineskip’</span></dt><dd><p>Line height of legend entries.</p>
@@ -159,7 +176,9 @@ coordinates.</p>
 </dd>
 <dt><strong>lwid</strong><span class="classifier">float, default 4.0</span></dt><dd><p>Width of legend columns in units of <cite>llen</cite>.</p>
 </dd>
-<dt><strong>tick</strong><span class="classifier">str, default 0.07</span></dt><dd><p>Length of tick marks in cm.</p>
+<dt><strong>tick</strong><span class="classifier">float, default 0.07</span></dt><dd><p>Length of tick marks in cm.</p>
+</dd>
+<dt><strong>minortick</strong><span class="classifier">float, default 0.04</span></dt><dd><p>Length of minor tick marks in cm.</p>
 </dd>
 <dt><strong>gap</strong><span class="classifier">float, default 0.15</span></dt><dd><p>Gap between plot area and colorbar in cm.</p>
 </dd>

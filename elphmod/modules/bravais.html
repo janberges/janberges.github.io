@@ -812,6 +812,30 @@ the original and the transformed mesh.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.to_supercell">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">to_supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.to_supercell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map lattice vector to supercell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>R</strong><span class="classifier">tuple of int</span></dt><dd><p>Unit-cell lattice vector.</p>
+</dd>
+<dt><strong>supercell</strong><span class="classifier">tuple</span></dt><dd><p>Supercell info returned by <a class="reference internal" href="#elphmod.bravais.supercell" title="elphmod.bravais.supercell"><code class="xref py py-func docutils literal notranslate"><span class="pre">supercell()</span></code></a>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>tuple of int</dt><dd><p>Supercell lattice vector.</p>
+</dd>
+<dt>int</dt><dd><p>Index of unit cell within supercell.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.translations">
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">translations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">two_dimensional</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.translations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate translation vectors of Bravais lattice.</p>
