@@ -39,7 +39,7 @@
 <p>Project 3D object onto plane.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="storylines.proj.project">
-<span class="sig-prename descclassname"><span class="pre">storylines.proj.</span></span><span class="sig-name descname"><span class="pre">project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.proj.project" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">storylines.proj.</span></span><span class="sig-name descname"><span class="pre">project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_cosines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.0,</span> <span class="pre">-1.0,</span> <span class="pre">0.0]</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.proj.project" title="Permalink to this definition">¶</a></dt>
 <dd><p>Project list of 3D objects onto 2D screen.</p>
 <p>Line width, mark sizes, and length in angle brackets are scaled according
 to the distance from the observer.</p>
@@ -52,7 +52,11 @@ of a list of three-tuples <code class="docutils literal notranslate"><span class
 <dt><strong>by_distance</strong><span class="classifier">bool, default True</span></dt><dd><p>Sort the objects by distance so that close object overlay remote
 objects?</p>
 </dd>
+<dt><strong>return_cosines</strong><span class="classifier">bool, default False</span></dt><dd><p>Calculate cosines of angles between objects and viewing direction?</p>
+</dd>
 <dt><strong>return_order</strong><span class="classifier">bool, default False</span></dt><dd><p>Also return sorting order as list of indices?</p>
+</dd>
+<dt><strong>R</strong><span class="classifier">list of float, optional</span></dt><dd><p>Observer position.</p>
 </dd>
 <dt><strong>*args, **kwargs</strong></dt><dd><p>Arguments passed to <cite>projection</cite>.</p>
 </dd>
@@ -60,8 +64,10 @@ objects?</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>list of tuple</dt><dd><p>Objects is same format, but sorted with transformed coordinates and
+<dt>list of tuple</dt><dd><p>Objects in same format, but sorted with transformed coordinates and
 adjusted styles.</p>
+</dd>
+<dt>list of float, optional</dt><dd><p>Cosines of angles between objects and viewing direction.</p>
 </dd>
 <dt>list of int, optional</dt><dd><p>Sorting order.</p>
 </dd>
@@ -129,6 +135,7 @@ adjusted styles.</p>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../examples/example.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/faces.html">Tetrahedron</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/fatband.html">Fatbands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/mandelbrot.html">Mandelbrot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/moebius.html">Moebius</a></li>

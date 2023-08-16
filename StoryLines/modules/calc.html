@@ -38,8 +38,28 @@
 <span id="calculations"></span><h1>Calculations<a class="headerlink" href="#module-storylines.calc" title="Permalink to this heading">¶</a></h1>
 <p>Mathematical helpers.</p>
 <dl class="py function">
+<dt class="sig sig-object py" id="storylines.calc.add">
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate sum of two vectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>A, B</strong><span class="classifier">list of float</span></dt><dd><p>Vectors to be added.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>list of float</dt><dd><p>Sum of <cite>A</cite> and <cite>B</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="storylines.calc.bonds">
-<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">bonds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.bonds" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">bonds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.bonds" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find lines that connect two sets of points.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -74,7 +94,27 @@
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>float</dt><dd><p>Cross product of <cite>A</cite> and <cite>B</cite>.</p>
+<dt>list of float</dt><dd><p>Cross product of <cite>A</cite> and <cite>B</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.calc.distance">
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate distance of two vectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>A, B</strong><span class="classifier">list of float</span></dt><dd><p>Vectors.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Distance of <cite>A</cite> and <cite>B</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -95,6 +135,52 @@
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float</dt><dd><p>Dot product of <cite>A</cite> and <cite>B</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.calc.faces">
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">faces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.faces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find triangular faces, e.g., of tetrahedra of atoms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>R</strong><span class="classifier">list of tuple</span></dt><dd><p>(Ordered) set of points.</p>
+</dd>
+<dt><strong>d</strong><span class="classifier">float</span></dt><dd><p>Shortening at the corners, e.g., atomic radius.</p>
+</dd>
+<dt><strong>dmin, dmax</strong><span class="classifier">float</span></dt><dd><p>Minimum and maximum side length.</p>
+</dd>
+<dt><strong>nc</strong><span class="classifier">int</span></dt><dd><p>Number of points to trace path around corners.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>list of list of tuple</dt><dd><p>Outlines of faces.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.calc.length">
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate length of vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>A</strong><span class="classifier">list of float</span></dt><dd><p>Vector.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Length of <cite>A</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -158,6 +244,26 @@ magnitude.</p>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float</dt><dd><p>Power of ten of the same order of magnitude as <cite>x</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.calc.subtract">
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">subtract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.subtract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate difference of two vectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>A, B</strong><span class="classifier">list of float</span></dt><dd><p>Vectors to be subtracted.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>list of float</dt><dd><p>Difference of <cite>A</cite> and <cite>B</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -242,6 +348,7 @@ magnitude.</p>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../examples/example.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/faces.html">Tetrahedron</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/fatband.html">Fatbands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/mandelbrot.html">Mandelbrot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/moebius.html">Moebius</a></li>

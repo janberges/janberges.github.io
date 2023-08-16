@@ -41,7 +41,7 @@
 <p>Coulomb interaction from VASP.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.elel.Model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uijkl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vijkl_full</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vijkl_redu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Wmat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uijkl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vijkl_full</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vijkl_redu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Wmat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Localized model for electron-electron interaction.</p>
 <p>Currently, only square and hexagonal Bravais lattices are supported.</p>
 <dl class="field-list simple">
@@ -52,11 +52,23 @@
 <dt><strong>vijkl_full, vijkl_redu</strong><span class="classifier">str</span></dt><dd><p>Files with full and reduced bare Coulomb tensors. The difference is
 added as a correction to the Coulomb tensor provided via <cite>uijkl</cite>.</p>
 </dd>
-<dt><strong>nq</strong><span class="classifier">int</span></dt><dd><p>Dimension of q mesh.</p>
+<dt><strong>nq</strong><span class="classifier">tuple of int or int</span></dt><dd><p>Number of q points per dimension. If an integer is given, a 2D mesh with
+<cite>nq</cite> points in both the first and the second dimension is assumed (for
+backward compatibility). If omitted or <code class="docutils literal notranslate"><span class="pre">None</span></code>, lattice vectors and
+corresponding interactions from <cite>Wmat</cite> are used unmodified.</p>
 </dd>
 <dt><strong>no</strong><span class="classifier">int</span></dt><dd><p>Number of orbitals.</p>
 </dd>
-<dt><strong>angle</strong><span class="classifier">numbe, optional</span></dt><dd><p>Angle between lattice vectors.</p>
+<dt><strong>Wmat</strong><span class="classifier">str</span></dt><dd><p>File with density-density Coulomb matrix in orbitals basis for different
+lattice vectors.</p>
+</dd>
+<dt><strong>a</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Bravais lattice vectors. By default, a 2D lattice with <cite>angle</cite> between
+the first and the second basis vector is assumed.</p>
+</dd>
+<dt><strong>r</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Positions of orbital centers. By default, all orbitals are assumed to be
+located at the origin of the unit cell.</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">number, default 120</span></dt><dd><p>Angle between lattice vectors in degrees.</p>
 </dd>
 </dl>
 </dd>
@@ -166,6 +178,29 @@ points.</p>
 <dt class="sig sig-object py" id="elphmod.elel.orbital2band">
 <span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">orbital2band</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">U</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">share</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.orbital2band" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform Coulomb interaction from orbital basis onto single band.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elel.q2r">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.q2r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interpolate electron-electron interaction on uniform q-point mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>elel</strong><span class="classifier">object</span></dt><dd><p>Localized model for electron-electron interaction.</p>
+</dd>
+<dt><strong>W</strong><span class="classifier">ndarray</span></dt><dd><p>Density-density interaction matrices on complete uniform q-point mesh.</p>
+</dd>
+<dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Bravais lattice vectors.</p>
+</dd>
+<dt><strong>r</strong><span class="classifier">ndarray</span></dt><dd><p>Positions of orbital centers.</p>
+</dd>
+<dt><strong>fft</strong><span class="classifier">bool</span></dt><dd><p>Perform Fourier transform? If <code class="docutils literal notranslate"><span class="pre">False</span></code>, only the mapping to the
+Wigner-Seitz cell is performed.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
