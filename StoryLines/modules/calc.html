@@ -122,6 +122,28 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="storylines.calc.divide">
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">divide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.divide" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divide vector by scalar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>A</strong><span class="classifier">list of float</span></dt><dd><p>Vector.</p>
+</dd>
+<dt><strong>b</strong><span class="classifier">float</span></dt><dd><p>Scalar.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>list of float</dt><dd><p><cite>A</cite> divided by <cite>b</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="storylines.calc.dot">
 <span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.dot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate dot product of two vectors.</p>
@@ -210,6 +232,28 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="storylines.calc.multiply">
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">multiply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.multiply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiply vector by scalar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>A</strong><span class="classifier">list of float</span></dt><dd><p>Vector.</p>
+</dd>
+<dt><strong>b</strong><span class="classifier">float</span></dt><dd><p>Scalar.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>list of float</dt><dd><p><cite>A</cite> multiplied by <cite>b</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="storylines.calc.order_of_magnitude">
 <span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">order_of_magnitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.order_of_magnitude" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the decimal order of magnitude.</p>
@@ -244,6 +288,34 @@ magnitude.</p>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float</dt><dd><p>Power of ten of the same order of magnitude as <cite>x</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="storylines.calc.spring">
+<span class="sig-prename descclassname"><span class="pre">storylines.calc.</span></span><span class="sig-name descname"><span class="pre">spring</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ends</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.15</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.calc.spring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw coil spring in three-dimensional space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>r1, r2</strong><span class="classifier">list of float</span></dt><dd><p>End points.</p>
+</dd>
+<dt><strong>N</strong><span class="classifier">int</span></dt><dd><p>Number of path segments.</p>
+</dd>
+<dt><strong>k</strong><span class="classifier">float</span></dt><dd><p>Winding wave vector.</p>
+</dd>
+<dt><strong>radius</strong><span class="classifier">float</span></dt><dd><p>Radius of spring.</p>
+</dd>
+<dt><strong>ends</strong><span class="classifier">float</span></dt><dd><p>Taper length on both ends.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>list of list of float</dt><dd><p>Coordinates of spring.</p>
 </dd>
 </dl>
 </dd>
