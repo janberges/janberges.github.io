@@ -92,6 +92,8 @@ Note that <cite>elph</cite> should belong to the primitive cell in this case.</p
 </dd>
 <dt><strong>size</strong><span class="classifier">float, default 100.0</span></dt><dd><p>Marker size for atoms in points squared.</p>
 </dd>
+<dt><strong>pause</strong><span class="classifier">float, default 1e-3</span></dt><dd><p>Minimal frame duration for interactive plots in seconds.</p>
+</dd>
 <dt><strong>basis</strong><span class="classifier">list of list, default None</span></dt><dd><p>For each basis atom in the first primitive cell, indices of orbitals
 located at this atom. Matching atom and orbital orders as ensured by
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">elph.Model.supercell()</span></code> are required.</p>
@@ -219,7 +221,7 @@ reduces the size of the Hamiltonian file.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>ndarray</dt><dd><p>Force constants in Ry per Bohr squared.</p>
+<dt>ndarray</dt><dd><p>Force constants in Ry per bohr squared.</p>
 </dd>
 </dl>
 </dd>
@@ -241,7 +243,7 @@ reduces the size of the Hamiltonian file.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>ndarray</dt><dd><p>Negative forces in Ry per Bohr.</p>
+<dt>ndarray</dt><dd><p>Negative forces in Ry per bohr.</p>
 </dd>
 </dl>
 </dd>
@@ -272,7 +274,7 @@ reduces the size of the Hamiltonian file.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.plot">
-<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.plot" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pause</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot crystal structure and displacements.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -286,6 +288,8 @@ attribute, which is used by default.</p>
 <dt><strong>padding</strong><span class="classifier">float, optional</span></dt><dd><p>Padding between crystal and plotting box in angstrom.</p>
 </dd>
 <dt><strong>size</strong><span class="classifier">float, optional</span></dt><dd><p>Marker size for atoms.</p>
+</dd>
+<dt><strong>pause</strong><span class="classifier">float, optional</span></dt><dd><p>Minimal frame duration for interactive plots in seconds.</p>
 </dd>
 <dt><strong>label</strong><span class="classifier">bool, optional</span></dt><dd><p>Show atom indices?</p>
 </dd>
