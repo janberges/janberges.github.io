@@ -37,6 +37,12 @@
 <span id="miscellaneous"></span><h1>Miscellaneous<a class="headerlink" href="#module-elphmod.misc" title="Permalink to this heading">¶</a></h1>
 <p>Constants, status bars, parsing, etc.</p>
 <dl class="py data">
+<dt class="sig sig-object py" id="elphmod.misc.Ha">
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">Ha</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">27.211386245988</span></em><a class="headerlink" href="#elphmod.misc.Ha" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hartree energy (eV).</p>
+</dd></dl>
+
+<dl class="py data">
 <dt class="sig sig-object py" id="elphmod.misc.NA">
 <span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">NA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6.02214076e+23</span></em><a class="headerlink" href="#elphmod.misc.NA" title="Permalink to this definition">¶</a></dt>
 <dd><p>Avogadro constant (1/mol).</p>
@@ -110,6 +116,12 @@ progress bar is output at a time.</p>
 <dd><p>Electronvolt (J).</p>
 </dd></dl>
 
+<dl class="py data">
+<dt class="sig sig-object py" id="elphmod.misc.eps0">
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">eps0</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8.8541878128e-12</span></em><a class="headerlink" href="#elphmod.misc.eps0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vacuum permittivity (F/m) [2018 CODATA].</p>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.misc.group">
 <span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.group" title="Permalink to this definition">¶</a></dt>
@@ -159,7 +171,7 @@ progress bar is output at a time.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="elphmod.misc.meSI">
 <span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">meSI</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9.1093837015e-31</span></em><a class="headerlink" href="#elphmod.misc.meSI" title="Permalink to this definition">¶</a></dt>
-<dd><p>Electron mass (kg).</p>
+<dd><p>Electron mass (kg) [2018 CODATA].</p>
 </dd></dl>
 
 <dl class="py function">
@@ -197,6 +209,29 @@ progress bar is output at a time.</p>
 </dd>
 </dl>
 </div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.misc.read_dat_mat">
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">read_dat_mat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.misc.read_dat_mat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read matrix elements from RESPACK (<em>dat.Wmat</em>, <em>dat.h_mat_r</em>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Name of the file.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Lattice vectors.</p>
+</dd>
+<dt>ndarray</dt><dd><p>Direct (screened) Coulomb or hoppling matrix elements, depending on the
+input file.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">

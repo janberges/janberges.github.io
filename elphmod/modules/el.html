@@ -41,14 +41,25 @@
 <p>Tight-binding models from Wannier90.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.el.Model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read_xsf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_ortho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rydberg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read_xsf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_ortho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rydberg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tight-binding model for the electrons.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>seedname</strong><span class="classifier">str</span></dt><dd><p>Common prefix of Wannier90 output files: <em>seedname_hr.dat</em> with the
 Hamiltonian in the Wannier basis and, optionally, <em>seedname_wsvec.dat</em>
-with superlattice vectors used to symmetrize the long-range hopping.</p>
+with superlattice vectors used to symmetrize the long-range hopping.
+Alternatively, <em>dat.h_mat_r</em> from RESPACK can be used.</p>
+</dd>
+<dt><strong>N</strong><span class="classifier">tuple of int, optional</span></dt><dd><p>Numbers of unit cells per direction on which RESPACK data is defined.
+This can be omitted if all numbers are even.</p>
+</dd>
+<dt><strong>a</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Bravais lattice vectors used to map RESPACK data to Wigner-Seitz cell.
+By default, a cubic cell is assumed.</p>
+</dd>
+<dt><strong>r</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Positions of orbital centers used to map RESPACK data to Wigner-Seitz
+cell. By default, all orbitals are assumed to be located at the origin
+of the unit cell.</p>
 </dd>
 <dt><strong>divide_ndegen</strong><span class="classifier">bool, default True</span></dt><dd><p>Divide hopping by degeneracy of Wigner-Seitz point and apply the
 abovementioned correction? Only <code class="docutils literal notranslate"><span class="pre">True</span></code> yields correct bands.
@@ -347,7 +358,7 @@ the <code class="docutils literal notranslate"><span class="pre">SUBROUTINE</spa
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.k2r">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">k2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">el</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.k2r" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">k2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">el</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.k2r" title="Permalink to this definition">¶</a></dt>
 <dd><p>Interpolate Hamilontian matrices on uniform k-point mesh.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -359,6 +370,9 @@ the <code class="docutils literal notranslate"><span class="pre">SUBROUTINE</spa
 <dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Bravais lattice vectors.</p>
 </dd>
 <dt><strong>r</strong><span class="classifier">ndarray</span></dt><dd><p>Positions of orbital centers.</p>
+</dd>
+<dt><strong>fft</strong><span class="classifier">bool</span></dt><dd><p>Perform Fourier transform? If <code class="docutils literal notranslate"><span class="pre">False</span></code>, only the mapping to the
+Wigner-Seitz cell is performed.</p>
 </dd>
 </dl>
 </dd>

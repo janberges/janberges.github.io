@@ -57,7 +57,7 @@ added as a correction to the Coulomb tensor provided via <cite>uijkl</cite>.</p>
 backward compatibility). If omitted or <code class="docutils literal notranslate"><span class="pre">None</span></code>, lattice vectors and
 corresponding interactions from <cite>Wmat</cite> are used unmodified.</p>
 </dd>
-<dt><strong>no</strong><span class="classifier">int</span></dt><dd><p>Number of orbitals.</p>
+<dt><strong>no</strong><span class="classifier">int</span></dt><dd><p>Number of orbitals. Ignored if <cite>Wmat</cite> is used.</p>
 </dd>
 <dt><strong>Wmat</strong><span class="classifier">str</span></dt><dd><p>File with density-density Coulomb matrix in orbitals basis for different
 lattice vectors.</p>
@@ -197,30 +197,6 @@ points.</p>
 </dd>
 <dt><strong>fft</strong><span class="classifier">bool</span></dt><dd><p>Perform Fourier transform? If <code class="docutils literal notranslate"><span class="pre">False</span></code>, only the mapping to the
 Wigner-Seitz cell is performed.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="elphmod.elel.read_Wmat">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">read_Wmat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_wann</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.read_Wmat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read Coulomb matrix elements from “dat.Wmat” (RESPACK)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Name of the file.</p>
-</dd>
-<dt><strong>num_wann</strong><span class="classifier">integer</span></dt><dd><p>Number of Wannier orbitals.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>ndarray</dt><dd><p>Lattice vectors.</p>
-</dd>
-<dt>ndarray</dt><dd><p>Direct (screened) Coulomb matrix elements.</p>
 </dd>
 </dl>
 </dd>
