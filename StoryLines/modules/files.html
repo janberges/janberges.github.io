@@ -115,12 +115,14 @@ they will also be determined by <cite>dpi</cite>.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="storylines.files.typeset">
-<span class="sig-prename descclassname"><span class="pre">storylines.files.</span></span><span class="sig-name descname"><span class="pre">typeset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stem</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.files.typeset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> and remove <code class="docutils literal notranslate"><span class="pre">.aux</span></code> and <code class="docutils literal notranslate"><span class="pre">.log</span></code> files.</p>
+<span class="sig-prename descclassname"><span class="pre">storylines.files.</span></span><span class="sig-name descname"><span class="pre">typeset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdflatex'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#storylines.files.typeset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run typesetting engine and remove <code class="docutils literal notranslate"><span class="pre">.aux</span></code> and <code class="docutils literal notranslate"><span class="pre">.log</span></code> files.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>stem</strong><span class="classifier">str</span></dt><dd><p>File name without path and extension (in current working directory).</p>
+</dd>
+<dt><strong>engine</strong><span class="classifier">str, default ‘pdflatex’</span></dt><dd><p>TeX typesetting engine.</p>
 </dd>
 </dl>
 </dd>
