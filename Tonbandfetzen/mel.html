@@ -18,7 +18,7 @@
 <body>
 <header id="title-block-header">
 <h1 class="title">MEL</h1>
-<p class="date">2010–2022</p>
+<p class="date">2010–2023</p>
 </header>
 <h1>NAME</h1>
 <p>mel - generate sound fragments from plain text</p>
@@ -207,7 +207,7 @@
 <dd><p>Set <em>n</em>th text mark. <em>n</em> must be an integer between <strong>0</strong> and <strong>99</strong> and defaults to <strong>0</strong>.</p>
 </dd>
 <dt><strong>J</strong>[<em>n</em>[<em>n'</em>]]</dt>
-<dd><p>Jump back to <em>n</em>th text mark, if set. This works <em>n'</em> times in a row. <em>n</em> and <em>n'</em> default to <strong>0</strong> and <strong>1</strong>, respectively.</p>
+<dd><p>Jump back to <em>n</em>th text mark, if set. This works <em>n'</em> times in a row. <em>n</em> and <em>n'</em> default to <strong>0</strong> and <strong>1</strong>, respectively. If <em>n'</em> is <strong>0</strong>, it is set to the maximum allowed value (<strong>32767</strong>).</p>
 </dd>
 <dt><strong>K L</strong>[<em>n</em> ...]</dt>
 <dd><p>Skip/only consider subsequent command if the number of the current iteration matches any of the integers <em>n</em> ...</p>
