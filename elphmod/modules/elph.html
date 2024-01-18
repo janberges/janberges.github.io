@@ -1,47 +1,98 @@
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Electron–phonon &mdash; elphmod  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
 
-    <title>Electron–phonon &#8212; elphmod  documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Electron–electron" href="elel.html" />
-    <link rel="prev" title="Phonon" href="ph.html" />
-   
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    <link rel="prev" title="Phonon" href="ph.html" /> 
+</head>
 
-  </head><body>
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
           
+          
+          <a href="../index.html" class="icon icon-home">
+            elphmod
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="el.html">Electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ph.html">Phonon</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Electron–phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elel.html">Electron–electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MPI.html">MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bravais.html">Bravais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dispersion.html">Dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dos.html">DOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams.html">Diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">MD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eliashberg.html">Eliashberg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot.html">Plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+</ul>
 
-          <div class="body" role="main">
-            
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">elphmod</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Electron–phonon</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/elph.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="module-elphmod.elph">
-<span id="electron-phonon"></span><h1>Electron–phonon<a class="headerlink" href="#module-elphmod.elph" title="Permalink to this heading">¶</a></h1>
+<span id="electron-phonon"></span><h1>Electron–phonon<a class="headerlink" href="#module-elphmod.elph" title="Permalink to this heading"></a></h1>
 <p>Electron-phonon coupling from EPW.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.elph.Model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epmatwp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wigner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">el</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_ws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epmatwp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wigner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">el</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_ws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model" title="Permalink to this definition"></a></dt>
 <dd><p>Localized model for electron-phonon coupling.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -103,7 +154,7 @@ if <cite>shared_memory</cite>.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.asr">
-<span class="sig-name descname"><span class="pre">asr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.asr" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">asr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.asr" title="Permalink to this definition"></a></dt>
 <dd><p>Apply acoustic sum rule correction to electron-phonon coupling.</p>
 <p>This will suppress all coupling of electrons to acoustic phonon modes.
 The matrix elements are subject to a constant relative change so that
@@ -117,7 +168,7 @@ be a better way to accomplish this.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.decay_epmate">
-<span class="sig-name descname"><span class="pre">decay_epmate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.decay_epmate" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">decay_epmate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.decay_epmate" title="Permalink to this definition"></a></dt>
 <dd><p>Plot maximum matrix element as a function of hopping distance.</p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">divide_mass=False</span></code> to recreate EPW’s <em>decay.epmate</em> file.</p>
 <dl class="field-list simple">
@@ -134,7 +185,7 @@ be a better way to accomplish this.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.decay_epmatp">
-<span class="sig-name descname"><span class="pre">decay_epmatp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.decay_epmatp" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">decay_epmatp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.decay_epmatp" title="Permalink to this definition"></a></dt>
 <dd><p>Plot maximum matrix element as a function of displacement distance.</p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">divide_mass=False</span></code> to recreate EPW’s <em>decay.epmatp</em> file.</p>
 <dl class="field-list simple">
@@ -151,7 +202,7 @@ be a better way to accomplish this.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.divide_degeneracy">
-<span class="sig-name descname"><span class="pre">divide_degeneracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.divide_degeneracy" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">divide_degeneracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.divide_degeneracy" title="Permalink to this definition"></a></dt>
 <dd><p>Divide real-space coupling by degeneracy of Wigner-Seitz point.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -165,7 +216,7 @@ be a better way to accomplish this.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.g">
-<span class="sig-name descname"><span class="pre">g</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k1=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elbnd=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phbnd=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.g" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">g</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k1=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elbnd=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phbnd=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.g" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate electron-phonon coupling for arbitary points k and k + q.</p>
 <div class="math notranslate nohighlight">
 \[\sqrt{2 \omega} g_{\nu m n} = \frac \hbar {\sqrt M}
@@ -210,19 +261,19 @@ in Ry<sup>3/2</sup>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.gR">
-<span class="sig-name descname"><span class="pre">gR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Rq1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rq2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rq3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rk3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.gR" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">gR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Rq1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rq2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rq3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rk3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.gR" title="Permalink to this definition"></a></dt>
 <dd><p>Get electron-phonon matrix elements for arbitrary lattice vectors.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.g_lr">
-<span class="sig-name descname"><span class="pre">g_lr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.g_lr" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">g_lr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.g_lr" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate long-range part of electron-phonon coupling.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.sample">
-<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.sample" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.sample" title="Permalink to this definition"></a></dt>
 <dd><p>Sample coupling.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -234,13 +285,13 @@ in Ry<sup>3/2</sup>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.sample_orig">
-<span class="sig-name descname"><span class="pre">sample_orig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.sample_orig" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">sample_orig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.sample_orig" title="Permalink to this definition"></a></dt>
 <dd><p>Sample coupling on original q and k meshes.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.standardize">
-<span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetrize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.standardize" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetrize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.standardize" title="Permalink to this definition"></a></dt>
 <dd><p>Standardize real-space coupling data.</p>
 <ul class="simple">
 <li><p>Keep only nonzero coupling matrices.</p></li>
@@ -266,7 +317,7 @@ matrix element.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.supercell">
-<span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.supercell" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.supercell" title="Permalink to this definition"></a></dt>
 <dd><p>Map localized model for electron-phonon coupling onto supercell.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -299,13 +350,13 @@ nonzero <cite>eps</cite> and <cite>symmetrize</cite> before.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.symmetrize">
-<span class="sig-name descname"><span class="pre">symmetrize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.symmetrize" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">symmetrize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.symmetrize" title="Permalink to this definition"></a></dt>
 <dd><p>Symmetrize electron-phonon coupling.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.update_short_range">
-<span class="sig-name descname"><span class="pre">update_short_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.update_short_range" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">update_short_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.update_short_range" title="Permalink to this definition"></a></dt>
 <dd><p>Update short-range part of real-space coupling.</p>
 </dd></dl>
 
@@ -313,13 +364,13 @@ nonzero <cite>eps</cite> and <cite>symmetrize</cite> before.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.coupling">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">coupling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nQ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">complete_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squeeze</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.coupling" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">coupling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nQ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">complete_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squeeze</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.coupling" title="Permalink to this definition"></a></dt>
 <dd><p>Read and complete electron-phonon matrix elements.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.q2r">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.q2r" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.q2r" title="Permalink to this definition"></a></dt>
 <dd><p>Fourier-transform electron-phonon coupling from reciprocal to real space.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -340,7 +391,7 @@ independent of <code class="docutils literal notranslate"><span class="pre">elph
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.read_EPW_output">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_EPW_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epw_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squeeze</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defpot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_EPW_output" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_EPW_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epw_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squeeze</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defpot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_EPW_output" title="Permalink to this definition"></a></dt>
 <dd><p>Read electron-phonon coupling from EPW output file (using <code class="docutils literal notranslate"><span class="pre">prtgkk</span></code>).</p>
 <p>Currently, the coupling must be defined on a uniform 2D k mesh
 (corresponding to triangular or square lattice).</p>
@@ -380,19 +431,19 @@ quantity of dimension energy to the power of 2/3?</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.read_data">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_data" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_data" title="Permalink to this definition"></a></dt>
 <dd><p>Read array to ASCII file.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.read_patterns">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_patterns" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_patterns" title="Permalink to this definition"></a></dt>
 <dd><p>Read XML files with displacement patterns from QE.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.read_prtgkk">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_prtgkk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epw_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbnd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_prtgkk" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_prtgkk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epw_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbnd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_prtgkk" title="Permalink to this definition"></a></dt>
 <dd><p>Read frequencies and coupling from EPW output (using <code class="docutils literal notranslate"><span class="pre">prtgkk</span></code>).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -422,13 +473,13 @@ quantity of dimension energy to the power of 2/3?</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.read_xml_files">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_xml_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squeeze</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_xml_files" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_xml_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squeeze</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.read_xml_files" title="Permalink to this definition"></a></dt>
 <dd><p>Read XML files with coupling in displacement basis from QE (<em>nosym</em>).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.sample">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.sample" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.sample" title="Permalink to this definition"></a></dt>
 <dd><p>Sample coupling for given q and k points and transform to band basis.</p>
 <p>One purpose of this routine is full control of the complex phase.</p>
 <dl class="field-list simple">
@@ -464,7 +515,7 @@ than sampling the complex coupling and taking the squared modulus later.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.transform">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.transform" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.transform" title="Permalink to this definition"></a></dt>
 <dd><p>Transform q- and k-dependent coupling to band basis.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -476,97 +527,47 @@ than sampling the complex coupling and taking the squared modulus later.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.write_data">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">write_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.write_data" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">write_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.write_data" title="Permalink to this definition"></a></dt>
 <dd><p>Write array to ASCII file.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.write_xml_files">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">write_xml_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.write_xml_files" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">write_xml_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.write_xml_files" title="Permalink to this definition"></a></dt>
 <dd><p>Write XML files with coupling in displacement basis.</p>
 </dd></dl>
 
 </section>
 
 
+           </div>
           </div>
-          
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ph.html" class="btn btn-neutral float-left" title="Phonon" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="elel.html" class="btn btn-neutral float-right" title="Electron–electron" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2024 elphmod Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">elphmod</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="el.html">Electron</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ph.html">Phonon</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Electron–phonon</a></li>
-<li class="toctree-l1"><a class="reference internal" href="elel.html">Electron–electron</a></li>
-<li class="toctree-l1"><a class="reference internal" href="MPI.html">MPI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bravais.html">Bravais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dispersion.html">Dispersion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dos.html">DOS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diagrams.html">Diagrams</a></li>
-<li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="md.html">MD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eliashberg.html">Eliashberg</a></li>
-<li class="toctree-l1"><a class="reference internal" href="plot.html">Plot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="ph.html" title="previous chapter">Phonon</a></li>
-      <li>Next: <a href="elel.html" title="next chapter">Electron–electron</a></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2017-2024 elphmod Developers.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="../_sources/modules/elph.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>
