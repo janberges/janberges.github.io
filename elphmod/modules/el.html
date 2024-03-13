@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Electron &mdash; elphmod  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
   
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../_static/js/theme.js"></script>
@@ -47,7 +47,45 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Electron</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Electron</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.Model"><code class="docutils literal notranslate"><span class="pre">Model</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.el.Model.H"><code class="docutils literal notranslate"><span class="pre">Model.H()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.el.Model.order_orbitals"><code class="docutils literal notranslate"><span class="pre">Model.order_orbitals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.el.Model.shift_orbitals"><code class="docutils literal notranslate"><span class="pre">Model.shift_orbitals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.el.Model.standardize"><code class="docutils literal notranslate"><span class="pre">Model.standardize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.el.Model.supercell"><code class="docutils literal notranslate"><span class="pre">Model.supercell()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.el.Model.symmetrize"><code class="docutils literal notranslate"><span class="pre">Model.symmetrize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.el.Model.t"><code class="docutils literal notranslate"><span class="pre">Model.t()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.el.Model.to_hrdat"><code class="docutils literal notranslate"><span class="pre">Model.to_hrdat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.el.Model.unit_cell"><code class="docutils literal notranslate"><span class="pre">Model.unit_cell()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.decayH"><code class="docutils literal notranslate"><span class="pre">decayH()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.demet_from_qe_pwo"><code class="docutils literal notranslate"><span class="pre">demet_from_qe_pwo()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.eband"><code class="docutils literal notranslate"><span class="pre">eband()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.k2r"><code class="docutils literal notranslate"><span class="pre">k2r()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.proj_sum"><code class="docutils literal notranslate"><span class="pre">proj_sum()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_Fermi_level"><code class="docutils literal notranslate"><span class="pre">read_Fermi_level()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_atomic_projections"><code class="docutils literal notranslate"><span class="pre">read_atomic_projections()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_atomic_projections_old"><code class="docutils literal notranslate"><span class="pre">read_atomic_projections_old()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_bands"><code class="docutils literal notranslate"><span class="pre">read_bands()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_bands_plot"><code class="docutils literal notranslate"><span class="pre">read_bands_plot()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_decayH"><code class="docutils literal notranslate"><span class="pre">read_decayH()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_energy_contributions_scf_out"><code class="docutils literal notranslate"><span class="pre">read_energy_contributions_scf_out()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_eps_nk_from_qe_pwo"><code class="docutils literal notranslate"><span class="pre">read_eps_nk_from_qe_pwo()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_hrdat"><code class="docutils literal notranslate"><span class="pre">read_hrdat()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_pp_density"><code class="docutils literal notranslate"><span class="pre">read_pp_density()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_projwfc_out"><code class="docutils literal notranslate"><span class="pre">read_projwfc_out()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_pwo"><code class="docutils literal notranslate"><span class="pre">read_pwo()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_rhoG_density"><code class="docutils literal notranslate"><span class="pre">read_rhoG_density()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_symmetry_points"><code class="docutils literal notranslate"><span class="pre">read_symmetry_points()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_wannier90_eig_file"><code class="docutils literal notranslate"><span class="pre">read_wannier90_eig_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_wfc"><code class="docutils literal notranslate"><span class="pre">read_wfc()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.read_wsvecdat"><code class="docutils literal notranslate"><span class="pre">read_wsvecdat()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.write_bands"><code class="docutils literal notranslate"><span class="pre">write_bands()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.write_hrdat"><code class="docutils literal notranslate"><span class="pre">write_hrdat()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ph.html">Phonon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elph.html">Electron–phonon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elel.html">Electron–electron</a></li>
@@ -88,11 +126,11 @@
            <div itemprop="articleBody">
              
   <section id="module-elphmod.el">
-<span id="electron"></span><h1>Electron<a class="headerlink" href="#module-elphmod.el" title="Permalink to this heading"></a></h1>
+<span id="electron"></span><h1>Electron<a class="headerlink" href="#module-elphmod.el" title="Link to this heading"></a></h1>
 <p>Tight-binding models from Wannier90.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.el.Model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read_xsf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_ortho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rydberg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read_xsf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_ortho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rydberg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model" title="Link to this definition"></a></dt>
 <dd><p>Tight-binding model for the electrons.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -173,13 +211,13 @@ systems. Make sure to delete the binary files <em>seedname_wf.npy</em> and
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.el.Model.H">
-<span class="sig-name descname"><span class="pre">H</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.H" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">H</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.H" title="Link to this definition"></a></dt>
 <dd><p>Set up Hamilton operator for arbitrary k point.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.el.Model.order_orbitals">
-<span class="sig-name descname"><span class="pre">order_orbitals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">order</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.order_orbitals" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">order_orbitals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">order</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.order_orbitals" title="Link to this definition"></a></dt>
 <dd><p>Reorder Wannier functions.</p>
 <p>Warning: Wannier functions in position representation and related
 attributes remain unchanged!</p>
@@ -197,7 +235,7 @@ inconsistent definitions of the basis/motif of the Bravais lattice.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.el.Model.shift_orbitals">
-<span class="sig-name descname"><span class="pre">shift_orbitals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.shift_orbitals" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">shift_orbitals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.shift_orbitals" title="Link to this definition"></a></dt>
 <dd><p>Move selected Wannier functions across unit-cell boundary.</p>
 <p>Warning: Wannier functions in position representation and related
 attributes remain unchanged!</p>
@@ -217,7 +255,7 @@ inconsistent definitions of the basis/motif of the Bravais lattice.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.el.Model.standardize">
-<span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetrize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.standardize" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetrize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.standardize" title="Link to this definition"></a></dt>
 <dd><p>Standardize tight-binding data.</p>
 <ul class="simple">
 <li><p>Keep only nonzero hopping matrices.</p></li>
@@ -243,7 +281,7 @@ matrix element.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.el.Model.supercell">
-<span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.supercell" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.supercell" title="Link to this definition"></a></dt>
 <dd><p>Map tight-binding model onto supercell.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -274,19 +312,19 @@ and <cite>symmetrize</cite> before.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.el.Model.symmetrize">
-<span class="sig-name descname"><span class="pre">symmetrize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.symmetrize" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">symmetrize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.symmetrize" title="Link to this definition"></a></dt>
 <dd><p>Symmetrize Hamiltonian.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.el.Model.t">
-<span class="sig-name descname"><span class="pre">t</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.t" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">t</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.t" title="Link to this definition"></a></dt>
 <dd><p>Get on-site or hopping energy for arbitrary lattice vector.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.el.Model.to_hrdat">
-<span class="sig-name descname"><span class="pre">to_hrdat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.to_hrdat" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">to_hrdat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.to_hrdat" title="Link to this definition"></a></dt>
 <dd><p>Save tight-binding model to <em>_hr.dat</em> file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -300,7 +338,7 @@ and <cite>symmetrize</cite> before.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.el.Model.unit_cell">
-<span class="sig-name descname"><span class="pre">unit_cell</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.unit_cell" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">unit_cell</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.unit_cell" title="Link to this definition"></a></dt>
 <dd><p>Map tight-binding model back to unit cell.</p>
 <p>Original idea by Bin Shao.</p>
 <div class="admonition seealso">
@@ -315,7 +353,7 @@ and <cite>symmetrize</cite> before.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.decayH">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">decayH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.decayH" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">decayH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.decayH" title="Link to this definition"></a></dt>
 <dd><p>Calculate the decay of the Hamiltonian.</p>
 <p>This function should yield the same data as <a class="reference internal" href="#elphmod.el.read_decayH" title="elphmod.el.read_decayH"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_decayH()</span></code></a>.</p>
 <dl class="field-list">
@@ -344,7 +382,7 @@ rydberg.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.demet_from_qe_pwo">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">demet_from_qe_pwo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.demet_from_qe_pwo" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">demet_from_qe_pwo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.demet_from_qe_pwo" title="Link to this definition"></a></dt>
 <dd><p>Calculate the entropy contribution <span class="math notranslate nohighlight">\(-TS\)</span> to the total free energy.</p>
 <p>In Quantum ESPRESSO <code class="docutils literal notranslate"><span class="pre">demet</span></code> is calculated in <code class="docutils literal notranslate"><span class="pre">gweights.f90</span></code>.</p>
 <dl class="field-list simple">
@@ -367,7 +405,7 @@ rydberg.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.eband">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">eband</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.eband" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">eband</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.eband" title="Link to this definition"></a></dt>
 <dd><p>Calculate <code class="docutils literal notranslate"><span class="pre">eband</span></code> part of one-electron energy.</p>
 <p>The ‘one-electron contribution’ energy in the Quantum ESPRESSO PWscf output
 is a sum <code class="docutils literal notranslate"><span class="pre">eband</span> <span class="pre">+</span> <span class="pre">deband</span></code>. Here, we can calculate the <code class="docutils literal notranslate"><span class="pre">eband</span></code> part.</p>
@@ -409,7 +447,7 @@ the <code class="docutils literal notranslate"><span class="pre">SUBROUTINE</spa
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.k2r">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">k2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">el</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.k2r" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">k2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">el</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.k2r" title="Link to this definition"></a></dt>
 <dd><p>Interpolate Hamilontian matrices on uniform k-point mesh.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -432,7 +470,7 @@ Wigner-Seitz cell is performed.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.proj_sum">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">proj_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orbitals</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.proj_sum" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">proj_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orbitals</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.proj_sum" title="Link to this definition"></a></dt>
 <dd><p>Sum over selected atomic projections.</p>
 <p>Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">proj</span> <span class="o">=</span> <span class="n">read_atomic_projections</span><span class="p">(</span><span class="s1">&#39;atomic_proj.xml&#39;</span><span class="p">)</span>
@@ -465,13 +503,13 @@ components are summed over. Curly braces are expanded.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_Fermi_level">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_Fermi_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_Fermi_level" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_Fermi_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_Fermi_level" title="Link to this definition"></a></dt>
 <dd><p>Read Fermi level from output of self-consistent PW run.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_atomic_projections">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_atomic_projections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_proj_xml</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_fermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">order_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_atomic_projections" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_atomic_projections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_proj_xml</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_fermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">order_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_atomic_projections" title="Link to this definition"></a></dt>
 <dd><p>Read projected bands from <em>outdir/prefix.save/atomic_proj.xml</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -506,13 +544,13 @@ to one?</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_atomic_projections_old">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_atomic_projections_old</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_proj_xml</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_fermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">order_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_atomic_projections_old" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_atomic_projections_old</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_proj_xml</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_fermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">order_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_atomic_projections_old" title="Link to this definition"></a></dt>
 <dd><p>Read projected bands from <em>outdir/prefix.save/atomic_proj.xml</em>.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_bands">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_bands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filband</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_bands" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_bands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filband</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_bands" title="Link to this definition"></a></dt>
 <dd><p>Read bands from <em>filband</em> just like Quantum ESRESSO’s <code class="docutils literal notranslate"><span class="pre">plotband.x</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -534,7 +572,7 @@ to one?</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_bands_plot">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_bands_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filbandgnu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_bands_plot" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_bands_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filbandgnu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_bands_plot" title="Link to this definition"></a></dt>
 <dd><p>Read bands from <em>filband.gnu</em> produced by Quantum ESPRESSO’s <code class="docutils literal notranslate"><span class="pre">bands.x</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -558,7 +596,7 @@ to one?</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_decayH">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_decayH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_decayH" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_decayH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_decayH" title="Link to this definition"></a></dt>
 <dd><p>Read <em>decay.H</em> output from EPW.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -582,7 +620,7 @@ rydberg.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_energy_contributions_scf_out">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_energy_contributions_scf_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_energy_contributions_scf_out" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_energy_contributions_scf_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_energy_contributions_scf_out" title="Link to this definition"></a></dt>
 <dd><p>Read energy contributions to the total energy <code class="docutils literal notranslate"><span class="pre">scf</span></code> output file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -602,7 +640,7 @@ rydberg.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_eps_nk_from_qe_pwo">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_eps_nk_from_qe_pwo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_eps_nk_from_qe_pwo" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_eps_nk_from_qe_pwo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_eps_nk_from_qe_pwo" title="Link to this definition"></a></dt>
 <dd><p>Read electronic eigenenergies and k points and calculate the occupations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -634,7 +672,7 @@ rydberg.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_hrdat">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_hrdat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_hrdat" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_hrdat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_hrdat" title="Link to this definition"></a></dt>
 <dd><p>Read <em>_hr.dat</em> (or <em>_tb.dat</em>) file from Wannier90.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -658,7 +696,7 @@ rydberg.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_pp_density">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_pp_density</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_pp_density" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_pp_density</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_pp_density" title="Link to this definition"></a></dt>
 <dd><p>Read file <em>filout</em> with charge density generated by <code class="docutils literal notranslate"><span class="pre">pp.x</span></code>.</p>
 <p>Calculate total charge</p>
 <div class="math notranslate nohighlight">
@@ -687,7 +725,7 @@ points.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_projwfc_out">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_projwfc_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">projwfc_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_projwfc_out" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_projwfc_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">projwfc_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_projwfc_out" title="Link to this definition"></a></dt>
 <dd><p>Identify orbitals in <em>atomic_proj.xml</em> via output of <code class="docutils literal notranslate"><span class="pre">projwfc.x</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -708,13 +746,13 @@ that order).</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_pwo">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_pwo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_pwo" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_pwo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pw_scf_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_pwo" title="Link to this definition"></a></dt>
 <dd><p>Read energies from PW output file.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_rhoG_density">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_rhoG_density</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ibrav</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_rhoG_density" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_rhoG_density</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ibrav</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_rhoG_density" title="Link to this definition"></a></dt>
 <dd><p>Read the charge density output from Quantum ESPRESSO.</p>
 <p>The purpose of <span class="math notranslate nohighlight">\(\rho(\vec G)\)</span> is to calculate the charge density in
 real space <span class="math notranslate nohighlight">\(\rho(\vec r)\)</span> or the Hartree energy <code class="docutils literal notranslate"><span class="pre">ehart</span></code>.</p>
@@ -749,7 +787,7 @@ points.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_symmetry_points">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_symmetry_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bandsout</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_symmetry_points" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_symmetry_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bandsout</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_symmetry_points" title="Link to this definition"></a></dt>
 <dd><p>Read positions of symmetry points along path.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -769,7 +807,7 @@ points.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_wannier90_eig_file">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_wannier90_eig_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nkpts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_wannier90_eig_file" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_wannier90_eig_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nkpts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_wannier90_eig_file" title="Link to this definition"></a></dt>
 <dd><p>Read Kohn-Sham energies (eV) from the Wannier90 output seedname.eig file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -794,7 +832,7 @@ For example 1296 for 36x36x1.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_wfc">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_wfc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ibrav</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_wfc" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_wfc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ibrav</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_wfc" title="Link to this definition"></a></dt>
 <dd><p>Read the wave function output from Quantum ESPRESSO.</p>
 <div class="math notranslate nohighlight">
 \[\psi_{n \vec k}(\vec r) = \frac 1 {\sqrt V} \sum_{\vec G}
@@ -831,13 +869,13 @@ For example 1296 for 36x36x1.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_wsvecdat">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_wsvecdat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wsvecdat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_wsvecdat" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_wsvecdat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wsvecdat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_wsvecdat" title="Link to this definition"></a></dt>
 <dd><p>Read <em>_wsvec.dat</em> file from Wannier90.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.write_bands">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">write_bands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filband</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%8.3f'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.write_bands" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">write_bands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filband</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%8.3f'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.write_bands" title="Link to this definition"></a></dt>
 <dd><p>Write bands to <em>filband</em> just like Quantum ESPRESSO’s <code class="docutils literal notranslate"><span class="pre">plotband.x</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -859,7 +897,7 @@ For example 1296 for 36x36x1.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.write_hrdat">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">write_hrdat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.write_hrdat" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">write_hrdat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.write_hrdat" title="Link to this definition"></a></dt>
 <dd><p>Write <em>_hr.dat</em> file as generated by Wannier90.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

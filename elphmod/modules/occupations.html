@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Occupations &mdash; elphmod  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
   
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../_static/js/theme.js"></script>
@@ -56,7 +56,44 @@
 <li class="toctree-l1"><a class="reference internal" href="dispersion.html">Dispersion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dos.html">DOS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diagrams.html">Diagrams</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Occupations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Occupations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.double_fermi_dirac"><code class="docutils literal notranslate"><span class="pre">double_fermi_dirac()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.double_fermi_dirac_delta"><code class="docutils literal notranslate"><span class="pre">double_fermi_dirac_delta()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.double_fermi_dirac_delta_prime"><code class="docutils literal notranslate"><span class="pre">double_fermi_dirac_delta_prime()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.double_fermi_dirac_entropy"><code class="docutils literal notranslate"><span class="pre">double_fermi_dirac_entropy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.fermi_dirac"><code class="docutils literal notranslate"><span class="pre">fermi_dirac()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.fermi_dirac_delta"><code class="docutils literal notranslate"><span class="pre">fermi_dirac_delta()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.fermi_dirac_delta_prime"><code class="docutils literal notranslate"><span class="pre">fermi_dirac_delta_prime()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.fermi_dirac_entropy"><code class="docutils literal notranslate"><span class="pre">fermi_dirac_entropy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.fermi_dirac_matsubara"><code class="docutils literal notranslate"><span class="pre">fermi_dirac_matsubara()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.fermi_dirac_matsubara_delta"><code class="docutils literal notranslate"><span class="pre">fermi_dirac_matsubara_delta()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.fermi_dirac_matsubara_delta_prime"><code class="docutils literal notranslate"><span class="pre">fermi_dirac_matsubara_delta_prime()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.find_Fermi_level"><code class="docutils literal notranslate"><span class="pre">find_Fermi_level()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.find_Fermi_level_simple"><code class="docutils literal notranslate"><span class="pre">find_Fermi_level_simple()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.gauss"><code class="docutils literal notranslate"><span class="pre">gauss()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.gauss_delta"><code class="docutils literal notranslate"><span class="pre">gauss_delta()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.gauss_delta_prime"><code class="docutils literal notranslate"><span class="pre">gauss_delta_prime()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.gauss_entropy"><code class="docutils literal notranslate"><span class="pre">gauss_entropy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.heaviside"><code class="docutils literal notranslate"><span class="pre">heaviside()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.heaviside_delta"><code class="docutils literal notranslate"><span class="pre">heaviside_delta()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.heaviside_delta_prime"><code class="docutils literal notranslate"><span class="pre">heaviside_delta_prime()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.heaviside_entropy"><code class="docutils literal notranslate"><span class="pre">heaviside_entropy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.hermite_polynomials"><code class="docutils literal notranslate"><span class="pre">hermite_polynomials()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.lorentz"><code class="docutils literal notranslate"><span class="pre">lorentz()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.lorentz_delta"><code class="docutils literal notranslate"><span class="pre">lorentz_delta()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.lorentz_delta_prime"><code class="docutils literal notranslate"><span class="pre">lorentz_delta_prime()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.marzari_vanderbilt"><code class="docutils literal notranslate"><span class="pre">marzari_vanderbilt()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.marzari_vanderbilt_delta"><code class="docutils literal notranslate"><span class="pre">marzari_vanderbilt_delta()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.marzari_vanderbilt_delta_prime"><code class="docutils literal notranslate"><span class="pre">marzari_vanderbilt_delta_prime()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.marzari_vanderbilt_entropy"><code class="docutils literal notranslate"><span class="pre">marzari_vanderbilt_entropy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.methfessel_paxton"><code class="docutils literal notranslate"><span class="pre">methfessel_paxton()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.methfessel_paxton_delta"><code class="docutils literal notranslate"><span class="pre">methfessel_paxton_delta()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.methfessel_paxton_delta_prime"><code class="docutils literal notranslate"><span class="pre">methfessel_paxton_delta_prime()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.methfessel_paxton_entropy"><code class="docutils literal notranslate"><span class="pre">methfessel_paxton_entropy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.methfessel_paxton_term"><code class="docutils literal notranslate"><span class="pre">methfessel_paxton_term()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.occupations.smearing"><code class="docutils literal notranslate"><span class="pre">smearing()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="md.html">MD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eliashberg.html">Eliashberg</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot.html">Plot</a></li>
@@ -88,77 +125,77 @@
            <div itemprop="articleBody">
              
   <section id="module-elphmod.occupations">
-<span id="occupations"></span><h1>Occupations<a class="headerlink" href="#module-elphmod.occupations" title="Permalink to this heading"></a></h1>
+<span id="occupations"></span><h1>Occupations<a class="headerlink" href="#module-elphmod.occupations" title="Link to this heading"></a></h1>
 <p>Step and delta smearing functions.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.double_fermi_dirac">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">double_fermi_dirac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.double_fermi_dirac" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">double_fermi_dirac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.double_fermi_dirac" title="Link to this definition"></a></dt>
 <dd><p>Calculate double Fermi function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.double_fermi_dirac_delta">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">double_fermi_dirac_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.double_fermi_dirac_delta" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">double_fermi_dirac_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.double_fermi_dirac_delta" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative derivative of double Fermi function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.double_fermi_dirac_delta_prime">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">double_fermi_dirac_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.double_fermi_dirac_delta_prime" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">double_fermi_dirac_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.double_fermi_dirac_delta_prime" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative 2nd derivative of double Fermi function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.double_fermi_dirac_entropy">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">double_fermi_dirac_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.double_fermi_dirac_entropy" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">double_fermi_dirac_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.double_fermi_dirac_entropy" title="Link to this definition"></a></dt>
 <dd><p>Calculate double-Fermi-Dirac generalized electronic entropy.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.fermi_dirac">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac" title="Link to this definition"></a></dt>
 <dd><p>Calculate Fermi function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.fermi_dirac_delta">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_delta" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_delta" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative derivative of Fermi function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.fermi_dirac_delta_prime">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_delta_prime" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_delta_prime" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative 2nd derivative of Fermi function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.fermi_dirac_entropy">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_entropy" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_entropy" title="Link to this definition"></a></dt>
 <dd><p>Calculate electronic entropy.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.fermi_dirac_matsubara">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_matsubara</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_matsubara" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_matsubara</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_matsubara" title="Link to this definition"></a></dt>
 <dd><p>Calculate Fermi function as Matsubara sum.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.fermi_dirac_matsubara_delta">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_matsubara_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_matsubara_delta" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_matsubara_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_matsubara_delta" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative derivative of Fermi function as Matsubara sum.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.fermi_dirac_matsubara_delta_prime">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_matsubara_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_matsubara_delta_prime" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac_matsubara_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.fermi_dirac_matsubara_delta_prime" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative 2nd derivative of Fermi function as Matsubara sum.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.find_Fermi_level">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">find_Fermi_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol=1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps=1e-10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.find_Fermi_level" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">find_Fermi_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol=1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps=1e-10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.find_Fermi_level" title="Link to this definition"></a></dt>
 <dd><p>Determine chemical potential via fixed-point iteration.</p>
 <p>See Eqs. 4.21 and 4.22 of <a class="reference external" href="https://janberges.de/theses/Master_Jan_Berges.pdf">https://janberges.de/theses/Master_Jan_Berges.pdf</a>.</p>
 <dl class="field-list simple">
@@ -192,7 +229,7 @@ the assumption of a constant density of states is used.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.find_Fermi_level_simple">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">find_Fermi_level_simple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol=1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damp=0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.find_Fermi_level_simple" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">find_Fermi_level_simple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol=1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damp=0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.find_Fermi_level_simple" title="Link to this definition"></a></dt>
 <dd><p>Determine chemical potential via simple fixed-point iteration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -226,55 +263,55 @@ convergence; small values will slow down convergence.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.gauss">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">gauss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.gauss" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">gauss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.gauss" title="Link to this definition"></a></dt>
 <dd><p>Calculate Gaussian step function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.gauss_delta">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">gauss_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.gauss_delta" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">gauss_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.gauss_delta" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative derivative of Gaussian step function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.gauss_delta_prime">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">gauss_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.gauss_delta_prime" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">gauss_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.gauss_delta_prime" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative 2nd derivative of Gaussian step function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.gauss_entropy">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">gauss_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.gauss_entropy" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">gauss_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.gauss_entropy" title="Link to this definition"></a></dt>
 <dd><p>Calculate Gaussian generalized electronic entropy.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.heaviside">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">heaviside</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.heaviside" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">heaviside</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.heaviside" title="Link to this definition"></a></dt>
 <dd><p>Calculate (reflected) Heaviside function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.heaviside_delta">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">heaviside_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.heaviside_delta" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">heaviside_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.heaviside_delta" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative derivative of (reflected) Heaviside function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.heaviside_delta_prime">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">heaviside_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.heaviside_delta_prime" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">heaviside_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.heaviside_delta_prime" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative 2nd derivative of (reflected) Heaviside function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.heaviside_entropy">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">heaviside_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.heaviside_entropy" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">heaviside_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.heaviside_entropy" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative Heaviside generalized electronic entropy.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.hermite_polynomials">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">hermite_polynomials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.hermite_polynomials" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">hermite_polynomials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.hermite_polynomials" title="Link to this definition"></a></dt>
 <dd><p>Generate Hermite polynomials.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}H_0(x) &amp;= 1 \\
@@ -284,7 +321,7 @@ H_{n + 1}(x) &amp;= 2 x H_n(x) - 2 n H_{n - 1}(x)\end{split}\]</div>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.lorentz">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">lorentz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.lorentz" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">lorentz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.lorentz" title="Link to this definition"></a></dt>
 <dd><p>Calculate Lorentz step function.</p>
 <p>Used to simulate the influence of a wide box-shaped hybridization function
 at low temperatures. Formula derived by Tim O. Wehling and Erik G.C.P. van
@@ -295,67 +332,67 @@ temperature <span class="math notranslate nohighlight">\(T\)</span>.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.lorentz_delta">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">lorentz_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.lorentz_delta" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">lorentz_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.lorentz_delta" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative derivative of Lorentz step function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.lorentz_delta_prime">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">lorentz_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.lorentz_delta_prime" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">lorentz_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.lorentz_delta_prime" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative 2nd derivative of Lorentz step function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.marzari_vanderbilt">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">marzari_vanderbilt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.marzari_vanderbilt" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">marzari_vanderbilt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.marzari_vanderbilt" title="Link to this definition"></a></dt>
 <dd><p>Calculate Marzari-Vanderbilt (cold smearing) step function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.marzari_vanderbilt_delta">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">marzari_vanderbilt_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.marzari_vanderbilt_delta" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">marzari_vanderbilt_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.marzari_vanderbilt_delta" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative derivative of Marzari-Vanderbilt step function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.marzari_vanderbilt_delta_prime">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">marzari_vanderbilt_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.marzari_vanderbilt_delta_prime" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">marzari_vanderbilt_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.marzari_vanderbilt_delta_prime" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative 2nd derivative of Marzari-Vanderbilt step function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.marzari_vanderbilt_entropy">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">marzari_vanderbilt_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.marzari_vanderbilt_entropy" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">marzari_vanderbilt_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.marzari_vanderbilt_entropy" title="Link to this definition"></a></dt>
 <dd><p>Calculate Marzari-Vanderbilt generalized electronic entropy.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.methfessel_paxton">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton" title="Link to this definition"></a></dt>
 <dd><p>Calculate Methfessel-Paxton step function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.methfessel_paxton_delta">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_delta" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_delta" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative derivative of Methfessel-Paxton step function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.methfessel_paxton_delta_prime">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_delta_prime" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_delta_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_delta_prime" title="Link to this definition"></a></dt>
 <dd><p>Calculate negative 2nd derivative of Methfessel-Paxton step function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.methfessel_paxton_entropy">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_entropy" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_entropy" title="Link to this definition"></a></dt>
 <dd><p>Calculate Methfessel-Paxton generalized electronic entropy.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.methfessel_paxton_term">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_term" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">methfessel_paxton_term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.methfessel_paxton_term" title="Link to this definition"></a></dt>
 <dd><p>Calculate Methfessel-Paxton term (without zeroth order).</p>
 <p>From Phys. Rev. B 40, 3616 (1989):</p>
 <div class="math notranslate nohighlight">
@@ -372,12 +409,14 @@ A_n &amp;= \frac{(-1)^n}{\sqrt \pi n! 4^n}\end{split}\]</div>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.occupations.smearing">
-<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">smearing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.smearing" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.occupations.</span></span><span class="sig-name descname"><span class="pre">smearing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">smearing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">ignore</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.occupations.smearing" title="Link to this definition"></a></dt>
 <dd><p>Select smearing function via name used in Quantum ESPRESSO.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>name</strong><span class="classifier">str, default ‘gaussian’</span></dt><dd><p>Any available option for PWscf input parameter <code class="docutils literal notranslate"><span class="pre">smearing</span></code>.</p>
+<dt><strong>smearing</strong><span class="classifier">str, default ‘gaussian’</span></dt><dd><p>Any available option for PWscf input parameter <code class="docutils literal notranslate"><span class="pre">smearing</span></code>.</p>
+</dd>
+<dt><strong>**ignore</strong></dt><dd><p>Ignored keyword arguments, e.g., parameters from ‘func’<cite>read_pwi</cite>.</p>
 </dd>
 </dl>
 </dd>

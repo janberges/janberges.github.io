@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Electron–electron &mdash; elphmod  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
   
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../_static/js/theme.js"></script>
@@ -50,7 +50,23 @@
 <li class="toctree-l1"><a class="reference internal" href="el.html">Electron</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ph.html">Phonon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elph.html">Electron–phonon</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Electron–electron</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Electron–electron</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.elel.Model"><code class="docutils literal notranslate"><span class="pre">Model</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.elel.Model.W"><code class="docutils literal notranslate"><span class="pre">Model.W()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.elel.Model.WR"><code class="docutils literal notranslate"><span class="pre">Model.WR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.elel.Model.standardize"><code class="docutils literal notranslate"><span class="pre">Model.standardize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.elel.Model.supercell"><code class="docutils literal notranslate"><span class="pre">Model.supercell()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.elel.hartree_energy"><code class="docutils literal notranslate"><span class="pre">hartree_energy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.elel.orbital2band"><code class="docutils literal notranslate"><span class="pre">orbital2band()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.elel.q2r"><code class="docutils literal notranslate"><span class="pre">q2r()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.elel.read_band_Coulomb_interaction"><code class="docutils literal notranslate"><span class="pre">read_band_Coulomb_interaction()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.elel.read_local_Coulomb_tensor"><code class="docutils literal notranslate"><span class="pre">read_local_Coulomb_tensor()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.elel.read_orbital_Coulomb_interaction"><code class="docutils literal notranslate"><span class="pre">read_orbital_Coulomb_interaction()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.elel.write_band_Coulomb_interaction"><code class="docutils literal notranslate"><span class="pre">write_band_Coulomb_interaction()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="MPI.html">MPI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bravais.html">Bravais</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dispersion.html">Dispersion</a></li>
@@ -88,11 +104,11 @@
            <div itemprop="articleBody">
              
   <section id="module-elphmod.elel">
-<span id="electron-electron"></span><h1>Electron–electron<a class="headerlink" href="#module-elphmod.elel" title="Permalink to this heading"></a></h1>
+<span id="electron-electron"></span><h1>Electron–electron<a class="headerlink" href="#module-elphmod.elel" title="Link to this heading"></a></h1>
 <p>Coulomb interaction from VASP.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.elel.Model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uijkl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vijkl_full</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vijkl_redu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Wmat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uijkl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vijkl_full</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vijkl_redu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Wmat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model" title="Link to this definition"></a></dt>
 <dd><p>Localized model for electron-electron interaction.</p>
 <p>Currently, only square and hexagonal Bravais lattices are supported.</p>
 <dl class="field-list simple">
@@ -140,19 +156,19 @@ located at the origin of the unit cell.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elel.Model.W">
-<span class="sig-name descname"><span class="pre">W</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model.W" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">W</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model.W" title="Link to this definition"></a></dt>
 <dd><p>Set up density-density Coulomb matrix for arbitrary q point.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elel.Model.WR">
-<span class="sig-name descname"><span class="pre">WR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model.WR" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">WR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model.WR" title="Link to this definition"></a></dt>
 <dd><p>Get density-density Coulomb matrix for arbitrary lattice vector.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elel.Model.standardize">
-<span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model.standardize" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model.standardize" title="Link to this definition"></a></dt>
 <dd><p>Standardize real-space interaction data.</p>
 <ul class="simple">
 <li><p>Keep only nonzero matrix elements.</p></li>
@@ -172,7 +188,7 @@ matrix element.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elel.Model.supercell">
-<span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model.supercell" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model.supercell" title="Link to this definition"></a></dt>
 <dd><p>Map localized model for electron-electron interaction onto supercell.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -196,7 +212,7 @@ integer, linear combinations via a 3-tuple of integers.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elel.hartree_energy">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">hartree_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho_g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_vect</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngm_g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uc_volume</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.hartree_energy" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">hartree_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho_g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_vect</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngm_g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uc_volume</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.hartree_energy" title="Link to this definition"></a></dt>
 <dd><p>Calculate the Hartree energy in units of Rydberg.</p>
 <p>This function is basically a copy of Quantum ESPRESSO’s subroutine <code class="docutils literal notranslate"><span class="pre">v_h</span></code>
 from <code class="docutils literal notranslate"><span class="pre">v_of_rho.f90</span></code>.</p>
@@ -227,13 +243,13 @@ points.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elel.orbital2band">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">orbital2band</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">U</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">share</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.orbital2band" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">orbital2band</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">U</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">share</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.orbital2band" title="Link to this definition"></a></dt>
 <dd><p>Transform Coulomb interaction from orbital basis onto single band.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elel.q2r">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.q2r" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.q2r" title="Link to this definition"></a></dt>
 <dd><p>Interpolate electron-electron interaction on uniform q-point mesh.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -256,25 +272,25 @@ Wigner-Seitz cell is performed.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elel.read_band_Coulomb_interaction">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">read_band_Coulomb_interaction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nQ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">share</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.read_band_Coulomb_interaction" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">read_band_Coulomb_interaction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nQ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">share</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.read_band_Coulomb_interaction" title="Link to this definition"></a></dt>
 <dd><p>Read Coulomb interaction for single band in band basis.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elel.read_local_Coulomb_tensor">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">read_local_Coulomb_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.read_local_Coulomb_tensor" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">read_local_Coulomb_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.read_local_Coulomb_tensor" title="Link to this definition"></a></dt>
 <dd><p>Read local Coulomb tensor from VASP.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elel.read_orbital_Coulomb_interaction">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">read_orbital_Coulomb_interaction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.read_orbital_Coulomb_interaction" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">read_orbital_Coulomb_interaction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.read_orbital_Coulomb_interaction" title="Link to this definition"></a></dt>
 <dd><p>Read Coulomb interaction in orbital basis.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elel.write_band_Coulomb_interaction">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">write_band_Coulomb_interaction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.write_band_Coulomb_interaction" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">write_band_Coulomb_interaction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.write_band_Coulomb_interaction" title="Link to this definition"></a></dt>
 <dd><p>Write Coulomb interaction for single band in band basis.</p>
 </dd></dl>
 

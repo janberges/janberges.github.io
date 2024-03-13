@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MD &mdash; elphmod  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
   
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -55,7 +55,28 @@
 <li class="toctree-l1"><a class="reference internal" href="dos.html">DOS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diagrams.html">Diagrams</a></li>
 <li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">MD</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.md.Driver"><code class="docutils literal notranslate"><span class="pre">Driver</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.center_mass"><code class="docutils literal notranslate"><span class="pre">Driver.center_mass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.density"><code class="docutils literal notranslate"><span class="pre">Driver.density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.density_per_atom"><code class="docutils literal notranslate"><span class="pre">Driver.density_per_atom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.diagonalize"><code class="docutils literal notranslate"><span class="pre">Driver.diagonalize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.electrons"><code class="docutils literal notranslate"><span class="pre">Driver.electrons()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.find_Fermi_level"><code class="docutils literal notranslate"><span class="pre">Driver.find_Fermi_level()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.free_energy"><code class="docutils literal notranslate"><span class="pre">Driver.free_energy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.from_xyz"><code class="docutils literal notranslate"><span class="pre">Driver.from_xyz()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.hessian"><code class="docutils literal notranslate"><span class="pre">Driver.hessian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.jacobian"><code class="docutils literal notranslate"><span class="pre">Driver.jacobian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.phonons"><code class="docutils literal notranslate"><span class="pre">Driver.phonons()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.plot"><code class="docutils literal notranslate"><span class="pre">Driver.plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.random_displacements"><code class="docutils literal notranslate"><span class="pre">Driver.random_displacements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.to_pwi"><code class="docutils literal notranslate"><span class="pre">Driver.to_pwi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.to_xyz"><code class="docutils literal notranslate"><span class="pre">Driver.to_xyz()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.update_plot"><code class="docutils literal notranslate"><span class="pre">Driver.update_plot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="eliashberg.html">Eliashberg</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot.html">Plot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
@@ -86,11 +107,11 @@
            <div itemprop="articleBody">
              
   <section id="module-elphmod.md">
-<span id="md"></span><h1>MD<a class="headerlink" href="#module-elphmod.md" title="Permalink to this heading"></a></h1>
+<span id="md"></span><h1>MD<a class="headerlink" href="#module-elphmod.md" title="Link to this heading"></a></h1>
 <p>Charge-density-wave dynamics on supercells.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.md.Driver">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.md.</span></span><span class="sig-name descname"><span class="pre">Driver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unscreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.md.</span></span><span class="sig-name descname"><span class="pre">Driver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unscreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver" title="Link to this definition"></a></dt>
 <dd><p>MD driver for DFPT-based displacements dynamics.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -154,13 +175,13 @@ located at this atom. Matching atom and orbital orders as ensured by
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.center_mass">
-<span class="sig-name descname"><span class="pre">center_mass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.center_mass" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">center_mass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.center_mass" title="Link to this definition"></a></dt>
 <dd><p>Subtract collective translational displacement component.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.density">
-<span class="sig-name descname"><span class="pre">density</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.density" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">density</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.density" title="Link to this definition"></a></dt>
 <dd><p>Calculate electron density for all orbitals.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -174,19 +195,19 @@ located at this atom. Matching atom and orbital orders as ensured by
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.density_per_atom">
-<span class="sig-name descname"><span class="pre">density_per_atom</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.density_per_atom" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">density_per_atom</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.density_per_atom" title="Link to this definition"></a></dt>
 <dd><p>Calculate electron density per atom.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.diagonalize">
-<span class="sig-name descname"><span class="pre">diagonalize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.diagonalize" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">diagonalize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.diagonalize" title="Link to this definition"></a></dt>
 <dd><p>Diagonalize Hamiltonian of perturbed system.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.electrons">
-<span class="sig-name descname"><span class="pre">electrons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.electrons" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">electrons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.electrons" title="Link to this definition"></a></dt>
 <dd><p>Set up tight-binding model for current structure.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -209,7 +230,7 @@ reduces the size of the Hamiltonian file.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.find_Fermi_level">
-<span class="sig-name descname"><span class="pre">find_Fermi_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.find_Fermi_level" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">find_Fermi_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.find_Fermi_level" title="Link to this definition"></a></dt>
 <dd><p>Update chemical potential.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -223,7 +244,7 @@ reduces the size of the Hamiltonian file.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.free_energy">
-<span class="sig-name descname"><span class="pre">free_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.free_energy" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">free_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.free_energy" title="Link to this definition"></a></dt>
 <dd><p>Calculate free energy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -245,7 +266,7 @@ reduces the size of the Hamiltonian file.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.from_xyz">
-<span class="sig-name descname"><span class="pre">from_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.from_xyz" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">from_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.from_xyz" title="Link to this definition"></a></dt>
 <dd><p>Load saved atomic positions if compatible.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -259,7 +280,7 @@ reduces the size of the Hamiltonian file.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.hessian">
-<span class="sig-name descname"><span class="pre">hessian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fildyn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.hessian" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">hessian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fildyn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.hessian" title="Link to this definition"></a></dt>
 <dd><p>Calculate second derivative of free energy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -289,7 +310,7 @@ This is done before saving the Hessian to file.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.jacobian">
-<span class="sig-name descname"><span class="pre">jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.jacobian" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.jacobian" title="Link to this definition"></a></dt>
 <dd><p>Calculate first derivative of free energy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -311,7 +332,7 @@ This is done before saving the Hessian to file.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.phonons">
-<span class="sig-name descname"><span class="pre">phonons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.phonons" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">phonons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.phonons" title="Link to this definition"></a></dt>
 <dd><p>Set up mass-spring model for current structure.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -333,7 +354,7 @@ This is done before saving the Hessian to file.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.plot">
-<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pause</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.plot" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pause</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.plot" title="Link to this definition"></a></dt>
 <dd><p>Plot crystal structure and displacements.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -359,7 +380,7 @@ attribute, which is used by default.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.random_displacements">
-<span class="sig-name descname"><span class="pre">random_displacements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amplitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.random_displacements" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">random_displacements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amplitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.random_displacements" title="Link to this definition"></a></dt>
 <dd><p>Displace atoms randomly from unperturbed positions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -373,7 +394,7 @@ attribute, which is used by default.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.to_pwi">
-<span class="sig-name descname"><span class="pre">to_pwi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pwi</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.to_pwi" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">to_pwi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pwi</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.to_pwi" title="Link to this definition"></a></dt>
 <dd><p>Save current atomic positions etc. to PWscf input file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -389,7 +410,7 @@ attribute, which is used by default.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.to_xyz">
-<span class="sig-name descname"><span class="pre">to_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.to_xyz" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">to_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.to_xyz" title="Link to this definition"></a></dt>
 <dd><p>Save current atomic positions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -405,7 +426,7 @@ attribute, which is used by default.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.update_plot">
-<span class="sig-name descname"><span class="pre">update_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.update_plot" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.update_plot" title="Link to this definition"></a></dt>
 <dd><p>Update open plot.</p>
 </dd></dl>
 
