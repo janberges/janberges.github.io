@@ -447,7 +447,7 @@ the <code class="docutils literal notranslate"><span class="pre">SUBROUTINE</spa
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.k2r">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">k2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">el</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.k2r" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">k2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">el</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rydberg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.k2r" title="Link to this definition"></a></dt>
 <dd><p>Interpolate Hamilontian matrices on uniform k-point mesh.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -462,6 +462,9 @@ the <code class="docutils literal notranslate"><span class="pre">SUBROUTINE</spa
 </dd>
 <dt><strong>fft</strong><span class="classifier">bool</span></dt><dd><p>Perform Fourier transform? If <code class="docutils literal notranslate"><span class="pre">False</span></code>, only the mapping to the
 Wigner-Seitz cell is performed.</p>
+</dd>
+<dt><strong>rydberg</strong><span class="classifier">bool, default False</span></dt><dd><p>Is input Hamiltonian given in Ry rather than eV units? This is
+independent of <code class="docutils literal notranslate"><span class="pre">el.rydberg</span></code>, which is always respected.</p>
 </dd>
 </dl>
 </dd>

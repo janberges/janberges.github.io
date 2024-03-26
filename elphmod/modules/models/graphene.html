@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Graphene &mdash; elphmod  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="TaS2" href="tas2.html" />
+    <link rel="prev" title="Model data" href="../models.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            elphmod
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../el.html">Electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ph.html">Phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elph.html">Electron–phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elel.html">Electron–electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MPI.html">MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bravais.html">Bravais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dispersion.html">Dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dos.html">DOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diagrams.html">Diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../md.html">MD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eliashberg.html">Eliashberg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot.html">Plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc.html">Miscellaneous</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../models.html">Model data</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Graphene</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.models.graphene.coulomb_interaction"><code class="docutils literal notranslate"><span class="pre">coulomb_interaction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.models.graphene.coupling"><code class="docutils literal notranslate"><span class="pre">coupling()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.models.graphene.create"><code class="docutils literal notranslate"><span class="pre">create()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.models.graphene.dynamical_matrix"><code class="docutils literal notranslate"><span class="pre">dynamical_matrix()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.models.graphene.hamiltonian"><code class="docutils literal notranslate"><span class="pre">hamiltonian()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tas2.html">TaS2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chain.html">Chain</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">elphmod</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../models.html">Model data</a></li>
+      <li class="breadcrumb-item active">Graphene</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/modules/models/graphene.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-elphmod.models.graphene">
+<span id="graphene"></span><h1>Graphene<a class="headerlink" href="#module-elphmod.models.graphene" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.models.graphene.coulomb_interaction">
+<span class="sig-prename descclassname"><span class="pre">elphmod.models.graphene.</span></span><span class="sig-name descname"><span class="pre">coulomb_interaction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.models.graphene.coulomb_interaction" title="Link to this definition"></a></dt>
+<dd><p>Calculate Coulomb interaction of Phys. Rev. Lett. 106, 236805 (2011).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.models.graphene.coupling">
+<span class="sig-prename descclassname"><span class="pre">elphmod.models.graphene.</span></span><span class="sig-name descname"><span class="pre">coupling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">ignore</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.models.graphene.coupling" title="Link to this definition"></a></dt>
+<dd><p>Calculate el.-ph. coupling as in Section S9 of arXiv:2108.01121.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.models.graphene.create">
+<span class="sig-prename descclassname"><span class="pre">elphmod.models.graphene.</span></span><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rydberg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.models.graphene.create" title="Link to this definition"></a></dt>
+<dd><p>Create tight-binding, mass-spring, and coupling data files for graphene.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>prefix</strong><span class="classifier">str, optional</span></dt><dd><p>Common prefix or seedname of data files. If absent, no data is written.</p>
+</dd>
+<dt><strong>rydberg</strong><span class="classifier">bool, default False</span></dt><dd><p>Store tight-binding model in Ry rather than eV?</p>
+</dd>
+<dt><strong>divide_mass</strong><span class="classifier">bool, default True</span></dt><dd><p>Divide force constants and electron-phonon coupling by atomic masses and
+their square root, respectively?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>object</dt><dd><p>Tight-binding model.</p>
+</dd>
+<dt>object</dt><dd><p>Mass-spring model.</p>
+</dd>
+<dt>object</dt><dd><p>Localized electron-phonon coupling.</p>
+</dd>
+<dt>object</dt><dd><p>Localized electron-electron interaction.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.models.graphene.dynamical_matrix">
+<span class="sig-prename descclassname"><span class="pre">elphmod.models.graphene.</span></span><span class="sig-name descname"><span class="pre">dynamical_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.models.graphene.dynamical_matrix" title="Link to this definition"></a></dt>
+<dd><p>Calculate phonons shown in Fig. 2.9 of doi:10.26092/elib/250.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.models.graphene.hamiltonian">
+<span class="sig-prename descclassname"><span class="pre">elphmod.models.graphene.</span></span><span class="sig-name descname"><span class="pre">hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.models.graphene.hamiltonian" title="Link to this definition"></a></dt>
+<dd><p>Calculate electrons of, e.g., Phys. Rev. B 90, 085422 (2014).</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../models.html" class="btn btn-neutral float-left" title="Model data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tas2.html" class="btn btn-neutral float-right" title="TaS2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2024 elphmod Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -56,6 +56,7 @@
 <li class="toctree-l1"><a class="reference internal" href="modules/eliashberg.html">Eliashberg</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/plot.html">Plot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/misc.html">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/models.html">Models</a></li>
 </ul>
 
         </div>
@@ -160,18 +161,36 @@
 </li>
       <li><a href="modules/plot.html#elphmod.plot.colorbar">colorbar() (in module elphmod.plot)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/misc.html#elphmod.misc.colors">colors (in module elphmod.misc)</a>
 </li>
       <li><a href="modules/bravais.html#elphmod.bravais.complete">complete() (in module elphmod.bravais)</a>
 </li>
       <li><a href="modules/bravais.html#elphmod.bravais.complete_k">complete_k() (in module elphmod.bravais)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/plot.html#elphmod.plot.compline">compline() (in module elphmod.plot)</a>
 </li>
-      <li><a href="modules/elph.html#elphmod.elph.coupling">coupling() (in module elphmod.elph)</a>
+      <li><a href="modules/models/graphene.html#elphmod.models.graphene.coulomb_interaction">coulomb_interaction() (in module elphmod.models.graphene)</a>
 </li>
+      <li><a href="modules/elph.html#elphmod.elph.coupling">coupling() (in module elphmod.elph)</a>
+
+      <ul>
+        <li><a href="modules/models/chain.html#elphmod.models.chain.coupling">(in module elphmod.models.chain)</a>
+</li>
+        <li><a href="modules/models/graphene.html#elphmod.models.graphene.coupling">(in module elphmod.models.graphene)</a>
+</li>
+        <li><a href="modules/models/tas2.html#elphmod.models.tas2.coupling">(in module elphmod.models.tas2)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/models/chain.html#elphmod.models.chain.create">create() (in module elphmod.models.chain)</a>
+
+      <ul>
+        <li><a href="modules/models/graphene.html#elphmod.models.graphene.create">(in module elphmod.models.graphene)</a>
+</li>
+        <li><a href="modules/models/tas2.html#elphmod.models.tas2.create">(in module elphmod.models.tas2)</a>
+</li>
+      </ul></li>
       <li><a href="modules/bravais.html#elphmod.bravais.crystal_to_cartesian">crystal_to_cartesian() (in module elphmod.bravais)</a>
 </li>
       <li><a href="modules/misc.html#elphmod.misc.cSI">cSI (in module elphmod.misc)</a>
@@ -206,10 +225,10 @@
 </li>
       <li><a href="modules/dispersion.html#elphmod.dispersion.dispersion_full">dispersion_full() (in module elphmod.dispersion)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/dispersion.html#elphmod.dispersion.dispersion_full_nosym">dispersion_full_nosym() (in module elphmod.dispersion)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/MPI.html#elphmod.MPI.distribute">distribute() (in module elphmod.MPI)</a>
 </li>
       <li><a href="modules/ph.html#elphmod.ph.divide_by_mass">divide_by_mass() (in module elphmod.ph)</a>
@@ -232,6 +251,14 @@
 </li>
       <li><a href="modules/md.html#elphmod.md.Driver">Driver (class in elphmod.md)</a>
 </li>
+      <li><a href="modules/models/chain.html#elphmod.models.chain.dynamical_matrix">dynamical_matrix() (in module elphmod.models.chain)</a>
+
+      <ul>
+        <li><a href="modules/models/graphene.html#elphmod.models.graphene.dynamical_matrix">(in module elphmod.models.graphene)</a>
+</li>
+        <li><a href="modules/models/tas2.html#elphmod.models.tas2.dynamical_matrix">(in module elphmod.models.tas2)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -291,8 +318,6 @@
         <li><a href="modules/eliashberg.html#module-elphmod.eliashberg">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     elphmod.elph
 
@@ -307,11 +332,34 @@
         <li><a href="modules/md.html#module-elphmod.md">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     elphmod.misc
 
       <ul>
         <li><a href="modules/misc.html#module-elphmod.misc">module</a>
+</li>
+      </ul></li>
+      <li>
+    elphmod.models.chain
+
+      <ul>
+        <li><a href="modules/models/chain.html#module-elphmod.models.chain">module</a>
+</li>
+      </ul></li>
+      <li>
+    elphmod.models.graphene
+
+      <ul>
+        <li><a href="modules/models/graphene.html#module-elphmod.models.graphene">module</a>
+</li>
+      </ul></li>
+      <li>
+    elphmod.models.tas2
+
+      <ul>
+        <li><a href="modules/models/tas2.html#module-elphmod.models.tas2">module</a>
 </li>
       </ul></li>
       <li>
@@ -436,16 +484,24 @@
 </li>
       <li><a href="modules/misc.html#elphmod.misc.Ha">Ha (in module elphmod.misc)</a>
 </li>
+      <li><a href="modules/models/chain.html#elphmod.models.chain.hamiltonian">hamiltonian() (in module elphmod.models.chain)</a>
+
+      <ul>
+        <li><a href="modules/models/graphene.html#elphmod.models.graphene.hamiltonian">(in module elphmod.models.graphene)</a>
+</li>
+        <li><a href="modules/models/tas2.html#elphmod.models.tas2.hamiltonian">(in module elphmod.models.tas2)</a>
+</li>
+      </ul></li>
       <li><a href="modules/elel.html#elphmod.elel.hartree_energy">hartree_energy() (in module elphmod.elel)</a>
 </li>
       <li><a href="modules/misc.html#elphmod.misc.hbarSI">hbarSI (in module elphmod.misc)</a>
 </li>
       <li><a href="modules/occupations.html#elphmod.occupations.heaviside">heaviside() (in module elphmod.occupations)</a>
 </li>
-      <li><a href="modules/occupations.html#elphmod.occupations.heaviside_delta">heaviside_delta() (in module elphmod.occupations)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/occupations.html#elphmod.occupations.heaviside_delta">heaviside_delta() (in module elphmod.occupations)</a>
+</li>
       <li><a href="modules/occupations.html#elphmod.occupations.heaviside_delta_prime">heaviside_delta_prime() (in module elphmod.occupations)</a>
 </li>
       <li><a href="modules/occupations.html#elphmod.occupations.heaviside_entropy">heaviside_entropy() (in module elphmod.occupations)</a>
@@ -589,6 +645,12 @@
         <li><a href="modules/md.html#module-elphmod.md">elphmod.md</a>
 </li>
         <li><a href="modules/misc.html#module-elphmod.misc">elphmod.misc</a>
+</li>
+        <li><a href="modules/models/chain.html#module-elphmod.models.chain">elphmod.models.chain</a>
+</li>
+        <li><a href="modules/models/graphene.html#module-elphmod.models.graphene">elphmod.models.graphene</a>
+</li>
+        <li><a href="modules/models/tas2.html#module-elphmod.models.tas2">elphmod.models.tas2</a>
 </li>
         <li><a href="modules/MPI.html#module-elphmod.MPI">elphmod.MPI</a>
 </li>
@@ -887,16 +949,18 @@
 </li>
       <li><a href="modules/eliashberg.html#elphmod.eliashberg.Tc">Tc() (in module elphmod.eliashberg)</a>
 </li>
+      <li><a href="modules/elph.html#elphmod.elph.Model.to_epmatwp">to_epmatwp() (elphmod.elph.Model method)</a>
+</li>
       <li><a href="modules/ph.html#elphmod.ph.Model.to_flfrc">to_flfrc() (elphmod.ph.Model method)</a>
 </li>
       <li><a href="modules/el.html#elphmod.el.Model.to_hrdat">to_hrdat() (elphmod.el.Model method)</a>
 </li>
       <li><a href="modules/md.html#elphmod.md.Driver.to_pwi">to_pwi() (elphmod.md.Driver method)</a>
 </li>
-      <li><a href="modules/bravais.html#elphmod.bravais.to_supercell">to_supercell() (in module elphmod.bravais)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/bravais.html#elphmod.bravais.to_supercell">to_supercell() (in module elphmod.bravais)</a>
+</li>
       <li><a href="modules/bravais.html#elphmod.bravais.to_Voronoi">to_Voronoi() (in module elphmod.bravais)</a>
 </li>
       <li><a href="modules/md.html#elphmod.md.Driver.to_xyz">to_xyz() (elphmod.md.Driver method)</a>
@@ -961,9 +1025,9 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/elel.html#elphmod.elel.Model.W">W() (elphmod.elel.Model method)</a>
 </li>
-      <li><a href="modules/bravais.html#elphmod.bravais.wigner_seitz">wigner_seitz() (in module elphmod.bravais)</a>
+      <li><a href="modules/bravais.html#elphmod.bravais.wigner">wigner() (in module elphmod.bravais)</a>
 </li>
-      <li><a href="modules/bravais.html#elphmod.bravais.wigner_seitz_x">wigner_seitz_x() (in module elphmod.bravais)</a>
+      <li><a href="modules/bravais.html#elphmod.bravais.wigner_2d">wigner_2d() (in module elphmod.bravais)</a>
 </li>
       <li><a href="modules/elel.html#elphmod.elel.Model.WR">WR() (elphmod.elel.Model method)</a>
 </li>
@@ -977,10 +1041,10 @@
 </li>
       <li><a href="modules/ph.html#elphmod.ph.write_flfrc">write_flfrc() (in module elphmod.ph)</a>
 </li>
-      <li><a href="modules/el.html#elphmod.el.write_hrdat">write_hrdat() (in module elphmod.el)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/el.html#elphmod.el.write_hrdat">write_hrdat() (in module elphmod.el)</a>
+</li>
       <li><a href="modules/bravais.html#elphmod.bravais.write_matdyn">write_matdyn() (in module elphmod.bravais)</a>
 </li>
       <li><a href="modules/bravais.html#elphmod.bravais.write_ph">write_ph() (in module elphmod.bravais)</a>
@@ -992,8 +1056,6 @@
       <li><a href="modules/bravais.html#elphmod.bravais.write_q2r">write_q2r() (in module elphmod.bravais)</a>
 </li>
       <li><a href="modules/ph.html#elphmod.ph.write_quadrupole_fmt">write_quadrupole_fmt() (in module elphmod.ph)</a>
-</li>
-      <li><a href="modules/bravais.html#elphmod.bravais.write_wigner_file">write_wigner_file() (in module elphmod.bravais)</a>
 </li>
       <li><a href="modules/bravais.html#elphmod.bravais.write_win">write_win() (in module elphmod.bravais)</a>
 </li>

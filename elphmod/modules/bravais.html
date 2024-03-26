@@ -87,14 +87,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.to_supercell"><code class="docutils literal notranslate"><span class="pre">to_supercell()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.translations"><code class="docutils literal notranslate"><span class="pre">translations()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.volume"><code class="docutils literal notranslate"><span class="pre">volume()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.wigner_seitz"><code class="docutils literal notranslate"><span class="pre">wigner_seitz()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.wigner_seitz_x"><code class="docutils literal notranslate"><span class="pre">wigner_seitz_x()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.wigner"><code class="docutils literal notranslate"><span class="pre">wigner()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.wigner_2d"><code class="docutils literal notranslate"><span class="pre">wigner_2d()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.write_epw"><code class="docutils literal notranslate"><span class="pre">write_epw()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.write_matdyn"><code class="docutils literal notranslate"><span class="pre">write_matdyn()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.write_ph"><code class="docutils literal notranslate"><span class="pre">write_ph()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.write_pwi"><code class="docutils literal notranslate"><span class="pre">write_pwi()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.write_q2r"><code class="docutils literal notranslate"><span class="pre">write_q2r()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.write_wigner_file"><code class="docutils literal notranslate"><span class="pre">write_wigner_file()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.write_win"><code class="docutils literal notranslate"><span class="pre">write_win()</span></code></a></li>
 </ul>
 </li>
@@ -656,7 +655,7 @@ lattice constant in bohr; the other elements are dimensionless.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#elphmod.bravais.write_wigner_file" title="elphmod.bravais.write_wigner_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_wigner_file</span></code></a>, <a class="reference internal" href="#elphmod.bravais.wigner_seitz_x" title="elphmod.bravais.wigner_seitz_x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wigner_seitz_x</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">elph.Model</span></code></dt><dd></dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">elph.Model</span></code></dt><dd></dd>
 </dl>
 </div>
 </dd></dl>
@@ -755,7 +754,7 @@ lattice constant in bohr; the other elements are dimensionless.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.short_range_model">
-<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">short_range_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sgn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.short_range_model" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">short_range_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sgn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.short_range_model" title="Link to this definition"></a></dt>
 <dd><p>Map hoppings or force constants onto Wigner-Seitz cell.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -769,8 +768,6 @@ constants only) to Cartesian directions.</p>
 </dd>
 <dt><strong>tau</strong><span class="classifier">ndarray</span></dt><dd><p>Positions of basis orbitals or atoms.</p>
 </dd>
-<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Tolerance for orbital or atomic distances to be considered equal.</p>
-</dd>
 <dt><strong>sgn</strong><span class="classifier">int</span></dt><dd><p>Do the lattice vectors shift the first (<code class="docutils literal notranslate"><span class="pre">-1</span></code>) or second (<code class="docutils literal notranslate"><span class="pre">+1</span></code>)
 orbital/atom?</p>
 </dd>
@@ -779,7 +776,15 @@ orbital/atom?</p>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"></dd>
+<dd class="field-even"><dl class="simple">
+<dt><strong>irvec</strong><span class="classifier">ndarray</span></dt><dd><p>Wigner-Seitz lattice vectors.</p>
+</dd>
+<dt><strong>const</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding hoppings or force constants.</p>
+</dd>
+<dt><strong>wslen</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding lengths.</p>
+</dd>
+</dl>
+</dd>
 </dl>
 </dd></dl>
 
@@ -999,8 +1004,43 @@ the original and the transformed mesh.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="elphmod.bravais.wigner_seitz">
-<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">wigner_seitz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.wigner_seitz" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="elphmod.bravais.wigner">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">wigner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nr1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sgn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.wigner" title="Link to this definition"></a></dt>
+<dd><p>Determine Wigner-Seitz lattice vectors with degenercies and lengths.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>nr1, nr2, nr3</strong><span class="classifier">ndarray</span></dt><dd><p>Dimensions of positive lattice-vector mesh.</p>
+</dd>
+<dt><strong>at</strong><span class="classifier">ndarray</span></dt><dd><p>Bravais lattice vectors.</p>
+</dd>
+<dt><strong>tau</strong><span class="classifier">ndarray</span></dt><dd><p>Positions of basis orbitals or atoms in original cell.</p>
+</dd>
+<dt><strong>tau2</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Positions of basis orbitals or atoms in shifted cell. Defaults to <cite>tau</cite>.</p>
+</dd>
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Tolerance for orbital or atomic distances to be considered equal.</p>
+</dd>
+<dt><strong>sgn</strong><span class="classifier">int</span></dt><dd><p>Do the lattice vectors shift the first (<code class="docutils literal notranslate"><span class="pre">-1</span></code>) or second (<code class="docutils literal notranslate"><span class="pre">+1</span></code>)
+orbital/atom?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>irvec</strong><span class="classifier">ndarray</span></dt><dd><p>Wigner-Seitz lattice vectors.</p>
+</dd>
+<dt><strong>ndegen</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding degeneracies.</p>
+</dd>
+<dt><strong>wslen</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding lengths.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.wigner_2d">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">wigner_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.wigner_2d" title="Link to this definition"></a></dt>
 <dd><p>Find lattice points in Wigner-Seitz cell (including boundary).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1010,41 +1050,6 @@ the original and the transformed mesh.</p>
 <dt><strong>angle</strong><span class="classifier">number</span></dt><dd><p>Angle between lattice vectors.</p>
 </dd>
 <dt><strong>dk1, dk2</strong><span class="classifier">float</span></dt><dd><p>Shift of Wigner-Seitz cell.</p>
-</dd>
-<dt><strong>epsilon</strong><span class="classifier">float</span></dt><dd><p>Maximum absolute difference of “equal” floats.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>list of tuple of int</dt><dd><p>Mesh-point indices.</p>
-</dd>
-<dt>list of int</dt><dd><p>Degeneracies.</p>
-</dd>
-<dt>list of float</dt><dd><p>Lattice-vector lengths.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="elphmod.bravais.wigner_seitz_x">
-<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">wigner_seitz_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.wigner_seitz_x" title="Link to this definition"></a></dt>
-<dd><p>Emulate the EPW subroutine <em>wigner_seitz{x}</em> in <em>wigner.f90</em>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>x</strong><span class="classifier">str</span></dt><dd><p>Type of Wigner-Seitz cell:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">'k'</span></code>: cell-centered</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'q'</span></code>: bond-centered</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'g'</span></code>: atom-centered</p></li>
-</ul>
-</dd>
-<dt><strong>nk</strong><span class="classifier">int</span></dt><dd><p>Number of points per dimension.</p>
-</dd>
-<dt><strong>at, tau</strong><span class="classifier">ndarray</span></dt><dd><p>Geometry as returned by <code class="xref py py-func docutils literal notranslate"><span class="pre">ph.read_flfrc()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">ph.Model()</span></code>.</p>
 </dd>
 <dt><strong>epsilon</strong><span class="classifier">float</span></dt><dd><p>Maximum absolute difference of “equal” floats.</p>
 </dd>
@@ -1141,20 +1146,6 @@ the original and the transformed mesh.</p>
 </dl>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="elphmod.bravais.write_wigner_file">
-<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">write_wigner_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.write_wigner_file" title="Link to this definition"></a></dt>
-<dd><p>Write binary file with Wigner-Seitz data as used by EPW.</p>
-<p><strong>ATTENTION:</strong> This function is compatible with <cite>read_wigner_file</cite> for
-<code class="docutils literal notranslate"><span class="pre">old_ws=True</span></code> only!</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="#elphmod.bravais.read_wigner_file" title="elphmod.bravais.read_wigner_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_wigner_file</span></code></a>, <a class="reference internal" href="#elphmod.bravais.wigner_seitz_x" title="elphmod.bravais.wigner_seitz_x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wigner_seitz_x</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">elph.Model</span></code></dt><dd></dd>
-</dl>
-</div>
 </dd></dl>
 
 <dl class="py function">

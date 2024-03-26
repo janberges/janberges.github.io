@@ -63,6 +63,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.elph.Model.standardize"><code class="docutils literal notranslate"><span class="pre">Model.standardize()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.elph.Model.supercell"><code class="docutils literal notranslate"><span class="pre">Model.supercell()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.elph.Model.symmetrize"><code class="docutils literal notranslate"><span class="pre">Model.symmetrize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.elph.Model.to_epmatwp"><code class="docutils literal notranslate"><span class="pre">Model.to_epmatwp()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.elph.Model.update_short_range"><code class="docutils literal notranslate"><span class="pre">Model.update_short_range()</span></code></a></li>
 </ul>
 </li>
@@ -385,6 +386,23 @@ nonzero <cite>eps</cite> and <cite>symmetrize</cite> before.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="elphmod.elph.Model.to_epmatwp">
+<span class="sig-name descname"><span class="pre">to_epmatwp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.to_epmatwp" title="Link to this definition"></a></dt>
+<dd><p>Save coupling to <em>.epmatwp</em> and <em>.wigner</em> files.</p>
+<p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">divide_ndegen</span></code>, the division by the degeneracies of the
+Wigner-Seitz points is not undone before writing the <em>.epmatwp</em> file.
+Instead, all degeneracies in the <em>.wiger</em> file are set to one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>prefix</strong><span class="classifier">str</span></dt><dd><p>Filename stem.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elph.Model.update_short_range">
 <span class="sig-name descname"><span class="pre">update_short_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.update_short_range" title="Link to this definition"></a></dt>
 <dd><p>Update short-range part of real-space coupling.</p>
@@ -420,7 +438,7 @@ nonzero <cite>eps</cite> and <cite>symmetrize</cite> before.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.q2r">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.q2r" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.q2r" title="Link to this definition"></a></dt>
 <dd><p>Fourier-transform electron-phonon coupling from reciprocal to real space.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -431,8 +449,13 @@ nonzero <cite>eps</cite> and <cite>symmetrize</cite> before.</p>
 </dd>
 <dt><strong>g</strong><span class="classifier">ndarray</span></dt><dd><p>Electron-phonon coupling on complete uniform q- and k-point meshes.</p>
 </dd>
-<dt><strong>divide_mass</strong><span class="classifier">bool</span></dt><dd><p>Has input coupling been divided by square root of atomic mass? This is
+<dt><strong>r</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Positions of orbital centers. If given, the Wigner-Seitz lattice vectors
+are determined again. This is required when changing <cite>nq</cite> or <cite>nk</cite>.</p>
+</dd>
+<dt><strong>divide_mass</strong><span class="classifier">bool, default True</span></dt><dd><p>Has input coupling been divided by square root of atomic mass? This is
 independent of <code class="docutils literal notranslate"><span class="pre">elph.divide_mass</span></code>, which is always respected.</p>
+</dd>
+<dt><strong>shared_memory</strong><span class="classifier">bool, default False</span></dt><dd><p>Store real-space coupling in shared memory?</p>
 </dd>
 </dl>
 </dd>
