@@ -134,7 +134,7 @@
 <dt class="sig sig-object py" id="elphmod.ph.Model">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.ph.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flfrc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quadrupole_fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_zasr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_rsr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr2d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[[[[[[0.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">0.]]]]]]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([1.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[1.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">1.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">1.]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[0.,</span> <span class="pre">0.,</span> <span class="pre">0.]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['X']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsil</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zeu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ifc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model" title="Link to this definition"></a></dt>
 <dd><p>Mass-spring model for the phonons.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>flfrc</strong><span class="classifier">str</span></dt><dd><p>File with interatomic force constants from <code class="docutils literal notranslate"><span class="pre">q2r.x</span></code> or common filename
@@ -188,14 +188,21 @@ is prefix of files with dynamical matrices. Used to emulate <code class="docutil
 </dl>
 </dd>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>M</strong><span class="classifier">ndarray</span></dt><dd><p>Atomic masses.</p>
+<dd class="field-even"><dl>
+<dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors <span class="math notranslate nohighlight">\(\vec R\)</span> of Wigner-Seitz supercell.</p>
+</dd>
+<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding force constants divided by atomic masses in Ry<sup>2</sup>.</p>
+<div class="math notranslate nohighlight">
+\[D_{\vec R i j} = \frac{\hbar^2}{\sqrt{M_i M_j}}
+    \frac{\partial^2 E}{\partial u_{0 i} \partial u_{\vec R j}}\]</div>
+<p>If <cite>divide_mass</cite> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, the prefactor <span class="math notranslate nohighlight">\(\hbar^2 / \sqrt{M_i
+M_j}\)</span> is absent and the units are Ry/bohr<sup>2</sup> instead.</p>
+</dd>
+<dt><strong>M</strong><span class="classifier">ndarray</span></dt><dd><p>Atomic masses <span class="math notranslate nohighlight">\(M_i\)</span>.</p>
 </dd>
 <dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Bravais lattice vectors.</p>
 </dd>
 <dt><strong>r</strong><span class="classifier">ndarray</span></dt><dd><p>Positions of basis atoms.</p>
-</dd>
-<dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors of Wigner-Seitz supercell.</p>
 </dd>
 <dt><strong>l</strong><span class="classifier">ndarray.</span></dt><dd><p>Bond lengths.</p>
 </dd>
@@ -214,8 +221,6 @@ is prefix of files with dynamical matrices. Used to emulate <code class="docutil
 <dt><strong>L</strong><span class="classifier">float</span></dt><dd><p>Range-separation parameter for two-dimensional electrostatics.</p>
 </dd>
 <dt><strong>perp</strong><span class="classifier">bool</span></dt><dd><p>Yield out-of-plane long-range terms if <cite>L</cite> is nonzero?</p>
-</dd>
-<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Interatomic force constants divided by atomic masses.</p>
 </dd>
 <dt><strong>divide_mass</strong><span class="classifier">bool</span></dt><dd><p>Have force constants and Born charges been divided by atomic masses?</p>
 </dd>
@@ -256,12 +261,40 @@ is prefix of files with dynamical matrices. Used to emulate <code class="docutil
 <dt class="sig sig-object py" id="elphmod.ph.Model.C">
 <span class="sig-name descname"><span class="pre">C</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.C" title="Link to this definition"></a></dt>
 <dd><p>Get interatomic force constants for arbitrary lattice vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>R1, R2, R3</strong><span class="classifier">int, default 0</span></dt><dd><p>Lattice vector in units of primitive vectors.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Element of <code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code> or zero.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.ph.Model.D">
 <span class="sig-name descname"><span class="pre">D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.ph.Model.D" title="Link to this definition"></a></dt>
 <dd><p>Set up dynamical matrix for arbitrary q point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>q1, q2, q3</strong><span class="classifier">float, default 0.0</span></dt><dd><p>q point in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Fourier transform of <code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code>, possibly plus a long-range term.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">

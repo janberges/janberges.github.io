@@ -126,7 +126,7 @@
 <dt class="sig sig-object py" id="elphmod.elph.Model">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epmatwp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wigner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">el</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_ws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model" title="Link to this definition"></a></dt>
 <dd><p>Localized model for electron-phonon coupling.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>epmatwp</strong><span class="classifier">str</span></dt><dd><p>File with electron-phonon coupling in localized bases from EPW.</p>
@@ -154,14 +154,21 @@ debugging.</p>
 </dl>
 </dd>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
+<dd class="field-even"><dl>
 <dt><strong>el, ph</strong><span class="classifier">object</span></dt><dd><p>Tight-binding and mass-spring models.</p>
 </dd>
-<dt><strong>Rk, Rg</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors of Wigner-Seitz supercells.</p>
+<dt><strong>Rk, Rg</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors <span class="math notranslate nohighlight">\(\vec R', \vec R\)</span> of Wigner-Seitz supercells.</p>
 </dd>
 <dt><strong>dk, dg</strong><span class="classifier">ndarray</span></dt><dd><p>Degeneracies of Wigner-Seitz points.</p>
 </dd>
-<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding electron-phonon matrix elements.</p>
+<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding electron-phonon matrix elements in Ry<sup>3/2</sup>.</p>
+<div class="math notranslate nohighlight">
+\[g_{\vec R i \vec R' \alpha \beta} = \frac \hbar {\sqrt M_i}
+    \bra{0 \alpha}
+        \frac{\partial V}{\partial u_{\vec R i}}
+    \ket{\vec R' \beta}\]</div>
+<p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">divide_mass</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, the prefactor <span class="math notranslate nohighlight">\(\hbar /
+\sqrt{M_i}\)</span> is absent and the units are Ry/bohr instead.</p>
 </dd>
 <dt><strong>divide_mass</strong><span class="classifier">bool</span></dt><dd><p>Has real-space coupling been divided by atomic masses?</p>
 </dd>
@@ -250,17 +257,12 @@ be a better way to accomplish this.</p>
 <dt class="sig sig-object py" id="elphmod.elph.Model.g">
 <span class="sig-name descname"><span class="pre">g</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k1=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elbnd=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phbnd=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.g" title="Link to this definition"></a></dt>
 <dd><p>Calculate electron-phonon coupling for arbitary points k and k + q.</p>
-<div class="math notranslate nohighlight">
-\[\sqrt{2 \omega} g_{\nu m n} = \frac \hbar {\sqrt M}
-    \bra{\vec k + \vec q m}
-        \frac{\partial V}{\partial u_\nu}
-    \ket{\vec k n}\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>q1, q2, q2</strong><span class="classifier">float</span></dt><dd><p>q point in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
+<dt><strong>q1, q2, q2</strong><span class="classifier">float, default 0.0</span></dt><dd><p>q point in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
 </dd>
-<dt><strong>k1, k2, k3</strong><span class="classifier">float</span></dt><dd><p>Ingoing k point in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
+<dt><strong>k1, k2, k3</strong><span class="classifier">float, default 0.0</span></dt><dd><p>Ingoing k point in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
 </dd>
 <dt><strong>elbnd</strong><span class="classifier">bool</span></dt><dd><p>Transform to electronic band basis? Provided for convenience. Since
 the Hamiltonian is diagonalized on the fly for each requested matrix
@@ -283,8 +285,8 @@ e.g., when parallelizing over q or k points, use <code class="docutils literal n
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>ndarray</dt><dd><p>Electron-phonon matrix element <span class="math notranslate nohighlight">\(\sqrt{2 \omega} g_{\nu m n}\)</span>
-in Ry<sup>3/2</sup>.</p>
+<dt>ndarray</dt><dd><p>Fourier transform of <code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code>, possibly plus a long-range term
+and transformed into the band basis.</p>
 </dd>
 </dl>
 </dd>
@@ -295,6 +297,20 @@ in Ry<sup>3/2</sup>.</p>
 <dt class="sig sig-object py" id="elphmod.elph.Model.gR">
 <span class="sig-name descname"><span class="pre">gR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Rq1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rq2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rq3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rk3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elph.Model.gR" title="Link to this definition"></a></dt>
 <dd><p>Get electron-phonon matrix elements for arbitrary lattice vectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Rq1, Rq2, Rq3, Rk1, Rk2, Rk3</strong><span class="classifier">int, default 0</span></dt><dd><p>Lattice vectors in units of primitive vectors.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Element of <code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code> or zero.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -451,7 +467,10 @@ Instead, all degeneracies in the <em>.wiger</em> file are set to one.</p>
 <dt><strong>g</strong><span class="classifier">ndarray</span></dt><dd><p>Electron-phonon coupling on complete uniform q- and k-point meshes.</p>
 </dd>
 <dt><strong>r</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Positions of orbital centers. If given, the Wigner-Seitz lattice vectors
-are determined again. This is required when changing <cite>nq</cite> or <cite>nk</cite>.</p>
+are determined again, whereby the distances to the displaced atom and
+the initial orbital are are both measured from the final orbital in the
+unit cell at the origin (first orbital index). This argument is required
+when changing <cite>nq</cite> or <cite>nk</cite>.</p>
 </dd>
 <dt><strong>divide_mass</strong><span class="classifier">bool, default True</span></dt><dd><p>Has input coupling been divided by square root of atomic mass? This is
 independent of <code class="docutils literal notranslate"><span class="pre">elph.divide_mass</span></code>, which is always respected.</p>

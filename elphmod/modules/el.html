@@ -133,7 +133,7 @@
 <dt class="sig sig-object py" id="elphmod.el.Model">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_ndegen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read_xsf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_wf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_ortho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rydberg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model" title="Link to this definition"></a></dt>
 <dd><p>Tight-binding model for the electrons.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>seedname</strong><span class="classifier">str</span></dt><dd><p>Common prefix of Wannier90 output files: <em>seedname_hr.dat</em> with the
@@ -180,10 +180,13 @@ systems. Make sure to delete the binary files <em>seedname_wf.npy</em> and
 </dl>
 </dd>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors of Wigner-Seitz supercell.</p>
+<dd class="field-even"><dl>
+<dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors <span class="math notranslate nohighlight">\(\vec R\)</span> of Wigner-Seitz supercell.</p>
 </dd>
-<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding on-site energies and hoppings.</p>
+<dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding on-site energies and hoppings in eV.</p>
+<div class="math notranslate nohighlight">
+\[H_{\vec R \alpha \beta} = \bra{0 \alpha} H \ket{\vec R \beta}\]</div>
+<p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">rydberg</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the units are Ry instead.</p>
 </dd>
 <dt><strong>size</strong><span class="classifier">int</span></dt><dd><p>Number of Wannier functions/bands.</p>
 </dd>
@@ -214,6 +217,20 @@ systems. Make sure to delete the binary files <em>seedname_wf.npy</em> and
 <dt class="sig sig-object py" id="elphmod.el.Model.H">
 <span class="sig-name descname"><span class="pre">H</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.H" title="Link to this definition"></a></dt>
 <dd><p>Set up Hamilton operator for arbitrary k point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>k1, k2, k3</strong><span class="classifier">float, default 0.0</span></dt><dd><p>k point in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Fourier transform of <code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -321,6 +338,20 @@ and <cite>symmetrize</cite> before.</p>
 <dt class="sig sig-object py" id="elphmod.el.Model.t">
 <span class="sig-name descname"><span class="pre">t</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.t" title="Link to this definition"></a></dt>
 <dd><p>Get on-site or hopping energy for arbitrary lattice vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>R1, R2, R3</strong><span class="classifier">int, default 0</span></dt><dd><p>Lattice vector in units of primitive vectors.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Element of <code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code> or zero.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">

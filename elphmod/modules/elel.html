@@ -142,7 +142,7 @@ located at the origin of the unit cell.</p>
 </dd>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors of Wigner-Seitz supercell.</p>
+<dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors <code class="xref py py-attr docutils literal notranslate"><span class="pre">vec</span> <span class="pre">R</span></code> of Wigner-Seitz supercell.</p>
 </dd>
 <dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding density-density interaction in orbital basis.</p>
 </dd>
@@ -159,12 +159,40 @@ located at the origin of the unit cell.</p>
 <dt class="sig sig-object py" id="elphmod.elel.Model.W">
 <span class="sig-name descname"><span class="pre">W</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model.W" title="Link to this definition"></a></dt>
 <dd><p>Set up density-density Coulomb matrix for arbitrary q point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>q1, q2, q3</strong><span class="classifier">float, default 0.0</span></dt><dd><p>q point in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Fourier transform of <code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.elel.Model.WR">
 <span class="sig-name descname"><span class="pre">WR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.elel.Model.WR" title="Link to this definition"></a></dt>
 <dd><p>Get density-density Coulomb matrix for arbitrary lattice vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>R1, R2, R3</strong><span class="classifier">int, default 0</span></dt><dd><p>Lattice vector in units of primitive vectors.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Element of <code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code> or zero.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
