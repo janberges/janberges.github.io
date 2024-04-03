@@ -67,9 +67,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.from_xyz"><code class="docutils literal notranslate"><span class="pre">Driver.from_xyz()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.hessian"><code class="docutils literal notranslate"><span class="pre">Driver.hessian()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.jacobian"><code class="docutils literal notranslate"><span class="pre">Driver.jacobian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.load"><code class="docutils literal notranslate"><span class="pre">Driver.load()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.phonons"><code class="docutils literal notranslate"><span class="pre">Driver.phonons()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.plot"><code class="docutils literal notranslate"><span class="pre">Driver.plot()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.random_displacements"><code class="docutils literal notranslate"><span class="pre">Driver.random_displacements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.save"><code class="docutils literal notranslate"><span class="pre">Driver.save()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.to_pwi"><code class="docutils literal notranslate"><span class="pre">Driver.to_pwi()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.to_xyz"><code class="docutils literal notranslate"><span class="pre">Driver.to_xyz()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.update_plot"><code class="docutils literal notranslate"><span class="pre">Driver.update_plot()</span></code></a></li>
@@ -271,6 +273,9 @@ reduces the size of the Hamiltonian file.</p>
 <dt class="sig sig-object py" id="elphmod.md.Driver.from_xyz">
 <span class="sig-name descname"><span class="pre">from_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.from_xyz" title="Link to this definition"></a></dt>
 <dd><p>Load saved atomic positions if compatible.</p>
+<p>If an interactive plot is open, it is updated. If <cite>xyz</cite> contains a full
+trajectory, all steps are shown in an interactive plot (whose speed can
+be controlled via <code class="xref py py-attr docutils literal notranslate"><span class="pre">pause</span></code>) and the last atomic positions are kept.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -334,6 +339,27 @@ This is done before saving the Hessian to file.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.load">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.load" title="Link to this definition"></a></dt>
+<dd><p>Load driver from file.</p>
+<p>This should only be used in serial runs. Shared memory will be lost.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Filename for pickled representation of driver.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>object</dt><dd><p>MD driver for DFPT-based displacements dynamics.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.phonons">
 <span class="sig-name descname"><span class="pre">phonons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.phonons" title="Link to this definition"></a></dt>
 <dd><p>Set up mass-spring model for current structure.</p>
@@ -357,11 +383,13 @@ This is done before saving the Hessian to file.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.plot">
-<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pause</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.plot" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pause</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">azim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.plot" title="Link to this definition"></a></dt>
 <dd><p>Plot crystal structure and displacements.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str, optional</span></dt><dd><p>Figure filename. If given, the plot is saved rather than shown.</p>
+</dd>
 <dt><strong>interactive</strong><span class="classifier">bool, optional</span></dt><dd><p>Shall the plot be updated? If given, this sets the eponymous
 attribute, which is used by default.</p>
 </dd>
@@ -376,6 +404,8 @@ attribute, which is used by default.</p>
 </dd>
 <dt><strong>label</strong><span class="classifier">bool, optional</span></dt><dd><p>Show atom indices?</p>
 </dd>
+<dt><strong>elev, azim</strong><span class="classifier">float, optional</span></dt><dd><p>Elevation and azimuthal view angles.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -389,6 +419,20 @@ attribute, which is used by default.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>amplitude</strong><span class="classifier">float</span></dt><dd><p>Maximum displacement.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.md.Driver.save" title="Link to this definition"></a></dt>
+<dd><p>Save driver to file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Filename for pickled representation of driver.</p>
 </dd>
 </dl>
 </dd>

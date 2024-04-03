@@ -58,6 +58,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.el.Model.t"><code class="docutils literal notranslate"><span class="pre">Model.t()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.el.Model.to_hrdat"><code class="docutils literal notranslate"><span class="pre">Model.to_hrdat()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.el.Model.unit_cell"><code class="docutils literal notranslate"><span class="pre">Model.unit_cell()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.el.Model.v"><code class="docutils literal notranslate"><span class="pre">Model.v()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.el.decayH"><code class="docutils literal notranslate"><span class="pre">decayH()</span></code></a></li>
@@ -379,6 +380,28 @@ and <cite>symmetrize</cite> before.</p>
 <dt><a class="reference internal" href="#elphmod.el.Model.supercell" title="elphmod.el.Model.supercell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">supercell</span></code></a></dt><dd></dd>
 </dl>
 </div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.el.Model.v">
+<span class="sig-name descname"><span class="pre">v</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.Model.v" title="Link to this definition"></a></dt>
+<dd><p>Set up band-velocity operator for arbitrary k point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>k1, k2, k3</strong><span class="classifier">float, default 0.0</span></dt><dd><p>k point in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>k derivative of Fourier transform of <code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code> in the basis of
+primitive lattice vectors and orbitals. It can be transformed into
+the Cartesian and band basis afterward (Hellmann-Feynman theorem).</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

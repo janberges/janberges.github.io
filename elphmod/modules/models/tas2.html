@@ -103,7 +103,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.models.tas2.coupling">
 <span class="sig-prename descclassname"><span class="pre">elphmod.models.tas2.</span></span><span class="sig-name descname"><span class="pre">coupling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">ignore</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.models.tas2.coupling" title="Link to this definition"></a></dt>
-<dd><p>Calculate coupling according to Eq. (B4) of arXiv:1911.02450.</p>
+<dd><p>Calculate coupling according to Eq. (B4) of PRB 101, 155107 (2020).</p>
 </dd></dl>
 
 <dl class="py function">
@@ -138,13 +138,15 @@ their square root, respectively?</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.models.tas2.dynamical_matrix">
 <span class="sig-prename descclassname"><span class="pre">elphmod.models.tas2.</span></span><span class="sig-name descname"><span class="pre">dynamical_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.models.tas2.dynamical_matrix" title="Link to this definition"></a></dt>
-<dd><p>Calculate phonons with parameters taken from arXiv:2303.07261.</p>
+<dd><p>Calculate phonons as in Sec. 2.4.3.2 of doi:10.26092/elib/250.</p>
+<p>The DFPT force constants come from Fig. 3 (f-j) of PRX 13, 041009 (2023).
+Load spring “TaS2-SR” on <a class="reference external" href="https://janberges.de/spring">https://janberges.de/spring</a> to visualize them.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.models.tas2.hamiltonian">
 <span class="sig-prename descclassname"><span class="pre">elphmod.models.tas2.</span></span><span class="sig-name descname"><span class="pre">hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.models.tas2.hamiltonian" title="Link to this definition"></a></dt>
-<dd><p>Calculate electrons according to Eq. (5) of arXiv:1911.02450.</p>
+<dd><p>Calculate electrons according to Eq. (5) of PRB 101, 155107 (2020).</p>
 </dd></dl>
 
 </section>
