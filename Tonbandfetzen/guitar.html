@@ -32,9 +32,10 @@ guitar tablatures. Filenames default to <strong>/dev/stdin</strong> or
 shorthand for the default value.</p>
 <h1>SYNTAX</h1>
 <p>The syntax of <em>infile</em> is as described in
-<strong>mel</strong>(1), with the following exception: Text between two
-vertical bars (<strong>|</strong>) that contains at least one
-hyphen-minus (<strong>-</strong>) or tilde (<strong>~</strong>),
+<strong>mel</strong>(1), with the following exception: If a line
+contains at least two vertical bars (<strong>|</strong>), they act as
+separators between regions. If a region contains at least one
+hyphen-minus (<strong>-</strong>) or tilde (<strong>~</strong>), it
 represents one bar/measure. Here, the commands <strong>|</strong>,
 <strong>-</strong>, <strong>~</strong>, <strong>S</strong>,
 <strong>Z</strong>, <strong>N</strong>, <strong>T</strong>, and
