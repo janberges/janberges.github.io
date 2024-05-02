@@ -1011,7 +1011,7 @@ the original and the transformed mesh.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.wigner">
-<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">wigner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nr1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sgn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.wigner" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">wigner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nr1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sgn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.bravais.wigner" title="Link to this definition"></a></dt>
 <dd><p>Determine Wigner-Seitz lattice vectors with degenercies and lengths.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1028,6 +1028,9 @@ the original and the transformed mesh.</p>
 </dd>
 <dt><strong>sgn</strong><span class="classifier">int</span></dt><dd><p>Do the lattice vectors shift the first (<code class="docutils literal notranslate"><span class="pre">-1</span></code>) or second (<code class="docutils literal notranslate"><span class="pre">+1</span></code>)
 orbital/atom?</p>
+</dd>
+<dt><strong>nsc</strong><span class="classifier">int</span></dt><dd><p>Number of supercells per dimension and direction where Wigner-Seitz
+lattice vectors are searched for.</p>
 </dd>
 </dl>
 </dd>

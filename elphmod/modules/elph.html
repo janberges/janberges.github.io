@@ -172,8 +172,9 @@ debugging.</p>
     \bra{0 \alpha}
         \frac{\partial V}{\partial u_{\vec R i}}
     \ket{\vec R' \beta}\]</div>
-<p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">divide_mass</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, the prefactor <span class="math notranslate nohighlight">\(\hbar /
-\sqrt{M_i}\)</span> is absent and the units are Ry/bohr instead.</p>
+<p>If not <code class="xref py py-attr docutils literal notranslate"><span class="pre">divide_mass</span></code>, the prefactor <span class="math notranslate nohighlight">\(\hbar / \sqrt{M_i}\)</span> is
+absent and the units are Ry/bohr instead. If <code class="xref py py-attr docutils literal notranslate"><span class="pre">ph.lr</span></code>, this is only
+the short-range component of the matrix elements.</p>
 </dd>
 <dt><strong>divide_mass</strong><span class="classifier">bool</span></dt><dd><p>Has real-space coupling been divided by atomic masses?</p>
 </dd>

@@ -201,8 +201,10 @@ is prefix of files with dynamical matrices. Used to emulate <code class="docutil
 <div class="math notranslate nohighlight">
 \[D_{\vec R i j} = \frac{\hbar^2}{\sqrt{M_i M_j}}
     \frac{\partial^2 E}{\partial u_{0 i} \partial u_{\vec R j}}\]</div>
-<p>If <cite>divide_mass</cite> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, the prefactor <span class="math notranslate nohighlight">\(\hbar^2 / \sqrt{M_i
-M_j}\)</span> is absent and the units are Ry/bohr<sup>2</sup> instead.</p>
+<p>If not <code class="xref py py-attr docutils literal notranslate"><span class="pre">divide_mass</span></code>, the prefactor <span class="math notranslate nohighlight">\(\hbar^2 / \sqrt{M_i
+M_j}\)</span> is absent and the units are Ry/bohr<sup>2</sup> instead. If
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">lr</span></code>, this is only the short-range component of the force
+constants.</p>
 </dd>
 <dt><strong>M</strong><span class="classifier">ndarray</span></dt><dd><p>Atomic masses <span class="math notranslate nohighlight">\(M_i\)</span>.</p>
 </dd>
