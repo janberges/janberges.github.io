@@ -58,8 +58,10 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Diagrams</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.diagrams.Pi_g"><code class="docutils literal notranslate"><span class="pre">Pi_g()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.diagrams.double_fermi_surface_average"><code class="docutils literal notranslate"><span class="pre">double_fermi_surface_average()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.diagrams.fan_migdal_self_energy"><code class="docutils literal notranslate"><span class="pre">fan_migdal_self_energy()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.diagrams.first_order"><code class="docutils literal notranslate"><span class="pre">first_order()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.diagrams.grand_potential"><code class="docutils literal notranslate"><span class="pre">grand_potential()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.diagrams.green_kubo_conductivity"><code class="docutils literal notranslate"><span class="pre">green_kubo_conductivity()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.diagrams.phonon_self_energy"><code class="docutils literal notranslate"><span class="pre">phonon_self_energy()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.diagrams.phonon_self_energy2"><code class="docutils literal notranslate"><span class="pre">phonon_self_energy2()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.diagrams.phonon_self_energy_fermi_shift"><code class="docutils literal notranslate"><span class="pre">phonon_self_energy_fermi_shift()</span></code></a></li>
@@ -77,6 +79,10 @@
 <li class="toctree-l1"><a class="reference internal" href="plot.html">Plot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../pages/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/patches.html">Patches</a></li>
 </ul>
 
         </div>
@@ -187,6 +193,39 @@ summation.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="elphmod.diagrams.fan_migdal_self_energy">
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">fan_migdal_self_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">electronic_occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.fan_migdal_self_energy" title="Link to this definition"></a></dt>
+<dd><p>Calculate Fan-Migdal electron self-energy (to be tested).</p>
+<p>See Eq. (4) by Abramovitch et al., Phys. Rev. Mater. 7, 093801 (2023).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>k</strong><span class="classifier">list of tuple</span></dt><dd><p>List of k points in crystal coordinates <span class="math notranslate nohighlight">\(k_i \in [0, 2 \pi)\)</span>.</p>
+</dd>
+<dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron dispersion on uniform mesh. The Fermi level must be at zero.</p>
+</dd>
+<dt><strong>w</strong><span class="classifier">ndarray</span></dt><dd><p>Phonon dispersion on same uniform mesh as <cite>e</cite>.</p>
+</dd>
+<dt><strong>g2</strong><span class="classifier">ndarray</span></dt><dd><p>Squared electron-phonon coupling.</p>
+</dd>
+<dt><strong>omega</strong><span class="classifier">ndarray</span></dt><dd><p>Frequency argument including small imaginary regulator.</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature.</p>
+</dd>
+<dt><strong>electronic_occupations</strong><span class="classifier">function</span></dt><dd><p>Particle distribution as a function of energy divided by <cite>kT</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Fan-Migdal electron self-energy.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="elphmod.diagrams.first_order">
 <span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">first_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">U=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps=1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.first_order" title="Link to this definition"></a></dt>
 <dd><p>Calculate first-order diagram of grand potential.</p>
@@ -236,6 +275,40 @@ basis as <cite>U</cite> (eigenbasis of the Hamiltonian).</p>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>real</dt><dd><p>Grand potential.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.diagrams.green_kubo_conductivity">
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">green_kubo_conductivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps=1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occupations=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dc_only=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.diagrams.green_kubo_conductivity" title="Link to this definition"></a></dt>
+<dd><p>Calculate Green-Kubo optical conductivity (to be tested).</p>
+<p>See Eq. (8) by Abramovitch et al., Phys. Rev. Mater. 7, 093801 (2023).
+Note that we have omitted the division by the unit-cell volume.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>v</strong><span class="classifier">ndarray</span></dt><dd><p>Fermi velocity on uniform mesh.</p>
+</dd>
+<dt><strong>A</strong><span class="classifier">ndarray</span></dt><dd><p>Electronic spectral function.</p>
+</dd>
+<dt><strong>omega</strong><span class="classifier">ndarray</span></dt><dd><p>Frequency argument excluding small imaginary regulator.</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature.</p>
+</dd>
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Negligible difference between two floating-point numbers.</p>
+</dd>
+<dt><strong>occupations</strong><span class="classifier">function</span></dt><dd><p>Particle distribution as a function of energy divided by <cite>kT</cite>.</p>
+</dd>
+<dt><strong>dc_only</strong><span class="classifier">bool</span></dt><dd><p>Only compute DC resistivity tensor (zero-frequency limit)?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Green-Kubo optical conductivity.</p>
 </dd>
 </dl>
 </dd>

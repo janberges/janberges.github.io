@@ -102,6 +102,10 @@
 <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../pages/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/patches.html">Patches</a></li>
+</ul>
 
         </div>
       </div>
@@ -546,7 +550,9 @@ independent of <code class="docutils literal notranslate"><span class="pre">el.r
 <dt><strong>*groups</strong></dt><dd><p>Comma-separated lists of names of selected orbitals. Omitted name
 components are summed over. Curly braces are expanded.</p>
 </dd>
-<dt><strong>other</strong><span class="classifier">bool, default False</span></dt><dd><p>Return remaining orbital weight too?</p>
+<dt><strong>other</strong><span class="classifier">bool, default False</span></dt><dd><p>Return remaining orbital weight too? If you just want to select the
+“other” orbitals from <a class="reference internal" href="#elphmod.el.read_atomic_projections" title="elphmod.el.read_atomic_projections"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_atomic_projections()</span></code></a>, add the name
+<code class="docutils literal notranslate"><span class="pre">x</span></code> to <cite>orbitals</cite> instead.</p>
 </dd>
 </dl>
 </dd>
@@ -567,7 +573,7 @@ components are summed over. Curly braces are expanded.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_atomic_projections">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_atomic_projections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_proj_xml</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_fermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">order_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_atomic_projections" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_atomic_projections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_proj_xml</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_fermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">order_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_atomic_projections" title="Link to this definition"></a></dt>
 <dd><p>Read projected bands from <em>outdir/prefix.save/atomic_proj.xml</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -578,8 +584,10 @@ components are summed over. Curly braces are expanded.</p>
 </dd>
 <dt><strong>from_fermi</strong><span class="classifier">bool</span></dt><dd><p>Subtract Fermi level from electronic energies?</p>
 </dd>
-<dt><strong>other</strong><span class="classifier">bool</span></dt><dd><p>Estimate projection onto “other” orbitals as difference of band weights
-to one?</p>
+<dt><strong>squared</strong><span class="classifier">bool</span></dt><dd><p>Return squared complex modulus of projection?</p>
+</dd>
+<dt><strong>other</strong><span class="classifier">bool</span></dt><dd><p>Estimate projection onto “other” orbitals not defined in pseudopotential
+files as difference of band weights to one? This requires <cite>squared</cite>.</p>
 </dd>
 <dt><strong>**order_kwargs</strong></dt><dd><p>Keyword arguments passed to <code class="xref py py-func docutils literal notranslate"><span class="pre">band_order()</span></code>.</p>
 </dd>
@@ -783,7 +791,7 @@ points.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.el.read_projwfc_out">
-<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_projwfc_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">projwfc_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_projwfc_out" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">read_projwfc_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">projwfc_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.el.read_projwfc_out" title="Link to this definition"></a></dt>
 <dd><p>Identify orbitals in <em>atomic_proj.xml</em> via output of <code class="docutils literal notranslate"><span class="pre">projwfc.x</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -795,7 +803,11 @@ points.</p>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>list of str</dt><dd><p>Common names of (pseudo) atomic orbitals listed in <cite>projwfc_out</cite> (in
-that order).</p>
+that order). If spin-orbit coupling is considered, symmetry labels
+related to the magnetic quantum number are omitted.</p>
+</dd>
+<dt><strong>other</strong><span class="classifier">bool, default True</span></dt><dd><p>Add name <code class="docutils literal notranslate"><span class="pre">X-x</span></code> to list of orbitals, which corresponds to “other”
+orbitals from <a class="reference internal" href="#elphmod.el.read_atomic_projections" title="elphmod.el.read_atomic_projections"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_atomic_projections()</span></code></a>?</p>
 </dd>
 </dl>
 </dd>

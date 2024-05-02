@@ -67,6 +67,10 @@
 <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../pages/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/patches.html">Patches</a></li>
+</ul>
 
         </div>
       </div>
@@ -141,16 +145,22 @@ if <cite>tetra</cite> is <code class="docutils literal notranslate"><span class=
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.eliashberg.Tc">
-<span class="sig-prename descclassname"><span class="pre">elphmod.eliashberg.</span></span><span class="sig-name descname"><span class="pre">Tc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamda</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wlog</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mustar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.eliashberg.Tc" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.eliashberg.</span></span><span class="sig-name descname"><span class="pre">Tc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lamda</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wlog</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mustar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w2nd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.eliashberg.Tc" title="Link to this definition"></a></dt>
 <dd><p>Calculate critical temperature using McMillan’s formula.</p>
+<p>See Eqs. (2) and (34) by Allen and Dynes, Phys. Rev. B 12, 905 (1975).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>lamda</strong><span class="classifier">float</span></dt><dd><p>Effective electron-phonon coupling strength.</p>
 </dd>
-<dt><strong>wlog</strong><span class="classifier">float</span></dt><dd><p>Effective phonon energy in eV.</p>
+<dt><strong>wlog</strong><span class="classifier">float</span></dt><dd><p>Logarithmic average phonon energy in eV.</p>
 </dd>
 <dt><strong>mustar</strong><span class="classifier">float</span></dt><dd><p>Coulomb pseudopotential.</p>
+</dd>
+<dt><strong>w2nd</strong><span class="classifier">bool, default None</span></dt><dd><p>Second-moment average phonon energy used for shape correction in eV.</p>
+</dd>
+<dt><strong>correct</strong><span class="classifier">bool, default False</span></dt><dd><p>Apply Allen and Dynes’ strong-coupling and, if <cite>w2nd</cite> is given, shape
+corrections of Eq. (34)?</p>
 </dd>
 </dl>
 </dd>

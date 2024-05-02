@@ -107,6 +107,10 @@
 <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../pages/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/patches.html">Patches</a></li>
+</ul>
 
         </div>
       </div>
@@ -646,7 +650,8 @@ lattice constant in bohr; the other elements are dimensionless.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Name of file with Wigner-Seitz data.</p>
 </dd>
-<dt><strong>old_ws</strong><span class="classifier">bool</span></dt><dd><p>Use previous definition of Wigner-Seitz cells?</p>
+<dt><strong>old_ws</strong><span class="classifier">bool</span></dt><dd><p>Use previous definition of Wigner-Seitz cells? This is required if
+<cite>patches/qe-6.3-backports.patch</cite> has been used.</p>
 </dd>
 <dt><strong>nat</strong><span class="classifier">int</span></dt><dd><p>Number of atoms per unit cell.</p>
 </dd>

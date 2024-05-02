@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Changelog &mdash; elphmod  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Patches" href="patches.html" />
+    <link rel="prev" title="Chain" href="../modules/models/chain.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            elphmod
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/el.html">Electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ph.html">Phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/elph.html">Electron–phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/elel.html">Electron–electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/MPI.html">MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/bravais.html">Bravais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/dispersion.html">Dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/dos.html">DOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/diagrams.html">Diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/md.html">MD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/eliashberg.html">Eliashberg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/plot.html">Plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/misc.html">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/models.html">Models</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v0-24-2024-04-03">v0.24/2024-04-03</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-23-2024-03-07">v0.23/2024-03-07</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-22-2023-10-14">v0.22/2023-10-14</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-21-2023-09-20">v0.21/2023-09-20</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-20-2023-06-22">v0.20/2023-06-22</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-19-2023-03-08">v0.19/2023-03-08</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-18-2023-02-12">v0.18/2023-02-12</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-17-2023-01-16">v0.17/2023-01-16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-16-2022-09-28">v0.16/2022-09-28</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-15-2022-07-29">v0.15/2022-07-29</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-14-2022-06-22">v0.14/2022-06-22</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-13-2022-05-23">v0.13/2022-05-23</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-12-2022-05-06">v0.12/2022-05-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-11-2022-03-16">v0.11/2022-03-16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-10-2022-01-30">v0.10/2022-01-30</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-9-2022-01-06">v0.9/2022-01-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-8-2021-11-02">v0.8/2021-11-02</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-7-2021-10-13">v0.7/2021-10-13</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-6-2021-09-21">v0.6/2021-09-21</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-5-2021-07-20">v0.5/2021-07-20</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-4-2021-07-09">v0.4/2021-07-09</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-3-2021-06-11">v0.3/2021-06-11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-2-2021-05-10">v0.2/2021-05-10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-1-2021-05-07">v0.1/2021-05-07</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="patches.html">Patches</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">elphmod</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Changelog</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/pages/changelog.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading"></a></h1>
+<p>See <a class="reference external" href="https://github.com/janberges/elphmod/commits">Git commits</a> for more
+detailed list of changes.</p>
+<section id="v0-24-2024-04-03">
+<h2>v0.24/2024-04-03<a class="headerlink" href="#v0-24-2024-04-03" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Improved MD driver and i-PI example</p></li>
+<li><p>Calculation of band velocity without finite differences</p></li>
+<li><p>Documentation of indices of matrix elements</p></li>
+<li><p>Export of coupling in EPW format (<em>.epmatwp</em>)</p></li>
+<li><p>Transformation of coupling to arbitrary real-space meshes</p></li>
+<li><p>Cleanup of routines related to Wigner-Seitz cell</p></li>
+<li><p>Subpackage <code class="docutils literal notranslate"><span class="pre">elphmod.models</span></code> for nearest-neighbor model input data</p></li>
+</ul>
+</section>
+<section id="v0-23-2024-03-07">
+<h2>v0.23/2024-03-07<a class="headerlink" href="#v0-23-2024-03-07" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>QE-7.3 support (cDFPT patch, no longer included in source distribution)</p></li>
+<li><p>pyproject.toml-based build with reviewed requirements</p></li>
+<li><p>Scripts replaced by entry points (for editable installs and portability)</p></li>
+<li><p>Phonons and faster forces from MD driver using sparse coupling matrices</p></li>
+<li><p>Official PNG version of logo</p></li>
+<li><p>Read the Docs theme</p></li>
+<li><p>First unit test</p></li>
+<li><p>Various bugfixes and optimizations</p></li>
+</ul>
+</section>
+<section id="v0-22-2023-10-14">
+<h2>v0.22/2023-10-14<a class="headerlink" href="#v0-22-2023-10-14" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Import of Wannier Hamiltonian from RESPACK</p></li>
+<li><p>Export of dynamical matrices from MD driver</p></li>
+</ul>
+</section>
+<section id="v0-21-2023-09-20">
+<h2>v0.21/2023-09-20<a class="headerlink" href="#v0-21-2023-09-20" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Support for more QE Bravais lattices</p></li>
+<li><p>Support for electron-electron interaction beyond 2D systems</p></li>
+<li><p>Consistent mapping of electron-electron interaction to supercells</p></li>
+<li><p>Export of electron-electron interaction in RESPACK format (<em>dat.Wmat</em>)</p></li>
+<li><p>Option to suppress status bars</p></li>
+</ul>
+</section>
+<section id="v0-20-2023-06-22">
+<h2>v0.20/2023-06-22<a class="headerlink" href="#v0-20-2023-06-22" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Bugfix and example related to Eliashberg theory</p></li>
+<li><p>Model input data (electrons, phonons, and coupling) for TaS₂</p></li>
+<li><p>Faster mapping to supercells</p></li>
+<li><p>Tight-binding models from perturbed states on supercells</p></li>
+<li><p>Export of tight-binding model in Wannier90 format (<em>_hr.dat</em>)</p></li>
+<li><p>QE-7.2 support (cDFPT patch)</p></li>
+<li><p>Dynamical matrices and force constants from XML files</p></li>
+</ul>
+</section>
+<section id="v0-19-2023-03-08">
+<h2>v0.19/2023-03-08<a class="headerlink" href="#v0-19-2023-03-08" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Several bugfixes related to supercells and long-range components</p></li>
+<li><p>Experimental long-range part of sparse dynamical matrix and coupling</p></li>
+</ul>
+</section>
+<section id="v0-18-2023-02-12">
+<h2>v0.18/2023-02-12<a class="headerlink" href="#v0-18-2023-02-12" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Electron-phonon matrix elements directly from PHonon code (QE patch)</p></li>
+<li><p>Consistent matrix-elements and Fourier-transform convention for phonons</p></li>
+<li><p>Export of mass-spring models in QE force-constants format (<code class="docutils literal notranslate"><span class="pre">flfrc</span></code>)</p></li>
+<li><p>Export of band structures in QE bands format (<code class="docutils literal notranslate"><span class="pre">filband</span></code>)</p></li>
+<li><p>Some bugfixes and optimizations</p></li>
+</ul>
+</section>
+<section id="v0-17-2023-01-16">
+<h2>v0.17/2023-01-16<a class="headerlink" href="#v0-17-2023-01-16" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Charge-density-wave molecular dynamics using i-PI</p></li>
+<li><p>Animated relaxation of 1D Peierls and 2D Kekulé dimerization</p></li>
+<li><p>Experimental acoustic-sum-rule correction for coupling</p></li>
+<li><p>Parameters of McMillan’s formula from smearing method</p></li>
+<li><p>Determination of Fermi level via fixed-point iteration</p></li>
+<li><p>Mapping of Born effective charges etc. to supercells</p></li>
+<li><p>Decay of electron-phonon matrix elements</p></li>
+</ul>
+</section>
+<section id="v0-16-2022-09-28">
+<h2>v0.16/2022-09-28<a class="headerlink" href="#v0-16-2022-09-28" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>No MPI overhead for serial runs</p></li>
+<li><p>More accurate symmetrization methods</p></li>
+<li><p>More efficient setup of large supercells</p></li>
+<li><p>Hamiltonian, dynamical matrix, and coupling as sparse matrices</p></li>
+<li><p>Jmol’s atom “CPK” colors [<a class="reference external" href="https://jmol.sourceforge.net/jscolors">https://jmol.sourceforge.net/jscolors</a>]</p></li>
+<li><p>RPA and cRPA Coulomb interaction from RESPACK</p></li>
+<li><p>Example on electron-phonon fluctuation diagnostics</p></li>
+<li><p>2D long-range electrostatics by Poncé et al. [PRB 107, 155424 (2023)]</p></li>
+<li><p>Various bugfixes and optimizations</p></li>
+</ul>
+</section>
+<section id="v0-15-2022-07-29">
+<h2>v0.15/2022-07-29<a class="headerlink" href="#v0-15-2022-07-29" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Handling of wave functions and charge density from QE</p></li>
+<li><p>1D linear interpolation</p></li>
+<li><p>Phonon models from dynamical-matrix files (skip <code class="docutils literal notranslate"><span class="pre">q2r.x</span></code>)</p></li>
+<li><p>Long-range terms of dynamical matrices and coupling from cDFPT</p></li>
+<li><p>Faster band unfolding</p></li>
+<li><p>Calculation of band and entropy contributions from PWscf output</p></li>
+<li><p>Generalized entropy for all smearing functions</p></li>
+</ul>
+</section>
+<section id="v0-14-2022-06-22">
+<h2>v0.14/2022-06-22<a class="headerlink" href="#v0-14-2022-06-22" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>QE-7.1 support (cDFPT patch)</p></li>
+<li><p>Module docstrings</p></li>
+<li><p>More efficient smearing functions</p></li>
+<li><p>Fluctuation diagnostics of triangle diagram</p></li>
+<li><p>No nested progress bars</p></li>
+<li><p>Changeable long- and corresponding short-range phonons and coupling</p></li>
+<li><p>Automatic detection of two-dimensional systems (<code class="docutils literal notranslate"><span class="pre">lr2d</span></code>)</p></li>
+</ul>
+</section>
+<section id="v0-13-2022-05-23">
+<h2>v0.13/2022-05-23<a class="headerlink" href="#v0-13-2022-05-23" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Phonon self-energy as a function of <em>separate</em> vertices</p></li>
+<li><p>Decluttered plot module (some functions now in StoryLines package)</p></li>
+<li><p>Support for <code class="docutils literal notranslate"><span class="pre">_tb.dat</span></code> files (tight-binding data from Wannier90)</p></li>
+</ul>
+</section>
+<section id="v0-12-2022-05-06">
+<h2>v0.12/2022-05-06<a class="headerlink" href="#v0-12-2022-05-06" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Model input data (electrons, phonons, and coupling) for graphene</p></li>
+<li><p>New function to write interatomic force constants in QE format</p></li>
+<li><p>Calculation of phonon spectral function</p></li>
+<li><p>Calculation of phonon self-energy arising from Fermi-level shift</p></li>
+<li><p>Further functions generalized to 3D</p></li>
+</ul>
+</section>
+<section id="v0-11-2022-03-16">
+<h2>v0.11/2022-03-16<a class="headerlink" href="#v0-11-2022-03-16" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Symmetrization of Hamiltonian, dynamical matrix, and coupling</p></li>
+<li><p>Long-range dipole and quadrupole terms of dynamical matrix and coupling</p></li>
+<li><p>1st and 3rd order of diagrammatic expansion of grand potential</p></li>
+<li><p>Derivatives of delta functions</p></li>
+<li><p>Mapping to supercells with “negative volume”</p></li>
+<li><p>Fixed sign in Marzari-Vanderbilt-De Vita-Payne smearing</p></li>
+<li><p>Interatomic distances are stored together with force constants</p></li>
+</ul>
+</section>
+<section id="v0-10-2022-01-30">
+<h2>v0.10/2022-01-30<a class="headerlink" href="#v0-10-2022-01-30" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>More forgiving namelist input</p></li>
+<li><p>QE-7.0 support (cDFPT patch)</p></li>
+</ul>
+</section>
+<section id="v0-9-2022-01-06">
+<h2>v0.9/2022-01-06<a class="headerlink" href="#v0-9-2022-01-06" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>New electron-electron class (incl. supercell mapping)</p></li>
+<li><p>Shared-memory array as subclass of NumPy array</p></li>
+<li><p>Improved handling of XCrySDen and Gaussian cube files</p></li>
+</ul>
+</section>
+<section id="v0-8-2021-11-02">
+<h2>v0.8/2021-11-02<a class="headerlink" href="#v0-8-2021-11-02" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>QE patches included in source distribution</p></li>
+<li><p>Flexible basis/motif of tight-binding and mass-spring models</p></li>
+<li><p>Improved selection of cDFPT target subspaces</p></li>
+</ul>
+</section>
+<section id="v0-7-2021-10-13">
+<h2>v0.7/2021-10-13<a class="headerlink" href="#v0-7-2021-10-13" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Faster Fourier transforms (Hamiltonian, dynamical matrix, coupling)</p></li>
+<li><p>QE-6.8 support (cDFPT patch, optimal Wigner-Seitz weights in EPW)</p></li>
+<li><p>Wannier functions in position representation as part of TB model</p></li>
+</ul>
+</section>
+<section id="v0-6-2021-09-21">
+<h2>v0.6/2021-09-21<a class="headerlink" href="#v0-6-2021-09-21" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Mapping of all models to arbitrary commensurate supercells</p></li>
+<li><p>New functions to read and write input of QE phonon codes</p></li>
+<li><p>New Bash script to prevent NumPy’s auto-parallelization</p></li>
+<li><p>Fixed ordering of eigenvectors calculated on 2D mesh</p></li>
+</ul>
+</section>
+<section id="v0-5-2021-07-20">
+<h2>v0.5/2021-07-20<a class="headerlink" href="#v0-5-2021-07-20" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Examples run successfully without <code class="docutils literal notranslate"><span class="pre">mpi4py</span></code></p></li>
+</ul>
+</section>
+<section id="v0-4-2021-07-09">
+<h2>v0.4/2021-07-09<a class="headerlink" href="#v0-4-2021-07-09" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>New QE input parameters <code class="docutils literal notranslate"><span class="pre">cdfpt_bnd</span></code> and <code class="docutils literal notranslate"><span class="pre">cdfpt_orb</span></code></p></li>
+<li><p>QE modifications provided as Git patches instead of scripts</p></li>
+<li><p>Mapping of tight-binding and mass-spring models onto supercell</p></li>
+</ul>
+</section>
+<section id="v0-3-2021-06-11">
+<h2>v0.3/2021-06-11<a class="headerlink" href="#v0-3-2021-06-11" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Support for <code class="docutils literal notranslate"><span class="pre">_wsvec.dat</span></code> files</p></li>
+<li><p>Several functions generalized to 3D</p></li>
+<li><p>Improved handling of Bravais lattices</p></li>
+</ul>
+</section>
+<section id="v0-2-2021-05-10">
+<h2>v0.2/2021-05-10<a class="headerlink" href="#v0-2-2021-05-10" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">elphmod</span></code> installs helper scripts</p></li>
+</ul>
+</section>
+<section id="v0-1-2021-05-07">
+<h2>v0.1/2021-05-07<a class="headerlink" href="#v0-1-2021-05-07" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Initial pre-release</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../modules/models/chain.html" class="btn btn-neutral float-left" title="Chain" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="patches.html" class="btn btn-neutral float-right" title="Patches" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2024 elphmod Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
