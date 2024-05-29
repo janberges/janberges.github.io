@@ -90,10 +90,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.5919991"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.5281/zenodo.5919991.svg" /></a>
-<section id="python-modules-for-electron-phonon-models">
+  <section id="python-modules-for-electron-phonon-models">
 <h1>Python modules for electron-phonon models<a class="headerlink" href="#python-modules-for-electron-phonon-models" title="Link to this heading"></a></h1>
-<a class="reference external image-reference" href="https://raw.githubusercontent.com/janberges/elphmod/master/logo/elphmod.svg"><img alt="elphmod logo" src="https://raw.githubusercontent.com/janberges/elphmod/master/logo/elphmod.svg" /></a>
 <p>elphmod is a collection of Python modules to handle coupled tight-binding and
 mass-spring models derived from first principles. It provides interfaces with
 popular simulation software such as Quantum ESPRESSO, Wannier90, EPW, RESPACK,
@@ -122,19 +120,14 @@ can be used to build and study distorted structures on supercells.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>elphmod
 </pre></div>
 </div>
-<p>Alternatively, to install the latest development version:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/janberges/elphmod
-</pre></div>
-</div>
 <p>elphmod can optionally be run in parallel via MPI (with shared-memory support).
 Using APT and pip, you can install the corresponding dependencies as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libopenmpi-dev
 python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>mpi4py<span class="w"> </span>--no-binary<span class="o">=</span>mpi4py
 </pre></div>
 </div>
-<p>If you plan to work on elphmod itself, we recommend to download the repository,
-perform an editable installation, and also install the requirements of examples
-and documentation:</p>
+<p>You can also download the complete repository, perform an editable installation,
+and install the requirements of examples and documentation:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/janberges/elphmod
 python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>elphmod
 python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>elphmod/examples/requirements.txt
@@ -145,7 +138,11 @@ python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </s
 <section id="documentation">
 <h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h2>
 <p>The documentation can be found at <a class="reference external" href="https://janberges.github.io/elphmod">https://janberges.github.io/elphmod</a>.</p>
-<p>Please also have a look at the <a class="reference external" href="examples">examples</a>.</p>
+<p>Please also have a look at the examples directory.</p>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
+<p>elphmod is stored on Zenodo: <a class="reference external" href="https://doi.org/10.5281/zenodo.5919991">https://doi.org/10.5281/zenodo.5919991</a>.</p>
 </section>
 <section id="licence">
 <h2>Licence<a class="headerlink" href="#licence" title="Link to this heading"></a></h2>
