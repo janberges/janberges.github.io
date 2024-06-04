@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>elphmod.md &mdash; elphmod  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #e7f2fa" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/elphmod.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/el.html">Electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/ph.html">Phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/elph.html">Electron–phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/elel.html">Electron–electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/MPI.html">MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/bravais.html">Bravais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/dispersion.html">Dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/dos.html">DOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/diagrams.html">Diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/md.html">MD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/eliashberg.html">Eliashberg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/plot.html">Plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/misc.html">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/models.html">Models</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/patches.html">Patches</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #e7f2fa" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">elphmod</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">elphmod.md</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for elphmod.md</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (C) 2017-2024 elphmod Developers</span>
+<span class="c1"># This program is free software under the terms of the GNU GPLv3 or later.</span>
+
+<span class="sd">&quot;&quot;&quot;Charge-density-wave dynamics on supercells.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">bravais</span><span class="p">,</span> <span class="n">diagrams</span><span class="p">,</span> <span class="n">dispersion</span><span class="p">,</span> <span class="n">el</span><span class="p">,</span> <span class="n">misc</span><span class="p">,</span> <span class="n">MPI</span><span class="p">,</span> <span class="n">occupations</span><span class="p">,</span> <span class="n">ph</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">info</span>
+
+<div class="viewcode-block" id="Driver">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver">[docs]</a>
+<span class="k">class</span> <span class="nc">Driver</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;MD driver for DFPT-based displacements dynamics.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    elph : object</span>
+<span class="sd">        Localized model for electron-phonon coupling. Initialize ``el`` with</span>
+<span class="sd">        ``rydberg=True`` and ``ph`` and ``elph`` with ``divide_mass=False`` and</span>
+<span class="sd">        map everthing to the appropriate supercell before (``elph.supercell``).</span>
+<span class="sd">    kT : float</span>
+<span class="sd">        Smearing temperature in Ry.</span>
+<span class="sd">    f : function</span>
+<span class="sd">        Particle distribution as a function of energy divided by `kT`.</span>
+<span class="sd">    n : float</span>
+<span class="sd">        Number of electrons per primitive cell.</span>
+<span class="sd">    nk, nq : tuple of int, optional</span>
+<span class="sd">        Shape of k and q mesh. By default, only k = q = 0 is used.</span>
+<span class="sd">    supercell : ndarray, optional</span>
+<span class="sd">        Supercell lattice vectors as multiples of primitive lattice vectors. If</span>
+<span class="sd">        given, the simulation is performed on a supercell for q = k = 0. Sparse</span>
+<span class="sd">        matrices are used for Hamiltonian, dynamical matrix, and electron-phonon</span>
+<span class="sd">        coupling to save memory. The calculation of phonons is not implemented.</span>
+<span class="sd">        Note that `elph` should belong to the primitive cell in this case.</span>
+<span class="sd">    unscreen : bool, default True</span>
+<span class="sd">        Unscreen phonons? Otherwise, they are assumed to be unscreened already.</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Attributes to be set initially.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    elph, kT, f, n, nk, nq</span>
+<span class="sd">        Copies of initialization parameters.</span>
+<span class="sd">    mu : float</span>
+<span class="sd">        Current chemical potential.</span>
+<span class="sd">    k, q : ndarray</span>
+<span class="sd">        k and q meshes.</span>
+<span class="sd">    u : ndarray</span>
+<span class="sd">        Atomic displacements.</span>
+<span class="sd">    C0 : ndarray</span>
+<span class="sd">        Unscreened force constants.</span>
+<span class="sd">    H0 : ndarray</span>
+<span class="sd">        Unperturbed electron Hamiltonian in orbital basis.</span>
+<span class="sd">    d0 : ndarray</span>
+<span class="sd">        Electron-phonon coupling in orbital basis.</span>
+<span class="sd">    sparse : bool</span>
+<span class="sd">        Is the simulation performed on a supercell using sparse matrices?</span>
+<span class="sd">    interactive : bool, default False</span>
+<span class="sd">        Shall plots be updated interactively?</span>
+<span class="sd">    scale : float, default 10.0</span>
+<span class="sd">        Displacement scaling factor for plots.</span>
+<span class="sd">    size : float, default 100.0</span>
+<span class="sd">        Marker size for atoms in points squared.</span>
+<span class="sd">    pause : float, default 1e-3</span>
+<span class="sd">        Minimal frame duration for interactive plots in seconds.</span>
+<span class="sd">    basis : list of list, default None</span>
+<span class="sd">        For each basis atom in the first primitive cell, indices of orbitals</span>
+<span class="sd">        located at this atom. Matching atom and orbital orders as ensured by</span>
+<span class="sd">        :meth:`elph.Model.supercell` are required.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elph</span><span class="p">,</span> <span class="n">kT</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">nk</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">nq</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">supercell</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">unscreen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">rydberg</span><span class="p">:</span>
+            <span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initialize &#39;el&#39; with &#39;rydberg=True&#39;!&quot;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">elph</span><span class="o">.</span><span class="n">divide_mass</span> <span class="ow">or</span> <span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">divide_mass</span><span class="p">:</span>
+            <span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initialize &#39;ph&#39; and &#39;elph&#39; with &#39;divide_mass=False&#39;!&quot;</span><span class="p">,</span>
+                <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">elph</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">elph</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kT</span> <span class="o">=</span> <span class="n">kT</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">f</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">nk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">nk</span><span class="p">)]</span> <span class="o">=</span> <span class="n">nk</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">nq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">nq</span><span class="p">)]</span> <span class="o">=</span> <span class="n">nq</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[[(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k3</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="p">[</span><span class="mi">2</span><span class="p">])]</span>
+            <span class="k">for</span> <span class="n">k2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+            <span class="k">for</span> <span class="n">k1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">nk</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">q3</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">q1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">q2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">q3</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">[</span><span class="mi">2</span><span class="p">])],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">nq</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">H0</span> <span class="o">=</span> <span class="n">dispersion</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">d0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diagonalize</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">C0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">),</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">unscreen</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">C0</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hessian</span><span class="p">(</span><span class="n">gamma_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">C0</span> <span class="o">+=</span> <span class="n">dispersion</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">supercell</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="p">)</span>
+
+            <span class="n">ph</span><span class="o">.</span><span class="n">q2r</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="p">,</span> <span class="n">nq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">,</span> <span class="n">D_full</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">C0</span><span class="p">,</span> <span class="n">divide_mass</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">elph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">supercell</span><span class="p">(</span><span class="o">*</span><span class="n">supercell</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">H0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">Hs</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">C0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">Ds</span><span class="o">.</span><span class="n">toarray</span><span class="p">()[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">d0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">gs</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">*=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">cells</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">cells</span><span class="p">))</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">nk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">diagonalize</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">F0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">F0</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="mf">10.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mf">100.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pause</span> <span class="o">=</span> <span class="mf">1e-3</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">basis</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Driver.random_displacements">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.random_displacements">[docs]</a>
+    <span class="k">def</span> <span class="nf">random_displacements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Displace atoms randomly from unperturbed positions.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        amplitude : float</span>
+<span class="sd">            Maximum displacement.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">=</span> <span class="n">amplitude</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">center_mass</span><span class="p">()</span>
+
+        <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Driver.center_mass">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.center_mass">[docs]</a>
+    <span class="k">def</span> <span class="nf">center_mass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Subtract collective translational displacement component.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nat</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Driver.find_Fermi_level">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.find_Fermi_level">[docs]</a>
+    <span class="k">def</span> <span class="nf">find_Fermi_level</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update chemical potential.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">            New chemical potential.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="n">occupations</span><span class="o">.</span><span class="n">find_Fermi_level</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span></div>
+
+
+<div class="viewcode-block" id="Driver.diagonalize">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.diagonalize">[docs]</a>
+    <span class="k">def</span> <span class="nf">diagonalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Diagonalize Hamiltonian of perturbed system.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">center_mass</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span><span class="p">:</span>
+            <span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">H0</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">H0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;xijkmn,x-&gt;ijkmn&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_Fermi_level</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Driver.free_energy">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.free_energy">[docs]</a>
+    <span class="k">def</span> <span class="nf">free_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate free energy.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        u : ndarray</span>
+<span class="sd">            Updated atomic displacements (e.g., from optimization routine).</span>
+<span class="sd">        show : bool</span>
+<span class="sd">            Print free energy?</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">            Free energy in Ry.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+            <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">u</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">=</span> <span class="n">u</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">diagonalize</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_plot</span><span class="p">()</span>
+
+        <span class="n">prefactor</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span>
+
+        <span class="n">E</span> <span class="o">=</span> <span class="n">prefactor</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># E - mu N</span>
+        <span class="n">E</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="c1"># mu N</span>
+        <span class="n">E</span> <span class="o">-=</span> <span class="n">prefactor</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">entropy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># T S</span>
+
+        <span class="n">E</span> <span class="o">+=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">C0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">)</span>
+
+        <span class="n">E</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">F0</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+            <span class="n">info</span><span class="p">(</span><span class="s1">&#39;Free energy: </span><span class="si">%15.9f</span><span class="s1"> Ry; </span><span class="si">%16.6f</span><span class="s1"> s&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">E</span></div>
+
+
+<div class="viewcode-block" id="Driver.jacobian">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.jacobian">[docs]</a>
+    <span class="k">def</span> <span class="nf">jacobian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate first derivative of free energy.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parameters : ndarray</span>
+<span class="sd">            Dummy positional argument for optimization routines.</span>
+<span class="sd">        show : bool</span>
+<span class="sd">            Print free energy?</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ndarray</span>
+<span class="sd">            Negative forces in Ry per bohr.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+            <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span><span class="p">:</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">)[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="o">.</span><span class="n">T</span>
+
+            <span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">)])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">F</span> <span class="o">=</span> <span class="n">diagrams</span><span class="o">.</span><span class="n">first_order</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span>
+                <span class="n">U</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+
+        <span class="n">F</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">)</span>
+
+        <span class="n">F</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">F0</span>
+
+        <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+            <span class="n">info</span><span class="p">(</span><span class="s1">&#39;Total force: </span><span class="si">%15.9f</span><span class="s1"> Ry/bohr; </span><span class="si">%11.6f</span><span class="s1"> s&#39;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">F</span><span class="p">),</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">F</span></div>
+
+
+<div class="viewcode-block" id="Driver.hessian">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.hessian">[docs]</a>
+    <span class="k">def</span> <span class="nf">hessian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gamma_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">apply_asr_simple</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">fildyn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate second derivative of free energy.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parameters : ndarray</span>
+<span class="sd">            Dummy positional argument for optimization routines.</span>
+<span class="sd">        gamma_only : default True</span>
+<span class="sd">            Calculate Hessian for q = 0 only?</span>
+<span class="sd">        apply_asr_simple : default False</span>
+<span class="sd">            Apply simple acoustic sum rule correction to force constants</span>
+<span class="sd">            according to Eq. 81 of Gonze and Lee, Phys. Rev. B 55, 10355 (1997)?</span>
+<span class="sd">            This is done before saving the Hessian to file.</span>
+<span class="sd">        fildyn : str, optional</span>
+<span class="sd">            Filename to save Hessian.</span>
+<span class="sd">        eps : float</span>
+<span class="sd">            Smallest allowed absolute value of divisor.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ndarray</span>
+<span class="sd">            Force constants in Ry per bohr squared.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">gamma_only</span> <span class="o">=</span> <span class="n">gamma_only</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span>
+
+        <span class="n">nq</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">gamma_only</span> <span class="k">else</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">)</span>
+
+            <span class="n">df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">subtract</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+            <span class="n">de</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">subtract</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
+            <span class="n">ok</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">de</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">eps</span>
+
+            <span class="n">dfde</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">dfde</span><span class="p">[</span><span class="n">ok</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">ok</span><span class="p">]</span> <span class="o">/</span> <span class="n">de</span><span class="p">[</span><span class="n">ok</span><span class="p">]</span>
+            <span class="n">dos</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># = np.trace(dfde)</span>
+
+            <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+
+            <span class="n">V</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+                <span class="n">gx</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="p">))</span>
+                <span class="n">avgx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">gx</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="n">dos</span>
+                <span class="n">gx</span> <span class="o">*=</span> <span class="n">dfde</span>
+
+                <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+                    <span class="n">gy</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="p">))</span>
+                    <span class="n">avgy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">gy</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+                    <span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">gx</span> <span class="o">*</span> <span class="n">gy</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">avgx</span> <span class="o">*</span> <span class="n">avgy</span>
+                    <span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="p">[:</span><span class="n">nq</span><span class="p">])</span>
+
+            <span class="k">for</span> <span class="n">iq</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nq</span><span class="p">):</span>
+                <span class="n">V</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+                <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nk</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">[</span><span class="n">iq</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                        <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="o">-</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+
+                <span class="n">d</span><span class="p">[</span><span class="n">iq</span><span class="p">]</span> <span class="o">=</span> <span class="n">V</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="p">[</span><span class="n">iq</span><span class="p">]</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span>
+
+            <span class="n">C</span> <span class="o">=</span> <span class="n">diagrams</span><span class="o">.</span><span class="n">phonon_self_energy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">[:</span><span class="n">nq</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="n">d</span><span class="p">[:</span><span class="n">nq</span><span class="p">],</span>
+                <span class="n">kT</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">)</span>
+
+            <span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">diagrams</span><span class="o">.</span><span class="n">phonon_self_energy_fermi_shift</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">kT</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span>
+
+        <span class="n">C</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C0</span><span class="p">[:</span><span class="n">nq</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">apply_asr_simple</span><span class="p">:</span>
+            <span class="n">C</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nat</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nat</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+            <span class="n">corr</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">na</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nat</span><span class="p">):</span>
+                <span class="n">C</span><span class="p">[:,</span> <span class="n">na</span><span class="p">,</span> <span class="p">:,</span> <span class="n">na</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-=</span> <span class="n">corr</span><span class="p">[:,</span> <span class="n">na</span><span class="p">]</span>
+
+            <span class="n">C</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">fildyn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ph</span><span class="o">.</span><span class="n">write_flfrc</span><span class="p">(</span><span class="n">fildyn</span><span class="p">,</span>
+                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">[:</span><span class="n">nq</span><span class="p">]</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">bravais</span><span class="o">.</span><span class="n">reciprocals</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">)),</span> <span class="n">C</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">M</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">atom_order</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">real</span> <span class="k">if</span> <span class="n">gamma_only</span> <span class="k">else</span> <span class="n">C</span></div>
+
+
+<div class="viewcode-block" id="Driver.electrons">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.electrons">[docs]</a>
+    <span class="k">def</span> <span class="nf">electrons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seedname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dk1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dk2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dk3</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rydberg</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up tight-binding model for current structure.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        seedname : str</span>
+<span class="sd">            Prefix of file with Hamiltonian in Wannier90 format.</span>
+<span class="sd">        dk1, dk2, dk3 : int, optional</span>
+<span class="sd">            Only use data for every `dkn`-th k point along the *n*-th axis? This</span>
+<span class="sd">            reduces the size of the Hamiltonian file.</span>
+<span class="sd">        rydberg : bool, default False</span>
+<span class="sd">            Keep Ry units? Otherwise they are converted to eV.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        object</span>
+<span class="sd">            Tight-binding model for the electrons.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dk1</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">dk2</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">dk3</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span><span class="p">:</span>
+                <span class="n">H</span> <span class="o">=</span> <span class="n">H</span><span class="p">[::</span><span class="n">dk1</span><span class="p">,</span> <span class="p">::</span><span class="n">dk2</span><span class="p">,</span> <span class="p">::</span><span class="n">dk3</span><span class="p">]</span>
+
+        <span class="n">model</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">rydberg</span> <span class="o">=</span> <span class="n">rydberg</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="p">,</span> <span class="s1">&#39;cells&#39;</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">cells</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">cells</span>
+
+            <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="p">[::</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nat</span> <span class="o">//</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">cells</span><span class="p">)]</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span> <span class="o">//</span> <span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">r</span> <span class="o">-=</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+        <span class="n">el</span><span class="o">.</span><span class="n">k2r</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">rydberg</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">model</span><span class="o">.</span><span class="n">standardize</span><span class="p">(</span><span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">seedname</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">to_hrdat</span><span class="p">(</span><span class="n">seedname</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">model</span></div>
+
+
+<div class="viewcode-block" id="Driver.phonons">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.phonons">[docs]</a>
+    <span class="k">def</span> <span class="nf">phonons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">divide_mass</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up mass-spring model for current structure.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        divide_mass : bool</span>
+<span class="sd">            Divide force constants by atomic masses?</span>
+<span class="sd">        **kwargs</span>
+<span class="sd">            Parameters passed to :func:`ph.q2r`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        object</span>
+<span class="sd">            Mass-spring model for the phonons.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">divide_mass</span> <span class="o">=</span> <span class="n">divide_mass</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">r</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+        <span class="n">ph</span><span class="o">.</span><span class="n">q2r</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">D_full</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hessian</span><span class="p">(</span><span class="n">gamma_only</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">nq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">,</span>
+            <span class="n">divide_mass</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">model</span></div>
+
+
+<div class="viewcode-block" id="Driver.density">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.density">[docs]</a>
+    <span class="k">def</span> <span class="nf">density</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate electron density for all orbitals.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ndarray</span>
+<span class="sd">            Electron density. Should add up to the number of electrons.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">),</span>
+            <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Driver.density_per_atom">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.density_per_atom">[docs]</a>
+    <span class="k">def</span> <span class="nf">density_per_atom</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate electron density per atom.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">info</span><span class="p">(</span><span class="s1">&#39;Orbitals located at basis atoms unknown!&#39;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">nat</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span>
+        <span class="n">norb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="n">nat</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nat</span>
+
+        <span class="n">rho_at</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nat</span><span class="p">)</span>
+        <span class="n">rho_orb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">density</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">na</span><span class="p">,</span> <span class="n">orbitals</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">no</span> <span class="ow">in</span> <span class="n">orbitals</span><span class="p">:</span>
+                <span class="n">rho_at</span><span class="p">[</span><span class="n">na</span><span class="p">::</span><span class="n">nat</span><span class="p">]</span> <span class="o">+=</span> <span class="n">rho_orb</span><span class="p">[</span><span class="n">no</span><span class="p">::</span><span class="n">norb</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">rho_at</span></div>
+
+
+<div class="viewcode-block" id="Driver.plot">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.plot">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pause</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">elev</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">azim</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot crystal structure and displacements.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filename : str, optional</span>
+<span class="sd">            Figure filename. If given, the plot is saved rather than shown.</span>
+<span class="sd">        interactive : bool, optional</span>
+<span class="sd">            Shall the plot be updated? If given, this sets the eponymous</span>
+<span class="sd">            attribute, which is used by default.</span>
+<span class="sd">        scale : float, optional</span>
+<span class="sd">            Displacement scaling factor. If given, this sets the eponymous</span>
+<span class="sd">            attribute, which is used by default.</span>
+<span class="sd">        padding : float, optional</span>
+<span class="sd">            Padding between crystal and plotting box in angstrom.</span>
+<span class="sd">        size : float, optional</span>
+<span class="sd">            Marker size for atoms.</span>
+<span class="sd">        pause : float, optional</span>
+<span class="sd">            Minimal frame duration for interactive plots in seconds.</span>
+<span class="sd">        label : bool, optional</span>
+<span class="sd">            Show atom indices?</span>
+<span class="sd">        elev, azim : float, optional</span>
+<span class="sd">            Elevation and azimuthal view angles.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">global</span> <span class="n">plt</span>
+        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+        <span class="k">if</span> <span class="n">interactive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="n">interactive</span>
+
+        <span class="k">if</span> <span class="n">scale</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
+
+        <span class="k">if</span> <span class="n">size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+
+        <span class="k">if</span> <span class="n">pause</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pause</span> <span class="o">=</span> <span class="n">pause</span>
+
+        <span class="n">u</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">u</span>
+
+        <span class="k">if</span> <span class="n">elev</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">elev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">elev</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;axes&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="mi">90</span>
+
+        <span class="k">if</span> <span class="n">azim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">azim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">azim</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;axes&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mi">90</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="n">elev</span><span class="p">,</span> <span class="n">azim</span><span class="p">)</span>
+
+        <span class="n">sizes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">rho</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">density_per_atom</span><span class="p">()</span>
+            <span class="n">sizes</span> <span class="o">*=</span> <span class="n">rho</span> <span class="o">/</span> <span class="n">rho</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">scatter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">sizes</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#</span><span class="si">%02x%02x%02x</span><span class="s1">&#39;</span>
+            <span class="o">%</span> <span class="n">misc</span><span class="o">.</span><span class="n">colors</span><span class="p">[</span><span class="n">X</span><span class="p">]</span> <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">atom_order</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">quiver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">r</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="n">u</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">label</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">na</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nat</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">*</span><span class="n">r</span><span class="p">[:,</span> <span class="n">na</span><span class="p">],</span> <span class="nb">str</span><span class="p">(</span><span class="n">na</span><span class="p">))</span>
+
+        <span class="n">lims</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_zlim</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">lim</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lims</span><span class="p">):</span>
+            <span class="n">lim</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="n">padding</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="n">padding</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_box_aspect</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ptp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">padding</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ioff</span><span class="p">()</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Driver.update_plot">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.update_plot">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update open plot.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">u</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">u</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">scatter</span><span class="o">.</span><span class="n">_offsets3d</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">rho</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">density_per_atom</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scatter</span><span class="o">.</span><span class="n">set_sizes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">/</span> <span class="n">rho</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">quiver</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">quiver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">r</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="n">u</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">pause</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pause</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Driver.to_xyz">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.to_xyz">[docs]</a>
+    <span class="k">def</span> <span class="nf">to_xyz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xyz</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save current atomic positions.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        xyz : str</span>
+<span class="sd">            Name of .xyz file.</span>
+<span class="sd">        append : bool, default False</span>
+<span class="sd">            Append rather than overwrite positions?</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span> <span class="k">if</span> <span class="n">append</span> <span class="k">else</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">data</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nat</span><span class="p">)</span>
+                <span class="n">data</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="s1">&#39;# CELL</span><span class="si">{H}</span><span class="s1">:&#39;</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="si">%.10g</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="mi">9</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                    <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)))</span>
+
+                <span class="n">pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+                <span class="k">for</span> <span class="n">X</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">atom_order</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+                    <span class="n">data</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="s1">&#39;</span><span class="si">%8s</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="si">%15.9f</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                        <span class="o">%</span> <span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span></div>
+
+
+<div class="viewcode-block" id="Driver.from_xyz">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.from_xyz">[docs]</a>
+    <span class="k">def</span> <span class="nf">from_xyz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xyz</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load saved atomic positions if compatible.</span>
+
+<span class="sd">        If an interactive plot is open, it is updated. If `xyz` contains a full</span>
+<span class="sd">        trajectory, all steps are shown in an interactive plot (whose speed can</span>
+<span class="sd">        be controlled via :attr:`pause`) and the last atomic positions are kept.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        xyz : str</span>
+<span class="sd">            Name of .xyz file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">xyz</span><span class="p">)</span> <span class="k">as</span> <span class="n">lines</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+                    <span class="n">nat</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">nat</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nat</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Wrong number of atoms in &#39;</span><span class="si">%s</span><span class="s2">&#39;!&quot;</span> <span class="o">%</span> <span class="n">xyz</span><span class="p">)</span>
+                        <span class="k">break</span>
+
+                    <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="c1"># skip comment line</span>
+
+                    <span class="k">for</span> <span class="n">na</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nat</span><span class="p">):</span>
+                        <span class="n">cols</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+                        <span class="k">if</span> <span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">atom_order</span><span class="p">[</span><span class="n">na</span><span class="p">]:</span>
+                            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: Unexpected atom </span><span class="si">%d</span><span class="s2"> in &#39;</span><span class="si">%s</span><span class="s2">&#39; ignored!&quot;</span>
+                                <span class="o">%</span> <span class="p">(</span><span class="n">na</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xyz</span><span class="p">))</span>
+                            <span class="k">continue</span>
+
+                        <span class="n">pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">cols</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">])))</span>
+
+                        <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">[</span><span class="n">ph</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">na</span><span class="p">)]</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="n">na</span><span class="p">]</span>
+
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">update_plot</span><span class="p">()</span>
+
+        <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Driver.to_pwi">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.to_pwi">[docs]</a>
+    <span class="k">def</span> <span class="nf">to_pwi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pwi</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save current atomic positions etc. to PWscf input file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        pwi : str</span>
+<span class="sd">            Filename.</span>
+<span class="sd">        **kwargs</span>
+<span class="sd">            Keyword arguments with further parameters to be written.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">species</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">atom_order</span><span class="p">),</span>
+            <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">X</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">atom_order</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">pw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;ibrav&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;ntyp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">species</span><span class="p">)</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;nat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nat</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">misc</span><span class="o">.</span><span class="n">a0</span>
+
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;at_species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">species</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;mass&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">M</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">atom_order</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">X</span><span class="p">)]</span>
+            <span class="o">/</span> <span class="n">misc</span><span class="o">.</span><span class="n">uRy</span> <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="n">species</span><span class="p">]</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;pp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.upf&#39;</span> <span class="o">%</span> <span class="n">X</span> <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="n">species</span><span class="p">]</span>
+
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;coords&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;crystal&#39;</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;at&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">atom_order</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bravais</span><span class="o">.</span><span class="n">cartesian_to_crystal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span>
+            <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;cell_units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;alat&#39;</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;r_cell&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span> <span class="o">/</span> <span class="n">a</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;ktyp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gamma&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;ktyp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;automatic&#39;</span>
+            <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;k_points&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">pw</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">bravais</span><span class="o">.</span><span class="n">write_pwi</span><span class="p">(</span><span class="n">pwi</span><span class="p">,</span> <span class="n">pw</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Driver.save">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.save">[docs]</a>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save driver to file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filename : str</span>
+<span class="sd">            Filename for pickled representation of driver.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">interactive</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span><span class="p">:</span>
+            <span class="n">communicators</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">images</span>
+
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">node</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">images</span>
+
+        <span class="n">MPI</span><span class="o">.</span><span class="n">Buffer</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="n">interactive</span>
+
+        <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">images</span> <span class="o">=</span> <span class="n">communicators</span></div>
+
+
+<div class="viewcode-block" id="Driver.load">
+<a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.load">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load driver from file.</span>
+
+<span class="sd">        This should only be used in serial runs. Shared memory will be lost.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filename : str</span>
+<span class="sd">            Filename for pickled representation of driver.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        object</span>
+<span class="sd">            MD driver for DFPT-based displacements dynamics.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">driver</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Buffer</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">driver</span><span class="o">.</span><span class="n">sparse</span><span class="p">:</span>
+            <span class="n">driver</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="n">driver</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">images</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">shm_split</span><span class="p">(</span><span class="n">comm</span><span class="p">,</span>
+                <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">driver</span></div>
+
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Interface driver with i-PI.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        a : ndarray</span>
+<span class="sd">            Dummy cell dimensions for variable-cell MD. Our cell is fixed.</span>
+<span class="sd">        r : ndarray</span>
+<span class="sd">            Cartesian atomic positions.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        The factor 0.5 converts Rydberg to Hartree units.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+        <span class="n">E</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">free_energy</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">F</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">virial</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">extras</span> <span class="o">=</span> <span class="s1">&#39;silent&#39;</span>
+
+        <span class="k">return</span> <span class="n">E</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">virial</span><span class="p">,</span> <span class="n">extras</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2024 elphmod Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

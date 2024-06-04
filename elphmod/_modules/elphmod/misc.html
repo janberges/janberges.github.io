@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>elphmod.misc &mdash; elphmod  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #e7f2fa" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/elphmod.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/el.html">Electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/ph.html">Phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/elph.html">Electron–phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/elel.html">Electron–electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/MPI.html">MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/bravais.html">Bravais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/dispersion.html">Dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/dos.html">DOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/diagrams.html">Diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/md.html">MD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/eliashberg.html">Eliashberg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/plot.html">Plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/misc.html">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/models.html">Models</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/patches.html">Patches</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #e7f2fa" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">elphmod</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">elphmod.misc</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for elphmod.misc</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (C) 2017-2024 elphmod Developers</span>
+<span class="c1"># This program is free software under the terms of the GNU GPLv3 or later.</span>
+
+<span class="sd">&quot;&quot;&quot;Constants, status bars, parsing, etc.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">__version__</span><span class="p">,</span> <span class="n">MPI</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">info</span>
+
+<span class="n">verbosity</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="sd">&quot;&quot;&quot;Level of verbosity.</span>
+
+<span class="sd">- ``0``: Suppress all output.</span>
+<span class="sd">- ``1``: Only print warnings.</span>
+<span class="sd">- ``2``: Print info messages.</span>
+<span class="sd">- ``3``: Display status bars.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># exact constants in SI units:</span>
+
+<span class="n">cSI</span> <span class="o">=</span> <span class="mf">299792458.0</span>
+<span class="sd">&quot;&quot;&quot;Speed of light (m/s).&quot;&quot;&quot;</span>
+
+<span class="n">eVSI</span> <span class="o">=</span> <span class="mf">1.602176634e-19</span>
+<span class="sd">&quot;&quot;&quot;Electronvolt (J).&quot;&quot;&quot;</span>
+
+<span class="n">hSI</span> <span class="o">=</span> <span class="mf">6.62607015e-34</span>
+<span class="sd">&quot;&quot;&quot;Planck constant (J s).&quot;&quot;&quot;</span>
+
+<span class="n">hbarSI</span> <span class="o">=</span> <span class="n">hSI</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;reduced Planck constant (J s).&quot;&quot;&quot;</span>
+
+<span class="n">kBSI</span> <span class="o">=</span> <span class="mf">1.380649e-23</span>
+<span class="sd">&quot;&quot;&quot;Boltzmann constant (J/K).&quot;&quot;&quot;</span>
+
+<span class="n">NA</span> <span class="o">=</span> <span class="mf">6.02214076e23</span>
+<span class="sd">&quot;&quot;&quot;Avogadro constant (1/mol).&quot;&quot;&quot;</span>
+
+<span class="n">uSI</span> <span class="o">=</span> <span class="mf">1e-3</span> <span class="o">/</span> <span class="n">NA</span>
+<span class="sd">&quot;&quot;&quot;Atomic mass constant (kg).&quot;&quot;&quot;</span>
+
+<span class="c1"># approximate constants in SI units:</span>
+
+<span class="n">meSI</span> <span class="o">=</span> <span class="mf">9.1093837015e-31</span>
+<span class="sd">&quot;&quot;&quot;Electron mass (kg) [2018 CODATA].&quot;&quot;&quot;</span>
+
+<span class="n">eps0</span> <span class="o">=</span> <span class="mf">8.8541878128e-12</span>
+<span class="sd">&quot;&quot;&quot;Vacuum permittivity (F/m) [2018 CODATA].&quot;&quot;&quot;</span>
+
+<span class="c1"># constants in atomic units (eV, AA):</span>
+
+<span class="n">Ry</span> <span class="o">=</span> <span class="mf">13.605693122994</span>
+<span class="sd">&quot;&quot;&quot;Rydberg energy (eV) [2018 CODATA].&quot;&quot;&quot;</span>
+
+<span class="n">Ha</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ry</span>
+<span class="sd">&quot;&quot;&quot;Hartree energy (eV).&quot;&quot;&quot;</span>
+
+<span class="n">a0</span> <span class="o">=</span> <span class="mf">0.529177210903</span>
+<span class="sd">&quot;&quot;&quot;Bohr radius (AA) [2018 CODATA].&quot;&quot;&quot;</span>
+
+<span class="n">cmm1</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="n">hSI</span> <span class="o">*</span> <span class="n">cSI</span> <span class="o">/</span> <span class="n">eVSI</span>
+<span class="sd">&quot;&quot;&quot;&quot;Inverse cm&quot; (eV).&quot;&quot;&quot;</span>
+
+<span class="n">kB</span> <span class="o">=</span> <span class="n">kBSI</span> <span class="o">/</span> <span class="n">eVSI</span>
+<span class="sd">&quot;&quot;&quot;Boltzmann constant (eV/K).&quot;&quot;&quot;</span>
+
+<span class="c1"># constants in Rydberg atomic units:</span>
+
+<span class="n">uRy</span> <span class="o">=</span> <span class="n">uSI</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">meSI</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;Atomic mass constant (2 me).&quot;&quot;&quot;</span>
+
+<span class="n">ohmRy</span> <span class="o">=</span> <span class="n">eVSI</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">hbarSI</span>
+<span class="sd">&quot;&quot;&quot;Resistance unit ohm (Rydberg atomic units).&quot;&quot;&quot;</span>
+
+<span class="n">ohmmRy</span> <span class="o">=</span> <span class="mf">1e10</span> <span class="o">/</span> <span class="n">a0</span> <span class="o">*</span> <span class="n">ohmRy</span>
+<span class="sd">&quot;&quot;&quot;Resistivity unit ohm metre (Rydberg atomic units).&quot;&quot;&quot;</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">145</span><span class="p">),</span>
+    <span class="n">H</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">He</span><span class="o">=</span><span class="p">(</span><span class="mi">217</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">Li</span><span class="o">=</span><span class="p">(</span><span class="mi">204</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+    <span class="n">Be</span><span class="o">=</span><span class="p">(</span><span class="mi">194</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">B</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">181</span><span class="p">),</span> <span class="n">C</span><span class="o">=</span><span class="p">(</span><span class="mi">144</span><span class="p">,</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">144</span><span class="p">),</span>
+    <span class="n">N</span><span class="o">=</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">248</span><span class="p">),</span> <span class="n">O</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">F</span><span class="o">=</span><span class="p">(</span><span class="mi">144</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span>
+    <span class="n">Ne</span><span class="o">=</span><span class="p">(</span><span class="mi">179</span><span class="p">,</span> <span class="mi">227</span><span class="p">,</span> <span class="mi">245</span><span class="p">),</span> <span class="n">Na</span><span class="o">=</span><span class="p">(</span><span class="mi">171</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">242</span><span class="p">),</span> <span class="n">Mg</span><span class="o">=</span><span class="p">(</span><span class="mi">138</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">Al</span><span class="o">=</span><span class="p">(</span><span class="mi">191</span><span class="p">,</span> <span class="mi">166</span><span class="p">,</span> <span class="mi">166</span><span class="p">),</span> <span class="n">Si</span><span class="o">=</span><span class="p">(</span><span class="mi">240</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">160</span><span class="p">),</span> <span class="n">P</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">S</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">48</span><span class="p">),</span> <span class="n">Cl</span><span class="o">=</span><span class="p">(</span><span class="mi">31</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span> <span class="n">Ar</span><span class="o">=</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">209</span><span class="p">,</span> <span class="mi">227</span><span class="p">),</span>
+    <span class="n">K</span><span class="o">=</span><span class="p">(</span><span class="mi">143</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">212</span><span class="p">),</span> <span class="n">Ca</span><span class="o">=</span><span class="p">(</span><span class="mi">61</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Sc</span><span class="o">=</span><span class="p">(</span><span class="mi">230</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">230</span><span class="p">),</span>
+    <span class="n">Ti</span><span class="o">=</span><span class="p">(</span><span class="mi">191</span><span class="p">,</span> <span class="mi">194</span><span class="p">,</span> <span class="mi">199</span><span class="p">),</span> <span class="n">V</span><span class="o">=</span><span class="p">(</span><span class="mi">166</span><span class="p">,</span> <span class="mi">166</span><span class="p">,</span> <span class="mi">171</span><span class="p">),</span> <span class="n">Cr</span><span class="o">=</span><span class="p">(</span><span class="mi">138</span><span class="p">,</span> <span class="mi">153</span><span class="p">,</span> <span class="mi">199</span><span class="p">),</span>
+    <span class="n">Mn</span><span class="o">=</span><span class="p">(</span><span class="mi">156</span><span class="p">,</span> <span class="mi">122</span><span class="p">,</span> <span class="mi">199</span><span class="p">),</span> <span class="n">Fe</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">51</span><span class="p">),</span> <span class="n">Co</span><span class="o">=</span><span class="p">(</span><span class="mi">240</span><span class="p">,</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">160</span><span class="p">),</span>
+    <span class="n">Ni</span><span class="o">=</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">208</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="n">Cu</span><span class="o">=</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">51</span><span class="p">),</span> <span class="n">Zn</span><span class="o">=</span><span class="p">(</span><span class="mi">125</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">176</span><span class="p">),</span>
+    <span class="n">Ga</span><span class="o">=</span><span class="p">(</span><span class="mi">194</span><span class="p">,</span> <span class="mi">143</span><span class="p">,</span> <span class="mi">143</span><span class="p">),</span> <span class="n">Ge</span><span class="o">=</span><span class="p">(</span><span class="mi">102</span><span class="p">,</span> <span class="mi">143</span><span class="p">,</span> <span class="mi">143</span><span class="p">),</span> <span class="n">As</span><span class="o">=</span><span class="p">(</span><span class="mi">189</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">227</span><span class="p">),</span>
+    <span class="n">Se</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">161</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Br</span><span class="o">=</span><span class="p">(</span><span class="mi">166</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">41</span><span class="p">),</span> <span class="n">Kr</span><span class="o">=</span><span class="p">(</span><span class="mi">92</span><span class="p">,</span> <span class="mi">184</span><span class="p">,</span> <span class="mi">209</span><span class="p">),</span>
+    <span class="n">Rb</span><span class="o">=</span><span class="p">(</span><span class="mi">112</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">176</span><span class="p">),</span> <span class="n">Sr</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Y</span><span class="o">=</span><span class="p">(</span><span class="mi">148</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+    <span class="n">Zr</span><span class="o">=</span><span class="p">(</span><span class="mi">148</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">),</span> <span class="n">Nb</span><span class="o">=</span><span class="p">(</span><span class="mi">115</span><span class="p">,</span> <span class="mi">194</span><span class="p">,</span> <span class="mi">201</span><span class="p">),</span> <span class="n">Mo</span><span class="o">=</span><span class="p">(</span><span class="mi">84</span><span class="p">,</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">181</span><span class="p">),</span>
+    <span class="n">Tc</span><span class="o">=</span><span class="p">(</span><span class="mi">59</span><span class="p">,</span> <span class="mi">158</span><span class="p">,</span> <span class="mi">158</span><span class="p">),</span> <span class="n">Ru</span><span class="o">=</span><span class="p">(</span><span class="mi">36</span><span class="p">,</span> <span class="mi">143</span><span class="p">,</span> <span class="mi">143</span><span class="p">),</span> <span class="n">Rh</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">140</span><span class="p">),</span>
+    <span class="n">Pd</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">133</span><span class="p">),</span> <span class="n">Ag</span><span class="o">=</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span> <span class="mi">192</span><span class="p">,</span> <span class="mi">192</span><span class="p">),</span> <span class="n">Cd</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">217</span><span class="p">,</span> <span class="mi">143</span><span class="p">),</span>
+    <span class="n">In</span><span class="o">=</span><span class="p">(</span><span class="mi">166</span><span class="p">,</span> <span class="mi">117</span><span class="p">,</span> <span class="mi">115</span><span class="p">),</span> <span class="n">Sn</span><span class="o">=</span><span class="p">(</span><span class="mi">102</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span> <span class="n">Sb</span><span class="o">=</span><span class="p">(</span><span class="mi">158</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">181</span><span class="p">),</span>
+    <span class="n">Te</span><span class="o">=</span><span class="p">(</span><span class="mi">212</span><span class="p">,</span> <span class="mi">122</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">I</span><span class="o">=</span><span class="p">(</span><span class="mi">148</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">148</span><span class="p">),</span> <span class="n">Xe</span><span class="o">=</span><span class="p">(</span><span class="mi">66</span><span class="p">,</span> <span class="mi">158</span><span class="p">,</span> <span class="mi">176</span><span class="p">),</span>
+    <span class="n">Cs</span><span class="o">=</span><span class="p">(</span><span class="mi">87</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">143</span><span class="p">),</span> <span class="n">Ba</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">La</span><span class="o">=</span><span class="p">(</span><span class="mi">112</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+    <span class="n">Ce</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">199</span><span class="p">),</span> <span class="n">Pr</span><span class="o">=</span><span class="p">(</span><span class="mi">217</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">199</span><span class="p">),</span> <span class="n">Nd</span><span class="o">=</span><span class="p">(</span><span class="mi">199</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">199</span><span class="p">),</span>
+    <span class="n">Pm</span><span class="o">=</span><span class="p">(</span><span class="mi">163</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">199</span><span class="p">),</span> <span class="n">Sm</span><span class="o">=</span><span class="p">(</span><span class="mi">143</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">199</span><span class="p">),</span> <span class="n">Eu</span><span class="o">=</span><span class="p">(</span><span class="mi">97</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">199</span><span class="p">),</span>
+    <span class="n">Gd</span><span class="o">=</span><span class="p">(</span><span class="mi">69</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">199</span><span class="p">),</span> <span class="n">Tb</span><span class="o">=</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">199</span><span class="p">),</span> <span class="n">Dy</span><span class="o">=</span><span class="p">(</span><span class="mi">31</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">199</span><span class="p">),</span>
+    <span class="n">Ho</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">156</span><span class="p">),</span> <span class="n">Er</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">117</span><span class="p">),</span> <span class="n">Tm</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">82</span><span class="p">),</span>
+    <span class="n">Yb</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">191</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span> <span class="n">Lu</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">171</span><span class="p">,</span> <span class="mi">36</span><span class="p">),</span> <span class="n">Hf</span><span class="o">=</span><span class="p">(</span><span class="mi">77</span><span class="p">,</span> <span class="mi">194</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+    <span class="n">Ta</span><span class="o">=</span><span class="p">(</span><span class="mi">77</span><span class="p">,</span> <span class="mi">166</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">W</span><span class="o">=</span><span class="p">(</span><span class="mi">33</span><span class="p">,</span> <span class="mi">148</span><span class="p">,</span> <span class="mi">214</span><span class="p">),</span> <span class="n">Re</span><span class="o">=</span><span class="p">(</span><span class="mi">38</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">171</span><span class="p">),</span>
+    <span class="n">Os</span><span class="o">=</span><span class="p">(</span><span class="mi">38</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">150</span><span class="p">),</span> <span class="n">Ir</span><span class="o">=</span><span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">135</span><span class="p">),</span> <span class="n">Pt</span><span class="o">=</span><span class="p">(</span><span class="mi">208</span><span class="p">,</span> <span class="mi">208</span><span class="p">,</span> <span class="mi">224</span><span class="p">),</span>
+    <span class="n">Au</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">209</span><span class="p">,</span> <span class="mi">35</span><span class="p">),</span> <span class="n">Hg</span><span class="o">=</span><span class="p">(</span><span class="mi">184</span><span class="p">,</span> <span class="mi">184</span><span class="p">,</span> <span class="mi">208</span><span class="p">),</span> <span class="n">Tl</span><span class="o">=</span><span class="p">(</span><span class="mi">166</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">77</span><span class="p">),</span>
+    <span class="n">Pb</span><span class="o">=</span><span class="p">(</span><span class="mi">87</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">97</span><span class="p">),</span> <span class="n">Bi</span><span class="o">=</span><span class="p">(</span><span class="mi">158</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">181</span><span class="p">),</span> <span class="n">Po</span><span class="o">=</span><span class="p">(</span><span class="mi">171</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">At</span><span class="o">=</span><span class="p">(</span><span class="mi">117</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">69</span><span class="p">),</span> <span class="n">Rn</span><span class="o">=</span><span class="p">(</span><span class="mi">66</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">150</span><span class="p">),</span> <span class="n">Fr</span><span class="o">=</span><span class="p">(</span><span class="mi">66</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">102</span><span class="p">),</span>
+    <span class="n">Ra</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Ac</span><span class="o">=</span><span class="p">(</span><span class="mi">112</span><span class="p">,</span> <span class="mi">171</span><span class="p">,</span> <span class="mi">250</span><span class="p">),</span> <span class="n">Th</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">186</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+    <span class="n">Pa</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">161</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">U</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">143</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">Np</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+    <span class="n">Pu</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">107</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">Am</span><span class="o">=</span><span class="p">(</span><span class="mi">84</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">242</span><span class="p">),</span> <span class="n">Cm</span><span class="o">=</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">227</span><span class="p">),</span>
+    <span class="n">Bk</span><span class="o">=</span><span class="p">(</span><span class="mi">138</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">227</span><span class="p">),</span> <span class="n">Cf</span><span class="o">=</span><span class="p">(</span><span class="mi">161</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">212</span><span class="p">),</span> <span class="n">Es</span><span class="o">=</span><span class="p">(</span><span class="mi">179</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">212</span><span class="p">),</span>
+    <span class="n">Fm</span><span class="o">=</span><span class="p">(</span><span class="mi">179</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">186</span><span class="p">),</span> <span class="n">Md</span><span class="o">=</span><span class="p">(</span><span class="mi">179</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">166</span><span class="p">),</span> <span class="n">No</span><span class="o">=</span><span class="p">(</span><span class="mi">189</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">135</span><span class="p">),</span>
+    <span class="n">Lr</span><span class="o">=</span><span class="p">(</span><span class="mi">199</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">102</span><span class="p">),</span> <span class="n">Rf</span><span class="o">=</span><span class="p">(</span><span class="mi">204</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">89</span><span class="p">),</span> <span class="n">Db</span><span class="o">=</span><span class="p">(</span><span class="mi">209</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">79</span><span class="p">),</span>
+    <span class="n">Sg</span><span class="o">=</span><span class="p">(</span><span class="mi">217</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">69</span><span class="p">),</span> <span class="n">Bh</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">56</span><span class="p">),</span> <span class="n">Hs</span><span class="o">=</span><span class="p">(</span><span class="mi">230</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">46</span><span class="p">),</span>
+    <span class="n">Mt</span><span class="o">=</span><span class="p">(</span><span class="mi">235</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">38</span><span class="p">))</span>
+<span class="sd">&quot;&quot;&quot;Jmol&#39;s element color scheme from http://jmol.sourceforge.net/jscolors/.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="StatusBar">
+<a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.StatusBar">[docs]</a>
+<span class="k">class</span> <span class="nc">StatusBar</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Progress bar that does without carriage return or backspace.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    count : int</span>
+<span class="sd">        Number of times the progress bar will be updated.</span>
+<span class="sd">    width : int, default 60</span>
+<span class="sd">        Number of text columns the progress bar will span.</span>
+<span class="sd">    title : str, default &#39;progress&#39;</span>
+<span class="sd">        Title line of the progress bar. Should be shorter than `width`.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    in_progress : StatusBar</span>
+<span class="sd">        Instance of the active progress bar or ``False`` for the first process;</span>
+<span class="sd">        always ``True`` for the other processes. Used to ensure that only one</span>
+<span class="sd">        progress bar is output at a time.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">in_progress</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;progress&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">count</span> <span class="ow">or</span> <span class="n">StatusBar</span><span class="o">.</span><span class="n">in_progress</span> <span class="ow">or</span> <span class="n">verbosity</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">StatusBar</span><span class="o">.</span><span class="n">in_progress</span> <span class="o">=</span> <span class="bp">self</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="n">count</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="s1">&#39; </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">title</span><span class="p">)</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">))</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="StatusBar.update">
+<a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.StatusBar.update">[docs]</a>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update progress bar.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">StatusBar</span><span class="o">.</span><span class="n">in_progress</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">progress</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span>
+
+        <span class="k">if</span> <span class="n">progress</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">progress</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;=&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="n">progress</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">progress</span><span class="p">))</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="n">progress</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+            <span class="n">StatusBar</span><span class="o">.</span><span class="n">in_progress</span> <span class="o">=</span> <span class="kc">False</span></div>
+</div>
+
+
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">verbosity</span><span class="p">:</span>
+        <span class="n">info</span><span class="p">(</span><span class="s1">&#39;This is elphmod (version </span><span class="si">%s</span><span class="s1">) running on </span><span class="si">%d</span><span class="s1"> processors.&#39;</span>
+            <span class="o">%</span> <span class="p">(</span><span class="n">__version__</span><span class="p">,</span> <span class="n">comm</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+        <span class="n">info</span><span class="p">(</span><span class="s1">&#39;To suppress all output, set elphmod.misc.verbosity = 0.&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="get_sparse_array">
+<a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.get_sparse_array">[docs]</a>
+<span class="k">def</span> <span class="nf">get_sparse_array</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Try to import sparse array or matrix.&quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">dok_array</span> <span class="k">as</span> <span class="n">sparse_array</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">dok_matrix</span> <span class="k">as</span> <span class="n">sparse_array</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="n">info</span><span class="p">(</span><span class="s1">&#39;Sparse arrays require SciPy!&#39;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sparse_array</span></div>
+
+
+<div class="viewcode-block" id="group">
+<a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.group">[docs]</a>
+<span class="k">def</span> <span class="nf">group</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Group points into neighborhoods.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    points : ndarray</span>
+<span class="sd">        Points to be grouped.</span>
+<span class="sd">    eps : float</span>
+<span class="sd">        Maximal distance between points in the same group.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list of lists</span>
+<span class="sd">        Groups of indices.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">):</span>
+                <span class="n">groups</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">groups</span> <span class="o">==</span> <span class="n">groups</span><span class="p">[</span><span class="n">j</span><span class="p">])]</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">groups</span> <span class="o">==</span> <span class="n">group</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">groups</span><span class="p">)]</span></div>
+
+
+<div class="viewcode-block" id="read_cube">
+<a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.read_cube">[docs]</a>
+<span class="k">def</span> <span class="nf">read_cube</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="n">only_header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read Gaussian cube file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    cube : str</span>
+<span class="sd">        Name of Gaussian cube file.</span>
+<span class="sd">    only_header : bool, default False</span>
+<span class="sd">        Skip reading data?</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    r0 : ndarray</span>
+<span class="sd">        Origin of the data grid.</span>
+<span class="sd">    a : ndarray</span>
+<span class="sd">        Spanning vectors of the data grid.</span>
+<span class="sd">    X : list of str</span>
+<span class="sd">        Atomic numbers.</span>
+<span class="sd">    tau : ndarray</span>
+<span class="sd">        Cartesian atomic coordinates.</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">        Data-grid values or, if `only_header`, shape of data grid.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    read_xsf : Equivalent function for XCrySDen format.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span>
+
+        <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+        <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+
+        <span class="n">cols</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="n">nat</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">r0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">cols</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">])))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">nat</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">nat</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">bcast</span><span class="p">(</span><span class="n">nat</span><span class="p">)</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">r0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">nat</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nat</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">cols</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]))</span>
+            <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nat</span><span class="p">):</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">tau</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">cols</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]))</span>
+
+    <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">r0</span><span class="p">)</span>
+    <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">only_header</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">r0</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+        <span class="n">lines</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">r0</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="read_xsf">
+<a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.read_xsf">[docs]</a>
+<span class="k">def</span> <span class="nf">read_xsf</span><span class="p">(</span><span class="n">xsf</span><span class="p">,</span> <span class="n">only_header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read file in XCrySDen format.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    xsf : str</span>
+<span class="sd">        Name of XCrySDen file.</span>
+<span class="sd">    only_header : bool, default False</span>
+<span class="sd">        Skip reading data?</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    r0 : ndarray</span>
+<span class="sd">        Origin of the data grid.</span>
+<span class="sd">    a : ndarray</span>
+<span class="sd">        Spanning vectors of the data grid.</span>
+<span class="sd">    X : list of str</span>
+<span class="sd">        Atomic numbers or symbols.</span>
+<span class="sd">    tau : ndarray</span>
+<span class="sd">        Cartesian atomic coordinates.</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">        Data-grid values or, if `only_header`, shape of data grid.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    read_cube : Equivalent function for Gaussian cube format.</span>
+<span class="sd">    write_xsf : Write file in XCrySDen format.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">xsf</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;PRIMCOORD&#39;</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="n">nat</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">nat</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">nat</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">bcast</span><span class="p">(</span><span class="n">nat</span><span class="p">)</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">r0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">nat</span>
+    <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nat</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nat</span><span class="p">):</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">tau</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">cols</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]))</span>
+
+        <span class="k">while</span> <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;BEGIN_DATAGRID_3D_UNKNOWN&#39;</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="n">n</span><span class="p">[:]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+        <span class="n">r0</span><span class="p">[:]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+
+    <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">r0</span><span class="p">)</span>
+    <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">bcast</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">only_header</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">r0</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="n">lines</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">r0</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="write_xsf">
+<a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.write_xsf">[docs]</a>
+<span class="k">def</span> <span class="nf">write_xsf</span><span class="p">(</span><span class="n">xsf</span><span class="p">,</span> <span class="n">r0</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">only_header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write file in XCrySDen format.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    xsf : str</span>
+<span class="sd">        Name of XCrySDen file.</span>
+<span class="sd">    r0 : ndarray</span>
+<span class="sd">        Origin of the data grid.</span>
+<span class="sd">    a : ndarray</span>
+<span class="sd">        Spanning vectors of the data grid.</span>
+<span class="sd">    X : list of str</span>
+<span class="sd">        Atomic numbers or symbols.</span>
+<span class="sd">    tau : ndarray</span>
+<span class="sd">        Cartesian atomic coordinates.</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">        Data-grid values or, if `only_header`, shape of data grid.</span>
+<span class="sd">    only_header : bool, default False</span>
+<span class="sd">        Skip writing data?</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    read_xsf : Read file in XCrySDen format.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="k">if</span> <span class="n">only_header</span> <span class="k">else</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">xsf</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">text</span><span class="p">:</span>
+            <span class="n">text</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;PRIMCOORD</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">text</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%6d</span><span class="s1">  1</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
+                <span class="n">text</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%-5s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">text</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39; </span><span class="si">%11.7f</span><span class="s1"> </span><span class="si">%11.7f</span><span class="s1"> </span><span class="si">%11.7f</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tau</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+            <span class="n">text</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;BEGIN_BLOCK_DATAGRID_3D</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">text</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;3D_field</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">text</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;BEGIN_DATAGRID_3D_UNKNOWN</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">text</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%6d</span><span class="s1"> </span><span class="si">%5d</span><span class="s1"> </span><span class="si">%5d</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+            <span class="n">text</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%12.6f</span><span class="s1"> </span><span class="si">%11.6f</span><span class="s1"> </span><span class="si">%11.6f</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">r0</span><span class="p">))</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+                <span class="n">text</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%12.7f</span><span class="s1"> </span><span class="si">%11.7f</span><span class="s1"> </span><span class="si">%11.7f</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">only_header</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">flat</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+                    <span class="n">text</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%13.5e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">value</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">6</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="n">data</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+                        <span class="n">text</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+            <span class="n">text</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;END_DATAGRID_3D</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">text</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;END_BLOCK_DATAGRID_3D</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="real_space_grid">
+<a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.real_space_grid">[docs]</a>
+<span class="k">def</span> <span class="nf">real_space_grid</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">r0</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sample real-space grid.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    shape : tuple of int</span>
+<span class="sd">        Shape of the 3D real-space grid.</span>
+<span class="sd">    r0 : ndarray</span>
+<span class="sd">        Origin of the real-space grid.</span>
+<span class="sd">    a : ndarray</span>
+<span class="sd">        Cartesian spanning vectors of the real-space grid.</span>
+<span class="sd">    shared_memory : bool, default False</span>
+<span class="sd">        Store real-space grid in shared memory?</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Cartesian coordinates for all grid points.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">node</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">shared_array</span><span class="p">(</span><span class="n">shape</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
+        <span class="n">shared_memory</span><span class="o">=</span><span class="n">shared_memory</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">]</span>
+        <span class="n">axes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="o">*</span><span class="n">axes</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+        <span class="n">r</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">r0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;nijk,nx-&gt;ijkx&#39;</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">images</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+    <span class="n">comm</span><span class="o">.</span><span class="n">Barrier</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">r</span></div>
+
+
+<div class="viewcode-block" id="read_namelists">
+<a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.read_namelists">[docs]</a>
+<span class="k">def</span> <span class="nf">read_namelists</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract all Fortran namelists from file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        Name of file with namelists.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict of dict</span>
+<span class="sd">        Namelist data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">re</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="c1"># remove comments:</span>
+
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;!.*$&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span><span class="p">)</span>
+
+    <span class="c1"># protect string (which might contain spaces):</span>
+
+    <span class="n">groups</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">replace</span><span class="p">(</span><span class="n">match</span><span class="p">):</span>
+        <span class="n">groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s1">&#39;___</span><span class="si">%d</span><span class="s1">___&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">place</span><span class="p">(</span><span class="n">match</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">groups</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">count</span><span class="p">:</span>
+        <span class="n">text</span><span class="p">,</span> <span class="n">count</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">subn</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">[^</span><span class="se">\&#39;</span><span class="s1">&quot;]*</span><span class="se">\&#39;</span><span class="s1">|&quot;[^</span><span class="se">\&#39;</span><span class="s1">&quot;]*&quot;&#39;</span><span class="p">,</span> <span class="n">replace</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+
+    <span class="c1"># parse all namelists:</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">namelist</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&amp;(\w+)(.+?)/&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">):</span>
+        <span class="n">name</span><span class="p">,</span> <span class="n">content</span> <span class="o">=</span> <span class="n">namelist</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="n">content</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s1">&#39; = &#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+\(&#39;</span><span class="p">,</span> <span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[;,\s]+&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+
+        <span class="n">key</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">item</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="s1">&#39;=&#39;</span> <span class="ow">in</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]:</span>
+                <span class="n">key</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([^(]*)[( ]*(\d*)&#39;</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+                <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">n</span> <span class="k">else</span> <span class="mi">0</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]:</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">key</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">item</span> <span class="o">!=</span> <span class="s1">&#39;=&#39;</span><span class="p">:</span>
+                <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">while</span> <span class="n">count</span><span class="p">:</span>
+                    <span class="n">item</span><span class="p">,</span> <span class="n">count</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">subn</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;___\d+___&#39;</span><span class="p">,</span> <span class="n">place</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(</span><span class="se">\&#39;</span><span class="s1">.*</span><span class="se">\&#39;</span><span class="s1">|&quot;.*&quot;)$&#39;</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+                    <span class="n">item</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;[Tt]&#39;</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+                    <span class="n">item</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;[Ff]&#39;</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+                    <span class="n">item</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">item</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">item</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[dDE]&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="n">item</span><span class="p">))</span>
+                        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                            <span class="k">pass</span>
+
+                <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">key</span><span class="p">][</span><span class="n">n</span><span class="p">:</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">]</span>
+                <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="read_input_data">
+<a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.read_input_data">[docs]</a>
+<span class="k">def</span> <span class="nf">read_input_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read Quantum ESPRESSO input data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        Name of input file.</span>
+<span class="sd">    broadcast : bool</span>
+<span class="sd">        Broadcast result from rank 0 to all processes?</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        Input data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">struct</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">namelist</span> <span class="ow">in</span> <span class="n">read_namelists</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">struct</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">namelist</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">struct</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">broadcast</span><span class="p">:</span>
+        <span class="n">struct</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">bcast</span><span class="p">(</span><span class="n">struct</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">struct</span></div>
+
+
+<div class="viewcode-block" id="read_dat_mat">
+<a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.read_dat_mat">[docs]</a>
+<span class="k">def</span> <span class="nf">read_dat_mat</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Read matrix elements from RESPACK (*dat.Wmat*, *dat.h_mat_r*).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        Name of the file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Lattice vectors.</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Direct (screened) Coulomb or hoppling matrix elements, depending on the</span>
+<span class="sd">        input file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">respack_file</span><span class="p">:</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">respack_file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">lines</span><span class="p">[</span><span class="n">line</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+            <span class="n">num_wann</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="n">line</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">break</span>
+
+    <span class="n">block</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">num_wann</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">nR</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="n">block</span><span class="p">)</span> <span class="c1"># number of lattice vectors R</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nR</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">Rcount</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># allocate W or t matrix:</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nR</span><span class="p">,</span> <span class="n">num_wann</span><span class="p">,</span> <span class="n">num_wann</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)):</span>
+        <span class="c1"># read lattice vectors R:</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="n">line</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">R1</span><span class="p">,</span> <span class="n">R2</span><span class="p">,</span> <span class="n">R3</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">line</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+            <span class="n">R</span><span class="p">[</span><span class="n">Rcount</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">R1</span><span class="p">)</span>
+            <span class="n">R</span><span class="p">[</span><span class="n">Rcount</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">R2</span><span class="p">)</span>
+            <span class="n">R</span><span class="p">[</span><span class="n">Rcount</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">R3</span><span class="p">)</span>
+
+        <span class="c1"># read matrix elements:</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="n">line</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">imag</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">line</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+            <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+            <span class="n">real</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">real</span><span class="p">)</span>
+            <span class="n">imag</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">imag</span><span class="p">)</span>
+
+            <span class="n">data</span><span class="p">[</span><span class="n">Rcount</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">real</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">imag</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="n">line</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">Rcount</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">R</span><span class="p">,</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="split">
+<a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.split">[docs]</a>
+<span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">od</span><span class="o">=</span><span class="s1">&#39;{&#39;</span><span class="p">,</span> <span class="n">cd</span><span class="o">=</span><span class="s1">&#39;}&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Split expression with separators and brackets using distributive law.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    expr : str</span>
+<span class="sd">        Expression to be expanded and split.</span>
+<span class="sd">    sd : str</span>
+<span class="sd">        Separating delimiter.</span>
+<span class="sd">    od : str</span>
+<span class="sd">        Opening delimiter.</span>
+<span class="sd">    cd : str</span>
+<span class="sd">        Closing delimiter.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    generator</span>
+<span class="sd">        Separated elements of expression.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">re</span>
+
+    <span class="n">group</span> <span class="o">=</span> <span class="s1">&#39;[</span><span class="si">{0}</span><span class="s1">]([^</span><span class="si">{0}{1}</span><span class="s1">]*)[</span><span class="si">{1}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span>
+        <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([\^\]])&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">\1&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">(</span><span class="n">od</span><span class="p">,</span> <span class="n">cd</span><span class="p">)])</span>
+
+    <span class="n">groups</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">pack</span><span class="p">(</span><span class="n">match</span><span class="p">):</span>
+        <span class="n">groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s1">&#39;&lt;</span><span class="si">%d</span><span class="s1">&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">expr</span> <span class="o">=</span> <span class="n">od</span> <span class="o">+</span> <span class="n">expr</span> <span class="o">+</span> <span class="n">cd</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">n</span><span class="p">:</span>
+        <span class="n">expr</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">subn</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">pack</span><span class="p">,</span> <span class="n">expr</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">factorize</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(.*)&lt;(\d+)&gt;(.*)&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">sd</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">factorize</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">y</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">+</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)):</span>
+                    <span class="k">yield</span> <span class="n">z</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">x</span>
+
+    <span class="k">return</span> <span class="n">factorize</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="vector_index">
+<a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.vector_index">[docs]</a>
+<span class="k">def</span> <span class="nf">vector_index</span><span class="p">(</span><span class="n">vectors</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find index of vector in list of vectors.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    vectors : ndarray</span>
+<span class="sd">        List of vectors.</span>
+<span class="sd">    vector : ndarray</span>
+<span class="sd">        Vector.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    int</span>
+<span class="sd">        Index of vector in list of vectors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">vectors</span> <span class="o">==</span> <span class="n">vector</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">match</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="minimum">
+<a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.minimum">[docs]</a>
+<span class="k">def</span> <span class="nf">minimum</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find extremum of parabola through given points.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    *args</span>
+<span class="sd">        Coordinates of three points. Can also be provided as command arguments.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        x coordinates of extremum.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">y3</span> <span class="o">=</span> <span class="n">args</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+        <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">y3</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="s1">&#39;Usage: minimum x1 x2 x3 y1 y2 y3&#39;</span><span class="p">)</span>
+
+    <span class="n">enum</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y3</span><span class="p">)</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">y3</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span> <span class="o">+</span> <span class="n">x3</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y2</span><span class="p">)</span>
+    <span class="n">deno</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y3</span><span class="p">)</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">y3</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span> <span class="o">+</span> <span class="n">x3</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">deno</span><span class="p">:</span>
+        <span class="n">x0</span> <span class="o">=</span> <span class="n">enum</span> <span class="o">/</span> <span class="n">deno</span>
+        <span class="n">info</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">info</span><span class="p">(</span><span class="s1">&#39;There is no extremum.&#39;</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2024 elphmod Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -111,7 +111,7 @@
 <p>Work distribution and shared memory.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.MPI.Buffer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">Buffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.Buffer" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">Buffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/MPI.html#Buffer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.MPI.Buffer" title="Link to this definition"></a></dt>
 <dd><p>Wrapper for <code class="docutils literal notranslate"><span class="pre">pickle</span></code> in parallel context.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -124,7 +124,7 @@ used and <a class="reference internal" href="#elphmod.MPI.Buffer.get" title="elp
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.MPI.Buffer.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.Buffer.get" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/MPI.html#Buffer.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.MPI.Buffer.get" title="Link to this definition"></a></dt>
 <dd><p>Read object from buffer and broadcast it.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -138,7 +138,7 @@ used and <a class="reference internal" href="#elphmod.MPI.Buffer.get" title="elp
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.MPI.Buffer.set">
-<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.Buffer.set" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/MPI.html#Buffer.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.MPI.Buffer.set" title="Link to this definition"></a></dt>
 <dd><p>Write object to buffer on single processor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -154,7 +154,7 @@ used and <a class="reference internal" href="#elphmod.MPI.Buffer.get" title="elp
 
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.MPI.SharedArray">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">SharedArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.SharedArray" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">SharedArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/MPI.html#SharedArray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.MPI.SharedArray" title="Link to this definition"></a></dt>
 <dd><p>Create array whose memory is shared among all processes on same node.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -166,13 +166,13 @@ used and <a class="reference internal" href="#elphmod.MPI.Buffer.get" title="elp
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.MPI.distribute">
-<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">distribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunks=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.distribute" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">distribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunks=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/MPI.html#distribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.MPI.distribute" title="Link to this definition"></a></dt>
 <dd><p>Distribute work among processes.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.MPI.elphmodenv">
-<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">elphmodenv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_threads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.elphmodenv" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">elphmodenv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_threads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/MPI.html#elphmodenv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.MPI.elphmodenv" title="Link to this definition"></a></dt>
 <dd><p>Print commands to change number of threads.</p>
 <p>Run <cite>eval $(elphmodenv)</cite> before your Python scripts to prevent NumPy from
 using multiple processors for linear algebra. This is advantageous when
@@ -185,25 +185,25 @@ parallelization.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.MPI.info">
-<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.info" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/MPI.html#info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.MPI.info" title="Link to this definition"></a></dt>
 <dd><p>Print status message from first process.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.MPI.load">
-<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.load" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/MPI.html#load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.MPI.load" title="Link to this definition"></a></dt>
 <dd><p>Read and broadcast NumPy data.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.MPI.matrix">
-<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.matrix" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/MPI.html#matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.MPI.matrix" title="Link to this definition"></a></dt>
 <dd><p>Create sub-communicators.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.MPI.shared_array">
-<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">shared_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'float'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_memory=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_info=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.shared_array" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">shared_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'float'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_memory=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_info=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/MPI.html#shared_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.MPI.shared_array" title="Link to this definition"></a></dt>
 <dd><p>Create array whose memory is shared among all processes on same node.</p>
 <p>With <code class="docutils literal notranslate"><span class="pre">shared_memory=False</span></code> (<code class="docutils literal notranslate"><span class="pre">single_memory=True</span></code>) a conventional array
 is created on each (only one) processor, which however allows for the same
@@ -227,7 +227,7 @@ broadcasting syntax as shown below.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.MPI.shm_split">
-<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">shm_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elphmod.MPI.shm_split" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">shm_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory=True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/MPI.html#shm_split"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.MPI.shm_split" title="Link to this definition"></a></dt>
 <dd><p>Create communicators for use with shared memory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

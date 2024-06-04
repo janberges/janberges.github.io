@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>elphmod.eliashberg &mdash; elphmod  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #e7f2fa" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/elphmod.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/el.html">Electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/ph.html">Phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/elph.html">Electron–phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/elel.html">Electron–electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/MPI.html">MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/bravais.html">Bravais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/dispersion.html">Dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/dos.html">DOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/diagrams.html">Diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/md.html">MD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/eliashberg.html">Eliashberg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/plot.html">Plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/misc.html">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/models.html">Models</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/patches.html">Patches</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #e7f2fa" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">elphmod</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">elphmod.eliashberg</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for elphmod.eliashberg</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (C) 2017-2024 elphmod Developers</span>
+<span class="c1"># This program is free software under the terms of the GNU GPLv3 or later.</span>
+
+<span class="sd">&quot;&quot;&quot;Parameters for McMillan&#39;s formula.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">bravais</span><span class="p">,</span> <span class="n">diagrams</span><span class="p">,</span> <span class="n">dos</span><span class="p">,</span> <span class="n">misc</span><span class="p">,</span> <span class="n">occupations</span>
+
+<div class="viewcode-block" id="Tc">
+<a class="viewcode-back" href="../../modules/eliashberg.html#elphmod.eliashberg.Tc">[docs]</a>
+<span class="k">def</span> <span class="nf">Tc</span><span class="p">(</span><span class="n">lamda</span><span class="p">,</span> <span class="n">wlog</span><span class="p">,</span> <span class="n">mustar</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">w2nd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">correct</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate critical temperature using McMillan&#39;s formula.</span>
+
+<span class="sd">    See Eqs. (2) and (34) by Allen and Dynes, Phys. Rev. B 12, 905 (1975).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    lamda : float</span>
+<span class="sd">        Effective electron-phonon coupling strength.</span>
+<span class="sd">    wlog : float</span>
+<span class="sd">        Logarithmic average phonon energy in eV.</span>
+<span class="sd">    mustar : float</span>
+<span class="sd">        Coulomb pseudopotential.</span>
+<span class="sd">    w2nd : bool, default None</span>
+<span class="sd">        Second-moment average phonon energy used for shape correction in eV.</span>
+<span class="sd">    correct : bool, default False</span>
+<span class="sd">        Apply Allen and Dynes&#39; strong-coupling and, if `w2nd` is given, shape</span>
+<span class="sd">        corrections of Eq. (34)?</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Critical temperature in kelvin.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Tc</span> <span class="o">=</span> <span class="n">wlog</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.20</span> <span class="o">*</span> <span class="n">misc</span><span class="o">.</span><span class="n">kB</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.04</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">lamda</span><span class="p">)</span>
+        <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1e-3</span><span class="p">,</span> <span class="p">(</span><span class="n">lamda</span> <span class="o">-</span> <span class="n">mustar</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mf">0.62</span> <span class="o">*</span> <span class="n">lamda</span><span class="p">))))</span>
+
+    <span class="k">if</span> <span class="n">correct</span><span class="p">:</span>
+        <span class="c1"># strong-coupling correction:</span>
+        <span class="n">Lamda</span> <span class="o">=</span> <span class="mf">2.46</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mf">3.8</span> <span class="o">*</span> <span class="n">mustar</span><span class="p">)</span>
+        <span class="n">Tc</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">cbrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">lamda</span> <span class="o">/</span> <span class="n">Lamda</span><span class="p">)</span> <span class="o">**</span> <span class="mf">1.5</span><span class="p">)</span>
+
+        <span class="c1"># shape correction:</span>
+        <span class="k">if</span> <span class="n">w2nd</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">Lamda</span> <span class="o">=</span> <span class="mf">1.82</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mf">6.3</span> <span class="o">*</span> <span class="n">mustar</span><span class="p">)</span> <span class="o">*</span> <span class="n">w2nd</span> <span class="o">/</span> <span class="n">wlog</span>
+            <span class="n">Tc</span> <span class="o">*=</span> <span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">w2nd</span> <span class="o">/</span> <span class="n">wlog</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">lamda</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">lamda</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">Lamda</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Tc</span></div>
+
+
+<div class="viewcode-block" id="McMillan">
+<a class="viewcode-back" href="../../modules/eliashberg.html#elphmod.eliashberg.McMillan">[docs]</a>
+<span class="k">def</span> <span class="nf">McMillan</span><span class="p">(</span><span class="n">nq</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">mustar</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">tetra</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span>
+        <span class="n">f</span><span class="o">=</span><span class="n">occupations</span><span class="o">.</span><span class="n">fermi_dirac</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate parameters and result of McMillan&#39;s formula.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    nq : int</span>
+<span class="sd">        Number of q points per dimension.</span>
+<span class="sd">    e : ndarray</span>
+<span class="sd">        Electron dispersion on uniform mesh. The Fermi level must be at zero.</span>
+<span class="sd">    w2 : ndarray</span>
+<span class="sd">        Squared phonon frequencies for irreducible q points.</span>
+<span class="sd">    g2 : ndarray</span>
+<span class="sd">        Squared electron-phonon coupling (energy to the power of three).</span>
+<span class="sd">    eps : float</span>
+<span class="sd">        Phonon frequencies squared below `eps` are set to `eps`; corresponding</span>
+<span class="sd">        coupling are set to zero.</span>
+<span class="sd">    mustar : float</span>
+<span class="sd">        Coulomb pseudopotential.</span>
+<span class="sd">    tetra : bool</span>
+<span class="sd">        Calculate double Fermi-surface average and density of states using 2D</span>
+<span class="sd">        tetrahedron methods? Otherwise summations over broadened delta functions</span>
+<span class="sd">        are performed.</span>
+<span class="sd">    kT : float</span>
+<span class="sd">        Smearing temperature. Only used if `tetra` is ``False``.</span>
+<span class="sd">    f : function</span>
+<span class="sd">        Particle distribution as a function of energy divided by `kT`. Only used</span>
+<span class="sd">        if `tetra` is ``False``.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Effective electron-phonon coupling strength :math:`\lambda`.</span>
+<span class="sd">    float</span>
+<span class="sd">        Effective phonon frequency :math:`\langle \omega \rangle`.</span>
+<span class="sd">    float</span>
+<span class="sd">        Estimated critical temperature of superconductivity.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nk</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">nel</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">nQ</span><span class="p">,</span> <span class="n">nph</span> <span class="o">=</span> <span class="n">w2</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">nQ</span><span class="p">,</span> <span class="n">nph</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">nel</span><span class="p">,</span> <span class="n">nel</span> <span class="o">=</span> <span class="n">g2</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">bravais</span><span class="o">.</span><span class="n">irreducibles</span><span class="p">(</span><span class="n">nq</span><span class="p">)))</span>
+
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">bravais</span><span class="o">.</span><span class="n">images</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">nq</span><span class="p">))</span> <span class="k">for</span> <span class="n">q1</span><span class="p">,</span> <span class="n">q2</span> <span class="ow">in</span> <span class="n">q</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">tetra</span><span class="p">:</span>
+        <span class="n">q</span> <span class="o">*=</span> <span class="n">nk</span> <span class="o">//</span> <span class="n">nq</span>
+
+        <span class="n">g2dd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nQ</span><span class="p">,</span> <span class="n">nph</span><span class="p">))</span>
+        <span class="n">dd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nQ</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">iq</span><span class="p">,</span> <span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+            <span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">shift</span><span class="o">=-</span><span class="n">q1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">shift</span><span class="o">=-</span><span class="n">q2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">g2_fun</span> <span class="o">=</span> <span class="n">bravais</span><span class="o">.</span><span class="n">linear_interpolation</span><span class="p">(</span><span class="n">g2</span><span class="p">[</span><span class="n">iq</span><span class="p">],</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+            <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nel</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nel</span><span class="p">):</span>
+                    <span class="n">intersections</span> <span class="o">=</span> <span class="n">dos</span><span class="o">.</span><span class="n">double_delta</span><span class="p">(</span><span class="n">e</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">n</span><span class="p">],</span> <span class="n">E</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">m</span><span class="p">])(</span><span class="mi">0</span><span class="p">)</span>
+
+                    <span class="k">for</span> <span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">),</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">intersections</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                        <span class="n">g2dd</span><span class="p">[</span><span class="n">iq</span><span class="p">]</span> <span class="o">+=</span> <span class="n">weight</span> <span class="o">*</span> <span class="n">g2_fun</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">)[:,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">]</span>
+                        <span class="n">dd</span><span class="p">[</span><span class="n">iq</span><span class="p">]</span> <span class="o">+=</span> <span class="n">weight</span>
+
+        <span class="n">N0</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nel</span><span class="p">):</span>
+            <span class="n">N0</span> <span class="o">+=</span> <span class="n">dos</span><span class="o">.</span><span class="n">hexDOS</span><span class="p">(</span><span class="n">e</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">n</span><span class="p">])(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">nq</span> <span class="o">*</span> <span class="n">q</span>
+
+        <span class="n">g2dd</span><span class="p">,</span> <span class="n">dd</span> <span class="o">=</span> <span class="n">diagrams</span><span class="o">.</span><span class="n">double_fermi_surface_average</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">kT</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+        <span class="n">N0</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">e</span> <span class="o">/</span> <span class="n">kT</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">kT</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">g2dd</span> <span class="o">*=</span> <span class="n">weights</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="n">dd</span> <span class="o">*=</span> <span class="n">weights</span>
+
+    <span class="n">w2</span> <span class="o">=</span> <span class="n">w2</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">dangerous</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">w2</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">)</span>
+
+    <span class="n">w2</span><span class="p">[</span><span class="n">dangerous</span><span class="p">]</span> <span class="o">=</span> <span class="n">eps</span>
+    <span class="n">g2dd</span><span class="p">[</span><span class="n">dangerous</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="n">V</span> <span class="o">=</span> <span class="n">g2dd</span> <span class="o">/</span> <span class="n">w2</span>
+
+    <span class="n">lamda</span> <span class="o">=</span> <span class="n">N0</span> <span class="o">*</span> <span class="n">V</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">dd</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">wlog</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">V</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">w2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">V</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">lamda</span><span class="p">,</span> <span class="n">wlog</span><span class="p">,</span> <span class="n">Tc</span><span class="p">(</span><span class="n">lamda</span><span class="p">,</span> <span class="n">wlog</span><span class="p">,</span> <span class="n">mustar</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2024 elphmod Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
