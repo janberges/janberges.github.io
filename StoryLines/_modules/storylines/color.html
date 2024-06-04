@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>storylines.color &mdash; StoryLines  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #e7f2fa" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/StoryLines.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/plot.html">Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/calc.html">Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/color.html">Colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/convert.html">Conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/cut.html">Cutting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/fatband.html">Fatbands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/files.html">Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/group.html">Grouping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/png.html">PNG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/proj.html">Projection</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/example.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/faces.html">Tetrahedron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/fatband.html">Fatbands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/mandelbrot.html">Mandelbrot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/moebius.html">Moebius</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/project.html">Projection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/shortcut.html">Shortcuts</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #e7f2fa" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">StoryLines</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">storylines.color</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for storylines.color</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (C) 2016-2024 Jan Berges</span>
+<span class="c1"># This program is free software under the terms of the BSD Zero Clause License.</span>
+
+<span class="sd">&quot;&quot;&quot;Blendable colors and colormaps.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+
+<div class="viewcode-block" id="Color">
+<a class="viewcode-back" href="../../modules/color.html#storylines.color.Color">[docs]</a>
+<span class="k">class</span> <span class="nc">Color</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Representation of a color.</span>
+
+<span class="sd">    Colors can be defined using different models:</span>
+
+<span class="sd">        RGB (red, green, blue):</span>
+<span class="sd">            The three RGB channels take values from 0 to 255.</span>
+<span class="sd">        HSV (hue, saturation, value):</span>
+<span class="sd">            The hue is the color angle in degrees from 0 to 360.</span>
+<span class="sd">            Values of 0, 120, and 240 correspond to red, green, and blue.</span>
+<span class="sd">            The saturation takes values from -1 to 1.</span>
+<span class="sd">            A value of 0 is white; negative values yield complementary colors.</span>
+<span class="sd">            The value is the RGB amplitude from 0 to 255.</span>
+<span class="sd">            A value of 0 is black.</span>
+<span class="sd">        PSV (phase, shift, value):</span>
+<span class="sd">            Superposition of shifted RGB &quot;waves&quot;.</span>
+<span class="sd">            The phase and the phase shift from R to G (G to B) are in radians.</span>
+<span class="sd">            The value is the amplitude of the wave from 0 to 255.</span>
+
+<span class="sd">    Colors can be mixed:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        red = Color(255, 0, 0, &#39;RGB&#39;)</span>
+<span class="sd">        green = Color(120, 1, 255, &#39;HSV&#39;)</span>
+<span class="sd">        yellow = (red + green) / 2</span>
+
+<span class="sd">    Here, colors of different models are converted to RGB first.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;RGB&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">B</span> <span class="o">=</span> <span class="n">B</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">=</span> <span class="n">C</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+
+    <span class="n">context</span> <span class="o">=</span> <span class="s1">&#39;TeX&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="nb">round</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">RGB</span><span class="p">())))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span> <span class="o">==</span> <span class="s1">&#39;TeX&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;{rgb,255:red,</span><span class="si">%d</span><span class="s1">;green,</span><span class="si">%d</span><span class="s1">;blue,</span><span class="si">%d</span><span class="s1">}&#39;</span> <span class="o">%</span> <span class="n">RGB</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span> <span class="o">==</span> <span class="s1">&#39;HTML&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;#</span><span class="si">%02x%02x%02x</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">RGB</span>
+
+        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Color(</span><span class="si">%g</span><span class="s2">, </span><span class="si">%g</span><span class="s2">, </span><span class="si">%g</span><span class="s2">, &#39;</span><span class="si">%s</span><span class="s2">&#39;)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="n">u</span><span class="o">.</span><span class="n">model</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;RGB&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">A</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">B</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">B</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">C</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">C</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;HSV&#39;</span>\
+            <span class="ow">or</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;PSV&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">C</span> <span class="o">==</span> <span class="n">u</span><span class="o">.</span><span class="n">C</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">Color</span><span class="p">((</span><span class="n">i</span><span class="o">.</span><span class="n">A</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">B</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">B</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+
+                <span class="k">return</span> <span class="n">Color</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">A</span> <span class="o">*</span> <span class="n">i</span><span class="o">.</span><span class="n">C</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">A</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">C</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">C</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">C</span><span class="p">),</span>
+                    <span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">B</span> <span class="o">*</span> <span class="n">i</span><span class="o">.</span><span class="n">C</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">B</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">C</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">C</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">C</span><span class="p">),</span>
+                    <span class="n">i</span><span class="o">.</span><span class="n">C</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">C</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">i</span><span class="o">.</span><span class="n">toRGB</span><span class="p">()</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">toRGB</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;RGB&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">A</span> <span class="o">*</span> <span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">B</span> <span class="o">*</span> <span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">C</span> <span class="o">*</span> <span class="n">u</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;HSV&#39;</span>\
+        <span class="ow">or</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;PSV&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">B</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">C</span> <span class="o">*</span> <span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="fm">__rmul__</span> <span class="o">=</span> <span class="fm">__mul__</span>
+
+    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">u</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">i</span> <span class="o">*</span> <span class="n">u</span> <span class="o">**</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="n">__div__</span> <span class="o">=</span> <span class="fm">__truediv__</span>
+
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Color.RGB">
+<a class="viewcode-back" href="../../modules/color.html#storylines.color.Color.RGB">[docs]</a>
+    <span class="k">def</span> <span class="nf">RGB</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate red, green, and blue components.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;HSV&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">HSV2RGB</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;PSV&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">PSV2RGB</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span></div>
+
+
+<div class="viewcode-block" id="Color.toRGB">
+<a class="viewcode-back" href="../../modules/color.html#storylines.color.Color.toRGB">[docs]</a>
+    <span class="k">def</span> <span class="nf">toRGB</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create RGB representation.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">RGB</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="Color.toHSV">
+<a class="viewcode-back" href="../../modules/color.html#storylines.color.Color.toHSV">[docs]</a>
+    <span class="k">def</span> <span class="nf">toHSV</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create HSV representation.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">RGB2HSV</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">RGB</span><span class="p">()),</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;HSV&#39;</span><span class="p">)</span></div>
+</div>
+
+
+<div class="viewcode-block" id="colormap">
+<a class="viewcode-back" href="../../modules/color.html#storylines.color.colormap">[docs]</a>
+<span class="k">def</span> <span class="nf">colormap</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Map interval [0, 1] to colors.</span>
+
+<span class="sd">    Colors can be defined for an arbitrary number of points in the interval. In</span>
+<span class="sd">    between, colors are interpolated linearly. The color for the point ``None``</span>
+<span class="sd">    is used for NaNs and beyond the outermost points where colors have been</span>
+<span class="sd">    defined.</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        bluebrown = colormap( # PRB 101, 155107 (2020)</span>
+<span class="sd">            (0, Color(0.0, 1, 255, &#39;PSV&#39;), math.sqrt),</span>
+<span class="sd">            (1, Color(5.5, 1, 255, &#39;PSV&#39;)),</span>
+<span class="sd">            (None, Color(255, 255, 255, &#39;RGB&#39;)),</span>
+<span class="sd">            )</span>
+
+<span class="sd">        AFMhot = colormap( # Gnuplot</span>
+<span class="sd">            (0.00, Color(  0,   0,   0)),</span>
+<span class="sd">            (0.25, Color(128,   0,   0)),</span>
+<span class="sd">            (0.50, Color(255, 128,   0)),</span>
+<span class="sd">            (0.75, Color(255, 255, 128)),</span>
+<span class="sd">            (1.00, Color(255, 255, 255)),</span>
+<span class="sd">            )</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">default</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">arg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">default</span> <span class="o">=</span> <span class="n">arg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">arg</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">arg</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">arg</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="kc">None</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">color</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">color</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">color</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">color</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="n">weight</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">color</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">color</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">color</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+
+                <span class="k">if</span> <span class="n">color</span><span class="o">.</span><span class="n">f</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">weight</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">f</span><span class="p">[</span><span class="n">n</span><span class="p">](</span><span class="n">weight</span><span class="p">)</span>
+
+                <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">weight</span><span class="p">)</span> <span class="o">*</span> <span class="n">color</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">weight</span> <span class="o">*</span> <span class="n">color</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">default</span>
+
+    <span class="n">color</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="n">color</span></div>
+
+
+<div class="viewcode-block" id="colorize">
+<a class="viewcode-back" href="../../modules/color.html#storylines.color.colorize">[docs]</a>
+<span class="k">def</span> <span class="nf">colorize</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">minimum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maximum</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Colorize data using colormap.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : list of list</span>
+<span class="sd">        Data on two-dimensional mesh.</span>
+<span class="sd">    cmap : function</span>
+<span class="sd">        Colormap.</span>
+<span class="sd">    minimum, maxmimum : float</span>
+<span class="sd">        Data values corresponding to minimum and maximum of color scale.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list of list of list</span>
+<span class="sd">        RGB image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">minimum</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">minimum</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">maximum</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">maximum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">cmap</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">cmap</span> <span class="o">=</span> <span class="n">colormap</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cmap</span><span class="o">.</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="n">cmap</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">minimum</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">maximum</span> <span class="o">-</span> <span class="n">minimum</span><span class="p">)</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span> <span class="o">-</span> <span class="n">minimum</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">maximum</span> <span class="o">-</span> <span class="n">minimum</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+
+    <span class="n">image</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
+            <span class="n">image</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cmap</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">y</span> <span class="o">*</span> <span class="n">width</span> <span class="o">+</span> <span class="n">x</span><span class="p">])</span><span class="o">.</span><span class="n">RGB</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">image</span></div>
+
+
+<div class="viewcode-block" id="HSV2RGB">
+<a class="viewcode-back" href="../../modules/color.html#storylines.color.HSV2RGB">[docs]</a>
+<span class="k">def</span> <span class="nf">HSV2RGB</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">V</span><span class="o">=</span><span class="mi">255</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Transform hue, saturation, value to red, green, blue.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    H : float</span>
+<span class="sd">        Hue with period of 360 (degrees).</span>
+<span class="sd">    S : float</span>
+<span class="sd">        Saturation between 0 and 1.</span>
+<span class="sd">    V : float</span>
+<span class="sd">        Value/brightness between 0 and 255.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float, float, float</span>
+<span class="sd">        Red, green, and blue values between 0 an 255.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">S</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">S</span> <span class="o">=</span> <span class="o">-</span><span class="n">S</span>
+        <span class="n">H</span> <span class="o">+=</span> <span class="mi">180</span>
+
+    <span class="n">H</span> <span class="o">%=</span> <span class="mi">360</span>
+
+    <span class="n">h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">H</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">H</span> <span class="o">/</span> <span class="mi">60</span> <span class="o">-</span> <span class="n">h</span>
+
+    <span class="n">p</span> <span class="o">=</span> <span class="n">V</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">S</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">V</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">S</span> <span class="o">*</span> <span class="n">f</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">V</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">S</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">f</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">h</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">V</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span>
+    <span class="k">if</span> <span class="n">h</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">p</span>
+    <span class="k">if</span> <span class="n">h</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> <span class="k">return</span> <span class="n">p</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">t</span>
+    <span class="k">if</span> <span class="n">h</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span> <span class="k">return</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">V</span>
+    <span class="k">if</span> <span class="n">h</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span> <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">V</span>
+    <span class="k">if</span> <span class="n">h</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span> <span class="k">return</span> <span class="n">V</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span></div>
+
+
+<div class="viewcode-block" id="RGB2HSV">
+<a class="viewcode-back" href="../../modules/color.html#storylines.color.RGB2HSV">[docs]</a>
+<span class="k">def</span> <span class="nf">RGB2HSV</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Transform red, green, blue to hue, saturation, value.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    R, G, B : float</span>
+<span class="sd">        Red, green, and blue values between 0 an 255.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Hue with period of 360 (degrees).</span>
+<span class="sd">    float</span>
+<span class="sd">        Saturation between 0 and 1.</span>
+<span class="sd">    float</span>
+<span class="sd">        Value/brightness between 0 and 255.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+    <span class="n">extent</span> <span class="o">=</span> <span class="n">V</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">R</span> <span class="o">==</span> <span class="n">G</span> <span class="o">==</span> <span class="n">B</span><span class="p">:</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">V</span> <span class="o">==</span> <span class="n">R</span><span class="p">:</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="p">((</span><span class="n">G</span> <span class="o">-</span> <span class="n">B</span><span class="p">)</span> <span class="o">/</span> <span class="n">extent</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">V</span> <span class="o">==</span> <span class="n">G</span><span class="p">:</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="p">((</span><span class="n">B</span> <span class="o">-</span> <span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="n">extent</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">V</span> <span class="o">==</span> <span class="n">B</span><span class="p">:</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="p">((</span><span class="n">R</span> <span class="o">-</span> <span class="n">G</span><span class="p">)</span> <span class="o">/</span> <span class="n">extent</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
+
+    <span class="n">S</span> <span class="o">=</span> <span class="n">extent</span> <span class="o">/</span> <span class="n">V</span> <span class="k">if</span> <span class="n">V</span> <span class="k">else</span> <span class="mi">0</span>
+
+    <span class="k">return</span> <span class="n">H</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">V</span></div>
+
+
+<div class="viewcode-block" id="PSV2RGB">
+<a class="viewcode-back" href="../../modules/color.html#storylines.color.PSV2RGB">[docs]</a>
+<span class="k">def</span> <span class="nf">PSV2RGB</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">V</span><span class="o">=</span><span class="mi">255</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set color via phase, shift, and value.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    P : float</span>
+<span class="sd">        Phase between 0 and 2 pi.</span>
+<span class="sd">    S : float</span>
+<span class="sd">        Phase shift from red to green and from green to blue channel between 0</span>
+<span class="sd">        and 2 pi.</span>
+<span class="sd">    V : float</span>
+<span class="sd">        Value/brightness between 0 and 255.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float, float, float</span>
+<span class="sd">        Red, green, and blue values between 0 an 255.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">V</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">P</span> <span class="o">+</span> <span class="n">S</span> <span class="o">*</span> <span class="n">n</span><span class="p">))</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2024 Jan Berges.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

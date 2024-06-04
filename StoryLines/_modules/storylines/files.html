@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>storylines.files &mdash; StoryLines  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #e7f2fa" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/StoryLines.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/plot.html">Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/calc.html">Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/color.html">Colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/convert.html">Conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/cut.html">Cutting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/fatband.html">Fatbands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/files.html">Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/group.html">Grouping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/png.html">PNG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/proj.html">Projection</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/example.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/faces.html">Tetrahedron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/fatband.html">Fatbands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/mandelbrot.html">Mandelbrot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/moebius.html">Moebius</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/project.html">Projection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/shortcut.html">Shortcuts</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #e7f2fa" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">StoryLines</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">storylines.files</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for storylines.files</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (C) 2016-2024 Jan Berges</span>
+<span class="c1"># This program is free software under the terms of the BSD Zero Clause License.</span>
+
+<span class="sd">&quot;&quot;&quot;Typeset TeX, rasterize PDF.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="kn">from</span> <span class="nn">.png</span> <span class="kn">import</span> <span class="n">save</span><span class="p">,</span> <span class="n">load</span>
+
+<div class="viewcode-block" id="goto">
+<a class="viewcode-back" href="../../modules/files.html#storylines.files.goto">[docs]</a>
+<span class="k">def</span> <span class="nf">goto</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Go to output directory for plot typesetting.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        LaTeX file name including possible path.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    stem : str</span>
+<span class="sd">        File name without path and extension.</span>
+<span class="sd">    typ : str</span>
+<span class="sd">        Desired file type (extension).</span>
+<span class="sd">    home : function</span>
+<span class="sd">        Function to return to previous working directory.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">head</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">extension</span> <span class="ow">in</span> <span class="s1">&#39;tex&#39;</span><span class="p">,</span> <span class="s1">&#39;pdf&#39;</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">tail</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">extension</span><span class="p">):</span>
+            <span class="n">stem</span> <span class="o">=</span> <span class="n">tail</span><span class="p">[:</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">extension</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">typ</span> <span class="o">=</span> <span class="n">extension</span>
+            <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">stem</span> <span class="o">=</span> <span class="n">tail</span>
+        <span class="n">typ</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">head</span><span class="p">:</span>
+        <span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s1">&#39;mkdir&#39;</span><span class="p">,</span> <span class="s1">&#39;-p&#39;</span><span class="p">,</span> <span class="n">head</span><span class="p">])</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">head</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">cwd</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">stem</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">home</span></div>
+
+
+<div class="viewcode-block" id="typeset">
+<a class="viewcode-back" href="../../modules/files.html#storylines.files.typeset">[docs]</a>
+<span class="k">def</span> <span class="nf">typeset</span><span class="p">(</span><span class="n">stem</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;pdflatex&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run typesetting engine and remove ``.aux`` and ``.log`` files.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    stem : str</span>
+<span class="sd">        File name without path and extension (in current working directory).</span>
+<span class="sd">    engine : str, default &#39;pdflatex&#39;</span>
+<span class="sd">        TeX typesetting engine.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="n">engine</span><span class="p">,</span> <span class="s1">&#39;--interaction=batchmode&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.tex&#39;</span> <span class="o">%</span> <span class="n">stem</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="s1">&#39;aux&#39;</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">stem</span><span class="p">,</span> <span class="n">suffix</span><span class="p">))</span>
+
+    <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Could not typeset </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">stem</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="rasterize">
+<a class="viewcode-back" href="../../modules/files.html#storylines.files.rasterize">[docs]</a>
+<span class="k">def</span> <span class="nf">rasterize</span><span class="p">(</span><span class="n">stem</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mf">300.0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">rewrite</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run ``pdftoppm`` and remove ``-1`` from name of resulting PNG file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    stem : str</span>
+<span class="sd">        File name without path and extension (in current working directory).</span>
+<span class="sd">    dpi : float, default 300.0</span>
+<span class="sd">        Image resolution in dots per inch.</span>
+<span class="sd">    width, height : int, default 0</span>
+<span class="sd">        Image dimensions in pixels. If either `width` or `height` is zero, it</span>
+<span class="sd">        will be determined by the aspect ratio of the image. If both are zero,</span>
+<span class="sd">        they will also be determined by `dpi`.</span>
+<span class="sd">    rewrite : bool, default False</span>
+<span class="sd">        Rewrite resulting PNG file using StoryLines? This will remove possible</span>
+<span class="sd">        metadata.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-png&#39;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">width</span> <span class="ow">or</span> <span class="n">height</span><span class="p">:</span>
+            <span class="n">args</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;-scale-to-x&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">width</span> <span class="ow">or</span> <span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+            <span class="n">args</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;-scale-to-y&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">height</span> <span class="ow">or</span> <span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">args</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">dpi</span><span class="p">]</span>
+
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s1">&#39;pdftoppm&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">args</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.pdf&#39;</span> <span class="o">%</span> <span class="n">stem</span><span class="p">,</span> <span class="n">stem</span><span class="p">])</span>
+
+        <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">-1.png&#39;</span> <span class="o">%</span> <span class="n">stem</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.png&#39;</span> <span class="o">%</span> <span class="n">stem</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">rewrite</span><span class="p">:</span>
+            <span class="n">save</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.png&#39;</span> <span class="o">%</span> <span class="n">stem</span><span class="p">,</span> <span class="n">load</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.png&#39;</span> <span class="o">%</span> <span class="n">stem</span><span class="p">))</span>
+
+    <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Could not rasterize </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">stem</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="combine">
+<a class="viewcode-back" href="../../modules/files.html#storylines.files.combine">[docs]</a>
+<span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">pdfs</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">halign</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">pdf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">png</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mf">300.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Arrange multiple PDFs in single file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        Name of combined file.</span>
+<span class="sd">    pdfs : list of str</span>
+<span class="sd">        Names of PDFs to be combined.</span>
+<span class="sd">    columns : int, default 100</span>
+<span class="sd">        Number of PDFs to be arranged side by side.</span>
+<span class="sd">    align : float, default 0.5</span>
+<span class="sd">        Vertical alignment of PDFs, where 0, 0.5, and 1 stand for the bottom,</span>
+<span class="sd">        center, and top of the individual figures.</span>
+<span class="sd">    halign : str, default &#39;left&#39;</span>
+<span class="sd">        Horizontal alignment of PDFs. Possible values are ``&#39;left&#39;``,</span>
+<span class="sd">        ``&#39;center&#39;`` and ``&#39;right&#39;``.</span>
+<span class="sd">    pdf : bool, default False</span>
+<span class="sd">        Convert resulting TeX file to PDF? Automatically set to ``True`` if</span>
+<span class="sd">        `filename` ends with ``.pdf``.</span>
+<span class="sd">    png : bool, default False</span>
+<span class="sd">        Convert resulting PDF file to PNG? This implies `pdf`. Automatically set</span>
+<span class="sd">        to ``True`` if `filename` ends with ``.png``.</span>
+<span class="sd">    dpi : float, default 300.0</span>
+<span class="sd">        Image resolution in dots per inch.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">stem</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">home</span> <span class="o">=</span> <span class="n">goto</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="n">png</span> <span class="o">=</span> <span class="n">png</span> <span class="ow">or</span> <span class="n">typ</span> <span class="o">==</span> <span class="s1">&#39;png&#39;</span>
+    <span class="n">pdf</span> <span class="o">=</span> <span class="n">pdf</span> <span class="ow">or</span> <span class="n">typ</span> <span class="o">==</span> <span class="s1">&#39;pdf&#39;</span> <span class="ow">or</span> <span class="n">png</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.tex&#39;</span> <span class="o">%</span> <span class="n">stem</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tex</span><span class="p">:</span>
+        <span class="n">tex</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">documentclass[varwidth=1189mm]</span><span class="si">{standalone}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage</span><span class="si">{graphicx}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">begin</span><span class="si">{document}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">noindent%</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">halign</span> <span class="o">==</span> <span class="s1">&#39;center&#39;</span><span class="p">:</span>
+            <span class="n">tex</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">centering%</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">halign</span> <span class="o">==</span> <span class="s1">&#39;right&#39;</span><span class="p">:</span>
+            <span class="n">tex</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">raggedleft%</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pdfs</span><span class="p">)):</span>
+            <span class="n">nobreak</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">columns</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">pdfs</span><span class="p">)</span>
+            <span class="n">tex</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">raisebox{-</span><span class="si">%g</span><span class="se">\\</span><span class="s1">height}{</span><span class="se">\\</span><span class="s1">includegraphics{{</span><span class="si">%s</span><span class="s1">}.pdf}}</span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="n">align</span><span class="p">,</span> <span class="n">pdfs</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="s1">&#39;%&#39;</span> <span class="k">if</span> <span class="n">nobreak</span> <span class="k">else</span> <span class="s1">&#39;</span><span class="se">\\\\</span><span class="s1">[-</span><span class="se">\\</span><span class="s1">lineskip]&#39;</span><span class="p">))</span>
+
+        <span class="n">tex</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">end</span><span class="si">{document}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">pdf</span><span class="p">:</span>
+        <span class="n">typeset</span><span class="p">(</span><span class="n">stem</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">png</span><span class="p">:</span>
+        <span class="n">rasterize</span><span class="p">(</span><span class="n">stem</span><span class="p">,</span> <span class="n">dpi</span><span class="p">)</span>
+
+    <span class="n">home</span><span class="p">()</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2024 Jan Berges.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
