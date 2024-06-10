@@ -284,7 +284,7 @@
 <span class="sd">    font : str, default None</span>
 <span class="sd">        Predefined font selection. Imitates well-known fonts. Possible values</span>
 <span class="sd">        are ``&#39;Gill Sans&#39;``, ``&#39;Helvetica&#39;``, ``&#39;Iwona&#39;``, ``&#39;Latin Modern&#39;``,</span>
-<span class="sd">        and ``&#39;Times&#39;``.</span>
+<span class="sd">        ``&#39;Times&#39;``, and ``&#39;Utopia&#39;``.</span>
 <span class="sd">    fontsize : int, default 10</span>
 <span class="sd">        Font size for standalone figures in pt.</span>
 <span class="sd">    single : float, default 8.0</span>
@@ -851,7 +851,8 @@
 <span class="sd">            zero, they will also be determined by `dpi`.</span>
 <span class="sd">        rewrite : bool, default False</span>
 <span class="sd">            Rewrite resulting PNG file using StoryLines? This will remove</span>
-<span class="sd">            possible metadata.</span>
+<span class="sd">            possible metadata and may reduce the file size but currently is</span>
+<span class="sd">            quite slow.</span>
 <span class="sd">        engine : str, default &#39;pdflatex&#39;</span>
 <span class="sd">            TeX typesetting engine.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1123,6 +1124,8 @@
                             <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage</span><span class="si">{lmodern}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
                         <span class="s1">&#39;Times&#39;</span><span class="p">:</span>
                             <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage{newtxtext, newtxmath}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Utopia&#39;</span><span class="p">:</span>
+                            <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage</span><span class="si">{fourier}</span><span class="s1">&#39;</span><span class="p">,</span>
                         <span class="p">}</span>
 
                     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">font</span> <span class="ow">in</span> <span class="n">texfonts</span><span class="p">:</span>

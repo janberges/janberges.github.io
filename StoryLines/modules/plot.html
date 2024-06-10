@@ -294,7 +294,7 @@ otherwise.</p>
 </dd>
 <dt><strong>font</strong><span class="classifier">str, default None</span></dt><dd><p>Predefined font selection. Imitates well-known fonts. Possible values
 are <code class="docutils literal notranslate"><span class="pre">'Gill</span> <span class="pre">Sans'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Helvetica'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Iwona'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Latin</span> <span class="pre">Modern'</span></code>,
-and <code class="docutils literal notranslate"><span class="pre">'Times'</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">'Times'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'Utopia'</span></code>.</p>
 </dd>
 <dt><strong>fontsize</strong><span class="classifier">int, default 10</span></dt><dd><p>Font size for standalone figures in pt.</p>
 </dd>
@@ -574,7 +574,8 @@ it will be determined by the aspect ratio of the image. If both are
 zero, they will also be determined by <cite>dpi</cite>.</p>
 </dd>
 <dt><strong>rewrite</strong><span class="classifier">bool, default False</span></dt><dd><p>Rewrite resulting PNG file using StoryLines? This will remove
-possible metadata.</p>
+possible metadata and may reduce the file size but currently is
+quite slow.</p>
 </dd>
 <dt><strong>engine</strong><span class="classifier">str, default ‘pdflatex’</span></dt><dd><p>TeX typesetting engine.</p>
 </dd>
