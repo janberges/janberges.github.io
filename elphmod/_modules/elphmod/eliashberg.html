@@ -145,7 +145,7 @@
 <div class="viewcode-block" id="McMillan">
 <a class="viewcode-back" href="../../modules/eliashberg.html#elphmod.eliashberg.McMillan">[docs]</a>
 <span class="k">def</span> <span class="nf">McMillan</span><span class="p">(</span><span class="n">nq</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">mustar</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">tetra</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span>
-        <span class="n">f</span><span class="o">=</span><span class="n">occupations</span><span class="o">.</span><span class="n">fermi_dirac</span><span class="p">):</span>
+        <span class="n">f</span><span class="o">=</span><span class="n">occupations</span><span class="o">.</span><span class="n">fermi_dirac</span><span class="p">,</span> <span class="n">correct</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate parameters and result of McMillan&#39;s formula.</span>
 
 <span class="sd">    Parameters</span>
@@ -160,7 +160,7 @@
 <span class="sd">        Squared electron-phonon coupling (energy to the power of three).</span>
 <span class="sd">    eps : float</span>
 <span class="sd">        Phonon frequencies squared below `eps` are set to `eps`; corresponding</span>
-<span class="sd">        coupling are set to zero.</span>
+<span class="sd">        couplings are set to zero.</span>
 <span class="sd">    mustar : float</span>
 <span class="sd">        Coulomb pseudopotential.</span>
 <span class="sd">    tetra : bool</span>
@@ -172,6 +172,8 @@
 <span class="sd">    f : function</span>
 <span class="sd">        Particle distribution as a function of energy divided by `kT`. Only used</span>
 <span class="sd">        if `tetra` is ``False``.</span>
+<span class="sd">    correct : bool, default False</span>
+<span class="sd">        Apply Allen and Dynes&#39; strong-coupling and shape corrections?</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -181,6 +183,8 @@
 <span class="sd">        Effective phonon frequency :math:`\langle \omega \rangle`.</span>
 <span class="sd">    float</span>
 <span class="sd">        Estimated critical temperature of superconductivity.</span>
+<span class="sd">    float, optional</span>
+<span class="sd">        Second-moment average phonon energy used for shape correction.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">nk</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">nel</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">nQ</span><span class="p">,</span> <span class="n">nph</span> <span class="o">=</span> <span class="n">w2</span><span class="o">.</span><span class="n">shape</span>
@@ -234,6 +238,11 @@
 
     <span class="n">lamda</span> <span class="o">=</span> <span class="n">N0</span> <span class="o">*</span> <span class="n">V</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">dd</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="n">wlog</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">V</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">w2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">V</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+    <span class="k">if</span> <span class="n">correct</span><span class="p">:</span>
+        <span class="n">w2nd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">V</span> <span class="o">*</span> <span class="n">w2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">V</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+        <span class="k">return</span> <span class="n">lamda</span><span class="p">,</span> <span class="n">wlog</span><span class="p">,</span> <span class="n">Tc</span><span class="p">(</span><span class="n">lamda</span><span class="p">,</span> <span class="n">wlog</span><span class="p">,</span> <span class="n">mustar</span><span class="p">,</span> <span class="n">w2nd</span><span class="p">,</span> <span class="n">correct</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">w2nd</span>
 
     <span class="k">return</span> <span class="n">lamda</span><span class="p">,</span> <span class="n">wlog</span><span class="p">,</span> <span class="n">Tc</span><span class="p">(</span><span class="n">lamda</span><span class="p">,</span> <span class="n">wlog</span><span class="p">,</span> <span class="n">mustar</span><span class="p">)</span></div>
 

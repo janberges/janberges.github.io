@@ -102,7 +102,7 @@
 <p>Parameters for McMillan’s formula.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.eliashberg.McMillan">
-<span class="sig-prename descclassname"><span class="pre">elphmod.eliashberg.</span></span><span class="sig-name descname"><span class="pre">McMillan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps=1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mustar=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tetra=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/eliashberg.html#McMillan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.eliashberg.McMillan" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.eliashberg.</span></span><span class="sig-name descname"><span class="pre">McMillan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps=1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mustar=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tetra=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f=&lt;function</span> <span class="pre">fermi_dirac&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correct=False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/eliashberg.html#McMillan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.eliashberg.McMillan" title="Link to this definition"></a></dt>
 <dd><p>Calculate parameters and result of McMillan’s formula.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -116,7 +116,7 @@
 <dt><strong>g2</strong><span class="classifier">ndarray</span></dt><dd><p>Squared electron-phonon coupling (energy to the power of three).</p>
 </dd>
 <dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Phonon frequencies squared below <cite>eps</cite> are set to <cite>eps</cite>; corresponding
-coupling are set to zero.</p>
+couplings are set to zero.</p>
 </dd>
 <dt><strong>mustar</strong><span class="classifier">float</span></dt><dd><p>Coulomb pseudopotential.</p>
 </dd>
@@ -129,6 +129,8 @@ are performed.</p>
 <dt><strong>f</strong><span class="classifier">function</span></dt><dd><p>Particle distribution as a function of energy divided by <cite>kT</cite>. Only used
 if <cite>tetra</cite> is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 </dd>
+<dt><strong>correct</strong><span class="classifier">bool, default False</span></dt><dd><p>Apply Allen and Dynes’ strong-coupling and shape corrections?</p>
+</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -138,6 +140,8 @@ if <cite>tetra</cite> is <code class="docutils literal notranslate"><span class=
 <dt>float</dt><dd><p>Effective phonon frequency <span class="math notranslate nohighlight">\(\langle \omega \rangle\)</span>.</p>
 </dd>
 <dt>float</dt><dd><p>Estimated critical temperature of superconductivity.</p>
+</dd>
+<dt>float, optional</dt><dd><p>Second-moment average phonon energy used for shape correction.</p>
 </dd>
 </dl>
 </dd>

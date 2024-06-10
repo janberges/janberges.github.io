@@ -195,6 +195,8 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uijkl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vijkl_full</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vijkl_redu</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">nq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">no</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Wmat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">cells</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+
         <span class="k">if</span> <span class="n">uijkl</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">Wmat</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
 

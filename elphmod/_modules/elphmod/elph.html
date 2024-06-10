@@ -337,6 +337,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">divide_mass</span> <span class="o">=</span> <span class="n">divide_mass</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">divide_ndegen</span> <span class="o">=</span> <span class="n">divide_ndegen</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">cells</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+
         <span class="c1"># read lattice vectors within Wigner-Seitz cell:</span>
 
         <span class="k">if</span> <span class="n">wigner</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1072,7 +1074,8 @@
 
 <div class="viewcode-block" id="transform">
 <a class="viewcode-back" href="../../modules/elph.html#elphmod.elph.transform">[docs]</a>
-<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Transform q- and k-dependent coupling to band basis.</span>
 
 <span class="sd">    See Also</span>
@@ -1089,7 +1092,8 @@
     <span class="k">if</span> <span class="n">u</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">nph</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="n">my_g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">nph</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">nel</span><span class="p">,</span> <span class="n">nel</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+    <span class="n">my_g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">nph</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">nel</span><span class="p">,</span> <span class="n">nel</span><span class="p">),</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span> <span class="k">if</span> <span class="n">squared</span> <span class="k">else</span> <span class="nb">complex</span><span class="p">)</span>
 
     <span class="n">scale</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">nk</span>
 
@@ -1112,10 +1116,15 @@
                 <span class="k">if</span> <span class="n">u</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">gqk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;xab,xu-&gt;uab&#39;</span><span class="p">,</span> <span class="n">gqk</span><span class="p">,</span> <span class="n">u</span><span class="p">[</span><span class="n">iq</span><span class="p">])</span>
 
+                <span class="k">if</span> <span class="n">squared</span><span class="p">:</span>
+                    <span class="n">gqk</span> <span class="o">*=</span> <span class="n">gqk</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>
+                    <span class="n">gqk</span> <span class="o">=</span> <span class="n">gqk</span><span class="o">.</span><span class="n">real</span>
+
                 <span class="n">my_g</span><span class="p">[</span><span class="n">my_iq</span><span class="p">,</span> <span class="p">:,</span> <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">gqk</span>
 
     <span class="n">node</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">shared_array</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">),</span> <span class="n">nph</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">nel</span><span class="p">,</span> <span class="n">nel</span><span class="p">),</span>
-        <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="n">shared_memory</span><span class="p">,</span> <span class="n">single_memory</span><span class="o">=</span><span class="ow">not</span> <span class="n">broadcast</span><span class="p">)</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">my_g</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="n">shared_memory</span><span class="p">,</span>
+        <span class="n">single_memory</span><span class="o">=</span><span class="ow">not</span> <span class="n">broadcast</span><span class="p">)</span>
 
     <span class="n">comm</span><span class="o">.</span><span class="n">Gatherv</span><span class="p">(</span><span class="n">my_g</span><span class="p">,</span> <span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">comm</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">my_g</span><span class="o">.</span><span class="n">size</span><span class="p">)))</span>
 
