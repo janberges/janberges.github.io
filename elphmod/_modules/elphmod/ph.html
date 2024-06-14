@@ -1045,6 +1045,47 @@
         <span class="k">return</span> <span class="n">l</span><span class="p">[</span><span class="n">nonzero</span><span class="p">],</span> <span class="n">C</span><span class="p">[</span><span class="n">nonzero</span><span class="p">]</span></div>
 
 
+<div class="viewcode-block" id="Model.to_pwi">
+<a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.to_pwi">[docs]</a>
+    <span class="k">def</span> <span class="nf">to_pwi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pwi</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save atomic positions etc. to PWscf input file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        pwi : str</span>
+<span class="sd">            Filename.</span>
+<span class="sd">        **kwargs</span>
+<span class="sd">            Keyword arguments with further parameters to be written.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">species</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">atom_order</span><span class="p">),</span>
+            <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">X</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom_order</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+
+        <span class="n">alat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">pw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;ibrav&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;ntyp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">species</span><span class="p">)</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;nat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nat</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;celldm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">alat</span><span class="p">]</span>
+
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;at_species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">species</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;mass&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">atom_order</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">X</span><span class="p">)]</span> <span class="o">/</span> <span class="n">misc</span><span class="o">.</span><span class="n">uRy</span>
+            <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="n">species</span><span class="p">]</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;pp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.upf&#39;</span> <span class="o">%</span> <span class="n">X</span> <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="n">species</span><span class="p">]</span>
+
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;coords&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;crystal&#39;</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;at&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom_order</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bravais</span><span class="o">.</span><span class="n">cartesian_to_crystal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;cell_units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;alat&#39;</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;r_cell&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">/</span> <span class="n">alat</span>
+
+        <span class="n">pw</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">bravais</span><span class="o">.</span><span class="n">write_pwi</span><span class="p">(</span><span class="n">pwi</span><span class="p">,</span> <span class="n">pw</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="Model.to_flfrc">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.to_flfrc">[docs]</a>
     <span class="k">def</span> <span class="nf">to_flfrc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flfrc</span><span class="p">,</span> <span class="n">nr1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nr2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nr3</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -1084,8 +1125,14 @@
                     <span class="n">phid</span><span class="p">[</span><span class="n">na</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">[</span><span class="n">na</span><span class="p">])</span>
                     <span class="n">phid</span><span class="p">[:,</span> <span class="n">na</span><span class="p">]</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">[</span><span class="n">na</span><span class="p">])</span>
 
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">Z</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Warning: Writing inconsistent force-constants file!&#39;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The long-range part has not been subtracted (lr=False).&#39;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The dielectric properties are written nevertheless.&#39;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Consider setting the attribute Z to None to avoid this.&#39;</span><span class="p">)</span>
+
             <span class="n">write_flfrc</span><span class="p">(</span><span class="n">flfrc</span><span class="p">,</span> <span class="n">phid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom_order</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Z</span><span class="p">)</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Z</span><span class="p">)</span></div>
 </div>
 
 
@@ -2065,7 +2112,8 @@
             <span class="n">phid</span><span class="p">[:,</span> <span class="n">na</span><span class="p">]</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ph</span><span class="o">.</span><span class="n">M</span><span class="p">[</span><span class="n">na</span><span class="p">])</span>
 
     <span class="k">if</span> <span class="n">flfrc</span> <span class="ow">and</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">write_flfrc</span><span class="p">(</span><span class="n">flfrc</span><span class="p">,</span> <span class="n">phid</span><span class="p">,</span> <span class="n">ph</span><span class="o">.</span><span class="n">M</span><span class="p">,</span> <span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">ph</span><span class="o">.</span><span class="n">atom_order</span><span class="p">,</span> <span class="n">ph</span><span class="o">.</span><span class="n">eps</span><span class="p">,</span> <span class="n">ph</span><span class="o">.</span><span class="n">Z</span><span class="p">)</span>
+        <span class="n">write_flfrc</span><span class="p">(</span><span class="n">flfrc</span><span class="p">,</span> <span class="n">phid</span><span class="p">,</span> <span class="n">ph</span><span class="o">.</span><span class="n">M</span><span class="p">,</span> <span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">ph</span><span class="o">.</span><span class="n">atom_order</span><span class="p">,</span>
+            <span class="n">ph</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="n">ph</span><span class="o">.</span><span class="n">eps</span><span class="p">,</span> <span class="n">ph</span><span class="o">.</span><span class="n">Z</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">apply_asr_simple</span><span class="p">:</span>
         <span class="n">asr</span><span class="p">(</span><span class="n">phid</span><span class="p">)</span>

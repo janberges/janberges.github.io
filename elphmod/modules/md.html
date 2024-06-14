@@ -18,6 +18,8 @@
         <script src="../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -73,6 +75,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.plot"><code class="docutils literal notranslate"><span class="pre">Driver.plot()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.random_displacements"><code class="docutils literal notranslate"><span class="pre">Driver.random_displacements()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.save"><code class="docutils literal notranslate"><span class="pre">Driver.save()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.superconductivity"><code class="docutils literal notranslate"><span class="pre">Driver.superconductivity()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.to_pwi"><code class="docutils literal notranslate"><span class="pre">Driver.to_pwi()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.to_xyz"><code class="docutils literal notranslate"><span class="pre">Driver.to_xyz()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.update_plot"><code class="docutils literal notranslate"><span class="pre">Driver.update_plot()</span></code></a></li>
@@ -119,7 +122,7 @@
 <p>Charge-density-wave dynamics on supercells.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.md.Driver">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.md.</span></span><span class="sig-name descname"><span class="pre">Driver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unscreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.md.</span></span><span class="sig-name descname"><span class="pre">Driver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unscreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver" title="Link to this definition"></a></dt>
 <dd><p>MD driver for DFPT-based displacements dynamics.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -144,6 +147,8 @@ Note that <cite>elph</cite> should belong to the primitive cell in this case.</p
 </dd>
 <dt><strong>unscreen</strong><span class="classifier">bool, default True</span></dt><dd><p>Unscreen phonons? Otherwise, they are assumed to be unscreened already.</p>
 </dd>
+<dt><strong>shared_memory</strong><span class="classifier">bool, default True</span></dt><dd><p>Store <code class="xref py py-attr docutils literal notranslate"><span class="pre">d0</span></code> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">d</span></code> in shared memory?</p>
+</dd>
 <dt><strong>**kwargs</strong></dt><dd><p>Attributes to be set initially.</p>
 </dd>
 </dl>
@@ -164,6 +169,8 @@ Note that <cite>elph</cite> should belong to the primitive cell in this case.</p
 </dd>
 <dt><strong>d0</strong><span class="classifier">ndarray</span></dt><dd><p>Electron-phonon coupling in orbital basis.</p>
 </dd>
+<dt><strong>d</strong><span class="classifier">ndarray</span></dt><dd><p>Electron-phonon coupling in band basis.</p>
+</dd>
 <dt><strong>sparse</strong><span class="classifier">bool</span></dt><dd><p>Is the simulation performed on a supercell using sparse matrices?</p>
 </dd>
 <dt><strong>interactive</strong><span class="classifier">bool, default False</span></dt><dd><p>Shall plots be updated interactively?</p>
@@ -177,6 +184,9 @@ Note that <cite>elph</cite> should belong to the primitive cell in this case.</p
 <dt><strong>basis</strong><span class="classifier">list of list, default None</span></dt><dd><p>For each basis atom in the first primitive cell, indices of orbitals
 located at this atom. Matching atom and orbital orders as ensured by
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">elph.Model.supercell()</span></code> are required.</p>
+</dd>
+<dt><strong>node, images</strong><span class="classifier">MPI.Intracomm</span></dt><dd><p>Communicators between processes that share memory or same <code class="docutils literal notranslate"><span class="pre">node.rank</span></code>
+if <cite>shared_memory</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -293,7 +303,7 @@ be controlled via <code class="xref py py-attr docutils literal notranslate"><sp
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.hessian">
-<span class="sig-name descname"><span class="pre">hessian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fildyn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver.hessian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver.hessian" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">hessian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fildyn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver.hessian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver.hessian" title="Link to this definition"></a></dt>
 <dd><p>Calculate second derivative of free energy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -310,11 +320,17 @@ This is done before saving the Hessian to file.</p>
 </dd>
 <dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Smallest allowed absolute value of divisor.</p>
 </dd>
+<dt><strong>kT</strong><span class="classifier">float, optional</span></dt><dd><p>Smearing temperature. If given, it is used to calculate the double
+Fermi-surface average of the electron-phonon coupling squared, which
+is then also returned.</p>
+</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Force constants in Ry per bohr squared.</p>
+</dd>
+<dt>ndarray, optional</dt><dd><p>Fermi-surface average of electron-phonon coupling squared.</p>
 </dd>
 </dl>
 </dd>
@@ -438,6 +454,38 @@ attribute, which is used by default.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Filename for pickled representation of driver.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.md.Driver.superconductivity">
+<span class="sig-name descname"><span class="pre">superconductivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver.superconductivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver.superconductivity" title="Link to this definition"></a></dt>
+<dd><p>Calculate effective couplings and phonon frequencies.</p>
+<p>Note that <code class="xref py py-attr docutils literal notranslate"><span class="pre">d</span></code> is destroyed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Phonon frequencies squared below <cite>eps</cite> are set to <cite>eps</cite>;
+corresponding couplings are set to zero.</p>
+</dd>
+<dt><strong>tol</strong><span class="classifier">float, optional</span></dt><dd><p>If any phonon frequency squared is smaller than <cite>tol</cite>, all return
+values are <code class="docutils literal notranslate"><span class="pre">None</span></code>. A very small negative value can be chosen to
+skip calculations involving significant imaginary frequencies.</p>
+</dd>
+<dt><strong>kT</strong><span class="classifier">float, optional</span></dt><dd><p>Smearing temperature. By default, <code class="xref py py-attr docutils literal notranslate"><span class="pre">kT</span></code> is used.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Effective electron-phonon coupling strength <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+</dd>
+<dt>float</dt><dd><p>Logarithmic average phonon energy.</p>
+</dd>
+<dt>float</dt><dd><p>Second-moment average phonon energy.</p>
 </dd>
 </dl>
 </dd>

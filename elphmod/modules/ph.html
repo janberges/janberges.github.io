@@ -65,6 +65,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.ph.Model.supercell"><code class="docutils literal notranslate"><span class="pre">Model.supercell()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.ph.Model.symmetrize"><code class="docutils literal notranslate"><span class="pre">Model.symmetrize()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.ph.Model.to_flfrc"><code class="docutils literal notranslate"><span class="pre">Model.to_flfrc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.ph.Model.to_pwi"><code class="docutils literal notranslate"><span class="pre">Model.to_pwi()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.ph.Model.unit_cell"><code class="docutils literal notranslate"><span class="pre">Model.unit_cell()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.ph.Model.update_short_range"><code class="docutils literal notranslate"><span class="pre">Model.update_short_range()</span></code></a></li>
 </ul>
@@ -492,6 +493,22 @@ before.</p>
 <dt><strong>flfrc</strong><span class="classifier">str</span></dt><dd><p>Filename.</p>
 </dd>
 <dt><strong>nr1, nr2, nr3</strong><span class="classifier">int, optional</span></dt><dd><p>Mesh dimensions. If not given, <code class="xref py py-attr docutils literal notranslate"><span class="pre">nq</span></code> is assumed.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.ph.Model.to_pwi">
+<span class="sig-name descname"><span class="pre">to_pwi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pwi</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/ph.html#Model.to_pwi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.ph.Model.to_pwi" title="Link to this definition"></a></dt>
+<dd><p>Save atomic positions etc. to PWscf input file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>pwi</strong><span class="classifier">str</span></dt><dd><p>Filename.</p>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Keyword arguments with further parameters to be written.</p>
 </dd>
 </dl>
 </dd>
