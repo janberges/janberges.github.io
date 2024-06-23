@@ -6,6 +6,7 @@
   <title>elphmod.dispersion &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=1f476fd3" />
 
   
   <!--[if lt IE 9]>
@@ -94,13 +95,13 @@
 
 <span class="sd">&quot;&quot;&quot;Diagonalization on paths and meshes.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
-
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">bravais</span><span class="p">,</span> <span class="n">misc</span><span class="p">,</span> <span class="n">MPI</span>
+<span class="kn">import</span> <span class="nn">elphmod.bravais</span>
+<span class="kn">import</span> <span class="nn">elphmod.misc</span>
+<span class="kn">import</span> <span class="nn">elphmod.MPI</span>
 
-<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
+<span class="n">comm</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
 
 <div class="viewcode-block" id="dispersion">
 <a class="viewcode-back" href="../../modules/dispersion.html#elphmod.dispersion.dispersion">[docs]</a>
@@ -167,7 +168,7 @@
 
     <span class="c1"># choose number of k points to be processed by each processor:</span>
 
-    <span class="n">my_points</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">distribute</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+    <span class="n">my_points</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">distribute</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
 
     <span class="c1"># initialize local lists of k points, eigenvalues and eigenvectors:</span>
 
@@ -184,11 +185,12 @@
 
     <span class="c1"># diagonalize matrix for local lists of k points:</span>
 
-    <span class="n">status</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">my_points</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;calculate dispersion&#39;</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">my_points</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;calculate dispersion&#39;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">rotate</span><span class="p">:</span>
-        <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">bravais</span><span class="o">.</span><span class="n">translations</span><span class="p">(</span><span class="mi">180</span> <span class="o">-</span> <span class="n">angle</span><span class="p">)</span>
-        <span class="n">b1</span><span class="p">,</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">bravais</span><span class="o">.</span><span class="n">reciprocals</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">)</span>
+        <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">translations</span><span class="p">(</span><span class="mi">180</span> <span class="o">-</span> <span class="n">angle</span><span class="p">)</span>
+        <span class="n">b1</span><span class="p">,</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">reciprocals</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">my_k</span><span class="p">)):</span>
         <span class="n">matrix_k</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">(</span><span class="o">*</span><span class="n">my_k</span><span class="p">[</span><span class="n">point</span><span class="p">])</span>
@@ -215,8 +217,8 @@
             <span class="c1"># rotate phonon eigenvectors by negative angle of k point:</span>
 
             <span class="k">if</span> <span class="n">rotate</span><span class="p">:</span>
-                <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span> <span class="o">=</span> <span class="n">bravais</span><span class="o">.</span><span class="n">to_Voronoi</span><span class="p">(</span><span class="o">*</span><span class="n">my_k</span><span class="p">[</span><span class="n">point</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">nk</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span>
-                    <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">to_Voronoi</span><span class="p">(</span><span class="o">*</span><span class="n">my_k</span><span class="p">[</span><span class="n">point</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">],</span>
+                    <span class="n">nk</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
                 <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">k1</span> <span class="o">*</span> <span class="n">b1</span> <span class="o">+</span> <span class="n">k2</span> <span class="o">*</span> <span class="n">b2</span>
                 <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
@@ -226,7 +228,7 @@
                 <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">atoms</span><span class="p">):</span>
                     <span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bands</span><span class="p">):</span>
                         <span class="n">xy</span> <span class="o">=</span> <span class="n">point</span><span class="p">,</span> <span class="p">[</span><span class="n">atom</span><span class="p">,</span> <span class="n">atom</span> <span class="o">+</span> <span class="n">atoms</span><span class="p">],</span> <span class="n">band</span>
-                        <span class="n">my_V</span><span class="p">[</span><span class="n">xy</span><span class="p">]</span> <span class="o">=</span> <span class="n">bravais</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">my_V</span><span class="p">[</span><span class="n">xy</span><span class="p">],</span> <span class="o">-</span><span class="n">phi</span><span class="p">)</span>
+                        <span class="n">my_V</span><span class="p">[</span><span class="n">xy</span><span class="p">]</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">my_V</span><span class="p">[</span><span class="n">xy</span><span class="p">],</span> <span class="o">-</span><span class="n">phi</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">bands</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">my_v</span><span class="p">[</span><span class="n">point</span><span class="p">]</span> <span class="o">=</span> <span class="n">matrix_k</span><span class="o">.</span><span class="n">real</span> <span class="k">if</span> <span class="n">hermitian</span> <span class="k">else</span> <span class="n">matrix_k</span>
@@ -242,13 +244,13 @@
 
     <span class="n">memory</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">shared_memory</span><span class="o">=</span><span class="n">shared_memory</span><span class="p">,</span> <span class="n">single_memory</span><span class="o">=</span><span class="ow">not</span> <span class="n">broadcast</span><span class="p">)</span>
 
-    <span class="n">node</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">shared_array</span><span class="p">((</span><span class="n">points</span><span class="p">,</span> <span class="n">bands</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">my_v</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">memory</span><span class="p">)</span>
+    <span class="n">node</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">shared_array</span><span class="p">((</span><span class="n">points</span><span class="p">,</span> <span class="n">bands</span><span class="p">),</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">my_v</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="o">**</span><span class="n">memory</span><span class="p">)</span>
 
     <span class="n">comm</span><span class="o">.</span><span class="n">Gatherv</span><span class="p">(</span><span class="n">my_v</span><span class="p">,</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">my_points</span> <span class="o">*</span> <span class="n">bands</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">order</span> <span class="ow">or</span> <span class="n">vectors</span><span class="p">:</span>
-        <span class="n">node</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">shared_array</span><span class="p">((</span><span class="n">points</span><span class="p">,</span> <span class="n">bands</span><span class="p">,</span> <span class="n">bands</span><span class="p">),</span>
+        <span class="n">node</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">shared_array</span><span class="p">((</span><span class="n">points</span><span class="p">,</span> <span class="n">bands</span><span class="p">,</span> <span class="n">bands</span><span class="p">),</span>
             <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="o">**</span><span class="n">memory</span><span class="p">)</span>
 
         <span class="n">comm</span><span class="o">.</span><span class="n">Gatherv</span><span class="p">(</span><span class="n">my_V</span><span class="p">,</span> <span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">my_points</span> <span class="o">*</span> <span class="n">bands</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
@@ -256,7 +258,7 @@
     <span class="c1"># order/disentangle bands:</span>
 
     <span class="k">if</span> <span class="n">order</span><span class="p">:</span>
-        <span class="n">node</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">o</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">shared_array</span><span class="p">((</span><span class="n">points</span><span class="p">,</span> <span class="n">bands</span><span class="p">),</span>
+        <span class="n">node</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">o</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">shared_array</span><span class="p">((</span><span class="n">points</span><span class="p">,</span> <span class="n">bands</span><span class="p">),</span>
             <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="o">**</span><span class="n">memory</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -286,13 +288,13 @@
     <span class="c1"># reshape results:</span>
 
     <span class="k">if</span> <span class="n">broadcast</span> <span class="ow">or</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">kshape</span> <span class="o">+</span> <span class="p">(</span><span class="n">bands</span><span class="p">,))</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="n">kshape</span><span class="p">,</span> <span class="n">bands</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="n">vectors</span><span class="p">:</span>
-            <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">kshape</span> <span class="o">+</span> <span class="p">(</span><span class="n">bands</span><span class="p">,</span> <span class="n">bands</span><span class="p">))</span>
+            <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="n">kshape</span><span class="p">,</span> <span class="n">bands</span><span class="p">,</span> <span class="n">bands</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="n">order</span><span class="p">:</span>
-            <span class="n">o</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">kshape</span> <span class="o">+</span> <span class="p">(</span><span class="n">bands</span><span class="p">,))</span>
+            <span class="n">o</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="n">kshape</span><span class="p">,</span> <span class="n">bands</span><span class="p">))</span>
 
     <span class="c1"># return results:</span>
 
@@ -317,7 +319,7 @@
 
     <span class="c1"># choose irreducible set of k points:</span>
 
-    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">bravais</span><span class="o">.</span><span class="n">irreducibles</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">)))</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">irreducibles</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">)))</span>
 
     <span class="n">points</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="c1"># number of k points</span>
 
@@ -378,7 +380,7 @@
             <span class="n">main_order</span> <span class="o">=</span> <span class="n">band_order</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">main_path</span><span class="p">],</span> <span class="n">V</span><span class="p">[</span><span class="n">main_path</span><span class="p">],</span> <span class="n">status</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                 <span class="o">**</span><span class="n">order_kwargs</span><span class="p">)</span>
 
-            <span class="n">status</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;disentangle bands&#39;</span><span class="p">)</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;disentangle bands&#39;</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">N</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">main_path</span><span class="p">,</span> <span class="n">main_order</span><span class="p">):</span>
                 <span class="n">side_path</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">points</span><span class="p">)</span> <span class="k">if</span> <span class="n">on_side_path</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)]</span>
@@ -404,22 +406,22 @@
 
     <span class="n">memory</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">shared_memory</span><span class="o">=</span><span class="n">shared_memory</span><span class="p">,</span> <span class="n">single_memory</span><span class="o">=</span><span class="ow">not</span> <span class="n">broadcast</span><span class="p">)</span>
 
-    <span class="n">node</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">v_mesh</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">shared_array</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">bands</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">v</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">memory</span><span class="p">)</span>
+    <span class="n">node</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">v_mesh</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">shared_array</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">bands</span><span class="p">),</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">v</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="o">**</span><span class="n">memory</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">vectors</span><span class="p">:</span>
-        <span class="n">node</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">V_mesh</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">shared_array</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">bands</span><span class="p">,</span> <span class="n">bands</span><span class="p">),</span>
-            <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="o">**</span><span class="n">memory</span><span class="p">)</span>
+        <span class="n">node</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">V_mesh</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">shared_array</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">bands</span><span class="p">,</span> <span class="n">bands</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">,</span> <span class="o">**</span><span class="n">memory</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">order</span><span class="p">:</span>
-        <span class="n">node</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">o_mesh</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">shared_array</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">bands</span><span class="p">),</span>
+        <span class="n">node</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">o_mesh</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">shared_array</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">bands</span><span class="p">),</span>
             <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="o">**</span><span class="n">memory</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="c1"># transfer data points from wedge to mesh:</span>
 
         <span class="k">for</span> <span class="n">point</span><span class="p">,</span> <span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">K1</span><span class="p">,</span> <span class="n">K2</span> <span class="ow">in</span> <span class="n">bravais</span><span class="o">.</span><span class="n">images</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">K1</span><span class="p">,</span> <span class="n">K2</span> <span class="ow">in</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">images</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">):</span>
                 <span class="n">v_mesh</span><span class="p">[</span><span class="n">K1</span><span class="p">,</span> <span class="n">K2</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">point</span><span class="p">]</span>
 
                 <span class="k">if</span> <span class="n">vectors</span><span class="p">:</span>
@@ -464,22 +466,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># set up k-point mesh:</span>
 
-    <span class="n">use_3d_kpts</span> <span class="o">=</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;__getitem__&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;__len__&#39;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">order</span><span class="p">:</span>
-        <span class="n">use_3d_kpts</span> <span class="o">=</span> <span class="kc">False</span>
-
     <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">use_3d_kpts</span><span class="p">:</span>
-            <span class="n">ktriv</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">size</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">size</span><span class="p">))]</span>
-
-            <span class="n">kx</span><span class="p">,</span> <span class="n">ky</span><span class="p">,</span> <span class="n">kz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="o">*</span><span class="n">ktriv</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
-            <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">kx</span><span class="p">,</span> <span class="n">ky</span><span class="p">,</span> <span class="n">kz</span><span class="p">])</span><span class="o">.</span><span class="n">transpose</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">order</span><span class="p">:</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="o">*</span><span class="n">size</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">k</span> <span class="o">=</span> <span class="p">[[(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">)</span> <span class="k">for</span> <span class="n">k2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span> <span class="k">for</span> <span class="n">k1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span>
-
-        <span class="n">k</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="n">size</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">k</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -536,21 +527,21 @@
     <span class="n">kshape</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">.</span><span class="n">ndim</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
     <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">kshape</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 
-    <span class="n">sizes</span><span class="p">,</span> <span class="n">bounds</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">distribute</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">bounds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">sizes</span><span class="p">,</span> <span class="n">bounds</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">distribute</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">bounds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="n">template</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-    <span class="n">my_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],)</span> <span class="o">+</span> <span class="n">template</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+    <span class="n">my_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="o">*</span><span class="n">template</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span>
         <span class="n">dtype</span><span class="o">=</span><span class="n">template</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
-    <span class="n">status</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;sample something&#39;</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;sample something&#39;</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">my_ik</span><span class="p">,</span> <span class="n">ik</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])):</span>
         <span class="n">my_matrix</span><span class="p">[</span><span class="n">my_ik</span><span class="p">]</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">(</span><span class="o">*</span><span class="n">k</span><span class="p">[</span><span class="n">ik</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="n">status</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
-    <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">kshape</span> <span class="o">+</span> <span class="n">template</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">template</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="o">*</span><span class="n">kshape</span><span class="p">,</span> <span class="o">*</span><span class="n">template</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">template</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
     <span class="n">comm</span><span class="o">.</span><span class="n">Allgatherv</span><span class="p">(</span><span class="n">my_matrix</span><span class="p">,</span> <span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">sizes</span> <span class="o">*</span> <span class="n">template</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
 
@@ -591,7 +582,7 @@
     <span class="n">o</span><span class="p">[</span><span class="n">n0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">status</span><span class="p">:</span>
-        <span class="n">bar</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;disentangle bands&#39;</span><span class="p">)</span>
+        <span class="n">bar</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;disentangle bands&#39;</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
         <span class="n">available</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">bands</span><span class="p">))</span>
@@ -676,7 +667,7 @@
 <span class="sd">    sgn : int</span>
 <span class="sd">        Sign convention for Fourier transform in tight-binding model.</span>
 <span class="sd">        The default sign ``-1`` is suitable for data from Wannier90 as provided</span>
-<span class="sd">        by :meth:`el.Model.H`.</span>
+<span class="sd">        by :meth:`elphmod.el.Model.H`.</span>
 <span class="sd">        `Other conventions &lt;https://doi.org/10.26092/elib/250&gt;`_ require ``+1``.</span>
 
 <span class="sd">    Returns</span>
@@ -696,11 +687,11 @@
 
     <span class="n">U0</span> <span class="o">=</span> <span class="n">U0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">bands</span> <span class="o">/</span> <span class="n">bands0</span><span class="p">)</span>
 
-    <span class="n">sizes</span><span class="p">,</span> <span class="n">bounds</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">distribute</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">bounds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">sizes</span><span class="p">,</span> <span class="n">bounds</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">distribute</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">bounds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="n">my_w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">bands</span><span class="p">))</span>
 
-    <span class="n">status</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;unfold bands&#39;</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;unfold bands&#39;</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">my_ik</span><span class="p">,</span> <span class="n">ik</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])):</span>
         <span class="n">my_w</span><span class="p">[</span><span class="n">my_ik</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sgn</span> <span class="o">*</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="n">ik</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="n">ir</span><span class="p">]))</span>

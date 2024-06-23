@@ -7,6 +7,7 @@
   <title>MD &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css?v=1f476fd3" />
 
   
   <!--[if lt IE 9]>
@@ -124,10 +125,10 @@
 <dt class="sig sig-object py" id="elphmod.md.Driver">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.md.</span></span><span class="sig-name descname"><span class="pre">Driver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unscreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver" title="Link to this definition"></a></dt>
 <dd><p>MD driver for DFPT-based displacements dynamics.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>elph</strong><span class="classifier">object</span></dt><dd><p>Localized model for electron-phonon coupling. Initialize <code class="docutils literal notranslate"><span class="pre">el</span></code> with
+<dd class="field-odd"><dl>
+<dt><strong>elph</strong><span class="classifier"><a class="reference internal" href="elph.html#elphmod.elph.Model" title="elphmod.elph.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">elphmod.elph.Model</span></code></a></span></dt><dd><p>Localized model for electron-phonon coupling. Initialize <code class="docutils literal notranslate"><span class="pre">el</span></code> with
 <code class="docutils literal notranslate"><span class="pre">rydberg=True</span></code> and <code class="docutils literal notranslate"><span class="pre">ph</span></code> and <code class="docutils literal notranslate"><span class="pre">elph</span></code> with <code class="docutils literal notranslate"><span class="pre">divide_mass=False</span></code> and
 map everthing to the appropriate supercell before (<code class="docutils literal notranslate"><span class="pre">elph.supercell</span></code>).</p>
 </dd>
@@ -183,7 +184,7 @@ Note that <cite>elph</cite> should belong to the primitive cell in this case.</p
 </dd>
 <dt><strong>basis</strong><span class="classifier">list of list, default None</span></dt><dd><p>For each basis atom in the first primitive cell, indices of orbitals
 located at this atom. Matching atom and orbital orders as ensured by
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">elph.Model.supercell()</span></code> are required.</p>
+<a class="reference internal" href="elph.html#elphmod.elph.Model.supercell" title="elphmod.elph.Model.supercell"><code class="xref py py-meth docutils literal notranslate"><span class="pre">elphmod.elph.Model.supercell()</span></code></a> are required.</p>
 </dd>
 <dt><strong>node, images</strong><span class="classifier">MPI.Intracomm</span></dt><dd><p>Communicators between processes that share memory or same <code class="docutils literal notranslate"><span class="pre">node.rank</span></code>
 if <cite>shared_memory</cite>.</p>
@@ -389,7 +390,7 @@ is then also returned.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>divide_mass</strong><span class="classifier">bool</span></dt><dd><p>Divide force constants by atomic masses?</p>
 </dd>
-<dt><strong>**kwargs</strong></dt><dd><p>Parameters passed to <code class="xref py py-func docutils literal notranslate"><span class="pre">ph.q2r()</span></code>.</p>
+<dt><strong>**kwargs</strong></dt><dd><p>Parameters passed to <a class="reference internal" href="ph.html#elphmod.ph.q2r" title="elphmod.ph.q2r"><code class="xref py py-func docutils literal notranslate"><span class="pre">elphmod.ph.q2r()</span></code></a>.</p>
 </dd>
 </dl>
 </dd>

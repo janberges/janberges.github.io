@@ -7,6 +7,7 @@
   <title>Electron–electron &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css?v=1f476fd3" />
 
   
   <!--[if lt IE 9]>
@@ -147,7 +148,7 @@ located at the origin of the unit cell.</p>
 </dd>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors <code class="xref py py-attr docutils literal notranslate"><span class="pre">vec</span> <span class="pre">R</span></code> of Wigner-Seitz supercell.</p>
+<dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors <span class="math notranslate nohighlight">\(\vec R\)</span> of Wigner-Seitz supercell.</p>
 </dd>
 <dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding density-density interaction in orbital basis.</p>
 </dd>
@@ -251,7 +252,8 @@ integer, linear combinations via a 3-tuple of integers.</p>
 <p>This function is basically a copy of Quantum ESPRESSO’s subroutine <code class="docutils literal notranslate"><span class="pre">v_h</span></code>
 from <code class="docutils literal notranslate"><span class="pre">v_of_rho.f90</span></code>.</p>
 <p>All input parameters can be obtained from reading the formatted
-charge-density output. Use <code class="xref py py-func docutils literal notranslate"><span class="pre">el.read_rhoG_density()</span></code> for this purpose.</p>
+charge-density output. Use <a class="reference internal" href="el.html#elphmod.el.read_rhoG_density" title="elphmod.el.read_rhoG_density"><code class="xref py py-func docutils literal notranslate"><span class="pre">elphmod.el.read_rhoG_density()</span></code></a> for this
+purpose.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -285,10 +287,10 @@ points.</p>
 <dt class="sig sig-object py" id="elphmod.elel.q2r">
 <span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/elel.html#q2r"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.elel.q2r" title="Link to this definition"></a></dt>
 <dd><p>Interpolate electron-electron interaction on uniform q-point mesh.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>elel</strong><span class="classifier">object</span></dt><dd><p>Localized model for electron-electron interaction.</p>
+<dd class="field-odd"><dl>
+<dt><strong>elel</strong><span class="classifier"><a class="reference internal" href="#elphmod.elel.Model" title="elphmod.elel.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">elphmod.elel.Model</span></code></a></span></dt><dd><p>Localized model for electron-electron interaction.</p>
 </dd>
 <dt><strong>W</strong><span class="classifier">ndarray</span></dt><dd><p>Density-density interaction matrices on complete uniform q-point mesh.</p>
 </dd>

@@ -6,6 +6,7 @@
   <title>elphmod.dos &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=1f476fd3" />
 
   
   <!--[if lt IE 9]>
@@ -94,13 +95,13 @@
 
 <span class="sd">&quot;&quot;&quot;2D tetrahedron methods.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
-
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">bravais</span><span class="p">,</span> <span class="n">misc</span><span class="p">,</span> <span class="n">MPI</span>
+<span class="kn">import</span> <span class="nn">elphmod.bravais</span>
+<span class="kn">import</span> <span class="nn">elphmod.misc</span>
+<span class="kn">import</span> <span class="nn">elphmod.MPI</span>
 
-<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
+<span class="n">comm</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
 
 <div class="viewcode-block" id="hexDOS">
 <a class="viewcode-back" href="../../modules/dos.html#elphmod.dos.hexDOS">[docs]</a>
@@ -341,7 +342,7 @@
 
     <span class="n">triangles</span> <span class="o">=</span> <span class="p">[(</span><span class="n">v</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">triangles</span><span class="p">,</span> <span class="n">indices</span><span class="p">)]</span>
 
-    <span class="n">prefactor</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">N</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">prefactor</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">N</span> <span class="o">**</span> <span class="mi">2</span>
 
     <span class="k">def</span> <span class="nf">dd</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
         <span class="n">my_D</span> <span class="o">=</span> <span class="p">[]</span>
@@ -374,7 +375,7 @@
         <span class="n">unique</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">misc</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">):</span>
                 <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">group</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
                 <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">W</span><span class="p">[</span><span class="n">group</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
                 <span class="n">unique</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">d</span><span class="p">)]</span> <span class="o">=</span> <span class="n">w</span>
@@ -396,11 +397,11 @@
     <span class="n">dk1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
     <span class="n">dk2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="n">fun</span> <span class="o">=</span> <span class="n">bravais</span><span class="o">.</span><span class="n">linear_interpolation</span><span class="p">(</span><span class="n">energies</span><span class="p">)</span>
+    <span class="n">fun</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">linear_interpolation</span><span class="p">(</span><span class="n">energies</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">k1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">k2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-            <span class="n">images</span> <span class="o">=</span> <span class="n">bravais</span><span class="o">.</span><span class="n">to_Voronoi</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+            <span class="n">images</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">to_Voronoi</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">K1</span><span class="p">,</span> <span class="n">K2</span> <span class="o">=</span> <span class="n">images</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>

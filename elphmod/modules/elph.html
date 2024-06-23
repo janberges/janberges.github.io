@@ -7,6 +7,7 @@
   <title>Electron–phonon &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css?v=1f476fd3" />
 
   
   <!--[if lt IE 9]>
@@ -53,6 +54,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Electron–phonon</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.elph.Model"><code class="docutils literal notranslate"><span class="pre">Model</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.elph.Model.asr"><code class="docutils literal notranslate"><span class="pre">Model.asr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.elph.Model.clear"><code class="docutils literal notranslate"><span class="pre">Model.clear()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.elph.Model.decay_epmate"><code class="docutils literal notranslate"><span class="pre">Model.decay_epmate()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.elph.Model.decay_epmatp"><code class="docutils literal notranslate"><span class="pre">Model.decay_epmatp()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.elph.Model.divide_degeneracy"><code class="docutils literal notranslate"><span class="pre">Model.divide_degeneracy()</span></code></a></li>
@@ -133,14 +135,14 @@
 <dd><p>Localized model for electron-phonon coupling.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
+<dd class="field-odd"><dl>
 <dt><strong>epmatwp</strong><span class="classifier">str</span></dt><dd><p>File with electron-phonon coupling in localized bases from EPW.</p>
 </dd>
 <dt><strong>wigner</strong><span class="classifier">str</span></dt><dd><p>File with definition of Wigner-Seitz supercells from modified EPW.</p>
 </dd>
-<dt><strong>el</strong><span class="classifier">object</span></dt><dd><p>Tight-binding model for the electrons.</p>
+<dt><strong>el</strong><span class="classifier"><a class="reference internal" href="el.html#elphmod.el.Model" title="elphmod.el.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">elphmod.el.Model</span></code></a></span></dt><dd><p>Tight-binding model for the electrons.</p>
 </dd>
-<dt><strong>ph</strong><span class="classifier">object</span></dt><dd><p>Mass-spring model for the phonons.</p>
+<dt><strong>ph</strong><span class="classifier"><a class="reference internal" href="ph.html#elphmod.ph.Model" title="elphmod.ph.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">elphmod.ph.Model</span></code></a></span></dt><dd><p>Mass-spring model for the phonons.</p>
 </dd>
 <dt><strong>Rk, Rg</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors of Wigner-Seitz supercells if <cite>wigner</cite> is omitted.</p>
 </dd>
@@ -161,7 +163,9 @@ debugging.</p>
 </dd>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>el, ph</strong><span class="classifier">object</span></dt><dd><p>Tight-binding and mass-spring models.</p>
+<dt><strong>el</strong><span class="classifier"><a class="reference internal" href="el.html#elphmod.el.Model" title="elphmod.el.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">elphmod.el.Model</span></code></a></span></dt><dd><p>Tight-binding model for the electrons.</p>
+</dd>
+<dt><strong>ph</strong><span class="classifier"><a class="reference internal" href="ph.html#elphmod.ph.Model" title="elphmod.ph.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">elphmod.ph.Model</span></code></a></span></dt><dd><p>Mass-spring model for the phonons.</p>
 </dd>
 <dt><strong>Rk, Rg</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors <span class="math notranslate nohighlight">\(\vec R', \vec R\)</span> of Wigner-Seitz supercells.</p>
 </dd>
@@ -210,6 +214,12 @@ be a better way to accomplish this.</p>
 <dt>report<span class="classifier">bool</span></dt><dd><p>Print sums before and after correction?</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="elphmod.elph.Model.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/elph.html#Model.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.elph.Model.clear" title="Link to this definition"></a></dt>
+<dd><p>Delete all lattice vectors and associated matrix elements.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -284,7 +294,7 @@ phases. Consider the method <cite>sample</cite> of this class instead.</p>
 <dt><strong>broadcast</strong><span class="classifier">bool</span></dt><dd><p>Broadcast result to all processors? If <code class="docutils literal notranslate"><span class="pre">False</span></code>, returns <code class="docutils literal notranslate"><span class="pre">None</span></code>
 on all but the first processor.</p>
 </dd>
-<dt><strong>comm</strong><span class="classifier">MPI communicator</span></dt><dd><p>Group of processors running this function (for parallelization of
+<dt><strong>comm</strong><span class="classifier">MPI.Intracomm</span></dt><dd><p>Group of processors running this function (for parallelization of
 Fourier transforms). Please note: To run this function serially,
 e.g., when parallelizing over q or k points, use <code class="docutils literal notranslate"><span class="pre">elphmod.MPI.I</span></code>.</p>
 </dd>
@@ -398,7 +408,7 @@ nonzero <cite>eps</cite> and <cite>symmetrize</cite> before.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">bravais.supercell</span></code></dt><dd></dd>
+<dt><a class="reference internal" href="bravais.html#elphmod.bravais.supercell" title="elphmod.bravais.supercell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">elphmod.bravais.supercell</span></code></a></dt><dd></dd>
 </dl>
 </div>
 </dd></dl>
@@ -464,10 +474,10 @@ Instead, all degeneracies in the <em>.wiger</em> file are set to one.</p>
 <dt class="sig sig-object py" id="elphmod.elph.q2r">
 <span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/elph.html#q2r"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.elph.q2r" title="Link to this definition"></a></dt>
 <dd><p>Fourier-transform electron-phonon coupling from reciprocal to real space.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>elph</strong><span class="classifier">object</span></dt><dd><p>Localized model for electron-phonon coupling.</p>
+<dd class="field-odd"><dl>
+<dt><strong>elph</strong><span class="classifier"><a class="reference internal" href="#elphmod.elph.Model" title="elphmod.elph.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></span></dt><dd><p>Localized model for electron-phonon coupling.</p>
 </dd>
 <dt><strong>nq, nk</strong><span class="classifier">tuple of int</span></dt><dd><p>Number of q and k points along axes, i.e., shapes of uniform meshes.</p>
 </dd>

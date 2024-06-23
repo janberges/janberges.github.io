@@ -7,6 +7,7 @@
   <title>Electron &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css?v=1f476fd3" />
 
   
   <!--[if lt IE 9]>
@@ -329,7 +330,7 @@ and <cite>symmetrize</cite> before.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">bravais.supercell</span></code></dt><dd></dd>
+<dt><a class="reference internal" href="bravais.html#elphmod.bravais.supercell" title="elphmod.bravais.supercell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">elphmod.bravais.supercell</span></code></a></dt><dd></dd>
 </dl>
 </div>
 </dd></dl>
@@ -421,8 +422,8 @@ the Cartesian and band basis afterward (Hellmann-Feynman theorem).</p>
 <dd class="field-odd"><dl>
 <dt><strong>seedname</strong><span class="classifier">str</span></dt><dd><p>Prefix of Wannier90 output file.</p>
 </dd>
-<dt><strong>**kwargs</strong></dt><dd><p>Arguments for <code class="xref py py-func docutils literal notranslate"><span class="pre">bravais.primitives()</span></code>: Choose the right Bravais
-lattice (<code class="docutils literal notranslate"><span class="pre">ibrav</span></code>) and lattice constants (<code class="docutils literal notranslate"><span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">c,</span> <span class="pre">...</span></code>).</p>
+<dt><strong>**kwargs</strong></dt><dd><p>Arguments for <a class="reference internal" href="bravais.html#elphmod.bravais.primitives" title="elphmod.bravais.primitives"><code class="xref py py-func docutils literal notranslate"><span class="pre">elphmod.bravais.primitives()</span></code></a>: Choose the right
+Bravais lattice (<code class="docutils literal notranslate"><span class="pre">ibrav</span></code>) and lattice constants (<code class="docutils literal notranslate"><span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">c,</span> <span class="pre">...</span></code>).</p>
 <p>For a simple cubic lattice: <code class="docutils literal notranslate"><span class="pre">decayH(seedname,</span> <span class="pre">ibrav=1,</span> <span class="pre">a=a)</span></code>.</p>
 </dd>
 </dl>
@@ -509,10 +510,10 @@ the <code class="docutils literal notranslate"><span class="pre">SUBROUTINE</spa
 <dt class="sig sig-object py" id="elphmod.el.k2r">
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">k2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">el</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rydberg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/el.html#k2r"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.el.k2r" title="Link to this definition"></a></dt>
 <dd><p>Interpolate Hamilontian matrices on uniform k-point mesh.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>el</strong><span class="classifier">object</span></dt><dd><p>Tight-binding model.</p>
+<dd class="field-odd"><dl>
+<dt><strong>el</strong><span class="classifier"><a class="reference internal" href="#elphmod.el.Model" title="elphmod.el.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></span></dt><dd><p>Tight-binding model.</p>
 </dd>
 <dt><strong>H</strong><span class="classifier">ndarray</span></dt><dd><p>Hamiltonian matrices on complete uniform k-point mesh.</p>
 </dd>

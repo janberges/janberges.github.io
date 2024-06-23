@@ -7,6 +7,7 @@
   <title>Occupations &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css?v=1f476fd3" />
 
   
   <!--[if lt IE 9]>
@@ -427,7 +428,9 @@ A_n &amp;= \frac{(-1)^n}{\sqrt \pi n! 4^n}\end{split}\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>smearing</strong><span class="classifier">str, default ‘gaussian’</span></dt><dd><p>Any available option for PWscf input parameter <code class="docutils literal notranslate"><span class="pre">smearing</span></code>.</p>
+<dt><strong>smearing</strong><span class="classifier">str, default ‘gaussian’</span></dt><dd><p>Any available option for PWscf input parameter <code class="docutils literal notranslate"><span class="pre">smearing</span></code>, as well as
+<code class="docutils literal notranslate"><span class="pre">lorentzian</span></code>, <code class="docutils literal notranslate"><span class="pre">lorentz</span></code>, and <code class="docutils literal notranslate"><span class="pre">heaviside</span></code>. If no string is passed,
+it is returned as is.</p>
 </dd>
 <dt><strong>**ignore</strong></dt><dd><p>Ignored keyword arguments, e.g., parameters from ‘func’<cite>read_pwi</cite>.</p>
 </dd>

@@ -6,6 +6,7 @@
   <title>elphmod.occupations &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=1f476fd3" />
 
   
   <!--[if lt IE 9]>
@@ -93,8 +94,6 @@
 <span class="c1"># This program is free software under the terms of the GNU GPLv3 or later.</span>
 
 <span class="sd">&quot;&quot;&quot;Step and delta smearing functions.&quot;&quot;&quot;</span>
-
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -394,7 +393,7 @@
 <span class="k">def</span> <span class="nf">lorentz_delta</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate negative derivative of Lorentz step function.&quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="lorentz_delta_prime">
@@ -499,7 +498,9 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    smearing : str, default &#39;gaussian&#39;</span>
-<span class="sd">        Any available option for PWscf input parameter ``smearing``.</span>
+<span class="sd">        Any available option for PWscf input parameter ``smearing``, as well as</span>
+<span class="sd">        ``lorentzian``, ``lorentz``, and ``heaviside``. If no string is passed,</span>
+<span class="sd">        it is returned as is.</span>
 <span class="sd">    **ignore</span>
 <span class="sd">        Ignored keyword arguments, e.g., parameters from &#39;func&#39;`read_pwi`.</span>
 
@@ -508,6 +509,9 @@
 <span class="sd">    function</span>
 <span class="sd">        Smearing function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">smearing</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">smearing</span>
+
     <span class="n">name</span> <span class="o">=</span> <span class="n">smearing</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 
     <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="s1">&#39;gauss&#39;</span><span class="p">}:</span>
@@ -517,7 +521,11 @@
     <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;marzari-vanderbilt&#39;</span><span class="p">,</span> <span class="s1">&#39;cold&#39;</span><span class="p">,</span> <span class="s1">&#39;m-v&#39;</span><span class="p">,</span> <span class="s1">&#39;mv&#39;</span><span class="p">}:</span>
         <span class="k">return</span> <span class="n">marzari_vanderbilt</span>
     <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;fermi-dirac&#39;</span><span class="p">,</span> <span class="s1">&#39;f-d&#39;</span><span class="p">,</span> <span class="s1">&#39;fd&#39;</span><span class="p">}:</span>
-        <span class="k">return</span> <span class="n">fermi_dirac</span></div>
+        <span class="k">return</span> <span class="n">fermi_dirac</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;lorentzian&#39;</span><span class="p">,</span> <span class="s1">&#39;lorentz&#39;</span><span class="p">}:</span>
+        <span class="k">return</span> <span class="n">lorentz</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;heaviside&#39;</span><span class="p">}:</span>
+        <span class="k">return</span> <span class="n">heaviside</span></div>
 
 
 <div class="viewcode-block" id="find_Fermi_level">

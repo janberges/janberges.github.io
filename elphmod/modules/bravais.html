@@ -7,6 +7,7 @@
   <title>Bravais &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css?v=1f476fd3" />
 
   
   <!--[if lt IE 9]>
@@ -65,6 +66,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.irreducibles"><code class="docutils literal notranslate"><span class="pre">irreducibles()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.kpoints"><code class="docutils literal notranslate"><span class="pre">kpoints()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.linear_interpolation"><code class="docutils literal notranslate"><span class="pre">linear_interpolation()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.mesh"><code class="docutils literal notranslate"><span class="pre">mesh()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.path"><code class="docutils literal notranslate"><span class="pre">path()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.point_on_path"><code class="docutils literal notranslate"><span class="pre">point_on_path()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.primitives"><code class="docutils literal notranslate"><span class="pre">primitives()</span></code></a></li>
@@ -424,6 +426,28 @@ respect to fractional indices.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.mesh">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/bravais.html#mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.bravais.mesh" title="Link to this definition"></a></dt>
+<dd><p>Generate uniform mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>*n</strong><span class="classifier">int</span></dt><dd><p>Mesh dimensions.</p>
+</dd>
+<dt><strong>flat</strong><span class="classifier">bool, default False</span></dt><dd><p>Flatten mesh-point indices into single dimension?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Mesh points with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.path">
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recvec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">moveG</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/bravais.html#path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.bravais.path" title="Link to this definition"></a></dt>
 <dd><p>Generate arbitrary path through Brillouin zone.</p>
@@ -464,7 +488,8 @@ This is useful, e.g., to plot phonon dispersions with TO-LO splitting.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#elphmod.bravais.primitives" title="elphmod.bravais.primitives"><code class="xref py py-obj docutils literal notranslate"><span class="pre">primitives</span></code></a>, <a class="reference internal" href="#elphmod.bravais.reciprocals" title="elphmod.bravais.reciprocals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reciprocals</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="#elphmod.bravais.primitives" title="elphmod.bravais.primitives"><code class="xref py py-obj docutils literal notranslate"><span class="pre">primitives</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="#elphmod.bravais.reciprocals" title="elphmod.bravais.reciprocals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reciprocals</span></code></a></dt><dd></dd>
 </dl>
 </div>
 </dd></dl>
@@ -662,7 +687,7 @@ lattice constant in bohr; the other elements are dimensionless.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">elph.Model</span></code></dt><dd></dd>
+<dt><a class="reference internal" href="elph.html#elphmod.elph.Model" title="elphmod.elph.Model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">elphmod.elph.Model</span></code></a></dt><dd></dd>
 </dl>
 </div>
 </dd></dl>

@@ -6,6 +6,7 @@
   <title>elphmod.md &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=1f476fd3" />
 
   
   <!--[if lt IE 9]>
@@ -94,16 +95,21 @@
 
 <span class="sd">&quot;&quot;&quot;Charge-density-wave dynamics on supercells.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
-
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">bravais</span><span class="p">,</span> <span class="n">diagrams</span><span class="p">,</span> <span class="n">dispersion</span><span class="p">,</span> <span class="n">el</span><span class="p">,</span> <span class="n">misc</span><span class="p">,</span> <span class="n">MPI</span><span class="p">,</span> <span class="n">occupations</span><span class="p">,</span> <span class="n">ph</span>
+<span class="kn">import</span> <span class="nn">elphmod.bravais</span>
+<span class="kn">import</span> <span class="nn">elphmod.diagrams</span>
+<span class="kn">import</span> <span class="nn">elphmod.dispersion</span>
+<span class="kn">import</span> <span class="nn">elphmod.el</span>
+<span class="kn">import</span> <span class="nn">elphmod.misc</span>
+<span class="kn">import</span> <span class="nn">elphmod.MPI</span>
+<span class="kn">import</span> <span class="nn">elphmod.occupations</span>
+<span class="kn">import</span> <span class="nn">elphmod.ph</span>
 
-<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
-<span class="n">info</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">info</span>
+<span class="n">comm</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">info</span>
 
 <div class="viewcode-block" id="Driver">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver">[docs]</a>
@@ -112,7 +118,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    elph : object</span>
+<span class="sd">    elph : :class:`elphmod.elph.Model`</span>
 <span class="sd">        Localized model for electron-phonon coupling. Initialize ``el`` with</span>
 <span class="sd">        ``rydberg=True`` and ``ph`` and ``elph`` with ``divide_mass=False`` and</span>
 <span class="sd">        map everthing to the appropriate supercell before (``elph.supercell``).</span>
@@ -168,7 +174,7 @@
 <span class="sd">    basis : list of list, default None</span>
 <span class="sd">        For each basis atom in the first primitive cell, indices of orbitals</span>
 <span class="sd">        located at this atom. Matching atom and orbital orders as ensured by</span>
-<span class="sd">        :meth:`elph.Model.supercell` are required.</span>
+<span class="sd">        :meth:`elphmod.elph.Model.supercell` are required.</span>
 <span class="sd">    node, images : MPI.Intracomm</span>
 <span class="sd">        Communicators between processes that share memory or same ``node.rank``</span>
 <span class="sd">        if `shared_memory`.</span>
@@ -196,20 +202,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">nq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">nq</span><span class="p">)]</span> <span class="o">=</span> <span class="n">nq</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[[(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">k3</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="p">[</span><span class="mi">2</span><span class="p">])]</span>
-            <span class="k">for</span> <span class="n">k2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
-            <span class="k">for</span> <span class="n">k1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">nk</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">q3</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">q1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="k">for</span> <span class="n">q2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-            <span class="k">for</span> <span class="n">q3</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">[</span><span class="mi">2</span><span class="p">])],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">nq</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">H0</span> <span class="o">=</span> <span class="n">dispersion</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">H0</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">d0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="n">shared_memory</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">shared_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">shared_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
             <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="n">shared_memory</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
@@ -223,12 +222,13 @@
         <span class="k">if</span> <span class="n">unscreen</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">C0</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hessian</span><span class="p">(</span><span class="n">gamma_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">C0</span> <span class="o">+=</span> <span class="n">dispersion</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">C0</span> <span class="o">+=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">supercell</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="p">)</span>
 
-            <span class="n">ph</span><span class="o">.</span><span class="n">q2r</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="p">,</span> <span class="n">nq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">,</span> <span class="n">D_full</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">C0</span><span class="p">,</span> <span class="n">divide_mass</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">q2r</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="p">,</span> <span class="n">nq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">,</span> <span class="n">D_full</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">C0</span><span class="p">,</span>
+                <span class="n">divide_mass</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">elph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">supercell</span><span class="p">(</span><span class="o">*</span><span class="n">supercell</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -296,8 +296,8 @@
 <span class="sd">        float</span>
 <span class="sd">            New chemical potential.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="n">occupations</span><span class="o">.</span><span class="n">find_Fermi_level</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">find_Fermi_level</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span></div>
 
@@ -347,7 +347,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">update_plot</span><span class="p">()</span>
 
-        <span class="n">prefactor</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span>
+        <span class="n">prefactor</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span>
 
         <span class="n">E</span> <span class="o">=</span> <span class="n">prefactor</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># E - mu N</span>
         <span class="n">E</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="c1"># mu N</span>
@@ -389,7 +389,7 @@
             <span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
                 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">)])</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">F</span> <span class="o">=</span> <span class="n">diagrams</span><span class="o">.</span><span class="n">first_order</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span>
+            <span class="n">F</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">diagrams</span><span class="o">.</span><span class="n">first_order</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span>
                 <span class="n">U</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
 
         <span class="n">F</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">)</span>
@@ -465,7 +465,7 @@
             <span class="n">avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">d_orb</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
                 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">)])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dos</span><span class="p">)</span>
 
-            <span class="n">status</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>
                 <span class="n">title</span><span class="o">=</span><span class="s1">&#39;calculate static phonon self-energy&#39;</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
@@ -501,11 +501,11 @@
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">[</span><span class="n">iq</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span>
 
-            <span class="n">C</span> <span class="o">=</span> <span class="n">diagrams</span><span class="o">.</span><span class="n">phonon_self_energy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">[:</span><span class="n">nq</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">[:</span><span class="n">nq</span><span class="p">],</span>
-                <span class="n">kT</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">)</span>
+            <span class="n">C</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">diagrams</span><span class="o">.</span><span class="n">phonon_self_energy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">[:</span><span class="n">nq</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span>
+                <span class="n">g</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">[:</span><span class="n">nq</span><span class="p">],</span> <span class="n">kT</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">)</span>
 
-            <span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">diagrams</span><span class="o">.</span><span class="n">phonon_self_energy_fermi_shift</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                <span class="n">kT</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span>
+            <span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">diagrams</span><span class="o">.</span><span class="n">phonon_self_energy_fermi_shift</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kT</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span>
 
         <span class="n">C</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C0</span><span class="p">[:</span><span class="n">nq</span><span class="p">]</span>
 
@@ -520,8 +520,9 @@
             <span class="n">C</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="n">fildyn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">ph</span><span class="o">.</span><span class="n">write_flfrc</span><span class="p">(</span><span class="n">fildyn</span><span class="p">,</span>
-                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">[:</span><span class="n">nq</span><span class="p">]</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">bravais</span><span class="o">.</span><span class="n">reciprocals</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">)),</span> <span class="n">C</span><span class="p">),</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">reciprocals</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+
+            <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">write_flfrc</span><span class="p">(</span><span class="n">fildyn</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">[:</span><span class="n">nq</span><span class="p">]</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">C</span><span class="p">),</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">M</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">atom_order</span><span class="p">)</span>
@@ -560,8 +561,8 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span><span class="p">:</span>
                 <span class="n">H</span> <span class="o">=</span> <span class="n">H</span><span class="p">[::</span><span class="n">dk1</span><span class="p">,</span> <span class="p">::</span><span class="n">dk2</span><span class="p">,</span> <span class="p">::</span><span class="n">dk3</span><span class="p">]</span>
 
-        <span class="n">model</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="p">)</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">rydberg</span> <span class="o">=</span> <span class="n">rydberg</span>
+        <span class="n">el</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="p">)</span>
+        <span class="n">el</span><span class="o">.</span><span class="n">rydberg</span> <span class="o">=</span> <span class="n">rydberg</span>
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="p">,</span> <span class="s1">&#39;cells&#39;</span><span class="p">):</span>
             <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">cells</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">cells</span>
@@ -572,14 +573,14 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
-        <span class="n">el</span><span class="o">.</span><span class="n">k2r</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">rydberg</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">k2r</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">rydberg</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="n">model</span><span class="o">.</span><span class="n">standardize</span><span class="p">(</span><span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">)</span>
+        <span class="n">el</span><span class="o">.</span><span class="n">standardize</span><span class="p">(</span><span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">seedname</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">model</span><span class="o">.</span><span class="n">to_hrdat</span><span class="p">(</span><span class="n">seedname</span><span class="p">)</span>
+            <span class="n">el</span><span class="o">.</span><span class="n">to_hrdat</span><span class="p">(</span><span class="n">seedname</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">model</span></div>
+        <span class="k">return</span> <span class="n">el</span></div>
 
 
 <div class="viewcode-block" id="Driver.phonons">
@@ -592,21 +593,21 @@
 <span class="sd">        divide_mass : bool</span>
 <span class="sd">            Divide force constants by atomic masses?</span>
 <span class="sd">        **kwargs</span>
-<span class="sd">            Parameters passed to :func:`ph.q2r`.</span>
+<span class="sd">            Parameters passed to :func:`elphmod.ph.q2r`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        object</span>
 <span class="sd">            Mass-spring model for the phonons.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="p">)</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">divide_mass</span> <span class="o">=</span> <span class="n">divide_mass</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">r</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="n">ph</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="p">)</span>
+        <span class="n">ph</span><span class="o">.</span><span class="n">divide_mass</span> <span class="o">=</span> <span class="n">divide_mass</span>
+        <span class="n">ph</span><span class="o">.</span><span class="n">r</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
-        <span class="n">ph</span><span class="o">.</span><span class="n">q2r</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">D_full</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hessian</span><span class="p">(</span><span class="n">gamma_only</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">nq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">,</span>
+        <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">q2r</span><span class="p">(</span><span class="n">ph</span><span class="p">,</span> <span class="n">D_full</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hessian</span><span class="p">(</span><span class="n">gamma_only</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">nq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">,</span>
             <span class="n">divide_mass</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">model</span></div>
+        <span class="k">return</span> <span class="n">ph</span></div>
 
 
 <div class="viewcode-block" id="Driver.superconductivity">
@@ -675,7 +676,7 @@
 
             <span class="n">comm</span><span class="o">.</span><span class="n">Barrier</span><span class="p">()</span>
 
-            <span class="n">g2dd</span><span class="p">,</span> <span class="n">dd</span> <span class="o">=</span> <span class="n">diagrams</span><span class="o">.</span><span class="n">double_fermi_surface_average</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">,</span>
+            <span class="n">g2dd</span><span class="p">,</span> <span class="n">dd</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">diagrams</span><span class="o">.</span><span class="n">double_fermi_surface_average</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="n">kT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span>
 
             <span class="n">g2dd</span> <span class="o">=</span> <span class="n">g2dd</span><span class="o">.</span><span class="n">real</span> <span class="o">/</span> <span class="n">dd</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -795,7 +796,7 @@
             <span class="n">sizes</span> <span class="o">*=</span> <span class="n">rho</span> <span class="o">/</span> <span class="n">rho</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">scatter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">sizes</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#</span><span class="si">%02x%02x%02x</span><span class="s1">&#39;</span>
-            <span class="o">%</span> <span class="n">misc</span><span class="o">.</span><span class="n">colors</span><span class="p">[</span><span class="n">X</span><span class="p">]</span> <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">atom_order</span><span class="p">])</span>
+            <span class="o">%</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">colors</span><span class="p">[</span><span class="n">X</span><span class="p">]</span> <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">atom_order</span><span class="p">])</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">quiver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">r</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="n">u</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 
@@ -930,14 +931,14 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">pw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 
-        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bravais</span><span class="o">.</span><span class="n">cartesian_to_crystal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span>
+        <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">cartesian_to_crystal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span>
             <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;ktyp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gamma&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;ktyp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;automatic&#39;</span>
-            <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;k_points&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">pw</span><span class="p">[</span><span class="s1">&#39;k_points&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
         <span class="n">pw</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -968,7 +969,7 @@
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">node</span>
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">images</span>
 
-        <span class="n">MPI</span><span class="o">.</span><span class="n">Buffer</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">Buffer</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="n">interactive</span>
 
@@ -996,9 +997,10 @@
 <span class="sd">        object</span>
 <span class="sd">            MD driver for DFPT-based displacements dynamics.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">driver</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Buffer</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">driver</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">Buffer</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
-        <span class="n">driver</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="n">driver</span><span class="o">.</span><span class="n">images</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">shm_split</span><span class="p">(</span><span class="n">comm</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="n">driver</span><span class="o">.</span><span class="n">images</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">shm_split</span><span class="p">(</span><span class="n">comm</span><span class="p">,</span>
+            <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">driver</span><span class="o">.</span><span class="n">sparse</span><span class="p">:</span>
             <span class="n">driver</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="n">driver</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">images</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="n">driver</span><span class="o">.</span><span class="n">images</span>

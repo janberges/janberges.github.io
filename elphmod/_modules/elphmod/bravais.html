@@ -6,6 +6,7 @@
   <title>elphmod.bravais &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=1f476fd3" />
 
   
   <!--[if lt IE 9]>
@@ -94,14 +95,13 @@
 
 <span class="sd">&quot;&quot;&quot;Lattices, symmetries, and interpolation.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
-
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">misc</span><span class="p">,</span> <span class="n">MPI</span>
+<span class="kn">import</span> <span class="nn">elphmod.misc</span>
+<span class="kn">import</span> <span class="nn">elphmod.MPI</span>
 
-<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
-<span class="n">info</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">info</span>
+<span class="n">comm</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">info</span>
 
 <span class="n">deg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
 
@@ -176,7 +176,7 @@
     <span class="k">if</span> <span class="n">celldm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">celldm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 
-        <span class="n">celldm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">misc</span><span class="o">.</span><span class="n">a0</span>
+        <span class="n">celldm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">a0</span>
         <span class="n">celldm</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span> <span class="o">/</span> <span class="n">a</span>
         <span class="n">celldm</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span> <span class="o">/</span> <span class="n">a</span>
 
@@ -192,7 +192,7 @@
             <span class="n">celldm</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">cosab</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">bohr</span><span class="p">:</span>
-        <span class="n">celldm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="n">misc</span><span class="o">.</span><span class="n">a0</span>
+        <span class="n">celldm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">a0</span>
 
     <span class="k">if</span> <span class="n">ibrav</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># free</span>
         <span class="k">if</span> <span class="n">r_cell</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">cell_units</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -203,9 +203,9 @@
         <span class="k">if</span> <span class="s1">&#39;alat&#39;</span> <span class="ow">in</span> <span class="n">cell_units</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
             <span class="n">a</span> <span class="o">*=</span> <span class="n">celldm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">elif</span> <span class="n">bohr</span> <span class="ow">and</span> <span class="s1">&#39;angstrom&#39;</span> <span class="ow">in</span> <span class="n">cell_units</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
-            <span class="n">a</span> <span class="o">/=</span> <span class="n">misc</span><span class="o">.</span><span class="n">a0</span>
+            <span class="n">a</span> <span class="o">/=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">a0</span>
         <span class="k">elif</span> <span class="ow">not</span> <span class="n">bohr</span> <span class="ow">and</span> <span class="s1">&#39;bohr&#39;</span> <span class="ow">in</span> <span class="n">cell_units</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
-            <span class="n">a</span> <span class="o">*=</span> <span class="n">misc</span><span class="o">.</span><span class="n">a0</span>
+            <span class="n">a</span> <span class="o">*=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">a0</span>
 
         <span class="k">return</span> <span class="n">a</span>
 
@@ -876,7 +876,7 @@
 
     <span class="c1"># save &quot;stacking&quot;, shift lowest point up by one period, and repeat:</span>
 
-    <span class="n">stackings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">points</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="n">stackings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="o">*</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">points</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
     <span class="n">stackings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">points</span>
 
@@ -1112,9 +1112,9 @@
     <span class="c1"># apply interpolation function at new lattice points in parallel:</span>
 
     <span class="n">size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
-    <span class="n">sizes</span><span class="p">,</span> <span class="n">bounds</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">distribute</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">sizes</span><span class="p">,</span> <span class="n">bounds</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">distribute</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="n">my_new_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],)</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">shape</span><span class="p">):],</span>
+    <span class="n">my_new_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="o">*</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">shape</span><span class="p">):]),</span>
         <span class="n">dtype</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">periodic</span><span class="p">:</span>
@@ -1128,7 +1128,7 @@
 
         <span class="n">my_new_data</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">interpolant</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">scale</span><span class="p">))</span>
 
-    <span class="n">new_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">shape</span><span class="p">):],</span>
+    <span class="n">new_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="o">*</span><span class="n">shape</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">shape</span><span class="p">):]),</span>
         <span class="n">dtype</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
     <span class="n">comm</span><span class="o">.</span><span class="n">Allgatherv</span><span class="p">(</span><span class="n">my_new_data</span><span class="p">,</span>
@@ -1269,7 +1269,7 @@
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
-<span class="sd">    elph.Model</span>
+<span class="sd">    elphmod.elph.Model</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
@@ -1531,7 +1531,7 @@
 
     <span class="n">irvec</span><span class="p">,</span> <span class="n">ndegen</span><span class="p">,</span> <span class="n">wslen</span> <span class="o">=</span> <span class="n">wigner</span><span class="p">(</span><span class="n">nr1</span><span class="p">,</span> <span class="n">nr2</span><span class="p">,</span> <span class="n">nr3</span><span class="p">,</span> <span class="n">at</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">sgn</span><span class="o">=</span><span class="n">sgn</span><span class="p">)</span>
 
-    <span class="n">sizes</span><span class="p">,</span> <span class="n">bounds</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">distribute</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">irvec</span><span class="p">),</span> <span class="n">bounds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">sizes</span><span class="p">,</span> <span class="n">bounds</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">distribute</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">irvec</span><span class="p">),</span> <span class="n">bounds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="n">my_const</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">nbasis</span> <span class="o">*</span> <span class="n">ncart</span><span class="p">,</span> <span class="n">nbasis</span> <span class="o">*</span> <span class="n">ncart</span><span class="p">),</span>
         <span class="n">dtype</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
@@ -1602,7 +1602,7 @@
 
     <span class="c1"># construct smooth inverse transform (formally tight-binding model):</span>
 
-    <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">N</span> <span class="o">*</span> <span class="n">N</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,)</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">N</span> <span class="o">*</span> <span class="n">N</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:]),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
     <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">N</span> <span class="o">*</span> <span class="n">N</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">N</span> <span class="o">*</span> <span class="n">N</span> <span class="o">*</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
 
@@ -1683,7 +1683,8 @@
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
-<span class="sd">    primitives, reciprocals</span>
+<span class="sd">    primitives</span>
+<span class="sd">    reciprocals</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
         <span class="mi">1</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># cubic (sc)</span>
@@ -1712,8 +1713,8 @@
             <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
             <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
             <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
-            <span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-            <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+            <span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+            <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
             <span class="p">},</span>
         <span class="mi">6</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># tetragonal (st)</span>
             <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
@@ -1899,9 +1900,9 @@
         <span class="n">k</span> <span class="o">*=</span> <span class="n">shrink</span>
         <span class="n">K</span> <span class="o">*=</span> <span class="n">shrink</span>
 
-    <span class="n">L1</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">L2</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span>
-    <span class="n">L3</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="mf">3.0</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span>
+    <span class="n">L3</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="mi">3</span>
 
     <span class="k">if</span> <span class="n">mesh</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">N</span> <span class="o">%</span> <span class="mi">6</span><span class="p">:</span> <span class="c1"># use only points of N x N mesh</span>
         <span class="n">N1</span> <span class="o">=</span> <span class="n">N</span> <span class="o">//</span> <span class="mi">2</span>
@@ -1974,7 +1975,7 @@
 <span class="sd">    dict</span>
 <span class="sd">        Input data and crystal structure.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">struct</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">read_input_data</span><span class="p">(</span><span class="n">pwi</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">struct</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">read_input_data</span><span class="p">(</span><span class="n">pwi</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;celldm&#39;</span><span class="p">]:</span>
@@ -2414,7 +2415,7 @@
 <span class="sd">    dict</span>
 <span class="sd">        Input parameters.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">misc</span><span class="o">.</span><span class="n">read_input_data</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">read_input_data</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="write_ph">
@@ -2476,7 +2477,7 @@
 <span class="sd">    dict</span>
 <span class="sd">        Input parameters.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">misc</span><span class="o">.</span><span class="n">read_input_data</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">read_input_data</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="write_q2r">
@@ -2519,7 +2520,7 @@
 <span class="sd">    dict</span>
 <span class="sd">        Input parameters.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">struct</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">read_input_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">struct</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">read_input_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">lines</span><span class="p">:</span>
@@ -2588,7 +2589,7 @@
 <span class="sd">    dict</span>
 <span class="sd">        Input parameters.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">struct</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">read_input_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">struct</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">read_input_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;proj&#39;</span><span class="p">,</span> <span class="s1">&#39;wdata&#39;</span><span class="p">]:</span>
@@ -2857,6 +2858,32 @@
     <span class="k">return</span> <span class="n">R_CRYSTAL</span></div>
 
 
+<div class="viewcode-block" id="mesh">
+<a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.mesh">[docs]</a>
+<span class="k">def</span> <span class="nf">mesh</span><span class="p">(</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate uniform mesh.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    *n : int</span>
+<span class="sd">        Mesh dimensions.</span>
+<span class="sd">    flat : bool, default False</span>
+<span class="sd">        Flatten mesh-point indices into single dimension?</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Mesh points with period :math:`2 \pi`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="nb">range</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span>
+        <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+
+    <span class="k">if</span> <span class="n">flat</span><span class="p">:</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="n">points</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
+
+
 <div class="viewcode-block" id="kpoints">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.kpoints">[docs]</a>
 <span class="k">def</span> <span class="nf">kpoints</span><span class="p">(</span><span class="n">nk1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nk2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nk3</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -2871,31 +2898,20 @@
 <span class="sd">    weights : bool</span>
 <span class="sd">        Print weights?</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">N</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">nk</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;number of points along </span><span class="si">%s</span><span class="s1"> axis: &#39;</span> <span class="o">%</span> <span class="n">axis</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">axis</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">&#39;1st&#39;</span><span class="p">,</span> <span class="n">nk1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;2nd&#39;</span><span class="p">,</span> <span class="n">nk2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;3rd&#39;</span><span class="p">,</span> <span class="n">nk3</span><span class="p">)]]</span>
 
-    <span class="k">for</span> <span class="n">axis</span><span class="p">,</span> <span class="n">nk</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;1st&#39;</span><span class="p">,</span> <span class="n">nk1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;2nd&#39;</span><span class="p">,</span> <span class="n">nk2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;3rd&#39;</span><span class="p">,</span> <span class="n">nk3</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">nk</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">nk</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;number of points along </span><span class="si">%s</span><span class="s1"> axis: &#39;</span> <span class="o">%</span> <span class="n">axis</span><span class="p">))</span>
-
-        <span class="n">dk</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">nk</span>
-        <span class="n">k</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span> <span class="o">*</span> <span class="n">dk</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nk</span><span class="p">)])</span>
-        <span class="n">N</span> <span class="o">*=</span> <span class="n">nk</span>
-
-    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">nk</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">weights</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;print weights (y/n): &#39;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">weights</span><span class="p">:</span>
-       <span class="n">cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">N</span><span class="p">,)</span> <span class="o">*</span> <span class="n">weights</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-       <span class="k">for</span> <span class="n">cols</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
-          <span class="k">for</span> <span class="n">cols</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">in</span> <span class="n">k</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
-             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%12.10f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">))</span></div>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">mesh</span><span class="p">(</span><span class="o">*</span><span class="n">nk</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%12.10f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="n">w</span><span class="p">))</span></div>
 
 </pre></div>
 
