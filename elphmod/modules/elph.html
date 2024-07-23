@@ -74,6 +74,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.elph.ph2epw"><code class="docutils literal notranslate"><span class="pre">ph2epw()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.elph.q2r"><code class="docutils literal notranslate"><span class="pre">q2r()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.elph.read_EPW_output"><code class="docutils literal notranslate"><span class="pre">read_EPW_output()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.elph.read_L"><code class="docutils literal notranslate"><span class="pre">read_L()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.elph.read_data"><code class="docutils literal notranslate"><span class="pre">read_data()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.elph.read_patterns"><code class="docutils literal notranslate"><span class="pre">read_patterns()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.elph.read_prtgkk"><code class="docutils literal notranslate"><span class="pre">read_prtgkk()</span></code></a></li>
@@ -540,9 +541,29 @@ quantity of dimension energy to the power of 2/3?</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="elphmod.elph.read_L">
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_L</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epw_out</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/elph.html#read_L"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.elph.read_L" title="Link to this definition"></a></dt>
+<dd><p>Read range-separation parameter from EPW output</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>epw_out</strong><span class="classifier">str</span></dt><dd><p>Name of EPW output file.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Range-separation parameter if found, <code class="docutils literal notranslate"><span class="pre">None</span></code> otherwise.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.read_data">
 <span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">read_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/elph.html#read_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.elph.read_data" title="Link to this definition"></a></dt>
-<dd><p>Read array to ASCII file.</p>
+<dd><p>Read array from ASCII file.</p>
 </dd></dl>
 
 <dl class="py function">

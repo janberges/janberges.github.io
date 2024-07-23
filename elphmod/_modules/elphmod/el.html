@@ -1446,7 +1446,19 @@
 <div class="viewcode-block" id="read_Fermi_level">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_Fermi_level">[docs]</a>
 <span class="k">def</span> <span class="nf">read_Fermi_level</span><span class="p">(</span><span class="n">pw_scf_out</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read Fermi level from output of self-consistent PW run.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read Fermi level from output of self-consistent PW run.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pw_scf_out : str</span>
+<span class="sd">        PWscf output file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Fermi level if found, ``None`` otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">eF</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">pw_scf_out</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
@@ -1455,12 +1467,8 @@
                     <span class="n">eF</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
                 <span class="k">elif</span> <span class="s1">&#39;highest occupied level&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
                     <span class="n">eF</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">eF</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="n">eF</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">bcast</span><span class="p">(</span><span class="n">eF</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">eF</span></div>
+    <span class="k">return</span> <span class="n">comm</span><span class="o">.</span><span class="n">bcast</span><span class="p">(</span><span class="n">eF</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="read_pwo">

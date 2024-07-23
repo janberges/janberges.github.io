@@ -530,8 +530,7 @@
 
 <div class="viewcode-block" id="find_Fermi_level">
 <a class="viewcode-back" href="../../modules/occupations.html#elphmod.occupations.find_Fermi_level">[docs]</a>
-<span class="k">def</span> <span class="nf">find_Fermi_level</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="n">fermi_dirac</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>
-        <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">find_Fermi_level</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Determine chemical potential via fixed-point iteration.</span>
 
 <span class="sd">    See Eqs. 4.21 and 4.22 of https://janberges.de/theses/Master_Jan_Berges.pdf.</span>
@@ -559,6 +558,8 @@
 <span class="sd">    float</span>
 <span class="sd">        Chemical potential.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">smearing</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
     <span class="c1"># map number of electrons to whole system and spinless electrons:</span>
 
     <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">e</span><span class="o">.</span><span class="n">size</span> <span class="o">/</span> <span class="n">e</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -590,7 +591,7 @@
 
 <div class="viewcode-block" id="find_Fermi_level_simple">
 <a class="viewcode-back" href="../../modules/occupations.html#elphmod.occupations.find_Fermi_level_simple">[docs]</a>
-<span class="k">def</span> <span class="nf">find_Fermi_level_simple</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="n">fermi_dirac</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>
+<span class="k">def</span> <span class="nf">find_Fermi_level_simple</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>
         <span class="n">damp</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Determine chemical potential via simple fixed-point iteration.</span>
 
@@ -618,6 +619,8 @@
 <span class="sd">    float</span>
 <span class="sd">        Chemical potential.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">smearing</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
     <span class="c1"># map number of electrons to whole system and spinless electrons:</span>
 
     <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">e</span><span class="o">.</span><span class="n">size</span> <span class="o">/</span> <span class="n">e</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>

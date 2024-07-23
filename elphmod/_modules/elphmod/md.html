@@ -191,7 +191,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">elph</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">elph</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">kT</span> <span class="o">=</span> <span class="n">kT</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">f</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="kc">None</span>
