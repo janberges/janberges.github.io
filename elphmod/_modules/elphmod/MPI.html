@@ -326,7 +326,11 @@
         <span class="c1"># &#39;Shared memory for data structures and mpi4py.MPI.Win.Allocate_shared&#39;</span>
 
         <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="n">dtype</span><span class="o">.</span><span class="n">itemsize</span> <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">dtype</span><span class="o">.</span><span class="n">itemsize</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
+
             <span class="n">window</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Win</span><span class="o">.</span><span class="n">Allocate_shared</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">.</span><span class="n">itemsize</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
             <span class="n">buffer</span><span class="p">,</span> <span class="n">itemsize</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">Shared_query</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 

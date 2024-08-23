@@ -617,7 +617,7 @@
 
     <span class="n">shape</span> <span class="o">=</span> <span class="n">V1</span><span class="o">.</span><span class="n">shape</span>
 
-    <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">bands</span> <span class="o">=</span> <span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
 
     <span class="n">V1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">V1</span><span class="p">,</span> <span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">bands</span><span class="p">,</span> <span class="n">bands</span><span class="p">))</span>
