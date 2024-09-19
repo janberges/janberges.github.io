@@ -115,7 +115,7 @@
 <dt class="sig sig-object py" id="storylines.plot.Plot">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">storylines.plot.</span></span><span class="sig-name descname"><span class="pre">Plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xyaxes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rounded</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">more</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/storylines/plot.html#Plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#storylines.plot.Plot" title="Link to this definition"></a></dt>
 <dd><p>Plot object.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>width</strong><span class="classifier">float, default None</span></dt><dd><p>Figure width in cm. A negative value is interpreted as the inner width
@@ -144,15 +144,8 @@ Otherwise the TikZ initial values <code class="docutils literal notranslate"><sp
 </dd>
 </dl>
 </dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>In all textual attributes and parameters, numbers in angle brackets are
-interpreted as values in y data units, e.g., <code class="docutils literal notranslate"><span class="pre">line_width='&lt;0.1&gt;'</span></code>. For
-the parameters <cite>line_width</cite> and <cite>mark_size</cite> this is also the case if an
-integer or float is passed instead of a string.</p>
-<dl class="field-list">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
 <dt><strong>left</strong><span class="classifier">float, default <cite>margin</cite></span></dt><dd><p>Left margin in cm.</p>
 </dd>
 <dt><strong>right</strong><span class="classifier">float, default <cite>margin</cite></span></dt><dd><p>Right margin in cm.</p>
@@ -190,7 +183,7 @@ that fall on major ticks are omitted.</p>
 </dd>
 <dt><strong>xminormarks, yminormarks</strong><span class="classifier">bool, default False</span></dt><dd><p>Show minor tick marks?</p>
 </dd>
-<dt><strong>xminorspacing, yminorspacing</strong><span class="classifier">float, default 0.1</span></dt><dd><p>Approximate minor-tick spacing in cm.</p>
+<dt><strong>xminorspacing, yminorspacing</strong><span class="classifier">float, default None</span></dt><dd><p>Approximate minor-tick spacing in cm.</p>
 </dd>
 <dt><strong>xminorstep, yminorstep</strong><span class="classifier">float, default None</span></dt><dd><p>Exact minor-tick increment.</p>
 </dd>
@@ -268,6 +261,12 @@ prepending <code class="docutils literal notranslate"><span class="pre">\tikzset
 </dd>
 <dt><strong>yaxis</strong><span class="classifier">bool, default <cite>xyaxes</cite></span></dt><dd><p>Draw y axis?</p>
 </dd>
+<dt><strong>xorigin</strong><span class="classifier">float, default None</span></dt><dd><p>Horizontal position of y axis in data coordinates. A reasonable value
+could be zero. By default, the y axis is shown on the left.</p>
+</dd>
+<dt><strong>yorigin</strong><span class="classifier">float, default None</span></dt><dd><p>Vertical position of x axis in data coordinates. A reasonable value
+could be zero. By default, the x axis is shown on the bottom.</p>
+</dd>
 <dt><strong>frame</strong><span class="classifier">bool, default <cite>xyaxes</cite></span></dt><dd><p>Draw frame around plot area?</p>
 </dd>
 <dt><strong>grid</strong><span class="classifier">bool, default False</span></dt><dd><p>Add grid lines at tick positions?</p>
@@ -308,8 +307,10 @@ its original size. For zooming, smaller values may be necessary. This
 parameter determines the number of vertices used to render a line and
 thus affects the file size.</p>
 </dd>
-<dt><strong>eps</strong><span class="classifier">float, default 1e-4</span></dt><dd><p>Distance from plot boundary in cm beyond which a mark is considered to
-lie outside of the plot area (and is potentially cut off).</p>
+<dt><strong>eps</strong><span class="classifier">float, default 1e-4</span></dt><dd><p>Distance from plot boundary in cm beyond which a mark or grid line is
+considered to lie outside of the plot area (and is potentially cut off).
+This tolerance is meant to make up for the limited numerical precision.
+For example, using double preicision, <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">*</span> <span class="pre">0.1</span> <span class="pre">&gt;</span> <span class="pre">0.3</span></code>.</p>
 </dd>
 <dt><strong>lines</strong><span class="classifier">list</span></dt><dd><p>List of all line objects.</p>
 </dd>
@@ -318,6 +319,11 @@ lie outside of the plot area (and is potentially cut off).</p>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>In all textual attributes and parameters, numbers in angle brackets are
+interpreted as values in y data units, e.g., <code class="docutils literal notranslate"><span class="pre">line_width='&lt;0.1&gt;'</span></code>. For
+the parameters <cite>line_width</cite> and <cite>mark_size</cite> this is also the case if an
+integer or float is passed instead of a string.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="storylines.plot.Plot.axes">
 <span class="sig-name descname"><span class="pre">axes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/storylines/plot.html#Plot.axes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#storylines.plot.Plot.axes" title="Link to this definition"></a></dt>
@@ -441,8 +447,8 @@ fill color is the same as the stroke color.</p>
 </dd>
 <dt><strong>z</strong><span class="classifier">float, default None</span></dt><dd><p>z value for entire line, represented by color.</p>
 </dd>
-<dt><strong>axes</strong><span class="classifier">bool, default False</span></dt><dd><p>Draw axes at current z index? By default, the axes are drawn on top
-of all data.</p>
+<dt><strong>axes</strong><span class="classifier">bool, default False</span></dt><dd><p>Draw axes at current z index? By default, the axes are drawn first,
+i.e., below all data.</p>
 </dd>
 <dt><strong>code</strong><span class="classifier">str, default None</span></dt><dd><p>Literal TikZ code to be inserted at current position.</p>
 </dd>
