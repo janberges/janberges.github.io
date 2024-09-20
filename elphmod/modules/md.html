@@ -143,8 +143,11 @@ map everthing to the appropriate supercell before (<code class="docutils literal
 <dt><strong>supercell</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Supercell lattice vectors as multiples of primitive lattice vectors. If
 given, the simulation is performed on a supercell for q = k = 0. Sparse
 matrices are used for Hamiltonian, dynamical matrix, and electron-phonon
-coupling to save memory. The calculation of phonons is not implemented.
-Note that <cite>elph</cite> should belong to the primitive cell in this case.</p>
+coupling to save memory. Note that <cite>elph</cite> should belong to the primitive
+cell in this case, and <cite>nq</cite> and <cite>nk</cite> are only used for the unscreening,
+which is still done one the primitive cell. To do the unscreening on the
+supercell (recommended), a sparse supercell model <cite>elph</cite> can be directly
+provided instead of using this option.</p>
 </dd>
 <dt><strong>unscreen</strong><span class="classifier">bool, default True</span></dt><dd><p>Unscreen phonons? Otherwise, they are assumed to be unscreened already.</p>
 </dd>
