@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
@@ -6,19 +8,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Patches &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/style.css?v=1f476fd3" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -101,14 +99,15 @@
 version of Quantum ESPRESSO (QE). We provide the corresponding patches for
 different versions of QE. To apply them, go to the QE repository and run, e.g.,
 the following commands:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">qe</span><span class="o">-</span><span class="mf">7.3</span>
-<span class="n">git</span> <span class="n">apply</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">elphmod</span><span class="o">/</span><span class="n">patches</span><span class="o">/</span><span class="n">qe</span><span class="o">-</span><span class="mf">7.3</span><span class="o">.</span><span class="n">patch</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">qe</span><span class="o">-</span><span class="mf">7.4</span>
+<span class="n">git</span> <span class="n">apply</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">elphmod</span><span class="o">/</span><span class="n">patches</span><span class="o">/</span><span class="n">qe</span><span class="o">-</span><span class="mf">7.4</span><span class="o">.</span><span class="n">patch</span>
 <span class="o">./</span><span class="n">configure</span>
 <span class="n">make</span> <span class="n">pw</span> <span class="n">pp</span> <span class="n">ph</span> <span class="n">epw</span>
 </pre></div>
 </div>
 <p>The patch files have been created using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">-U1</span></code>.</p>
 <p>The following description applies to <code class="docutils literal notranslate"><span class="pre">qe-6.7MaX-Release</span></code> and higher versions.
+Since <code class="docutils literal notranslate"><span class="pre">qe-7.4</span></code>, the changes in EPW are part of QE and do not require a patch.
 The patch for <code class="docutils literal notranslate"><span class="pre">qe-6.3-backports</span></code> uses different formats for input and output,
 which requires using <code class="docutils literal notranslate"><span class="pre">elphmod.elph.Model(old_ws=True)</span></code>.</p>
 <section id="changes-in-phonon">
