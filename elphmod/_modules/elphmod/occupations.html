@@ -306,76 +306,139 @@
 
 <div class="viewcode-block" id="methfessel_paxton">
 <a class="viewcode-back" href="../../modules/occupations.html#elphmod.occupations.methfessel_paxton">[docs]</a>
-<span class="k">def</span> <span class="nf">methfessel_paxton</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">methfessel_paxton</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate Methfessel-Paxton step function.&quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">gauss</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">methfessel_paxton_term</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">diff</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">gauss</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">methfessel_paxton_term</span><span class="p">(</span><span class="n">x</span><span class="p">,</span>
+        <span class="n">order</span><span class="o">=</span><span class="n">methfessel_paxton</span><span class="o">.</span><span class="n">order</span><span class="p">,</span> <span class="n">diff</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="methfessel_paxton_delta">
 <a class="viewcode-back" href="../../modules/occupations.html#elphmod.occupations.methfessel_paxton_delta">[docs]</a>
-<span class="k">def</span> <span class="nf">methfessel_paxton_delta</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">methfessel_paxton_delta</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate negative derivative of Methfessel-Paxton step function.&quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">gauss</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">methfessel_paxton_term</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">diff</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">gauss</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">methfessel_paxton_term</span><span class="p">(</span><span class="n">x</span><span class="p">,</span>
+        <span class="n">order</span><span class="o">=</span><span class="n">methfessel_paxton</span><span class="o">.</span><span class="n">order</span><span class="p">,</span> <span class="n">diff</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="methfessel_paxton_delta_prime">
 <a class="viewcode-back" href="../../modules/occupations.html#elphmod.occupations.methfessel_paxton_delta_prime">[docs]</a>
-<span class="k">def</span> <span class="nf">methfessel_paxton_delta_prime</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">methfessel_paxton_delta_prime</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate negative 2nd derivative of Methfessel-Paxton step function.&quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">gauss</span><span class="o">.</span><span class="n">delta_prime</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">methfessel_paxton_term</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">diff</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">gauss</span><span class="o">.</span><span class="n">delta_prime</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">methfessel_paxton_term</span><span class="p">(</span><span class="n">x</span><span class="p">,</span>
+        <span class="n">order</span><span class="o">=</span><span class="n">methfessel_paxton</span><span class="o">.</span><span class="n">order</span><span class="p">,</span> <span class="n">diff</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="methfessel_paxton_entropy">
 <a class="viewcode-back" href="../../modules/occupations.html#elphmod.occupations.methfessel_paxton_entropy">[docs]</a>
-<span class="k">def</span> <span class="nf">methfessel_paxton_entropy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">methfessel_paxton_entropy</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate Methfessel-Paxton generalized electronic entropy.&quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="o">-</span><span class="n">methfessel_paxton_term</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">diff</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span></div>
+    <span class="k">if</span> <span class="n">methfessel_paxton</span><span class="o">.</span><span class="n">order</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;MP entropy only implemented for 1st order.&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">methfessel_paxton_term</span><span class="p">(</span><span class="n">x</span><span class="p">,</span>
+        <span class="n">order</span><span class="o">=</span><span class="n">methfessel_paxton</span><span class="o">.</span><span class="n">order</span><span class="p">,</span> <span class="n">diff</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
 
 
+<span class="n">methfessel_paxton</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">methfessel_paxton</span><span class="o">.</span><span class="n">delta</span> <span class="o">=</span> <span class="n">methfessel_paxton_delta</span>
 <span class="n">methfessel_paxton</span><span class="o">.</span><span class="n">delta_prime</span> <span class="o">=</span> <span class="n">methfessel_paxton_delta_prime</span>
 <span class="n">methfessel_paxton</span><span class="o">.</span><span class="n">entropy</span> <span class="o">=</span> <span class="n">methfessel_paxton_entropy</span>
 
 <div class="viewcode-block" id="double_fermi_dirac">
 <a class="viewcode-back" href="../../modules/occupations.html#elphmod.occupations.double_fermi_dirac">[docs]</a>
-<span class="k">def</span> <span class="nf">double_fermi_dirac</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">double_fermi_dirac</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate double Fermi function.&quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="p">(</span><span class="n">fermi_dirac</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="n">fermi_dirac</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">d</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span></div>
+    <span class="k">return</span> <span class="p">(</span><span class="n">fermi_dirac</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">double_fermi_dirac</span><span class="o">.</span><span class="n">d</span><span class="p">)</span>
+          <span class="o">+</span> <span class="n">fermi_dirac</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">double_fermi_dirac</span><span class="o">.</span><span class="n">d</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span></div>
 
 
 <div class="viewcode-block" id="double_fermi_dirac_delta">
 <a class="viewcode-back" href="../../modules/occupations.html#elphmod.occupations.double_fermi_dirac_delta">[docs]</a>
-<span class="k">def</span> <span class="nf">double_fermi_dirac_delta</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">double_fermi_dirac_delta</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate negative derivative of double Fermi function.&quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="p">(</span><span class="n">fermi_dirac</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="n">fermi_dirac</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">d</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span></div>
+    <span class="k">return</span> <span class="p">(</span><span class="n">fermi_dirac</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">double_fermi_dirac</span><span class="o">.</span><span class="n">d</span><span class="p">)</span>
+          <span class="o">+</span> <span class="n">fermi_dirac</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">double_fermi_dirac</span><span class="o">.</span><span class="n">d</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span></div>
 
 
 <div class="viewcode-block" id="double_fermi_dirac_delta_prime">
 <a class="viewcode-back" href="../../modules/occupations.html#elphmod.occupations.double_fermi_dirac_delta_prime">[docs]</a>
-<span class="k">def</span> <span class="nf">double_fermi_dirac_delta_prime</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">double_fermi_dirac_delta_prime</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate negative 2nd derivative of double Fermi function.&quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="p">(</span><span class="n">fermi_dirac</span><span class="o">.</span><span class="n">delta_prime</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="n">fermi_dirac</span><span class="o">.</span><span class="n">delta_prime</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">d</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span></div>
+    <span class="k">return</span> <span class="p">(</span><span class="n">fermi_dirac</span><span class="o">.</span><span class="n">delta_prime</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">double_fermi_dirac</span><span class="o">.</span><span class="n">d</span><span class="p">)</span>
+          <span class="o">+</span> <span class="n">fermi_dirac</span><span class="o">.</span><span class="n">delta_prime</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">double_fermi_dirac</span><span class="o">.</span><span class="n">d</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span></div>
 
 
 <div class="viewcode-block" id="double_fermi_dirac_entropy">
 <a class="viewcode-back" href="../../modules/occupations.html#elphmod.occupations.double_fermi_dirac_entropy">[docs]</a>
-<span class="k">def</span> <span class="nf">double_fermi_dirac_entropy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">double_fermi_dirac_entropy</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate double-Fermi-Dirac generalized electronic entropy.&quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="p">(</span><span class="n">fermi_dirac</span><span class="o">.</span><span class="n">entropy</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="n">fermi_dirac</span><span class="o">.</span><span class="n">entropy</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span>
-        <span class="o">+</span> <span class="n">d</span> <span class="o">*</span> <span class="p">(</span><span class="n">fermi_dirac</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">d</span><span class="p">)</span> <span class="o">-</span> <span class="n">fermi_dirac</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">d</span><span class="p">)))</span> <span class="o">/</span> <span class="mi">2</span></div>
+    <span class="k">return</span> <span class="p">(</span><span class="n">fermi_dirac</span><span class="o">.</span><span class="n">entropy</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">double_fermi_dirac</span><span class="o">.</span><span class="n">d</span><span class="p">)</span>
+          <span class="o">+</span> <span class="n">fermi_dirac</span><span class="o">.</span><span class="n">entropy</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">double_fermi_dirac</span><span class="o">.</span><span class="n">d</span><span class="p">)</span>
+        <span class="o">+</span> <span class="n">double_fermi_dirac</span><span class="o">.</span><span class="n">d</span> <span class="o">*</span> <span class="p">(</span><span class="n">fermi_dirac</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">double_fermi_dirac</span><span class="o">.</span><span class="n">d</span><span class="p">)</span>
+                                <span class="o">-</span> <span class="n">fermi_dirac</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">double_fermi_dirac</span><span class="o">.</span><span class="n">d</span><span class="p">)))</span> <span class="o">/</span> <span class="mi">2</span></div>
 
 
+<span class="n">double_fermi_dirac</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="mf">5.0</span>
 <span class="n">double_fermi_dirac</span><span class="o">.</span><span class="n">delta</span> <span class="o">=</span> <span class="n">double_fermi_dirac_delta</span>
 <span class="n">double_fermi_dirac</span><span class="o">.</span><span class="n">delta_prime</span> <span class="o">=</span> <span class="n">double_fermi_dirac_delta_prime</span>
 <span class="n">double_fermi_dirac</span><span class="o">.</span><span class="n">entropy</span> <span class="o">=</span> <span class="n">double_fermi_dirac_entropy</span>
+
+<div class="viewcode-block" id="two_fermi_dirac">
+<a class="viewcode-back" href="../../modules/occupations.html#elphmod.occupations.two_fermi_dirac">[docs]</a>
+<span class="k">def</span> <span class="nf">two_fermi_dirac</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate two Fermi functions.&quot;&quot;&quot;</span>
+
+    <span class="n">dy</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">two_fermi_dirac</span><span class="o">.</span><span class="n">d</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">dy</span> <span class="o">-</span> <span class="n">two_fermi_dirac</span><span class="o">.</span><span class="n">d</span>
+
+    <span class="k">return</span> <span class="n">fermi_dirac</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="two_fermi_dirac_delta">
+<a class="viewcode-back" href="../../modules/occupations.html#elphmod.occupations.two_fermi_dirac_delta">[docs]</a>
+<span class="k">def</span> <span class="nf">two_fermi_dirac_delta</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate negative derivative of two Fermi functions.&quot;&quot;&quot;</span>
+
+    <span class="n">dy</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">two_fermi_dirac</span><span class="o">.</span><span class="n">d</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">dy</span> <span class="o">-</span> <span class="n">two_fermi_dirac</span><span class="o">.</span><span class="n">d</span>
+
+    <span class="k">return</span> <span class="n">fermi_dirac</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="two_fermi_dirac_delta_prime">
+<a class="viewcode-back" href="../../modules/occupations.html#elphmod.occupations.two_fermi_dirac_delta_prime">[docs]</a>
+<span class="k">def</span> <span class="nf">two_fermi_dirac_delta_prime</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate negative 2nd derivative of two Fermi functions.&quot;&quot;&quot;</span>
+
+    <span class="n">dy</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">two_fermi_dirac</span><span class="o">.</span><span class="n">d</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">dy</span> <span class="o">-</span> <span class="n">two_fermi_dirac</span><span class="o">.</span><span class="n">d</span>
+
+    <span class="k">return</span> <span class="n">fermi_dirac</span><span class="o">.</span><span class="n">delta_prime</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="two_fermi_dirac_entropy">
+<a class="viewcode-back" href="../../modules/occupations.html#elphmod.occupations.two_fermi_dirac_entropy">[docs]</a>
+<span class="k">def</span> <span class="nf">two_fermi_dirac_entropy</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate generalized electronic entropy for two Fermi functions.&quot;&quot;&quot;</span>
+
+    <span class="n">dy</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">two_fermi_dirac</span><span class="o">.</span><span class="n">d</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">dy</span> <span class="o">-</span> <span class="n">two_fermi_dirac</span><span class="o">.</span><span class="n">d</span>
+
+    <span class="k">return</span> <span class="n">fermi_dirac</span><span class="o">.</span><span class="n">entropy</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">)</span> <span class="o">-</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">fermi_dirac</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="n">dy</span></div>
+
+
+<span class="n">two_fermi_dirac</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="mf">5.0</span>
+<span class="n">two_fermi_dirac</span><span class="o">.</span><span class="n">delta</span> <span class="o">=</span> <span class="n">two_fermi_dirac_delta</span>
+<span class="n">two_fermi_dirac</span><span class="o">.</span><span class="n">delta_prime</span> <span class="o">=</span> <span class="n">two_fermi_dirac_delta_prime</span>
+<span class="n">two_fermi_dirac</span><span class="o">.</span><span class="n">entropy</span> <span class="o">=</span> <span class="n">two_fermi_dirac_entropy</span>
 
 <div class="viewcode-block" id="lorentz">
 <a class="viewcode-back" href="../../modules/occupations.html#elphmod.occupations.lorentz">[docs]</a>
