@@ -373,18 +373,32 @@ inverse frequency (in units of <strong>A4</strong>). This keeps the
 acoustic-pressure rather than the particle-displacement amplitude
 constant. <em>n</em> defaults to <strong>1</strong>.</p>
 </dd>
-<dt><strong>synth</strong>[<em>n</em>[<em>n'</em>[<em>m</em>]]]</dt>
+<dt><strong>synth</strong><em>n</em></dt>
 <dd>
-<p>Control synthesis of plucked-string and drum timbres. See Karplus and
-Strong, Comput. Music J. 7, 43 (1983). The stretch factor n should be at
-least <strong>1</strong>. A value of <strong>0</strong> disables the
-synthesizer. The blend factor n' differentiates between plucked-string
-(<strong>1</strong>), drum (<strong>0.5</strong>), or plucked-bottle
-(<strong>0</strong>) timbres. You can choose between the original
-algorithm (<em>m</em> zero) and a variant that should improve tuning
-(<em>n</em> nonzero). While the synthesizer is enabled, only the initial
-frequency and amplitude are taken into account. All arguments default to
+<p>Switch synthesizer on (<em>n</em> nonzero) and off again (<em>n</em>
+zero). See Karplus and Strong, Comput. Music J. 7, 43 (1983). <em>n</em>
+defaults to <strong>1</strong>.</p>
+</dd>
+<dt><strong>blend</strong><em>n</em></dt>
+<dd>
+<p>Set blend factor (<em>b</em>) of synthesizer. <em>n</em> ranges from
+<strong>0</strong> to <strong>1</strong>. Values of <strong>0</strong>,
+<strong>0.5</strong>, and <strong>1</strong> yield plucked-bottle, drum,
+and plucked-string timbres, respectively. <em>n</em> defaults to
 <strong>1</strong>.</p>
+</dd>
+<dt><strong>decay</strong><em>n</em></dt>
+<dd>
+<p>Set inverse decay-stretch factor (1/<em>S</em>) of synthesizer.
+<em>n</em> ranges from <strong>0</strong> to <strong>1</strong>. A value
+of <strong>1</strong> yields the fastest decay. <em>n</em> defaults to
+<strong>1</strong>.</p>
+</dd>
+<dt><strong>tuned</strong><em>n</em></dt>
+<dd>
+<p>Switch optimized tuning of synthesizer on (<em>n</em> nonzero) and
+off again (<em>n</em> zero). Switching it off yields the original
+algorithm. <em>n</em> defaults to <strong>1</strong>.</p>
 </dd>
 <dt><strong>status</strong></dt>
 <dd>
