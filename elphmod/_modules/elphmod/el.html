@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>elphmod.el &mdash; elphmod  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=1f476fd3" />
 
@@ -14,7 +14,7 @@
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -102,20 +102,20 @@
 
 <span class="sd">&quot;&quot;&quot;Tight-binding models from Wannier90.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">import</span> <span class="nn">elphmod.bravais</span>
-<span class="kn">import</span> <span class="nn">elphmod.dispersion</span>
-<span class="kn">import</span> <span class="nn">elphmod.misc</span>
-<span class="kn">import</span> <span class="nn">elphmod.MPI</span>
-<span class="kn">import</span> <span class="nn">elphmod.occupations</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.bravais</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.dispersion</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.misc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.MPI</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.occupations</span>
 
 <span class="n">comm</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">info</span>
 
 <div class="viewcode-block" id="Model">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.Model">[docs]</a>
-<span class="k">class</span> <span class="nc">Model</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Model</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Tight-binding model for the electrons.</span>
 
 <span class="sd">    Parameters</span>
@@ -199,7 +199,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="Model.H">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.Model.H">[docs]</a>
-    <span class="k">def</span> <span class="nf">H</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">H</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up Hamilton operator for arbitrary k point.</span>
 
 <span class="sd">        Parameters</span>
@@ -229,7 +229,7 @@
 
 <div class="viewcode-block" id="Model.v">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.Model.v">[docs]</a>
-    <span class="k">def</span> <span class="nf">v</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">v</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up band-velocity operator for arbitrary k point.</span>
 
 <span class="sd">        Parameters</span>
@@ -252,7 +252,7 @@
 
 <div class="viewcode-block" id="Model.t">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.Model.t">[docs]</a>
-    <span class="k">def</span> <span class="nf">t</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">R1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">R2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">R3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">R1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">R2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">R3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get on-site or hopping energy for arbitrary lattice vector.</span>
 
 <span class="sd">        Parameters</span>
@@ -273,7 +273,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">]</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seedname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seedname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">divide_ndegen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">read_xsf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">normalize_wf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">buffer_wf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">check_ortho</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rydberg</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 
@@ -418,7 +418,7 @@
 
 <div class="viewcode-block" id="Model.supercell">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.Model.supercell">[docs]</a>
-    <span class="k">def</span> <span class="nf">supercell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N3</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">supercell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N3</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Map tight-binding model onto supercell.</span>
 
 <span class="sd">        Parameters</span>
@@ -517,7 +517,7 @@
 
 <div class="viewcode-block" id="Model.unit_cell">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.Model.unit_cell">[docs]</a>
-    <span class="k">def</span> <span class="nf">unit_cell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unit_cell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Map tight-binding model back to unit cell.</span>
 
 <span class="sd">        Original idea by Bin Shao.</span>
@@ -567,7 +567,7 @@
 
 <div class="viewcode-block" id="Model.order_orbitals">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.Model.order_orbitals">[docs]</a>
-    <span class="k">def</span> <span class="nf">order_orbitals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">order</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">order_orbitals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">order</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Reorder Wannier functions.</span>
 
 <span class="sd">        Warning: Wannier functions in position representation and related</span>
@@ -587,7 +587,7 @@
 
 <div class="viewcode-block" id="Model.shift_orbitals">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.Model.shift_orbitals">[docs]</a>
-    <span class="k">def</span> <span class="nf">shift_orbitals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">shift_orbitals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Move selected Wannier functions across unit-cell boundary.</span>
 
 <span class="sd">        Warning: Wannier functions in position representation and related</span>
@@ -631,7 +631,7 @@
 
 <div class="viewcode-block" id="Model.standardize">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.Model.standardize">[docs]</a>
-    <span class="k">def</span> <span class="nf">standardize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">symmetrize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">standardize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">symmetrize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Standardize tight-binding data.</span>
 
 <span class="sd">        - Keep only nonzero hopping matrices.</span>
@@ -703,7 +703,7 @@
 
 <div class="viewcode-block" id="Model.symmetrize">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.Model.symmetrize">[docs]</a>
-    <span class="k">def</span> <span class="nf">symmetrize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">symmetrize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Symmetrize Hamiltonian.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">standardize</span><span class="p">(</span><span class="n">symmetrize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
@@ -711,7 +711,7 @@
 
 <div class="viewcode-block" id="Model.clear">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.Model.clear">[docs]</a>
-    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete all lattice vectors and associated matrix elements.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">[:</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
@@ -720,7 +720,7 @@
 
 <div class="viewcode-block" id="Model.to_hrdat">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.Model.to_hrdat">[docs]</a>
-    <span class="k">def</span> <span class="nf">to_hrdat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seedname</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_hrdat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seedname</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save tight-binding model to *_hr.dat* file.</span>
 
 <span class="sd">        Parameters</span>
@@ -736,7 +736,7 @@
 
 <div class="viewcode-block" id="read_hrdat">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_hrdat">[docs]</a>
-<span class="k">def</span> <span class="nf">read_hrdat</span><span class="p">(</span><span class="n">seedname</span><span class="p">,</span> <span class="n">divide_ndegen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_hrdat</span><span class="p">(</span><span class="n">seedname</span><span class="p">,</span> <span class="n">divide_ndegen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read *_hr.dat* (or *_tb.dat*) file from Wannier90.</span>
 
 <span class="sd">    Parameters</span>
@@ -765,7 +765,7 @@
 
         <span class="c1"># read all words of current line:</span>
 
-        <span class="k">def</span> <span class="nf">cols</span><span class="p">():</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">cols</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
                 <span class="n">words</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 
@@ -832,7 +832,7 @@
 
 <div class="viewcode-block" id="write_hrdat">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.write_hrdat">[docs]</a>
-<span class="k">def</span> <span class="nf">write_hrdat</span><span class="p">(</span><span class="n">seedname</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">ndegen</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_hrdat</span><span class="p">(</span><span class="n">seedname</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">ndegen</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write *_hr.dat* file as generated by Wannier90.</span>
 
 <span class="sd">    Parameters</span>
@@ -847,7 +847,7 @@
 <span class="sd">        Degeneracies of Wigner-Seitz lattice vectors. This is just what is</span>
 <span class="sd">        written to the file header, and it is not used to further modify `H`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">import</span> <span class="nn">time</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
     <span class="n">R_orig</span> <span class="o">=</span> <span class="n">R</span>
     <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">R</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
@@ -886,7 +886,7 @@
 
 <div class="viewcode-block" id="read_wsvecdat">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_wsvecdat">[docs]</a>
-<span class="k">def</span> <span class="nf">read_wsvecdat</span><span class="p">(</span><span class="n">wsvecdat</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_wsvecdat</span><span class="p">(</span><span class="n">wsvecdat</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read *_wsvec.dat* file from Wannier90.&quot;&quot;&quot;</span>
 
     <span class="n">supvecs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -913,7 +913,7 @@
 
 <div class="viewcode-block" id="k2r">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.k2r">[docs]</a>
-<span class="k">def</span> <span class="nf">k2r</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">fft</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rydberg</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">k2r</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">fft</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rydberg</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Interpolate Hamilontian matrices on uniform k-point mesh.</span>
 
 <span class="sd">    Parameters</span>
@@ -963,7 +963,7 @@
 
 <div class="viewcode-block" id="read_bands">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_bands">[docs]</a>
-<span class="k">def</span> <span class="nf">read_bands</span><span class="p">(</span><span class="n">filband</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_bands</span><span class="p">(</span><span class="n">filband</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read bands from *filband* just like Quantum ESRESSO&#39;s ``plotband.x``.</span>
 
 <span class="sd">    Parameters</span>
@@ -1026,7 +1026,7 @@
 
 <div class="viewcode-block" id="write_bands">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.write_bands">[docs]</a>
-<span class="k">def</span> <span class="nf">write_bands</span><span class="p">(</span><span class="n">filband</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">bands</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%8.3f</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_bands</span><span class="p">(</span><span class="n">filband</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">bands</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%8.3f</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write bands to *filband* just like Quantum ESPRESSO&#39;s ``plotband.x``.</span>
 
 <span class="sd">    Parameters</span>
@@ -1060,7 +1060,7 @@
 
 <div class="viewcode-block" id="read_bands_plot">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_bands_plot">[docs]</a>
-<span class="k">def</span> <span class="nf">read_bands_plot</span><span class="p">(</span><span class="n">filbandgnu</span><span class="p">,</span> <span class="n">bands</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_bands_plot</span><span class="p">(</span><span class="n">filbandgnu</span><span class="p">,</span> <span class="n">bands</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read bands from *filband.gnu* produced by Quantum ESPRESSO&#39;s ``bands.x``.</span>
 
 <span class="sd">    Parameters</span>
@@ -1089,7 +1089,7 @@
 
 <div class="viewcode-block" id="read_symmetry_points">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_symmetry_points">[docs]</a>
-<span class="k">def</span> <span class="nf">read_symmetry_points</span><span class="p">(</span><span class="n">bandsout</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_symmetry_points</span><span class="p">(</span><span class="n">bandsout</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read positions of symmetry points along path.</span>
 
 <span class="sd">    Parameters</span>
@@ -1114,7 +1114,7 @@
 
 <div class="viewcode-block" id="read_atomic_projections">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_atomic_projections">[docs]</a>
-<span class="k">def</span> <span class="nf">read_atomic_projections</span><span class="p">(</span><span class="n">atomic_proj_xml</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">from_fermi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_atomic_projections</span><span class="p">(</span><span class="n">atomic_proj_xml</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">from_fermi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">squared</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">other</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">order_kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read projected bands from *outdir/prefix.save/atomic_proj.xml*.</span>
 
@@ -1239,14 +1239,14 @@
 
 <div class="viewcode-block" id="read_atomic_projections_old">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_atomic_projections_old">[docs]</a>
-<span class="k">def</span> <span class="nf">read_atomic_projections_old</span><span class="p">(</span><span class="n">atomic_proj_xml</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">from_fermi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_atomic_projections_old</span><span class="p">(</span><span class="n">atomic_proj_xml</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">from_fermi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="o">**</span><span class="n">order_kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read projected bands from *outdir/prefix.save/atomic_proj.xml*.&quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">atomic_proj_xml</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">goto</span><span class="p">(</span><span class="n">pattern</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">goto</span><span class="p">(</span><span class="n">pattern</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">line</span>
@@ -1322,7 +1322,7 @@
 
 <div class="viewcode-block" id="read_projwfc_out">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_projwfc_out">[docs]</a>
-<span class="k">def</span> <span class="nf">read_projwfc_out</span><span class="p">(</span><span class="n">projwfc_out</span><span class="p">,</span> <span class="n">other</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_projwfc_out</span><span class="p">(</span><span class="n">projwfc_out</span><span class="p">,</span> <span class="n">other</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Identify orbitals in *atomic_proj.xml* via output of ``projwfc.x``.</span>
 
 <span class="sd">    Parameters</span>
@@ -1396,7 +1396,7 @@
 
 <div class="viewcode-block" id="proj_sum">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.proj_sum">[docs]</a>
-<span class="k">def</span> <span class="nf">proj_sum</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">orbitals</span><span class="p">,</span> <span class="o">*</span><span class="n">groups</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">proj_sum</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">orbitals</span><span class="p">,</span> <span class="o">*</span><span class="n">groups</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Sum over selected atomic projections.</span>
 
 <span class="sd">    Example:</span>
@@ -1426,9 +1426,9 @@
 <span class="sd">    ndarray</span>
 <span class="sd">        Summed-over atomic projections.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">import</span> <span class="nn">re</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 
-    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="n">orbital</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">info</span><span class="p">(</span><span class="n">orbital</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?:([A-Z][a-z]?)(\d*))?-?(\d*)(?:([spdfx])(\S*))?&#39;</span><span class="p">,</span>
             <span class="n">orbital</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
 
@@ -1463,7 +1463,7 @@
 
 <div class="viewcode-block" id="read_Fermi_level">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_Fermi_level">[docs]</a>
-<span class="k">def</span> <span class="nf">read_Fermi_level</span><span class="p">(</span><span class="n">pw_scf_out</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_Fermi_level</span><span class="p">(</span><span class="n">pw_scf_out</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read Fermi level from output of self-consistent PW run.</span>
 
 <span class="sd">    Parameters</span>
@@ -1491,7 +1491,7 @@
 
 <div class="viewcode-block" id="read_pwo">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_pwo">[docs]</a>
-<span class="k">def</span> <span class="nf">read_pwo</span><span class="p">(</span><span class="n">pw_scf_out</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_pwo</span><span class="p">(</span><span class="n">pw_scf_out</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read energies from PW output file.&quot;&quot;&quot;</span>
 
     <span class="n">Ne</span> <span class="o">=</span> <span class="n">Ns</span> <span class="o">=</span> <span class="n">Nk</span> <span class="o">=</span> <span class="n">E</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1558,7 +1558,7 @@
 
 <div class="viewcode-block" id="read_wannier90_eig_file">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_wannier90_eig_file">[docs]</a>
-<span class="k">def</span> <span class="nf">read_wannier90_eig_file</span><span class="p">(</span><span class="n">seedname</span><span class="p">,</span> <span class="n">num_bands</span><span class="p">,</span> <span class="n">nkpts</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_wannier90_eig_file</span><span class="p">(</span><span class="n">seedname</span><span class="p">,</span> <span class="n">num_bands</span><span class="p">,</span> <span class="n">nkpts</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read Kohn-Sham energies (eV) from the Wannier90 output seedname.eig file.</span>
 
 <span class="sd">    Parameters</span>
@@ -1594,7 +1594,7 @@
 
 <div class="viewcode-block" id="read_eps_nk_from_qe_pwo">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_eps_nk_from_qe_pwo">[docs]</a>
-<span class="k">def</span> <span class="nf">read_eps_nk_from_qe_pwo</span><span class="p">(</span><span class="n">pw_scf_out</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_eps_nk_from_qe_pwo</span><span class="p">(</span><span class="n">pw_scf_out</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read electronic eigenenergies and k points and calculate the occupations.</span>
 
 <span class="sd">    Parameters</span>
@@ -1696,7 +1696,7 @@
 
 <div class="viewcode-block" id="eband">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.eband">[docs]</a>
-<span class="k">def</span> <span class="nf">eband</span><span class="p">(</span><span class="n">pw_scf_out</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">eband</span><span class="p">(</span><span class="n">pw_scf_out</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate ``eband`` part of one-electron energy.</span>
 
 <span class="sd">    The &#39;one-electron contribution&#39; energy in the Quantum ESPRESSO PWscf output</span>
@@ -1757,7 +1757,7 @@
 
 <div class="viewcode-block" id="demet_from_qe_pwo">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.demet_from_qe_pwo">[docs]</a>
-<span class="k">def</span> <span class="nf">demet_from_qe_pwo</span><span class="p">(</span><span class="n">pw_scf_out</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">demet_from_qe_pwo</span><span class="p">(</span><span class="n">pw_scf_out</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the entropy contribution :math:`-TS` to the total free energy.</span>
 
 <span class="sd">    In Quantum ESPRESSO ``demet`` is calculated in ``gweights.f90``.</span>
@@ -1802,7 +1802,7 @@
 
 <div class="viewcode-block" id="read_decayH">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_decayH">[docs]</a>
-<span class="k">def</span> <span class="nf">read_decayH</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_decayH</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read *decay.H* output from EPW.</span>
 
 <span class="sd">    Parameters</span>
@@ -1841,7 +1841,7 @@
 
 <div class="viewcode-block" id="decayH">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.decayH">[docs]</a>
-<span class="k">def</span> <span class="nf">decayH</span><span class="p">(</span><span class="n">seedname</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">decayH</span><span class="p">(</span><span class="n">seedname</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the decay of the Hamiltonian.</span>
 
 <span class="sd">    This function should yield the same data as :func:`read_decayH`.</span>
@@ -1888,7 +1888,7 @@
 
 <div class="viewcode-block" id="read_energy_contributions_scf_out">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_energy_contributions_scf_out">[docs]</a>
-<span class="k">def</span> <span class="nf">read_energy_contributions_scf_out</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_energy_contributions_scf_out</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read energy contributions to the total energy ``scf`` output file.</span>
 
 <span class="sd">    Parameters</span>
@@ -1947,7 +1947,7 @@
 
 <div class="viewcode-block" id="read_pp_density">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_pp_density">[docs]</a>
-<span class="k">def</span> <span class="nf">read_pp_density</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_pp_density</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Read file *filout* with charge density generated by ``pp.x``.</span>
 
 <span class="sd">    Calculate total charge</span>
@@ -1976,7 +1976,7 @@
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
         <span class="c1"># read all words of current line:</span>
 
-        <span class="k">def</span> <span class="nf">cells</span><span class="p">():</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">cells</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
                 <span class="n">words</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 
@@ -1985,7 +1985,7 @@
 
         <span class="c1"># read table:</span>
 
-        <span class="k">def</span> <span class="nf">table</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">table</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">cells</span><span class="p">()))</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">)])</span>
 
         <span class="c1"># read FFT dimensions, ntyp, nat</span>
@@ -2040,7 +2040,7 @@
 
 <div class="viewcode-block" id="read_rhoG_density">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_rhoG_density">[docs]</a>
-<span class="k">def</span> <span class="nf">read_rhoG_density</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">ibrav</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_rhoG_density</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">ibrav</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Read the charge density output from Quantum ESPRESSO.</span>
 
 <span class="sd">    The purpose of :math:`\rho(\vec G)` is to calculate the charge density in</span>
@@ -2116,7 +2116,7 @@
 
 <div class="viewcode-block" id="read_wfc">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.read_wfc">[docs]</a>
-<span class="k">def</span> <span class="nf">read_wfc</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">ibrav</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_wfc</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">ibrav</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Read the wave function output from Quantum ESPRESSO.</span>
 
 <span class="sd">    .. math::</span>

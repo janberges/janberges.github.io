@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>elphmod.md &mdash; elphmod  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=1f476fd3" />
 
@@ -14,7 +14,7 @@
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -102,25 +102,25 @@
 
 <span class="sd">&quot;&quot;&quot;Charge-density-wave dynamics on supercells.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">copy</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
-<span class="kn">import</span> <span class="nn">elphmod.bravais</span>
-<span class="kn">import</span> <span class="nn">elphmod.diagrams</span>
-<span class="kn">import</span> <span class="nn">elphmod.dispersion</span>
-<span class="kn">import</span> <span class="nn">elphmod.el</span>
-<span class="kn">import</span> <span class="nn">elphmod.misc</span>
-<span class="kn">import</span> <span class="nn">elphmod.MPI</span>
-<span class="kn">import</span> <span class="nn">elphmod.occupations</span>
-<span class="kn">import</span> <span class="nn">elphmod.ph</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.bravais</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.diagrams</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.dispersion</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.el</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.misc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.MPI</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.occupations</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.ph</span>
 
 <span class="n">comm</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">info</span>
 
 <div class="viewcode-block" id="Driver">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver">[docs]</a>
-<span class="k">class</span> <span class="nc">Driver</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Driver</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;MD driver for DFPT-based displacements dynamics.</span>
 
 <span class="sd">    Parameters</span>
@@ -189,7 +189,7 @@
 <span class="sd">        Communicators between processes that share memory or same ``node.rank``</span>
 <span class="sd">        if `shared_memory`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elph</span><span class="p">,</span> <span class="n">kT</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">nk</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">nq</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">supercell</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elph</span><span class="p">,</span> <span class="n">kT</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">nk</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">nq</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">supercell</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">unscreen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">rydberg</span><span class="p">:</span>
             <span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initialize &#39;el&#39; with &#39;rydberg=True&#39;!&quot;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -270,7 +270,7 @@
 
 <div class="viewcode-block" id="Driver.random_displacements">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.random_displacements">[docs]</a>
-    <span class="k">def</span> <span class="nf">random_displacements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">random_displacements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Displace atoms randomly from unperturbed positions.</span>
 
 <span class="sd">        Parameters</span>
@@ -287,7 +287,7 @@
 
 <div class="viewcode-block" id="Driver.center_mass">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.center_mass">[docs]</a>
-    <span class="k">def</span> <span class="nf">center_mass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">center_mass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Subtract collective translational displacement component.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
@@ -296,7 +296,7 @@
 
 <div class="viewcode-block" id="Driver.find_Fermi_level">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.find_Fermi_level">[docs]</a>
-    <span class="k">def</span> <span class="nf">find_Fermi_level</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_Fermi_level</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update chemical potential.</span>
 
 <span class="sd">        Returns</span>
@@ -312,7 +312,7 @@
 
 <div class="viewcode-block" id="Driver.diagonalize">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.diagonalize">[docs]</a>
-    <span class="k">def</span> <span class="nf">diagonalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">diagonalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Diagonalize Hamiltonian of perturbed system.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">center_mass</span><span class="p">()</span>
@@ -329,7 +329,7 @@
 
 <div class="viewcode-block" id="Driver.free_energy">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.free_energy">[docs]</a>
-    <span class="k">def</span> <span class="nf">free_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">free_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate free energy.</span>
 
 <span class="sd">        Parameters</span>
@@ -373,7 +373,7 @@
 
 <div class="viewcode-block" id="Driver.jacobian">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.jacobian">[docs]</a>
-    <span class="k">def</span> <span class="nf">jacobian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">jacobian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate first derivative of free energy.</span>
 
 <span class="sd">        Parameters</span>
@@ -413,7 +413,7 @@
 
 <div class="viewcode-block" id="Driver.hessian">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.hessian">[docs]</a>
-    <span class="k">def</span> <span class="nf">hessian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gamma_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">apply_asr_simple</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hessian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gamma_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">apply_asr_simple</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">fildyn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate second derivative of free energy.</span>
 
@@ -545,7 +545,7 @@
 
 <div class="viewcode-block" id="Driver.electrons">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.electrons">[docs]</a>
-    <span class="k">def</span> <span class="nf">electrons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seedname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dk1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dk2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dk3</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rydberg</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">electrons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seedname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dk1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dk2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dk3</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rydberg</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up tight-binding model for current structure.</span>
 
 <span class="sd">        Parameters</span>
@@ -593,7 +593,7 @@
 
 <div class="viewcode-block" id="Driver.phonons">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.phonons">[docs]</a>
-    <span class="k">def</span> <span class="nf">phonons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">divide_mass</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">phonons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">divide_mass</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up mass-spring model for current structure.</span>
 
 <span class="sd">        Parameters</span>
@@ -620,7 +620,7 @@
 
 <div class="viewcode-block" id="Driver.superconductivity">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.superconductivity">[docs]</a>
-    <span class="k">def</span> <span class="nf">superconductivity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">superconductivity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate effective couplings and phonon frequencies.</span>
 
 <span class="sd">        Note that :attr:`d` is destroyed.</span>
@@ -707,7 +707,7 @@
 
 <div class="viewcode-block" id="Driver.density">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.density">[docs]</a>
-    <span class="k">def</span> <span class="nf">density</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">density</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate electron density for all orbitals.</span>
 
 <span class="sd">        Returns</span>
@@ -722,7 +722,7 @@
 
 <div class="viewcode-block" id="Driver.density_per_atom">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.density_per_atom">[docs]</a>
-    <span class="k">def</span> <span class="nf">density_per_atom</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">density_per_atom</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate electron density per atom.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -743,7 +743,7 @@
 
 <div class="viewcode-block" id="Driver.plot">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
             <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pause</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">elev</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">azim</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot crystal structure and displacements.</span>
 
@@ -772,7 +772,7 @@
             <span class="k">return</span>
 
         <span class="k">global</span> <span class="n">plt</span>
-        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
         <span class="k">if</span> <span class="n">interactive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="n">interactive</span>
@@ -837,7 +837,7 @@
 
 <div class="viewcode-block" id="Driver.update_plot">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.update_plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">update_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update open plot.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
@@ -860,7 +860,7 @@
 
 <div class="viewcode-block" id="Driver.to_xyz">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.to_xyz">[docs]</a>
-    <span class="k">def</span> <span class="nf">to_xyz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xyz</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_xyz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xyz</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save current atomic positions.</span>
 
 <span class="sd">        Parameters</span>
@@ -885,7 +885,7 @@
 
 <div class="viewcode-block" id="Driver.from_xyz">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.from_xyz">[docs]</a>
-    <span class="k">def</span> <span class="nf">from_xyz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xyz</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_xyz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xyz</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load saved atomic positions if compatible.</span>
 
 <span class="sd">        If an interactive plot is open, it is updated. If `xyz` contains a full</span>
@@ -928,7 +928,7 @@
 
 <div class="viewcode-block" id="Driver.to_pwi">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.to_pwi">[docs]</a>
-    <span class="k">def</span> <span class="nf">to_pwi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pwi</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_pwi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pwi</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save current atomic positions etc. to PWscf input file.</span>
 
 <span class="sd">        Parameters</span>
@@ -956,7 +956,7 @@
 
 <div class="viewcode-block" id="Driver.save">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.save">[docs]</a>
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save driver to file.</span>
 
 <span class="sd">        Parameters</span>
@@ -991,7 +991,7 @@
 <div class="viewcode-block" id="Driver.load">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.load">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load driver from file.</span>
 
 <span class="sd">        This should only be used in serial runs. Shared memory will be lost.</span>
@@ -1017,7 +1017,7 @@
         <span class="k">return</span> <span class="n">driver</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Interface driver with i-PI.</span>
 
 <span class="sd">        Parameters</span>

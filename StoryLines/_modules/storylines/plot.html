@@ -6,14 +6,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>storylines.plot &mdash; StoryLines  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -99,23 +99,23 @@
 
 <span class="sd">&quot;&quot;&quot;Figure object.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">division</span>
 
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 
-<span class="kn">from</span> <span class="nn">.calc</span> <span class="kn">import</span> <span class="n">power_of_ten</span><span class="p">,</span> <span class="n">xround_mantissa</span><span class="p">,</span> <span class="n">multiples</span>
-<span class="kn">from</span> <span class="nn">.color</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">colormap</span><span class="p">,</span> <span class="n">colorize</span>
-<span class="kn">from</span> <span class="nn">.convert</span> <span class="kn">import</span> <span class="n">inch</span><span class="p">,</span> <span class="n">pt</span><span class="p">,</span> <span class="n">csv</span>
-<span class="kn">from</span> <span class="nn">.cut</span> <span class="kn">import</span> <span class="n">relevant</span><span class="p">,</span> <span class="n">shortcut</span><span class="p">,</span> <span class="n">cut2d</span><span class="p">,</span> <span class="n">jump</span>
-<span class="kn">from</span> <span class="nn">.fatband</span> <span class="kn">import</span> <span class="n">fatband</span><span class="p">,</span> <span class="n">miter_butt</span>
-<span class="kn">from</span> <span class="nn">.files</span> <span class="kn">import</span> <span class="n">goto</span><span class="p">,</span> <span class="n">typeset</span><span class="p">,</span> <span class="n">rasterize</span>
-<span class="kn">from</span> <span class="nn">.group</span> <span class="kn">import</span> <span class="n">islands</span><span class="p">,</span> <span class="n">groups</span>
-<span class="kn">from</span> <span class="nn">.png</span> <span class="kn">import</span> <span class="n">save</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.calc</span><span class="w"> </span><span class="kn">import</span> <span class="n">power_of_ten</span><span class="p">,</span> <span class="n">xround_mantissa</span><span class="p">,</span> <span class="n">multiples</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.color</span><span class="w"> </span><span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">colormap</span><span class="p">,</span> <span class="n">colorize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.convert</span><span class="w"> </span><span class="kn">import</span> <span class="n">inch</span><span class="p">,</span> <span class="n">pt</span><span class="p">,</span> <span class="n">csv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.cut</span><span class="w"> </span><span class="kn">import</span> <span class="n">relevant</span><span class="p">,</span> <span class="n">shortcut</span><span class="p">,</span> <span class="n">cut2d</span><span class="p">,</span> <span class="n">jump</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.fatband</span><span class="w"> </span><span class="kn">import</span> <span class="n">fatband</span><span class="p">,</span> <span class="n">miter_butt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.files</span><span class="w"> </span><span class="kn">import</span> <span class="n">goto</span><span class="p">,</span> <span class="n">typeset</span><span class="p">,</span> <span class="n">rasterize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.group</span><span class="w"> </span><span class="kn">import</span> <span class="n">islands</span><span class="p">,</span> <span class="n">groups</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.png</span><span class="w"> </span><span class="kn">import</span> <span class="n">save</span>
 
 <div class="viewcode-block" id="Plot">
 <a class="viewcode-back" href="../../modules/plot.html#storylines.plot.Plot">[docs]</a>
-<span class="k">class</span> <span class="nc">Plot</span><span class="p">():</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Plot</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot object.</span>
 
 <span class="sd">    Parameters</span>
@@ -325,7 +325,7 @@
 <span class="sd">    the parameters `line_width` and `mark_size` this is also the case if an</span>
 <span class="sd">    integer or float is passed instead of a string.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xyaxes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xyaxes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">style</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">more</span><span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span>
@@ -474,7 +474,7 @@
 
 <div class="viewcode-block" id="Plot.line">
 <a class="viewcode-back" href="../../modules/plot.html#storylines.plot.Plot.line">[docs]</a>
-    <span class="k">def</span> <span class="nf">line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
             <span class="n">x</span><span class="o">=</span><span class="p">[],</span>
             <span class="n">y</span><span class="o">=</span><span class="p">[],</span>
             <span class="n">z</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -612,7 +612,7 @@
 
 <div class="viewcode-block" id="Plot.fatband">
 <a class="viewcode-back" href="../../modules/plot.html#storylines.plot.Plot.fatband">[docs]</a>
-    <span class="k">def</span> <span class="nf">fatband</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">shifts</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">draw</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fatband</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">shifts</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">draw</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
             <span class="o">**</span><span class="n">options</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Draw fatband.</span>
 
@@ -649,7 +649,7 @@
 
 <div class="viewcode-block" id="Plot.compline">
 <a class="viewcode-back" href="../../modules/plot.html#storylines.plot.Plot.compline">[docs]</a>
-    <span class="k">def</span> <span class="nf">compline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
             <span class="o">**</span><span class="n">options</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Represent points of multiple weights as composite fatband.</span>
 
@@ -705,7 +705,7 @@
 
 <div class="viewcode-block" id="Plot.node">
 <a class="viewcode-back" href="../../modules/plot.html#storylines.plot.Plot.node">[docs]</a>
-    <span class="k">def</span> <span class="nf">node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Draw (text) node at given position.</span>
 
 <span class="sd">        Parameters</span>
@@ -725,7 +725,7 @@
 
 <div class="viewcode-block" id="Plot.cut">
 <a class="viewcode-back" href="../../modules/plot.html#storylines.plot.Plot.cut">[docs]</a>
-    <span class="k">def</span> <span class="nf">cut</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cut</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicate broken axis.</span>
 
 <span class="sd">        Parameters</span>
@@ -742,7 +742,7 @@
 
 <div class="viewcode-block" id="Plot.point">
 <a class="viewcode-back" href="../../modules/plot.html#storylines.plot.Plot.point">[docs]</a>
-    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Define point.</span>
 
 <span class="sd">        Parameters</span>
@@ -757,7 +757,7 @@
 
 <div class="viewcode-block" id="Plot.image">
 <a class="viewcode-back" href="../../modules/plot.html#storylines.plot.Plot.image">[docs]</a>
-    <span class="k">def</span> <span class="nf">image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Insert image between given data coordinates.</span>
 
 <span class="sd">        Parameters</span>
@@ -796,7 +796,7 @@
 
 <div class="viewcode-block" id="Plot.code">
 <a class="viewcode-back" href="../../modules/plot.html#storylines.plot.Plot.code">[docs]</a>
-    <span class="k">def</span> <span class="nf">code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Insert literal TikZ code.</span>
 
 <span class="sd">        Parameters</span>
@@ -813,7 +813,7 @@
 
 <div class="viewcode-block" id="Plot.axes">
 <a class="viewcode-back" href="../../modules/plot.html#storylines.plot.Plot.axes">[docs]</a>
-    <span class="k">def</span> <span class="nf">axes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">axes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Draw axes at current z index.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span></div>
@@ -821,7 +821,7 @@
 
 <div class="viewcode-block" id="Plot.nolabel">
 <a class="viewcode-back" href="../../modules/plot.html#storylines.plot.Plot.nolabel">[docs]</a>
-    <span class="k">def</span> <span class="nf">nolabel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">nolabel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Pass empty entry to legend (as spacer between entries).&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">draw</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></div>
@@ -829,7 +829,7 @@
 
 <div class="viewcode-block" id="Plot.clear">
 <a class="viewcode-back" href="../../modules/plot.html#storylines.plot.Plot.clear">[docs]</a>
-    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove all lines from plot.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span></div>
@@ -837,7 +837,7 @@
 
 <div class="viewcode-block" id="Plot.save">
 <a class="viewcode-back" href="../../modules/plot.html#storylines.plot.Plot.save">[docs]</a>
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">standalone</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pdf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">standalone</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pdf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">png</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mf">300.0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">rewrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;pdflatex&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save plot to file.</span>
@@ -1232,7 +1232,7 @@
                     <span class="n">minorticks</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">position</span> <span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">minorticks</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
                         <span class="k">if</span> <span class="ow">not</span> <span class="nb">abs</span><span class="p">(</span><span class="n">position</span> <span class="o">-</span> <span class="n">origin</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span><span class="p">]</span>
 
-            <span class="k">def</span> <span class="nf">draw_grid</span><span class="p">():</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">draw_grid</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">draw_grid</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>
                     <span class="k">return</span>
 
@@ -1289,7 +1289,7 @@
 
             <span class="n">draw_grid</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
 
-            <span class="k">def</span> <span class="nf">draw_frame</span><span class="p">():</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">draw_frame</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">draw_frame</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>
                     <span class="k">return</span>
 
@@ -1310,7 +1310,7 @@
 
             <span class="n">draw_frame</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
 
-            <span class="k">def</span> <span class="nf">draw_axes</span><span class="p">():</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">draw_axes</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">draw_axes</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>
                     <span class="k">return</span>
 
@@ -1651,7 +1651,7 @@
 
             <span class="n">draw_axes</span><span class="p">()</span>
 
-            <span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">position</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
                     <span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
                     <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>

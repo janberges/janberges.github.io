@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>elphmod.ph &mdash; elphmod  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=1f476fd3" />
 
@@ -14,7 +14,7 @@
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -102,19 +102,19 @@
 
 <span class="sd">&quot;&quot;&quot;Mass-spring models from Quantum ESPRESSO.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">import</span> <span class="nn">elphmod.bravais</span>
-<span class="kn">import</span> <span class="nn">elphmod.dispersion</span>
-<span class="kn">import</span> <span class="nn">elphmod.misc</span>
-<span class="kn">import</span> <span class="nn">elphmod.MPI</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.bravais</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.dispersion</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.misc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.MPI</span>
 
 <span class="n">comm</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">info</span>
 
 <div class="viewcode-block" id="Model">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model">[docs]</a>
-<span class="k">class</span> <span class="nc">Model</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Model</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Mass-spring model for the phonons.</span>
 
 <span class="sd">    Parameters</span>
@@ -245,7 +245,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="Model.D">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.D">[docs]</a>
-    <span class="k">def</span> <span class="nf">D</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">D</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up dynamical matrix for arbitrary q point.</span>
 
 <span class="sd">        Parameters</span>
@@ -277,7 +277,7 @@
 
 <div class="viewcode-block" id="Model.D_lr">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.D_lr">[docs]</a>
-    <span class="k">def</span> <span class="nf">D_lr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">D_lr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate long-range part of dynamical matrix.&quot;&quot;&quot;</span>
 
         <span class="n">factor</span><span class="p">,</span> <span class="n">vector</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_long_range</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">q3</span><span class="p">)</span>
@@ -288,7 +288,7 @@
 
 <div class="viewcode-block" id="Model.C">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.C">[docs]</a>
-    <span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">R1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">R2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">R3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">C</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">R1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">R2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">R3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get interatomic force constants for arbitrary lattice vector.</span>
 
 <span class="sd">        Parameters</span>
@@ -309,7 +309,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">]</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flfrc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">quadrupole_fmt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">apply_asr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flfrc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">quadrupole_fmt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">apply_asr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">apply_asr_simple</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">apply_zasr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">apply_rsr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">lr2d</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">amass</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">at</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">atom_order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alph</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">epsil</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">zeu</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">perp</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">divide_mass</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -439,7 +439,7 @@
 
 <div class="viewcode-block" id="Model.prepare_long_range">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.prepare_long_range">[docs]</a>
-    <span class="k">def</span> <span class="nf">prepare_long_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">G_max</span><span class="o">=</span><span class="mf">28.0</span><span class="p">,</span> <span class="n">G_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">prepare_long_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">G_max</span><span class="o">=</span><span class="mf">28.0</span><span class="p">,</span> <span class="n">G_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepare calculation of long-range terms for polar materials.</span>
 
 <span class="sd">        The following two routines are based on ``rgd_blk`` and ``rgd_blk_epw``</span>
@@ -531,7 +531,7 @@
 
 <div class="viewcode-block" id="Model.generate_long_range">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.generate_long_range">[docs]</a>
-    <span class="k">def</span> <span class="nf">generate_long_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q3</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">perp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_long_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q3</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">perp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Generate long-range terms.</span>
 
 <span class="sd">        Parameters</span>
@@ -620,7 +620,7 @@
 
 <div class="viewcode-block" id="Model.sample_orig">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.sample_orig">[docs]</a>
-    <span class="k">def</span> <span class="nf">sample_orig</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sample_orig</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Sample dynamical matrix on original q-point mesh.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">q0</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -630,7 +630,7 @@
 
 <div class="viewcode-block" id="Model.update_short_range">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.update_short_range">[docs]</a>
-    <span class="k">def</span> <span class="nf">update_short_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flfrc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">apply_asr_simple</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_short_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flfrc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">apply_asr_simple</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update short-range part of interatomic force constants.</span>
 
 <span class="sd">        Parameters</span>
@@ -659,7 +659,7 @@
 
 <div class="viewcode-block" id="Model.sum_force_constants">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.sum_force_constants">[docs]</a>
-    <span class="k">def</span> <span class="nf">sum_force_constants</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sum_force_constants</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate sum of absolute values of short-range force constants.</span>
 
 <span class="sd">        For the optimal range-separation parameter this value is minimal.</span>
@@ -682,7 +682,7 @@
 
 <div class="viewcode-block" id="Model.supercell">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.supercell">[docs]</a>
-    <span class="k">def</span> <span class="nf">supercell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N3</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">supercell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N3</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Map mass-spring model onto supercell.</span>
 
 <span class="sd">        Parameters</span>
@@ -809,7 +809,7 @@
 
 <div class="viewcode-block" id="Model.unit_cell">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.unit_cell">[docs]</a>
-    <span class="k">def</span> <span class="nf">unit_cell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unit_cell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Map mass-spring model back to unit cell.</span>
 
 <span class="sd">        See Also</span>
@@ -894,7 +894,7 @@
 
 <div class="viewcode-block" id="Model.order_atoms">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.order_atoms">[docs]</a>
-    <span class="k">def</span> <span class="nf">order_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">order</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">order_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">order</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Reorder atoms.</span>
 
 <span class="sd">        Together with :func:`shift_atoms`, this function helps reconcile</span>
@@ -930,7 +930,7 @@
 
 <div class="viewcode-block" id="Model.shift_atoms">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.shift_atoms">[docs]</a>
-    <span class="k">def</span> <span class="nf">shift_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">shift_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Move selected atoms across unit-cell boundary.</span>
 
 <span class="sd">        Together with :func:`order_atoms`, this function helps reconcile</span>
@@ -977,7 +977,7 @@
 
 <div class="viewcode-block" id="Model.standardize">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.standardize">[docs]</a>
-    <span class="k">def</span> <span class="nf">standardize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">symmetrize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">standardize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">symmetrize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Standardize mass-spring data.</span>
 
 <span class="sd">        - Keep only nonzero force-constant matrices.</span>
@@ -1041,7 +1041,7 @@
 
 <div class="viewcode-block" id="Model.symmetrize">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.symmetrize">[docs]</a>
-    <span class="k">def</span> <span class="nf">symmetrize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">symmetrize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Symmetrize dynamical matrix.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">standardize</span><span class="p">(</span><span class="n">symmetrize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
@@ -1049,7 +1049,7 @@
 
 <div class="viewcode-block" id="Model.decay">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.decay">[docs]</a>
-    <span class="k">def</span> <span class="nf">decay</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decay</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot force constants as a function of bond length.</span>
 
 <span class="sd">        Returns</span>
@@ -1070,7 +1070,7 @@
 
 <div class="viewcode-block" id="Model.clear">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.clear">[docs]</a>
-    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete all lattice vectors and associated matrix elements.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">[:</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
@@ -1079,7 +1079,7 @@
 
 <div class="viewcode-block" id="Model.to_pwi">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.to_pwi">[docs]</a>
-    <span class="k">def</span> <span class="nf">to_pwi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pwi</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_pwi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pwi</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save atomic positions etc. to PWscf input file.</span>
 
 <span class="sd">        Parameters</span>
@@ -1120,7 +1120,7 @@
 
 <div class="viewcode-block" id="Model.to_flfrc">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.Model.to_flfrc">[docs]</a>
-    <span class="k">def</span> <span class="nf">to_flfrc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flfrc</span><span class="p">,</span> <span class="n">nr1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nr2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nr3</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_flfrc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flfrc</span><span class="p">,</span> <span class="n">nr1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nr2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nr3</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save mass-spring model to force-constants file.</span>
 
 <span class="sd">        Parameters</span>
@@ -1170,7 +1170,7 @@
 
 <div class="viewcode-block" id="group">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.group">[docs]</a>
-<span class="k">def</span> <span class="nf">group</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">group</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create slice of dynamical matrix belonging to `n`-th atom.&quot;&quot;&quot;</span>
 
     <span class="k">return</span> <span class="nb">slice</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">size</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">size</span><span class="p">)</span></div>
@@ -1178,7 +1178,7 @@
 
 <div class="viewcode-block" id="divide_by_mass">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.divide_by_mass">[docs]</a>
-<span class="k">def</span> <span class="nf">divide_by_mass</span><span class="p">(</span><span class="n">dyn</span><span class="p">,</span> <span class="n">amass</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">divide_by_mass</span><span class="p">(</span><span class="n">dyn</span><span class="p">,</span> <span class="n">amass</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Divide dynamical matrices by atomic masses.</span>
 
 <span class="sd">    Parameters</span>
@@ -1195,7 +1195,7 @@
 
 <div class="viewcode-block" id="read_q">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.read_q">[docs]</a>
-<span class="k">def</span> <span class="nf">read_q</span><span class="p">(</span><span class="n">fildyn0</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_q</span><span class="p">(</span><span class="n">fildyn0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read list of irreducible q points from *fildyn0*.&quot;&quot;&quot;</span>
 
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fildyn0</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
@@ -1208,7 +1208,7 @@
 
 <div class="viewcode-block" id="write_q">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.write_q">[docs]</a>
-<span class="k">def</span> <span class="nf">write_q</span><span class="p">(</span><span class="n">fildyn0</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">nq</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_q</span><span class="p">(</span><span class="n">fildyn0</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">nq</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write list of irreducible q points to *fildyn0*.&quot;&quot;&quot;</span>
 
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fildyn0</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
@@ -1221,7 +1221,7 @@
 
 <div class="viewcode-block" id="fildyn_freq">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.fildyn_freq">[docs]</a>
-<span class="k">def</span> <span class="nf">fildyn_freq</span><span class="p">(</span><span class="n">fildyn</span><span class="o">=</span><span class="s1">&#39;matdyn&#39;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fildyn_freq</span><span class="p">(</span><span class="n">fildyn</span><span class="o">=</span><span class="s1">&#39;matdyn&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create *fildyn.freq* as created by Quantum ESPRESSO&#39;s ``ph.x``.</span>
 
 <span class="sd">    Parameters</span>
@@ -1258,7 +1258,7 @@
 
 <div class="viewcode-block" id="read_flfrc">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.read_flfrc">[docs]</a>
-<span class="k">def</span> <span class="nf">read_flfrc</span><span class="p">(</span><span class="n">flfrc</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_flfrc</span><span class="p">(</span><span class="n">flfrc</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read force constants in real or reciprocal space.</span>
 
 <span class="sd">    `flfrc` can be either the force-constants file generated by ``q2r.x`` or one</span>
@@ -1294,7 +1294,7 @@
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">flfrc</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
         <span class="c1"># read all words of current line:</span>
 
-        <span class="k">def</span> <span class="nf">cells</span><span class="p">():</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">cells</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
                 <span class="n">words</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 
@@ -1303,7 +1303,7 @@
 
         <span class="c1"># read table:</span>
 
-        <span class="k">def</span> <span class="nf">table</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">table</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">cells</span><span class="p">()))</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">)])</span>
 
         <span class="c1"># detect file type:</span>
@@ -1450,7 +1450,7 @@
 
 <div class="viewcode-block" id="write_flfrc">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.write_flfrc">[docs]</a>
-<span class="k">def</span> <span class="nf">write_flfrc</span><span class="p">(</span><span class="n">flfrc</span><span class="p">,</span> <span class="n">phid</span><span class="p">,</span> <span class="n">amass</span><span class="p">,</span> <span class="n">at</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">atom_order</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_flfrc</span><span class="p">(</span><span class="n">flfrc</span><span class="p">,</span> <span class="n">phid</span><span class="p">,</span> <span class="n">amass</span><span class="p">,</span> <span class="n">at</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">atom_order</span><span class="p">,</span>
         <span class="n">alph</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">epsil</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">zeu</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write force constants in real or reciprocal space.</span>
 
@@ -1609,14 +1609,14 @@
 
 <div class="viewcode-block" id="read_flfrc_xml">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.read_flfrc_xml">[docs]</a>
-<span class="k">def</span> <span class="nf">read_flfrc_xml</span><span class="p">(</span><span class="n">flfrc</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_flfrc_xml</span><span class="p">(</span><span class="n">flfrc</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read force constants in real or reciprocal space from XML files.</span>
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
 <span class="sd">    read_flfrc : Equivalent function for non-XML files.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">ET</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">xml.etree.ElementTree</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ET</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">root</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">flfrc</span><span class="p">)</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
@@ -1740,7 +1740,7 @@
 
 <div class="viewcode-block" id="read_quadrupole_fmt">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.read_quadrupole_fmt">[docs]</a>
-<span class="k">def</span> <span class="nf">read_quadrupole_fmt</span><span class="p">(</span><span class="n">quadrupole_fmt</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_quadrupole_fmt</span><span class="p">(</span><span class="n">quadrupole_fmt</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read file *quadrupole.fmt* suitable for ``epw.x``.</span>
 
 <span class="sd">    Parameters</span>
@@ -1790,7 +1790,7 @@
 
 <div class="viewcode-block" id="write_quadrupole_fmt">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.write_quadrupole_fmt">[docs]</a>
-<span class="k">def</span> <span class="nf">write_quadrupole_fmt</span><span class="p">(</span><span class="n">quadrupole_fmt</span><span class="p">,</span> <span class="n">Q</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_quadrupole_fmt</span><span class="p">(</span><span class="n">quadrupole_fmt</span><span class="p">,</span> <span class="n">Q</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write file *quadrupole.fmt* suitable for ``epw.x``.</span>
 
 <span class="sd">    Parameters</span>
@@ -1817,7 +1817,7 @@
 
 <div class="viewcode-block" id="asr">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.asr">[docs]</a>
-<span class="k">def</span> <span class="nf">asr</span><span class="p">(</span><span class="n">phid</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">asr</span><span class="p">(</span><span class="n">phid</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply simple acoustic sum rule correction to force constants.&quot;&quot;&quot;</span>
 
     <span class="n">nat</span><span class="p">,</span> <span class="n">nr1</span><span class="p">,</span> <span class="n">nr2</span><span class="p">,</span> <span class="n">nr3</span> <span class="o">=</span> <span class="n">phid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
@@ -1834,7 +1834,7 @@
 
 <div class="viewcode-block" id="zasr">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.zasr">[docs]</a>
-<span class="k">def</span> <span class="nf">zasr</span><span class="p">(</span><span class="n">Z</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">zasr</span><span class="p">(</span><span class="n">Z</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply acoustic sum rule correction to Born effective charges.&quot;&quot;&quot;</span>
 
     <span class="n">Z</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
@@ -1842,7 +1842,7 @@
 
 <div class="viewcode-block" id="sum_rule_correction">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.sum_rule_correction">[docs]</a>
-<span class="k">def</span> <span class="nf">sum_rule_correction</span><span class="p">(</span><span class="n">ph</span><span class="p">,</span> <span class="n">asr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rsr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-15</span><span class="p">,</span> <span class="n">report</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sum_rule_correction</span><span class="p">(</span><span class="n">ph</span><span class="p">,</span> <span class="n">asr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rsr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-15</span><span class="p">,</span> <span class="n">report</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply sum rule correction to force constants.</span>
 
 <span class="sd">    Unlike :func:`asr` called by the argument `apply_asr_simple`, the corrected</span>
@@ -1872,7 +1872,7 @@
 
     <span class="c1"># define sums that should be zero:</span>
 
-    <span class="k">def</span> <span class="nf">acoustic_sum</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">acoustic_sum</span><span class="p">():</span>
         <span class="n">zero</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ph</span><span class="o">.</span><span class="n">nat</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
@@ -1884,7 +1884,7 @@
                     <span class="n">zero</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">zero</span>
 
-    <span class="k">def</span> <span class="nf">rotation_sum</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rotation_sum</span><span class="p">():</span>
         <span class="n">zero</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ph</span><span class="o">.</span><span class="n">nat</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">x1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
@@ -1977,7 +1977,7 @@
 
 <div class="viewcode-block" id="sgnsqrt">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.sgnsqrt">[docs]</a>
-<span class="k">def</span> <span class="nf">sgnsqrt</span><span class="p">(</span><span class="n">w2</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sgnsqrt</span><span class="p">(</span><span class="n">w2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate signed square root.&quot;&quot;&quot;</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">w2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">w2</span><span class="p">))</span></div>
@@ -1985,7 +1985,7 @@
 
 <div class="viewcode-block" id="polarization">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.polarization">[docs]</a>
-<span class="k">def</span> <span class="nf">polarization</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">polarization</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Characterize as in-plane longitudinal/transverse or out-of-plane.&quot;&quot;&quot;</span>
 
     <span class="n">bands</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
@@ -2027,7 +2027,7 @@
 
 <div class="viewcode-block" id="q2r">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.q2r">[docs]</a>
-<span class="k">def</span> <span class="nf">q2r</span><span class="p">(</span><span class="n">ph</span><span class="p">,</span> <span class="n">D_irr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">q_irr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">D_full</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">q2r</span><span class="p">(</span><span class="n">ph</span><span class="p">,</span> <span class="n">D_irr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">q_irr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">D_full</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
         <span class="n">apply_asr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">apply_asr_simple</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">apply_rsr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">flfrc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">divide_mass</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Interpolate dynamical matrices given for irreducible wedge of q points.</span>
@@ -2075,7 +2075,7 @@
 
         <span class="n">D_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nq</span><span class="p">,</span> <span class="n">nq</span><span class="p">,</span> <span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">rotation</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">rotation</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
             <span class="n">block</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
                 <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span>
                 <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span>  <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span>
@@ -2084,10 +2084,10 @@
 
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">block</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">reflection</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">reflection</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">U</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">U</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;ij,jk,kl-&gt;il&#39;</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span>
 
         <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">translations</span><span class="p">(</span><span class="mi">180</span> <span class="o">-</span> <span class="n">angle</span><span class="p">)</span>
@@ -2176,7 +2176,7 @@
 
 <div class="viewcode-block" id="interpolate_dynamical_matrices">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.interpolate_dynamical_matrices">[docs]</a>
-<span class="k">def</span> <span class="nf">interpolate_dynamical_matrices</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">nq</span><span class="p">,</span> <span class="n">fildyn_template</span><span class="p">,</span> <span class="n">fildyn</span><span class="p">,</span> <span class="n">flfrc</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">interpolate_dynamical_matrices</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">nq</span><span class="p">,</span> <span class="n">fildyn_template</span><span class="p">,</span> <span class="n">fildyn</span><span class="p">,</span> <span class="n">flfrc</span><span class="p">,</span>
         <span class="n">write_fildyn0</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">apply_asr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">apply_asr_simple</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">apply_rsr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">divide_mass</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">qe_prefix</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Interpolate dynamical matrices given for irreducible wedge of q points.</span>
@@ -2232,7 +2232,7 @@
 <span class="sd">    function</span>
 <span class="sd">        Fourier-interpolant (via force constants) for dynamical matrices.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
     <span class="c1"># read &#39;fildyn&#39; template:</span>
 
@@ -2304,7 +2304,7 @@
 
 <div class="viewcode-block" id="spectral_function">
 <a class="viewcode-back" href="../../modules/ph.html#elphmod.ph.spectral_function">[docs]</a>
-<span class="k">def</span> <span class="nf">spectral_function</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spectral_function</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate phonon spectral function.</span>
 
 <span class="sd">    See Eq. 76 by Monacelli et al., J. Phys. Condens. Matter 33, 363001 (2021).</span>

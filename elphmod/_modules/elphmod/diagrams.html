@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>elphmod.diagrams &mdash; elphmod  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=1f476fd3" />
 
@@ -14,7 +14,7 @@
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -102,18 +102,18 @@
 
 <span class="sd">&quot;&quot;&quot;Susceptibilities, self-energies, etc.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">import</span> <span class="nn">elphmod.misc</span>
-<span class="kn">import</span> <span class="nn">elphmod.MPI</span>
-<span class="kn">import</span> <span class="nn">elphmod.occupations</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.misc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.MPI</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.occupations</span>
 
 <span class="n">comm</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">info</span>
 
 <div class="viewcode-block" id="susceptibility">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.susceptibility">[docs]</a>
-<span class="k">def</span> <span class="nf">susceptibility</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">susceptibility</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate real part of static electronic susceptibility.</span>
 
 <span class="sd">    .. math::</span>
@@ -157,7 +157,7 @@
     <span class="n">eta2</span> <span class="o">=</span> <span class="n">eta</span> <span class="o">**</span> <span class="mi">2</span>
     <span class="n">prefactor</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">nk</span> <span class="o">**</span> <span class="mi">2</span>
 
-    <span class="k">def</span> <span class="nf">calculate_susceptibility</span><span class="p">(</span><span class="n">q1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q2</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_susceptibility</span><span class="p">(</span><span class="n">q1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q2</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="n">q1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">q1</span> <span class="o">*</span> <span class="n">scale</span><span class="p">))</span> <span class="o">%</span> <span class="n">nk</span>
         <span class="n">q2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">q2</span> <span class="o">*</span> <span class="n">scale</span><span class="p">))</span> <span class="o">%</span> <span class="n">nk</span>
 
@@ -174,7 +174,7 @@
 
 <div class="viewcode-block" id="susceptibility2">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.susceptibility2">[docs]</a>
-<span class="k">def</span> <span class="nf">susceptibility2</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">nmats</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">hyb_width</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">hyb_height</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">susceptibility2</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">nmats</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">hyb_width</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">hyb_height</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate the Lindhard bubble using the Green&#39;s functions explicitly.</span>
 
 <span class="sd">    .. math::</span>
@@ -237,7 +237,7 @@
     <span class="c1"># factor 2 for spin</span>
     <span class="c1"># VERIFY THAT THIS IS CORRECT! (after rewriting function)</span>
 
-    <span class="k">def</span> <span class="nf">calculate_susceptibility</span><span class="p">(</span><span class="n">q1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q2</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_susceptibility</span><span class="p">(</span><span class="n">q1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q2</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="n">q1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">q1</span> <span class="o">*</span> <span class="n">scale</span><span class="p">))</span> <span class="o">%</span> <span class="n">nk</span>
         <span class="n">q2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">q2</span> <span class="o">*</span> <span class="n">scale</span><span class="p">))</span> <span class="o">%</span> <span class="n">nk</span>
 
@@ -251,7 +251,7 @@
 
 <div class="viewcode-block" id="polarization">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.polarization">[docs]</a>
-<span class="k">def</span> <span class="nf">polarization</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">subspace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">polarization</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">subspace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate RPA polarization in orbital basis (density-density).</span>
 
 <span class="sd">    .. math::</span>
@@ -331,7 +331,7 @@
 
     <span class="n">dfde</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">nk</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">calculate_polarization</span><span class="p">(</span><span class="n">q1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_polarization</span><span class="p">(</span><span class="n">q1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">q3</span><span class="p">])</span>
 
         <span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">q</span> <span class="o">*</span> <span class="n">scale</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">%</span> <span class="n">nk</span>
@@ -369,7 +369,7 @@
 
 <div class="viewcode-block" id="phonon_self_energy">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.phonon_self_energy">[docs]</a>
-<span class="k">def</span> <span class="nf">phonon_self_energy</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">phonon_self_energy</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
         <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span> <span class="n">fluctuations</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">Delta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Delta_diff</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">Delta_occupations</span><span class="o">=</span><span class="s1">&#39;gauss&#39;</span><span class="p">,</span> <span class="n">Delta_kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">symmetrize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">diagonal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
@@ -604,7 +604,7 @@
 
 <div class="viewcode-block" id="phonon_self_energy_fermi_shift">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.phonon_self_energy_fermi_shift">[docs]</a>
-<span class="k">def</span> <span class="nf">phonon_self_energy_fermi_shift</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">phonon_self_energy_fermi_shift</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate phonon self-energy arising from change of chemical potential.</span>
 
 <span class="sd">    :func:`phonon_self_energy` provides the second derivative of the grand</span>
@@ -647,7 +647,7 @@
 
 <div class="viewcode-block" id="phonon_self_energy2">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.phonon_self_energy2">[docs]</a>
-<span class="k">def</span> <span class="nf">phonon_self_energy2</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">nmats</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">hyb_width</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">phonon_self_energy2</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">nmats</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">hyb_width</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
         <span class="n">hyb_height</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">GB</span><span class="o">=</span><span class="mf">4.0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate phonon self-energy using the Green&#39;s functions explicitly.</span>
 
@@ -729,7 +729,7 @@
 
 <div class="viewcode-block" id="renormalize_coupling_band">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.renormalize_coupling_band">[docs]</a>
-<span class="k">def</span> <span class="nf">renormalize_coupling_band</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">renormalize_coupling_band</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span>
         <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span> <span class="n">nbnd_sub</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate renormalized electron-phonon coupling in band basis.</span>
 
@@ -884,7 +884,7 @@
 
 <div class="viewcode-block" id="renormalize_coupling_orbital">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.renormalize_coupling_orbital">[docs]</a>
-<span class="k">def</span> <span class="nf">renormalize_coupling_orbital</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">renormalize_coupling_orbital</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate renormalized electron-phonon coupling in orbital basis.</span>
 
 <span class="sd">    .. math::</span>
@@ -958,7 +958,7 @@
 
 <div class="viewcode-block" id="Pi_g">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.Pi_g">[docs]</a>
-<span class="k">def</span> <span class="nf">Pi_g</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span> <span class="n">dd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">Pi_g</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span> <span class="n">dd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">status</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Join electron-phonon coupling and Lindhard bubble in orbital basis.</span>
 
@@ -1083,7 +1083,7 @@
 
 <div class="viewcode-block" id="double_fermi_surface_average">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.double_fermi_surface_average">[docs]</a>
-<span class="k">def</span> <span class="nf">double_fermi_surface_average</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">double_fermi_surface_average</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span>
         <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate double Fermi-surface average.</span>
 
@@ -1193,7 +1193,7 @@
 
 <div class="viewcode-block" id="grand_potential">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.grand_potential">[docs]</a>
-<span class="k">def</span> <span class="nf">grand_potential</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">grand_potential</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate (zeroth order of) grand potential.</span>
 
 <span class="sd">    Parameters</span>
@@ -1225,7 +1225,7 @@
 
 <div class="viewcode-block" id="first_order">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.first_order">[docs]</a>
-<span class="k">def</span> <span class="nf">first_order</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">first_order</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate first-order diagram of grand potential.</span>
 
 <span class="sd">    Parameters</span>
@@ -1280,7 +1280,7 @@
 
 <div class="viewcode-block" id="triangle">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.triangle">[docs]</a>
-<span class="k">def</span> <span class="nf">triangle</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">gq</span><span class="p">,</span> <span class="n">gQ</span><span class="p">,</span> <span class="n">gqQ</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">triangle</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">gq</span><span class="p">,</span> <span class="n">gQ</span><span class="p">,</span> <span class="n">gqQ</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span>
         <span class="n">fluctuations</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate triangle diagram (third order of grand potential).</span>
 
@@ -1454,7 +1454,7 @@
 
 <div class="viewcode-block" id="fan_migdal_self_energy">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.fan_migdal_self_energy">[docs]</a>
-<span class="k">def</span> <span class="nf">fan_migdal_self_energy</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fan_migdal_self_energy</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span>
         <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate Fan-Migdal electron self-energy (to be tested).</span>
 
@@ -1545,7 +1545,7 @@
 
 <div class="viewcode-block" id="green_kubo_conductivity">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.green_kubo_conductivity">[docs]</a>
-<span class="k">def</span> <span class="nf">green_kubo_conductivity</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">green_kubo_conductivity</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span>
         <span class="n">dc_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate Green-Kubo optical conductivity (to be tested).</span>
 

@@ -6,14 +6,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>storylines.proj &mdash; StoryLines  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -99,15 +99,15 @@
 
 <span class="sd">&quot;&quot;&quot;Project 3D object onto plane.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">division</span>
 
-<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 
-<span class="kn">from</span> <span class="nn">.calc</span> <span class="kn">import</span> <span class="n">divide</span><span class="p">,</span> <span class="n">subtract</span><span class="p">,</span> <span class="n">cross</span><span class="p">,</span> <span class="n">dot</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">distance</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.calc</span><span class="w"> </span><span class="kn">import</span> <span class="n">divide</span><span class="p">,</span> <span class="n">subtract</span><span class="p">,</span> <span class="n">cross</span><span class="p">,</span> <span class="n">dot</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">distance</span>
 
 <div class="viewcode-block" id="projection">
 <a class="viewcode-back" href="../../modules/proj.html#storylines.proj.projection">[docs]</a>
-<span class="k">def</span> <span class="nf">projection</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">projection</span><span class="p">(</span>
         <span class="n">r</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="c1"># object</span>
         <span class="n">R</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="c1"># observer</span>
         <span class="n">T</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="c1"># target</span>
@@ -168,7 +168,7 @@
 
 <div class="viewcode-block" id="project">
 <a class="viewcode-back" href="../../modules/proj.html#storylines.proj.project">[docs]</a>
-<span class="k">def</span> <span class="nf">project</span><span class="p">(</span><span class="n">objects</span><span class="p">,</span> <span class="n">by_distance</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">return_cosines</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">project</span><span class="p">(</span><span class="n">objects</span><span class="p">,</span> <span class="n">by_distance</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">return_cosines</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">R</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Project list of 3D objects onto 2D screen.</span>
 

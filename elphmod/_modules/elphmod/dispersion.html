@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>elphmod.dispersion &mdash; elphmod  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=1f476fd3" />
 
@@ -14,7 +14,7 @@
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -102,17 +102,17 @@
 
 <span class="sd">&quot;&quot;&quot;Diagonalization on paths and meshes.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">import</span> <span class="nn">elphmod.bravais</span>
-<span class="kn">import</span> <span class="nn">elphmod.misc</span>
-<span class="kn">import</span> <span class="nn">elphmod.MPI</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.bravais</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.misc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.MPI</span>
 
 <span class="n">comm</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
 
 <div class="viewcode-block" id="dispersion">
 <a class="viewcode-back" href="../../modules/dispersion.html#elphmod.dispersion.dispersion">[docs]</a>
-<span class="k">def</span> <span class="nf">dispersion</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">vectors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gauge</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rotate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dispersion</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">vectors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gauge</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rotate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hermitian</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">order_kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Diagonalize Hamiltonian or dynamical matrix for given k points.</span>
@@ -319,7 +319,7 @@
 
 <div class="viewcode-block" id="dispersion_full">
 <a class="viewcode-back" href="../../modules/dispersion.html#elphmod.dispersion.dispersion_full">[docs]</a>
-<span class="k">def</span> <span class="nf">dispersion_full</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">vectors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gauge</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dispersion_full</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">vectors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gauge</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">rotate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hermitian</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">order_kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Diagonalize Hamiltonian or dynamical matrix on uniform k-point mesh.&quot;&quot;&quot;</span>
@@ -334,14 +334,14 @@
 
     <span class="c1"># define main and side paths for different axes:</span>
 
-    <span class="k">def</span> <span class="nf">on_main_path</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_main_path</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="n">k</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="n">angle</span> <span class="o">==</span> <span class="mi">60</span> <span class="ow">or</span> <span class="n">angle</span> <span class="o">==</span> <span class="mi">90</span><span class="p">:</span>
-        <span class="k">def</span> <span class="nf">on_side_path</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">on_side_path</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">k</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">k</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
     <span class="k">elif</span> <span class="n">angle</span> <span class="o">==</span> <span class="mi">120</span><span class="p">:</span>
-        <span class="k">def</span> <span class="nf">on_side_path</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">on_side_path</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">k</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">k</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">k</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">k</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 
     <span class="c1"># calculate dispersion using the above routine:</span>
@@ -465,7 +465,7 @@
 
 <div class="viewcode-block" id="dispersion_full_nosym">
 <a class="viewcode-back" href="../../modules/dispersion.html#elphmod.dispersion.dispersion_full_nosym">[docs]</a>
-<span class="k">def</span> <span class="nf">dispersion_full_nosym</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">vectors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dispersion_full_nosym</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">vectors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Diagonalize Hamiltonian or dynamical matrix on uniform k-point mesh.</span>
 
@@ -518,7 +518,7 @@
 
 <div class="viewcode-block" id="sample">
 <a class="viewcode-back" href="../../modules/dispersion.html#elphmod.dispersion.sample">[docs]</a>
-<span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate Hamiltonian or dynamical matrix for given k points.</span>
 
 <span class="sd">    Parameters</span>
@@ -557,7 +557,7 @@
 
 <div class="viewcode-block" id="band_order">
 <a class="viewcode-back" href="../../modules/dispersion.html#elphmod.dispersion.band_order">[docs]</a>
-<span class="k">def</span> <span class="nf">band_order</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">by_mean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dv</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">),</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">band_order</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">by_mean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dv</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">),</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Sort bands by overlap of eigenvectors at neighboring k points.</span>
 
 <span class="sd">    Parameters</span>
@@ -619,7 +619,7 @@
 
 <div class="viewcode-block" id="map_dispersions">
 <a class="viewcode-back" href="../../modules/dispersion.html#elphmod.dispersion.map_dispersions">[docs]</a>
-<span class="k">def</span> <span class="nf">map_dispersions</span><span class="p">(</span><span class="n">V1</span><span class="p">,</span> <span class="n">V2</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">map_dispersions</span><span class="p">(</span><span class="n">V1</span><span class="p">,</span> <span class="n">V2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Map two similar arrays of eigenvectors onto each other.&quot;&quot;&quot;</span>
 
     <span class="n">shape</span> <span class="o">=</span> <span class="n">V1</span><span class="o">.</span><span class="n">shape</span>
@@ -646,7 +646,7 @@
 
 <div class="viewcode-block" id="unfolding_weights">
 <a class="viewcode-back" href="../../modules/dispersion.html#elphmod.dispersion.unfolding_weights">[docs]</a>
-<span class="k">def</span> <span class="nf">unfolding_weights</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">U0</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">blocks0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">blocks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sgn</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">unfolding_weights</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">U0</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">blocks0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">blocks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sgn</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate weights for &quot;unfolding&quot; of supercell dispersions.</span>
 
 <span class="sd">    Parameters</span>

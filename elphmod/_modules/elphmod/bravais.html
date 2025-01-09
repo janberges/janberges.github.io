@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>elphmod.bravais &mdash; elphmod  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=1f476fd3" />
 
@@ -14,7 +14,7 @@
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -102,10 +102,10 @@
 
 <span class="sd">&quot;&quot;&quot;Lattices, symmetries, and interpolation.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">import</span> <span class="nn">elphmod.misc</span>
-<span class="kn">import</span> <span class="nn">elphmod.MPI</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.misc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.MPI</span>
 
 <span class="n">comm</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">info</span>
@@ -114,7 +114,7 @@
 
 <div class="viewcode-block" id="rotate">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.rotate">[docs]</a>
-<span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">two_dimensional</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">two_dimensional</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Rotate vector anti-clockwise.</span>
 
 <span class="sd">    Parameters</span>
@@ -151,7 +151,7 @@
 
 <div class="viewcode-block" id="primitives">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.primitives">[docs]</a>
-<span class="k">def</span> <span class="nf">primitives</span><span class="p">(</span><span class="n">ibrav</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">cosbc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">cosac</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">cosab</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">primitives</span><span class="p">(</span><span class="n">ibrav</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">cosbc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">cosac</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">cosab</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
         <span class="n">celldm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bohr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">r_cell</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cell_units</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">ignore</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get primitive vectors of Bravais lattice as in QE.</span>
 
@@ -386,7 +386,7 @@
 
 <div class="viewcode-block" id="translations">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.translations">[docs]</a>
-<span class="k">def</span> <span class="nf">translations</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">angle0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">two_dimensional</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">translations</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">angle0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">two_dimensional</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate translation vectors of Bravais lattice.</span>
 
 <span class="sd">    Parameters</span>
@@ -425,7 +425,7 @@
 
 <div class="viewcode-block" id="reciprocals">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.reciprocals">[docs]</a>
-<span class="k">def</span> <span class="nf">reciprocals</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">reciprocals</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Generate translation vectors of reciprocal lattice.</span>
 
 <span class="sd">    Parameters</span>
@@ -461,7 +461,7 @@
 
 <div class="viewcode-block" id="volume">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.volume">[docs]</a>
-<span class="k">def</span> <span class="nf">volume</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">a3</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">volume</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">a3</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate unit-cell volume/area/length.</span>
 
 <span class="sd">    Parameters</span>
@@ -485,7 +485,7 @@
 
 <div class="viewcode-block" id="supercell">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.supercell">[docs]</a>
-<span class="k">def</span> <span class="nf">supercell</span><span class="p">(</span><span class="n">N1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N3</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">supercell</span><span class="p">(</span><span class="n">N1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N3</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Set up supercell.</span>
 
 <span class="sd">    Parameters</span>
@@ -553,7 +553,7 @@
 
 <div class="viewcode-block" id="to_supercell">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.to_supercell">[docs]</a>
-<span class="k">def</span> <span class="nf">to_supercell</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">supercell</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">to_supercell</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">supercell</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Map lattice vector to supercell.</span>
 
 <span class="sd">    Parameters</span>
@@ -583,7 +583,7 @@
 
 <div class="viewcode-block" id="images">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.images">[docs]</a>
-<span class="k">def</span> <span class="nf">images</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">images</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate symmetry-equivalent k points.</span>
 
 <span class="sd">    Parameters</span>
@@ -633,7 +633,7 @@
 
 <div class="viewcode-block" id="irreducibles">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.irreducibles">[docs]</a>
-<span class="k">def</span> <span class="nf">irreducibles</span><span class="p">(</span><span class="n">nk</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">irreducibles</span><span class="p">(</span><span class="n">nk</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Generate set of irreducible k points.</span>
 
 <span class="sd">    Parameters</span>
@@ -679,7 +679,7 @@
 
 <div class="viewcode-block" id="symmetries">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.symmetries">[docs]</a>
-<span class="k">def</span> <span class="nf">symmetries</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">unity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">symmetries</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">unity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Find symmetries of data on Monkhorst-Pack mesh.</span>
 
 <span class="sd">    Parameters</span>
@@ -710,7 +710,7 @@
 
     <span class="n">nk</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_image</span><span class="p">(</span><span class="n">reflect</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_image</span><span class="p">(</span><span class="n">reflect</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
         <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nk</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">k1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nk</span><span class="p">):</span>
@@ -755,7 +755,7 @@
 
 <div class="viewcode-block" id="complete">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.complete">[docs]</a>
-<span class="k">def</span> <span class="nf">complete</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">complete</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Complete data on Monkhorst-Pack mesh.</span>
 
 <span class="sd">    Parameters</span>
@@ -789,7 +789,7 @@
 
 <div class="viewcode-block" id="complete_k">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.complete_k">[docs]</a>
-<span class="k">def</span> <span class="nf">complete_k</span><span class="p">(</span><span class="n">wedge</span><span class="p">,</span> <span class="n">nq</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">complete_k</span><span class="p">(</span><span class="n">wedge</span><span class="p">,</span> <span class="n">nq</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate k dependence for equivalent q points.</span>
 
 <span class="sd">    Parameters</span>
@@ -838,7 +838,7 @@
 
 <div class="viewcode-block" id="stack">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.stack">[docs]</a>
-<span class="k">def</span> <span class="nf">stack</span><span class="p">(</span><span class="o">*</span><span class="n">points</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">stack</span><span class="p">(</span><span class="o">*</span><span class="n">points</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Minimize distance of points on periodic axis via full-period shifts.</span>
 
 <span class="sd">    Example:</span>
@@ -904,7 +904,7 @@
 
 <div class="viewcode-block" id="linear_interpolation">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.linear_interpolation">[docs]</a>
-<span class="k">def</span> <span class="nf">linear_interpolation</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">polar</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">linear_interpolation</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">polar</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Perform linear interpolation in one or two dimensions.</span>
 
 <span class="sd">    The edges are interpolated using periodic boundary conditions.</span>
@@ -943,7 +943,7 @@
         <span class="n">r</span> <span class="o">=</span> <span class="n">linear_interpolation</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">angle</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">)</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">linear_interpolation</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">angle</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">interpolant</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">interpolant</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">r</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">p</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">interpolant</span>
@@ -959,7 +959,7 @@
 
     <span class="c1"># interpret &quot;fractional indices&quot;:</span>
 
-    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
         <span class="n">n0</span><span class="p">,</span> <span class="n">dn</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">n0</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n0</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span>
 
@@ -976,7 +976,7 @@
         <span class="c1">#  ______</span>
         <span class="c1"># A  a1  B</span>
         <span class="c1">#</span>
-        <span class="k">def</span> <span class="nf">interpolant</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">interpolant</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
             <span class="n">n0</span><span class="p">,</span> <span class="n">dn</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
 
             <span class="n">A</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">n0</span><span class="p">]</span>
@@ -995,7 +995,7 @@
         <span class="c1">#   /____\/</span>
         <span class="c1">#  C  a1  A</span>
         <span class="c1">#</span>
-        <span class="k">def</span> <span class="nf">interpolant</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">interpolant</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
             <span class="n">n0</span><span class="p">,</span> <span class="n">dn</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
             <span class="n">m0</span><span class="p">,</span> <span class="n">dm</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
 
@@ -1025,7 +1025,7 @@
         <span class="c1">#    |____|</span>
         <span class="c1">#   A  a1  B</span>
         <span class="c1">#</span>
-        <span class="k">def</span> <span class="nf">interpolant</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">interpolant</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
             <span class="n">n0</span><span class="p">,</span> <span class="n">dn</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
             <span class="n">m0</span><span class="p">,</span> <span class="n">dm</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
 
@@ -1048,7 +1048,7 @@
         <span class="c1">#     \/____\</span>
         <span class="c1">#     A  a1  C&#39;</span>
         <span class="c1">#</span>
-        <span class="k">def</span> <span class="nf">interpolant</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">interpolant</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
             <span class="n">n0</span><span class="p">,</span> <span class="n">dn</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
             <span class="n">m0</span><span class="p">,</span> <span class="n">dm</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
 
@@ -1077,7 +1077,7 @@
 
 <div class="viewcode-block" id="resize">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.resize">[docs]</a>
-<span class="k">def</span> <span class="nf">resize</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">polar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">resize</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">polar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">periodic</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Resize array via linear interpolation along one or two axes.</span>
 
@@ -1150,7 +1150,7 @@
 
 <div class="viewcode-block" id="squared_distance">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.squared_distance">[docs]</a>
-<span class="k">def</span> <span class="nf">squared_distance</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">squared_distance</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate squared distance of lattice point from origin.</span>
 
 <span class="sd">    If the coordinates are given as integers, the result is numerically exact.</span>
@@ -1177,7 +1177,7 @@
 
 <div class="viewcode-block" id="to_Voronoi">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.to_Voronoi">[docs]</a>
-<span class="k">def</span> <span class="nf">to_Voronoi</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">dk1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dk2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">to_Voronoi</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">dk1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dk2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Map any lattice point to the Voronoi cell* around the origin.</span>
 
 <span class="sd">    (*) Wigner-Seitz cell/Brillouin zone for Bravais/reciprocal lattice.</span>
@@ -1219,7 +1219,7 @@
 
 <div class="viewcode-block" id="wigner_2d">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.wigner_2d">[docs]</a>
-<span class="k">def</span> <span class="nf">wigner_2d</span><span class="p">(</span><span class="n">nk</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">dk1</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">dk2</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">wigner_2d</span><span class="p">(</span><span class="n">nk</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">dk1</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">dk2</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Find lattice points in Wigner-Seitz cell (including boundary).</span>
 
 <span class="sd">    Parameters</span>
@@ -1261,7 +1261,7 @@
 
 <div class="viewcode-block" id="read_wigner_file">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.read_wigner_file">[docs]</a>
-<span class="k">def</span> <span class="nf">read_wigner_file</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">old_ws</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nat</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_wigner_file</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">old_ws</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nat</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read binary file with Wigner-Seitz data as used by EPW.</span>
 
 <span class="sd">    Parameters</span>
@@ -1341,7 +1341,7 @@
                     <span class="n">ndegen_g</span> <span class="o">=</span> <span class="n">ndegen_g</span><span class="o">.</span><span class="n">transpose</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">lines</span><span class="p">:</span>
-                <span class="k">def</span> <span class="nf">integers</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                <span class="k">def</span><span class="w"> </span><span class="nf">integers</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
                     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()[:</span><span class="n">n</span><span class="p">]))</span>
 
                 <span class="n">nrr_k</span><span class="p">,</span> <span class="n">nrr_q</span><span class="p">,</span> <span class="n">nrr_g</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">dims2</span> <span class="o">=</span> <span class="n">integers</span><span class="p">()</span>
@@ -1383,7 +1383,7 @@
 
 <div class="viewcode-block" id="wigner">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.wigner">[docs]</a>
-<span class="k">def</span> <span class="nf">wigner</span><span class="p">(</span><span class="n">nr1</span><span class="p">,</span> <span class="n">nr2</span><span class="p">,</span> <span class="n">nr3</span><span class="p">,</span> <span class="n">at</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">tau2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">,</span> <span class="n">sgn</span><span class="o">=+</span><span class="mi">1</span><span class="p">,</span> <span class="n">nsc</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">wigner</span><span class="p">(</span><span class="n">nr1</span><span class="p">,</span> <span class="n">nr2</span><span class="p">,</span> <span class="n">nr3</span><span class="p">,</span> <span class="n">at</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">tau2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">,</span> <span class="n">sgn</span><span class="o">=+</span><span class="mi">1</span><span class="p">,</span> <span class="n">nsc</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Determine Wigner-Seitz lattice vectors with degenercies and lengths.</span>
 
 <span class="sd">    Parameters</span>
@@ -1502,7 +1502,7 @@
 
 <div class="viewcode-block" id="short_range_model">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.short_range_model">[docs]</a>
-<span class="k">def</span> <span class="nf">short_range_model</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">at</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">sgn</span><span class="o">=+</span><span class="mi">1</span><span class="p">,</span> <span class="n">divide_ndegen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">short_range_model</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">at</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">sgn</span><span class="o">=+</span><span class="mi">1</span><span class="p">,</span> <span class="n">divide_ndegen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Map hoppings or force constants onto Wigner-Seitz cell.</span>
 
 <span class="sd">    Parameters</span>
@@ -1572,7 +1572,7 @@
 
 <div class="viewcode-block" id="Fourier_interpolation">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.Fourier_interpolation">[docs]</a>
-<span class="k">def</span> <span class="nf">Fourier_interpolation</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">sign</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">Fourier_interpolation</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">sign</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Perform Fourier interpolation on triangular or rectangular lattice.</span>
 
 <span class="sd">    Parameters</span>
@@ -1642,7 +1642,7 @@
 
     <span class="n">idphi</span> <span class="o">=</span> <span class="o">-</span><span class="n">sign</span> <span class="o">*</span> <span class="mi">2</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">N</span>
 
-    <span class="k">def</span> <span class="nf">interpolant</span><span class="p">(</span><span class="o">*</span><span class="n">point</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">interpolant</span><span class="p">(</span><span class="o">*</span><span class="n">point</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">idphi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">point</span><span class="p">)),</span> <span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
 
     <span class="k">if</span> <span class="n">function</span><span class="p">:</span>
@@ -1655,7 +1655,7 @@
 
 <div class="viewcode-block" id="path">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.path">[docs]</a>
-<span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">recvec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">qe</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">moveG</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">path</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">recvec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">qe</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">moveG</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Generate arbitrary path through Brillouin zone.</span>
 
 <span class="sd">    Parameters</span>
@@ -1852,7 +1852,7 @@
 
 <div class="viewcode-block" id="GMKG">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.GMKG">[docs]</a>
-<span class="k">def</span> <span class="nf">GMKG</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">corner_indices</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mesh</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">straight</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">GMKG</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">corner_indices</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mesh</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">straight</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">lift_degen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Generate path |Ggr|-M-K-|Ggr| through Brillouin zone.</span>
 
@@ -1922,7 +1922,7 @@
 
     <span class="n">N3</span> <span class="o">+=</span> <span class="mi">1</span>
 
-    <span class="k">def</span> <span class="nf">line</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">line</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="n">q1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">k1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">k2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">N</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">)</span>
         <span class="n">q2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">k1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">k2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">N</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">)</span>
 
@@ -1946,7 +1946,7 @@
 
 <div class="viewcode-block" id="BZ">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.BZ">[docs]</a>
-<span class="k">def</span> <span class="nf">BZ</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">angle0</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">BZ</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">angle0</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Draw Brillouin zone outline.&quot;&quot;&quot;</span>
 
     <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">translations</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span> <span class="n">angle0</span><span class="o">=</span><span class="n">angle0</span><span class="p">)</span>
@@ -1969,7 +1969,7 @@
 
 <div class="viewcode-block" id="read_pwi">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.read_pwi">[docs]</a>
-<span class="k">def</span> <span class="nf">read_pwi</span><span class="p">(</span><span class="n">pwi</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_pwi</span><span class="p">(</span><span class="n">pwi</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read input data and crystal structure from PWscf input file.</span>
 
 <span class="sd">    Parameters</span>
@@ -2075,7 +2075,7 @@
 
 <div class="viewcode-block" id="write_pwi">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.write_pwi">[docs]</a>
-<span class="k">def</span> <span class="nf">write_pwi</span><span class="p">(</span><span class="n">pwi</span><span class="p">,</span> <span class="n">struct</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_pwi</span><span class="p">(</span><span class="n">pwi</span><span class="p">,</span> <span class="n">struct</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write crystal structure to PWscf input file.</span>
 
 <span class="sd">    Parameters</span>
@@ -2191,7 +2191,7 @@
 
 <div class="viewcode-block" id="read_win">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.read_win">[docs]</a>
-<span class="k">def</span> <span class="nf">read_win</span><span class="p">(</span><span class="n">win</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_win</span><span class="p">(</span><span class="n">win</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read input data from .win file (Wannier90).</span>
 
 <span class="sd">    Parameters</span>
@@ -2327,7 +2327,7 @@
 
 <div class="viewcode-block" id="write_win">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.write_win">[docs]</a>
-<span class="k">def</span> <span class="nf">write_win</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="n">struct</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_win</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="n">struct</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write input data to .win file (Wannier90).</span>
 
 <span class="sd">    Parameters</span>
@@ -2409,7 +2409,7 @@
 
 <div class="viewcode-block" id="read_ph">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.read_ph">[docs]</a>
-<span class="k">def</span> <span class="nf">read_ph</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_ph</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read input parameters from Quantum ESPRESSO&#39;s ``ph.x`` input file.</span>
 
 <span class="sd">    Parameters</span>
@@ -2427,7 +2427,7 @@
 
 <div class="viewcode-block" id="write_ph">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.write_ph">[docs]</a>
-<span class="k">def</span> <span class="nf">write_ph</span><span class="p">(</span><span class="n">ph</span><span class="p">,</span> <span class="n">struct</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_ph</span><span class="p">(</span><span class="n">ph</span><span class="p">,</span> <span class="n">struct</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write input data to ph file (Quantum ESPRESSO).</span>
 
 <span class="sd">    Parameters</span>
@@ -2471,7 +2471,7 @@
 
 <div class="viewcode-block" id="read_q2r">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.read_q2r">[docs]</a>
-<span class="k">def</span> <span class="nf">read_q2r</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_q2r</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read input parameters from Quantum ESPRESSO&#39;s ``q2r.x`` input file.</span>
 
 <span class="sd">    Parameters</span>
@@ -2489,7 +2489,7 @@
 
 <div class="viewcode-block" id="write_q2r">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.write_q2r">[docs]</a>
-<span class="k">def</span> <span class="nf">write_q2r</span><span class="p">(</span><span class="n">q2r</span><span class="p">,</span> <span class="n">struct</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_q2r</span><span class="p">(</span><span class="n">q2r</span><span class="p">,</span> <span class="n">struct</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write input data to q2r file (Quantum ESPRRESO).</span>
 
 <span class="sd">    Parameters</span>
@@ -2514,7 +2514,7 @@
 
 <div class="viewcode-block" id="read_matdyn">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.read_matdyn">[docs]</a>
-<span class="k">def</span> <span class="nf">read_matdyn</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_matdyn</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read input parameters from Quantum ESPRESSO&#39;s ``matdyn.x`` input file.</span>
 
 <span class="sd">    Parameters</span>
@@ -2554,7 +2554,7 @@
 
 <div class="viewcode-block" id="write_matdyn">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.write_matdyn">[docs]</a>
-<span class="k">def</span> <span class="nf">write_matdyn</span><span class="p">(</span><span class="n">matdyn</span><span class="p">,</span> <span class="n">struct</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_matdyn</span><span class="p">(</span><span class="n">matdyn</span><span class="p">,</span> <span class="n">struct</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write input data to matdyn file (Quantum ESPRRESO).</span>
 
 <span class="sd">    Parameters</span>
@@ -2583,7 +2583,7 @@
 
 <div class="viewcode-block" id="read_epw">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.read_epw">[docs]</a>
-<span class="k">def</span> <span class="nf">read_epw</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_epw</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read input parameters from Quantum ESPRESSO&#39;s ``epw.x`` input file.</span>
 
 <span class="sd">    Parameters</span>
@@ -2630,7 +2630,7 @@
 
 <div class="viewcode-block" id="write_epw">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.write_epw">[docs]</a>
-<span class="k">def</span> <span class="nf">write_epw</span><span class="p">(</span><span class="n">epw</span><span class="p">,</span> <span class="n">struct</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_epw</span><span class="p">(</span><span class="n">epw</span><span class="p">,</span> <span class="n">struct</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write input data to epw file (Quantum ESPRRESO).</span>
 
 <span class="sd">    Parameters</span>
@@ -2734,7 +2734,7 @@
 
 <div class="viewcode-block" id="readPOSCAR">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.readPOSCAR">[docs]</a>
-<span class="k">def</span> <span class="nf">readPOSCAR</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">readPOSCAR</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read crystal structure from VASP input file.</span>
 
 <span class="sd">    Parameters</span>
@@ -2776,7 +2776,7 @@
 
 <div class="viewcode-block" id="point_on_path">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.point_on_path">[docs]</a>
-<span class="k">def</span> <span class="nf">point_on_path</span><span class="p">(</span><span class="n">test_point</span><span class="p">,</span> <span class="n">point_A</span><span class="p">,</span> <span class="n">point_B</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-14</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">point_on_path</span><span class="p">(</span><span class="n">test_point</span><span class="p">,</span> <span class="n">point_A</span><span class="p">,</span> <span class="n">point_B</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-14</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Test whether a `test_point` is between the points A and B.</span>
 
 <span class="sd">    Parameters</span>
@@ -2804,7 +2804,7 @@
 
 <div class="viewcode-block" id="crystal_to_cartesian">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.crystal_to_cartesian">[docs]</a>
-<span class="k">def</span> <span class="nf">crystal_to_cartesian</span><span class="p">(</span><span class="n">R_CRYSTAL</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">crystal_to_cartesian</span><span class="p">(</span><span class="n">R_CRYSTAL</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Transform a lattice structure from crystal to Cartesian coordinates.</span>
 
 <span class="sd">    Parameters</span>
@@ -2834,7 +2834,7 @@
 
 <div class="viewcode-block" id="cartesian_to_crystal">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.cartesian_to_crystal">[docs]</a>
-<span class="k">def</span> <span class="nf">cartesian_to_crystal</span><span class="p">(</span><span class="n">R_CARTESIAN</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cartesian_to_crystal</span><span class="p">(</span><span class="n">R_CARTESIAN</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Transform a lattice structure from crystal to Cartesian coordinates.</span>
 
 <span class="sd">    Parameters</span>
@@ -2867,7 +2867,7 @@
 
 <div class="viewcode-block" id="mesh">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.mesh">[docs]</a>
-<span class="k">def</span> <span class="nf">mesh</span><span class="p">(</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mesh</span><span class="p">(</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Generate uniform mesh.</span>
 
 <span class="sd">    Parameters</span>
@@ -2893,7 +2893,7 @@
 
 <div class="viewcode-block" id="kpoints">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.kpoints">[docs]</a>
-<span class="k">def</span> <span class="nf">kpoints</span><span class="p">(</span><span class="n">nk1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nk2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nk3</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">kpoints</span><span class="p">(</span><span class="n">nk1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nk2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nk3</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate and print uniform k-point mesh.</span>
 
 <span class="sd">    Omitted arguments are read from standard input.</span>
