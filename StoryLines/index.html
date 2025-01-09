@@ -42,7 +42,8 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="modules/plot.html">Plotting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/calc.html">Calculations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/color.html">Colors</a></li>
@@ -54,6 +55,7 @@
 <li class="toctree-l1"><a class="reference internal" href="modules/png.html">PNG</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/proj.html">Projection</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="examples/example.html">Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/faces.html">Tetrahedron</a></li>
@@ -62,6 +64,11 @@
 <li class="toctree-l1"><a class="reference internal" href="examples/moebius.html">Moebius</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/project.html">Projection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/shortcut.html">Shortcuts</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">More</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
 </ul>
 
         </div>
@@ -106,18 +113,18 @@
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
 <p>Optionally using a virtual environment:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
-<span class="nb">source</span><span class="w"> </span>venv/bin/activate
-python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python3 -m venv venv
+source venv/bin/activate
+python3 -m pip install --upgrade pip
 </pre></div>
 </div>
 <p>Either from PyPI:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>storylines
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python3 -m pip install storylines
 </pre></div>
 </div>
 <p>Or from the repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/janberges/StoryLines
-python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>StoryLines
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/janberges/StoryLines
+python3 -m pip install -e StoryLines
 </pre></div>
 </div>
 </section>
@@ -130,110 +137,15 @@ python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </s
 <section id="license">
 <h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
 <p>This program is free software under the terms of the BSD Zero Clause License.</p>
-<p>Copyright (C) 2016-2024 Jan Berges</p>
+<p>Copyright (C) 2016-2025 Jan Berges</p>
 </section>
-<section id="modules">
-<h2>Modules<a class="headerlink" href="#modules" title="Link to this heading"></a></h2>
+</section>
 <div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="modules/plot.html">Plotting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modules/plot.html#storylines.plot.Plot"><code class="docutils literal notranslate"><span class="pre">Plot</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modules/calc.html">Calculations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modules/calc.html#storylines.calc.add"><code class="docutils literal notranslate"><span class="pre">add()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/calc.html#storylines.calc.bonds"><code class="docutils literal notranslate"><span class="pre">bonds()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/calc.html#storylines.calc.cross"><code class="docutils literal notranslate"><span class="pre">cross()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/calc.html#storylines.calc.distance"><code class="docutils literal notranslate"><span class="pre">distance()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/calc.html#storylines.calc.divide"><code class="docutils literal notranslate"><span class="pre">divide()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/calc.html#storylines.calc.dot"><code class="docutils literal notranslate"><span class="pre">dot()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/calc.html#storylines.calc.faces"><code class="docutils literal notranslate"><span class="pre">faces()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/calc.html#storylines.calc.length"><code class="docutils literal notranslate"><span class="pre">length()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/calc.html#storylines.calc.multiples"><code class="docutils literal notranslate"><span class="pre">multiples()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/calc.html#storylines.calc.multiply"><code class="docutils literal notranslate"><span class="pre">multiply()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/calc.html#storylines.calc.order_of_magnitude"><code class="docutils literal notranslate"><span class="pre">order_of_magnitude()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/calc.html#storylines.calc.power_of_ten"><code class="docutils literal notranslate"><span class="pre">power_of_ten()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/calc.html#storylines.calc.spring"><code class="docutils literal notranslate"><span class="pre">spring()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/calc.html#storylines.calc.subtract"><code class="docutils literal notranslate"><span class="pre">subtract()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/calc.html#storylines.calc.xround"><code class="docutils literal notranslate"><span class="pre">xround()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/calc.html#storylines.calc.xround_mantissa"><code class="docutils literal notranslate"><span class="pre">xround_mantissa()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modules/color.html">Colors</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modules/color.html#storylines.color.Color"><code class="docutils literal notranslate"><span class="pre">Color</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/color.html#storylines.color.HSV2RGB"><code class="docutils literal notranslate"><span class="pre">HSV2RGB()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/color.html#storylines.color.PSV2RGB"><code class="docutils literal notranslate"><span class="pre">PSV2RGB()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/color.html#storylines.color.RGB2HSV"><code class="docutils literal notranslate"><span class="pre">RGB2HSV()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/color.html#storylines.color.colorize"><code class="docutils literal notranslate"><span class="pre">colorize()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/color.html#storylines.color.colormap"><code class="docutils literal notranslate"><span class="pre">colormap()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modules/convert.html">Conversion</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modules/convert.html#storylines.convert.csv"><code class="docutils literal notranslate"><span class="pre">csv()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/convert.html#storylines.convert.inch"><code class="docutils literal notranslate"><span class="pre">inch</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/convert.html#storylines.convert.pt"><code class="docutils literal notranslate"><span class="pre">pt</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modules/cut.html">Cutting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modules/cut.html#storylines.cut.cut"><code class="docutils literal notranslate"><span class="pre">cut()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/cut.html#storylines.cut.cut2d"><code class="docutils literal notranslate"><span class="pre">cut2d()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/cut.html#storylines.cut.jump"><code class="docutils literal notranslate"><span class="pre">jump()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/cut.html#storylines.cut.relevant"><code class="docutils literal notranslate"><span class="pre">relevant()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/cut.html#storylines.cut.shortcut"><code class="docutils literal notranslate"><span class="pre">shortcut()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modules/fatband.html">Fatbands</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modules/fatband.html#storylines.fatband.fatband"><code class="docutils literal notranslate"><span class="pre">fatband()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/fatband.html#storylines.fatband.miter_butt"><code class="docutils literal notranslate"><span class="pre">miter_butt()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modules/files.html">Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modules/files.html#storylines.files.combine"><code class="docutils literal notranslate"><span class="pre">combine()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/files.html#storylines.files.goto"><code class="docutils literal notranslate"><span class="pre">goto()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/files.html#storylines.files.rasterize"><code class="docutils literal notranslate"><span class="pre">rasterize()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/files.html#storylines.files.typeset"><code class="docutils literal notranslate"><span class="pre">typeset()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modules/group.html">Grouping</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modules/group.html#storylines.group.groups"><code class="docutils literal notranslate"><span class="pre">groups()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/group.html#storylines.group.islands"><code class="docutils literal notranslate"><span class="pre">islands()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modules/png.html">PNG</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modules/png.html#storylines.png.load"><code class="docutils literal notranslate"><span class="pre">load()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/png.html#storylines.png.save"><code class="docutils literal notranslate"><span class="pre">save()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modules/proj.html">Projection</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modules/proj.html#storylines.proj.project"><code class="docutils literal notranslate"><span class="pre">project()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/proj.html#storylines.proj.projection"><code class="docutils literal notranslate"><span class="pre">projection()</span></code></a></li>
-</ul>
-</li>
-</ul>
 </div>
-</section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="examples/example.html">Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/faces.html">Tetrahedron</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/fatband.html">Fatbands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/mandelbrot.html">Mandelbrot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/moebius.html">Moebius</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/project.html">Projection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/shortcut.html">Shortcuts</a></li>
-</ul>
 </div>
-</section>
-<section id="indices-and-tables">
-<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
-</section>
-</section>
+<div class="toctree-wrapper compound">
+</div>
 
 
            </div>
@@ -245,7 +157,7 @@ python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </s
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2016-2024 Jan Berges.</p>
+    <p>&#169; Copyright 2016-2025 Jan Berges.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

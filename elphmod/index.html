@@ -43,7 +43,8 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="modules/el.html">Electron</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/ph.html">Phonon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/elph.html">Electron–phonon</a></li>
@@ -58,11 +59,19 @@
 <li class="toctree-l1"><a class="reference internal" href="modules/eliashberg.html">Eliashberg</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/plot.html">Plot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/misc.html">Miscellaneous</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/models.html">Models</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/models/graphene.html">Graphene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/models/tas2.html">TaS₂</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/models/chain.html">Chain</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="pages/changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pages/patches.html">Patches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
 </ul>
 
         </div>
@@ -116,25 +125,25 @@ can be used to build and study distorted structures on supercells.</p>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
 <p>You can install the latest version of elphmod from PyPI:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>elphmod
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python3 -m pip install elphmod
 </pre></div>
 </div>
 <p>Or from the conda-forge channel on Anaconda Cloud:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>conda-forge::elphmod
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>conda install conda-forge::elphmod
 </pre></div>
 </div>
 <p>elphmod can optionally be run in parallel via MPI (with shared-memory support).
 Using APT and pip, you can install the corresponding dependencies as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libopenmpi-dev
-python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>mpi4py<span class="w"> </span>--no-binary<span class="o">=</span>mpi4py
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt install libopenmpi-dev
+python3 -m pip install mpi4py --no-binary=mpi4py
 </pre></div>
 </div>
 <p>You can also download the complete repository, perform an editable installation,
 and install the requirements of examples and documentation:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/janberges/elphmod
-python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>elphmod
-python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>elphmod/examples/requirements.txt
-python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>elphmod/doc/requirements.txt
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/janberges/elphmod
+python3 -m pip install -e elphmod
+python3 -m pip install -r elphmod/examples/requirements.txt
+python3 -m pip install -r elphmod/doc/requirements.txt
 </pre></div>
 </div>
 </section>
@@ -158,47 +167,15 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
 <p>You should have received a copy of the GNU General Public License along with
 this program. If not, see <a class="reference external" href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>.</p>
-<p>Copyright (C) 2017-2024 elphmod Developers</p>
+<p>Copyright (C) 2017-2025 elphmod Developers</p>
 </section>
-<section id="modules">
-<h2>Modules<a class="headerlink" href="#modules" title="Link to this heading"></a></h2>
+</section>
 <div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="modules/el.html">Electron</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/ph.html">Phonon</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/elph.html">Electron–phonon</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/elel.html">Electron–electron</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/MPI.html">MPI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/bravais.html">Bravais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/dispersion.html">Dispersion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/dos.html">DOS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/diagrams.html">Diagrams</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/occupations.html">Occupations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/md.html">MD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/eliashberg.html">Eliashberg</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/plot.html">Plot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/misc.html">Miscellaneous</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/models.html">Models</a></li>
-</ul>
 </div>
-</section>
-<section id="further-information">
-<h2>Further information<a class="headerlink" href="#further-information" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="pages/changelog.html">Changelog</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pages/patches.html">Patches</a></li>
-</ul>
 </div>
-</section>
-<section id="indices-and-tables">
-<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
-</section>
-</section>
+<div class="toctree-wrapper compound">
+</div>
 
 
            </div>
@@ -210,7 +187,7 @@ this program. If not, see <a class="reference external" href="https://www.gnu.or
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024 elphmod Developers.</p>
+    <p>&#169; Copyright 2017-2025 elphmod Developers.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

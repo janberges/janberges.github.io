@@ -1,11 +1,9 @@
-.. highlight:: bash
-.. mdinclude:: ../README.md
-
-Modules
--------
+.. include:: ../README.md
+   :parser: myst_parser.sphinx_
 
 .. toctree::
-   :maxdepth: 1
+   :caption: Modules
+   :hidden:
 
    modules/el
    modules/ph
@@ -21,19 +19,20 @@ Modules
    modules/eliashberg
    modules/plot
    modules/misc
-   modules/models
-
-Further information
--------------------
 
 .. toctree::
-   :maxdepth: 1
+   :caption: Models
+   :hidden:
+
+   modules/models/graphene
+   modules/models/tas2
+   modules/models/chain
+
+.. toctree::
+   :caption: More
+   :hidden:
 
    pages/changelog
    pages/patches
-
-Indices and tables
-------------------
-
-* :ref:`genindex`
-* :ref:`search`
+   genindex
+   search
