@@ -1,0 +1,667 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ebmb &mdash; ebmb  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #e7f2fa" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ebmb.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module.html">Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #e7f2fa" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ebmb</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">ebmb</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ebmb</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="c1"># Copyright (C) 2016-2025 Jan Berges</span>
+<span class="c1"># This program is free software under the terms of the GNU GPLv3 or later.</span>
+
+<span class="sd">&quot;&quot;&quot;Wrapper and auxiliary functions for Eliashberg solver ebmb&quot;&quot;&quot;</span>
+
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;2.0.0&#39;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">os</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.special</span><span class="w"> </span><span class="kn">import</span> <span class="n">ellipk</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;square_dos not available&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="get">
+<a class="viewcode-back" href="../module.html#ebmb.get">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">program</span><span class="o">=</span><span class="s1">&#39;ebmb&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s1">&#39;~temporary.dat&#39;</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run &#39;ebmb&#39;, &#39;tc&#39; or &#39;critical&#39; and load results.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    program : str</span>
+<span class="sd">        Name of or path to executable.</span>
+<span class="sd">    file : str</span>
+<span class="sd">        Path to output file.</span>
+<span class="sd">    replace : bool</span>
+<span class="sd">        Overwrite existing output file?</span>
+<span class="sd">    **parameters</span>
+<span class="sd">        Program parameters.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        Returned if `program` corresponds to &#39;ebmb&#39;.</span>
+<span class="sd">        Self-energy components etc.</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Returned otherwise.</span>
+<span class="sd">        Critical parameter(s).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">replace</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="n">run</span><span class="p">(</span><span class="n">program</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">file</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">program</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;ebmb&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">load_floats</span><span class="p">(</span><span class="n">file</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="run">
+<a class="viewcode-back" href="../module.html#ebmb.run">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">program</span><span class="o">=</span><span class="s1">&#39;ebmb&#39;</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run &#39;ebmb&#39;, &#39;tc&#39; or &#39;critical&#39;.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    program : str</span>
+<span class="sd">        Name of or path to executable. If not found, the path to a directory</span>
+<span class="sd">        &#39;bin&#39; located next to this module is prepended before trying again.</span>
+<span class="sd">    redirect : bool</span>
+<span class="sd">        Do not print but return standard output of program.</span>
+<span class="sd">    **parameters</span>
+<span class="sd">        Program parameters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="n">program</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">command</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">value</span><span class="p">)))]))</span>
+
+    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">redirect</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+            <span class="n">command</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)),</span> <span class="s1">&#39;bin&#39;</span><span class="p">,</span>
+                <span class="n">command</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="read_char">
+<a class="viewcode-back" href="../module.html#ebmb.read_char">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_char</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read character from binary or text file (for Python-3 compatibility).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file : File Object</span>
+<span class="sd">        File opened in binary or text mode.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">        Next character from file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">char</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">char</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="load">
+<a class="viewcode-back" href="../module.html#ebmb.load">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load output file of &#39;ebmb&#39;.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file : str</span>
+<span class="sd">        Path to output file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        Self-energy components etc.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">read_char</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;REAL&#39;</span><span class="p">:</span>
+                <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span>
+
+            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;INT&#39;</span><span class="p">:</span>
+                <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span>
+
+            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;DIM&#39;</span><span class="p">:</span>
+                <span class="n">shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+                    <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+            <span class="k">elif</span> <span class="n">name</span><span class="p">:</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span>
+                    <span class="n">shape</span><span class="o">.</span><span class="n">prod</span><span class="p">())</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="load_floats">
+<a class="viewcode-back" href="../module.html#ebmb.load_floats">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_floats</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load output file of &#39;tc&#39; or &#39;critical&#39;.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file : str</span>
+<span class="sd">        Path to output file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Critical parameter(s).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span> <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="dos">
+<a class="viewcode-back" href="../module.html#ebmb.dos">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">dos</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="p">[],</span> <span class="n">points</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate subdomain-resolved density of states and save it to file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file : str</span>
+<span class="sd">        Path to output file.</span>
+<span class="sd">    epsilon : function</span>
+<span class="sd">        Band structure.</span>
+<span class="sd">    domain : list of ndarray</span>
+<span class="sd">        Discretized domains of arguments of `epsilon`.</span>
+<span class="sd">    filters : list of function</span>
+<span class="sd">        N filters defining N + 1 subdomains.</span>
+<span class="sd">    points : int</span>
+<span class="sd">        Number of energy points.</span>
+<span class="sd">    replace : bool</span>
+<span class="sd">        Overwrite existing output file?</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Energy.</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Subdomain-resolved density of states.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        e, dos = ebmb.dos(&#39;dos.in&#39;, epsilon=lambda *k: -np.cos(k).sum() / 2,</span>
+<span class="sd">            domain=[np.linspace(-np.pi, np.pi, 1000, endpoint=False)] * 2,</span>
+<span class="sd">            filters=[lambda *k: np.pi ** 2 / 2 &lt;= np.dot(k, k) &lt;= np.pi ** 2])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">replace</span> <span class="ow">and</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="k">return</span>
+
+    <span class="n">states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">domain</span><span class="p">)))</span>
+
+    <span class="n">energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">states</span><span class="p">)</span>
+    <span class="n">pocket</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">states</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">domain</span><span class="p">)):</span>
+        <span class="n">energy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">epsilon</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">pocket</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">filters</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">element</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">):</span> <span class="k">break</span>
+            <span class="n">pocket</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">emin</span> <span class="o">=</span> <span class="n">energy</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="n">emax</span> <span class="o">=</span> <span class="n">energy</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+    <span class="n">binned</span> <span class="o">=</span> <span class="p">((</span><span class="n">points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="o">*</span> <span class="p">(</span><span class="n">energy</span> <span class="o">-</span> <span class="n">emin</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">emax</span> <span class="o">-</span> <span class="n">emin</span><span class="p">))</span><span class="o">.</span><span class="n">round</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="n">pockets</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">points</span><span class="p">,</span> <span class="n">pockets</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">states</span><span class="p">):</span>
+        <span class="n">count</span><span class="p">[</span><span class="n">binned</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">pocket</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">e</span><span class="p">,</span> <span class="n">de</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">emin</span><span class="p">,</span> <span class="n">emax</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">retstep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">dos</span> <span class="o">=</span> <span class="n">count</span> <span class="o">/</span> <span class="p">(</span><span class="n">de</span> <span class="o">*</span> <span class="n">count</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="n">dos</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">:]</span> <span class="o">*=</span> <span class="mi">2</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">% .10f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pockets</span><span class="p">):</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39; </span><span class="si">%.10f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">dos</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span>
+
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">e</span><span class="p">,</span> <span class="n">dos</span> <span class="k">if</span> <span class="n">pockets</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">dos</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="chain_dos">
+<a class="viewcode-back" href="../module.html#ebmb.chain_dos">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">chain_dos</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;dos.in&#39;</span><span class="p">,</span> <span class="n">de</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate density of states of 1D lattice and save it to file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file : str</span>
+<span class="sd">        Path to output file.</span>
+<span class="sd">    de : float</span>
+<span class="sd">        Energy resolution.</span>
+<span class="sd">    t : float</span>
+<span class="sd">        Hopping parameter.</span>
+<span class="sd">    bandwidth : float</span>
+<span class="sd">        Alternatively, bandwith.</span>
+<span class="sd">    replace : bool</span>
+<span class="sd">        Overwrite existing output file?</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Energy.</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Density of states.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">replace</span> <span class="ow">and</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="k">return</span>
+
+    <span class="k">if</span> <span class="n">bandwidth</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">bandwidth</span> <span class="o">/</span> <span class="mi">4</span>
+
+    <span class="n">points</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="n">de</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">points</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">points</span> <span class="o">%</span> <span class="mi">2</span>
+
+    <span class="n">e</span><span class="p">,</span> <span class="n">de</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">retstep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">dos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+
+    <span class="n">dos</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+
+    <span class="n">dos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">dos</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">de</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">dos</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">% .10f</span><span class="s1"> </span><span class="si">%.10f</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dos</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+    <span class="k">return</span> <span class="n">e</span><span class="p">,</span> <span class="n">dos</span></div>
+
+
+<div class="viewcode-block" id="chain_a2F">
+<a class="viewcode-back" href="../module.html#ebmb.chain_a2F">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">chain_a2F</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;a2F.in&#39;</span><span class="p">,</span> <span class="n">dw</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">w0</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">wlog</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate and save Eliashberg spectral function of 1D lattice.</span>
+
+<span class="sd">    See Eqs. (63) and (64) of Phys. Rev. X 13, 041009 (2023). Averaging the</span>
+<span class="sd">    electron-phonon coupling over k yields this Eliashberg spectral function.</span>
+<span class="sd">    The lambda parameter `l` is g0 / w0 squared times the density of states.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file : str</span>
+<span class="sd">        Path to output file.</span>
+<span class="sd">    dw : float</span>
+<span class="sd">        Energy resolution.</span>
+<span class="sd">    l : float</span>
+<span class="sd">        Effective electron-phonon coupling.</span>
+<span class="sd">    w0 : float</span>
+<span class="sd">        Second-moment average phonon frequency.</span>
+<span class="sd">    wlog : float</span>
+<span class="sd">        Logarithmic average phonon frequency.</span>
+<span class="sd">    replace : bool</span>
+<span class="sd">        Overwrite existing output file?</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Energy.</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Eliashberg spectral function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">replace</span> <span class="ow">and</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="k">return</span>
+
+    <span class="k">if</span> <span class="n">wlog</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">wlog</span> <span class="o">=</span> <span class="n">w0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">points</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">wlog</span> <span class="o">/</span> <span class="n">dw</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">w</span><span class="p">,</span> <span class="n">dw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">wlog</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">retstep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dw</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="n">a2F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+
+    <span class="n">a2F</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">l</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">w</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">wlog</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">w</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">a2F</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">/</span> <span class="n">dw</span> <span class="o">-</span> <span class="n">a2F</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a2F</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span> <span class="o">*</span> <span class="n">w</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">% .10f</span><span class="s1"> </span><span class="si">%.10f</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">a2F</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+    <span class="k">return</span> <span class="n">w</span><span class="p">,</span> <span class="n">a2F</span></div>
+
+
+<div class="viewcode-block" id="square_dos">
+<a class="viewcode-back" href="../module.html#ebmb.square_dos">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">square_dos</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;dos.in&#39;</span><span class="p">,</span> <span class="n">de</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate density of states of square lattice and save it to file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file : str</span>
+<span class="sd">        Path to output file.</span>
+<span class="sd">    de : float</span>
+<span class="sd">        Energy resolution.</span>
+<span class="sd">    t : float</span>
+<span class="sd">        Hopping parameter.</span>
+<span class="sd">    bandwidth : float</span>
+<span class="sd">        Alternatively, bandwith.</span>
+<span class="sd">    replace : bool</span>
+<span class="sd">        Overwrite existing output file?</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Energy.</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Density of states.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">replace</span> <span class="ow">and</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="k">return</span>
+
+    <span class="k">if</span> <span class="n">bandwidth</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">bandwidth</span> <span class="o">/</span> <span class="mi">8</span>
+
+    <span class="n">points</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="n">de</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">points</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">points</span> <span class="o">%</span> <span class="mi">2</span>
+
+    <span class="n">e</span><span class="p">,</span> <span class="n">de</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span> <span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">retstep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">mid</span> <span class="o">=</span> <span class="n">points</span> <span class="o">//</span> <span class="mi">2</span>
+
+    <span class="n">dos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+
+    <span class="n">dos</span><span class="p">[:</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="n">ellipk</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">e</span><span class="p">[:</span><span class="n">mid</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">t</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">dos</span><span class="p">[</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">dos</span><span class="p">[</span><span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">dos</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">dos</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">de</span> <span class="o">-</span> <span class="n">dos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">dos</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="n">dos</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">% .10f</span><span class="s1"> </span><span class="si">%.10f</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dos</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+    <span class="k">return</span> <span class="n">e</span><span class="p">,</span> <span class="n">dos</span></div>
+
+
+<div class="viewcode-block" id="box_dos">
+<a class="viewcode-back" href="../module.html#ebmb.box_dos">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">box_dos</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;dos.in&#39;</span><span class="p">,</span> <span class="n">de</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate rectangular density of states and save it to file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file : str</span>
+<span class="sd">        Path to output file.</span>
+<span class="sd">    de : float</span>
+<span class="sd">        Energy resolution.</span>
+<span class="sd">    t : float</span>
+<span class="sd">        One eighth of the bandwidth.</span>
+<span class="sd">    bandwidth : float</span>
+<span class="sd">        Alternatively, bandwith.</span>
+<span class="sd">    replace : bool</span>
+<span class="sd">        Overwrite existing output file?</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Energy.</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Density of states.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">replace</span> <span class="ow">and</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="k">return</span>
+
+    <span class="k">if</span> <span class="n">bandwidth</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">bandwidth</span> <span class="o">/</span> <span class="mi">8</span>
+
+    <span class="n">points</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="n">de</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span> <span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="n">points</span><span class="p">)</span>
+
+    <span class="n">dos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+    <span class="n">dos</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">0.125</span> <span class="o">/</span> <span class="n">t</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">% .10f</span><span class="s1"> </span><span class="si">%.10f</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dos</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+    <span class="k">return</span> <span class="n">e</span><span class="p">,</span> <span class="n">dos</span></div>
+
+
+<div class="viewcode-block" id="steplike_dos">
+<a class="viewcode-back" href="../module.html#ebmb.steplike_dos">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">steplike_dos</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;dos.in&#39;</span><span class="p">,</span> <span class="n">de</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span>
+        <span class="n">d</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate and save steplike DOS [Akashi, Arita, PRB 88, 014514 (2013)]</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file : str</span>
+<span class="sd">        Path to output file.</span>
+<span class="sd">    de : float</span>
+<span class="sd">        Energy resolution.</span>
+<span class="sd">    t : float</span>
+<span class="sd">        One eighth of the bandwidth.</span>
+<span class="sd">    bandwidth : float</span>
+<span class="sd">        Alternatively, bandwith.</span>
+<span class="sd">    ratio : float</span>
+<span class="sd">        Quotient of densities of states after and before the step (N+/N-)</span>
+<span class="sd">    d : float</span>
+<span class="sd">        Width of the step.</span>
+<span class="sd">    replace : bool</span>
+<span class="sd">        Overwrite existing output file?</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Energy.</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Density of states.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">replace</span> <span class="ow">and</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="k">return</span>
+
+    <span class="k">if</span> <span class="n">bandwidth</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">bandwidth</span> <span class="o">/</span> <span class="mi">8</span>
+
+    <span class="n">inner</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">d</span> <span class="o">/</span> <span class="n">de</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">outer</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="mi">4</span> <span class="o">*</span> <span class="n">t</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="n">de</span><span class="p">)))</span>
+
+    <span class="n">points</span> <span class="o">=</span> <span class="n">inner</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">outer</span>
+
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+    <span class="n">dos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+
+    <span class="n">e</span><span class="p">[:</span><span class="o">+</span><span class="n">outer</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span> <span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span> <span class="n">outer</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">e</span><span class="p">[</span><span class="o">-</span><span class="n">outer</span><span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span> <span class="n">outer</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">e</span><span class="p">[</span><span class="n">outer</span><span class="p">:</span><span class="o">-</span><span class="n">outer</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span> <span class="n">inner</span><span class="p">)</span>
+
+    <span class="n">N0</span> <span class="o">=</span> <span class="mf">0.125</span> <span class="o">/</span> <span class="n">t</span>
+    <span class="n">delta</span> <span class="o">=</span> <span class="p">(</span><span class="n">ratio</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">ratio</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">N0</span>
+
+    <span class="n">dos</span><span class="p">[:</span><span class="o">+</span><span class="n">outer</span><span class="p">]</span> <span class="o">=</span> <span class="n">N0</span> <span class="o">-</span> <span class="n">delta</span>
+    <span class="n">dos</span><span class="p">[</span><span class="o">-</span><span class="n">outer</span><span class="p">:]</span> <span class="o">=</span> <span class="n">N0</span> <span class="o">+</span> <span class="n">delta</span>
+
+    <span class="n">dos</span><span class="p">[</span><span class="n">outer</span><span class="p">:</span><span class="o">-</span><span class="n">outer</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">N0</span> <span class="o">-</span> <span class="n">delta</span><span class="p">,</span> <span class="n">N0</span> <span class="o">+</span> <span class="n">delta</span><span class="p">,</span> <span class="n">inner</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">% .10f</span><span class="s1"> </span><span class="si">%.10f</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dos</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+    <span class="k">return</span> <span class="n">e</span><span class="p">,</span> <span class="n">dos</span></div>
+
+
+<div class="viewcode-block" id="gaussian_a2F">
+<a class="viewcode-back" href="../module.html#ebmb.gaussian_a2F">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">gaussian_a2F</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;a2F.in&#39;</span><span class="p">,</span> <span class="n">dw</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">w0</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate and save Gaussian example Eliashberg spectral function.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file : str</span>
+<span class="sd">        Path to output file.</span>
+<span class="sd">    dw : float</span>
+<span class="sd">        Energy resolution.</span>
+<span class="sd">    l : float</span>
+<span class="sd">        Prefactor (expected value of electron-phonon coupling).</span>
+<span class="sd">    w0 : float</span>
+<span class="sd">        Center (expected value of Einstein frequency).</span>
+<span class="sd">    s : float</span>
+<span class="sd">        Broadening.</span>
+<span class="sd">    replace : bool</span>
+<span class="sd">        Overwrite existing output file?</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Energy.</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Eliashberg spectral function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">replace</span> <span class="ow">and</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="k">return</span>
+
+    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">w0</span> <span class="o">-</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="n">w0</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="n">dw</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">w</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">a2F</span> <span class="o">=</span> <span class="n">l</span> <span class="o">*</span> <span class="n">w0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">w</span> <span class="o">-</span> <span class="n">w0</span><span class="p">)</span> <span class="o">/</span> <span class="n">s</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)):</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">% .10f</span><span class="s1"> </span><span class="si">%.10f</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">a2F</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+    <span class="k">return</span> <span class="n">w</span><span class="p">,</span> <span class="n">a2F</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">edgeitems</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">square_dos</span><span class="p">(</span><span class="s1">&#39;dos.in&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">get</span><span class="p">(</span><span class="n">dos</span><span class="o">=</span><span class="s1">&#39;dos.in&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">tell</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;</span><span class="si">%9s</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">item</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="mi">12</span><span class="p">))</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025 Jan Berges.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
