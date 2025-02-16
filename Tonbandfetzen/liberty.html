@@ -1,0 +1,187 @@
+<html lang='en'><head><meta charset='utf-8'><title>liberty</title><link rel='stylesheet' type='text/css' href='style.css'></head><body><h1>liberty</h1>
+<h2>Makefile</h2>
+<pre id='vimCodeElement'>
+<span class="Statement">.PHONY:</span> wav mp3 clean
+<span class="Statement">.PRECIOUS:</span> <span class="Identifier">%</span>.mel
+
+<span class="Identifier">wav:</span> liberty.wav
+<span class="Identifier">mp3:</span> liberty.mp3
+
+<span class="Identifier">clean:</span>
+<span class="Constant">    git clean -Xdf</span>
+
+<span class="Identifier">%.mp3:</span> <span class="Identifier">%</span>.wav <span class="Identifier">%</span>.id3
+<span class="Constant">    tz tag </span><span class="Identifier">$&lt;</span>
+<span class="Constant">    ffmpeg -y -i </span><span class="Identifier">$&lt;</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">%.wav:</span> <span class="Identifier">%</span>.mel
+<span class="Constant">    tz mel </span><span class="Identifier">$&lt;</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">%.mel:</span> <span class="Identifier">%</span>.gtr
+<span class="Constant">    tz guitar </span><span class="Identifier">$&lt;</span><span class="Constant"> </span><span class="Identifier">$@</span>
+</pre>
+<h2>liberty.gtr</h2>
+<pre id='vimCodeElement'>
+<span class="Comment">*CUNDE (5 May 2010)*</span>
+
+<span class="Identifier">$</span><span class="Constant">44100</span><span class="Identifier"> |</span><span class="Constant">12:7</span>
+
+<span class="Identifier">I</span><span class="Constant">1</span>
+<span class="Identifier">~ </span><span class="Statement">power</span><span class="Identifier"> &amp;</span><span class="Constant">1</span>
+<span class="Identifier">N </span><span class="Statement">harmonic</span><span class="Identifier"> </span><span class="Constant">0.1</span>
+<span class="Identifier">!</span><span class="Constant">0</span><span class="Identifier"> ,</span><span class="Constant">120:7</span>
+<span class="Identifier">[</span><span class="Constant">0</span><span class="Identifier"> {</span><span class="Constant">0</span>
+<span class="Identifier">J</span><span class="Constant">0</span><span class="Identifier"> </span><span class="Constant">0</span>
+
+<span class="Identifier">I</span><span class="Constant">8</span>
+<span class="Identifier">~ </span><span class="Statement">circular</span><span class="Identifier"> &amp;</span><span class="Constant">2</span>
+<span class="Identifier">N </span><span class="Statement">harmonic</span><span class="Identifier"> </span><span class="Constant">0.1</span>
+<span class="Identifier">!</span><span class="Constant">0</span><span class="Identifier"> ,</span><span class="Constant">0</span>
+<span class="Identifier">J</span><span class="Constant">10</span><span class="Identifier"> </span><span class="Constant">0</span>
+
+<span class="Identifier">I</span><span class="Constant">9</span>
+<span class="Identifier">N </span><span class="Statement">harmonic</span><span class="Identifier"> </span><span class="Constant">0.01</span>
+<span class="Identifier">,</span><span class="Constant">1200:7</span>
+<span class="Identifier">[</span><span class="Constant">0</span><span class="Identifier"> {</span><span class="Constant">0</span>
+<span class="Identifier">J</span><span class="Constant">10</span><span class="Identifier"> </span><span class="Constant">0</span>
+
+<span class="Identifier">I</span><span class="Constant">2</span><span class="Identifier"> I</span><span class="Constant">10</span><span class="Identifier">J</span><span class="Constant">8</span><span class="Identifier"> [</span><span class="Constant">30</span><span class="Identifier"> }</span><span class="Constant">480</span><span class="Identifier"> J</span><span class="Constant">0</span><span class="Identifier"> </span><span class="Constant">0</span>
+<span class="Identifier">I</span><span class="Constant">3</span><span class="Identifier"> I</span><span class="Constant">10</span><span class="Identifier">J</span><span class="Constant">8</span><span class="Identifier"> ]</span><span class="Constant">30</span><span class="Identifier"> {</span><span class="Constant">480</span><span class="Identifier"> J</span><span class="Constant">0</span><span class="Identifier"> </span><span class="Constant">0</span>
+<span class="Identifier">I</span><span class="Constant">4</span><span class="Identifier"> I</span><span class="Constant">10</span><span class="Identifier">J</span><span class="Constant">8</span><span class="Identifier"> [</span><span class="Constant">0</span><span class="Identifier"> {</span><span class="Constant">0</span><span class="Identifier"> J</span><span class="Constant">0</span><span class="Identifier"> </span><span class="Constant">0</span>
+
+<span class="Identifier">I</span><span class="Constant">5</span><span class="Identifier"> I</span><span class="Constant">10</span><span class="Identifier">J</span><span class="Constant">9</span><span class="Identifier"> ~ </span><span class="Statement">random</span><span class="Identifier"> &amp;</span><span class="Constant">1</span><span class="Identifier"> ?</span><span class="Constant">5</span><span class="Identifier"> E</span><span class="Constant">10</span><span class="Identifier"> J</span><span class="Constant">0</span><span class="Identifier"> </span><span class="Constant">0</span>
+<span class="Identifier">I</span><span class="Constant">6</span><span class="Identifier"> I</span><span class="Constant">10</span><span class="Identifier">J</span><span class="Constant">9</span><span class="Identifier"> ~ </span><span class="Statement">cubic</span><span class="Identifier"> &amp;</span><span class="Constant">2.598</span><span class="Identifier"> !</span><span class="Constant">5</span><span class="Identifier"> E</span><span class="Constant">5</span><span class="Identifier"> J</span><span class="Constant">0</span><span class="Identifier"> </span><span class="Constant">0</span>
+<span class="Identifier">I</span><span class="Constant">7</span><span class="Identifier"> I</span><span class="Constant">10</span><span class="Identifier">J</span><span class="Constant">9</span><span class="Identifier"> ~ </span><span class="Statement">harmonic</span><span class="Identifier"> &amp;</span><span class="Constant">1</span><span class="Identifier"> !</span><span class="Constant">10</span><span class="Identifier"> C</span><span class="Constant">2</span><span class="Identifier"> J</span><span class="Constant">0</span><span class="Identifier"> </span><span class="Constant">0</span>
+
+<span class="Identifier">~ </span><span class="Statement">harmonic</span>
+<span class="Identifier">N </span><span class="Statement">harmonic</span><span class="Identifier"> </span><span class="Constant">0.01</span>
+<span class="Identifier">!</span><span class="Constant">0</span><span class="Identifier"> ,</span><span class="Constant">0</span>
+<span class="Identifier">[</span><span class="Constant">0</span><span class="Identifier"> {</span><span class="Constant">0</span>
+
+<span class="Identifier">M</span><span class="Constant">0</span><span class="Identifier"> C</span><span class="Constant">3</span><span class="Identifier"> /</span><span class="Constant">72</span><span class="Identifier"> )</span><span class="Constant">20</span><span class="Identifier"> '</span><span class="Constant">1.5</span><span class="Identifier"> (</span><span class="Constant">40</span><span class="Identifier"> '</span><span class="Constant">1.5</span><span class="Identifier"> )</span><span class="Constant">20</span><span class="Identifier"> '</span><span class="Constant">0.75</span><span class="Identifier"> \</span><span class="Constant">60</span><span class="Identifier"> (</span><span class="Constant">0</span><span class="Identifier"> '</span><span class="Constant">0.25</span><span class="Identifier"> W</span><span class="Constant">0</span>
+
+<span class="Identifier">M</span><span class="Constant">0</span><span class="Identifier"> IJ</span><span class="Constant">2</span><span class="Identifier"> &quot;</span><span class="Constant">3.75</span><span class="Identifier"> E</span><span class="Constant">0</span><span class="Identifier"> /</span><span class="Constant">48</span><span class="Identifier"> '</span><span class="Constant">0.25</span><span class="Identifier"> '</span><span class="Constant">0.125</span><span class="Identifier"> W</span><span class="Constant">0</span>
+<span class="Identifier">M</span><span class="Constant">0</span><span class="Identifier"> IJ</span><span class="Constant">3</span><span class="Identifier"> &quot;</span><span class="Constant">3.75</span><span class="Identifier"> E</span><span class="Constant">0</span><span class="Identifier"> /</span><span class="Constant">36</span><span class="Identifier"> '</span><span class="Constant">0.25</span><span class="Identifier"> '</span><span class="Constant">0.125</span><span class="Identifier"> W</span><span class="Constant">0</span>
+<span class="Identifier">M</span><span class="Constant">0</span><span class="Identifier"> IJ</span><span class="Constant">4</span><span class="Identifier"> &quot;</span><span class="Constant">3.75</span><span class="Identifier"> E</span><span class="Constant">0</span><span class="Identifier"> /</span><span class="Constant">24</span><span class="Identifier"> '</span><span class="Constant">0.25</span><span class="Identifier"> '</span><span class="Constant">0.125</span><span class="Identifier"> W</span><span class="Constant">0</span>
+
+<span class="Identifier">IJ</span><span class="Constant">5</span><span class="Identifier">|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">6</span><span class="Identifier">|--------=~~~~~~~--------=~~~~~~~|--------=~~~~~~~--------=~~~~~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">7</span><span class="Identifier">|=~~~~~~~--------=~~~=~~~--------|=~~~~~~~--------=~~~=~~~--------|</span>
+
+<span class="Identifier">IJ</span><span class="Constant">5</span><span class="Identifier">|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|=~~~=~~~=~~~=~~~=~~~=~~~=\</span><span class="Constant">60</span><span class="Identifier">~~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">6</span><span class="Identifier">|--------=~~~~~~~--------=~~~~~~~|~~~~~~~~=~~~~~~~--------=\</span><span class="Constant">60</span><span class="Identifier">~~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">7</span><span class="Identifier">|=~~~~~~~--------=~~~=~~~--------|=~~~~~~~--------=~~~=~~~=\</span><span class="Constant">60</span><span class="Identifier">~~~~|</span>
+
+<span class="Identifier">IJ</span><span class="Constant">2</span><span class="Identifier">|----G</span><span class="Constant">4</span><span class="Identifier">~~E~~~B~~~E~~~G~~~E~~~B~~~|E~~~F</span><span class="Statement">#</span><span class="Identifier">~~E~~~B~~~E~~~F</span><span class="Statement">#</span><span class="Identifier">~~E~~~D~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">3</span><span class="Identifier">|----G</span><span class="Constant">3</span><span class="Identifier">~~D~~~F</span><span class="Statement">#</span><span class="Identifier">~~D</span><span class="Constant">4</span><span class="Identifier">~~C~~~B~~~A~~~|G~~~C~~~F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier">~B~~~E</span><span class="Constant">3</span><span class="Identifier">~~G~~~D~~~F</span><span class="Statement">#</span><span class="Identifier">~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">4</span><span class="Identifier">|----E</span><span class="Constant">2</span><span class="Identifier">~~E~~~E~~~E~~~E~~~E~~~E~~~|E~~~E~~~E~~~E~~~E~~~E~~~E~~~E~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">5</span><span class="Identifier">|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">6</span><span class="Identifier">|--------=~~~~~~~--------=~~~~~~~|--------=~~~~~~~--------=~~~~~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">7</span><span class="Identifier">|=~~~~~~~--------=~~~=~~~--------|=~~~~~~~--------=~~~=~~~--------|</span>
+
+<span class="Identifier">IJ</span><span class="Constant">2</span><span class="Identifier">|B</span><span class="Constant">3</span><span class="Identifier">~~C~~~B~~~D~~~B~~~C~~~B~~~D~~~|B~~~C~~~B~~~D~~~B~~~C~~~B~~~D~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">3</span><span class="Identifier">|G</span><span class="Constant">3</span><span class="Identifier">~~F</span><span class="Statement">#</span><span class="Identifier">~~B~~~F</span><span class="Statement">#</span><span class="Identifier">~~G~~~F</span><span class="Statement">#</span><span class="Identifier">~~D</span><span class="Constant">4</span><span class="Identifier">~~F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier">~|A~~~G~~~F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier">~G~~~A~~~G~~~F</span><span class="Statement">#</span><span class="Identifier">~~B~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">4</span><span class="Identifier">|G</span><span class="Constant">2</span><span class="Identifier">~~G~~~G~~~G~~~G~~~G~~~G~~~G~~~|A~~~A~~~A~~~A~~~A~~~A~~~A~~~A~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">5</span><span class="Identifier">|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">6</span><span class="Identifier">|--------=~~~~~~~--------=~~~~~~~|--------=~~~~~~~--------=~~~~~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">7</span><span class="Identifier">|=~~~~~~~--------=~~~=~~~--------|=~~~~~~~--------=~~~=~~~--------|</span>
+
+<span class="Identifier">IJ</span><span class="Constant">2</span><span class="Identifier">|E</span><span class="Constant">4</span><span class="Identifier">~~G~~~E~~~B~~~E~~~G~~~E~~~B~~~|E~~~F</span><span class="Statement">#</span><span class="Identifier">~~E~~~B~~~E~~~F</span><span class="Statement">#</span><span class="Identifier">~~E~~~D~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">3</span><span class="Identifier">|E</span><span class="Constant">3</span><span class="Identifier">~~G~~~D~~~F</span><span class="Statement">#</span><span class="Identifier">~~D</span><span class="Constant">4</span><span class="Identifier">~~C~~~B~~~A~~~|G~~~C~~~F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier">~B~~~E</span><span class="Constant">3</span><span class="Identifier">~~G~~~D~~~F</span><span class="Statement">#</span><span class="Identifier">~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">4</span><span class="Identifier">|E</span><span class="Constant">2</span><span class="Identifier">~~E~~~E~~~E~~~E~~~E~~~E~~~E~~~|E~~~E~~~E~~~E~~~E~~~E~~~E~~~E~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">5</span><span class="Identifier">|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">6</span><span class="Identifier">|--------=~~~~~~~--------=~~~~~~~|--------=~~~~~~~--------=~~~~~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">7</span><span class="Identifier">|=~~~~~~~--------=~~~=~~~--------|=~~~~~~~--------=~~~=~~~--------|</span>
+
+<span class="Identifier">IJ</span><span class="Constant">2</span><span class="Identifier">|B</span><span class="Constant">3</span><span class="Identifier">~~C~~~B~~~D~~~B~~~C~~~B~~~D~~~|B~~~C~~~B~~~D~~~B~~~C~~~B~~~D~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">3</span><span class="Identifier">|G</span><span class="Constant">3</span><span class="Identifier">~~F</span><span class="Statement">#</span><span class="Identifier">~~B~~~F</span><span class="Statement">#</span><span class="Identifier">~~G~~~F</span><span class="Statement">#</span><span class="Identifier">~~D</span><span class="Constant">4</span><span class="Identifier">~~F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier">~|A~~~G~~~F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier">~G~~~A~~~G~~~F</span><span class="Statement">#</span><span class="Identifier">~~B~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">4</span><span class="Identifier">|G</span><span class="Constant">2</span><span class="Identifier">~~G~~~G~~~G~~~G~~~G~~~G~~~G~~~|A~~~A~~~A~~~A~~~B~~~B~~~B~~~B~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">5</span><span class="Identifier">|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">6</span><span class="Identifier">|--------=~~~~~~~--------=~~~~~~~|--------=~~~~~~~--------=~~~~~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">7</span><span class="Identifier">|=~~~~~~~--------=~~~=~~~--------|=~~~~~~~--------=~~~=~~~--------|</span>
+
+<span class="Identifier">IJ</span><span class="Constant">2</span><span class="Identifier">|G</span><span class="Constant">4</span><span class="Identifier">~~E~~~D~~~E~~~G~~~E~~~D~~~E~~~|G~~~E~~~D~~~E~~~G~~~E~~~D~~~E~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">3</span><span class="Identifier">|E</span><span class="Constant">3</span><span class="Identifier">~~G~~~C~~~D~~~C~~~A~~~B~~~G~~~|E~~~B</span><span class="Constant">3</span><span class="Identifier">~~G~~~F</span><span class="Statement">#</span><span class="Identifier">~~E~~~D~~~E~~~G~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">4</span><span class="Identifier">|C</span><span class="Constant">3</span><span class="Identifier">~~C~~~C~~~C~~~C~~~C~~~D~~~C~~~|E~~~E~~~E~~~E~~~E~~~E~~~A</span><span class="Constant">2</span><span class="Identifier">~~B~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">5</span><span class="Identifier">|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">6</span><span class="Identifier">|--------=~~~~~~~--------=~~~~~~~|--------=~~~~~~~--------=~~~~~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">7</span><span class="Identifier">|=~~~~~~~--------=~~~=~~~--------|=~~~~~~~--------=~~~=~~~--------|</span>
+
+<span class="Identifier">IJ</span><span class="Constant">2</span><span class="Identifier">|A</span><span class="Constant">4</span><span class="Identifier">~~E~~~D~~~E~~~A~~~E~~~D~~~E~~~|G~~~E~~~D~~~E~~~G~~~E~~~D~~~B~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">3</span><span class="Identifier">|E</span><span class="Constant">3</span><span class="Identifier">~~G~~~C~~~D~~~C~~~A~~~B~~~G~~~|E~~~B</span><span class="Constant">3</span><span class="Identifier">~~G~~~F</span><span class="Statement">#</span><span class="Identifier">~~E~~~F</span><span class="Statement">#</span><span class="Identifier">~~G~~~B~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">4</span><span class="Identifier">|C</span><span class="Constant">3</span><span class="Identifier">~~C~~~C~~~C~~~C~~~C~~~D~~~C~~~|E~~~E~~~E~~~E~~~F</span><span class="Statement">#</span><span class="Identifier">~~G~~~A~~~B~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">5</span><span class="Identifier">|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">6</span><span class="Identifier">|=~~~~~~~=~~~~~~~=~~~~~~~=~~~~~~~|=~~~=~~~=~~~=~~~=~=~=~=~=~=~=~=~|</span>
+<span class="Identifier">IJ</span><span class="Constant">7</span><span class="Identifier">|=~~~~~~~--------=~~~=~~~--------|=~~~~~~~--------=~~~=~~~--------|</span>
+
+<span class="Identifier">IJ</span><span class="Constant">2</span><span class="Identifier">|E</span><span class="Constant">4</span><span class="Identifier">~~B~~~E~~~B~~~E~~~B~~~E~~~B~~~|E~~~B~~~E~~~B~~~E~~~B~~~E~~~B~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">3</span><span class="Identifier">|C</span><span class="Constant">3</span><span class="Identifier">~~G</span><span class="Constant">3</span><span class="Identifier">~~C</span><span class="Constant">3</span><span class="Identifier">~~G</span><span class="Constant">3</span><span class="Identifier">~~C</span><span class="Constant">3</span><span class="Identifier">~~G</span><span class="Constant">3</span><span class="Identifier">~~C</span><span class="Constant">3</span><span class="Identifier">~~G</span><span class="Constant">3</span><span class="Identifier">~~|C</span><span class="Constant">3</span><span class="Identifier">~~G</span><span class="Constant">3</span><span class="Identifier">~~C</span><span class="Constant">3</span><span class="Identifier">~~G</span><span class="Constant">3</span><span class="Identifier">~~C</span><span class="Constant">3</span><span class="Identifier">~~G</span><span class="Constant">3</span><span class="Identifier">~~C</span><span class="Constant">3</span><span class="Identifier">~~G</span><span class="Constant">3</span><span class="Identifier">~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">4</span><span class="Identifier">|C</span><span class="Constant">4</span><span class="Identifier">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|~~~~~~~~~~~~~~~~B~~~A~~~G~~~F</span><span class="Statement">#</span><span class="Identifier">~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">5</span><span class="Identifier">|=~~~----------------------------|--------------------------------|</span>
+<span class="Identifier">IJ</span><span class="Constant">6</span><span class="Identifier">|=~~~----------------------------|--------------------------------|</span>
+<span class="Identifier">IJ</span><span class="Constant">7</span><span class="Identifier">|=~~~----------------------------|--------------------------------|</span>
+
+<span class="Identifier">IJ</span><span class="Constant">2</span><span class="Identifier">|G</span><span class="Constant">4</span><span class="Identifier">~~D~~~G~~~D~~~G~~~D~~~G~~~D~~~|G~~~D~~~G~~~D~~~G~~~D~~~G~~~D~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">3</span><span class="Identifier">|E</span><span class="Constant">3</span><span class="Identifier">~~B</span><span class="Constant">3</span><span class="Identifier">~~E</span><span class="Constant">3</span><span class="Identifier">~~B</span><span class="Constant">3</span><span class="Identifier">~~E</span><span class="Constant">3</span><span class="Identifier">~~B</span><span class="Constant">3</span><span class="Identifier">~~E</span><span class="Constant">3</span><span class="Identifier">~~B</span><span class="Constant">3</span><span class="Identifier">~~|E</span><span class="Constant">3</span><span class="Identifier">~~B</span><span class="Constant">3</span><span class="Identifier">~~E</span><span class="Constant">3</span><span class="Identifier">~~B</span><span class="Constant">3</span><span class="Identifier">~~E</span><span class="Constant">3</span><span class="Identifier">~~B</span><span class="Constant">3</span><span class="Identifier">~~E</span><span class="Constant">3</span><span class="Identifier">~~B</span><span class="Constant">3</span><span class="Identifier">~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">4</span><span class="Identifier">|E</span><span class="Constant">3</span><span class="Identifier">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|~~~~~~~~~~~~~~~~F</span><span class="Statement">#</span><span class="Identifier">~~G~~~A~~~B~~~|</span>
+
+<span class="Identifier">IJ</span><span class="Constant">2</span><span class="Identifier">|E</span><span class="Constant">4</span><span class="Identifier">~~B~~~E~~~B~~~E~~~B~~~E~~~B~~~|E~~~B~~~E~~~B~~~E~~~B~~~E~~~B~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">3</span><span class="Identifier">|C</span><span class="Constant">3</span><span class="Identifier">~~G</span><span class="Constant">3</span><span class="Identifier">~~C</span><span class="Constant">3</span><span class="Identifier">~~G</span><span class="Constant">3</span><span class="Identifier">~~C</span><span class="Constant">3</span><span class="Identifier">~~G</span><span class="Constant">3</span><span class="Identifier">~~C</span><span class="Constant">3</span><span class="Identifier">~~G</span><span class="Constant">3</span><span class="Identifier">~~|C</span><span class="Constant">3</span><span class="Identifier">~~G</span><span class="Constant">3</span><span class="Identifier">~~C</span><span class="Constant">3</span><span class="Identifier">~~G</span><span class="Constant">3</span><span class="Identifier">~~C</span><span class="Constant">3</span><span class="Identifier">~~G</span><span class="Constant">3</span><span class="Identifier">~~C</span><span class="Constant">3</span><span class="Identifier">~~G</span><span class="Constant">3</span><span class="Identifier">~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">4</span><span class="Identifier">|C</span><span class="Constant">4</span><span class="Identifier">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|~~~~~~~~~~~~~~~~B~~~A~~~G~~~F</span><span class="Statement">#</span><span class="Identifier">~~|</span>
+
+<span class="Identifier">IJ</span><span class="Constant">1</span>
+<span class="Identifier">]</span><span class="Constant">15</span><span class="Identifier">|------------B</span><span class="Constant">4</span><span class="Identifier">~~~~~~~~~~~~~~~~~~|------------B~~~~~~~~~~~~~~~~~~~|</span>
+<span class="Identifier">]</span><span class="Constant">05</span><span class="Identifier">|--------D</span><span class="Constant">5</span><span class="Identifier">~~~~~~~~~~~~~~~~~~~~~~|--------D~~~~~~~~~~~~~~~~~~~~~~~|</span>
+<span class="Identifier">[</span><span class="Constant">05</span><span class="Identifier">|----G</span><span class="Constant">4</span><span class="Identifier">~~~~~~~~~~~~~~~~~~~~~~~~~~|----G~~~~~~~~~~~~~~~~~~~~~~~~~~~|</span>
+<span class="Identifier">[</span><span class="Constant">15</span><span class="Identifier">|E</span><span class="Constant">4</span><span class="Identifier">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">2</span><span class="Identifier">|E</span><span class="Constant">4</span><span class="Identifier">~~G~~~E~~~B~~~E~~~G~~~E~~~B~~~|E~~~F</span><span class="Statement">#</span><span class="Identifier">~~E~~~B~~~E~~~F</span><span class="Statement">#</span><span class="Identifier">~~E~~~D~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">3</span><span class="Identifier">|E</span><span class="Constant">3</span><span class="Identifier">~~G~~~D~~~F</span><span class="Statement">#</span><span class="Identifier">~~D</span><span class="Constant">4</span><span class="Identifier">~~C~~~B~~~A~~~|G~~~C~~~F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier">~B~~~E</span><span class="Constant">3</span><span class="Identifier">~~G~~~D~~~F</span><span class="Statement">#</span><span class="Identifier">~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">4</span><span class="Identifier">|E</span><span class="Constant">2</span><span class="Identifier">~~E~~~E~~~E~~~E~~~E~~~E~~~E~~~|E~~~E~~~E~~~E~~~E~~~E~~~E~~~E~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">5</span><span class="Identifier">|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">6</span><span class="Identifier">|--------=~~~~~~~--------=~~~~~~~|--------=~~~~~~~--------=~~~~~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">7</span><span class="Identifier">|=~~~~~~~--------=~~~=~~~--------|=~~~~~~~--------=~~~=--------~~~|</span>
+
+<span class="Identifier">IJ</span><span class="Constant">1</span>
+<span class="Identifier">]</span><span class="Constant">15</span><span class="Identifier">|------------B</span><span class="Constant">4</span><span class="Identifier">~~~~~~~~~~~~~~~~~~|------------B~~~~~~~~~~~~~~~~~~~|</span>
+<span class="Identifier">]</span><span class="Constant">05</span><span class="Identifier">|--------D</span><span class="Constant">5</span><span class="Identifier">~~~~~~~~~~~~~~~~~~~~~~|--------C~~~~~~~~~~~~~~~~~~~~~~~|</span>
+<span class="Identifier">[</span><span class="Constant">05</span><span class="Identifier">|----G</span><span class="Constant">4</span><span class="Identifier">~~~~~~~~~~~~~~~~~~~~~~~~~~|----A~~~~~~~~~~~~~~~~~~~~~~~~~~~|</span>
+<span class="Identifier">[</span><span class="Constant">15</span><span class="Identifier">|--------------------------------|--------------------------------|</span>
+<span class="Identifier">IJ</span><span class="Constant">2</span><span class="Identifier">|B</span><span class="Constant">3</span><span class="Identifier">~~C~~~B~~~D~~~B~~~C~~~B~~~D~~~|B~~~C~~~B~~~D~~~B~~~C~~~B~~~D~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">3</span><span class="Identifier">|G</span><span class="Constant">3</span><span class="Identifier">~~F</span><span class="Statement">#</span><span class="Identifier">~~B~~~F</span><span class="Statement">#</span><span class="Identifier">~~G~~~F</span><span class="Statement">#</span><span class="Identifier">~~D</span><span class="Constant">4</span><span class="Identifier">~~F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier">~|A~~~G~~~F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier">~G~~~A~~~G~~~F</span><span class="Statement">#</span><span class="Identifier">~~B~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">4</span><span class="Identifier">|G</span><span class="Constant">2</span><span class="Identifier">~~G~~~G~~~G~~~G~~~G~~~G~~~G~~~|A~~~A~~~A~~~A~~~B~~~B~~~B~~~B~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">5</span><span class="Identifier">|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">6</span><span class="Identifier">|--------=~~~~~~~--------=~~~~~~~|--------=~~~~~~~--------=~~~~~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">7</span><span class="Identifier">|=~~~~~~~--------=~~~=~~~--------|=~~~~~~~--------=~~~=~~~--------|</span>
+
+<span class="Identifier">IJ</span><span class="Constant">1</span>
+<span class="Identifier">]</span><span class="Constant">15</span><span class="Identifier">|------------E</span><span class="Constant">5</span><span class="Identifier">~~~~~~~~~~~~~~~~~~|------------G~~~~~~~~~~~~~~~~~~~|</span>
+<span class="Identifier">]</span><span class="Constant">05</span><span class="Identifier">|--------B</span><span class="Constant">4</span><span class="Identifier">~~~~~~~~~~~~~~~~~~~~~~|--------D~~~~~~~~~~~~~~~~~~~~~~~|</span>
+<span class="Identifier">[</span><span class="Constant">05</span><span class="Identifier">|----G</span><span class="Constant">4</span><span class="Identifier">~~~~~~~~~~~~~~~~~~~~~~~~~~|----B~~~~~~~~~~~~~~~~~~~~~~~~~~~|</span>
+<span class="Identifier">[</span><span class="Constant">15</span><span class="Identifier">|C</span><span class="Constant">4</span><span class="Identifier">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">2</span><span class="Identifier">|G</span><span class="Constant">4</span><span class="Identifier">~~E~~~D~~~E~~~G~~~E~~~D~~~E~~~|G~~~E~~~D~~~E~~~G~~~E~~~D~~~E~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">3</span><span class="Identifier">|E</span><span class="Constant">3</span><span class="Identifier">~~G~~~C~~~D~~~C~~~A~~~B~~~G~~~|E~~~B</span><span class="Constant">3</span><span class="Identifier">~~G~~~F</span><span class="Statement">#</span><span class="Identifier">~~E~~~D~~~E~~~G~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">4</span><span class="Identifier">|C</span><span class="Constant">3</span><span class="Identifier">~~C~~~C~~~C~~~C~~~C~~~D~~~C~~~|E~~~E~~~E~~~E~~~E~~~E~~~A</span><span class="Constant">2</span><span class="Identifier">~~B~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">5</span><span class="Identifier">|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">6</span><span class="Identifier">|--------=~~~~~~~--------=~~~~~~~|--------=~~~~~~~--------=~~~~~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">7</span><span class="Identifier">|=~~~~~~~--------=~~~=~~~--------|=~~~~~~~--------=~~~=~~~--------|</span>
+
+<span class="Identifier">IJ</span><span class="Constant">1</span>
+<span class="Identifier">]</span><span class="Constant">15</span><span class="Identifier">|------------E</span><span class="Constant">5</span><span class="Identifier">~~~~~~~~~~~~~~~~~~|------------G~~~~~~~~~~~~~~~~~~~|</span>
+<span class="Identifier">]</span><span class="Constant">05</span><span class="Identifier">|--------B</span><span class="Constant">4</span><span class="Identifier">~~~~~~~~~~~~~~~~~~~~~~|--------D~~~~~~~~~~~~~~~~~~~~~~~|</span>
+<span class="Identifier">[</span><span class="Constant">05</span><span class="Identifier">|----G</span><span class="Constant">4</span><span class="Identifier">~~~~~~~~~~~~~~~~~~~~~~~~~~|----B~~~~~~~~~~~~~~~~~~~~~~~~~~~|</span>
+<span class="Identifier">[</span><span class="Constant">15</span><span class="Identifier">|C</span><span class="Constant">4</span><span class="Identifier">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|E~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">2</span><span class="Identifier">|A</span><span class="Constant">4</span><span class="Identifier">~~E~~~D~~~E~~~A~~~E~~~D~~~E~~~|G~~~E~~~D~~~E~~~G~~~E~~~D~~~B~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">3</span><span class="Identifier">|E</span><span class="Constant">3</span><span class="Identifier">~~G~~~C~~~D~~~C~~~A~~~B~~~G~~~|E~~~B</span><span class="Constant">3</span><span class="Identifier">~~G~~~F</span><span class="Statement">#</span><span class="Identifier">~~E~~~F</span><span class="Statement">#</span><span class="Identifier">~~G~~~B~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">4</span><span class="Identifier">|C</span><span class="Constant">3</span><span class="Identifier">~~C~~~C~~~C~~~C~~~C~~~D~~~C~~~|E~~~E~~~E~~~E~~~F</span><span class="Statement">#</span><span class="Identifier">~~G~~~A~~~B~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">5</span><span class="Identifier">|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|=~~~=~~~=~~~=~~~=~~~=~~~=~~~=~~~|</span>
+<span class="Identifier">IJ</span><span class="Constant">6</span><span class="Identifier">|=~~~~~~~=~~~~~~~=~~~~~~~=~~~~~~~|=~~~=~~~=~~~=~~~=~=~=~=~=~=~=~=~|</span>
+<span class="Identifier">IJ</span><span class="Constant">7</span><span class="Identifier">|=~~~~~~~--------=~~~=~~~--------|=~~~~~~~--------=~~~=~~~--------|</span>
+</pre>
+<h2>liberty.id3</h2>
+<pre id='vimCodeElement'>
+TIT2 Cunde
+TALB Tonbandfetzen
+TPE1 Jan Berges
+APIC ../../logo/Tonbandfetzen.png
+</pre>
+</body></html>

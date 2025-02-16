@@ -1,0 +1,306 @@
+<html lang='en'><head><meta charset='utf-8'><title>freedom</title><link rel='stylesheet' type='text/css' href='style.css'></head><body><h1>freedom</h1>
+<h2>Makefile</h2>
+<pre id='vimCodeElement'>
+<span class="Statement">.PHONY:</span> wav mp3 clean
+<span class="Statement">.PRECIOUS:</span> <span class="Identifier">%</span>.wav
+
+<span class="Identifier">wav:</span> freedom.wav
+<span class="Identifier">mp3:</span> freedom.mp3
+
+<span class="Identifier">clean:</span>
+<span class="Constant">    git clean -Xdf</span>
+
+<span class="Identifier">%.mp3:</span> <span class="Identifier">%</span>.wav <span class="Identifier">%</span>.id3
+<span class="Constant">    tz tag </span><span class="Identifier">$&lt;</span>
+<span class="Constant">    ffmpeg -y -i </span><span class="Identifier">$&lt;</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">%.wav:</span> def.mel <span class="Identifier">%</span>.mel
+<span class="Constant">    cat </span><span class="Identifier">$^</span><span class="Constant"> | tz mel </span><span class="Identifier">$@</span>
+
+<span class="Identifier">%_fitted.wav:</span> def.mel <span class="Identifier">%</span>.fit <span class="Identifier">%</span>.wav
+<span class="Constant">    cat </span><span class="Identifier">$&lt;</span><span class="Constant"> </span><span class="Identifier">$*</span><span class="Constant">.fit | tz mel </span><span class="Identifier">$*</span><span class="Constant">.wav - </span><span class="Identifier">$@</span>
+
+<span class="Identifier">url </span>= <a href="https://janberges.de/freedom">https://janberges.de/freedom</a>
+
+<span class="Identifier">%.wav:</span> speak.py <span class="Identifier">%</span>.txt
+<span class="Constant">    wget -O </span><span class="Identifier">$@</span><span class="Constant"> </span><span class="Identifier">$(url)</span><span class="Constant">/</span><span class="Identifier">$(@F)</span><span class="Constant"> || curl -o </span><span class="Identifier">$@</span><span class="Constant"> </span><span class="Identifier">$(url)</span><span class="Constant">/</span><span class="Identifier">$(@F)</span><span class="Constant"> || python3 </span><span class="Identifier">$&lt;</span><span class="Constant"> </span><span class="Identifier">$*</span>
+<span class="Constant">    touch </span><span class="Identifier">$@</span>
+
+<span class="Comment"># The downloaded audio files have been recorded in 2012 using Google Translate,</span>
+<span class="Comment"># GarageBand, and a cable connecting the headphone and microphone jacks.</span>
+
+<span class="Identifier">parts/b_hi.wav:</span> melody/b_hi1.wav melody/b_hi1.wav melody/b_hi2.wav melody/b_hi1.wav
+<span class="Constant">    tz stick </span><span class="Identifier">$+</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">parts/chords_a.wav:</span> chords/g.wav chords/g.wav chords/g.wav chords/a.wav
+<span class="Constant">    tz stick </span><span class="Identifier">$+</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">parts/chords_c.wav:</span> chords/e.wav chords/e.wav chords/e.wav chords/a.wav
+<span class="Constant">    tz stick </span><span class="Identifier">$+</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">parts/a1.wav:</span> drums/hihat.wav parts/chords_a.wav
+<span class="Constant">    tz stack </span><span class="Identifier">$^</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">parts/a2.wav:</span> parts/a1.wav drums/bass.wav
+<span class="Constant">    tz stack </span><span class="Identifier">$^</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">parts/a3.wav:</span> parts/a2.wav melody/a_lo.wav
+<span class="Constant">    tz stack </span><span class="Identifier">$^</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">parts/a4.wav:</span> parts/a3.wav melody/a_mi.wav melody/a_hi.wav
+<span class="Constant">    tz stack </span><span class="Identifier">$^</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">parts/b.wav:</span> drums/bass.wav drums/hihat.wav chords/e.wav melody/b_lo.wav melody/b_mi.wav parts/b_hi.wav
+<span class="Constant">    tz stack </span><span class="Identifier">$^</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">parts/c.wav:</span> drums/bass.wav parts/chords_c.wav
+<span class="Constant">    tz stack </span><span class="Identifier">$^</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">parts/intro.wav:</span> parts/a1.wav parts/a2.wav
+<span class="Constant">    tz stick </span><span class="Identifier">$+</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">parts/verse1.wav:</span> parts/a3.wav lyrics/verse1_fitted.wav
+<span class="Constant">    tz stack </span><span class="Identifier">$^</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">parts/verse2.wav:</span> parts/a3.wav lyrics/verse2_fitted.wav
+<span class="Constant">    tz stack </span><span class="Identifier">$^</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">parts/verse3.wav:</span> parts/a3.wav lyrics/verse3_fitted.wav
+<span class="Constant">    tz stack </span><span class="Identifier">$^</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">parts/chorus.wav:</span> parts/a4.wav parts/a4.wav parts/b.wav
+<span class="Constant">    tz stick </span><span class="Identifier">$+</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">parts/outro.wav:</span> parts/c.wav lyrics/outro_fitted.wav
+<span class="Constant">    tz stack </span><span class="Identifier">$^</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">freedom.wav:</span> parts/intro.wav parts/verse1.wav parts/chorus.wav parts/c.wav parts/verse2.wav parts/chorus.wav parts/c.wav parts/verse3.wav parts/chorus.wav parts/outro.wav
+<span class="Constant">    tz stick </span><span class="Identifier">$+</span><span class="Constant"> </span><span class="Identifier">$@</span>
+</pre>
+<h2>chords/a.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">~ </span><span class="Statement">water</span>
+
+<span class="Identifier">&amp;</span><span class="Constant">0.3849</span>
+<span class="Identifier">M P</span><span class="Constant">0</span><span class="Identifier"> C</span><span class="Constant">5</span><span class="Identifier"> (</span><span class="Constant">20</span><span class="Identifier"> &lt;</span><span class="Constant">25</span><span class="Identifier"> '</span><span class="Constant">8</span>
+<span class="Identifier">W P</span><span class="Constant">0</span><span class="Identifier"> E</span><span class="Constant">5</span><span class="Identifier"> (</span><span class="Constant">00</span><span class="Identifier"> &lt;</span><span class="Constant">25</span><span class="Identifier"> '</span><span class="Constant">8</span>
+<span class="Identifier">W P</span><span class="Constant">0</span><span class="Identifier"> A</span><span class="Constant">5</span><span class="Identifier"> )</span><span class="Constant">20</span><span class="Identifier"> &lt;</span><span class="Constant">25</span><span class="Identifier"> '</span><span class="Constant">8</span>
+</pre>
+<h2>chords/e.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">~ </span><span class="Statement">water</span>
+
+<span class="Identifier">&amp;</span><span class="Constant">0.3849</span>
+<span class="Identifier">M P</span><span class="Constant">0</span><span class="Identifier"> G</span><span class="Constant">5</span><span class="Identifier"> (</span><span class="Constant">20</span><span class="Identifier"> &lt;</span><span class="Constant">25</span><span class="Identifier"> '</span><span class="Constant">8</span>
+<span class="Identifier">W P</span><span class="Constant">0</span><span class="Identifier"> B</span><span class="Constant">5</span><span class="Identifier"> (</span><span class="Constant">00</span><span class="Identifier"> &lt;</span><span class="Constant">25</span><span class="Identifier"> '</span><span class="Constant">8</span>
+<span class="Identifier">W P</span><span class="Constant">0</span><span class="Identifier"> E</span><span class="Constant">6</span><span class="Identifier"> )</span><span class="Constant">20</span><span class="Identifier"> &lt;</span><span class="Constant">25</span><span class="Identifier"> '</span><span class="Constant">8</span>
+</pre>
+<h2>chords/g.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">~ </span><span class="Statement">water</span>
+
+<span class="Identifier">&amp;</span><span class="Constant">0.3849</span>
+<span class="Identifier">M P</span><span class="Constant">0</span><span class="Identifier"> D</span><span class="Constant">5</span><span class="Identifier"> (</span><span class="Constant">20</span><span class="Identifier"> &lt;</span><span class="Constant">25</span><span class="Identifier"> '</span><span class="Constant">8</span>
+<span class="Identifier">W P</span><span class="Constant">0</span><span class="Identifier"> G</span><span class="Constant">5</span><span class="Identifier"> (</span><span class="Constant">00</span><span class="Identifier"> &lt;</span><span class="Constant">25</span><span class="Identifier"> '</span><span class="Constant">8</span>
+<span class="Identifier">W P</span><span class="Constant">0</span><span class="Identifier"> B</span><span class="Constant">5</span><span class="Identifier"> )</span><span class="Constant">20</span><span class="Identifier"> &lt;</span><span class="Constant">25</span><span class="Identifier"> '</span><span class="Constant">8</span>
+</pre>
+<h2>def.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">$</span><span class="Constant">44100</span><span class="Identifier"> O</span><span class="Constant">2</span>
+
+<span class="Identifier">|</span><span class="Constant">1:4</span><span class="Identifier"> T </span><span class="Statement">equal</span><span class="Identifier"> G</span>
+
+<span class="Identifier">N </span><span class="Statement">smooth</span><span class="Identifier"> </span><span class="Constant">0.025</span>
+</pre>
+<h2>drums/bass.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">~ </span><span class="Statement">harmonic</span>
+<span class="Identifier">N </span><span class="Statement">smooth</span><span class="Identifier"> </span><span class="Constant">0.001</span>
+
+<span class="Identifier">!</span><span class="Constant">25</span>
+<span class="Identifier">E</span><span class="Constant">3</span><span class="Identifier"> \</span><span class="Constant">30</span><span class="Identifier"> ,</span><span class="Constant">0</span><span class="Identifier"> '</span><span class="Constant">1</span><span class="Identifier"> \</span><span class="Constant">0</span><span class="Identifier"> ,</span><span class="Constant">25</span><span class="Identifier"> ''</span>
+<span class="Identifier">B</span><span class="Constant">3</span><span class="Identifier"> \</span><span class="Constant">30</span><span class="Identifier"> ,</span><span class="Constant">0</span><span class="Identifier"> '</span><span class="Constant">1</span><span class="Identifier"> \</span><span class="Constant">0</span><span class="Identifier"> ,</span><span class="Constant">25</span><span class="Identifier"> '</span>
+<span class="Identifier">G</span><span class="Constant">3</span><span class="Identifier"> \</span><span class="Constant">30</span><span class="Identifier"> ,</span><span class="Constant">0</span><span class="Identifier"> '</span><span class="Constant">1</span><span class="Identifier"> \</span><span class="Constant">0</span><span class="Identifier"> ,</span><span class="Constant">25</span><span class="Identifier"> ''</span>
+</pre>
+<h2>drums/hihat.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">&amp;</span><span class="Constant">0.7071</span><span class="Identifier"> ,</span><span class="Constant">25</span>
+
+<span class="Identifier">N </span><span class="Statement">smooth</span><span class="Identifier"> </span><span class="Constant">0.0025</span>
+
+<span class="Identifier">M %</span><span class="Constant">1:1000</span><span class="Identifier"> I</span>
+
+<span class="Identifier">~ </span><span class="Statement">random</span><span class="Identifier"> @</span>
+
+<span class="Identifier">!</span><span class="Constant">3</span><span class="Identifier"> ' !</span><span class="Constant">8</span><span class="Identifier"> ' !</span><span class="Constant">13</span><span class="Identifier"> '</span>
+
+<span class="Identifier">W ]</span><span class="Constant">1000:1</span><span class="Identifier"> J</span>
+</pre>
+<h2>freedom.id3</h2>
+<pre id='vimCodeElement'>
+TIT2 Freiheit ist Sklaverei
+TALB Tonbandfetzen
+TPE1 Jan Berges
+APIC ../../logo/Tonbandfetzen.png
+</pre>
+<h2>lyrics/outro.fit</h2>
+<pre id='vimCodeElement'>
+~ #1
+N smooth 0
+
+&amp;75 @1:16 '64
+</pre>
+<h2>lyrics/outro.txt</h2>
+<pre id='vimCodeElement'>
+Heute ist mein ganzes Leben dadurch bestimmt,
+mein unstillbares Verlangen zu besänftigen.
+Du hast mich ganz in der Hand.
+</pre>
+<h2>lyrics/verse1.fit</h2>
+<pre id='vimCodeElement'>
+~ #1
+N smooth 0
+
+&amp;75 @1:16 '64
+</pre>
+<h2>lyrics/verse1.txt</h2>
+<pre id='vimCodeElement'>
+Manchmal erinnere ich mich noch an die Zeit,
+als ich mit der Welt tief verwurzelt und im Reinen war.
+Ich war nie weit gekommen,
+doch selbst das Fremde erschien mir vertraut.
+</pre>
+<h2>lyrics/verse2.fit</h2>
+<pre id='vimCodeElement'>
+~ #1
+N smooth 0
+
+&amp;75 @1:32 '128
+</pre>
+<h2>lyrics/verse2.txt</h2>
+<pre id='vimCodeElement'>
+Eines Tages hast du mich gefunden und mir Geschichten von der Freiheit erzählt,
+die in mir eine Sehnsucht geweckt haben,
+die so stark war,
+dass ich dich meine Wurzeln freilegen und mich mit auf deine Reise nehmen ließ.
+Ich war davon verzaubert,
+jeden Tag so viel Neues zu sehen,
+dass ich wünschte,
+wir hielten nie wieder an.
+</pre>
+<h2>lyrics/verse3.fit</h2>
+<pre id='vimCodeElement'>
+~ #1
+N smooth 0
+
+&amp;75 @1:16 '64
+</pre>
+<h2>lyrics/verse3.txt</h2>
+<pre id='vimCodeElement'>
+Ich wollte mehr.
+Irgendwann spürte ich dann erstmals diesen Durst aufkommen,
+der mich immer öfter dazu zwang,
+dich um etwas zu trinken zu bitten.
+Dem bist du auch immer mit einem Lächeln auf den Lippen nachgekommen.
+</pre>
+<h2>melody/a_hi.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">~ </span><span class="Statement">circular</span>
+
+<span class="Identifier">&amp;</span><span class="Constant">1:2</span><span class="Identifier"> !</span><span class="Constant">20</span><span class="Identifier"> [</span><span class="Constant">20</span><span class="Identifier"> }</span><span class="Constant">40</span>
+<span class="Identifier">E</span><span class="Constant">4</span><span class="Identifier"> ' G</span><span class="Constant">4</span><span class="Identifier">  ' E</span><span class="Constant">4</span><span class="Identifier"> ' B</span><span class="Constant">3</span><span class="Identifier"> ' E</span><span class="Constant">4</span><span class="Identifier"> ' G</span><span class="Constant">4</span><span class="Identifier">  ' E</span><span class="Constant">4</span><span class="Identifier"> ' B</span><span class="Constant">3</span><span class="Identifier"> '</span>
+<span class="Identifier">E</span><span class="Constant">4</span><span class="Identifier"> ' F</span><span class="Statement">#</span><span class="Constant">4</span><span class="Identifier"> ' E</span><span class="Constant">4</span><span class="Identifier"> ' B</span><span class="Constant">3</span><span class="Identifier"> ' E</span><span class="Constant">4</span><span class="Identifier"> ' F</span><span class="Statement">#</span><span class="Constant">4</span><span class="Identifier"> ' E</span><span class="Constant">4</span><span class="Identifier"> ' D</span><span class="Constant">4</span><span class="Identifier"> '</span>
+<span class="Identifier">B</span><span class="Constant">3</span><span class="Identifier"> ' C</span><span class="Constant">4</span><span class="Identifier">  ' B</span><span class="Constant">3</span><span class="Identifier"> ' D</span><span class="Constant">4</span><span class="Identifier"> ' B</span><span class="Constant">3</span><span class="Identifier"> ' C</span><span class="Constant">4</span><span class="Identifier">  ' B</span><span class="Constant">3</span><span class="Identifier"> ' D</span><span class="Constant">4</span><span class="Identifier"> '</span>
+<span class="Identifier">B</span><span class="Constant">3</span><span class="Identifier"> ' C</span><span class="Constant">4</span><span class="Identifier">  ' B</span><span class="Constant">3</span><span class="Identifier"> ' D</span><span class="Constant">4</span><span class="Identifier"> ' B</span><span class="Constant">3</span><span class="Identifier"> ' C</span><span class="Constant">4</span><span class="Identifier">  ' B</span><span class="Constant">3</span><span class="Identifier"> ' D</span><span class="Constant">4</span><span class="Identifier"> '</span>
+</pre>
+<h2>melody/a_lo.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">~ </span><span class="Statement">circular</span>
+
+<span class="Identifier">M</span><span class="Constant">1</span>
+<span class="Identifier">&amp;</span><span class="Constant">1:2</span><span class="Identifier"> !</span><span class="Constant">20</span><span class="Identifier"> [</span><span class="Constant">00</span><span class="Identifier"> {</span><span class="Constant">00</span>
+<span class="Identifier">E</span><span class="Constant">2</span><span class="Identifier"> ' E</span><span class="Constant">2</span><span class="Identifier"> ' E</span><span class="Constant">2</span><span class="Identifier"> ' E</span><span class="Constant">2</span><span class="Identifier"> ' E</span><span class="Constant">2</span><span class="Identifier"> ' E</span><span class="Constant">2</span><span class="Identifier"> ' E</span><span class="Constant">2</span><span class="Identifier"> ' E</span><span class="Constant">2</span><span class="Identifier"> '</span>
+<span class="Identifier">E</span><span class="Constant">2</span><span class="Identifier"> ' E</span><span class="Constant">2</span><span class="Identifier"> ' E</span><span class="Constant">2</span><span class="Identifier"> ' E</span><span class="Constant">2</span><span class="Identifier"> ' E</span><span class="Constant">2</span><span class="Identifier"> ' E</span><span class="Constant">2</span><span class="Identifier"> ' E</span><span class="Constant">2</span><span class="Identifier"> ' E</span><span class="Constant">2</span><span class="Identifier"> '</span>
+<span class="Identifier">G</span><span class="Constant">2</span><span class="Identifier"> ' G</span><span class="Constant">2</span><span class="Identifier"> ' G</span><span class="Constant">2</span><span class="Identifier"> ' G</span><span class="Constant">2</span><span class="Identifier"> ' G</span><span class="Constant">2</span><span class="Identifier"> ' G</span><span class="Constant">2</span><span class="Identifier"> ' G</span><span class="Constant">2</span><span class="Identifier"> ' G</span><span class="Constant">2</span><span class="Identifier"> '</span>
+<span class="Identifier">A</span><span class="Constant">2</span><span class="Identifier"> ' A</span><span class="Constant">2</span><span class="Identifier"> ' A</span><span class="Constant">2</span><span class="Identifier"> ' A</span><span class="Constant">2</span><span class="Identifier"> ' A</span><span class="Constant">2</span><span class="Identifier"> ' A</span><span class="Constant">2</span><span class="Identifier"> ' A</span><span class="Constant">2</span><span class="Identifier"> ' A</span><span class="Constant">2</span><span class="Identifier"> '</span>
+<span class="Identifier">M</span><span class="Constant">2</span>
+
+<span class="Identifier">~ </span><span class="Statement">harmonic</span>
+<span class="Identifier">X </span><span class="Statement">flanger</span><span class="Identifier"> </span><span class="Constant">1</span><span class="Identifier"> </span><span class="Constant">2</span><span class="Identifier"> </span><span class="Constant">0.0125</span><span class="Identifier"> </span><span class="Constant">2</span>
+</pre>
+<h2>melody/a_mi.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">~ </span><span class="Statement">circular</span>
+
+<span class="Identifier">&amp;</span><span class="Constant">1:2</span><span class="Identifier"> !</span><span class="Constant">20</span><span class="Identifier"> ]</span><span class="Constant">20</span><span class="Identifier"> {</span><span class="Constant">40</span>
+<span class="Identifier">E</span><span class="Constant">3</span><span class="Identifier"> ' G</span><span class="Constant">3</span><span class="Identifier">  ' D</span><span class="Constant">3</span><span class="Identifier">  ' F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier"> ' D</span><span class="Constant">4</span><span class="Identifier"> ' C</span><span class="Constant">4</span><span class="Identifier">  ' B</span><span class="Constant">3</span><span class="Identifier">  ' A</span><span class="Constant">3</span><span class="Identifier">  '</span>
+<span class="Identifier">G</span><span class="Constant">3</span><span class="Identifier"> ' C</span><span class="Constant">4</span><span class="Identifier">  ' F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier"> ' B</span><span class="Constant">3</span><span class="Identifier">  ' E</span><span class="Constant">3</span><span class="Identifier"> ' G</span><span class="Constant">3</span><span class="Identifier">  ' D</span><span class="Constant">3</span><span class="Identifier">  ' F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier"> '</span>
+<span class="Identifier">G</span><span class="Constant">3</span><span class="Identifier"> ' F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier"> ' B</span><span class="Constant">3</span><span class="Identifier">  ' F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier"> ' G</span><span class="Constant">3</span><span class="Identifier"> ' F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier"> ' D</span><span class="Constant">4</span><span class="Identifier">  ' F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier"> '</span>
+<span class="Identifier">A</span><span class="Constant">3</span><span class="Identifier"> ' G</span><span class="Constant">3</span><span class="Identifier">  ' F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier"> ' G</span><span class="Constant">3</span><span class="Identifier">  ' A</span><span class="Constant">3</span><span class="Identifier"> ' G</span><span class="Constant">3</span><span class="Identifier">  ' F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier"> ' B</span><span class="Constant">3</span><span class="Identifier">  '</span>
+</pre>
+<h2>melody/b_hi1.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">~ </span><span class="Statement">circular</span>
+
+<span class="Identifier">&amp;</span><span class="Constant">1:2</span><span class="Identifier"> !</span><span class="Constant">20</span><span class="Identifier"> [</span><span class="Constant">20</span><span class="Identifier"> }</span><span class="Constant">40</span>
+<span class="Identifier">G</span><span class="Constant">4</span><span class="Identifier"> ' E</span><span class="Constant">4</span><span class="Identifier"> ' D</span><span class="Constant">4</span><span class="Identifier"> ' E</span><span class="Constant">4</span><span class="Identifier"> ' G</span><span class="Constant">4</span><span class="Identifier"> ' E</span><span class="Constant">4</span><span class="Identifier"> ' D</span><span class="Constant">4</span><span class="Identifier"> ' E</span><span class="Constant">4</span><span class="Identifier"> '</span>
+</pre>
+<h2>melody/b_hi2.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">~ </span><span class="Statement">circular</span>
+
+<span class="Identifier">&amp;</span><span class="Constant">1:2</span><span class="Identifier"> !</span><span class="Constant">20</span><span class="Identifier"> [</span><span class="Constant">20</span><span class="Identifier"> }</span><span class="Constant">40</span>
+<span class="Identifier">A</span><span class="Constant">4</span><span class="Identifier"> ' E</span><span class="Constant">4</span><span class="Identifier"> ' D</span><span class="Constant">4</span><span class="Identifier"> ' E</span><span class="Constant">4</span><span class="Identifier"> ' A</span><span class="Constant">4</span><span class="Identifier"> ' E</span><span class="Constant">4</span><span class="Identifier"> ' D</span><span class="Constant">4</span><span class="Identifier"> ' E</span><span class="Constant">4</span><span class="Identifier"> '</span>
+</pre>
+<h2>melody/b_lo.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">~ </span><span class="Statement">circular</span>
+
+<span class="Identifier">M</span><span class="Constant">1</span>
+<span class="Identifier">&amp;</span><span class="Constant">1:2</span><span class="Identifier"> !</span><span class="Constant">20</span><span class="Identifier"> [</span><span class="Constant">00</span><span class="Identifier"> {</span><span class="Constant">00</span>
+<span class="Identifier">C</span><span class="Constant">3</span><span class="Identifier"> ' C</span><span class="Constant">3</span><span class="Identifier"> ' C</span><span class="Constant">3</span><span class="Identifier"> ' C</span><span class="Constant">3</span><span class="Identifier"> ' C</span><span class="Constant">3</span><span class="Identifier"> ' C</span><span class="Constant">3</span><span class="Identifier"> ' D</span><span class="Constant">3</span><span class="Identifier"> ' C</span><span class="Constant">3</span><span class="Identifier"> '</span>
+<span class="Identifier">E</span><span class="Constant">3</span><span class="Identifier"> ' E</span><span class="Constant">3</span><span class="Identifier"> ' E</span><span class="Constant">3</span><span class="Identifier"> ' E</span><span class="Constant">3</span><span class="Identifier"> ' E</span><span class="Constant">3</span><span class="Identifier"> ' E</span><span class="Constant">3</span><span class="Identifier"> ' A</span><span class="Constant">2</span><span class="Identifier"> ' B</span><span class="Constant">2</span><span class="Identifier"> '</span>
+<span class="Identifier">M</span><span class="Constant">2</span>
+
+<span class="Identifier">~ </span><span class="Statement">harmonic</span>
+<span class="Identifier">X </span><span class="Statement">flanger</span><span class="Identifier"> </span><span class="Constant">1</span><span class="Identifier"> </span><span class="Constant">2</span><span class="Identifier"> </span><span class="Constant">0.00625</span><span class="Identifier"> </span><span class="Constant">2</span>
+</pre>
+<h2>melody/b_mi.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">~ </span><span class="Statement">circular</span>
+
+<span class="Identifier">&amp;</span><span class="Constant">1:2</span><span class="Identifier"> !</span><span class="Constant">20</span><span class="Identifier"> ]</span><span class="Constant">20</span><span class="Identifier"> {</span><span class="Constant">40</span>
+<span class="Identifier">E</span><span class="Constant">3</span><span class="Identifier"> ' G</span><span class="Constant">3</span><span class="Identifier"> ' C</span><span class="Constant">4</span><span class="Identifier"> ' D</span><span class="Constant">4</span><span class="Identifier">  ' C</span><span class="Constant">4</span><span class="Identifier"> ' A</span><span class="Constant">3</span><span class="Identifier"> ' B</span><span class="Constant">3</span><span class="Identifier"> ' G</span><span class="Constant">3</span><span class="Identifier"> '</span>
+<span class="Identifier">E</span><span class="Constant">3</span><span class="Identifier"> ' B</span><span class="Constant">3</span><span class="Identifier"> ' G</span><span class="Constant">3</span><span class="Identifier"> ' F</span><span class="Statement">#</span><span class="Constant">3</span><span class="Identifier"> ' E</span><span class="Constant">3</span><span class="Identifier"> ' D</span><span class="Constant">3</span><span class="Identifier"> ' E</span><span class="Constant">3</span><span class="Identifier"> ' G</span><span class="Constant">3</span><span class="Identifier"> '</span>
+</pre>
+<h2>speak.py</h2>
+<pre id='vimCodeElement'>
+<span class="Comment">#!/usr/bin/env python3</span>
+
+<span class="PreProc">import</span> re
+<span class="PreProc">import</span> subprocess
+<span class="PreProc">import</span> sys
+
+job = sys.argv[<span class="Constant">1</span>]
+
+<span class="Statement">def</span> <span class="Identifier">speak</span>(speed):
+    subprocess.call([<span class="Constant">'</span><span class="Constant">espeak-ng</span><span class="Constant">'</span>, <span class="Constant">'</span><span class="Constant">-vde+f5</span><span class="Constant">'</span>, <span class="Constant">'</span><span class="Constant">-s%g</span><span class="Constant">'</span> % speed,
+        <span class="Constant">'</span><span class="Constant">-f%s.txt</span><span class="Constant">'</span> % job, <span class="Constant">'</span><span class="Constant">-w%s.wav</span><span class="Constant">'</span> % job])
+
+    time = <span class="Identifier">float</span>(re.search(<span class="Constant">r'</span><span class="Constant">Duration:\s*(\S+)\s*s\b</span><span class="Constant">'</span>,
+        <span class="Identifier">str</span>(subprocess.check_output([<span class="Constant">'</span><span class="Constant">inspect</span><span class="Constant">'</span>, <span class="Constant">'</span><span class="Constant">%s.wav</span><span class="Constant">'</span> % job]))).group(<span class="Constant">1</span>))
+
+    <span class="Identifier">print</span>(<span class="Constant">'</span><span class="Constant">%s takes %g seconds at %g words per minute</span><span class="Constant">'</span> % (job, time, speed))
+
+    <span class="Statement">return</span> time
+
+<span class="Statement">with</span> <span class="Identifier">open</span>(<span class="Constant">'</span><span class="Constant">%s.fit</span><span class="Constant">'</span> % job) <span class="Statement">as</span> lines:
+    <span class="Statement">for</span> line <span class="Statement">in</span> lines:
+        <span class="Statement">for</span> match <span class="Statement">in</span> re.findall(<span class="Constant">r'</span><span class="Constant">@1:([\d.]+)</span><span class="Constant">'</span>, line):
+            t = <span class="Identifier">float</span>(match)
+
+s0 = <span class="Constant">120.0</span>
+t0 = speak(s0)
+speak(s0 * t0 / t)
+</pre>
+</body></html>

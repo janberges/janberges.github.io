@@ -1,0 +1,52 @@
+<html lang='en'><head><meta charset='utf-8'><title>spiral</title><link rel='stylesheet' type='text/css' href='style.css'></head><body><h1>spiral</h1>
+<h2>Makefile</h2>
+<pre id='vimCodeElement'>
+<span class="Statement">.PHONY:</span> wav mp3 clean
+
+<span class="Identifier">wav:</span> spiral.wav
+<span class="Identifier">mp3:</span> spiral.mp3
+
+<span class="Identifier">clean:</span>
+<span class="Constant">    git clean -Xdf</span>
+
+<span class="Identifier">%.mp3:</span> <span class="Identifier">%</span>.wav <span class="Identifier">%</span>.id3
+<span class="Constant">    tz tag </span><span class="Identifier">$&lt;</span>
+<span class="Constant">    ffmpeg -y -i </span><span class="Identifier">$&lt;</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">%.wav:</span> <span class="Identifier">%</span>.mel
+<span class="Constant">    tz mel </span><span class="Identifier">$&lt;</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">%.mel:</span> <span class="Identifier">%</span>.py
+<span class="Constant">    python3 </span><span class="Identifier">$&lt;</span><span class="Constant"> &gt; </span><span class="Identifier">$@</span>
+</pre>
+<h2>spiral.id3</h2>
+<pre id='vimCodeElement'>
+TIT2 Downward Spiral of Fifths
+TALB Tonbandfetzen
+TPE1 Jan Berges
+APIC ../../logo/Tonbandfetzen.png
+</pre>
+<h2>spiral.py</h2>
+<pre id='vimCodeElement'>
+<span class="Comment">#!/usr/bin/env python3</span>
+
+letters = <span class="Constant">'</span><span class="Constant">FCGDAEB</span><span class="Constant">'</span>
+signs = [<span class="Constant">'</span><span class="Constant">#b</span><span class="Constant">'</span>[<span class="Identifier">int</span>(n &lt; <span class="Constant">0</span>)] * <span class="Identifier">abs</span>(n) <span class="Statement">for</span> n <span class="Statement">in</span> <span class="Identifier">range</span>(-<span class="Constant">8</span>, <span class="Constant">9</span>)]
+notes = [letter + sign <span class="Statement">for</span> sign <span class="Statement">in</span> signs <span class="Statement">for</span> letter <span class="Statement">in</span> letters]
+notes = notes[::-<span class="Constant">1</span>] + notes
+
+tracks = [<span class="Constant">'</span><span class="Constant">[10</span><span class="Constant">'</span>, <span class="Constant">'</span><span class="Constant">[6</span><span class="Constant">'</span>, <span class="Constant">'</span><span class="Constant">[2</span><span class="Constant">'</span>, <span class="Constant">'</span><span class="Constant">]2</span><span class="Constant">'</span>, <span class="Constant">'</span><span class="Constant">]6</span><span class="Constant">'</span>, <span class="Constant">'</span><span class="Constant">]10</span><span class="Constant">'</span>]
+sounds = [(<span class="Constant">2</span>, <span class="Constant">'</span><span class="Constant">cubic</span><span class="Constant">'</span>), (<span class="Constant">3</span>, <span class="Constant">'</span><span class="Constant">major</span><span class="Constant">'</span>)]
+
+<span class="Identifier">print</span>(<span class="Constant">'</span><span class="Constant">Tpyth</span><span class="Constant">'</span>)
+<span class="Identifier">print</span>(<span class="Constant">'</span><span class="Constant">|%d</span><span class="Constant">'</span> % <span class="Identifier">len</span>(tracks))
+
+<span class="Identifier">print</span>(<span class="Constant">'</span><span class="Constant">M</span><span class="Constant">'</span>)
+<span class="Statement">for</span> octave, wave <span class="Statement">in</span> sounds:
+    <span class="Identifier">print</span>(<span class="Constant">'</span><span class="Constant">~%s</span><span class="Constant">'</span> % wave)
+    <span class="Statement">for</span> n, track <span class="Statement">in</span> <span class="Identifier">enumerate</span>(tracks):
+        <span class="Identifier">print</span>(<span class="Constant">'</span><span class="Constant">W &quot;%d:%d %s</span><span class="Constant">'</span> % (n, <span class="Identifier">len</span>(tracks), track))
+        <span class="Statement">for</span> note <span class="Statement">in</span> notes[n::<span class="Identifier">len</span>(tracks)]:
+            <span class="Identifier">print</span>(<span class="Constant">&quot;</span><span class="Constant">%s%d &lt;20''&gt;20'`</span><span class="Constant">&quot;</span> % (note, octave))
+</pre>
+</body></html>

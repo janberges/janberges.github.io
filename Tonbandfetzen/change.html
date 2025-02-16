@@ -1,0 +1,46 @@
+<html lang='en'><head><meta charset='utf-8'><title>change</title><link rel='stylesheet' type='text/css' href='style.css'></head><body><h1>change</h1>
+<h2>Makefile</h2>
+<pre id='vimCodeElement'>
+<span class="Statement">.PHONY:</span> wav mp3 clean
+
+<span class="Identifier">wav:</span> change.wav
+<span class="Identifier">mp3:</span> change.mp3
+
+<span class="Identifier">clean:</span>
+<span class="Constant">    git clean -Xdf</span>
+
+<span class="Identifier">%.mp3:</span> <span class="Identifier">%</span>.wav <span class="Identifier">%</span>.id3
+<span class="Constant">    tz tag </span><span class="Identifier">$&lt;</span>
+<span class="Constant">    ffmpeg -y -i </span><span class="Identifier">$&lt;</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">%.wav:</span> <span class="Identifier">%</span>.mel
+<span class="Constant">    tz mel </span><span class="Identifier">$&lt;</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">%.mel:</span> <span class="Identifier">%</span>.py
+<span class="Constant">    python3 </span><span class="Identifier">$&lt;</span><span class="Constant"> &gt; </span><span class="Identifier">$@</span>
+</pre>
+<h2>change.id3</h2>
+<pre id='vimCodeElement'>
+TIT2 Change Ringing
+TALB Tonbandfetzen
+TPE1 Jan Berges
+APIC ../../logo/Tonbandfetzen.png
+</pre>
+<h2>change.py</h2>
+<pre id='vimCodeElement'>
+<span class="Comment">#!/usr/bin/env python3</span>
+
+<span class="PreProc">from</span> itertools <span class="PreProc">import</span> permutations
+
+notes = <span class="Constant">'</span><span class="Constant">[5A4</span><span class="Constant">'</span>, <span class="Constant">'</span><span class="Constant">[3G4</span><span class="Constant">'</span>, <span class="Constant">'</span><span class="Constant">[1F4</span><span class="Constant">'</span>, <span class="Constant">'</span><span class="Constant">]1E4</span><span class="Constant">'</span>, <span class="Constant">'</span><span class="Constant">]3D4</span><span class="Constant">'</span>, <span class="Constant">'</span><span class="Constant">]5C4</span><span class="Constant">'</span>
+
+<span class="Identifier">print</span>(<span class="Constant">'</span><span class="Constant">~major</span><span class="Constant">'</span>)
+<span class="Identifier">print</span>(<span class="Constant">'</span><span class="Constant">Tpyth</span><span class="Constant">'</span>)
+<span class="Identifier">print</span>(<span class="Constant">'</span><span class="Constant">|0.2</span><span class="Constant">'</span>)
+<span class="Identifier">print</span>(<span class="Constant">'</span><span class="Constant">,2.0</span><span class="Constant">'</span>)
+
+<span class="Statement">for</span> permutation <span class="Statement">in</span> permutations(notes):
+    <span class="Statement">for</span> note <span class="Statement">in</span> permutation:
+        <span class="Identifier">print</span>(<span class="Constant">&quot;</span><span class="Constant">%s'5`4</span><span class="Constant">&quot;</span> % note)
+</pre>
+</body></html>

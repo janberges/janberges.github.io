@@ -1,0 +1,126 @@
+<html lang='en'><head><meta charset='utf-8'><title>wanderer</title><link rel='stylesheet' type='text/css' href='style.css'></head><body><h1>wanderer</h1>
+<h2>Makefile</h2>
+<pre id='vimCodeElement'>
+<span class="Statement">.PHONY:</span> wav mp3 clean
+
+<span class="Identifier">wav:</span> wanderer.wav
+<span class="Identifier">mp3:</span> wanderer.mp3
+
+<span class="Identifier">clean:</span>
+<span class="Constant">    git clean -Xdf</span>
+
+<span class="Identifier">%.mp3:</span> <span class="Identifier">%</span>.wav <span class="Identifier">%</span>.id3
+<span class="Constant">    tz tag </span><span class="Identifier">$&lt;</span>
+<span class="Constant">    ffmpeg -y -i </span><span class="Identifier">$&lt;</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">%.wav:</span> <span class="Identifier">%</span>.mel
+<span class="Constant">    tz mel </span><span class="Identifier">$&lt;</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">parts/verse.wav:</span> chords/a.wav chords/b.wav chords/b.wav chords/a.wav
+<span class="Constant">    tz stick </span><span class="Identifier">$+</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">parts/chorus.wav:</span> chords/c.wav melody/melody.wav
+<span class="Constant">    tz stack </span><span class="Identifier">$^</span><span class="Constant"> </span><span class="Identifier">$@</span>
+
+<span class="Identifier">wanderer.wav:</span> chords/e.wav parts/verse.wav parts/chorus.wav chords/d.wav chords/e.wav
+<span class="Constant">    tz stick </span><span class="Identifier">$+</span><span class="Constant"> </span><span class="Identifier">$@</span>
+</pre>
+<h2>chords/a.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">|</span><span class="Constant">0.4</span><span class="Identifier"> T </span><span class="Statement">just</span><span class="Identifier"> C</span>
+
+<span class="Identifier">~ </span><span class="Statement">major</span><span class="Identifier"> </span><span class="Constant">1</span>
+<span class="Identifier">N </span><span class="Statement">smooth</span><span class="Identifier"> </span><span class="Constant">0.05</span>
+
+<span class="Identifier">F</span><span class="Constant">3</span><span class="Identifier"> V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">4</span><span class="Identifier"> ' U</span><span class="Constant">4</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+<span class="Identifier">E</span><span class="Constant">3</span><span class="Identifier"> V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">3</span><span class="Identifier"> ' U</span><span class="Constant">3</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+<span class="Identifier">A</span><span class="Constant">3</span><span class="Identifier"> V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">3</span><span class="Identifier"> ' U</span><span class="Constant">3</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+<span class="Identifier">B</span><span class="Constant">3</span><span class="Identifier"> V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">3</span><span class="Identifier"> ' U</span><span class="Constant">3</span><span class="Identifier"> ' W U</span><span class="Constant">6</span><span class="Identifier"> ' U</span><span class="Constant">6</span><span class="Identifier"> '</span>
+</pre>
+<h2>chords/b.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">|</span><span class="Constant">0.4</span><span class="Identifier"> T </span><span class="Statement">just</span><span class="Identifier"> C</span>
+
+<span class="Identifier">~ </span><span class="Statement">major</span><span class="Identifier"> </span><span class="Constant">1</span>
+<span class="Identifier">N </span><span class="Statement">smooth</span><span class="Identifier"> </span><span class="Constant">0.05</span>
+
+<span class="Identifier">D</span><span class="Constant">4</span><span class="Identifier"> V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">3</span><span class="Identifier"> ' U</span><span class="Constant">3</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+<span class="Identifier">G</span><span class="Constant">3</span><span class="Identifier"> V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">4</span><span class="Identifier"> ' U</span><span class="Constant">4</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+<span class="Identifier">A</span><span class="Constant">3</span><span class="Identifier"> V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">3</span><span class="Identifier"> ' U</span><span class="Constant">3</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+<span class="Identifier">E</span><span class="Constant">3</span><span class="Identifier"> V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">3</span><span class="Identifier"> ' U</span><span class="Constant">3</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+</pre>
+<h2>chords/c.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">|</span><span class="Constant">0.4</span><span class="Identifier"> T </span><span class="Statement">just</span><span class="Identifier"> F</span>
+
+<span class="Identifier">~ </span><span class="Statement">major</span><span class="Identifier"> </span><span class="Constant">1</span>
+<span class="Identifier">N </span><span class="Statement">smooth</span><span class="Identifier"> </span><span class="Constant">0.05</span>
+
+<span class="Identifier">D</span><span class="Constant">4</span><span class="Identifier">  V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">3</span><span class="Identifier"> ' U</span><span class="Constant">3</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+<span class="Identifier">B</span><span class="Statement">b</span><span class="Constant">3</span><span class="Identifier"> V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">4</span><span class="Identifier"> ' U</span><span class="Constant">4</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+<span class="Identifier">E</span><span class="Constant">4</span><span class="Identifier">  V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">3</span><span class="Identifier"> ' U</span><span class="Constant">3</span><span class="Identifier"> ' W U</span><span class="Constant">6</span><span class="Identifier"> ' U</span><span class="Constant">6</span><span class="Identifier"> '</span>
+<span class="Identifier">D</span><span class="Constant">4</span><span class="Identifier">  V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">3</span><span class="Identifier"> ' U</span><span class="Constant">3</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+<span class="Identifier">G</span><span class="Constant">3</span><span class="Identifier">  V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">3</span><span class="Identifier"> ' U</span><span class="Constant">3</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+<span class="Identifier">A</span><span class="Constant">3</span><span class="Identifier">  V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">3</span><span class="Identifier"> ' U</span><span class="Constant">3</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+</pre>
+<h2>chords/d.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">|</span><span class="Constant">0.4</span><span class="Identifier"> T </span><span class="Statement">just</span><span class="Identifier"> C</span>
+
+<span class="Identifier">~ </span><span class="Statement">major</span><span class="Identifier"> </span><span class="Constant">1</span>
+<span class="Identifier">N </span><span class="Statement">smooth</span><span class="Identifier"> </span><span class="Constant">0.05</span>
+
+<span class="Identifier">F</span><span class="Constant">3</span><span class="Identifier"> V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">4</span><span class="Identifier"> ' U</span><span class="Constant">4</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+<span class="Identifier">F</span><span class="Constant">3</span><span class="Identifier"> V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">4</span><span class="Identifier"> ' U</span><span class="Constant">4</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+<span class="Identifier">E</span><span class="Constant">3</span><span class="Identifier"> V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> '</span><span class="Constant">5</span><span class="Identifier"> W U</span><span class="Constant">3</span><span class="Identifier"> '</span><span class="Constant">5</span><span class="Identifier"> W U</span><span class="Constant">7</span><span class="Identifier"> '</span><span class="Constant">5</span>
+</pre>
+<h2>chords/e.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">|</span><span class="Constant">0.4</span><span class="Identifier"> T </span><span class="Statement">just</span><span class="Identifier"> C</span>
+
+<span class="Identifier">~ </span><span class="Statement">major</span><span class="Identifier"> </span><span class="Constant">1</span>
+<span class="Identifier">N </span><span class="Statement">smooth</span><span class="Identifier"> </span><span class="Constant">0.05</span>
+
+<span class="Identifier">A</span><span class="Constant">3</span><span class="Identifier"> V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">3</span><span class="Identifier"> ' U</span><span class="Constant">3</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+<span class="Identifier">B</span><span class="Constant">3</span><span class="Identifier"> V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">3</span><span class="Identifier"> ' U</span><span class="Constant">3</span><span class="Identifier"> ' W U</span><span class="Constant">6</span><span class="Identifier"> ' U</span><span class="Constant">6</span><span class="Identifier"> '</span>
+<span class="Identifier">A</span><span class="Constant">3</span><span class="Identifier"> V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">3</span><span class="Identifier"> ' U</span><span class="Constant">3</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+<span class="Identifier">E</span><span class="Constant">3</span><span class="Identifier"> V</span><span class="Constant">12</span><span class="Identifier"> ' M U</span><span class="Constant">0</span><span class="Identifier"> ' U</span><span class="Constant">0</span><span class="Identifier"> ' W U</span><span class="Constant">3</span><span class="Identifier"> ' U</span><span class="Constant">3</span><span class="Identifier"> ' W U</span><span class="Constant">7</span><span class="Identifier"> ' U</span><span class="Constant">7</span><span class="Identifier"> '</span>
+</pre>
+<h2>melody/melody.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">|</span><span class="Constant">0.4</span><span class="Identifier"> !</span><span class="Constant">2</span><span class="Identifier"> T </span><span class="Statement">just</span><span class="Identifier"> F</span>
+
+<span class="Identifier">~ </span><span class="Statement">harmonic</span><span class="Identifier"> </span><span class="Constant">1</span>
+<span class="Identifier">N </span><span class="Statement">cubic</span><span class="Identifier"> </span><span class="Constant">0.05</span>
+
+<span class="Identifier">I</span><span class="Constant">0</span>
+<span class="Identifier">&amp;</span><span class="Constant">1:10</span>
+<span class="Identifier">@</span><span class="Constant">440</span>
+<span class="Identifier">X </span><span class="Statement">detune</span><span class="Identifier"> </span><span class="Constant">2</span>
+<span class="Identifier">M</span><span class="Constant">0</span>
+<span class="Identifier">F</span><span class="Constant">5</span>
+<span class="Identifier">U</span><span class="Constant">0</span><span class="Identifier"> '</span><span class="Constant">1.5</span><span class="Identifier"> V</span><span class="Constant">1</span><span class="Identifier"> '</span><span class="Constant">0.5</span><span class="Identifier"> V</span><span class="Constant">3</span><span class="Identifier"> '</span><span class="Constant">1.0</span>
+<span class="Identifier">U</span><span class="Constant">2</span><span class="Identifier"> '</span><span class="Constant">3.0</span>
+<span class="Identifier">U</span><span class="Constant">2</span><span class="Identifier"> '</span><span class="Constant">1.5</span><span class="Identifier"> U</span><span class="Constant">0</span><span class="Identifier"> '</span><span class="Constant">0.5</span><span class="Identifier"> V</span><span class="Constant">1</span><span class="Identifier"> '</span><span class="Constant">1.0</span>
+<span class="Identifier">U</span><span class="Constant">0</span><span class="Identifier"> '</span><span class="Constant">1.5</span><span class="Identifier"> V</span><span class="Constant">1</span><span class="Identifier"> '</span><span class="Constant">0.5</span><span class="Identifier"> V</span><span class="Constant">3</span><span class="Identifier"> '</span><span class="Constant">1.0</span>
+<span class="Identifier">V</span><span class="Constant">7</span><span class="Identifier"> '</span><span class="Constant">3.0</span>
+<span class="Identifier">V</span><span class="Constant">5</span><span class="Identifier"> '</span><span class="Constant">1.5</span><span class="Identifier"> V</span><span class="Constant">7</span><span class="Identifier"> '</span><span class="Constant">0.5</span><span class="Identifier"> V</span><span class="Constant">8</span><span class="Identifier"> '</span><span class="Constant">1.0</span>
+<span class="Identifier">W</span><span class="Constant">0</span>
+<span class="Identifier">F</span><span class="Constant">3</span>
+<span class="Identifier">'</span><span class="Constant">1.4</span><span class="Identifier"> \</span><span class="Constant">1</span><span class="Identifier"> '</span><span class="Constant">0.1</span><span class="Identifier"> '</span><span class="Constant">0.4</span><span class="Identifier"> \</span><span class="Constant">2</span><span class="Identifier"> '</span><span class="Constant">0.1</span><span class="Identifier"> '</span><span class="Constant">0.9</span><span class="Identifier"> /</span><span class="Constant">5</span><span class="Identifier"> '</span><span class="Constant">0.1</span>
+<span class="Identifier">'</span><span class="Constant">3.0</span>
+<span class="Identifier">'</span><span class="Constant">1.4</span><span class="Identifier"> \</span><span class="Constant">2</span><span class="Identifier"> '</span><span class="Constant">0.1</span><span class="Identifier"> '</span><span class="Constant">0.4</span><span class="Identifier"> \</span><span class="Constant">1</span><span class="Identifier"> '</span><span class="Constant">0.1</span><span class="Identifier"> '</span><span class="Constant">0.9</span><span class="Identifier"> /</span><span class="Constant">1</span><span class="Identifier"> '</span><span class="Constant">0.1</span>
+<span class="Identifier">'</span><span class="Constant">1.4</span><span class="Identifier"> \</span><span class="Constant">1</span><span class="Identifier"> '</span><span class="Constant">0.1</span><span class="Identifier"> '</span><span class="Constant">0.4</span><span class="Identifier"> \</span><span class="Constant">2</span><span class="Identifier"> '</span><span class="Constant">0.1</span><span class="Identifier"> '</span><span class="Constant">0.9</span><span class="Identifier"> \</span><span class="Constant">4</span><span class="Identifier"> '</span><span class="Constant">0.1</span>
+<span class="Identifier">'</span><span class="Constant">2.9</span><span class="Identifier"> /</span><span class="Constant">2</span><span class="Identifier"> '</span><span class="Constant">0.1</span>
+<span class="Identifier">'</span><span class="Constant">1.4</span><span class="Identifier"> \</span><span class="Constant">2</span><span class="Identifier"> '</span><span class="Constant">0.1</span><span class="Identifier"> '</span><span class="Constant">0.4</span><span class="Identifier"> \</span><span class="Constant">1</span><span class="Identifier"> '</span><span class="Constant">0.1</span><span class="Identifier"> '</span><span class="Constant">1</span>
+<span class="Identifier">W</span><span class="Constant">0</span>
+<span class="Identifier">J</span><span class="Constant">0</span><span class="Identifier"> </span><span class="Constant">100</span>
+</pre>
+<h2>wanderer.id3</h2>
+<pre id='vimCodeElement'>
+TIT2 Wanderer über dem Nebelmeer
+TALB Tonbandfetzen
+TPE1 Jan Berges
+APIC ../../logo/Tonbandfetzen.png
+</pre>
+</body></html>
