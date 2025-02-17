@@ -17,8 +17,8 @@
 <span class="Identifier">%.wav:</span> def.mel <span class="Identifier">%</span>.mel
 <span class="Constant">    cat </span><span class="Identifier">$^</span><span class="Constant"> | tz mel </span><span class="Identifier">$@</span>
 
-<span class="Identifier">%_fitted.wav:</span> def.mel <span class="Identifier">%</span>.fit <span class="Identifier">%</span>.wav
-<span class="Constant">    cat </span><span class="Identifier">$&lt;</span><span class="Constant"> </span><span class="Identifier">$*</span><span class="Constant">.fit | tz mel </span><span class="Identifier">$*</span><span class="Constant">.wav - </span><span class="Identifier">$@</span>
+<span class="Identifier">%_fitted.wav:</span> <span class="Identifier">%</span>.wav def.mel <span class="Identifier">%</span>_fit.mel
+<span class="Constant">    cat </span><span class="Identifier">$(</span><span class="Statement">filter-out</span><span class="Identifier"> $&lt;, $^)</span><span class="Constant"> | tz mel </span><span class="Identifier">$&lt;</span><span class="Constant"> - </span><span class="Identifier">$@</span>
 
 <span class="Identifier">url </span>= <a href="https://janberges.de/freedom">https://janberges.de/freedom</a>
 
@@ -143,25 +143,18 @@ TALB Tonbandfetzen
 TPE1 Jan Berges
 APIC ../../logo/Tonbandfetzen.png
 </pre>
-<h2>lyrics/outro.fit</h2>
-<pre id='vimCodeElement'>
-~ #1
-N smooth 0
-
-&amp;75 @1:16 '64
-</pre>
 <h2>lyrics/outro.txt</h2>
 <pre id='vimCodeElement'>
 Heute ist mein ganzes Leben dadurch bestimmt,
 mein unstillbares Verlangen zu besänftigen.
 Du hast mich ganz in der Hand.
 </pre>
-<h2>lyrics/verse1.fit</h2>
+<h2>lyrics/outro_fit.mel</h2>
 <pre id='vimCodeElement'>
-~ #1
-N smooth 0
+<span class="Identifier">~ </span><span class="Statement">#</span><span class="Constant">1</span>
+<span class="Identifier">N </span><span class="Statement">smooth</span><span class="Identifier"> </span><span class="Constant">0</span>
 
-&amp;75 @1:16 '64
+<span class="Identifier">&amp;</span><span class="Constant">75</span><span class="Identifier"> @</span><span class="Constant">1:16</span><span class="Identifier"> '</span><span class="Constant">64</span>
 </pre>
 <h2>lyrics/verse1.txt</h2>
 <pre id='vimCodeElement'>
@@ -170,12 +163,12 @@ als ich mit der Welt tief verwurzelt und im Reinen war.
 Ich war nie weit gekommen,
 doch selbst das Fremde erschien mir vertraut.
 </pre>
-<h2>lyrics/verse2.fit</h2>
+<h2>lyrics/verse1_fit.mel</h2>
 <pre id='vimCodeElement'>
-~ #1
-N smooth 0
+<span class="Identifier">~ </span><span class="Statement">#</span><span class="Constant">1</span>
+<span class="Identifier">N </span><span class="Statement">smooth</span><span class="Identifier"> </span><span class="Constant">0</span>
 
-&amp;75 @1:32 '128
+<span class="Identifier">&amp;</span><span class="Constant">75</span><span class="Identifier"> @</span><span class="Constant">1:16</span><span class="Identifier"> '</span><span class="Constant">64</span>
 </pre>
 <h2>lyrics/verse2.txt</h2>
 <pre id='vimCodeElement'>
@@ -188,12 +181,12 @@ jeden Tag so viel Neues zu sehen,
 dass ich wünschte,
 wir hielten nie wieder an.
 </pre>
-<h2>lyrics/verse3.fit</h2>
+<h2>lyrics/verse2_fit.mel</h2>
 <pre id='vimCodeElement'>
-~ #1
-N smooth 0
+<span class="Identifier">~ </span><span class="Statement">#</span><span class="Constant">1</span>
+<span class="Identifier">N </span><span class="Statement">smooth</span><span class="Identifier"> </span><span class="Constant">0</span>
 
-&amp;75 @1:16 '64
+<span class="Identifier">&amp;</span><span class="Constant">75</span><span class="Identifier"> @</span><span class="Constant">1:32</span><span class="Identifier"> '</span><span class="Constant">128</span>
 </pre>
 <h2>lyrics/verse3.txt</h2>
 <pre id='vimCodeElement'>
@@ -202,6 +195,13 @@ Irgendwann spürte ich dann erstmals diesen Durst aufkommen,
 der mich immer öfter dazu zwang,
 dich um etwas zu trinken zu bitten.
 Dem bist du auch immer mit einem Lächeln auf den Lippen nachgekommen.
+</pre>
+<h2>lyrics/verse3_fit.mel</h2>
+<pre id='vimCodeElement'>
+<span class="Identifier">~ </span><span class="Statement">#</span><span class="Constant">1</span>
+<span class="Identifier">N </span><span class="Statement">smooth</span><span class="Identifier"> </span><span class="Constant">0</span>
+
+<span class="Identifier">&amp;</span><span class="Constant">75</span><span class="Identifier"> @</span><span class="Constant">1:16</span><span class="Identifier"> '</span><span class="Constant">64</span>
 </pre>
 <h2>melody/a_hi.mel</h2>
 <pre id='vimCodeElement'>
