@@ -9,3 +9,9 @@ To update the documentation of `XXX`, perform the following steps:
     git add --all
     git commit
     git push
+
+The website is mirrored here:
+
+* <https://io.janberges.de>
+* <https://janberges.github.io>
+* <https://berges.bitbucket.io>
