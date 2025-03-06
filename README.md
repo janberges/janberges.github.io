@@ -6,6 +6,6 @@ To update the documentation of `XXX`, perform the following steps:
     make
     rsync -av --delete html/ /path/to/io/XXX/
     cd /path/to/io
-    git add -u
+    git add --all
     git commit
     git push
