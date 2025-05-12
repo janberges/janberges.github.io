@@ -171,14 +171,14 @@
     <span class="p">[</span> <span class="n">t_z2</span><span class="p">,</span>      <span class="n">t_z2_x2y2</span><span class="p">,</span> <span class="n">t_z2_xy</span>  <span class="p">],</span>
     <span class="p">[</span> <span class="n">t_z2_x2y2</span><span class="p">,</span> <span class="n">t_x2y2</span><span class="p">,</span>    <span class="n">t_x2y2_xy</span><span class="p">],</span>
     <span class="p">[</span><span class="o">-</span><span class="n">t_z2_xy</span><span class="p">,</span>  <span class="o">-</span><span class="n">t_x2y2_xy</span><span class="p">,</span> <span class="n">t_xy</span>     <span class="p">],</span>
-    <span class="p">])</span>
+<span class="p">])</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">R2</span><span class="p">(</span><span class="n">phi</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
         <span class="p">[</span><span class="mi">1</span><span class="p">,</span>               <span class="mi">0</span><span class="p">,</span>                <span class="mi">0</span><span class="p">],</span>
         <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">phi</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">phi</span><span class="p">)],</span>
         <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">phi</span><span class="p">),</span>  <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">phi</span><span class="p">)],</span>
-        <span class="p">])</span>
+    <span class="p">])</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">hopping</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">phi</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">R2</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">@</span> <span class="n">t0</span> <span class="o">@</span> <span class="n">R2</span><span class="p">(</span><span class="o">-</span><span class="n">phi</span><span class="p">)</span>
@@ -188,7 +188,7 @@
         <span class="p">[</span><span class="mi">0</span><span class="p">,</span>                <span class="mi">0</span><span class="p">,</span>                <span class="mi">0</span><span class="p">],</span>
         <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">phi</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">phi</span><span class="p">)],</span>
         <span class="p">[</span><span class="mi">0</span><span class="p">,</span>  <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">phi</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">phi</span><span class="p">)],</span>
-        <span class="p">])</span>
+    <span class="p">])</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">derivative</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">phi</span><span class="p">):</span>
     <span class="n">dt_dr</span> <span class="o">=</span> <span class="o">-</span><span class="n">beta</span> <span class="o">/</span> <span class="n">a</span> <span class="o">*</span> <span class="n">hopping</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span>
@@ -221,7 +221,7 @@
         <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="n">k2</span><span class="p">))</span>
         <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">k2</span><span class="p">)</span>
         <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">k2</span><span class="p">)</span>
-        <span class="p">)</span></div>
+    <span class="p">)</span></div>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">R</span><span class="p">(</span><span class="n">phi</span><span class="p">):</span>
@@ -229,7 +229,7 @@
         <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span>
         <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span>  <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span>
         <span class="p">[</span>          <span class="mi">0</span><span class="p">,</span>            <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-        <span class="p">])</span>
+    <span class="p">])</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">phi</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">R</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">@</span> <span class="n">matrix</span> <span class="o">@</span> <span class="n">R</span><span class="p">(</span><span class="o">-</span><span class="n">phi</span><span class="p">)</span>
@@ -254,7 +254,7 @@
     <span class="p">[</span><span class="n">ax</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="n">axz</span><span class="p">],</span>
     <span class="p">[</span><span class="mi">0</span><span class="p">,</span>   <span class="n">ay</span><span class="p">,</span> <span class="mi">0</span>  <span class="p">],</span>
     <span class="p">[</span><span class="n">azx</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="n">az</span> <span class="p">],</span>
-    <span class="p">])</span>
+<span class="p">])</span>
 
 <span class="n">A1</span> <span class="o">=</span> <span class="n">rotate</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span> <span class="o">*</span> <span class="n">deg</span><span class="p">)</span>
 <span class="n">A2</span> <span class="o">=</span> <span class="n">rotate</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span> <span class="mi">90</span> <span class="o">*</span> <span class="n">deg</span><span class="p">)</span>
@@ -275,7 +275,7 @@
     <span class="p">[</span> <span class="n">dx</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span>  <span class="p">],</span>
     <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="n">dy</span><span class="p">,</span>  <span class="n">dyz</span><span class="p">],</span>
     <span class="p">[</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span>  <span class="n">dyz</span><span class="p">,</span> <span class="n">dz</span> <span class="p">],</span>
-    <span class="p">])</span>
+<span class="p">])</span>
 
 <span class="n">D3</span> <span class="o">=</span> <span class="n">rotate</span><span class="p">(</span><span class="n">D1</span><span class="p">,</span> <span class="mi">120</span> <span class="o">*</span> <span class="n">deg</span><span class="p">)</span>
 <span class="n">D5</span> <span class="o">=</span> <span class="n">rotate</span><span class="p">(</span><span class="n">D1</span><span class="p">,</span> <span class="mi">240</span> <span class="o">*</span> <span class="n">deg</span><span class="p">)</span>
@@ -294,7 +294,7 @@
     <span class="p">[</span><span class="n">fx</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span>  <span class="p">],</span>
     <span class="p">[</span><span class="mi">0</span><span class="p">,</span>  <span class="n">fy</span><span class="p">,</span>  <span class="n">fyz</span><span class="p">],</span>
     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">fyz</span><span class="p">,</span> <span class="n">fz</span> <span class="p">],</span>
-    <span class="p">])</span>
+<span class="p">])</span>
 
 <span class="n">F3</span> <span class="o">=</span> <span class="n">rotate</span><span class="p">(</span><span class="n">F1</span><span class="p">,</span> <span class="mi">120</span> <span class="o">*</span> <span class="n">deg</span><span class="p">)</span>
 <span class="n">F5</span> <span class="o">=</span> <span class="n">rotate</span><span class="p">(</span><span class="n">F1</span><span class="p">,</span> <span class="mi">240</span> <span class="o">*</span> <span class="n">deg</span><span class="p">)</span>
@@ -338,7 +338,7 @@
         <span class="o">+</span> <span class="n">C4</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">q1</span><span class="p">))</span>
         <span class="o">+</span> <span class="n">C5</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">q1</span> <span class="o">+</span> <span class="n">q2</span><span class="p">)))</span>
         <span class="o">+</span> <span class="n">C6</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">q2</span><span class="p">))</span>
-        <span class="p">)</span>
+    <span class="p">)</span>
 
     <span class="n">both</span> <span class="o">=</span> <span class="p">(</span>
         <span class="o">+</span> <span class="n">D1</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">q1</span><span class="p">))</span>
@@ -347,7 +347,7 @@
         <span class="o">+</span> <span class="n">D4</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">q1</span><span class="p">))</span>
         <span class="o">+</span> <span class="n">D5</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">q1</span> <span class="o">+</span> <span class="n">q2</span><span class="p">)))</span>
         <span class="o">+</span> <span class="n">D6</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">q2</span><span class="p">))</span>
-        <span class="p">)</span>
+    <span class="p">)</span>
 
     <span class="n">D</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span> <span class="o">+=</span> <span class="n">both</span>
     <span class="n">D</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span><span class="mi">9</span><span class="p">]</span> <span class="o">+=</span> <span class="n">zreflect</span><span class="p">(</span><span class="n">both</span><span class="p">)</span>
@@ -357,7 +357,7 @@
         <span class="o">+</span> <span class="n">E1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">q1</span> <span class="o">+</span> <span class="n">q2</span><span class="p">))</span>
         <span class="o">+</span> <span class="n">E2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">q1</span> <span class="o">-</span> <span class="n">q2</span><span class="p">))</span>
         <span class="o">+</span> <span class="n">E3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">q1</span> <span class="o">+</span> <span class="n">q2</span><span class="p">))</span>
-        <span class="p">)</span>
+    <span class="p">)</span>
 
     <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">+=</span> <span class="n">intra</span>
     <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span> <span class="o">-=</span> <span class="n">inter</span>
@@ -378,7 +378,7 @@
         <span class="o">+</span> <span class="n">F4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">q1</span><span class="p">)</span>
         <span class="o">+</span> <span class="n">F5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">q1</span> <span class="o">+</span> <span class="n">q2</span><span class="p">))</span>
         <span class="o">+</span> <span class="n">F6</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">q2</span><span class="p">)</span>
-        <span class="p">)</span>
+    <span class="p">)</span>
 
     <span class="n">D</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span><span class="mi">9</span><span class="p">]</span> <span class="o">+=</span> <span class="n">intra</span>
     <span class="n">D</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span> <span class="o">-=</span> <span class="n">inter</span>
@@ -414,7 +414,7 @@
         <span class="o">+</span> <span class="n">dt</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">K1</span> <span class="o">+</span> <span class="n">K2</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="n">k2</span><span class="p">)))</span>
         <span class="o">+</span> <span class="n">dt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">K2</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">k2</span><span class="p">))</span>
         <span class="o">+</span> <span class="n">dt</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">K2</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">k2</span><span class="p">))</span>
-        <span class="p">)</span> <span class="o">/</span> <span class="n">sqrtM</span></div>
+    <span class="p">)</span> <span class="o">/</span> <span class="n">sqrtM</span></div>
 
 
 <div class="viewcode-block" id="create">

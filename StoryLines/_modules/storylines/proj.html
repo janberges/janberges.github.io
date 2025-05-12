@@ -106,12 +106,8 @@
 
 <div class="viewcode-block" id="projection">
 <a class="viewcode-back" href="../../modules/proj.html#storylines.proj.projection">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">projection</span><span class="p">(</span>
-        <span class="n">r</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="c1"># object</span>
-        <span class="n">R</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="c1"># observer</span>
-        <span class="n">T</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="c1"># target</span>
-        <span class="n">U</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="c1"># up</span>
-        <span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">projection</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">R</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+        <span class="n">T</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">U</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Project 3D point onto 2D screen.</span>
 
 <span class="sd">    Parameters</span>
@@ -121,9 +117,9 @@
 <span class="sd">    R : list of float</span>
 <span class="sd">        Observer position.</span>
 <span class="sd">    T : list of float</span>
-<span class="sd">        Viewing direction (from observer).</span>
+<span class="sd">        Viewing direction (from observer to target).</span>
 <span class="sd">    U : list of float</span>
-<span class="sd">        Vertical direction.</span>
+<span class="sd">        Vertical direction (up).</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>

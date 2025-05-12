@@ -199,7 +199,7 @@
 <div class="viewcode-block" id="Model.H">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.Model.H">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">H</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up Hamilton operator for arbitrary k point.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Set up Hamilton operator for arbitrary k point.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -229,7 +229,7 @@
 <div class="viewcode-block" id="Model.v">
 <a class="viewcode-back" href="../../modules/el.html#elphmod.el.Model.v">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">v</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up band-velocity operator for arbitrary k point.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Set up band-velocity operator for arbitrary k point.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -273,8 +273,9 @@
 
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seedname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">divide_ndegen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">read_xsf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">normalize_wf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">buffer_wf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">check_ortho</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rydberg</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+            <span class="n">divide_ndegen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">read_xsf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">normalize_wf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">buffer_wf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_ortho</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rydberg</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">divide_ndegen</span> <span class="o">=</span> <span class="n">divide_ndegen</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rydberg</span> <span class="o">=</span> <span class="n">rydberg</span>
@@ -1348,7 +1349,7 @@
             <span class="p">[</span><span class="s1">&#39;dz2&#39;</span><span class="p">,</span> <span class="s1">&#39;dxz&#39;</span><span class="p">,</span> <span class="s1">&#39;dyz&#39;</span><span class="p">,</span> <span class="s1">&#39;dx2-y2&#39;</span><span class="p">,</span> <span class="s1">&#39;dxy&#39;</span><span class="p">],</span>
             <span class="p">[</span><span class="s1">&#39;fz3&#39;</span><span class="p">,</span> <span class="s1">&#39;fxz2&#39;</span><span class="p">,</span> <span class="s1">&#39;fyz2&#39;</span><span class="p">,</span> <span class="s1">&#39;fz(x2-y2)&#39;</span><span class="p">,</span> <span class="s1">&#39;fxyz&#39;</span><span class="p">,</span> <span class="s1">&#39;fx(x2-3y2)&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;fy(3x2-y2)&#39;</span><span class="p">],</span>
-            <span class="p">]</span>
+        <span class="p">]</span>
 
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">projwfc_out</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
@@ -1737,10 +1738,9 @@
     <span class="n">nk</span><span class="p">,</span> <span class="n">nbnd</span> <span class="o">=</span> <span class="n">energies</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">eband</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">energies</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">subset</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">subset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">ik</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nk</span><span class="p">):</span>
-            <span class="c1"># weights wk</span>
-            <span class="n">wk</span> <span class="o">=</span> <span class="n">kpoints</span><span class="p">[</span><span class="n">ik</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+            <span class="n">wk</span> <span class="o">=</span> <span class="n">kpoints</span><span class="p">[</span><span class="n">ik</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="c1"># weights</span>
             <span class="k">for</span> <span class="n">iband</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbnd</span><span class="p">):</span>
                 <span class="n">eband</span><span class="p">[</span><span class="n">ik</span><span class="p">,</span> <span class="n">iband</span><span class="p">]</span> <span class="o">=</span> <span class="n">energies</span><span class="p">[</span><span class="n">ik</span><span class="p">,</span> <span class="n">iband</span><span class="p">]</span> <span class="o">*</span> <span class="n">wk</span> <span class="o">*</span> <span class="n">f_occ</span><span class="p">[</span><span class="n">ik</span><span class="p">,</span> <span class="n">iband</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
@@ -1780,7 +1780,7 @@
 
     <span class="n">f</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">smearing_type</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">subset</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">subset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">ik</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nk</span><span class="p">):</span>
             <span class="n">wk</span> <span class="o">=</span> <span class="n">kpoints</span><span class="p">[</span><span class="n">ik</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">iband</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbnd</span><span class="p">):</span>

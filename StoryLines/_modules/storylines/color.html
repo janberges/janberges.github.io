@@ -159,8 +159,7 @@
         <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="n">u</span><span class="o">.</span><span class="n">model</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;RGB&#39;</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">A</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">B</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">B</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">C</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">C</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;HSV&#39;</span>\
-            <span class="ow">or</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;PSV&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;HSV&#39;</span> <span class="ow">or</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;PSV&#39;</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">C</span> <span class="o">==</span> <span class="n">u</span><span class="o">.</span><span class="n">C</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">Color</span><span class="p">((</span><span class="n">i</span><span class="o">.</span><span class="n">A</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">B</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">B</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
 
@@ -174,8 +173,7 @@
     <span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;RGB&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">A</span> <span class="o">*</span> <span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">B</span> <span class="o">*</span> <span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">C</span> <span class="o">*</span> <span class="n">u</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;HSV&#39;</span>\
-        <span class="ow">or</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;PSV&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;HSV&#39;</span> <span class="ow">or</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;PSV&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">B</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">C</span> <span class="o">*</span> <span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
 
     <span class="fm">__rmul__</span> <span class="o">=</span> <span class="fm">__mul__</span>
@@ -239,7 +237,7 @@
 <span class="sd">            (0, Color(0.0, 1, 255, &#39;PSV&#39;), math.sqrt),</span>
 <span class="sd">            (1, Color(5.5, 1, 255, &#39;PSV&#39;)),</span>
 <span class="sd">            (None, Color(255, 255, 255, &#39;RGB&#39;)),</span>
-<span class="sd">            )</span>
+<span class="sd">        )</span>
 
 <span class="sd">        AFMhot = colormap( # Gnuplot</span>
 <span class="sd">            (0.00, Color(  0,   0,   0)),</span>
@@ -247,7 +245,7 @@
 <span class="sd">            (0.50, Color(255, 128,   0)),</span>
 <span class="sd">            (0.75, Color(255, 255, 128)),</span>
 <span class="sd">            (1.00, Color(255, 255, 255)),</span>
-<span class="sd">            )</span>
+<span class="sd">        )</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">default</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
     <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>

@@ -100,7 +100,8 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">division</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">zlib</span><span class="o">,</span><span class="w"> </span><span class="nn">struct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">struct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zlib</span>
 
 <div class="viewcode-block" id="save">
 <a class="viewcode-back" href="../../modules/png.html#storylines.png.save">[docs]</a>
@@ -134,19 +135,20 @@
 
         <span class="n">plte</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">pixels</span><span class="p">))</span>
 
-        <span class="c1"># assign 0 to most common color so that 0 before row does not stand out:</span>
-
-        <span class="n">count</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-
-        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pixels</span><span class="p">:</span>
-            <span class="n">count</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-
-        <span class="n">imax</span> <span class="o">=</span> <span class="n">plte</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">count</span><span class="o">.</span><span class="n">get</span><span class="p">))</span>
-
-        <span class="n">plte</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">plte</span><span class="p">[</span><span class="n">imax</span><span class="p">]</span> <span class="o">=</span> <span class="n">plte</span><span class="p">[</span><span class="n">imax</span><span class="p">],</span> <span class="n">plte</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">plte</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">256</span><span class="p">:</span>
             <span class="n">color</span> <span class="o">=</span> <span class="mi">3</span>
+
+            <span class="c1"># assign 0 to most common color so that 0 before row (see below)</span>
+            <span class="c1"># does not stand out and compression becomes more effective:</span>
+
+            <span class="n">count</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pixels</span><span class="p">:</span>
+                <span class="n">count</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+            <span class="n">imax</span> <span class="o">=</span> <span class="n">plte</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">count</span><span class="o">.</span><span class="n">get</span><span class="p">))</span>
+
+            <span class="n">plte</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">plte</span><span class="p">[</span><span class="n">imax</span><span class="p">]</span> <span class="o">=</span> <span class="n">plte</span><span class="p">[</span><span class="n">imax</span><span class="p">],</span> <span class="n">plte</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
             <span class="n">image</span> <span class="o">=</span> <span class="p">[[[</span><span class="n">plte</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">col</span><span class="p">)]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">image</span><span class="p">]</span>
 
