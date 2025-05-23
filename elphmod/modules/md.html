@@ -322,9 +322,9 @@ be controlled via <code class="xref py py-attr docutils literal notranslate"><sp
 <dd class="field-odd"><dl class="simple">
 <dt><strong>parameters</strong><span class="classifier">ndarray</span></dt><dd><p>Dummy positional argument for optimization routines.</p>
 </dd>
-<dt><strong>gamma_only</strong><span class="classifier">default True</span></dt><dd><p>Calculate Hessian for q = 0 only?</p>
+<dt><strong>gamma_only</strong><span class="classifier">bool, default True</span></dt><dd><p>Calculate Hessian for q = 0 only?</p>
 </dd>
-<dt><strong>apply_asr_simple</strong><span class="classifier">default False</span></dt><dd><p>Apply simple acoustic sum rule correction to force constants
+<dt><strong>apply_asr_simple</strong><span class="classifier">bool, default False</span></dt><dd><p>Apply simple acoustic sum rule correction to force constants
 according to Eq. 81 of Gonze and Lee, Phys. Rev. B 55, 10355 (1997)?
 This is done before saving the Hessian to file.</p>
 </dd>
@@ -446,12 +446,14 @@ attribute, which is used by default.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.random_displacements">
-<span class="sig-name descname"><span class="pre">random_displacements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amplitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver.random_displacements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver.random_displacements" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">random_displacements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amplitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reproducible</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver.random_displacements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver.random_displacements" title="Link to this definition"></a></dt>
 <dd><p>Displace atoms randomly from unperturbed positions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>amplitude</strong><span class="classifier">float</span></dt><dd><p>Maximum displacement.</p>
+<dt><strong>amplitude</strong><span class="classifier">float, default 0.01</span></dt><dd><p>Maximum displacement.</p>
+</dd>
+<dt><strong>reproducible</strong><span class="classifier">bool, default False</span></dt><dd><p>Use same random numbers in each program run?</p>
 </dd>
 </dl>
 </dd>

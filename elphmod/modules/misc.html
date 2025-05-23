@@ -84,6 +84,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.misc.minimum"><code class="docutils literal notranslate"><span class="pre">minimum()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.misc.ohmRy"><code class="docutils literal notranslate"><span class="pre">ohmRy</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.misc.ohmmRy"><code class="docutils literal notranslate"><span class="pre">ohmmRy</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.misc.rand"><code class="docutils literal notranslate"><span class="pre">rand()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.misc.read_cube"><code class="docutils literal notranslate"><span class="pre">read_cube()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.misc.read_dat_mat"><code class="docutils literal notranslate"><span class="pre">read_dat_mat()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.misc.read_input_data"><code class="docutils literal notranslate"><span class="pre">read_input_data()</span></code></a></li>
@@ -333,6 +334,28 @@ progress bar is output at a time.</p>
 <dt class="sig sig-object py" id="elphmod.misc.ohmmRy">
 <span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">ohmmRy</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2299924.066679179</span></em><a class="headerlink" href="#elphmod.misc.ohmmRy" title="Link to this definition"></a></dt>
 <dd><p>Resistivity unit ohm metre (Rydberg atomic units).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.misc.rand">
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">rand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">48271</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2147483647</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/misc.html#rand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.misc.rand" title="Link to this definition"></a></dt>
+<dd><p>Create array with MINSTD random values in a given shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>*shape</strong><span class="classifier">int</span></dt><dd><p>Array dimensions.</p>
+</dd>
+<dt><strong>a, m</strong><span class="classifier">int</span></dt><dd><p>Parameters of Park–Miller random-number generator.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Random values.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">

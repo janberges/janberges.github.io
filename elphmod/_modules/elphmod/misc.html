@@ -355,6 +355,36 @@
     <span class="k">return</span> <span class="n">dx</span></div>
 
 
+<div class="viewcode-block" id="rand">
+<a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.rand">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">rand</span><span class="p">(</span><span class="o">*</span><span class="n">shape</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">48271</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">2147483647</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create array with MINSTD random values in a given shape.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    *shape : int</span>
+<span class="sd">        Array dimensions.</span>
+<span class="sd">    a, m : int</span>
+<span class="sd">        Parameters of Park–Miller random-number generator.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Random values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">shape</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">rand</span><span class="o">.</span><span class="n">i</span> <span class="o">*=</span> <span class="n">a</span>
+        <span class="n">rand</span><span class="o">.</span><span class="n">i</span> <span class="o">%=</span> <span class="n">m</span>
+
+        <span class="n">array</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand</span><span class="o">.</span><span class="n">i</span> <span class="o">/</span> <span class="n">m</span>
+
+    <span class="k">return</span> <span class="n">array</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span></div>
+
+
+<span class="n">rand</span><span class="o">.</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+
 <div class="viewcode-block" id="read_cube">
 <a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.read_cube">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">read_cube</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="n">only_header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>

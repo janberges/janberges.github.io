@@ -273,16 +273,19 @@
 
 <div class="viewcode-block" id="Driver.random_displacements">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.random_displacements">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">random_displacements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">random_displacements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">reproducible</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Displace atoms randomly from unperturbed positions.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        amplitude : float</span>
+<span class="sd">        amplitude : float, default 0.01</span>
 <span class="sd">            Maximum displacement.</span>
+<span class="sd">        reproducible : bool, default False</span>
+<span class="sd">            Use same random numbers in each program run?</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">=</span> <span class="n">amplitude</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+            <span class="n">rand</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">rand</span> <span class="k">if</span> <span class="n">reproducible</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">=</span> <span class="n">amplitude</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">rand</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">center_mass</span><span class="p">()</span>
 
         <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">)</span></div>
@@ -374,11 +377,8 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">update_plot</span><span class="p">()</span>
 
-        <span class="n">prefactor</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span>
-
-        <span class="n">E</span> <span class="o">=</span> <span class="n">prefactor</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># E - mu N</span>
-        <span class="n">E</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="c1"># mu N</span>
-        <span class="n">E</span> <span class="o">-=</span> <span class="n">prefactor</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">entropy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># T S</span>
+        <span class="n">E</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">diagrams</span><span class="o">.</span><span class="n">grand_potential</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span>
 
         <span class="n">E</span> <span class="o">+=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">C0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">)</span>
 
@@ -440,9 +440,9 @@
 <span class="sd">        ----------</span>
 <span class="sd">        parameters : ndarray</span>
 <span class="sd">            Dummy positional argument for optimization routines.</span>
-<span class="sd">        gamma_only : default True</span>
+<span class="sd">        gamma_only : bool, default True</span>
 <span class="sd">            Calculate Hessian for q = 0 only?</span>
-<span class="sd">        apply_asr_simple : default False</span>
+<span class="sd">        apply_asr_simple : bool, default False</span>
 <span class="sd">            Apply simple acoustic sum rule correction to force constants</span>
 <span class="sd">            according to Eq. 81 of Gonze and Lee, Phys. Rev. B 55, 10355 (1997)?</span>
 <span class="sd">            This is done before saving the Hessian to file.</span>
