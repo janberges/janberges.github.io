@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>ZPLAY</title>
+  <title>TZ-PLAY</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -18,21 +18,20 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">ZPLAY</h1>
+<h1 class="title">TZ-PLAY</h1>
 <p class="date">2010–2025</p>
 </header>
 <h1>NAME</h1>
-<p>zplay - generate and play sound fragments</p>
+<p>tz play - generate and play sound fragments</p>
 <h1>SYNOPSIS</h1>
-<p><strong>zplay</strong> [<em>infile</em> [<em>outfile</em>]]</p>
+<p><strong>tz play</strong> [<em>infile</em> [<em>outfile</em>]]</p>
 <h1>DESCRIPTION</h1>
-<p>Interpret ASCII input in <em>infile</em> using <strong>tz
-guitar</strong> and <strong>tz mel ,</strong> save it to
-<em>outfile</em> in the WAVE format, and play it using
-<strong>xdg-open</strong>. This is a simple wrapper script added for
-convenience. It can also be used to just play WAVE, AIFF, and MP3 audio
-files specified via <em>infile</em>. Filenames default to
-<strong>/dev/stdin</strong> or <strong>/dev/shm/tmp.wav</strong>. The
-dash (<strong>-</strong>) is a shorthand for the default value.</p>
+<p>Convert <em>infile</em> to <em>outfile</em> if necessary and play it
+using <strong>xdg-open</strong>. Only WAVE, AIFF, MP3, and ASCII files
+(with <strong>tz mel</strong> or <strong>tz guitar</strong> input) are
+supported. This is a simple wrapper program added for convenience.
+Filenames default to <strong>/dev/stdin</strong> or
+<strong>/dev/shm/tmp.wav</strong>. The dash (<strong>-</strong>) is a
+shorthand for the default value.</p>
 </body>
 </html>

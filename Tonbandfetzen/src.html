@@ -2165,6 +2165,40 @@
    <span class="PreProc">end function</span> stem
 <span class="PreProc">end module</span> paths
 </pre>
+<h2>play.f90</h2>
+<pre id='vimCodeElement'>
+<span class="PreProc">subroutine</span> playz
+   <span class="PreProc">use</span> aiff, <span class="PreProc">only</span>: read_aiff
+   <span class="PreProc">use</span> constants, <span class="PreProc">only</span>: audio
+   <span class="PreProc">use</span> interpreter, <span class="PreProc">only</span>: play
+   <span class="PreProc">use</span> io, <span class="PreProc">only</span>: command_argument, slurp
+   <span class="PreProc">use</span> paths, <span class="PreProc">only</span>: extension
+   <span class="PreProc">use</span> riff, <span class="PreProc">only</span>: write_riff
+   <span class="PreProc">use</span> tab, <span class="PreProc">only</span>: preprocess
+   <span class="Type">implicit</span> <span class="Type">none</span>
+
+   <span class="Type">character</span>(:), <span class="Type">allocatable</span> :: infile, outfile
+   <span class="Type">type</span>(audio) :: s
+
+   infile <span class="Statement">=</span> command_argument(<span class="Constant">1</span>, <span class="Constant">'/dev/stdin'</span>)
+   outfile <span class="Statement">=</span> command_argument(<span class="Constant">2</span>, <span class="Constant">'/dev/shm/tmp.wav'</span>)
+
+   <span class="Statement">select case</span> (extension(infile))
+   <span class="Statement">case</span> (<span class="Constant">'wave'</span>, <span class="Constant">'wav'</span>, <span class="Constant">'mp3'</span>, <span class="Constant">'WAVE'</span>, <span class="Constant">'WAV'</span>, <span class="Constant">'MP3'</span>)
+      <span class="Identifier">call</span> <span class="Identifier">execute_command_line</span>(<span class="Constant">'xdg-open '</span> <span class="Statement">//</span> infile)
+      <span class="Statement">return</span>
+
+   <span class="Statement">case</span> (<span class="Constant">'aiff'</span>, <span class="Constant">'aif'</span>, <span class="Constant">'AIFF'</span>, <span class="Constant">'AIF'</span>)
+      <span class="Identifier">call</span> read_aiff(infile, s)
+
+   <span class="Statement">case</span> <span class="Statement">default</span>
+      <span class="Identifier">call</span> play(preprocess(slurp(infile)), s)
+   <span class="Statement">end select</span>
+
+   <span class="Identifier">call</span> write_riff(outfile, s)
+   <span class="Identifier">call</span> <span class="Identifier">execute_command_line</span>(<span class="Constant">'xdg-open '</span> <span class="Statement">//</span> outfile)
+<span class="PreProc">end subroutine</span> playz
+</pre>
 <h2>rationals.f90</h2>
 <pre id='vimCodeElement'>
 <span class="PreProc">module</span> rationals
@@ -3175,8 +3209,8 @@
    <span class="PreProc">use</span> io, <span class="PreProc">only</span>: command_argument
    <span class="Type">implicit</span> <span class="Type">none</span>
 
-   <span class="Type">external</span> :: aiff2riff, guitar, harmonics, inspect, mel, mono, repeatz, <span class="Special">&amp;</span>
-      riff2aiff, stack, stick, stretch, tag, trimz
+   <span class="Type">external</span> :: aiff2riff, guitar, harmonics, inspect, mel, mono, playz, <span class="Special">&amp;</span>
+      repeatz, riff2aiff, stack, stick, stretch, tag, trimz
 
    <span class="Type">character</span>(:), <span class="Type">allocatable</span> :: command
 
@@ -3196,6 +3230,7 @@
    <span class="Statement">case</span> (<span class="Constant">'riff2aiff'</span>); <span class="Identifier">call</span> riff2aiff
    <span class="Statement">case</span> (<span class="Constant">'aiff2riff'</span>); <span class="Identifier">call</span> aiff2riff
    <span class="Statement">case</span> (<span class="Constant">'tag'</span>); <span class="Identifier">call</span> tag
+   <span class="Statement">case</span> (<span class="Constant">'play'</span>); <span class="Identifier">call</span> playz
    <span class="Statement">case</span> (<span class="Constant">'help'</span>); <span class="Identifier">call</span> help
    <span class="Statement">case</span> <span class="Statement">default</span>
       <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">&quot;('Unknown command &quot;&quot;', A, '&quot;&quot;', /)&quot;</span>) command
@@ -3219,7 +3254,8 @@
          <span class="Constant">'inspect [file]'</span>, <span class="Special">&amp;</span>
          <span class="Constant">'riff2aiff [[infile] outfile]'</span>, <span class="Special">&amp;</span>
          <span class="Constant">'aiff2riff [[infile] outfile]'</span>, <span class="Special">&amp;</span>
-         <span class="Constant">'tag [infile [datafile [outfile]]]'</span>
+         <span class="Constant">'tag [infile [datafile [outfile]]]'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'play [infile [outfile]]'</span>
    <span class="PreProc">end subroutine</span> help
 <span class="PreProc">end program</span> tz
 </pre>
