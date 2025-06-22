@@ -57,12 +57,14 @@
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.BZ"><code class="docutils literal notranslate"><span class="pre">BZ()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.Fourier_interpolation"><code class="docutils literal notranslate"><span class="pre">Fourier_interpolation()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.GMKG"><code class="docutils literal notranslate"><span class="pre">GMKG()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.abc2celldm"><code class="docutils literal notranslate"><span class="pre">abc2celldm()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.cartesian_to_crystal"><code class="docutils literal notranslate"><span class="pre">cartesian_to_crystal()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.complete"><code class="docutils literal notranslate"><span class="pre">complete()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.complete_k"><code class="docutils literal notranslate"><span class="pre">complete_k()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.crystal_to_cartesian"><code class="docutils literal notranslate"><span class="pre">crystal_to_cartesian()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.images"><code class="docutils literal notranslate"><span class="pre">images()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.irreducibles"><code class="docutils literal notranslate"><span class="pre">irreducibles()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.irreducibles_qe"><code class="docutils literal notranslate"><span class="pre">irreducibles_qe()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.kpoints"><code class="docutils literal notranslate"><span class="pre">kpoints()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.linear_interpolation"><code class="docutils literal notranslate"><span class="pre">linear_interpolation()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.mesh"><code class="docutils literal notranslate"><span class="pre">mesh()</span></code></a></li>
@@ -230,6 +232,28 @@ irreducible wedge.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.abc2celldm">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">abc2celldm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ibrav</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cosbc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cosac</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cosab</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">ignore</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/bravais.html#abc2celldm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.bravais.abc2celldm" title="Link to this definition"></a></dt>
+<dd><p>Convert traditional crystallographic constants to QE’s cell dimensions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>a, b, c, cosbc, cosac, cosab</strong><span class="classifier">float</span></dt><dd><p>Traditional crystallographic constants in angstrom.</p>
+</dd>
+<dt><strong>**ignore</strong></dt><dd><p>Ignored keyword arguments, e.g., parameters from <a class="reference internal" href="#elphmod.bravais.read_pwi" title="elphmod.bravais.read_pwi"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_pwi()</span></code></a>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>QE’s cell dimensions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.cartesian_to_crystal">
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">cartesian_to_crystal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R_CARTESIAN</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/bravais.html#cartesian_to_crystal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.bravais.cartesian_to_crystal" title="Link to this definition"></a></dt>
 <dd><p>Transform a lattice structure from crystal to Cartesian coordinates.</p>
@@ -369,6 +393,37 @@ used by Quantum ESPRESSO’s PHonon code and found in the file <em>fildyn0</em>.
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.irreducibles_qe">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">irreducibles_qe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ibrav</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">const</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/bravais.html#irreducibles_qe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.bravais.irreducibles_qe" title="Link to this definition"></a></dt>
+<dd><p>Get irreducible k points and weights from QE’s <code class="docutils literal notranslate"><span class="pre">kpoints.x</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>nk1, nk2, nk3</strong><span class="classifier">int</span></dt><dd><p>Number of points along axis.</p>
+</dd>
+<dt><strong>ibrav</strong><span class="classifier">int</span></dt><dd><p>Bravais-lattice index.</p>
+</dd>
+<dt><strong>**const</strong><span class="classifier">float</span></dt><dd><p>Traditional crystallographic constants passed to <a class="reference internal" href="#elphmod.bravais.abc2celldm" title="elphmod.bravais.abc2celldm"><code class="xref py py-func docutils literal notranslate"><span class="pre">abc2celldm()</span></code></a>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Irreducible k points in crystal coordinates with period <span class="math notranslate nohighlight">\(2 \pi\)</span>.</p>
+</dd>
+<dt>ndarray</dt><dd><p>Weights of irreducible k points.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The program <code class="docutils literal notranslate"><span class="pre">kpoints.x</span></code> creates and potentially overwrites the file <em>info</em>
+in the current directory.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.kpoints">
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">kpoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/bravais.html#kpoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.bravais.kpoints" title="Link to this definition"></a></dt>
 <dd><p>Generate and print uniform k-point mesh.</p>
@@ -474,7 +529,7 @@ the definitions follow <a class="reference external" href="https://lampx.tugraz.
 This is useful, e.g., to plot phonon dispersions with TO-LO splitting.</p>
 </dd>
 <dt><strong>**kwargs</strong></dt><dd><p>Arguments passed to <a class="reference internal" href="#elphmod.bravais.primitives" title="elphmod.bravais.primitives"><code class="xref py py-func docutils literal notranslate"><span class="pre">primitives()</span></code></a>, e.g., parameters from
-‘func’<cite>read_pwi</cite>, particularly the Bravais-lattice index <cite>ibrav</cite>.</p>
+<a class="reference internal" href="#elphmod.bravais.read_pwi" title="elphmod.bravais.read_pwi"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_pwi()</span></code></a>, particularly the Bravais-lattice index <cite>ibrav</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -522,7 +577,7 @@ This is useful, e.g., to plot phonon dispersions with TO-LO splitting.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.primitives">
-<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">primitives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ibrav</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cosbc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cosac</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cosab</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">celldm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bohr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">ignore</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/bravais.html#primitives"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.bravais.primitives" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">primitives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ibrav</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">celldm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bohr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">const</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/bravais.html#primitives"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.bravais.primitives" title="Link to this definition"></a></dt>
 <dd><p>Get primitive vectors of Bravais lattice as in QE.</p>
 <p>Adapted from Modules/latgen.f90 of Quantum ESPRESSO.</p>
 <p>For documentation, see <a class="reference external" href="http://www.quantum-espresso.org/Doc/INPUT_PW.html">http://www.quantum-espresso.org/Doc/INPUT_PW.html</a>.</p>
@@ -531,16 +586,14 @@ This is useful, e.g., to plot phonon dispersions with TO-LO splitting.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ibrav</strong><span class="classifier">int</span></dt><dd><p>Bravais-lattice index.</p>
 </dd>
-<dt><strong>a, b, c, cosbc, cosac, cosab</strong><span class="classifier">float</span></dt><dd><p>Traditional crystallographic constants in angstrom.</p>
-</dd>
 <dt><strong>celldm</strong><span class="classifier">list of float</span></dt><dd><p>Alternative crystallographic constants. The first element is the
 lattice constant in bohr; the other elements are dimensionless.</p>
 </dd>
 <dt><strong>bohr</strong><span class="classifier">bool, default False</span></dt><dd><p>Return lattice vectors in angstrom or bohr?</p>
 </dd>
-<dt><strong>r_cell, cell_units</strong></dt><dd><p>Cell parameters from ‘func’<cite>read_pwi</cite> used if <cite>ibrav</cite> is zero.</p>
+<dt><strong>r_cell, cell_units</strong></dt><dd><p>Cell parameters from <a class="reference internal" href="#elphmod.bravais.read_pwi" title="elphmod.bravais.read_pwi"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_pwi()</span></code></a> used if <cite>ibrav</cite> is zero.</p>
 </dd>
-<dt><strong>**ignore</strong></dt><dd><p>Ignored keyword arguments, e.g., parameters from ‘func’<cite>read_pwi</cite>.</p>
+<dt><strong>**const</strong><span class="classifier">float</span></dt><dd><p>Traditional crystallographic constants passed to <a class="reference internal" href="#elphmod.bravais.abc2celldm" title="elphmod.bravais.abc2celldm"><code class="xref py py-func docutils literal notranslate"><span class="pre">abc2celldm()</span></code></a>.</p>
 </dd>
 </dl>
 </dd>
