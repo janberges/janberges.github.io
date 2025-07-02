@@ -795,6 +795,162 @@
     <span class="k">return</span> <span class="n">irreducible</span></div>
 
 
+<div class="viewcode-block" id="symmetries_ibrav">
+<a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.symmetries_ibrav">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">symmetries_ibrav</span><span class="p">(</span><span class="n">ibrav</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Provide symmetries defined in QE.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ibrav : int</span>
+<span class="sd">        Bravais-lattice index.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Symmetry operations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">symmetries</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            +000+000+ -000-000+ -000+000- +000-000- 0+0+0000- 0-0-0000-</span>
+<span class="s1">            0-0+0000+ 0+0-0000+ 00+0-0+00 00-0-0-00 00-0+0+00 00+0+0-00</span>
+<span class="s1">            -0000+0+0 -0000-0-0 +0000-0+0 +0000+0-0 00++000+0 00--000+0</span>
+<span class="s1">            00-+000-0 00+-000-0 0+000++00 0-000-+00 0-000+-00 0+000--00</span>
+<span class="s1">            -000-000- +000+000- +000-000+ -000+000+ 0-0-0000+ 0+0+0000+</span>
+<span class="s1">            0+0-0000- 0-0+0000- 00-0+0-00 00+0+0+00 00+0-0-00 00-0-0+00</span>
+<span class="s1">            +0000-0-0 +0000+0+0 -0000+0-0 -0000-0+0 00--000-0 00++000-0</span>
+<span class="s1">            00+-000+0 00-+000+0 0-000--00 0+000+-00 0+000-+00 0-000++00</span>
+<span class="s1">        &#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            +000+000+ 0+-+0-00- -00-0+-+0 0-+0-0+-0 0-0-0000- -0+0-+00+</span>
+<span class="s1">            0+00+--+0 +0-+00+-0 -0000-0-0 +00+-0+0- 0+--+00+0 0-+00+-0+</span>
+<span class="s1">            -+00+00+- 00-0-0-00 00+-0+0-+ +-0+0-+00 -0+-+0-00 0+000++00</span>
+<span class="s1">            +0-00-0+- 0-0+-00-+ 00-0+-+0- -+0-00-0+ 00++000+0 +-00-+0-0</span>
+<span class="s1">            -000-000- 0-+-0+00+ +00+0-+-0 0+-0+0-+0 0+0+0000+ +0-0+-00-</span>
+<span class="s1">            0-00-++-0 -0+-00-+0 +0000+0+0 -00-+0-0+ 0-++-00-0 0+-00-+0-</span>
+<span class="s1">            +-00-00-+ 00+0+0+00 00-+0-0+- -+0-0+-00 +0-+-0+00 0-000--00</span>
+<span class="s1">            -0+00+0-+ 0+0-+00+- 00+0-+-0+ +-0+00+0- 00--000-0 -+00+-0+0</span>
+<span class="s1">        &#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            +000+000+ 00++-++00 -+-00-0-0 0-0-00-+- 00-0-0-00 -00-+-00-</span>
+<span class="s1">            +-++000+0 0+000++-+ +-+0-000- -0000+0+0 00-+00+-+ 0+0-+--00</span>
+<span class="s1">            0+0+0000- -000-0+-+ 00--+-0+0 +-+00+-00 +0000--+- -+-0+0+00</span>
+<span class="s1">            0-0+-+00+ 00+-000-0 +00+-+0-0 0-000-+00 00+0+0-+- -+--0000+</span>
+<span class="s1">            -000-000- 00--+--00 +-+00+0+0 0+0+00+-+ 00+0+0+00 +00+-+00+</span>
+<span class="s1">            -+--000-0 0-000--+- -+-0+000+ +0000-0-0 00+-00-+- 0-0+-++00</span>
+<span class="s1">            0-0-0000+ +000+0-+- 00++-+0-0 -+-00-+00 -0000++-+ +-+0-0-00</span>
+<span class="s1">            0+0-+-00- 00-+000+0 -00-+-0+0 0+000+-00 00-0-0+-+ +-++0000-</span>
+<span class="s1">        &#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            +000+000+ -000-000+ -00++000- +00--000- ++0-0000+ 0-0++000+</span>
+<span class="s1">            0+0--000+ --0+0000+ 0-0-0000- ++00-000- --00+000- 0+0+0000-</span>
+<span class="s1">            -000-000- +000+000- +00--000+ -00++000+ --0+0000- 0+0--000-</span>
+<span class="s1">            0-0++000- ++0-0000- 0+0+0000+ --00+000+ ++00-000+ 0-0-0000+</span>
+<span class="s1">        &#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            +000+000+ 00-0-0-00 0+000++00 00++000+0 0-0-0000- -0000-0-0</span>
+<span class="s1">            -000-000- 00+0+0+00 0-000--00 00--000-0 0+0+0000+ +0000+0+0</span>
+<span class="s1">        &#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            +000+000+ -000-000+ -000+000- +000-000- 0+0+0000- 0-0-0000-</span>
+<span class="s1">            0-0+0000+ 0+0-0000+ -000-000- +000+000- +000-000+ -000+000+</span>
+<span class="s1">            0-0-0000+ 0+0+0000+ 0+0-0000- 0-0+0000-</span>
+<span class="s1">        &#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="mi">7</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            +000+000+ -++00+0+0 0-0-00+-- 00-+---00 -0000-0-0 +--0-000-</span>
+<span class="s1">            00++00-++ 0+0-+++00 -000-000- +--00-0-0 0+0+00-++ 00+-+++00</span>
+<span class="s1">            +0000+0+0 -++0+000+ 00--00+-- 0-0+---00</span>
+<span class="s1">        &#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="mi">8</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            +000+000+ -000-000+ -000+000- +000-000- -000-000- +000+000-</span>
+<span class="s1">            +000-000+ -000+000+</span>
+<span class="s1">        &#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="mi">9</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            +000+000+ -000-000+ 0+0+0000- 0-0-0000- -000-000- +000+000-</span>
+<span class="s1">            0-0-0000+ 0+0+0000+</span>
+<span class="s1">        &#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="mi">10</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            +000+000+ 0-+0-0+-0 -00-0+-+0 0+-+0-00- -000-000- 0+-0+0-+0</span>
+<span class="s1">            +00+0-+-0 0-+-0+00+</span>
+<span class="s1">        &#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="mi">11</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            +000+000+ 00++-++00 -+-00-0-0 0-0-00-+- -000-000- 00--+--00</span>
+<span class="s1">            +-+00+0+0 0+0+00+-+</span>
+<span class="s1">        &#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="mi">12</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            +000+000+ -000-000+ -000-000- +000+000-</span>
+<span class="s1">        &#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="mi">13</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            +000+000+ 00-0-0-00 -000-000- 00+0+0+00</span>
+<span class="s1">        &#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="mi">14</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            +000+000+ -000-000-</span>
+<span class="s1">        &#39;&#39;&#39;</span><span class="p">,</span>
+    <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ibrav</span><span class="p">,</span> <span class="s1">&#39;+000+000+&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">([[</span><span class="s1">&#39;-0+&#39;</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">sgn</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">sgn</span> <span class="ow">in</span> <span class="n">symmetry</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">symmetry</span> <span class="ow">in</span> <span class="n">symmetries</span><span class="o">.</span><span class="n">split</span><span class="p">()],</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="images_ibrav">
+<a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.images_ibrav">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">images_ibrav</span><span class="p">(</span><span class="n">k1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">k2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">k3</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nk1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nk2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nk3</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ibrav</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate symmetry-equivalent k points from symmetries defined in QE.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    k1, k2, k3 : int</span>
+<span class="sd">        Indices of point in uniform mesh.</span>
+<span class="sd">    nk1, nk2, nk3 : int</span>
+<span class="sd">        Number of mesh points per dimension.</span>
+<span class="sd">        Bravais-lattice index.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    set</span>
+<span class="sd">        Mesh-point indices of all equivalent k points.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">symmetry</span> <span class="o">@</span> <span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="n">nk1</span><span class="p">,</span> <span class="n">nk2</span><span class="p">,</span> <span class="n">nk3</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">symmetry</span> <span class="ow">in</span> <span class="n">symmetries_ibrav</span><span class="p">(</span><span class="n">ibrav</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="irreducibles_ibrav">
+<a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.irreducibles_ibrav">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">irreducibles_ibrav</span><span class="p">(</span><span class="n">nk1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nk2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nk3</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ibrav</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Generate set of irreducible k points from symmetries defined in QE.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    nk1, nk2, nk3 : int</span>
+<span class="sd">        Number of mesh points per dimension.</span>
+<span class="sd">    ibrav : int</span>
+<span class="sd">        Bravais-lattice index.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    set</span>
+<span class="sd">        Mesh-point indices of irreducible k points.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">symmetries</span> <span class="o">=</span> <span class="n">symmetries_ibrav</span><span class="p">(</span><span class="n">ibrav</span><span class="p">)</span>
+
+    <span class="n">points</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nk1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nk2</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k3</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nk3</span><span class="p">)]</span>
+
+    <span class="n">irreducible</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">irreducible</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">symmetry</span> <span class="ow">in</span> <span class="n">symmetries</span><span class="p">:</span>
+                <span class="n">image</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">symmetry</span> <span class="o">@</span> <span class="n">k</span> <span class="o">%</span> <span class="p">(</span><span class="n">nk1</span><span class="p">,</span> <span class="n">nk2</span><span class="p">,</span> <span class="n">nk3</span><span class="p">),)</span>
+                <span class="k">if</span> <span class="n">image</span> <span class="o">!=</span> <span class="n">k</span><span class="p">:</span>
+                    <span class="n">irreducible</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">irreducible</span></div>
+
+
 <div class="viewcode-block" id="symmetries">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.symmetries">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">symmetries</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">unity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>

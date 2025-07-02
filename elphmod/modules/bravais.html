@@ -63,7 +63,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.complete_k"><code class="docutils literal notranslate"><span class="pre">complete_k()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.crystal_to_cartesian"><code class="docutils literal notranslate"><span class="pre">crystal_to_cartesian()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.images"><code class="docutils literal notranslate"><span class="pre">images()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.images_ibrav"><code class="docutils literal notranslate"><span class="pre">images_ibrav()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.irreducibles"><code class="docutils literal notranslate"><span class="pre">irreducibles()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.irreducibles_ibrav"><code class="docutils literal notranslate"><span class="pre">irreducibles_ibrav()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.irreducibles_qe"><code class="docutils literal notranslate"><span class="pre">irreducibles_qe()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.kpoints"><code class="docutils literal notranslate"><span class="pre">kpoints()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.linear_interpolation"><code class="docutils literal notranslate"><span class="pre">linear_interpolation()</span></code></a></li>
@@ -87,6 +89,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.stack"><code class="docutils literal notranslate"><span class="pre">stack()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.supercell"><code class="docutils literal notranslate"><span class="pre">supercell()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.symmetries"><code class="docutils literal notranslate"><span class="pre">symmetries()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.symmetries_ibrav"><code class="docutils literal notranslate"><span class="pre">symmetries_ibrav()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.to_Voronoi"><code class="docutils literal notranslate"><span class="pre">to_Voronoi()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.to_supercell"><code class="docutils literal notranslate"><span class="pre">to_supercell()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.bravais.translations"><code class="docutils literal notranslate"><span class="pre">translations()</span></code></a></li>
@@ -366,6 +369,29 @@ irreducible wedge.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.images_ibrav">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">images_ibrav</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ibrav</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/bravais.html#images_ibrav"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.bravais.images_ibrav" title="Link to this definition"></a></dt>
+<dd><p>Generate symmetry-equivalent k points from symmetries defined in QE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>k1, k2, k3</strong><span class="classifier">int</span></dt><dd><p>Indices of point in uniform mesh.</p>
+</dd>
+<dt><strong>nk1, nk2, nk3</strong><span class="classifier">int</span></dt><dd><p>Number of mesh points per dimension.
+Bravais-lattice index.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>set</dt><dd><p>Mesh-point indices of all equivalent k points.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.irreducibles">
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">irreducibles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/bravais.html#irreducibles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.bravais.irreducibles" title="Link to this definition"></a></dt>
 <dd><p>Generate set of irreducible k points.</p>
@@ -386,6 +412,28 @@ irreducible wedge.</p>
 \[(0, 0), (0, 1), \dots, (0, n_k - 1), (1, 0), (1, 1), \dots\]</div>
 <p>is chosen. <code class="xref py py-func docutils literal notranslate"><span class="pre">sorted()</span></code> should yield the same irreducible q points as
 used by Quantum ESPRESSO’s PHonon code and found in the file <em>fildyn0</em>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.irreducibles_ibrav">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">irreducibles_ibrav</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ibrav</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/bravais.html#irreducibles_ibrav"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.bravais.irreducibles_ibrav" title="Link to this definition"></a></dt>
+<dd><p>Generate set of irreducible k points from symmetries defined in QE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>nk1, nk2, nk3</strong><span class="classifier">int</span></dt><dd><p>Number of mesh points per dimension.</p>
+</dd>
+<dt><strong>ibrav</strong><span class="classifier">int</span></dt><dd><p>Bravais-lattice index.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>set</dt><dd><p>Mesh-point indices of irreducible k points.</p>
 </dd>
 </dl>
 </dd>
@@ -987,6 +1035,26 @@ integer, linear combinations via a 3-tuple of integers.</p>
 <p>Each symmetry is described by a Boolean (“reflection?”) and a rotation
 angle in degrees, followed by a mapping between the k-point indices of
 the original and the transformed mesh.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.bravais.symmetries_ibrav">
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">symmetries_ibrav</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ibrav</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/bravais.html#symmetries_ibrav"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.bravais.symmetries_ibrav" title="Link to this definition"></a></dt>
+<dd><p>Provide symmetries defined in QE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>ibrav</strong><span class="classifier">int</span></dt><dd><p>Bravais-lattice index.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Symmetry operations.</p>
 </dd>
 </dl>
 </dd>
