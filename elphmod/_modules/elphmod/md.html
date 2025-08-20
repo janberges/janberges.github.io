@@ -99,7 +99,58 @@
 <span></span><span class="c1"># Copyright (C) 2017-2025 elphmod Developers</span>
 <span class="c1"># This program is free software under the terms of the GNU GPLv3 or later.</span>
 
-<span class="sd">&quot;&quot;&quot;Charge-density-wave dynamics on supercells.&quot;&quot;&quot;</span>
+<span class="sa">r</span><span class="sd">&quot;&quot;&quot;Charge-density-wave dynamics on supercells.</span>
+
+<span class="sd">We model the free energy as a function of atomic displacments :math:`\vec u` as</span>
+
+<span class="sd">.. math::</span>
+
+<span class="sd">    F(\vec u) = \frac 2 N \sum_{\vec k n}</span>
+<span class="sd">    \bigl[</span>
+<span class="sd">        f(\epsilon_{\vec k n}) \epsilon_{\vec k n}</span>
+<span class="sd">        - \int_{-\infty}^{\epsilon_{\vec k n}}</span>
+<span class="sd">            \D \epsilon \, \epsilon \delta(\epsilon)</span>
+<span class="sd">    \bigr]</span>
+<span class="sd">    + \vec{\mathcal F}(0) \vec u</span>
+<span class="sd">    + \frac12 \vec u^T \bigl[ C_0 \super{DFPT} - \mathcal C_0(0) \bigr] \vec u,</span>
+
+<span class="sd">where :math:`f(\epsilon)` is the occupation function, :math:`\delta(\epsilon)`</span>
+<span class="sd">is its negative derivative, :math:`C_{\vec q} \super{DFPT}` are the interatomic</span>
+<span class="sd">force constants from first prinicples, and :math:`\epsilon_{\vec k n}` are the</span>
+<span class="sd">eigenvalues of the linearized active-space Hamiltonian</span>
+
+<span class="sd">.. math::</span>
+
+<span class="sd">    H_{\vec k \alpha \beta}(\vec u) = H_{\vec k \alpha \beta}(0)</span>
+<span class="sd">        + \vec u \vec g_{0 \vec k \alpha \beta}.</span>
+
+<span class="sd">This yields the electronic contribution to the forces</span>
+
+<span class="sd">.. math::</span>
+
+<span class="sd">    \vec{\mathcal F}(\vec u) = -\frac 2 N \sum_{\vec k n}</span>
+<span class="sd">        f(\epsilon_{\vec k n}) \vec g_{0 \vec k n n}</span>
+
+<span class="sd">and the interatomic force constants</span>
+
+<span class="sd">.. math::</span>
+
+<span class="sd">    \mathcal C_{\vec q}(\vec u) = \frac 2 N \sum_{\vec k m n}</span>
+<span class="sd">    \vec g_{\vec q \vec k m n}</span>
+<span class="sd">    \frac</span>
+<span class="sd">        {f(\epsilon_{\vec k n}) - f(\epsilon_{\vec k + \vec q m})}</span>
+<span class="sd">        {\epsilon_{\vec k n} - \epsilon_{\vec k + \vec q m}}</span>
+<span class="sd">    \vec g_{\vec q \vec k m n}^H</span>
+<span class="sd">    + \frac 2 N \frac</span>
+<span class="sd">        {\sum_{\vec k n} \delta(\epsilon_{\vec k n}) \vec g_{0 \vec k n n}</span>
+<span class="sd">         \sum_{\vec k n} \delta(\epsilon_{\vec k n}) \vec g_{0 \vec k n n}^T}</span>
+<span class="sd">        {\sum_{\vec k n} \delta(\epsilon_{\vec k n})}</span>
+<span class="sd">    \delta_{\vec q 0}.</span>
+
+<span class="sd">See</span>
+<span class="sd">`SciPost Phys. 16, 046 (2024) &lt;https://doi.org/10.21468/SciPostPhys.16.2.046&gt;`__</span>
+<span class="sd">for more information.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>

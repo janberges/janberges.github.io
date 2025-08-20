@@ -17,7 +17,7 @@
       <script src="../_static/documentation_options.js?v=5929fcd5"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1]}}})</script>
+      <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"D": ["\\mathrm{d}"], "E": ["\\mathrm{e}"], "I": ["\\mathrm{i}"], "bra": ["\\langle#1|", 1], "bracket": ["\\langle#1|#2\\rangle", 2], "ket": ["|#1\\rangle", 1], "sub": ["_{\\mathrm{#1}}", 1], "super": ["^{\\mathrm{#1}}", 1]}}})</script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -127,6 +127,43 @@
   <section id="module-elphmod.md">
 <span id="md"></span><h1>MD<a class="headerlink" href="#module-elphmod.md" title="Link to this heading"></a></h1>
 <p>Charge-density-wave dynamics on supercells.</p>
+<p>We model the free energy as a function of atomic displacments <span class="math notranslate nohighlight">\(\vec u\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[F(\vec u) = \frac 2 N \sum_{\vec k n}
+\bigl[
+    f(\epsilon_{\vec k n}) \epsilon_{\vec k n}
+    - \int_{-\infty}^{\epsilon_{\vec k n}}
+        \D \epsilon \, \epsilon \delta(\epsilon)
+\bigr]
++ \vec{\mathcal F}(0) \vec u
++ \frac12 \vec u^T \bigl[ C_0 \super{DFPT} - \mathcal C_0(0) \bigr] \vec u,\]</div>
+<p>where <span class="math notranslate nohighlight">\(f(\epsilon)\)</span> is the occupation function, <span class="math notranslate nohighlight">\(\delta(\epsilon)\)</span>
+is its negative derivative, <span class="math notranslate nohighlight">\(C_{\vec q} \super{DFPT}\)</span> are the interatomic
+force constants from first prinicples, and <span class="math notranslate nohighlight">\(\epsilon_{\vec k n}\)</span> are the
+eigenvalues of the linearized active-space Hamiltonian</p>
+<div class="math notranslate nohighlight">
+\[H_{\vec k \alpha \beta}(\vec u) = H_{\vec k \alpha \beta}(0)
+    + \vec u \vec g_{0 \vec k \alpha \beta}.\]</div>
+<p>This yields the electronic contribution to the forces</p>
+<div class="math notranslate nohighlight">
+\[\vec{\mathcal F}(\vec u) = -\frac 2 N \sum_{\vec k n}
+    f(\epsilon_{\vec k n}) \vec g_{0 \vec k n n}\]</div>
+<p>and the interatomic force constants</p>
+<div class="math notranslate nohighlight">
+\[\mathcal C_{\vec q}(\vec u) = \frac 2 N \sum_{\vec k m n}
+\vec g_{\vec q \vec k m n}
+\frac
+    {f(\epsilon_{\vec k n}) - f(\epsilon_{\vec k + \vec q m})}
+    {\epsilon_{\vec k n} - \epsilon_{\vec k + \vec q m}}
+\vec g_{\vec q \vec k m n}^H
++ \frac 2 N \frac
+    {\sum_{\vec k n} \delta(\epsilon_{\vec k n}) \vec g_{0 \vec k n n}
+     \sum_{\vec k n} \delta(\epsilon_{\vec k n}) \vec g_{0 \vec k n n}^T}
+    {\sum_{\vec k n} \delta(\epsilon_{\vec k n})}
+\delta_{\vec q 0}.\]</div>
+<p>See
+<a class="reference external" href="https://doi.org/10.21468/SciPostPhys.16.2.046">SciPost Phys. 16, 046 (2024)</a>
+for more information.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.md.Driver">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">elphmod.md.</span></span><span class="sig-name descname"><span class="pre">Driver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unscreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver" title="Link to this definition"></a></dt>
