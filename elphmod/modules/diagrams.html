@@ -291,10 +291,15 @@ basis as <cite>U</cite> (eigenbasis of the Hamiltonian).</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.diagrams.green_kubo_conductivity">
-<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">green_kubo_conductivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT=0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps=1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occupations='fd'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dc_only=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/diagrams.html#green_kubo_conductivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.diagrams.green_kubo_conductivity" title="Link to this definition"></a></dt>
-<dd><p>Calculate Green-Kubo optical conductivity (to be tested).</p>
-<p>See Eq. (8) by Abramovitch et al., Phys. Rev. Mater. 7, 093801 (2023).
-Note that we have omitted the division by the unit-cell volume.</p>
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">green_kubo_conductivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">v,</span> <span class="pre">A,</span> <span class="pre">omega,</span> <span class="pre">kT=0.025,</span> <span class="pre">eps=1e-10,</span> <span class="pre">occupations='fd',</span> <span class="pre">a=array([[1.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[0.,</span> <span class="pre">1.,</span> <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">1.]]),</span> <span class="pre">dc_only=False,</span> <span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/diagrams.html#green_kubo_conductivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.diagrams.green_kubo_conductivity" title="Link to this definition"></a></dt>
+<dd><p>Calculate Green-Kubo optical conductivity in the bubble approximation.</p>
+<div class="math notranslate nohighlight">
+\[\sigma_{x y}(\omega) = \frac{\pi \hbar e^2}{V \sub{uc}}
+    \frac 2 N \sum_{\vec k n} \int_{-\infty}^\infty \D \omega'
+    \frac {f(\omega') - f(\omega' + \omega)} \omega
+    v_{\vec k n x} v_{\vec k n y}
+    A_{\vec k n}(\omega') A_{\vec k n}(\omega' + \omega)\]</div>
+<p>See Eq. (8) by Abramovitch et al., Phys. Rev. Mater. 7, 093801 (2023).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -309,6 +314,8 @@ Note that we have omitted the division by the unit-cell volume.</p>
 <dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Negligible difference between two floating-point numbers.</p>
 </dd>
 <dt><strong>occupations</strong><span class="classifier">function</span></dt><dd><p>Particle distribution as a function of energy divided by <cite>kT</cite>.</p>
+</dd>
+<dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Bravais lattice vectors used to calculate unit-cell volume.</p>
 </dd>
 <dt><strong>dc_only</strong><span class="classifier">bool</span></dt><dd><p>Only compute DC resistivity tensor (zero-frequency limit)?</p>
 </dd>

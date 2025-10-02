@@ -103,6 +103,7 @@
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.bravais</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.misc</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.MPI</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.occupations</span>
@@ -1561,11 +1562,18 @@
 <div class="viewcode-block" id="green_kubo_conductivity">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.green_kubo_conductivity">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">green_kubo_conductivity</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span>
-        <span class="n">dc_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate Green-Kubo optical conductivity (to be tested).</span>
+        <span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">dc_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate Green-Kubo optical conductivity in the bubble approximation.</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        \sigma_{x y}(\omega) = \frac{\pi \hbar e^2}{V \sub{uc}}</span>
+<span class="sd">            \frac 2 N \sum_{\vec k n} \int_{-\infty}^\infty \D \omega&#39;</span>
+<span class="sd">            \frac {f(\omega&#39;) - f(\omega&#39; + \omega)} \omega</span>
+<span class="sd">            v_{\vec k n x} v_{\vec k n y}</span>
+<span class="sd">            A_{\vec k n}(\omega&#39;) A_{\vec k n}(\omega&#39; + \omega)</span>
 
 <span class="sd">    See Eq. (8) by Abramovitch et al., Phys. Rev. Mater. 7, 093801 (2023).</span>
-<span class="sd">    Note that we have omitted the division by the unit-cell volume.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1581,6 +1589,8 @@
 <span class="sd">        Negligible difference between two floating-point numbers.</span>
 <span class="sd">    occupations : function</span>
 <span class="sd">        Particle distribution as a function of energy divided by `kT`.</span>
+<span class="sd">    a : ndarray</span>
+<span class="sd">        Bravais lattice vectors used to calculate unit-cell volume.</span>
 <span class="sd">    dc_only : bool</span>
 <span class="sd">        Only compute DC resistivity tensor (zero-frequency limit)?</span>
 
@@ -1600,7 +1610,12 @@
     <span class="n">x</span> <span class="o">=</span> <span class="n">omega</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">/</span> <span class="n">kT</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">occupations</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">kT</span>
 
-    <span class="n">prefactor</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">nq</span> <span class="c1"># including e^2 = 2 and 2 / nq</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">primitives</span><span class="p">(</span><span class="n">ibrav</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># including e^2 = 2 in Rydberg units and 2 from spin:</span>
+
+    <span class="n">prefactor</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="p">(</span><span class="n">nq</span> <span class="o">*</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">volume</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">dc_only</span><span class="p">:</span>
         <span class="n">domega</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">differential</span><span class="p">(</span><span class="n">omega</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>

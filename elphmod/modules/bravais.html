@@ -249,7 +249,7 @@ irreducible wedge.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>ndarray</dt><dd><p>QE’s cell dimensions.</p>
+<dt>ndarray</dt><dd><p>Quantum ESPRESSO’s cell dimensions.</p>
 </dd>
 </dl>
 </dd>
@@ -571,7 +571,7 @@ the definitions follow <a class="reference external" href="https://lampx.tugraz.
 </dd>
 <dt><strong>recvec</strong><span class="classifier">ndarray, optional</span></dt><dd><p>List of reciprocal lattice vectors.</p>
 </dd>
-<dt><strong>qe</strong><span class="classifier">bool, default False</span></dt><dd><p>Also return path in QE input format?</p>
+<dt><strong>qe</strong><span class="classifier">bool, default False</span></dt><dd><p>Also return path in Quantum ESPRESSO’s input format?</p>
 </dd>
 <dt><strong>moveG</strong><span class="classifier">float, default 0</span></dt><dd><p>Move Gamma point to the closest nonzero point multiplied by this value.
 This is useful, e.g., to plot phonon dispersions with TO-LO splitting.</p>
@@ -626,7 +626,7 @@ This is useful, e.g., to plot phonon dispersions with TO-LO splitting.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.primitives">
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">primitives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ibrav</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">celldm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bohr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">const</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/bravais.html#primitives"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.bravais.primitives" title="Link to this definition"></a></dt>
-<dd><p>Get primitive vectors of Bravais lattice as in QE.</p>
+<dd><p>Get primitive vectors of Bravais lattice as in Quantum ESPRESSO.</p>
 <p>Adapted from Modules/latgen.f90 of Quantum ESPRESSO.</p>
 <p>For documentation, see <a class="reference external" href="http://www.quantum-espresso.org/Doc/INPUT_PW.html">http://www.quantum-espresso.org/Doc/INPUT_PW.html</a>.</p>
 <dl class="field-list simple">
@@ -1044,7 +1044,9 @@ the original and the transformed mesh.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.symmetries_ibrav">
 <span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">symmetries_ibrav</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ibrav</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/bravais.html#symmetries_ibrav"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.bravais.symmetries_ibrav" title="Link to this definition"></a></dt>
-<dd><p>Provide symmetries defined in QE.</p>
+<dd><p>Provide symmetries defined in Quantum ESPRESSO.</p>
+<p>These symmetry operations have been obtained from the file <em>info</em> generated
+by Quantum ESPRESSO’s <code class="docutils literal notranslate"><span class="pre">kpoints.x</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
