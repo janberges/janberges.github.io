@@ -533,6 +533,7 @@
 <span class="sd">        label : str, default None</span>
 <span class="sd">            Label for legend entry. The special label ``*next*`` adds a second</span>
 <span class="sd">            example line with the current line style to the next legend entry.</span>
+<span class="sd">            ``*none*`` adds an empty legend entry, i.e., some whitespace.</span>
 <span class="sd">        miter : bool, default False</span>
 <span class="sd">            Draw fatbands using `miter_butt` function? If ``False``, the</span>
 <span class="sd">            `fatband` function is used.</span>
@@ -1695,15 +1696,17 @@
             <span class="c1"># add label:</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span>
+
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">labelformat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labelformat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labelformat</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
 
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">labelsize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">fontsize{</span><span class="si">%d</span><span class="s1">}{</span><span class="si">%d</span><span class="s1">}</span><span class="se">\\</span><span class="s1">selectfont </span><span class="si">%s</span><span class="s1">&#39;</span>
-                        <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labelsize</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">labelsize</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">))</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">fontsize{</span><span class="si">%d</span><span class="s1">}{</span><span class="si">%d</span><span class="s1">}</span><span class="se">\\</span><span class="s1">selectfont </span><span class="si">%s</span><span class="s1">&#39;</span>
+                        <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labelsize</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">labelsize</span><span class="p">,</span> <span class="n">label</span><span class="p">))</span>
 
                 <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\\</span><span class="s1">node at (</span><span class="si">%.3f</span><span class="s1">, </span><span class="si">%.3f</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="n">position</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labelpos</span><span class="p">))</span>
-                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39; [</span><span class="si">%s</span><span class="s1">] {</span><span class="si">%s</span><span class="s1">};&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labelopt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">))</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39; [</span><span class="si">%s</span><span class="s1">] {</span><span class="si">%s</span><span class="s1">};&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labelopt</span><span class="p">,</span> <span class="n">label</span><span class="p">))</span>
 
             <span class="c1"># add legend:</span>
 
@@ -1747,6 +1750,9 @@
                             <span class="n">row</span> <span class="o">-=</span> <span class="mf">0.2</span>
                         <span class="k">else</span><span class="p">:</span>
                             <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                            <span class="k">if</span> <span class="n">label</span> <span class="o">==</span> <span class="s1">&#39;*none*&#39;</span><span class="p">:</span>
+                                <span class="k">continue</span>
 
                         <span class="k">if</span> <span class="n">label</span><span class="p">:</span>
                             <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    </span><span class="se">\\</span><span class="s1">node &#39;</span>
