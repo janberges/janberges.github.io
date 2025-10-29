@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Goldstone modes &mdash; elphmod  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css?v=6b874a89" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Intersections" href="intersections.html" />
+    <link rel="prev" title="Fluctuation diagnostics" href="fluctuations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #e7f2fa" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/elphmod.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/el.html">Electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ph.html">Phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/elph.html">Electron–phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/elel.html">Electron–electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/MPI.html">MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/bravais.html">Bravais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/dispersion.html">Dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/dos.html">DOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/diagrams.html">Diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/md.html">MD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/eliashberg.html">Eliashberg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/plot.html">Plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/misc.html">Miscellaneous</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/models/graphene.html">Graphene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/models/tas2.html">TaS₂</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/models/chain.html">Chain</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="bare.html">Bare phonons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coulomb.html">Coulomb interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decay.html">Decay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defpot.html">Deformation potential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dos.html">Density of states</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cdw_1d.html">Dimerization (carbon chain)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh.html">Dimerization (SSH model)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_delta.html">Double delta (nesting function)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="electrons.html">Electron dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a2f.html">Eliashberg spectral function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fan_migdal.html">Fan-Migdal self-energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fermi_surface.html">Fermi surface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fermi_velocity.html">Fermi velocity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fluctuations.html">Fluctuation diagnostics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Goldstone modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intersections.html">Intersections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="isoline.html">Isolines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kekule.html">Kekulé distortion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lr.html">Long-range terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="peierls.html">Peierls distortion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phonons.html">Phonon dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modes.html">Phonon modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phrenorm_graphene.html">Phonon renormalization (graphene)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phrenorm.html">Phonon renormalization (TaS₂)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specfun.html">Phonon spectral function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projwfc_1d.html">Projected bands (carbon chain)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projwfc.html">Projected bands (TaS₂)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projwfc_3d.html">Projected bands (α-Po)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quadrupole.html">Quadrupole fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skiing.html">Skiing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="smear_tetra.html">Smearing vs tetrahedron method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simstm.html">STM simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simsts.html">STS simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercell_el.html">Supercell (electron)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercell_elel.html">Supercell (electron–electron)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercell_elph.html">Supercell (electron–phonon)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercell_ph.html">Supercell (phonon)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="susceptibility.html">Susceptibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wannier.html">Wannier interpolation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">More</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../pages/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/patches.html">Patches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #e7f2fa" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">elphmod</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Goldstone modes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/goldstone.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="goldstone-modes">
+<h1>Goldstone modes<a class="headerlink" href="#goldstone-modes" title="Link to this heading"></a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="c1"># Copyright (C) 2017-2025 elphmod Developers</span>
+<span class="c1"># This program is free software under the terms of the GNU GPLv3 or later.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pts</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$x, y$&#39;</span><span class="p">,</span> <span class="s1">&#39;$z$&#39;</span><span class="p">]</span>
+
+<span class="n">e</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">read_pwo</span><span class="p">(</span><span class="s1">&#39;pw.out&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">nel</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nel</span><span class="p">))</span>
+
+<span class="n">ph</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="s1">&#39;cdfpt&#39;</span><span class="p">,</span> <span class="s1">&#39;dfpt&#39;</span><span class="p">:</span>
+    <span class="n">ph</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">method</span> <span class="o">+</span> <span class="s1">&#39;.ifc&#39;</span><span class="p">)</span>
+    <span class="n">ph</span><span class="p">[</span><span class="n">method</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">*=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">Ry</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">nph</span> <span class="o">=</span> <span class="n">ph</span><span class="p">[</span><span class="n">method</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="n">d</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">read_xml_files</span><span class="p">(</span><span class="n">method</span> <span class="o">+</span> <span class="s1">&#39;.phsave/elph.</span><span class="si">%d</span><span class="s1">.</span><span class="si">%d</span><span class="s1">.xml&#39;</span><span class="p">,</span>
+        <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rep</span><span class="o">=</span><span class="n">nph</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">nel</span><span class="p">),</span> <span class="n">nbands</span><span class="o">=</span><span class="n">nel</span><span class="p">,</span> <span class="n">nk</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">d</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">*=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">Ry</span> <span class="o">**</span> <span class="mf">1.5</span>
+
+<span class="n">ph</span><span class="p">[</span><span class="s1">&#39;dfpt_asr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;dfpt.ifc&#39;</span><span class="p">,</span> <span class="n">apply_asr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ph</span><span class="p">[</span><span class="s1">&#39;dfpt_asr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">*=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">Ry</span> <span class="o">**</span> <span class="mi">2</span>
+
+<span class="n">ph</span><span class="p">[</span><span class="s1">&#39;dfpt_rsr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;dfpt.ifc&#39;</span><span class="p">,</span> <span class="n">apply_rsr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ph</span><span class="p">[</span><span class="s1">&#39;dfpt_rsr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">*=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">Ry</span> <span class="o">**</span> <span class="mi">2</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">Pi</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">diagrams</span><span class="o">.</span><span class="n">phonon_self_energy</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;cdfpt&#39;</span><span class="p">],</span> <span class="n">G</span><span class="o">=</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;dfpt&#39;</span><span class="p">],</span>
+    <span class="n">occupations</span><span class="o">=</span><span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">heaviside</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nph</span><span class="p">,</span> <span class="n">nph</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">SystemExit</span>
+
+<span class="n">D</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">ph</span><span class="p">[</span><span class="s1">&#39;dfpt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">D</span><span class="p">(),</span>
+    <span class="n">ph</span><span class="p">[</span><span class="s1">&#39;cdfpt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">D</span><span class="p">(),</span>
+    <span class="n">ph</span><span class="p">[</span><span class="s1">&#39;cdfpt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">D</span><span class="p">()</span> <span class="o">+</span> <span class="n">Pi</span> <span class="o">/</span> <span class="n">ph</span><span class="p">[</span><span class="s1">&#39;dfpt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">M</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">ph</span><span class="p">[</span><span class="s1">&#39;dfpt_asr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">D</span><span class="p">(),</span>
+    <span class="n">ph</span><span class="p">[</span><span class="s1">&#39;dfpt_rsr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">D</span><span class="p">(),</span>
+<span class="p">]</span>
+
+<span class="n">Shorten</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">shorten</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">5.0</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">D</span><span class="p">)):</span>
+    <span class="n">X1</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="n">Shorten</span>
+    <span class="n">X2</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">-</span> <span class="n">Shorten</span>
+
+    <span class="n">w2</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">sgnsqrt</span><span class="p">(</span><span class="n">w2</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e3</span>
+
+    <span class="n">Z</span> <span class="o">=</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">::</span><span class="mi">3</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.5</span>
+
+    <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">width</span><span class="p">):</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">nu</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">group</span><span class="p">):</span>
+            <span class="n">x1</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">X2</span> <span class="o">+</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">X1</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span> <span class="o">+</span> <span class="n">shorten</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">x2</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">X2</span> <span class="o">+</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">X1</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span> <span class="o">-</span> <span class="n">shorten</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="n">nu</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="n">w</span><span class="p">[</span><span class="n">nu</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span>
+                <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">Z</span><span class="p">[</span><span class="n">nu</span><span class="p">])])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Phonon energy (meV)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">D</span><span class="p">)),</span>
+    <span class="p">[</span><span class="s1">&#39;DFPT&#39;</span><span class="p">,</span> <span class="s1">&#39;cDFPT&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;cDFPT+$\Pi$&#39;</span><span class="p">,</span> <span class="s1">&#39;DFPT+ASR&#39;</span><span class="p">,</span> <span class="s1">&#39;DFPT+RSR&#39;</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">pts</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">color</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">labels</span><span class="p">)])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;goldstone.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/goldstone.png" src="../_images/goldstone.png" />
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fluctuations.html" class="btn btn-neutral float-left" title="Fluctuation diagnostics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="intersections.html" class="btn btn-neutral float-right" title="Intersections" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2025 elphmod Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,260 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Susceptibility &mdash; elphmod  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css?v=6b874a89" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Wannier interpolation" href="wannier.html" />
+    <link rel="prev" title="Supercell (phonon)" href="supercell_ph.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #e7f2fa" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/elphmod.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/el.html">Electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ph.html">Phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/elph.html">Electron–phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/elel.html">Electron–electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/MPI.html">MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/bravais.html">Bravais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/dispersion.html">Dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/dos.html">DOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/diagrams.html">Diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/md.html">MD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/eliashberg.html">Eliashberg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/plot.html">Plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/misc.html">Miscellaneous</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/models/graphene.html">Graphene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/models/tas2.html">TaS₂</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/models/chain.html">Chain</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="bare.html">Bare phonons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coulomb.html">Coulomb interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decay.html">Decay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defpot.html">Deformation potential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dos.html">Density of states</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cdw_1d.html">Dimerization (carbon chain)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh.html">Dimerization (SSH model)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_delta.html">Double delta (nesting function)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="electrons.html">Electron dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a2f.html">Eliashberg spectral function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fan_migdal.html">Fan-Migdal self-energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fermi_surface.html">Fermi surface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fermi_velocity.html">Fermi velocity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fluctuations.html">Fluctuation diagnostics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="goldstone.html">Goldstone modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intersections.html">Intersections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="isoline.html">Isolines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kekule.html">Kekulé distortion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lr.html">Long-range terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="peierls.html">Peierls distortion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phonons.html">Phonon dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modes.html">Phonon modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phrenorm_graphene.html">Phonon renormalization (graphene)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phrenorm.html">Phonon renormalization (TaS₂)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specfun.html">Phonon spectral function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projwfc_1d.html">Projected bands (carbon chain)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projwfc.html">Projected bands (TaS₂)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projwfc_3d.html">Projected bands (α-Po)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quadrupole.html">Quadrupole fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skiing.html">Skiing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="smear_tetra.html">Smearing vs tetrahedron method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simstm.html">STM simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simsts.html">STS simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercell_el.html">Supercell (electron)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercell_elel.html">Supercell (electron–electron)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercell_elph.html">Supercell (electron–phonon)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercell_ph.html">Supercell (phonon)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Susceptibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wannier.html">Wannier interpolation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">More</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../pages/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/patches.html">Patches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #e7f2fa" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">elphmod</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Susceptibility</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/susceptibility.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="susceptibility">
+<h1>Susceptibility<a class="headerlink" href="#susceptibility" title="Link to this heading"></a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="c1"># Copyright (C) 2017-2025 elphmod Developers</span>
+<span class="c1"># This program is free software under the terms of the GNU GPLv3 or later.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
+
+<span class="n">mu</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1665</span>
+<span class="n">kT</span> <span class="o">=</span> <span class="mf">0.025</span>
+
+<span class="n">q</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">GMKG</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">GMKG</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">corner_indices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">el</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;data/NbSe2&#39;</span><span class="p">)</span>
+
+<span class="n">e</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">dispersion_full</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="mi">100</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span>
+
+<span class="n">chi</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">diagrams</span><span class="o">.</span><span class="n">susceptibility</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="n">kT</span><span class="p">)</span>
+<span class="n">chi_q</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">dispersion</span><span class="p">(</span><span class="n">chi</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">chi_hyb</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">diagrams</span><span class="o">.</span><span class="n">susceptibility2</span><span class="p">(</span><span class="n">e</span><span class="p">,</span>
+    <span class="n">kT</span><span class="o">=</span><span class="n">kT</span><span class="p">,</span> <span class="n">hyb_width</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">hyb_height</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">chi_hyb_q</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">dispersion</span><span class="p">(</span><span class="n">chi_hyb</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Susceptibility (1/eV)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Wave vector&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">GMKG</span><span class="p">],</span> <span class="s1">&#39;GMKG&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">chi_q</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;w/o hybridization&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">chi_hyb_q</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;with hybridization&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;susceptibility_1.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">nq</span> <span class="o">=</span> <span class="mi">36</span>
+
+<span class="n">chi_q</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">dispersion_full</span><span class="p">(</span><span class="n">chi</span><span class="p">,</span> <span class="n">nq</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">BZ</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">toBZ</span><span class="p">(</span><span class="n">chi_q</span><span class="p">,</span> <span class="n">outside</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">points</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">BZ</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;susceptibility_2.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nq</span><span class="p">)</span>
+<span class="n">transform</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">nq</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span> <span class="o">/</span> <span class="n">nq</span>
+<span class="n">chi_R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="n">chi_q</span><span class="p">),</span> <span class="n">transform</span><span class="p">)</span>
+<span class="n">chi_R</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+<span class="n">a1</span><span class="p">,</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">translations</span><span class="p">()</span>
+
+<span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">r1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nq</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">r2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nq</span><span class="p">):</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">chi_R</span><span class="p">[</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">R1</span><span class="p">,</span> <span class="n">R2</span> <span class="ow">in</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">to_Voronoi</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">nq</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">R1</span> <span class="o">*</span> <span class="n">a1</span> <span class="o">+</span> <span class="n">R2</span> <span class="o">*</span> <span class="n">a2</span>
+            <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">points</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;susceptibility_3.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/susceptibility_1.png" src="../_images/susceptibility_1.png" />
+<img alt="../_images/susceptibility_2.png" src="../_images/susceptibility_2.png" />
+<img alt="../_images/susceptibility_3.png" src="../_images/susceptibility_3.png" />
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="supercell_ph.html" class="btn btn-neutral float-left" title="Supercell (phonon)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="wannier.html" class="btn btn-neutral float-right" title="Wannier interpolation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2025 elphmod Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

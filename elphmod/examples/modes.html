@@ -1,0 +1,420 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phonon modes &mdash; elphmod  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css?v=6b874a89" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Phonon renormalization (graphene)" href="phrenorm_graphene.html" />
+    <link rel="prev" title="Phonon dispersion" href="phonons.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #e7f2fa" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/elphmod.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/el.html">Electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ph.html">Phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/elph.html">Electron–phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/elel.html">Electron–electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/MPI.html">MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/bravais.html">Bravais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/dispersion.html">Dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/dos.html">DOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/diagrams.html">Diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/md.html">MD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/eliashberg.html">Eliashberg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/plot.html">Plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/misc.html">Miscellaneous</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/models/graphene.html">Graphene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/models/tas2.html">TaS₂</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/models/chain.html">Chain</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="bare.html">Bare phonons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coulomb.html">Coulomb interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decay.html">Decay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defpot.html">Deformation potential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dos.html">Density of states</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cdw_1d.html">Dimerization (carbon chain)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh.html">Dimerization (SSH model)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_delta.html">Double delta (nesting function)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="electrons.html">Electron dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a2f.html">Eliashberg spectral function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fan_migdal.html">Fan-Migdal self-energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fermi_surface.html">Fermi surface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fermi_velocity.html">Fermi velocity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fluctuations.html">Fluctuation diagnostics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="goldstone.html">Goldstone modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intersections.html">Intersections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="isoline.html">Isolines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kekule.html">Kekulé distortion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lr.html">Long-range terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="peierls.html">Peierls distortion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phonons.html">Phonon dispersion</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Phonon modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phrenorm_graphene.html">Phonon renormalization (graphene)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phrenorm.html">Phonon renormalization (TaS₂)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specfun.html">Phonon spectral function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projwfc_1d.html">Projected bands (carbon chain)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projwfc.html">Projected bands (TaS₂)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projwfc_3d.html">Projected bands (α-Po)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quadrupole.html">Quadrupole fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skiing.html">Skiing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="smear_tetra.html">Smearing vs tetrahedron method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simstm.html">STM simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simsts.html">STS simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercell_el.html">Supercell (electron)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercell_elel.html">Supercell (electron–electron)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercell_elph.html">Supercell (electron–phonon)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercell_ph.html">Supercell (phonon)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="susceptibility.html">Susceptibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wannier.html">Wannier interpolation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">More</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../pages/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/patches.html">Patches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #e7f2fa" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">elphmod</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Phonon modes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/modes.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="phonon-modes">
+<h1>Phonon modes<a class="headerlink" href="#phonon-modes" title="Link to this heading"></a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="c1"># Copyright (C) 2017-2025 elphmod Developers</span>
+<span class="c1"># This program is free software under the terms of the GNU GPLv3 or later.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on Sun Mar 14 15:15:43 2021</span>
+
+<span class="sd">@author: arne</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">modes_modules</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">supercell_vectors</span><span class="p">,</span> <span class="n">permutation_finder</span><span class="p">,</span>
+    <span class="n">align_structures</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
+
+<span class="n">symmetrize</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;info.dat&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+
+<span class="n">material</span> <span class="o">=</span> <span class="s1">&#39;NbSe2&#39;</span>
+<span class="n">N1</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">N2</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">cdw_path</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_3x3_CDW.in&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">material</span><span class="p">)</span>
+<span class="n">transition_metal</span> <span class="o">=</span> <span class="s1">&#39;Nb&#39;</span>
+<span class="n">chalcogen</span> <span class="o">=</span> <span class="s1">&#39;Se&#39;</span>
+
+<span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Charge-density-wave structure: </span><span class="si">%d</span><span class="s1"> x </span><span class="si">%d</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">N1</span><span class="p">,</span> <span class="n">N2</span><span class="p">))</span>
+
+<span class="c1"># Load symmetric structure</span>
+<span class="n">cdw_data</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">read_pwi</span><span class="p">(</span><span class="n">cdw_path</span><span class="p">)</span>
+<span class="n">R_cdw</span> <span class="o">=</span> <span class="n">cdw_data</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span>
+
+<span class="n">nat</span> <span class="o">=</span> <span class="n">cdw_data</span><span class="p">[</span><span class="s1">&#39;nat&#39;</span><span class="p">]</span>
+<span class="n">at_cdw</span> <span class="o">=</span> <span class="n">cdw_data</span><span class="p">[</span><span class="s1">&#39;at&#39;</span><span class="p">]</span>
+
+<span class="c1"># Load lattice parameters</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">cdw_data</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">cdw_data</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">A</span> <span class="o">/</span> <span class="n">N1</span>
+<span class="c1">#alat = a / elphmod.misc.a0</span>
+
+<span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Lattice parameter of the unit cell a = </span><span class="si">%3.12f</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="c1"># Load lattice translations</span>
+<span class="n">a1</span><span class="p">,</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">translations</span><span class="p">(</span><span class="n">two_dimensional</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">a1</span> <span class="o">*=</span> <span class="n">a</span>
+<span class="n">a2</span> <span class="o">*=</span> <span class="n">a</span>
+<span class="n">a3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">C</span><span class="p">])</span>
+
+<span class="c1"># Load real space supercell vectors</span>
+<span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">A3</span> <span class="o">=</span> <span class="n">supercell_vectors</span><span class="p">(</span><span class="n">cdw_data</span><span class="p">,</span> <span class="n">N1</span><span class="p">,</span> <span class="n">N2</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="p">)</span>
+<span class="c1"># Load reciprocal space supercell vectors</span>
+<span class="n">B1</span><span class="p">,</span> <span class="n">B2</span><span class="p">,</span> <span class="n">B3</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">reciprocals</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">A3</span><span class="p">)</span>
+
+<span class="c1"># Check coordinate type of input</span>
+<span class="n">coords_input</span> <span class="o">=</span> <span class="n">cdw_data</span><span class="p">[</span><span class="s1">&#39;coords&#39;</span><span class="p">]</span>
+<span class="n">coords_type_QE</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;crystal&#39;</span><span class="p">,</span> <span class="s1">&#39;bohr&#39;</span><span class="p">,</span> <span class="s1">&#39;angstrom&#39;</span><span class="p">,</span> <span class="s1">&#39;alat&#39;</span><span class="p">]</span>
+
+<span class="n">flag_coords_type</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">for</span> <span class="n">coords_type</span> <span class="ow">in</span> <span class="n">coords_type_QE</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">coords_type</span><span class="p">,</span> <span class="n">coords_input</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Coordinates are given in </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">coords_type</span><span class="p">)</span>
+        <span class="n">flag_coords_type</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">coords_type</span> <span class="o">==</span> <span class="s1">&#39;crystal&#39;</span><span class="p">:</span>
+            <span class="c1"># Transform from crystal to cartesian coordinates</span>
+            <span class="n">R_cdw</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">crystal_to_cartesian</span><span class="p">(</span><span class="n">R_cdw</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">A3</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">flag_coords_type</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Did not find coordinate type in input file. &#39;</span>
+            <span class="s1">&#39;Stopping program...</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+<span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span><span class="s2">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span>
+<span class="s2"># Load mass-spring model and setup symmetric crystal structure:</span>
+<span class="s2">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span>
+
+<span class="n">ph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;../data/NbSe2_DFPT.ifc&#39;</span><span class="p">,</span> <span class="n">apply_asr_simple</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># cartesian coordinates (angstrom)</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">r</span> <span class="o">*</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">a0</span>
+
+<span class="c1"># Set up sym. atomic positions from the IFC file:</span>
+
+<span class="n">R_sym</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">N1</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">N2</span><span class="p">)),</span> <span class="n">ph</span><span class="o">.</span><span class="n">nat</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">n1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">N1</span><span class="p">))):</span>
+    <span class="k">for</span> <span class="n">n2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">N2</span><span class="p">))):</span>
+        <span class="n">R_sym</span><span class="p">[</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">]</span> <span class="o">=</span> <span class="n">a1</span> <span class="o">*</span> <span class="n">n1</span> <span class="o">+</span> <span class="n">a2</span> <span class="o">*</span> <span class="n">n2</span> <span class="o">+</span> <span class="n">tau</span>
+
+<span class="n">at_sym</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">N1</span><span class="p">))</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">N2</span><span class="p">))):</span>
+    <span class="k">for</span> <span class="n">ityp</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">at_sym</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ph</span><span class="o">.</span><span class="n">atom_order</span><span class="p">[</span><span class="n">ityp</span><span class="p">])</span>
+
+<span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span><span class="s2">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span>
+<span class="s2"># Shift and align structures:</span>
+<span class="s2">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span>
+
+<span class="n">R_sym</span> <span class="o">=</span> <span class="n">R_sym</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">R_cdw</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">symmetrize</span><span class="p">:</span>
+
+    <span class="c1"># Fold structures into supercell</span>
+    <span class="n">R_cdw</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">cartesian_to_crystal</span><span class="p">(</span><span class="n">R_cdw</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">A3</span><span class="p">)</span>
+    <span class="n">R_sym</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">cartesian_to_crystal</span><span class="p">(</span><span class="n">R_sym</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">A3</span><span class="p">)</span>
+
+    <span class="n">R_cdw</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">%=</span> <span class="mi">1</span>
+    <span class="n">R_cdw</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">%=</span> <span class="mi">1</span>
+
+    <span class="n">R_sym</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">%=</span> <span class="mi">1</span>
+    <span class="n">R_sym</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">%=</span> <span class="mi">1</span>
+
+    <span class="n">R_cdw</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">crystal_to_cartesian</span><span class="p">(</span><span class="n">R_cdw</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">A3</span><span class="p">)</span>
+    <span class="n">R_sym</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">crystal_to_cartesian</span><span class="p">(</span><span class="n">R_sym</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">A3</span><span class="p">)</span>
+
+    <span class="c1"># Align structures</span>
+    <span class="n">R_cdw</span> <span class="o">=</span> <span class="n">align_structures</span><span class="p">(</span><span class="n">nat</span><span class="p">,</span> <span class="n">R_cdw</span><span class="p">,</span> <span class="n">R_sym</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
+
+    <span class="n">original_atom_index</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">distance_to_original_uc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nat</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">atom_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nat</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">at_cdw</span><span class="p">[</span><span class="n">atom_index</span><span class="p">]</span> <span class="o">!=</span> <span class="n">at_sym</span><span class="p">[</span><span class="n">original_atom_index</span><span class="p">]:</span>
+            <span class="n">distance_to_original_uc</span><span class="p">[</span><span class="n">atom_index</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e10</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">distance_to_original_uc</span><span class="p">[</span><span class="n">atom_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span>
+                <span class="n">R_cdw</span><span class="p">[</span><span class="n">atom_index</span><span class="p">]</span> <span class="o">-</span> <span class="n">R_sym</span><span class="p">[</span><span class="n">original_atom_index</span><span class="p">])</span>
+
+    <span class="n">shift_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">distance_to_original_uc</span><span class="p">)</span>
+    <span class="n">shift_vector</span> <span class="o">=</span> <span class="p">(</span><span class="n">R_cdw</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">distance_to_original_uc</span><span class="p">)]</span>
+        <span class="o">-</span> <span class="n">R_sym</span><span class="p">[</span><span class="n">original_atom_index</span><span class="p">])</span>
+    <span class="n">R_cdw</span> <span class="o">-=</span> <span class="n">shift_vector</span>
+
+    <span class="c1"># Fold structures into supercell</span>
+    <span class="n">R_cdw</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">cartesian_to_crystal</span><span class="p">(</span><span class="n">R_cdw</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">A3</span><span class="p">)</span>
+    <span class="n">R_sym</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">cartesian_to_crystal</span><span class="p">(</span><span class="n">R_sym</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">A3</span><span class="p">)</span>
+
+    <span class="n">R_cdw</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">%=</span> <span class="mi">1</span>
+    <span class="n">R_cdw</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">%=</span> <span class="mi">1</span>
+
+    <span class="n">R_sym</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">%=</span> <span class="mi">1</span>
+    <span class="n">R_sym</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">%=</span> <span class="mi">1</span>
+
+    <span class="n">R_cdw</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">crystal_to_cartesian</span><span class="p">(</span><span class="n">R_cdw</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">A3</span><span class="p">)</span>
+    <span class="n">R_sym</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">crystal_to_cartesian</span><span class="p">(</span><span class="n">R_sym</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">A3</span><span class="p">)</span>
+
+    <span class="c1"># Align structures</span>
+    <span class="n">R_cdw</span> <span class="o">=</span> <span class="n">align_structures</span><span class="p">(</span><span class="n">nat</span><span class="p">,</span> <span class="n">R_cdw</span><span class="p">,</span> <span class="n">R_sym</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the barycenter</span>
+    <span class="n">BC_sym</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">BC_cdw</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nat</span><span class="p">):</span>
+        <span class="n">BC_sym</span> <span class="o">+=</span> <span class="n">R_sym</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">nat</span>
+        <span class="n">BC_cdw</span> <span class="o">+=</span> <span class="n">R_cdw</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">nat</span>
+
+    <span class="n">R_cdw</span> <span class="o">=</span> <span class="p">(</span><span class="n">BC_sym</span> <span class="o">-</span> <span class="n">BC_cdw</span><span class="p">)</span> <span class="o">+</span> <span class="n">R_cdw</span>
+
+<span class="k">if</span> <span class="n">at_cdw</span> <span class="o">!=</span> <span class="n">at_sym</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Atom order does not match. Starting permutation...</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">R_cdw</span><span class="p">,</span> <span class="n">at_cdw</span> <span class="o">=</span> <span class="n">permutation_finder</span><span class="p">(</span><span class="n">nat</span><span class="p">,</span> <span class="n">R_cdw</span><span class="p">,</span> <span class="n">R_sym</span><span class="p">,</span> <span class="n">at_cdw</span><span class="p">,</span> <span class="n">at_sym</span><span class="p">,</span>
+        <span class="n">eps</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">at_cdw</span> <span class="o">!=</span> <span class="n">at_sym</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Atom order still does not match. Stopping program...</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+<span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span><span class="s2">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span>
+<span class="s2"># Calculate some important distances:</span>
+<span class="s2">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span>
+
+<span class="c1"># Total displacement vector</span>
+<span class="n">U_tot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">R_cdw</span> <span class="o">-</span> <span class="n">R_sym</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Total displacement vector (angstrom): U = </span><span class="si">%3.4f</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">U_tot</span><span class="p">)</span>
+
+<span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nat</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">atom_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nat</span><span class="p">):</span>
+    <span class="n">distance</span><span class="p">[</span><span class="n">atom_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">R_cdw</span><span class="p">[</span><span class="n">atom_index</span><span class="p">]</span> <span class="o">-</span> <span class="n">R_sym</span><span class="p">[</span><span class="n">atom_index</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Maximal displacement of </span><span class="si">%s</span><span class="s1"> atom is </span><span class="si">%1.2f</span><span class="s1"> </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="o">%</span> <span class="p">(</span><span class="n">at_cdw</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">distance</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span> <span class="o">/</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;%&#39;</span><span class="p">))</span>
+
+    <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Plot structures</span>
+
+<span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">SystemExit</span>
+
+<span class="k">for</span> <span class="n">atom_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nat</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">at_sym</span><span class="p">[</span><span class="n">atom_index</span><span class="p">]</span> <span class="o">==</span> <span class="n">transition_metal</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_sym</span><span class="p">[</span><span class="n">atom_index</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">R_sym</span><span class="p">[</span><span class="n">atom_index</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">at_sym</span><span class="p">[</span><span class="n">atom_index</span><span class="p">]</span> <span class="o">==</span> <span class="n">chalcogen</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_sym</span><span class="p">[</span><span class="n">atom_index</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">R_sym</span><span class="p">[</span><span class="n">atom_index</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">atom_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nat</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">at_cdw</span><span class="p">[</span><span class="n">atom_index</span><span class="p">]</span> <span class="o">==</span> <span class="n">transition_metal</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_cdw</span><span class="p">[</span><span class="n">atom_index</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">R_cdw</span><span class="p">[</span><span class="n">atom_index</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkblue&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">at_cdw</span><span class="p">[</span><span class="n">atom_index</span><span class="p">]</span> <span class="o">==</span> <span class="n">chalcogen</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_cdw</span><span class="p">[</span><span class="n">atom_index</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">R_cdw</span><span class="p">[</span><span class="n">atom_index</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="n">Start_Pos</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">A1</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">A1</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">A2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">A2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">A1</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">A1</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">A2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">A2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">Start_Pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">A2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Start_Pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">A2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">A1</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+    <span class="p">[</span><span class="n">Start_Pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">A2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Start_Pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">A2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">A1</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">Start_Pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">A1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Start_Pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">A2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">A1</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+    <span class="p">[</span><span class="n">Start_Pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">A1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Start_Pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">A2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">A1</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;modes.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/modes.png" src="../_images/modes.png" />
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="phonons.html" class="btn btn-neutral float-left" title="Phonon dispersion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="phrenorm_graphene.html" class="btn btn-neutral float-right" title="Phonon renormalization (graphene)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2025 elphmod Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

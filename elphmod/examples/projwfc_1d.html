@@ -1,0 +1,236 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projected bands (carbon chain) &mdash; elphmod  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css?v=6b874a89" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Projected bands (TaS₂)" href="projwfc.html" />
+    <link rel="prev" title="Phonon spectral function" href="specfun.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #e7f2fa" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/elphmod.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/el.html">Electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ph.html">Phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/elph.html">Electron–phonon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/elel.html">Electron–electron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/MPI.html">MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/bravais.html">Bravais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/dispersion.html">Dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/dos.html">DOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/diagrams.html">Diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/md.html">MD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/eliashberg.html">Eliashberg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/plot.html">Plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/misc.html">Miscellaneous</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/models/graphene.html">Graphene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/models/tas2.html">TaS₂</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/models/chain.html">Chain</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="bare.html">Bare phonons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coulomb.html">Coulomb interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decay.html">Decay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defpot.html">Deformation potential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dos.html">Density of states</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cdw_1d.html">Dimerization (carbon chain)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh.html">Dimerization (SSH model)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_delta.html">Double delta (nesting function)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="electrons.html">Electron dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a2f.html">Eliashberg spectral function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fan_migdal.html">Fan-Migdal self-energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fermi_surface.html">Fermi surface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fermi_velocity.html">Fermi velocity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fluctuations.html">Fluctuation diagnostics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="goldstone.html">Goldstone modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intersections.html">Intersections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="isoline.html">Isolines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kekule.html">Kekulé distortion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lr.html">Long-range terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="peierls.html">Peierls distortion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phonons.html">Phonon dispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modes.html">Phonon modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phrenorm_graphene.html">Phonon renormalization (graphene)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phrenorm.html">Phonon renormalization (TaS₂)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specfun.html">Phonon spectral function</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Projected bands (carbon chain)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projwfc.html">Projected bands (TaS₂)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projwfc_3d.html">Projected bands (α-Po)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quadrupole.html">Quadrupole fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skiing.html">Skiing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="smear_tetra.html">Smearing vs tetrahedron method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simstm.html">STM simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simsts.html">STS simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercell_el.html">Supercell (electron)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercell_elel.html">Supercell (electron–electron)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercell_elph.html">Supercell (electron–phonon)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercell_ph.html">Supercell (phonon)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="susceptibility.html">Susceptibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wannier.html">Wannier interpolation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">More</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../pages/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/patches.html">Patches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #e7f2fa" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">elphmod</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Projected bands (carbon chain)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/projwfc_1d.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="projected-bands-carbon-chain">
+<h1>Projected bands (carbon chain)<a class="headerlink" href="#projected-bands-carbon-chain" title="Link to this heading"></a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="c1"># Copyright (C) 2017-2025 elphmod Developers</span>
+<span class="c1"># This program is free software under the terms of the GNU GPLv3 or later.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;gray&#39;</span><span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$s$&#39;</span><span class="p">,</span> <span class="s1">&#39;$p_{x, y}$&#39;</span><span class="p">,</span> <span class="s1">&#39;$p_z$&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="p">]</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">proj</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">read_atomic_projections</span><span class="p">(</span>
+    <span class="s1">&#39;work/C.save/atomic_proj.xml&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">eps</span> <span class="o">*=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">Ry</span>
+
+<span class="n">orbitals</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">read_projwfc_out</span><span class="p">(</span><span class="s1">&#39;projwfc.out&#39;</span><span class="p">)</span>
+
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">proj_sum</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">orbitals</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;p{x, y}&#39;</span><span class="p">,</span> <span class="s1">&#39;pz&#39;</span><span class="p">,</span>
+    <span class="n">other</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">pwi</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">read_pwi</span><span class="p">(</span><span class="s1">&#39;scf.in&#39;</span><span class="p">)</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">read_Fermi_level</span><span class="p">(</span><span class="s1">&#39;scf.out&#39;</span><span class="p">)</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;GZ&#39;</span>
+<span class="n">K</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">corners</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="o">**</span><span class="n">pwi</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">*=</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">el</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+<span class="n">E</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">dispersion</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">E</span> <span class="o">-=</span> <span class="n">mu</span>
+
+<span class="k">if</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">SystemExit</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Electron energy (eV)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Wave vector&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">corners</span><span class="p">],</span> <span class="n">path</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">eps</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">fatbands</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">compline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">eps</span><span class="p">[:,</span> <span class="n">n</span><span class="p">],</span> <span class="n">width</span><span class="p">[:,</span> <span class="n">n</span><span class="p">,</span> <span class="p">:])</span>
+
+    <span class="k">for</span> <span class="n">fatband</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">fatbands</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="o">*</span><span class="n">fatband</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="kc">None</span> <span class="k">if</span> <span class="n">n</span> <span class="k">else</span> <span class="n">label</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">E</span><span class="p">[:,</span> <span class="n">n</span><span class="p">],</span> <span class="s1">&#39;y:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span> <span class="k">if</span> <span class="n">n</span> <span class="k">else</span> <span class="s1">&#39;W90&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;projwfc_1d.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/projwfc_1d.png" src="../_images/projwfc_1d.png" />
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="specfun.html" class="btn btn-neutral float-left" title="Phonon spectral function" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="projwfc.html" class="btn btn-neutral float-right" title="Projected bands (TaS₂)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2025 elphmod Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
