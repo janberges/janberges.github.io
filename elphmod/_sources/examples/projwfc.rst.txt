@@ -1,5 +1,5 @@
-Projected bands (TaS₂)
-======================
+Projected bands (graphene)
+==========================
 
 .. literalinclude:: ../../examples/projwfc/projwfc.py
    :language: python
