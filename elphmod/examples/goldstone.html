@@ -88,11 +88,11 @@
 <li class="toctree-l1"><a class="reference internal" href="isoline.html">Isolines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kekule.html">Kekulé distortion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lr.html">Long-range terms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modes.html">Mode decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular dynamics using i-PI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="peierls.html">Peierls distortion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phonons.html">Phonon dispersion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modes.html">Phonon modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm_graphene.html">Phonon renormalization (graphene)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm.html">Phonon renormalization (TaS₂)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
@@ -145,6 +145,31 @@
              
   <section id="goldstone-modes">
 <h1>Goldstone modes<a class="headerlink" href="#goldstone-modes" title="Link to this heading"></a></h1>
+<p>The movement of the atoms of a diatomic molecule can be classified into the
+following six eigenmodes:</p>
+<ul class="simple">
+<li><p>one bond-stretching mode,</p></li>
+<li><p>three translational modes,</p></li>
+<li><p>two rotational modes.</p></li>
+</ul>
+<p>Only the first mode has a nonzero vibration frequency. Since the presence of
+the molecule breaks the homogeneity and isotropy (except for a rotation about
+the bond axis) of the space (or: since the total energy must be invariant with
+respect to a rigid translation or rotation of the molecule), the remaining five
+modes are Goldstone bosons with zero energy (or: without any restoring force).</p>
+<p>Using the example of a nitrogen molecule, this example shows that</p>
+<ul class="simple">
+<li><p>cDFPT phonons do not always satisfy the Goldstone theorem [van Loon et al.,
+Phys. Rev. B 103, 205103 (2021)],</p></li>
+<li><p>the acoustic sum rule correction restores the translational Goldstone modes,</p></li>
+<li><p>the Born-Huang sum rule correction restores the rotational Goldstone modes.</p></li>
+</ul>
+<p>The example also shows how to calculate exact DFPT phonon self-energies for
+gapped systems (i.e., without any electronic occupation smearing).</p>
+<p>For the (c)DFPT part, you need a modified version of Quantum ESPRESSO. You
+can use the provided patches to apply the required changes.</p>
+<p>The results obtained in this example are far from converged!</p>
+</section>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
 
 <span class="c1"># Copyright (C) 2017-2025 elphmod Developers</span>
@@ -232,7 +257,6 @@
 </pre></div>
 </div>
 <img alt="../_images/goldstone.png" src="../_images/goldstone.png" />
-</section>
 
 
            </div>

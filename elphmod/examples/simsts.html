@@ -88,11 +88,11 @@
 <li class="toctree-l1"><a class="reference internal" href="isoline.html">Isolines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kekule.html">Kekulé distortion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lr.html">Long-range terms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modes.html">Mode decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular dynamics using i-PI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="peierls.html">Peierls distortion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phonons.html">Phonon dispersion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modes.html">Phonon modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm_graphene.html">Phonon renormalization (graphene)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm.html">Phonon renormalization (TaS₂)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
@@ -145,6 +145,21 @@
              
   <section id="sts-simulation">
 <h1>STS simulation<a class="headerlink" href="#sts-simulation" title="Link to this heading"></a></h1>
+<p>This example shows how to</p>
+<ul class="simple">
+<li><p>work with Wannier functions in the position representation from Wannier90,</p></li>
+<li><p>simulate scanning-tunnelling microscopy (STM) and spectroscopy (STS) data.</p></li>
+</ul>
+<p>The Wannier functions used to represent the Hamiltonian (<em>seedname_hr.dat</em>) and
+those written to file (<em>seedname_0000X.xsf</em>) must be identical (including sign).
+Hence, the following line in <em>plot.F90</em> of Wannier90 must be commented out:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>wann_func(:, :, :, loop_w) = wann_func(:, :, :, loop_w)/wmod
+</pre></div>
+</div>
+<p>The scanning-tunnelling spectrum is calculated just like the density of states,
+except that each state is weighted with the square modulus of its overlap with
+an s orbital located at a chosen position above the sample.</p>
+</section>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
 
 <span class="c1"># Copyright (C) 2017-2025 elphmod Developers</span>
@@ -286,7 +301,6 @@
 </div>
 <img alt="../_images/simsts_1.png" src="../_images/simsts_1.png" />
 <img alt="../_images/simsts_2.png" src="../_images/simsts_2.png" />
-</section>
 
 
            </div>

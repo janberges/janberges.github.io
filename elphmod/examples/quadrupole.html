@@ -88,11 +88,11 @@
 <li class="toctree-l1"><a class="reference internal" href="isoline.html">Isolines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kekule.html">Kekulé distortion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lr.html">Long-range terms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modes.html">Mode decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular dynamics using i-PI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="peierls.html">Peierls distortion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phonons.html">Phonon dispersion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modes.html">Phonon modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm_graphene.html">Phonon renormalization (graphene)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm.html">Phonon renormalization (TaS₂)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
@@ -145,6 +145,25 @@
              
   <section id="quadrupole-fitting">
 <h1>Quadrupole fitting<a class="headerlink" href="#quadrupole-fitting" title="Link to this heading"></a></h1>
+<p>This is a minimal working example of the optimization of quadrupole tensors as
+done by J. Berges, N. Girotto, T. Wehling, N. Marzari, and S. Poncé, <em>Phonon
+self-energy corrections: To screen, or not to screen</em>, <a class="reference external" href="https://doi.org/10.1103/PhysRevX.13.041009">Phys. Rev. X <strong>13</strong>,
+041009 (2023)</a>. The original version
+can be found <a class="reference external" href="https://doi.org/10.24435/materialscloud:he-pv">here</a>.</p>
+<p>More precisely, we first calculate (bare) dynamical matrices and electron-phonon
+matrix elements both on a coarse q mesh and for selected q points along a path.
+Then we Fourier interpolate the former, minimizing deviations from the latter.
+Here, the free parameters are the independent elements of the quadrupole tensors
+Q and the range-separation parameter L entering the formulas for the long-range
+components that are subtracted and added before and after interpolation. First,
+we optimize L for Q = 0, minimizing the short-range part of the force constants.
+Second, we optimize Q for constant L. A simultaneous optimization would also be
+possible, but it is only important that L is in the correct range.</p>
+<p>For the bare phonons, you need a modified version of Quantum ESPRESSO. You
+can use the provided patches to apply the required changes.</p>
+<p>Note that the results obtained in this example are not converged. The parameters
+have been chosen such that the calculations can be done on a personal computer.</p>
+</section>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">elphmod</span>
@@ -330,7 +349,6 @@
 </pre></div>
 </div>
 <img alt="../_images/quadrupole.png" src="../_images/quadrupole.png" />
-</section>
 
 
            </div>

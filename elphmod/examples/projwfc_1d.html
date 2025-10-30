@@ -88,11 +88,11 @@
 <li class="toctree-l1"><a class="reference internal" href="isoline.html">Isolines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kekule.html">Kekulé distortion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lr.html">Long-range terms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modes.html">Mode decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular dynamics using i-PI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="peierls.html">Peierls distortion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phonons.html">Phonon dispersion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modes.html">Phonon modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm_graphene.html">Phonon renormalization (graphene)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm.html">Phonon renormalization (TaS₂)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
@@ -145,6 +145,13 @@
              
   <section id="projected-bands-carbon-chain">
 <h1>Projected bands (carbon chain)<a class="headerlink" href="#projected-bands-carbon-chain" title="Link to this heading"></a></h1>
+<p>This example shows how to</p>
+<ul class="simple">
+<li><p>calculate projections onto (pseudo)atomic orbitals with QE,</p></li>
+<li><p>plot (and label) the data in <em>atomic_proj.xml</em> as fatbands,</p></li>
+<li><p>calculate a Hamiltonian in a Wannier basis using Wannier90.</p></li>
+</ul>
+</section>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
 
 <span class="c1"># Copyright (C) 2017-2025 elphmod Developers</span>
@@ -200,7 +207,6 @@
 </pre></div>
 </div>
 <img alt="../_images/projwfc_1d.png" src="../_images/projwfc_1d.png" />
-</section>
 
 
            </div>

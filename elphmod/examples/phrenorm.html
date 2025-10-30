@@ -88,11 +88,11 @@
 <li class="toctree-l1"><a class="reference internal" href="isoline.html">Isolines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kekule.html">Kekulé distortion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lr.html">Long-range terms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modes.html">Mode decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular dynamics using i-PI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="peierls.html">Peierls distortion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phonons.html">Phonon dispersion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modes.html">Phonon modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm_graphene.html">Phonon renormalization (graphene)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Phonon renormalization (TaS₂)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
@@ -145,6 +145,22 @@
              
   <section id="phonon-renormalization-tas2">
 <h1>Phonon renormalization (TaS₂)<a class="headerlink" href="#phonon-renormalization-tas2" title="Link to this heading"></a></h1>
+<p>This example shows how to</p>
+<ul class="simple">
+<li><p>perform a cDFPT calculation [Nomura &amp; Arita, PRB 92, 245108 (2015)],</p></li>
+<li><p>work with electrons, phonons, and their coupling in localized bases,</p></li>
+<li><p>consistently renormalize phonon dispersions (go from cDFPT to DFPT).</p></li>
+</ul>
+<p>For the cDFPT part, you need a modified version of Quantum ESPRESSO. You
+can use the provided patches to apply the required changes.</p>
+<p>The results obtained in this example are very far from converged! In return,
+the ab initio part takes less than a minute on a laptop with only two cores.</p>
+<p>After the main calculation, two further scripts show how to</p>
+<ul class="simple">
+<li><p>extract the deformation potential from the output of the EPW code,</p></li>
+<li><p>check if the hopping parameters from Wannier90 decay appropriately.</p></li>
+</ul>
+</section>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
 
 <span class="c1"># Copyright (C) 2017-2025 elphmod Developers</span>
@@ -264,7 +280,6 @@
 </div>
 <img alt="../_images/phrenorm_1.png" src="../_images/phrenorm_1.png" />
 <img alt="../_images/phrenorm_2.png" src="../_images/phrenorm_2.png" />
-</section>
 
 
            </div>

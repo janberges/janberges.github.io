@@ -88,11 +88,11 @@
 <li class="toctree-l1"><a class="reference internal" href="isoline.html">Isolines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kekule.html">Kekulé distortion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lr.html">Long-range terms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modes.html">Mode decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="md.html">Molecular dynamics using i-PI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="peierls.html">Peierls distortion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phonons.html">Phonon dispersion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modes.html">Phonon modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm_graphene.html">Phonon renormalization (graphene)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm.html">Phonon renormalization (TaS₂)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
@@ -145,6 +145,11 @@
              
   <section id="fluctuation-diagnostics">
 <h1>Fluctuation diagnostics<a class="headerlink" href="#fluctuation-diagnostics" title="Link to this heading"></a></h1>
+<p>This example will show how to plot the k-resolved phonon self-energy, bare
+electronic susceptibility, and electron-phonon coupling at the origin of the
+phonon anomalies and charge-density wave in monolayer 1H-TaS₂ [cf. Fig. 3 (a-c)
+of Phys. Rev. B 101, 155107 (2020)].</p>
+</section>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
 
 <span class="c1"># Copyright (C) 2017-2025 elphmod Developers</span>
@@ -223,7 +228,6 @@
 </pre></div>
 </div>
 <img alt="../_images/fluctuations.png" src="../_images/fluctuations.png" />
-</section>
 
 
            </div>
