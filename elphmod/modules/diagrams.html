@@ -336,15 +336,20 @@ basis as <cite>U</cite> (eigenbasis of the Hamiltonian).</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.diagrams.green_kubo_conductivity">
-<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">green_kubo_conductivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">v,</span> <span class="pre">A,</span> <span class="pre">omega,</span> <span class="pre">kT=0.025,</span> <span class="pre">eps=1e-10,</span> <span class="pre">occupations='fd',</span> <span class="pre">a=array([[1.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[0.,</span> <span class="pre">1.,</span> <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">1.]]),</span> <span class="pre">dc_only=False,</span> <span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/diagrams.html#green_kubo_conductivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.diagrams.green_kubo_conductivity" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">green_kubo_conductivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">v,</span> <span class="pre">A,</span> <span class="pre">omega,</span> <span class="pre">kT=0.025,</span> <span class="pre">eta=0.01,</span> <span class="pre">eps=1e-10,</span> <span class="pre">occupations='fd',</span> <span class="pre">a=array([[1.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[0.,</span> <span class="pre">1.,</span> <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">1.]]),</span> <span class="pre">dc_only=False,</span> <span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/diagrams.html#green_kubo_conductivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.diagrams.green_kubo_conductivity" title="Link to this definition"></a></dt>
 <dd><p>Calculate Green-Kubo optical conductivity in the bubble approximation.</p>
 <div class="math notranslate nohighlight">
-\[\sigma_{x y}(\omega) = \frac{\pi \hbar e^2}{V \sub{uc}}
+\[\Re \sigma_{x y}(\omega) = \frac{\pi \hbar e^2}{V \sub{uc}}
     \frac 2 N \sum_{\vec k n} \int_{-\infty}^\infty \D \omega'
     \frac {f(\omega') - f(\omega' + \omega)} \omega
     v_{\vec k n x} v_{\vec k n y}
     A_{\vec k n}(\omega') A_{\vec k n}(\omega' + \omega)\]</div>
 <p>See Eq. (8) by Abramovitch et al., Phys. Rev. Mater. 7, 093801 (2023).</p>
+<p>The imaginary part can be computed through the Kramers-Kronig relation:</p>
+<div class="math notranslate nohighlight">
+\[\Im \sigma_{x y}(\omega) \approx \frac 1 \pi L(\omega) \int \D \omega'
+    \Re \sigma_{x y}(\omega') \omega' L(\omega - \omega'),
+    \quad L(\omega) = \frac \omega {\omega^2 + \eta^2}\]</div>
 <p>It is also possible to consider the off-diagonal elements of the velocities,
 see Eq. (85) by Lihm and Ponce’, arXiv:2506.18139 (2025).</p>
 <dl class="field-list simple">
@@ -357,6 +362,9 @@ see Eq. (85) by Lihm and Ponce’, arXiv:2506.18139 (2025).</p>
 <dt><strong>omega</strong><span class="classifier">ndarray</span></dt><dd><p>Frequency argument excluding small imaginary regulator.</p>
 </dd>
 <dt><strong>kT</strong><span class="classifier">float</span></dt><dd><p>Smearing temperature.</p>
+</dd>
+<dt><strong>eta</strong><span class="classifier">float</span></dt><dd><p>Absolute value of “infinitesimal” imaginary number in denominator. Only
+used to compute the imaginary part through the Kramers-Kronig relation.</p>
 </dd>
 <dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Negligible difference between two floating-point numbers.</p>
 </dd>

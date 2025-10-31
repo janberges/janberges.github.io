@@ -59,6 +59,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.MPI.SharedArray"><code class="docutils literal notranslate"><span class="pre">SharedArray</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.MPI.distribute"><code class="docutils literal notranslate"><span class="pre">distribute()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.MPI.elphmodenv"><code class="docutils literal notranslate"><span class="pre">elphmodenv()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.MPI.idle_wait"><code class="docutils literal notranslate"><span class="pre">idle_wait()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.MPI.info"><code class="docutils literal notranslate"><span class="pre">info()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.MPI.load"><code class="docutils literal notranslate"><span class="pre">load()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.MPI.matrix"><code class="docutils literal notranslate"><span class="pre">matrix()</span></code></a></li>
@@ -233,6 +234,36 @@ servers, where CPU resources must be used with restraint.</p>
 <p>Combine <cite>eval $(elphmodenv X)</cite> with <cite>mpirun -n Y python3 script.py</cite>, where
 the product of X an Y is the number of available CPUs, for hybrid
 parallelization.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.MPI.idle_wait">
+<span class="sig-prename descclassname"><span class="pre">elphmod.MPI.</span></span><span class="sig-name descname"><span class="pre">idle_wait</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">busy=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep=0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/MPI.html#idle_wait"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.MPI.idle_wait" title="Link to this definition"></a></dt>
+<dd><p>Wait for busy process to finish without using up much CPU time.</p>
+<p>This can be used to efficiently run an OpenMP-parallelized program from one
+of the MPI processes. In the below example, without calling this function,
+the other processes would usually busy-wait for the program to finish, using
+up most of the CPU time that could otherwise be used by the OpenMP threads.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">openmp_program</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="n">idle_wait</span><span class="p">()</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">bcast</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>busy</strong><span class="classifier">int, default 0</span></dt><dd><p>Rank of busy process.</p>
+</dd>
+<dt><strong>sleep</strong><span class="classifier">float, default 0.2</span></dt><dd><p>Sleeping period in seconds between checking if process is still busy.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">

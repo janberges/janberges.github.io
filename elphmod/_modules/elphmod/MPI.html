@@ -148,6 +148,7 @@
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">mpi4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPI</span>
@@ -564,6 +565,48 @@
 
     <span class="k">if</span> <span class="n">error</span><span class="p">:</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="idle_wait">
+<a class="viewcode-back" href="../../modules/MPI.html#elphmod.MPI.idle_wait">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">idle_wait</span><span class="p">(</span><span class="n">busy</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sleep</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wait for busy process to finish without using up much CPU time.</span>
+
+<span class="sd">    This can be used to efficiently run an OpenMP-parallelized program from one</span>
+<span class="sd">    of the MPI processes. In the below example, without calling this function,</span>
+<span class="sd">    the other processes would usually busy-wait for the program to finish, using</span>
+<span class="sd">    up most of the CPU time that could otherwise be used by the OpenMP threads.</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        if comm.rank == 0:</span>
+<span class="sd">            results = openmp_program()</span>
+<span class="sd">        else:</span>
+<span class="sd">            results = None</span>
+
+<span class="sd">        idle_wait()</span>
+
+<span class="sd">        results = comm.bcast(results)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    busy : int, default 0</span>
+<span class="sd">        Rank of busy process.</span>
+<span class="sd">    sleep : float, default 0.2</span>
+<span class="sd">        Sleeping period in seconds between checking if process is still busy.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="n">busy</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">rank</span> <span class="o">!=</span> <span class="n">busy</span><span class="p">:</span>
+                <span class="n">comm</span><span class="o">.</span><span class="n">isend</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="n">rank</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">irecv</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">busy</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">test</span><span class="p">()[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="elphmodenv">
