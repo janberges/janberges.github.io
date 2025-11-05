@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Patches &mdash; elphmod  documentation</title>
+  <title>Contributing &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/style.css?v=6b874a89" />
@@ -20,7 +20,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Contributing" href="contributing.html" /> 
+    <link rel="next" title="Patches" href="patches.html" />
+    <link rel="prev" title="Changelog" href="changelog.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -114,12 +115,12 @@
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Patches</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#changes-in-phonon">Changes in PHonon</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#changes-in-epw">Changes in EPW</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#code-checks">Code checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#to-do">To do</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="patches.html">Patches</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
 </ul>
 
@@ -137,9 +138,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Patches</li>
+      <li class="breadcrumb-item active">Contributing</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/pages/patches.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/pages/contributing.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -147,49 +148,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="patches">
-<h1>Patches<a class="headerlink" href="#patches" title="Link to this heading"></a></h1>
-<p>Some parts of elphmod (including examples) process the output of a modified
-version of Quantum ESPRESSO (QE). We provide the corresponding patches for
-different versions of QE. To apply them, go to the QE repository and run, e.g.,
-the following commands:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git checkout qe-7.5
-git apply /path/to/elphmod/patches/qe-7.5.patch
-./configure
-make pw pp ph epw
-</pre></div>
-</div>
-<p>The patch files have been created using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">-U1</span></code>.</p>
-<p>The following description applies to <code class="docutils literal notranslate"><span class="pre">qe-6.7MaX-Release</span></code> and higher versions.
-Since <code class="docutils literal notranslate"><span class="pre">qe-7.4</span></code>, the changes in EPW are part of QE and do not require a patch.
-The patch for <code class="docutils literal notranslate"><span class="pre">qe-6.3-backports</span></code> uses different formats for input and output,
-which requires using <code class="docutils literal notranslate"><span class="pre">elphmod.elph.Model(old_ws=True)</span></code>.</p>
-<section id="changes-in-phonon">
-<h2>Changes in PHonon<a class="headerlink" href="#changes-in-phonon" title="Link to this heading"></a></h2>
-<p>The following inputs are used for constrained density-functional perturbation
-theory (cDFPT) [Nomura and Arita, Phys. Rev. B <strong>92</strong>, 245108 (2015)]. If not
-set, a standard DFPT calculation is done.</p>
+  <section id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Link to this heading"></a></h1>
+<p>Patches, merge request, issue reports, and feature requests are most welcome,
+either via email or through any of the web platforms where elphmod is hosted.</p>
+<section id="code-checks">
+<h2>Code checks<a class="headerlink" href="#code-checks" title="Link to this heading"></a></h2>
+<p>The following checks should be performed regularly and especially before
+publishing a new version.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">cdfpt_bnd</span></code>: Definition of cDFPT active subspace via list of one-based band
-indices. The band indices are defined by QE, where bands are sorted by energy.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cdfpt_orb</span></code>: Definition of cDFPT active subspace via list of orbital indices.
-This requires that a <code class="docutils literal notranslate"><span class="pre">projwfc.x</span></code> calculation for the complete uniform <em>k</em> mesh
-used in the phonon calculation is done before. The orbital indices are defined
-in the output file of <code class="docutils literal notranslate"><span class="pre">projwfc.x</span></code>. If <em>n</em> orbitals are specified, for each <em>k</em>
-point, the <em>n</em> states with the largest projection onto the subspace spanned by
-these <em>n</em> orbitals are selected. If <code class="docutils literal notranslate"><span class="pre">cdfpt_bnd</span></code> is also specified, up to <em>n</em>
-states among these bands are chosen.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">bare</span></code>: Suppress electronic response to atomic displacements? This corresponds
-to a cDFPT active subspace containing <em>all</em> states.</p></li>
+<li><p>Check if all examples work for the latest QE patch and i-PI installed.</p></li>
+<li><p>Update documentation (which should also reveal changes in the examples).</p></li>
+<li><p>Run tests both serially and in parallel for different Python versions.</p></li>
+<li><p>Reformat source code with <code class="docutils literal notranslate"><span class="pre">frettipy</span></code> and manually wrap overlong lines.</p></li>
+<li><p>Validate source code using <code class="docutils literal notranslate"><span class="pre">flake8</span></code> and fix all errors and warnings.</p></li>
 </ul>
-<p>Additionally, the option <code class="docutils literal notranslate"><span class="pre">electron_phonon</span> <span class="pre">=</span> <span class="pre">'defpot'</span></code> prints the electron-phonon
-matrix elements in Ry/bohr in the Cartesian basis to standard output.</p>
 </section>
-<section id="changes-in-epw">
-<h2>Changes in EPW<a class="headerlink" href="#changes-in-epw" title="Link to this heading"></a></h2>
-<p>If <code class="docutils literal notranslate"><span class="pre">epwwrite</span></code> is enabled, the file <code class="docutils literal notranslate"><span class="pre">wigner.fmt</span></code> is written. It contains the
-Wigner-Seitz vectors and degeneracies corresponding to the electron-phonon
-matrix elements in the localized representation in <code class="docutils literal notranslate"><span class="pre">outfir/prefix.epmatwp</span></code>.</p>
+<section id="to-do">
+<h2>To do<a class="headerlink" href="#to-do" title="Link to this heading"></a></h2>
+<p>The following things should/could be done sooner or later. Items with question
+mark are not necessarily a good idea.</p>
+<ul class="simple">
+<li><p>Use size-consistent tolerance for electron number when finding Fermi level?</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">ph.D0</span></code> and <code class="docutils literal notranslate"><span class="pre">elph.g0</span></code> when generating models with <code class="docutils literal notranslate"><span class="pre">q2r</span></code>?</p></li>
+<li><p>Read Wannier-function centres from <code class="docutils literal notranslate"><span class="pre">_centres.xyz</span></code>.</p></li>
+<li><p>Add long-range argument <code class="docutils literal notranslate"><span class="pre">lr</span></code> to electron-phonon class <code class="docutils literal notranslate"><span class="pre">elph</span></code>?</p></li>
+<li><p>Remember order of atomic species in header of force-constant files.</p></li>
+<li><p>Use generic (argument agnostic) function to write all QE input files.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">assume_isolated</span> <span class="pre">=</span> <span class="pre">'2D'</span></code> in all examples with 2D systems.</p></li>
+<li><p>Consider that minima and maxima of bitmaps fall on pixel edges, not centers.</p></li>
+<li><p>Use info function from MPI module to raise errors and warnings.</p></li>
+<li><p>Disentangle two-dimensional bands with spin degree of freedom.</p></li>
+<li><p>Check if cDFPT examples work for for <code class="docutils literal notranslate"><span class="pre">nspin</span> <span class="pre">=</span> <span class="pre">2</span></code> or <code class="docutils literal notranslate"><span class="pre">noncolin</span> <span class="pre">=</span> <span class="pre">.true.</span></code></p></li>
+<li><p>Shift Wannier functions more accurately in STM and STS simulations.</p></li>
+<li><p>Move I/O functions and numerical constants to separate modules.</p></li>
+<li><p>Free local memory after data has been gathered in global memory.</p></li>
+<li><p>Replace status arguments etc. by global <code class="docutils literal notranslate"><span class="pre">elphmod(.misc).verbosity</span></code>.</p></li>
+</ul>
 </section>
 </section>
 
@@ -197,7 +192,8 @@ matrix elements in the localized representation in <code class="docutils literal
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="contributing.html" class="btn btn-neutral float-left" title="Contributing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="changelog.html" class="btn btn-neutral float-left" title="Changelog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="patches.html" class="btn btn-neutral float-right" title="Patches" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
