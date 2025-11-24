@@ -337,7 +337,7 @@ basis as <cite>U</cite> (eigenbasis of the Hamiltonian).</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.diagrams.green_kubo_conductivity">
-<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">green_kubo_conductivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">v,</span> <span class="pre">A,</span> <span class="pre">omega,</span> <span class="pre">kT=0.025,</span> <span class="pre">eta=0.01,</span> <span class="pre">eps=1e-10,</span> <span class="pre">occupations='fd',</span> <span class="pre">a=array([[1.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[0.,</span> <span class="pre">1.,</span> <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">1.]]),</span> <span class="pre">dc_only=False,</span> <span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/diagrams.html#green_kubo_conductivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.diagrams.green_kubo_conductivity" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.diagrams.</span></span><span class="sig-name descname"><span class="pre">green_kubo_conductivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">v,</span> <span class="pre">A,</span> <span class="pre">omega,</span> <span class="pre">kT=0.025,</span> <span class="pre">eta=0.01,</span> <span class="pre">eps=1e-10,</span> <span class="pre">occupations='fd',</span> <span class="pre">a=array([[1.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[0.,</span> <span class="pre">1.,</span> <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">1.]]),</span> <span class="pre">weights=None,</span> <span class="pre">dc_only=False,</span> <span class="pre">comm=&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/diagrams.html#green_kubo_conductivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.diagrams.green_kubo_conductivity" title="Link to this definition"></a></dt>
 <dd><p>Calculate Green-Kubo optical conductivity in the bubble approximation.</p>
 <div class="math notranslate nohighlight">
 \[\Re \sigma_{x y}(\Omega) = \frac{\pi \hbar e^2}{V \sub{uc}}
@@ -371,6 +371,10 @@ used to compute the imaginary part through the Kramers-Kronig relation.</p>
 <dt><strong>occupations</strong><span class="classifier">function</span></dt><dd><p>Particle distribution as a function of energy divided by <cite>kT</cite>.</p>
 </dd>
 <dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Bravais lattice vectors used to calculate unit-cell volume.</p>
+</dd>
+<dt><strong>weights</strong><span class="classifier">nparray</span></dt><dd><p>Weights of k points. Only needed if <cite>v</cite> and <cite>A</cite> are given for the
+irreducible k points only. Note that this requires symmetrizing the
+resulting conductivity.</p>
 </dd>
 <dt><strong>dc_only</strong><span class="classifier">bool</span></dt><dd><p>Only compute DC resistivity tensor (zero-frequency limit)?</p>
 </dd>

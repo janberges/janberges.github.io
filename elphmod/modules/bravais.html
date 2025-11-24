@@ -1089,7 +1089,7 @@ the original and the transformed mesh.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.bravais.symmetries_ibrav">
-<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">symmetries_ibrav</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ibrav</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/bravais.html#symmetries_ibrav"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.bravais.symmetries_ibrav" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.bravais.</span></span><span class="sig-name descname"><span class="pre">symmetries_ibrav</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ibrav</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cartesian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/bravais.html#symmetries_ibrav"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.bravais.symmetries_ibrav" title="Link to this definition"></a></dt>
 <dd><p>Provide symmetries defined in Quantum ESPRESSO.</p>
 <p>These symmetry operations have been obtained from the file <em>info</em> generated
 by Quantum ESPRESSO’s <code class="docutils literal notranslate"><span class="pre">kpoints.x</span></code>.</p>
@@ -1097,6 +1097,11 @@ by Quantum ESPRESSO’s <code class="docutils literal notranslate"><span class="
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ibrav</strong><span class="classifier">int</span></dt><dd><p>Bravais-lattice index.</p>
+</dd>
+<dt><strong>cartesian</strong><span class="classifier">bool</span></dt><dd><p>Transform symmetry matrices to Cartesian basis?</p>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Arguments passed to <a class="reference internal" href="#elphmod.bravais.primitives" title="elphmod.bravais.primitives"><code class="xref py py-func docutils literal notranslate"><span class="pre">primitives()</span></code></a>, e.g., parameters from
+<a class="reference internal" href="#elphmod.bravais.read_pwi" title="elphmod.bravais.read_pwi"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_pwi()</span></code></a>.</p>
 </dd>
 </dl>
 </dd>
