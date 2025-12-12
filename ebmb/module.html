@@ -56,7 +56,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#ebmb.get"><code class="docutils literal notranslate"><span class="pre">get()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ebmb.load"><code class="docutils literal notranslate"><span class="pre">load()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ebmb.load_floats"><code class="docutils literal notranslate"><span class="pre">load_floats()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ebmb.read_char"><code class="docutils literal notranslate"><span class="pre">read_char()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ebmb.run"><code class="docutils literal notranslate"><span class="pre">run()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ebmb.square_dos"><code class="docutils literal notranslate"><span class="pre">square_dos()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ebmb.steplike_dos"><code class="docutils literal notranslate"><span class="pre">steplike_dos()</span></code></a></li>
@@ -69,6 +68,7 @@
 <li class="toctree-l1"><a class="reference internal" href="examples/gap.html">Order parameter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/dos.html">Density of states</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/residue.html">Residue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/realgw.html">Normal state</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
@@ -269,7 +269,7 @@ The lambda parameter <cite>l</cite> is g0 / w0 squared times the density of stat
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ebmb.get">
-<span class="sig-prename descclassname"><span class="pre">ebmb.</span></span><span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">program</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ebmb'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'~temporary.dat'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ebmb.html#get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ebmb.get" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">ebmb.</span></span><span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">program</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ebmb'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ebmb.html#get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ebmb.get" title="Link to this definition"></a></dt>
 <dd><p>Run ‘ebmb’, ‘tc’ or ‘critical’ and load results.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -331,26 +331,6 @@ Critical parameter(s).</p>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ndarray</dt><dd><p>Critical parameter(s).</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ebmb.read_char">
-<span class="sig-prename descclassname"><span class="pre">ebmb.</span></span><span class="sig-name descname"><span class="pre">read_char</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ebmb.html#read_char"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ebmb.read_char" title="Link to this definition"></a></dt>
-<dd><p>Read character from binary or text file (for Python-3 compatibility).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>file</strong><span class="classifier">File Object</span></dt><dd><p>File opened in binary or text mode.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>str</dt><dd><p>Next character from file.</p>
 </dd>
 </dl>
 </dd>

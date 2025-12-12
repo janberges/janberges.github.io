@@ -52,6 +52,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../examples/gap.html">Order parameter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/dos.html">Density of states</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/residue.html">Residue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/realgw.html">Normal state</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
@@ -104,7 +105,7 @@
 
 <div class="viewcode-block" id="get">
 <a class="viewcode-back" href="../module.html#ebmb.get">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">program</span><span class="o">=</span><span class="s1">&#39;ebmb&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s1">&#39;~temporary.dat&#39;</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">program</span><span class="o">=</span><span class="s1">&#39;ebmb&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run &#39;ebmb&#39;, &#39;tc&#39; or &#39;critical&#39; and load results.</span>
 
 <span class="sd">    Parameters</span>
@@ -127,6 +128,13 @@
 <span class="sd">        Returned otherwise.</span>
 <span class="sd">        Critical parameter(s).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;~ebmb.tmp.dat&#39;</span>
+        <span class="n">shm</span> <span class="o">=</span> <span class="s1">&#39;/dev/shm/&#39;</span>
+
+        <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">shm</span><span class="p">):</span>
+            <span class="n">file</span> <span class="o">=</span> <span class="n">shm</span> <span class="o">+</span> <span class="n">file</span>
+
     <span class="k">if</span> <span class="n">replace</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
         <span class="n">run</span><span class="p">(</span><span class="n">program</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">file</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
 
@@ -154,7 +162,8 @@
     <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="n">program</span><span class="p">]</span>
 
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">command</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">value</span><span class="p">)))]))</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">command</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">value</span><span class="p">)))]))</span>
 
     <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
@@ -165,29 +174,6 @@
         <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
             <span class="n">command</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)),</span> <span class="s1">&#39;bin&#39;</span><span class="p">,</span>
                 <span class="n">command</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
-
-
-<div class="viewcode-block" id="read_char">
-<a class="viewcode-back" href="../module.html#ebmb.read_char">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">read_char</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read character from binary or text file (for Python-3 compatibility).</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    file : File Object</span>
-<span class="sd">        File opened in binary or text mode.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    str</span>
-<span class="sd">        Next character from file.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">char</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">char</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load">
@@ -209,7 +195,7 @@
 
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">read_char</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">))</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;:&#39;</span><span class="p">)),</span> <span class="s1">&#39;:&#39;</span><span class="p">))</span>
 
             <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;REAL&#39;</span><span class="p">:</span>
                 <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span>
