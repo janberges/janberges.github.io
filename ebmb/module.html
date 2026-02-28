@@ -15,8 +15,8 @@
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -238,7 +238,7 @@ The lambda parameter <cite>l</cite> is g0 / w0 squared times the density of stat
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ebmb.gaussian_a2F">
-<span class="sig-prename descclassname"><span class="pre">ebmb.</span></span><span class="sig-name descname"><span class="pre">gaussian_a2F</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'a2F.in'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.002</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ebmb.html#gaussian_a2F"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ebmb.gaussian_a2F" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">ebmb.</span></span><span class="sig-name descname"><span class="pre">gaussian_a2F</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'a2F.in'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.002</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wlog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ebmb.html#gaussian_a2F"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ebmb.gaussian_a2F" title="Link to this definition"></a></dt>
 <dd><p>Calculate and save Gaussian example Eliashberg spectral function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -252,6 +252,8 @@ The lambda parameter <cite>l</cite> is g0 / w0 squared times the density of stat
 <dt><strong>w0</strong><span class="classifier">float</span></dt><dd><p>Center (expected value of Einstein frequency).</p>
 </dd>
 <dt><strong>s</strong><span class="classifier">float</span></dt><dd><p>Broadening.</p>
+</dd>
+<dt><strong>wlog</strong><span class="classifier">float</span></dt><dd><p>Logarithmic average phonon frequency. This is an alias for <cite>w0</cite>.</p>
 </dd>
 <dt><strong>replace</strong><span class="classifier">bool</span></dt><dd><p>Overwrite existing output file?</p>
 </dd>
