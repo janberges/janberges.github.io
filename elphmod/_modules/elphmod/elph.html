@@ -7,15 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>elphmod.elph &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=6b874a89" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -237,7 +237,7 @@
 <a class="viewcode-back" href="../../modules/elph.html#elphmod.elph.Model.g">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">g</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q3</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k3</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">elbnd</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">phbnd</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">broadcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate electron-phonon coupling for arbitary points k and k + q.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate electron-phonon coupling for arbitrary points k and k + q.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -955,7 +955,7 @@
 
 <span class="sd">        If :attr:`divide_ndegen`, the division by the degeneracies of the</span>
 <span class="sd">        Wigner-Seitz points is not undone before writing the *.epmatwp* file.</span>
-<span class="sd">        Instead, all degeneracies in the *.wiger* file are set to one.</span>
+<span class="sd">        Instead, all degeneracies in the *.wigner* file are set to one.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1002,6 +1002,140 @@
                             <span class="n">buf</span> <span class="o">=</span> <span class="n">epmatwp</span><span class="p">[</span><span class="n">g</span><span class="p">,</span> <span class="n">na</span><span class="p">]</span>
 
                         <span class="n">buf</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Model.export">
+<a class="viewcode-back" href="../../modules/elph.html#elphmod.elph.Model.export">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">export</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">kT</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">nspin</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">strain</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">supercell</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">forces</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">econv</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lconv</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Export model to input file for ``elphy`` code.</span>
+
+<span class="sd">        See https://codeberg.org/janberges/elphy.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filename : str</span>
+<span class="sd">            Name of input file for ``elphy`` code.</span>
+<span class="sd">        kT : float</span>
+<span class="sd">            Smearing temperature.</span>
+<span class="sd">        n : float</span>
+<span class="sd">            Number of electrons per primitive cell.</span>
+<span class="sd">        nspin : int, default 2</span>
+<span class="sd">            Number of spins per orbital.</span>
+<span class="sd">        strain : int, default 0.0</span>
+<span class="sd">            Isotropic strain.</span>
+<span class="sd">        supercell : tuple of (int or tuple of int), default (1, 1, 1)</span>
+<span class="sd">            Supercell lattice vectors in units of primitive lattice vectors.</span>
+<span class="sd">        forces : ndarray, optional</span>
+<span class="sd">            Force correction for all atoms in the primitive cell.</span>
+<span class="sd">        econv : float, default 0.5</span>
+<span class="sd">            Energy conversion factor. The default converts Rydberg to Hartree</span>
+<span class="sd">            atomic units.</span>
+<span class="sd">        lconv : float, default 1.0</span>
+<span class="sd">            Length conversion factor. By default, length units are not changed.</span>
+<span class="sd">        eps : float, default 1e-10</span>
+<span class="sd">            Matrix-element threshold in output units.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">supercell</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">supercell</span><span class="p">(</span><span class="o">*</span><span class="n">supercell</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">kconv</span> <span class="o">=</span> <span class="n">econv</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">divide_mass</span> <span class="k">else</span> <span class="n">econv</span> <span class="o">/</span> <span class="n">lconv</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">gconv</span> <span class="o">=</span> <span class="n">econv</span> <span class="o">**</span> <span class="mi">3</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">divide_mass</span> <span class="k">else</span> <span class="n">econv</span> <span class="o">/</span> <span class="n">lconv</span>
+
+        <span class="n">tused</span> <span class="o">=</span> <span class="n">eps</span> <span class="o">&lt;</span> <span class="n">econv</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+        <span class="n">kused</span> <span class="o">=</span> <span class="n">eps</span> <span class="o">&lt;</span> <span class="n">kconv</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+        <span class="n">gused</span> <span class="o">=</span> <span class="n">eps</span> <span class="o">&lt;</span> <span class="n">gconv</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+
+        <span class="n">R</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">R</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">tused</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))]))</span>
+        <span class="n">R</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">kused</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))]))</span>
+        <span class="n">R</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Rg</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">gused</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))]))</span>
+        <span class="n">R</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Rk</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">gused</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))]))</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dat</span><span class="p">:</span>
+            <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">kT</span> <span class="o">*</span> <span class="n">econv</span><span class="p">))</span>
+            <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span>
+            <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+            <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">nspin</span><span class="p">)</span>
+            <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">strain</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+                <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%2d</span><span class="s1"> </span><span class="si">%2d</span><span class="s1"> </span><span class="si">%2d</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">supercell</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+                <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%15.9f</span><span class="s1"> </span><span class="si">%15.9f</span><span class="s1"> </span><span class="si">%15.9f</span><span class="se">\n</span><span class="s1">&#39;</span>
+                    <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">lconv</span><span class="p">))</span>
+
+            <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nat</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">forces</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">forces</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">forces</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">forces</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nat</span><span class="p">):</span>
+                <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%2s</span><span class="s1"> </span><span class="si">%15.9f</span><span class="s1"> </span><span class="si">%15.9f</span><span class="s1"> </span><span class="si">%15.9f</span><span class="s1"> </span><span class="si">%13.9f</span><span class="s1"> </span><span class="si">%13.9f</span><span class="s1"> </span><span class="si">%13.9f</span><span class="se">\n</span><span class="s1">&#39;</span>
+                    <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">atom_order</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">lconv</span><span class="p">,</span>
+                        <span class="o">*</span><span class="n">forces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">econv</span> <span class="o">/</span> <span class="n">lconv</span><span class="p">))</span>
+
+            <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">R</span><span class="p">))</span>
+
+            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">R</span><span class="p">:</span>
+                <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%2d</span><span class="s1"> </span><span class="si">%2d</span><span class="s1"> </span><span class="si">%2d</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">r</span><span class="p">)</span>
+
+            <span class="n">f</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%%</span><span class="s1"> .</span><span class="si">%d</span><span class="s1">f&#39;</span> <span class="o">%</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">eps</span><span class="p">))))</span>
+
+            <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">tused</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+            <span class="k">for</span> <span class="n">ri</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">R</span><span class="p">)):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">i</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">ri</span><span class="p">]))</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">tused</span><span class="p">[</span><span class="n">ri</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]:</span>
+                            <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> </span><span class="si">%d</span><span class="s1"> </span><span class="si">%d</span><span class="s1"> </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span>
+                                <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+                                <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ri</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span><span class="o">.</span><span class="n">real</span> <span class="o">*</span> <span class="n">econv</span><span class="p">))</span>
+
+            <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">kused</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+            <span class="k">for</span> <span class="n">rj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">R</span><span class="p">)):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">j</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">rj</span><span class="p">]))</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">kused</span><span class="p">[</span><span class="n">rj</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]:</span>
+                            <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> </span><span class="si">%d</span><span class="s1"> </span><span class="si">%d</span><span class="s1"> </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span>
+                                <span class="o">%</span> <span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+                                <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">rj</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span><span class="o">.</span><span class="n">real</span> <span class="o">*</span> <span class="n">kconv</span><span class="p">))</span>
+
+            <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">gused</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+            <span class="k">for</span> <span class="n">rk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Rg</span><span class="p">)):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">k</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Rg</span><span class="p">[</span><span class="n">rk</span><span class="p">]))</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">rl</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Rk</span><span class="p">)):</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">l</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Rk</span><span class="p">[</span><span class="n">rl</span><span class="p">]))</span>
+                        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                            <span class="k">continue</span>
+                        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+                            <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+                                <span class="k">if</span> <span class="n">gused</span><span class="p">[</span><span class="n">rk</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">rl</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">]:</span>
+                                    <span class="n">dat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> </span><span class="si">%d</span><span class="s1"> </span><span class="si">%d</span><span class="s1"> </span><span class="si">%d</span><span class="s1"> </span><span class="si">%d</span><span class="s1"> </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span>
+                                        <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+                                        <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">rk</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">rl</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">real</span>
+                                            <span class="o">*</span> <span class="n">gconv</span><span class="p">))</span></div>
 </div>
 
 
@@ -1399,7 +1533,7 @@
 <span class="sd">    epw_out : str</span>
 <span class="sd">        Name of EPW output file.</span>
 <span class="sd">    q : list of int</span>
-<span class="sd">        List of q points as integer recriprocal lattice units.</span>
+<span class="sd">        List of q points as integer reciprocal lattice units.</span>
 <span class="sd">    nq : int</span>
 <span class="sd">        Number of q points per dimension.</span>
 <span class="sd">    nmodes : int</span>
@@ -1411,7 +1545,7 @@
 <span class="sd">    eps : float</span>
 <span class="sd">        Tolerance for q and k points.</span>
 <span class="sd">    squeeze : bool</span>
-<span class="sd">        In single-band case, skip dimensions of output arrary corresponding to</span>
+<span class="sd">        In single-band case, skip dimensions of output array corresponding to</span>
 <span class="sd">        electronic bands?</span>
 <span class="sd">    status : bool</span>
 <span class="sd">        Report currently processed q point?</span>
@@ -1862,7 +1996,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">ph2epw</span><span class="p">(</span><span class="n">fildyn</span><span class="o">=</span><span class="s1">&#39;dyn&#39;</span><span class="p">,</span> <span class="n">outdir</span><span class="o">=</span><span class="s1">&#39;work&#39;</span><span class="p">,</span> <span class="n">dvscf_dir</span><span class="o">=</span><span class="s1">&#39;save&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert PHonon output to EPW input.</span>
 
-<span class="sd">    Based on script `pp.py` provided with EPW code (C) 2015 Samuel Ponce.</span>
+<span class="sd">    Based on script ``pp.py`` provided with EPW code (C) 2015 Samuel Ponce.</span>
 
 <span class="sd">    All arguments can be overwritten by environment variables of the same name.</span>
 

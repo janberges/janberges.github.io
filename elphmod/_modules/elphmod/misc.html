@@ -7,15 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>elphmod.misc &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=6b874a89" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -210,8 +210,11 @@
 <span class="n">a0</span> <span class="o">=</span> <span class="mf">0.529177210903</span>
 <span class="sd">&quot;&quot;&quot;Bohr radius (AA) [2018 CODATA].&quot;&quot;&quot;</span>
 
-<span class="n">cmm1</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="n">hSI</span> <span class="o">*</span> <span class="n">cSI</span> <span class="o">/</span> <span class="n">eVSI</span>
+<span class="n">cmm1</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="n">cSI</span> <span class="o">*</span> <span class="n">hSI</span> <span class="o">/</span> <span class="n">eVSI</span>
 <span class="sd">&quot;&quot;&quot;&quot;Inverse cm&quot; (eV).&quot;&quot;&quot;</span>
+
+<span class="n">THz</span> <span class="o">=</span> <span class="mf">1e12</span> <span class="o">*</span> <span class="n">hSI</span> <span class="o">/</span> <span class="n">eVSI</span>
+<span class="sd">&quot;&quot;&quot;Terahertz (eV).&quot;&quot;&quot;</span>
 
 <span class="n">kB</span> <span class="o">=</span> <span class="n">kBSI</span> <span class="o">/</span> <span class="n">eVSI</span>
 <span class="sd">&quot;&quot;&quot;Boltzmann constant (eV/K).&quot;&quot;&quot;</span>
@@ -433,6 +436,58 @@
 
 
 <span class="n">rand</span><span class="o">.</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+
+<div class="viewcode-block" id="read_xyz">
+<a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.read_xyz">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_xyz</span><span class="p">(</span><span class="n">xyz</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Iterate over atomic configurations in *.xyz* file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    xyz : str</span>
+<span class="sd">        Name of *.xyz* file.</span>
+
+<span class="sd">    Yields</span>
+<span class="sd">    ------</span>
+<span class="sd">    list of str</span>
+<span class="sd">        Element symbols.</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        Atomic positions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">xyz</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">nat</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">nat</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">nat</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">bcast</span><span class="p">(</span><span class="n">nat</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">nat</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="n">elements</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nat</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="c1"># skip comment line</span>
+
+            <span class="k">for</span> <span class="n">na</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nat</span><span class="p">):</span>
+                <span class="n">cols</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+                <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">positions</span><span class="p">[</span><span class="n">na</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">cols</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]))</span>
+
+        <span class="n">elements</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">bcast</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span>
+        <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+
+        <span class="k">yield</span> <span class="n">elements</span><span class="p">,</span> <span class="n">positions</span>
+
+    <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">lines</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
 
 <div class="viewcode-block" id="read_cube">
 <a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.read_cube">[docs]</a>
@@ -854,7 +909,7 @@
 <span class="sd">    ndarray</span>
 <span class="sd">        Lattice vectors.</span>
 <span class="sd">    ndarray</span>
-<span class="sd">        Direct (screened) Coulomb or hoppling matrix elements, depending on the</span>
+<span class="sd">        Direct (screened) Coulomb or hopping matrix elements, depending on the</span>
 <span class="sd">        input file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">respack_file</span><span class="p">:</span>

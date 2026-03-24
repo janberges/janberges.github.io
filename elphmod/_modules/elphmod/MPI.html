@@ -7,15 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>elphmod.MPI &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=6b874a89" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -615,13 +615,13 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">elphmodenv</span><span class="p">(</span><span class="n">num_threads</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Print commands to change number of threads.</span>
 
-<span class="sd">    Run `eval $(elphmodenv)` before your Python scripts to prevent NumPy from</span>
+<span class="sd">    Run ``eval $(elphmodenv)`` before your Python scripts to prevent NumPy from</span>
 <span class="sd">    using multiple processors for linear algebra. This is advantageous when</span>
-<span class="sd">    parallelizing with MPI already (`mpirun python3 script.py`) or on shared</span>
+<span class="sd">    parallelizing with MPI already (``mpirun python3 script.py``) or on shared</span>
 <span class="sd">    servers, where CPU resources must be used with restraint.</span>
 
-<span class="sd">    Combine `eval $(elphmodenv X)` with `mpirun -n Y python3 script.py`, where</span>
-<span class="sd">    the product of X an Y is the number of available CPUs, for hybrid</span>
+<span class="sd">    Combine ``eval $(elphmodenv X)`` with ``mpirun -n Y python3 script.py``,</span>
+<span class="sd">    where the product of X an Y is the number of available CPUs, for hybrid</span>
 <span class="sd">    parallelization.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>

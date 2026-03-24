@@ -8,15 +8,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Molecular dynamics using i-PI &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/style.css?v=6b874a89" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -172,11 +172,8 @@ molecular dynamics in charge density wave materials</em>, <a class="reference ex
 
 <span class="n">el</span><span class="p">,</span> <span class="n">ph</span><span class="p">,</span> <span class="n">elph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">tas2</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">rydberg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">divide_mass</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">driver</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">md</span><span class="o">.</span><span class="n">Driver</span><span class="p">(</span><span class="n">elph</span><span class="p">,</span> <span class="n">nk</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">nq</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">supercell</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span>
-    <span class="n">kT</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">marzari_vanderbilt</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-
-<span class="n">driver</span><span class="o">.</span><span class="n">kT</span> <span class="o">=</span> <span class="mf">0.005</span>
-<span class="n">driver</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">fermi_dirac</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">md</span><span class="o">.</span><span class="n">Driver</span><span class="p">(</span><span class="n">elph</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">nk</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">nq</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">supercell</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">kT0</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">f0</span><span class="o">=</span><span class="s1">&#39;mv&#39;</span><span class="p">)</span>
 
 <span class="n">driver</span><span class="o">.</span><span class="n">random_displacements</span><span class="p">(</span><span class="n">amplitude</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">reproducible</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -190,8 +187,7 @@ molecular dynamics in charge density wave materials</em>, <a class="reference ex
 
 <span class="n">ipi_driver</span><span class="o">.</span><span class="n">run_driver</span><span class="p">(</span><span class="n">unix</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="n">driver</span><span class="p">)</span>
 
-<span class="n">driver</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">driver</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;md.png&#39;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;md.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/md.png" src="../_images/md.png" />

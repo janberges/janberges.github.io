@@ -7,15 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>elphmod.diagrams &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=6b874a89" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -1279,7 +1279,11 @@
     <span class="n">prefactor</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">kT</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
     <span class="k">if</span> <span class="n">occupations</span> <span class="ow">is</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">fermi_dirac</span><span class="p">:</span> <span class="c1"># faster alternative</span>
-        <span class="k">return</span> <span class="n">prefactor</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">occupations</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">ok</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">real</span> <span class="o">&gt;</span> <span class="o">-</span><span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">xmax</span>
+        <span class="n">Omega</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="n">Omega</span><span class="p">[</span><span class="n">ok</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="n">ok</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">prefactor</span> <span class="o">*</span> <span class="n">Omega</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="n">prefactor</span> <span class="o">*</span> <span class="p">((</span><span class="n">occupations</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># U - mu N</span>
         <span class="o">-</span> <span class="n">occupations</span><span class="o">.</span><span class="n">entropy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="c1"># - T S</span></div>
@@ -1650,7 +1654,7 @@
 <span class="sd">        Particle distribution as a function of energy divided by `kT`.</span>
 <span class="sd">    a : ndarray</span>
 <span class="sd">        Bravais lattice vectors used to calculate unit-cell volume.</span>
-<span class="sd">    weights : nparray</span>
+<span class="sd">    weights : ndarray</span>
 <span class="sd">        Weights of k points. Only needed if `v` and `A` are given for the</span>
 <span class="sd">        irreducible k points only. Note that this requires symmetrizing the</span>
 <span class="sd">        resulting conductivity.</span>
