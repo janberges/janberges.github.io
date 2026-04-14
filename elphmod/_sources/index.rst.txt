@@ -27,6 +27,7 @@
    modules/models/graphene
    modules/models/tas2
    modules/models/chain
+   modules/models/be
 
 .. toctree::
    :caption: Examples
@@ -39,6 +40,7 @@
    examples/dos
    examples/cdw_1d
    examples/ssh
+   examples/double_bz
    examples/double_delta
    examples/electrons
    examples/a2f

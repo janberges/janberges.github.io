@@ -63,6 +63,7 @@
 <li class="toctree-l1"><a class="reference internal" href="modules/models/graphene.html">Graphene</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/models/tas2.html">TaS₂</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/models/chain.html">Chain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/models/be.html">Beryllium monolayer</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
@@ -73,6 +74,7 @@
 <li class="toctree-l1"><a class="reference internal" href="examples/dos.html">Density of states</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/cdw_1d.html">Dimerization (carbon chain)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/ssh.html">Dimerization (SSH model)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/double_bz.html">Double Brillouin-zone plot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/double_delta.html">Double delta (nesting function)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/electrons.html">Electron dispersion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/a2f.html">Eliashberg spectral function</a></li>
@@ -237,10 +239,10 @@
 </li>
       <li><a href="modules/bravais.html#elphmod.bravais.complete">complete() (in module elphmod.bravais)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/bravais.html#elphmod.bravais.complete_k">complete_k() (in module elphmod.bravais)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/plot.html#elphmod.plot.compline">compline() (in module elphmod.plot)</a>
 </li>
       <li><a href="modules/models/graphene.html#elphmod.models.graphene.coulomb_interaction">coulomb_interaction() (in module elphmod.models.graphene)</a>
@@ -248,6 +250,8 @@
       <li><a href="modules/elph.html#elphmod.elph.coupling">coupling() (in module elphmod.elph)</a>
 
       <ul>
+        <li><a href="modules/models/be.html#elphmod.models.be.coupling">(in module elphmod.models.be)</a>
+</li>
         <li><a href="modules/models/chain.html#elphmod.models.chain.coupling">(in module elphmod.models.chain)</a>
 </li>
         <li><a href="modules/models/graphene.html#elphmod.models.graphene.coupling">(in module elphmod.models.graphene)</a>
@@ -255,9 +259,11 @@
         <li><a href="modules/models/tas2.html#elphmod.models.tas2.coupling">(in module elphmod.models.tas2)</a>
 </li>
       </ul></li>
-      <li><a href="modules/models/chain.html#elphmod.models.chain.create">create() (in module elphmod.models.chain)</a>
+      <li><a href="modules/models/be.html#elphmod.models.be.create">create() (in module elphmod.models.be)</a>
 
       <ul>
+        <li><a href="modules/models/chain.html#elphmod.models.chain.create">(in module elphmod.models.chain)</a>
+</li>
         <li><a href="modules/models/graphene.html#elphmod.models.graphene.create">(in module elphmod.models.graphene)</a>
 </li>
         <li><a href="modules/models/tas2.html#elphmod.models.tas2.create">(in module elphmod.models.tas2)</a>
@@ -325,9 +331,11 @@
 </li>
       <li><a href="modules/md.html#elphmod.md.Driver">Driver (class in elphmod.md)</a>
 </li>
-      <li><a href="modules/models/chain.html#elphmod.models.chain.dynamical_matrix">dynamical_matrix() (in module elphmod.models.chain)</a>
+      <li><a href="modules/models/be.html#elphmod.models.be.dynamical_matrix">dynamical_matrix() (in module elphmod.models.be)</a>
 
       <ul>
+        <li><a href="modules/models/chain.html#elphmod.models.chain.dynamical_matrix">(in module elphmod.models.chain)</a>
+</li>
         <li><a href="modules/models/graphene.html#elphmod.models.graphene.dynamical_matrix">(in module elphmod.models.graphene)</a>
 </li>
         <li><a href="modules/models/tas2.html#elphmod.models.tas2.dynamical_matrix">(in module elphmod.models.tas2)</a>
@@ -406,13 +414,20 @@
         <li><a href="modules/md.html#module-elphmod.md">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     elphmod.misc
 
       <ul>
         <li><a href="modules/misc.html#module-elphmod.misc">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    elphmod.models.be
+
+      <ul>
+        <li><a href="modules/models/be.html#module-elphmod.models.be">module</a>
 </li>
       </ul></li>
       <li>
@@ -564,9 +579,11 @@
 </li>
       <li><a href="modules/misc.html#elphmod.misc.Ha">Ha (in module elphmod.misc)</a>
 </li>
-      <li><a href="modules/models/chain.html#elphmod.models.chain.hamiltonian">hamiltonian() (in module elphmod.models.chain)</a>
+      <li><a href="modules/models/be.html#elphmod.models.be.hamiltonian">hamiltonian() (in module elphmod.models.be)</a>
 
       <ul>
+        <li><a href="modules/models/chain.html#elphmod.models.chain.hamiltonian">(in module elphmod.models.chain)</a>
+</li>
         <li><a href="modules/models/graphene.html#elphmod.models.graphene.hamiltonian">(in module elphmod.models.graphene)</a>
 </li>
         <li><a href="modules/models/tas2.html#elphmod.models.tas2.hamiltonian">(in module elphmod.models.tas2)</a>
@@ -576,10 +593,10 @@
 </li>
       <li><a href="modules/misc.html#elphmod.misc.hbarSI">hbarSI (in module elphmod.misc)</a>
 </li>
-      <li><a href="modules/occupations.html#elphmod.occupations.heaviside">heaviside() (in module elphmod.occupations)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/occupations.html#elphmod.occupations.heaviside">heaviside() (in module elphmod.occupations)</a>
+</li>
       <li><a href="modules/occupations.html#elphmod.occupations.heaviside_delta">heaviside_delta() (in module elphmod.occupations)</a>
 </li>
       <li><a href="modules/occupations.html#elphmod.occupations.heaviside_delta_prime">heaviside_delta_prime() (in module elphmod.occupations)</a>
@@ -741,6 +758,8 @@
         <li><a href="modules/md.html#module-elphmod.md">elphmod.md</a>
 </li>
         <li><a href="modules/misc.html#module-elphmod.misc">elphmod.misc</a>
+</li>
+        <li><a href="modules/models/be.html#module-elphmod.models.be">elphmod.models.be</a>
 </li>
         <li><a href="modules/models/chain.html#module-elphmod.models.chain">elphmod.models.chain</a>
 </li>

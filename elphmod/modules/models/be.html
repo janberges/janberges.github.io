@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Graphene &mdash; elphmod  documentation</title>
+  <title>Beryllium monolayer &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=6b874a89" />
@@ -20,8 +20,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="TaS₂" href="tas2.html" />
-    <link rel="prev" title="Miscellaneous" href="../misc.html" /> 
+    <link rel="next" title="Bare phonons" href="../../examples/bare.html" />
+    <link rel="prev" title="Chain" href="chain.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -63,17 +63,16 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Models</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Graphene</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#elphmod.models.graphene.coulomb_interaction"><code class="docutils literal notranslate"><span class="pre">coulomb_interaction()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#elphmod.models.graphene.coupling"><code class="docutils literal notranslate"><span class="pre">coupling()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#elphmod.models.graphene.create"><code class="docutils literal notranslate"><span class="pre">create()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#elphmod.models.graphene.dynamical_matrix"><code class="docutils literal notranslate"><span class="pre">dynamical_matrix()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#elphmod.models.graphene.hamiltonian"><code class="docutils literal notranslate"><span class="pre">hamiltonian()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="graphene.html">Graphene</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tas2.html">TaS₂</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chain.html">Chain</a></li>
-<li class="toctree-l1"><a class="reference internal" href="be.html">Beryllium monolayer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Beryllium monolayer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.models.be.coupling"><code class="docutils literal notranslate"><span class="pre">coupling()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.models.be.create"><code class="docutils literal notranslate"><span class="pre">create()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.models.be.dynamical_matrix"><code class="docutils literal notranslate"><span class="pre">dynamical_matrix()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.models.be.hamiltonian"><code class="docutils literal notranslate"><span class="pre">hamiltonian()</span></code></a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
@@ -143,9 +142,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Graphene</li>
+      <li class="breadcrumb-item active">Beryllium monolayer</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/modules/models/graphene.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/modules/models/be.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -153,24 +152,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-elphmod.models.graphene">
-<span id="graphene"></span><h1>Graphene<a class="headerlink" href="#module-elphmod.models.graphene" title="Link to this heading"></a></h1>
+  <section id="module-elphmod.models.be">
+<span id="beryllium-monolayer"></span><h1>Beryllium monolayer<a class="headerlink" href="#module-elphmod.models.be" title="Link to this heading"></a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="elphmod.models.graphene.coulomb_interaction">
-<span class="sig-prename descclassname"><span class="pre">elphmod.models.graphene.</span></span><span class="sig-name descname"><span class="pre">coulomb_interaction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/elphmod/models/graphene.html#coulomb_interaction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.models.graphene.coulomb_interaction" title="Link to this definition"></a></dt>
-<dd><p>Calculate Coulomb interaction of Phys. Rev. Lett. 106, 236805 (2011).</p>
+<dt class="sig sig-object py" id="elphmod.models.be.coupling">
+<span class="sig-prename descclassname"><span class="pre">elphmod.models.be.</span></span><span class="sig-name descname"><span class="pre">coupling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">ignore</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/elphmod/models/be.html#coupling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.models.be.coupling" title="Link to this definition"></a></dt>
+<dd><p>Calculate coupling as in Appendix D.2.2 of doi:10.26092/elib/250.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="elphmod.models.graphene.coupling">
-<span class="sig-prename descclassname"><span class="pre">elphmod.models.graphene.</span></span><span class="sig-name descname"><span class="pre">coupling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">ignore</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/elphmod/models/graphene.html#coupling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.models.graphene.coupling" title="Link to this definition"></a></dt>
-<dd><p>Calculate el.-ph. coupling as in Sec. S9 of PRB 105, L241109 (2022).</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="elphmod.models.graphene.create">
-<span class="sig-prename descclassname"><span class="pre">elphmod.models.graphene.</span></span><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rydberg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/elphmod/models/graphene.html#create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.models.graphene.create" title="Link to this definition"></a></dt>
-<dd><p>Create tight-binding, mass-spring, and coupling data files for graphene.</p>
+<dt class="sig sig-object py" id="elphmod.models.be.create">
+<span class="sig-prename descclassname"><span class="pre">elphmod.models.be.</span></span><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rydberg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/elphmod/models/be.html#create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.models.be.create" title="Link to this definition"></a></dt>
+<dd><p>Create tight-binding, mass-spring, and coupling data files for beryllium.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -191,23 +184,21 @@ their square root, respectively?</p>
 </dd>
 <dt>object</dt><dd><p>Localized electron-phonon coupling.</p>
 </dd>
-<dt>object</dt><dd><p>Localized electron-electron interaction.</p>
-</dd>
 </dl>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="elphmod.models.graphene.dynamical_matrix">
-<span class="sig-prename descclassname"><span class="pre">elphmod.models.graphene.</span></span><span class="sig-name descname"><span class="pre">dynamical_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/elphmod/models/graphene.html#dynamical_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.models.graphene.dynamical_matrix" title="Link to this definition"></a></dt>
-<dd><p>Calculate phonons shown in Fig. 2.9 of doi:10.26092/elib/250.</p>
+<dt class="sig sig-object py" id="elphmod.models.be.dynamical_matrix">
+<span class="sig-prename descclassname"><span class="pre">elphmod.models.be.</span></span><span class="sig-name descname"><span class="pre">dynamical_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/elphmod/models/be.html#dynamical_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.models.be.dynamical_matrix" title="Link to this definition"></a></dt>
+<dd><p>Calculate phonons as in Appendix D.2.2 of doi:10.26092/elib/250.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="elphmod.models.graphene.hamiltonian">
-<span class="sig-prename descclassname"><span class="pre">elphmod.models.graphene.</span></span><span class="sig-name descname"><span class="pre">hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/elphmod/models/graphene.html#hamiltonian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.models.graphene.hamiltonian" title="Link to this definition"></a></dt>
-<dd><p>Calculate electrons of, e.g., Phys. Rev. B 90, 085422 (2014).</p>
+<dt class="sig sig-object py" id="elphmod.models.be.hamiltonian">
+<span class="sig-prename descclassname"><span class="pre">elphmod.models.be.</span></span><span class="sig-name descname"><span class="pre">hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/elphmod/models/be.html#hamiltonian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.models.be.hamiltonian" title="Link to this definition"></a></dt>
+<dd><p>Calculate electrons as in Appendix D.2.2 of doi:10.26092/elib/250.</p>
 </dd></dl>
 
 </section>
@@ -216,8 +207,8 @@ their square root, respectively?</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../misc.html" class="btn btn-neutral float-left" title="Miscellaneous" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tas2.html" class="btn btn-neutral float-right" title="TaS₂" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chain.html" class="btn btn-neutral float-left" title="Chain" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../examples/bare.html" class="btn btn-neutral float-right" title="Bare phonons" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

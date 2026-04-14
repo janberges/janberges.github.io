@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coulomb interaction &mdash; elphmod  documentation</title>
+  <title>Double Brillouin-zone plot &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/style.css?v=6b874a89" />
@@ -20,8 +20,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Decay" href="decay.html" />
-    <link rel="prev" title="Bare phonons" href="bare.html" /> 
+    <link rel="next" title="Double delta (nesting function)" href="double_delta.html" />
+    <link rel="prev" title="Dimerization (SSH model)" href="ssh.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,13 +71,13 @@
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="bare.html">Bare phonons</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Coulomb interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coulomb.html">Coulomb interaction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="decay.html">Decay</a></li>
 <li class="toctree-l1"><a class="reference internal" href="defpot.html">Deformation potential</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dos.html">Density of states</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cdw_1d.html">Dimerization (carbon chain)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ssh.html">Dimerization (SSH model)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="double_bz.html">Double Brillouin-zone plot</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Double Brillouin-zone plot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="double_delta.html">Double delta (nesting function)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="electrons.html">Electron dispersion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="a2f.html">Eliashberg spectral function</a></li>
@@ -136,9 +136,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Coulomb interaction</li>
+      <li class="breadcrumb-item active">Double Brillouin-zone plot</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/examples/coulomb.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/examples/double_bz.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -146,41 +146,63 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="coulomb-interaction">
-<h1>Coulomb interaction<a class="headerlink" href="#coulomb-interaction" title="Link to this heading"></a></h1>
+  <section id="double-brillouin-zone-plot">
+<h1>Double Brillouin-zone plot<a class="headerlink" href="#double-brillouin-zone-plot" title="Link to this heading"></a></h1>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
 
 <span class="c1"># Copyright (C) 2017-2026 elphmod Developers</span>
 <span class="c1"># This program is free software under the terms of the GNU GPLv3 or later.</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.models.be</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="n">elel</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">elel</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;data/U.ijkl&#39;</span><span class="p">,</span> <span class="n">nq</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">no</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">el</span><span class="p">,</span> <span class="n">ph</span><span class="p">,</span> <span class="n">elph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">be</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
 
-<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;GMKG&#39;</span>
-<span class="n">q</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">corners</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">ibrav</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">nq</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">nk</span> <span class="o">=</span> <span class="mi">36</span>
 
-<span class="n">W</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">dispersion</span><span class="p">(</span><span class="n">elel</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">Q1</span><span class="p">,</span> <span class="n">Q2</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">q1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nq</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">q2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nq</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">Q1</span><span class="p">,</span> <span class="n">Q2</span> <span class="ow">in</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">to_Voronoi</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">nq</span><span class="p">)])</span>
+
+<span class="n">shrink_BZ</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="mf">1e-10</span> <span class="c1"># q must be within BZ to avoid ambiguity on edge!</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">nq</span> <span class="o">*</span> <span class="n">shrink_BZ</span>
+
+<span class="n">e</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">dispersion_full_nosym</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">vectors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">w2</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">dispersion</span><span class="p">(</span><span class="n">ph</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">vectors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">g2</span> <span class="o">=</span> <span class="n">elph</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">qxmax</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">qymax</span> <span class="o">=</span> <span class="mf">0.7</span>
+
+<span class="n">image</span><span class="p">,</span> <span class="n">BZ</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">double_plot</span><span class="p">(</span><span class="n">g2</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">nq</span><span class="p">,</span>
+    <span class="n">qxmin</span><span class="o">=-</span><span class="n">qxmax</span><span class="p">,</span> <span class="n">qxmax</span><span class="o">=</span><span class="n">qxmax</span><span class="p">,</span> <span class="n">qymin</span><span class="o">=-</span><span class="n">qymax</span><span class="p">,</span> <span class="n">qymax</span><span class="o">=</span><span class="n">qymax</span><span class="p">,</span>
+    <span class="n">outside</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">outlines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Coulomb interaction (eV)&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Wave vector&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">corners</span><span class="p">],</span> <span class="n">path</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;coulomb.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">qxmax</span><span class="p">,</span> <span class="n">qxmax</span><span class="p">,</span> <span class="o">-</span><span class="n">qymax</span><span class="p">,</span> <span class="n">qymax</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;managua&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">bz</span> <span class="ow">in</span> <span class="n">BZ</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">bz</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;double_bz.png&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/coulomb.png" src="../_images/coulomb.png" />
+<img alt="../_images/double_bz.png" src="../_images/double_bz.png" />
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="bare.html" class="btn btn-neutral float-left" title="Bare phonons" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="decay.html" class="btn btn-neutral float-right" title="Decay" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ssh.html" class="btn btn-neutral float-left" title="Dimerization (SSH model)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="double_delta.html" class="btn btn-neutral float-right" title="Double delta (nesting function)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

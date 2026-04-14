@@ -63,6 +63,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/models/graphene.html">Graphene</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/models/tas2.html">TaS₂</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/models/chain.html">Chain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/models/be.html">Beryllium monolayer</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
@@ -73,6 +74,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/dos.html">Density of states</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/cdw_1d.html">Dimerization (carbon chain)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/ssh.html">Dimerization (SSH model)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/double_bz.html">Double Brillouin-zone plot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/double_delta.html">Double delta (nesting function)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/electrons.html">Electron dispersion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/a2f.html">Eliashberg spectral function</a></li>
@@ -501,7 +503,7 @@
     <span class="n">ph</span><span class="o">.</span><span class="n">standardize</span><span class="p">(</span><span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">)</span>
 
     <span class="n">elph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">el</span><span class="o">=</span><span class="n">el</span><span class="p">,</span> <span class="n">ph</span><span class="o">=</span><span class="n">ph</span><span class="p">,</span> <span class="n">divide_mass</span><span class="o">=</span><span class="n">divide_mass</span><span class="p">)</span>
-    <span class="n">elphmod</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">q2r</span><span class="p">(</span><span class="n">elph</span><span class="p">,</span> <span class="n">nQ</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">r</span><span class="p">[:</span><span class="mi">1</span><span class="p">],</span> <span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="n">elphmod</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">q2r</span><span class="p">(</span><span class="n">elph</span><span class="p">,</span> <span class="n">nQ</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
     <span class="n">elph</span><span class="o">.</span><span class="n">standardize</span><span class="p">(</span><span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">prefix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
