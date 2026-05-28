@@ -178,10 +178,11 @@ optimization:</p>
 <p>The program accepts one, two, or three arguments:</p>
 <pre><code>elphy &lt;data file&gt;
 elphy &lt;data file&gt; &lt;socket&gt;
-elphy &lt;data file&gt; &lt;init file&gt; &lt;radius&gt;</code></pre>
-<p>With one argument, it alternately reads atomic positions from
-standard input and writes energies and forces to standard output, both
-using the XYZ format.</p>
+elphy &lt;data file&gt; &lt;number&gt; &lt;radius&gt;</code></pre>
+<p>With one argument, it alternately reads atomic positions in the XYZ
+format from standard input and writes the supercell vectors, atomic
+positions, free energy, and forces in ASE’s extended XYZ format to
+standard output.</p>
 <p>With two arguments, it exchanges these quantities with i-PI through
 its socket interface. <code>&lt;socket&gt;</code> is a host name
 optionally followed by a colon and a port number, e.g.,
@@ -189,10 +190,11 @@ optionally followed by a colon and a port number, e.g.,
 UNIX socket is used for communication, otherwise an internet socket. The
 address must match the information in the i-PI input file
 <code>input.xml</code>.</p>
-<p>With three arguments, it creates an <code>&lt;init file&gt;</code>
-with initial atomic positions in the XYZ format for i-PI, adding random
-displacements smaller than <code>&lt;radius&gt;</code>, and prints the
-corresponding energies and forces.</p>
+<p>With three arguments, it prints <code>&lt;number&gt;</code> sets of
+atomic positions with random displacements smaller than
+<code>&lt;radius&gt;</code> and the corresponding energies and forces in
+ASE’s extended XYZ format. If <code>&lt;number&gt;</code> is negative,
+only the positions are output using i-PI’s standard XYZ format.</p>
 <p>The <code>&lt;data file&gt;</code> is defined below:</p>
 <pre><code>&lt;temperature kT&gt;
 &lt;number of electrons per unit cell&gt;
