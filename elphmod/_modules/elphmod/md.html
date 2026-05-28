@@ -254,8 +254,14 @@
 <span class="sd">    export : str, optional</span>
 <span class="sd">        Name of input file for ``elphy`` code, a faster rewrite of parts of this</span>
 <span class="sd">        driver. For more information, see https://codeberg.org/janberges/elphy.</span>
-<span class="sd">    eps : float, optional</span>
-<span class="sd">        Matrix-element threshold for export in Hartree atomic units.</span>
+<span class="sd">    econv : float, default 0.5</span>
+<span class="sd">        Energy conversion factor for export. The default converts Rydberg to</span>
+<span class="sd">        Hartree atomic units.</span>
+<span class="sd">    lconv : float, default 1.0</span>
+<span class="sd">        Length conversion factor for export. By default, length units are not</span>
+<span class="sd">        changed.</span>
+<span class="sd">    eps : float, default 1e-10</span>
+<span class="sd">        Matrix-element threshold for export in output units.</span>
 <span class="sd">    shared_memory : bool, default True</span>
 <span class="sd">        Store :attr:`d0` and :attr:`d` in shared memory?</span>
 <span class="sd">    **kwargs</span>
@@ -290,8 +296,8 @@
 <span class="sd">        if `shared_memory`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elph</span><span class="p">,</span> <span class="n">kT</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">nk</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">nq</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">supercell</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">unscreen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kT0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">f0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">export</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span>
-            <span class="n">shared_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">unscreen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kT0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">f0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">export</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">econv</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">lconv</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">rydberg</span><span class="p">:</span>
             <span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initialize &#39;el&#39; with &#39;rydberg=True&#39;!&quot;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -377,7 +383,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">standardize</span><span class="p">()</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">export</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">forces</span><span class="o">=-</span><span class="bp">self</span><span class="o">.</span><span class="n">F0</span><span class="p">,</span>
-                <span class="n">supercell</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,)</span> <span class="k">if</span> <span class="n">supercell</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">supercell</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">)</span>
+                <span class="n">supercell</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,)</span> <span class="k">if</span> <span class="n">supercell</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">supercell</span><span class="p">,</span>
+                <span class="n">econv</span><span class="o">=</span><span class="n">econv</span><span class="p">,</span> <span class="n">lconv</span><span class="o">=</span><span class="n">lconv</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">supercell</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">elph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">supercell</span><span class="p">(</span><span class="o">*</span><span class="n">supercell</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
