@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Plotting &mdash; StoryLines  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -53,6 +53,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#storylines.plot.Plot.compline"><code class="docutils literal notranslate"><span class="pre">Plot.compline()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#storylines.plot.Plot.cut"><code class="docutils literal notranslate"><span class="pre">Plot.cut()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#storylines.plot.Plot.fatband"><code class="docutils literal notranslate"><span class="pre">Plot.fatband()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#storylines.plot.Plot.grids"><code class="docutils literal notranslate"><span class="pre">Plot.grids()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#storylines.plot.Plot.image"><code class="docutils literal notranslate"><span class="pre">Plot.image()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#storylines.plot.Plot.line"><code class="docutils literal notranslate"><span class="pre">Plot.line()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#storylines.plot.Plot.node"><code class="docutils literal notranslate"><span class="pre">Plot.node()</span></code></a></li>
@@ -75,6 +76,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/colors.html">Colors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/example.html">Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/faces.html">Tetrahedron</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/fatband.html">Fatbands</a></li>
@@ -117,7 +119,7 @@
 <p>Figure object.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="storylines.plot.Plot">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">storylines.plot.</span></span><span class="sig-name descname"><span class="pre">Plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xyaxes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rounded</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">more</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/storylines/plot.html#Plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#storylines.plot.Plot" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">storylines.plot.</span></span><span class="sig-name descname"><span class="pre">Plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xyaxes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rounded</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">more</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/storylines/plot.html#Plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#storylines.plot.Plot" title="Link to this definition"></a></dt>
 <dd><p>Plot object.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -181,19 +183,18 @@ otherwise evaluates to <code class="docutils literal notranslate"><span class="p
 </dd>
 <dt><strong>xstep, ystep, zstep</strong><span class="classifier">float, default None</span></dt><dd><p>Exact tick increment.</p>
 </dd>
-<dt><strong>xminorticks, yminorticks</strong><span class="classifier">list, default None</span></dt><dd><p>List of minor-tick positions. There is currently no intelligent way to
-set the minor ticks depending on the major ticks. However, minor ticks
-that fall on major ticks are omitted.</p>
+<dt><strong>xminorticks, yminorticks</strong><span class="classifier">list, default None</span></dt><dd><p>List of minor-tick positions. Minor ticks that fall on major ticks are
+omitted.</p>
 </dd>
-<dt><strong>xminormarks, yminormarks</strong><span class="classifier">bool, default False</span></dt><dd><p>Show minor tick marks?</p>
-</dd>
-<dt><strong>xminorspacing, yminorspacing</strong><span class="classifier">float, default None</span></dt><dd><p>Approximate minor-tick spacing in cm.</p>
+<dt><strong>xminormarks, yminormarks</strong><span class="classifier">bool, default True</span></dt><dd><p>Show minor tick marks?</p>
 </dd>
 <dt><strong>xminorstep, yminorstep</strong><span class="classifier">float, default None</span></dt><dd><p>Exact minor-tick increment.</p>
 </dd>
 <dt><strong>xmin, ymin, zmin</strong><span class="classifier">float, default None</span></dt><dd><p>Lower axis limit.</p>
 </dd>
 <dt><strong>xmax, ymax, zmax</strong><span class="classifier">float, default None</span></dt><dd><p>Upper axis limit.</p>
+</dd>
+<dt><strong>xlog, ylog, zlog</strong><span class="classifier">bool, default False</span></dt><dd><p>Use base-10 logarithmic axes?</p>
 </dd>
 <dt><strong>dleft, dright, dbottom, dtop</strong><span class="classifier">float, default 0.0</span></dt><dd><p>Protrusion of x- and y-axis limits into margins in cm.</p>
 </dd>
@@ -232,7 +233,7 @@ coordinates.</p>
 </dd>
 <dt><strong>lcol</strong><span class="classifier">int, default 1</span></dt><dd><p>Number of columns in legend.</p>
 </dd>
-<dt><strong>llen</strong><span class="classifier">str, default ‘4mm’</span></dt><dd><p>Length of example lines next to labels.</p>
+<dt><strong>llen</strong><span class="classifier">str, default ‘9pt’</span></dt><dd><p>Length of example lines next to labels.</p>
 </dd>
 <dt><strong>lopt</strong><span class="classifier">str, default None</span></dt><dd><p>Legend options, e.g., for orientation.</p>
 </dd>
@@ -241,15 +242,16 @@ coordinates.</p>
 </dd>
 <dt><strong>lput</strong><span class="classifier">bool, default True</span></dt><dd><p>Draw legend?</p>
 </dd>
-<dt><strong>lrow</strong><span class="classifier">int, default 0</span></dt><dd><p>Number of rows in legend.</p>
+<dt><strong>lrmo</strong><span class="classifier">bool, default False</span></dt><dd><p>Arrange legend entries in row-major order?</p>
+</dd>
+<dt><strong>lrow</strong><span class="classifier">int, default None</span></dt><dd><p>Number of rows in legend. If set, <cite>lcol</cite> is ignored.</p>
 </dd>
 <dt><strong>lsep</strong><span class="classifier">str, default None</span></dt><dd><p>Space between legend title and entries, e.g., <code class="docutils literal notranslate"><span class="pre">'6pt'</span></code>.</p>
 </dd>
-<dt><strong>ltop</strong><span class="classifier">str, default None</span></dt><dd><p>Legend title. If <cite>lbox</cite> is used, you might want to prevent that TikZ
-pictures in the legend inherit the <code class="docutils literal notranslate"><span class="pre">rounded</span> <span class="pre">corners</span></code> of the box by
-prepending <code class="docutils literal notranslate"><span class="pre">\tikzset{sharp</span> <span class="pre">corners}</span></code> to this value.</p>
+<dt><strong>ltop</strong><span class="classifier">str, default None</span></dt><dd><p>Legend title. TikZ options that apply to all legend entries may be set
+or overridden by prepending a <code class="docutils literal notranslate"><span class="pre">\tikzset{...}</span></code> command to this value.</p>
 </dd>
-<dt><strong>lwid</strong><span class="classifier">float, default 4.0</span></dt><dd><p>Width of legend columns in units of <cite>llen</cite>.</p>
+<dt><strong>lwid</strong><span class="classifier">float or list of float, default 4.0</span></dt><dd><p>Width of legend columns in units of <cite>llen</cite>.</p>
 </dd>
 <dt><strong>tick</strong><span class="classifier">float, default 0.07</span></dt><dd><p>Length of tick marks in cm.</p>
 </dd>
@@ -275,7 +277,7 @@ could be zero. By default, the x axis is shown on the bottom.</p>
 </dd>
 <dt><strong>grid</strong><span class="classifier">bool, default False</span></dt><dd><p>Add grid lines at tick positions?</p>
 </dd>
-<dt><strong>minorgrid</strong><span class="classifier">bool, default False</span></dt><dd><p>Add grid lines at minor-tick positions?</p>
+<dt><strong>minorgrid</strong><span class="classifier">bool, default True</span></dt><dd><p>Add grid lines at minor-tick positions?</p>
 </dd>
 <dt><strong>colorbar</strong><span class="classifier">bool or str, default None</span></dt><dd><p>Draw colorbar? If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the colorbar is drawn if any line is given a
 z value or if both <cite>zmin</cite> and <cite>zmax</cite> are given. Alternatively, the path
@@ -289,6 +291,11 @@ of one pixel is sufficient.</p>
 <dt><strong>background</strong><span class="classifier">str, default None</span></dt><dd><p>Path to background image.</p>
 </dd>
 <dt><strong>preamble</strong><span class="classifier">str, default ‘’</span></dt><dd><p>Definitions for standalone figures.</p>
+</dd>
+<dt><strong>packages</strong><span class="classifier">list, default []</span></dt><dd><p>Additional LaTeX package imports and macro definitions before preamble,
+e.g., <code class="docutils literal notranslate"><span class="pre">['bm',</span> <span class="pre">'\\let\\vec\\bm',</span> <span class="pre">('colorlinks',</span> <span class="pre">'hyperref')]</span></code>.</p>
+</dd>
+<dt><strong>libraries</strong><span class="classifier">list, default []</span></dt><dd><p>TikZ libraries. <code class="docutils literal notranslate"><span class="pre">'plotmarks'</span></code> is automatically added if needed.</p>
 </dd>
 <dt><strong>inputenc</strong><span class="classifier">str, default None</span></dt><dd><p>Text encoding, e.g., <code class="docutils literal notranslate"><span class="pre">'utf8'</span></code>.</p>
 </dd>
@@ -360,7 +367,7 @@ can be specified using angle brackets, e.g., <code class="docutils literal notra
 
 <dl class="py method">
 <dt class="sig sig-object py" id="storylines.plot.Plot.compline">
-<span class="sig-name descname"><span class="pre">compline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/storylines/plot.html#Plot.compline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#storylines.plot.Plot.compline" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">compline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/storylines/plot.html#Plot.compline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#storylines.plot.Plot.compline" title="Link to this definition"></a></dt>
 <dd><p>Represent points of multiple weights as composite fatband.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -374,6 +381,8 @@ of the same weight have the same thickness regardless of direction.</p>
 <dt><strong>colors</strong><span class="classifier">list of str or str, default True</span></dt><dd><p>Colors of different components. Any objects whose representations
 as a string are valid LaTeX colors can be used. If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the
 fill color is the same as the stroke color.</p>
+</dd>
+<dt><strong>labels</strong><span class="classifier">list of str or str, default None</span></dt><dd><p>Labels of different components.</p>
 </dd>
 <dt><strong>threshold</strong><span class="classifier">float, default 0.0</span></dt><dd><p>Minimum displayed weight.</p>
 </dd>
@@ -418,6 +427,12 @@ fill color is the same as the stroke color.</p>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="storylines.plot.Plot.grids">
+<span class="sig-name descname"><span class="pre">grids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/storylines/plot.html#Plot.grids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#storylines.plot.Plot.grids" title="Link to this definition"></a></dt>
+<dd><p>Draw grids at current z index.</p>
 </dd></dl>
 
 <dl class="py method">

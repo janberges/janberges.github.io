@@ -7,14 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>storylines.plot &mdash; StoryLines  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -55,6 +55,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/colors.html">Colors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/example.html">Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/faces.html">Tetrahedron</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/fatband.html">Fatbands</a></li>
@@ -178,19 +179,18 @@
 <span class="sd">    xstep, ystep, zstep : float, default None</span>
 <span class="sd">        Exact tick increment.</span>
 <span class="sd">    xminorticks, yminorticks : list, default None</span>
-<span class="sd">        List of minor-tick positions. There is currently no intelligent way to</span>
-<span class="sd">        set the minor ticks depending on the major ticks. However, minor ticks</span>
-<span class="sd">        that fall on major ticks are omitted.</span>
-<span class="sd">    xminormarks, yminormarks : bool, default False</span>
+<span class="sd">        List of minor-tick positions. Minor ticks that fall on major ticks are</span>
+<span class="sd">        omitted.</span>
+<span class="sd">    xminormarks, yminormarks : bool, default True</span>
 <span class="sd">        Show minor tick marks?</span>
-<span class="sd">    xminorspacing, yminorspacing : float, default None</span>
-<span class="sd">        Approximate minor-tick spacing in cm.</span>
 <span class="sd">    xminorstep, yminorstep : float, default None</span>
 <span class="sd">        Exact minor-tick increment.</span>
 <span class="sd">    xmin, ymin, zmin : float, default None</span>
 <span class="sd">        Lower axis limit.</span>
 <span class="sd">    xmax, ymax, zmax : float, default None</span>
 <span class="sd">        Upper axis limit.</span>
+<span class="sd">    xlog, ylog, zlog : bool, default False</span>
+<span class="sd">        Use base-10 logarithmic axes?</span>
 <span class="sd">    dleft, dright, dbottom, dtop : float, default 0.0</span>
 <span class="sd">        Protrusion of x- and y-axis limits into margins in cm.</span>
 <span class="sd">    xpadding, ypadding, zpadding : float, default 0.0</span>
@@ -228,7 +228,7 @@
 <span class="sd">        Draw box around legend?</span>
 <span class="sd">    lcol : int, default 1</span>
 <span class="sd">        Number of columns in legend.</span>
-<span class="sd">    llen : str, default &#39;4mm&#39;</span>
+<span class="sd">    llen : str, default &#39;9pt&#39;</span>
 <span class="sd">        Length of example lines next to labels.</span>
 <span class="sd">    lopt : str, default None</span>
 <span class="sd">        Legend options, e.g., for orientation.</span>
@@ -237,15 +237,16 @@
 <span class="sd">        coordinates.</span>
 <span class="sd">    lput : bool, default True</span>
 <span class="sd">        Draw legend?</span>
-<span class="sd">    lrow : int, default 0</span>
-<span class="sd">        Number of rows in legend.</span>
+<span class="sd">    lrmo : bool, default False</span>
+<span class="sd">        Arrange legend entries in row-major order?</span>
+<span class="sd">    lrow : int, default None</span>
+<span class="sd">        Number of rows in legend. If set, `lcol` is ignored.</span>
 <span class="sd">    lsep : str, default None</span>
 <span class="sd">        Space between legend title and entries, e.g., ``&#39;6pt&#39;``.</span>
 <span class="sd">    ltop : str, default None</span>
-<span class="sd">        Legend title. If `lbox` is used, you might want to prevent that TikZ</span>
-<span class="sd">        pictures in the legend inherit the ``rounded corners`` of the box by</span>
-<span class="sd">        prepending ``\\tikzset{sharp corners}`` to this value.</span>
-<span class="sd">    lwid : float, default 4.0</span>
+<span class="sd">        Legend title. TikZ options that apply to all legend entries may be set</span>
+<span class="sd">        or overridden by prepending a ``\\tikzset{...}`` command to this value.</span>
+<span class="sd">    lwid : float or list of float, default 4.0</span>
 <span class="sd">        Width of legend columns in units of `llen`.</span>
 <span class="sd">    tick : float, default 0.07</span>
 <span class="sd">        Length of tick marks in cm.</span>
@@ -271,7 +272,7 @@
 <span class="sd">        Draw frame around plot area?</span>
 <span class="sd">    grid : bool, default False</span>
 <span class="sd">        Add grid lines at tick positions?</span>
-<span class="sd">    minorgrid : bool, default False</span>
+<span class="sd">    minorgrid : bool, default True</span>
 <span class="sd">        Add grid lines at minor-tick positions?</span>
 <span class="sd">    colorbar : bool or str, default None</span>
 <span class="sd">        Draw colorbar? If ``None``, the colorbar is drawn if any line is given a</span>
@@ -286,6 +287,11 @@
 <span class="sd">        Path to background image.</span>
 <span class="sd">    preamble : str, default &#39;&#39;</span>
 <span class="sd">        Definitions for standalone figures.</span>
+<span class="sd">    packages : list, default []</span>
+<span class="sd">        Additional LaTeX package imports and macro definitions before preamble,</span>
+<span class="sd">        e.g., ``[&#39;bm&#39;, &#39;\\\\let\\\\vec\\\\bm&#39;, (&#39;colorlinks&#39;, &#39;hyperref&#39;)]``.</span>
+<span class="sd">    libraries : list, default []</span>
+<span class="sd">        TikZ libraries. ``&#39;plotmarks&#39;`` is automatically added if needed.</span>
 <span class="sd">    inputenc : str, default None</span>
 <span class="sd">        Text encoding, e.g., ``&#39;utf8&#39;``.</span>
 <span class="sd">    fontenc : str, default None</span>
@@ -354,6 +360,7 @@
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;padding&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;format&#39;</span><span class="p">,</span>
@@ -361,8 +368,7 @@
 
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;xy&#39;</span><span class="p">:</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minorticks&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minormarks&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minorspacing&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minormarks&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minorstep&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">lower</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span>
@@ -381,11 +387,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">lbls</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">baselineskip&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lbox</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lcol</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">llen</span> <span class="o">=</span> <span class="s1">&#39;4mm&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">llen</span> <span class="o">=</span> <span class="s1">&#39;9pt&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lopt</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lpos</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lput</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lrow</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lrmo</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lrow</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lsep</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ltop</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lwid</span> <span class="o">=</span> <span class="mf">4.0</span>
@@ -402,7 +409,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">yorigin</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">xyaxes</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">minorgrid</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minorgrid</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">colorbar</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">outline</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span> <span class="o">=</span> <span class="kc">None</span>
@@ -410,6 +417,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">background</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">preamble</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">packages</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">libraries</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inputenc</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fontenc</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="kc">None</span>
@@ -649,8 +658,8 @@
 
 <div class="viewcode-block" id="Plot.compline">
 <a class="viewcode-back" href="../../modules/plot.html#storylines.plot.Plot.compline">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">compline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">threshold</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Represent points of multiple weights as composite fatband.</span>
 
 <span class="sd">        Parameters</span>
@@ -665,6 +674,8 @@
 <span class="sd">            Colors of different components. Any objects whose representations</span>
 <span class="sd">            as a string are valid LaTeX colors can be used. If ``True``, the</span>
 <span class="sd">            fill color is the same as the stroke color.</span>
+<span class="sd">        labels : list of str or str, default None</span>
+<span class="sd">            Labels of different components.</span>
 <span class="sd">        threshold : float, default 0.0</span>
 <span class="sd">            Minimum displayed weight.</span>
 <span class="sd">        **options</span>
@@ -685,6 +696,11 @@
         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
             <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">colors</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">iter</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">labels</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
         <span class="n">shifts</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">parts</span> <span class="ow">in</span> <span class="n">weights</span><span class="p">:</span>
@@ -698,8 +714,10 @@
                 <span class="n">shift</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">-=</span> <span class="p">(</span><span class="n">shift</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">part</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
 
         <span class="n">sgn</span> <span class="o">=</span> <span class="o">+</span><span class="mi">1</span>
-        <span class="k">for</span> <span class="n">weights</span><span class="p">,</span> <span class="n">shifts</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">weights</span><span class="p">),</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">shifts</span><span class="p">),</span> <span class="n">colors</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">fatband</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">shifts</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">sgn</span><span class="o">=</span><span class="n">sgn</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">weights</span><span class="p">,</span> <span class="n">shifts</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">weights</span><span class="p">),</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">shifts</span><span class="p">),</span>
+                <span class="n">colors</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fatband</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">shifts</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
+                <span class="n">sgn</span><span class="o">=</span><span class="n">sgn</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
             <span class="n">sgn</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span></div>
 
 
@@ -819,12 +837,20 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="Plot.grids">
+<a class="viewcode-back" href="../../modules/plot.html#storylines.plot.Plot.grids">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">grids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Draw grids at current z index.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="Plot.nolabel">
 <a class="viewcode-back" href="../../modules/plot.html#storylines.plot.Plot.nolabel">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">nolabel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Pass empty entry to legend (as spacer between entries).&quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">draw</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;*none*&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Plot.clear">
@@ -896,6 +922,26 @@
             <span class="n">lower</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">-=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;padding&#39;</span><span class="p">)</span>
             <span class="n">upper</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;padding&#39;</span><span class="p">)</span>
 
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;log&#39;</span><span class="p">):</span>
+                <span class="n">lower</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">lower</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+                <span class="n">upper</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">upper</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+
+                <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;ticks&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;ticks&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">tick</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">tick</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">tick</span><span class="p">,</span> <span class="s1">&#39;__len__&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">tick</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;ticks&#39;</span><span class="p">)])</span>
+
+                <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minorticks&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minorticks&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">tick</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minorticks&#39;</span><span class="p">)])</span>
+
+                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lines</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="n">line</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">line</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="n">x</span><span class="p">]]</span>
+
             <span class="c1"># embed zero- and one-dimensional data:</span>
 
             <span class="k">if</span> <span class="n">lower</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="n">upper</span><span class="p">[</span><span class="n">x</span><span class="p">]:</span>
@@ -912,7 +958,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">margmin</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">xaxis</span><span class="p">:</span>
-                <span class="n">xticks</span> <span class="o">=</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">xticks</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xticks</span><span class="p">))</span>
+                <span class="n">xticks</span> <span class="o">=</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">xticks</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xticks</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
                     <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">xmarks</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">xlabels</span><span class="p">)</span>
 
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">xlabel</span> <span class="ow">or</span> <span class="n">xticks</span><span class="p">:</span>
@@ -925,7 +971,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">margmin</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">yaxis</span><span class="p">:</span>
-                <span class="n">yticks</span> <span class="o">=</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">yticks</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">yticks</span><span class="p">))</span>
+                <span class="n">yticks</span> <span class="o">=</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">yticks</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">yticks</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
                     <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">ymarks</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">ylabels</span><span class="p">)</span>
 
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ylabel</span> <span class="ow">or</span> <span class="n">yticks</span><span class="p">:</span>
@@ -940,7 +986,7 @@
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">colorbar</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gap</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bar</span>
 
-                <span class="n">zticks</span> <span class="o">=</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">zticks</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zticks</span><span class="p">))</span>
+                <span class="n">zticks</span> <span class="o">=</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">zticks</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zticks</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
                     <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">zmarks</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">zlabels</span><span class="p">)</span>
 
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">zlabel</span> <span class="ow">or</span> <span class="n">zticks</span><span class="p">:</span>
@@ -1043,7 +1089,13 @@
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">extent</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="c1"># use ticks or choose ticks with a spacing close to the given one:</span>
 
-            <span class="n">xformat</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;format&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;log&#39;</span><span class="p">):</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+                <span class="k">def</span><span class="w"> </span><span class="nf">xformat</span><span class="p">(</span><span class="n">logx</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;format&#39;</span><span class="p">)(</span><span class="mi">10</span> <span class="o">**</span> <span class="n">logx</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">xformat</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;format&#39;</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;ticks&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">ticks</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="n">scale</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">lower</span><span class="p">[</span><span class="n">x</span><span class="p">]),</span> <span class="n">label</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span>
@@ -1054,9 +1106,11 @@
                     <span class="k">if</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">&lt;=</span> <span class="n">position</span> <span class="o">&lt;=</span> <span class="n">extent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">ticks</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="n">scale</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">lower</span><span class="p">[</span><span class="n">x</span><span class="p">]),</span> <span class="n">xformat</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-                    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">multiples</span><span class="p">(</span><span class="n">lower</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">upper</span><span class="p">[</span><span class="n">x</span><span class="p">],</span>
+                    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">multiples</span><span class="p">(</span>
+                        <span class="n">lower</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">/</span> <span class="n">scale</span><span class="p">[</span><span class="n">x</span><span class="p">],</span>
+                        <span class="n">upper</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">/</span> <span class="n">scale</span><span class="p">[</span><span class="n">x</span><span class="p">],</span>
                         <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;step&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">xround_mantissa</span><span class="p">(</span>
-                        <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;spacing&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">scale</span><span class="p">[</span><span class="n">x</span><span class="p">]))]</span>
+                            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;spacing&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">scale</span><span class="p">[</span><span class="n">x</span><span class="p">]))]</span>
 
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;labels&#39;</span><span class="p">):</span>
                 <span class="n">ticks</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="n">position</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="k">for</span> <span class="n">position</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ticks</span><span class="p">[</span><span class="n">x</span><span class="p">]]</span>
@@ -1066,27 +1120,31 @@
         <span class="n">minorticks</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;xy&#39;</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minormarks&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">minorgrid</span><span class="p">:</span>
-                <span class="n">positions</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minorticks&#39;</span><span class="p">)</span>
+            <span class="n">positions</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minorticks&#39;</span><span class="p">)</span>
 
-                <span class="k">if</span> <span class="n">positions</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minorstep&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span>
-                        <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minorspacing&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">positions</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;log&#39;</span><span class="p">):</span>
+                    <span class="n">positions</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span>
+                            <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">lower</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">/</span> <span class="n">scale</span><span class="p">[</span><span class="n">x</span><span class="p">])),</span>
+                            <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">upper</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">/</span> <span class="n">scale</span><span class="p">[</span><span class="n">x</span><span class="p">]))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span>
+                <span class="k">elif</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minorstep&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">positions</span> <span class="o">=</span> <span class="n">multiples</span><span class="p">(</span>
+                        <span class="n">lower</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">/</span> <span class="n">scale</span><span class="p">[</span><span class="n">x</span><span class="p">],</span>
+                        <span class="n">upper</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">/</span> <span class="n">scale</span><span class="p">[</span><span class="n">x</span><span class="p">],</span>
+                        <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minorstep&#39;</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">positions</span> <span class="o">=</span> <span class="p">[]</span>
 
-                        <span class="n">positions</span> <span class="o">=</span> <span class="p">[]</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="n">positions</span> <span class="o">=</span> <span class="n">multiples</span><span class="p">(</span><span class="n">lower</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">upper</span><span class="p">[</span><span class="n">x</span><span class="p">],</span>
-                            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minorstep&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">xround_mantissa</span><span class="p">(</span>
-                            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;minorspacing&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">scale</span><span class="p">[</span><span class="n">x</span><span class="p">]))</span>
+            <span class="n">minorticks</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">scale</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">lower</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">]</span>
 
-                <span class="n">minorticks</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">scale</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">lower</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">]</span>
+            <span class="n">minorticks</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">minor</span> <span class="k">for</span> <span class="n">minor</span> <span class="ow">in</span> <span class="n">minorticks</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">major</span> <span class="o">-</span> <span class="n">minor</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span>
+                    <span class="k">for</span> <span class="n">major</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ticks</span><span class="p">[</span><span class="n">x</span><span class="p">])]</span>
 
-                <span class="n">minorticks</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">minor</span> <span class="k">for</span> <span class="n">minor</span> <span class="ow">in</span> <span class="n">minorticks</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">major</span> <span class="o">-</span> <span class="n">minor</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span>
-                        <span class="k">for</span> <span class="n">major</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ticks</span><span class="p">[</span><span class="n">x</span><span class="p">])]</span>
-
-                <span class="n">minorticks</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">position</span> <span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">minorticks</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">&lt;=</span> <span class="n">position</span> <span class="o">&lt;=</span> <span class="n">extent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">]</span>
+            <span class="n">minorticks</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">position</span> <span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">minorticks</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+                <span class="k">if</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">&lt;=</span> <span class="n">position</span> <span class="o">&lt;=</span> <span class="n">extent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">]</span>
 
         <span class="c1"># handle horizontal and vertical lines:</span>
 
@@ -1123,40 +1181,39 @@
                 <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">documentclass[class=</span><span class="si">%s</span><span class="s1">, </span><span class="si">%d</span><span class="s1">pt]</span><span class="si">{standalone}</span><span class="se">\n</span><span class="s1">&#39;</span>
                     <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;article&#39;</span> <span class="k">if</span> <span class="mi">10</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fontsize</span> <span class="o">&lt;=</span> <span class="mi">12</span> <span class="k">else</span> <span class="s1">&#39;scrartcl&#39;</span><span class="p">,</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">fontsize</span><span class="p">))</span>
-                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage</span><span class="si">{tikz}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+                <span class="n">packages</span> <span class="o">=</span> <span class="p">[]</span>
 
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputenc</span> <span class="ow">and</span> <span class="s1">&#39;inputenc&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">preamble</span><span class="p">:</span>
-                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage[</span><span class="si">%s</span><span class="s1">]</span><span class="si">{inputenc}</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputenc</span><span class="p">)</span>
+                    <span class="n">packages</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">inputenc</span><span class="p">,</span> <span class="s1">&#39;inputenc&#39;</span><span class="p">))</span>
 
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">font</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">texfonts</span> <span class="o">=</span> <span class="p">{</span>
-                        <span class="s1">&#39;Gill Sans&#39;</span><span class="p">:</span>
-                            <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage[math]</span><span class="si">{iwona}</span><span class="se">\n</span><span class="s1">&#39;</span>
-                            <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage[sfdefault]</span><span class="si">{cabin}</span><span class="se">\n</span><span class="s1">&#39;</span>
-                            <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage[italic, noplusnominus]</span><span class="si">{mathastext}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;Helvetica&#39;</span><span class="p">:</span>
-                            <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage</span><span class="si">{sansmathfonts}</span><span class="se">\n</span><span class="s1">&#39;</span>
-                            <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage[scaled]</span><span class="si">{helvet}</span><span class="se">\n</span><span class="s1">&#39;</span>
-                            <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">let</span><span class="se">\\</span><span class="s1">familydefault</span><span class="se">\\</span><span class="s1">sfdefault</span><span class="se">\n</span><span class="s1">&#39;</span>
-                            <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage[italic]</span><span class="si">{mathastext}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;Iwona&#39;</span><span class="p">:</span>
-                            <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage[math]</span><span class="si">{iwona}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;Latin Modern&#39;</span><span class="p">:</span>
-                            <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage</span><span class="si">{lmodern}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;Times&#39;</span><span class="p">:</span>
-                            <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage{newtxtext, newtxmath}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;Utopia&#39;</span><span class="p">:</span>
-                            <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage</span><span class="si">{fourier}</span><span class="s1">&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Gill Sans&#39;</span><span class="p">:</span> <span class="p">[</span>
+                            <span class="p">(</span><span class="s1">&#39;math&#39;</span><span class="p">,</span> <span class="s1">&#39;iwona&#39;</span><span class="p">),</span>
+                            <span class="p">(</span><span class="s1">&#39;sfdefault&#39;</span><span class="p">,</span> <span class="s1">&#39;cabin&#39;</span><span class="p">),</span>
+                            <span class="p">(</span><span class="s1">&#39;italic&#39;</span><span class="p">,</span> <span class="s1">&#39;noplusnominus&#39;</span><span class="p">,</span> <span class="s1">&#39;mathastext&#39;</span><span class="p">),</span>
+                        <span class="p">],</span>
+                        <span class="s1">&#39;Helvetica&#39;</span><span class="p">:</span> <span class="p">[</span>
+                            <span class="s1">&#39;sansmathfonts&#39;</span><span class="p">,</span>
+                            <span class="p">(</span><span class="s1">&#39;scaled&#39;</span><span class="p">,</span> <span class="s1">&#39;helvet&#39;</span><span class="p">),</span>
+                            <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">let</span><span class="se">\\</span><span class="s1">familydefault</span><span class="se">\\</span><span class="s1">sfdefault&#39;</span><span class="p">,</span>
+                            <span class="p">(</span><span class="s1">&#39;italic&#39;</span><span class="p">,</span> <span class="s1">&#39;mathastext&#39;</span><span class="p">),</span>
+                        <span class="p">],</span>
+                        <span class="s1">&#39;Iwona&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;math&#39;</span><span class="p">,</span> <span class="s1">&#39;iwona&#39;</span><span class="p">)],</span>
+                        <span class="s1">&#39;Latin Modern&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lmodern&#39;</span><span class="p">],</span>
+                        <span class="s1">&#39;Times&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;newtxtext&#39;</span><span class="p">,</span> <span class="s1">&#39;newtxmath&#39;</span><span class="p">],</span>
+                        <span class="s1">&#39;Utopia&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;fourier&#39;</span><span class="p">],</span>
                     <span class="p">}</span>
 
                     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">font</span> <span class="ow">in</span> <span class="n">texfonts</span><span class="p">:</span>
-                        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">texfonts</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">])</span>
+                        <span class="n">packages</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">texfonts</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">])</span>
 
                         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fontenc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">fontenc</span> <span class="o">=</span> <span class="s1">&#39;T1&#39;</span>
 
                     <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">font</span> <span class="o">==</span> <span class="s1">&#39;Concrete&#39;</span><span class="p">:</span>
-                        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage{concmath-otf}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                        <span class="n">packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;concmath-otf&#39;</span><span class="p">)</span>
 
                         <span class="bp">self</span><span class="o">.</span><span class="n">fontenc</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -1164,22 +1221,43 @@
                             <span class="n">engine</span> <span class="o">=</span> <span class="s1">&#39;xelatex&#39;</span>
 
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage</span><span class="si">{mathspec}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-                        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">setallmainfonts{</span><span class="si">%s</span><span class="s1">}</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">)</span>
+                        <span class="n">packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;mathspec&#39;</span><span class="p">)</span>
+                        <span class="n">packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">setallmainfonts{</span><span class="si">%s</span><span class="s1">}&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">)</span>
 
                         <span class="n">engine</span> <span class="o">=</span> <span class="s1">&#39;xelatex&#39;</span>
 
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fontenc</span> <span class="ow">and</span> <span class="s1">&#39;fontenc&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">preamble</span><span class="p">:</span>
-                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage[</span><span class="si">%s</span><span class="s1">]</span><span class="si">{fontenc}</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">fontenc</span><span class="p">)</span>
+                    <span class="n">packages</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">fontenc</span><span class="p">,</span> <span class="s1">&#39;fontenc&#39;</span><span class="p">))</span>
+
+                <span class="n">packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;tikz&#39;</span><span class="p">)</span>
+
+                <span class="k">for</span> <span class="n">package</span> <span class="ow">in</span> <span class="n">packages</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">packages</span><span class="p">:</span>
+                    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">package</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">package</span> <span class="o">=</span> <span class="n">package</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">package</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span> <span class="ow">in</span> <span class="n">package</span><span class="p">:</span>
+                            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">package</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage{</span><span class="si">%s</span><span class="s1">}</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">package</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usepackage[</span><span class="si">%s</span><span class="s1">]{</span><span class="si">%s</span><span class="s1">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                            <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">package</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">package</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+                <span class="n">libraries</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="k">if</span> <span class="s1">&#39;plotmarks&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">libraries</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lines</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;mark&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">]</span>
+                                <span class="p">[</span><span class="s1">&#39;mark&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;ball&#39;</span><span class="p">]):</span>
+                            <span class="n">libraries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;plotmarks&#39;</span><span class="p">)</span>
+                            <span class="k">break</span>
+
+                <span class="k">for</span> <span class="n">library</span> <span class="ow">in</span> <span class="n">libraries</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">libraries</span><span class="p">:</span>
+                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usetikzlibrary{</span><span class="si">%s</span><span class="s1">}</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">library</span><span class="p">)</span>
 
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">preamble</span><span class="p">:</span>
                     <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">preamble</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-
-                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lines</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;mark&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">][</span><span class="s1">&#39;mark&#39;</span><span class="p">]</span>
-                            <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;ball&#39;</span><span class="p">]):</span>
-                        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">usetikzlibrary</span><span class="si">{plotmarks}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-                        <span class="k">break</span>
 
                 <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">begin</span><span class="si">{document}</span><span class="se">\n\\</span><span class="s1">noindent</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
@@ -1369,10 +1447,10 @@
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">xaxis</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">yaxis</span><span class="p">:</span>
                     <span class="c1"># draw tick marks and labels:</span>
 
-                    <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xaxis</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xmarks</span> <span class="ow">and</span> <span class="n">ticks</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="ow">or</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">xminormarks</span> <span class="ow">and</span> <span class="n">minorticks</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span> <span class="ow">or</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">yaxis</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ymarks</span> <span class="ow">and</span> <span class="n">ticks</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="ow">or</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">yminormarks</span> <span class="ow">and</span> <span class="n">minorticks</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])):</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xaxis</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">xmarks</span> <span class="ow">and</span>
+                        <span class="p">(</span><span class="n">ticks</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">xminormarks</span> <span class="ow">and</span> <span class="n">minorticks</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span> <span class="ow">or</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">yaxis</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">ymarks</span> <span class="ow">and</span>
+                        <span class="p">(</span><span class="n">ticks</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">yminormarks</span> <span class="ow">and</span> <span class="n">minorticks</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])):</span>
 
                         <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\\</span><span class="s1">draw [line cap=butt]&#39;</span><span class="p">)</span>
 
@@ -1387,10 +1465,10 @@
                                 <span class="k">if</span> <span class="n">label</span><span class="p">:</span>
                                     <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39; node [below] {</span><span class="si">%s</span><span class="s1">}&#39;</span> <span class="o">%</span> <span class="n">label</span><span class="p">)</span>
 
-                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">xaxis</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">xminormarks</span><span class="p">:</span>
-                            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">minorticks</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]:</span>
-                                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  (</span><span class="si">%.3f</span><span class="s1">, </span><span class="si">%.3f</span><span class="s1">) -- +(0, </span><span class="si">%.3f</span><span class="s1">)&#39;</span>
-                                    <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">origin</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">minortick</span><span class="p">))</span>
+                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">xminormarks</span><span class="p">:</span>
+                                <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">minorticks</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]:</span>
+                                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  (</span><span class="si">%.3f</span><span class="s1">, </span><span class="si">%.3f</span><span class="s1">) -- +(0, </span><span class="si">%.3f</span><span class="s1">)&#39;</span>
+                                        <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">origin</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">minortick</span><span class="p">))</span>
 
                         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">yaxis</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">ymarks</span><span class="p">:</span>
                             <span class="k">for</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ticks</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]:</span>
@@ -1405,10 +1483,10 @@
                                         <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;left&#39;</span> <span class="k">if</span> <span class="n">origin</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="k">else</span>
                                         <span class="s1">&#39;rotate=90, above&#39;</span><span class="p">,</span> <span class="n">label</span><span class="p">))</span>
 
-                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">yaxis</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">yminormarks</span><span class="p">:</span>
-                            <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">minorticks</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]:</span>
-                                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  (</span><span class="si">%.3f</span><span class="s1">, </span><span class="si">%.3f</span><span class="s1">) -- +(</span><span class="si">%.3f</span><span class="s1">, 0)&#39;</span>
-                                    <span class="o">%</span> <span class="p">(</span><span class="n">origin</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">minortick</span><span class="p">))</span>
+                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">yminormarks</span><span class="p">:</span>
+                                <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">minorticks</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]:</span>
+                                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  (</span><span class="si">%.3f</span><span class="s1">, </span><span class="si">%.3f</span><span class="s1">) -- +(</span><span class="si">%.3f</span><span class="s1">, 0)&#39;</span>
+                                        <span class="o">%</span> <span class="p">(</span><span class="n">origin</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">minortick</span><span class="p">))</span>
 
                         <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
 
@@ -1518,11 +1596,18 @@
                                 <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]),</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">][</span><span class="n">option</span><span class="p">])</span>
 
                 <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">label</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">],</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]]</span>
+                    <span class="n">options</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">]</span>
+
+                    <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">options</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                        <span class="n">options</span><span class="p">[</span><span class="s1">&#39;thickness&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;thickness&#39;</span><span class="p">]</span>
+
+                    <span class="n">label</span> <span class="o">=</span> <span class="p">[</span><span class="n">options</span><span class="p">,</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]]</span>
 
                     <span class="k">for</span> <span class="n">previous</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">:</span>
                         <span class="k">if</span> <span class="n">label</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="n">previous</span> <span class="o">==</span> <span class="n">label</span><span class="p">:</span>
-                            <span class="k">break</span>
+                            <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;^</span><span class="se">\\</span><span class="s1">*.*</span><span class="se">\\</span><span class="s1">*$&#39;</span><span class="p">,</span> <span class="n">label</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                                <span class="k">break</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
 
@@ -1606,7 +1691,7 @@
                         <span class="n">line</span><span class="p">[</span><span class="s1">&#39;omit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;mark&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">]</span>
 
                     <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="n">segments</span><span class="p">:</span>
-                        <span class="n">options</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                        <span class="n">options</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">]</span>
 
                         <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;omit&#39;</span><span class="p">]:</span>
                             <span class="n">segment</span> <span class="o">=</span> <span class="n">relevant</span><span class="p">(</span><span class="n">segment</span><span class="p">[::</span><span class="n">line</span><span class="p">[</span><span class="s1">&#39;sgn&#39;</span><span class="p">]],</span>
@@ -1615,6 +1700,7 @@
                         <span class="k">elif</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;cut&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mark&#39;</span><span class="p">)</span> \
                                 <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;only_marks&#39;</span><span class="p">):</span>
 
+                            <span class="n">options</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
                             <span class="n">options</span><span class="p">[</span><span class="s1">&#39;mark_indices&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;{</span><span class="si">%s</span><span class="s1">}&#39;</span> <span class="o">%</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
                                 <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">point</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">segment</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
                                 <span class="k">if</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points</span><span class="p">)</span>
@@ -1732,18 +1818,37 @@
                             <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;[</span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">lsep</span><span class="p">)</span>
 
                 <span class="k">if</span> <span class="n">labels</span><span class="p">:</span>
-                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  </span><span class="se">\\</span><span class="s1">begin</span><span class="si">{tikzpicture}</span><span class="s1">[x=</span><span class="si">%s</span><span class="s1">, y=-</span><span class="si">%s</span><span class="s1">]&#39;</span>
+                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  </span><span class="se">\\</span><span class="s1">begin</span><span class="si">{tikzpicture}</span><span class="s1">[x=</span><span class="si">%s</span><span class="s1">, y=-</span><span class="si">%s</span><span class="s1">&#39;</span>
                         <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">llen</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lbls</span><span class="p">))</span>
 
-                    <span class="n">lrow</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lrow</span> <span class="ow">or</span> <span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">lcol</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lbox</span><span class="p">:</span>
+                        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;, sharp corners&#39;</span><span class="p">)</span>
+
+                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;]&#39;</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lrow</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">lcol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lcol</span>
+                        <span class="n">lrow</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">lcol</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">lrow</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lrow</span>
+                        <span class="n">lcol</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">lrow</span>
 
                     <span class="n">spacer</span> <span class="o">=</span> <span class="kc">True</span>
 
                     <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
 
+                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lwid</span><span class="p">,</span> <span class="s1">&#39;__len__&#39;</span><span class="p">):</span>
+                        <span class="n">lwid</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lwid</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">lcol</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">lwid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lwid</span>
+
                     <span class="k">for</span> <span class="n">options</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">:</span>
-                        <span class="n">col</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="n">lrow</span>
-                        <span class="n">row</span> <span class="o">=</span> <span class="n">n</span> <span class="o">%</span> <span class="n">lrow</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lrmo</span><span class="p">:</span>
+                            <span class="n">row</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="n">lcol</span>
+                            <span class="n">col</span> <span class="o">=</span> <span class="n">n</span> <span class="o">%</span> <span class="n">lcol</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">col</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="n">lrow</span>
+                            <span class="n">row</span> <span class="o">=</span> <span class="n">n</span> <span class="o">%</span> <span class="n">lrow</span>
 
                         <span class="k">if</span> <span class="n">label</span> <span class="o">==</span> <span class="s1">&#39;*next*&#39;</span><span class="p">:</span>
                             <span class="n">label</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1757,19 +1862,24 @@
                         <span class="k">if</span> <span class="n">label</span><span class="p">:</span>
                             <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    </span><span class="se">\\</span><span class="s1">node &#39;</span>
                                 <span class="s1">&#39;[right] at (</span><span class="si">%.3f</span><span class="s1">, </span><span class="si">%d</span><span class="s1">) {</span><span class="si">%s</span><span class="s1">};&#39;</span>
-                                <span class="o">%</span> <span class="p">(</span><span class="n">col</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">lwid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">label</span><span class="p">))</span>
+                                <span class="o">%</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">lwid</span><span class="p">[:</span><span class="n">col</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">label</span><span class="p">))</span>
 
                         <span class="n">fill</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fill&#39;</span><span class="p">,</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;none&#39;</span>
                         <span class="n">draw</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;only_marks&#39;</span><span class="p">)</span>
                         <span class="n">draw</span> <span class="o">&amp;=</span> <span class="ow">not</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;draw&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;none&#39;</span>
                         <span class="n">mark</span> <span class="o">=</span> <span class="s1">&#39;mark&#39;</span> <span class="ow">in</span> <span class="n">options</span>
 
+                        <span class="n">thickness</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;thickness&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+                        <span class="k">if</span> <span class="n">thickness</span> <span class="ow">and</span> <span class="n">fill</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">draw</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">mark</span><span class="p">:</span>
+                            <span class="n">options</span><span class="p">[</span><span class="s1">&#39;line_width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%g</span><span class="s1">cm&#39;</span> <span class="o">%</span> <span class="n">thickness</span>
+                            <span class="n">options</span><span class="p">[</span><span class="s1">&#39;line_cap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;butt&#39;</span>
+                            <span class="n">options</span><span class="p">[</span><span class="s1">&#39;draw&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;fill&#39;</span><span class="p">)</span>
+                            <span class="n">fill</span><span class="p">,</span> <span class="n">draw</span> <span class="o">=</span> <span class="n">draw</span><span class="p">,</span> <span class="n">fill</span>
+
                         <span class="k">if</span> <span class="n">fill</span> <span class="ow">or</span> <span class="n">draw</span> <span class="ow">or</span> <span class="n">mark</span><span class="p">:</span>
                             <span class="k">if</span> <span class="p">(</span><span class="n">fill</span> <span class="ow">or</span> <span class="n">draw</span><span class="p">)</span> <span class="ow">and</span> <span class="n">mark</span><span class="p">:</span>
                                 <span class="n">options</span><span class="p">[</span><span class="s1">&#39;mark_indices&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{2}</span><span class="s1">&#39;</span>
-
-                            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    </span><span class="se">\\</span><span class="s1">draw</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">csv</span><span class="p">(</span><span class="n">options</span><span class="p">))</span>
-                            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">      plot coordinates &#39;</span><span class="p">)</span>
 
                             <span class="k">if</span> <span class="n">fill</span><span class="p">:</span>
                                 <span class="n">top</span> <span class="o">=</span> <span class="n">row</span> <span class="o">-</span> <span class="mf">0.1</span>
@@ -1783,11 +1893,12 @@
                                 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">]</span>
                                 <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">]</span>
 
-                            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;{&#39;</span><span class="p">)</span>
+                            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    </span><span class="se">\\</span><span class="s1">draw</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">csv</span><span class="p">(</span><span class="n">options</span><span class="p">))</span>
+                            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">      plot coordinates {&#39;</span><span class="p">)</span>
 
                             <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
                                 <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39; (</span><span class="si">%.3f</span><span class="s1">, </span><span class="si">%g</span><span class="s1">)&#39;</span>
-                                    <span class="o">%</span> <span class="p">(</span><span class="n">col</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">lwid</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">m</span><span class="p">]))</span>
+                                    <span class="o">%</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">lwid</span><span class="p">[:</span><span class="n">col</span><span class="p">])</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">m</span><span class="p">]))</span>
 
                             <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39; };&#39;</span><span class="p">)</span>
 

@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Colors &mdash; StoryLines  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -57,6 +57,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#storylines.color.HSV2RGB"><code class="docutils literal notranslate"><span class="pre">HSV2RGB()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#storylines.color.PSV2RGB"><code class="docutils literal notranslate"><span class="pre">PSV2RGB()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#storylines.color.RGB2HSV"><code class="docutils literal notranslate"><span class="pre">RGB2HSV()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#storylines.color.color"><code class="docutils literal notranslate"><span class="pre">color</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#storylines.color.colorize"><code class="docutils literal notranslate"><span class="pre">colorize()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#storylines.color.colormap"><code class="docutils literal notranslate"><span class="pre">colormap()</span></code></a></li>
 </ul>
@@ -71,6 +72,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/colors.html">Colors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/example.html">Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/faces.html">Tetrahedron</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/fatband.html">Fatbands</a></li>
@@ -113,7 +115,7 @@
 <p>Blendable colors and colormaps.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="storylines.color.Color">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">storylines.color.</span></span><span class="sig-name descname"><span class="pre">Color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/storylines/color.html#Color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#storylines.color.Color" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">storylines.color.</span></span><span class="sig-name descname"><span class="pre">Color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/storylines/color.html#Color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#storylines.color.Color" title="Link to this definition"></a></dt>
 <dd><p>Representation of a color.</p>
 <p>Colors can be defined using different models:</p>
 <blockquote>
@@ -231,6 +233,12 @@ and 2 pi.</p>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="storylines.color.color">
+<span class="sig-prename descclassname"><span class="pre">storylines.color.</span></span><span class="sig-name descname"><span class="pre">color</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'black':</span> <span class="pre">Color(0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">'RGB'),</span> <span class="pre">'blue':</span> <span class="pre">Color(0,</span> <span class="pre">0,</span> <span class="pre">255,</span> <span class="pre">'RGB'),</span> <span class="pre">'brown':</span> <span class="pre">Color(191,</span> <span class="pre">128,</span> <span class="pre">64,</span> <span class="pre">'RGB'),</span> <span class="pre">'cyan':</span> <span class="pre">Color(0,</span> <span class="pre">173,</span> <span class="pre">239,</span> <span class="pre">'RGB'),</span> <span class="pre">'darkgray':</span> <span class="pre">Color(64,</span> <span class="pre">64,</span> <span class="pre">64,</span> <span class="pre">'RGB'),</span> <span class="pre">'gray':</span> <span class="pre">Color(128,</span> <span class="pre">128,</span> <span class="pre">128,</span> <span class="pre">'RGB'),</span> <span class="pre">'green':</span> <span class="pre">Color(0,</span> <span class="pre">255,</span> <span class="pre">0,</span> <span class="pre">'RGB'),</span> <span class="pre">'lightgray':</span> <span class="pre">Color(191,</span> <span class="pre">191,</span> <span class="pre">191,</span> <span class="pre">'RGB'),</span> <span class="pre">'lime':</span> <span class="pre">Color(191,</span> <span class="pre">255,</span> <span class="pre">0,</span> <span class="pre">'RGB'),</span> <span class="pre">'magenta':</span> <span class="pre">Color(236,</span> <span class="pre">0,</span> <span class="pre">140,</span> <span class="pre">'RGB'),</span> <span class="pre">'olive':</span> <span class="pre">Color(141,</span> <span class="pre">134,</span> <span class="pre">0,</span> <span class="pre">'RGB'),</span> <span class="pre">'orange':</span> <span class="pre">Color(255,</span> <span class="pre">128,</span> <span class="pre">0,</span> <span class="pre">'RGB'),</span> <span class="pre">'pink':</span> <span class="pre">Color(255,</span> <span class="pre">191,</span> <span class="pre">191,</span> <span class="pre">'RGB'),</span> <span class="pre">'purple':</span> <span class="pre">Color(191,</span> <span class="pre">0,</span> <span class="pre">64,</span> <span class="pre">'RGB'),</span> <span class="pre">'red':</span> <span class="pre">Color(255,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">'RGB'),</span> <span class="pre">'teal':</span> <span class="pre">Color(0,</span> <span class="pre">128,</span> <span class="pre">128,</span> <span class="pre">'RGB'),</span> <span class="pre">'violet':</span> <span class="pre">Color(128,</span> <span class="pre">0,</span> <span class="pre">128,</span> <span class="pre">'RGB'),</span> <span class="pre">'white':</span> <span class="pre">Color(255,</span> <span class="pre">255,</span> <span class="pre">255,</span> <span class="pre">'RGB'),</span> <span class="pre">'yellow':</span> <span class="pre">Color(255,</span> <span class="pre">242,</span> <span class="pre">0,</span> <span class="pre">'RGB')}</span></span><a class="headerlink" href="#storylines.color.color" title="Link to this definition"></a></dt>
+<dd><p>RGB versions of xcolor’s predefined colors obtained from Okular and Gpick.</p>
 </dd></dl>
 
 <dl class="py function">
