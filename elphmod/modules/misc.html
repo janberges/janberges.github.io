@@ -564,12 +564,14 @@ input file.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.misc.read_xyz">
-<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">read_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/misc.html#read_xyz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.misc.read_xyz" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">read_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/misc.html#read_xyz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.misc.read_xyz" title="Link to this definition"></a></dt>
 <dd><p>Iterate over atomic configurations in <em>.xyz</em> file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>xyz</strong><span class="classifier">str</span></dt><dd><p>Name of <em>.xyz</em> file.</p>
+</dd>
+<dt><strong>error</strong><span class="classifier">bool, default False</span></dt><dd><p>Raise error if file does not exist.</p>
 </dd>
 </dl>
 </dd>

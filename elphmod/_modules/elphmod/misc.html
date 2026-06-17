@@ -441,13 +441,15 @@
 
 <div class="viewcode-block" id="read_xyz">
 <a class="viewcode-back" href="../../modules/misc.html#elphmod.misc.read_xyz">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">read_xyz</span><span class="p">(</span><span class="n">xyz</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_xyz</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Iterate over atomic configurations in *.xyz* file.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    xyz : str</span>
 <span class="sd">        Name of *.xyz* file.</span>
+<span class="sd">    error : bool, default False</span>
+<span class="sd">        Raise error if file does not exist.</span>
 
 <span class="sd">    Yields</span>
 <span class="sd">    ------</span>
@@ -456,8 +458,20 @@
 <span class="sd">    ndarray</span>
 <span class="sd">        Atomic positions.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
+
     <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">lines</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">xyz</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">lines</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">xyz</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+            <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">found</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">bcast</span><span class="p">(</span><span class="n">found</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">error</span><span class="p">:</span>
+            <span class="n">info</span><span class="p">(</span><span class="s1">&#39;File &quot;</span><span class="si">%s</span><span class="s1">&quot; does not exist!&#39;</span> <span class="o">%</span> <span class="n">xyz</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span>
 
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
