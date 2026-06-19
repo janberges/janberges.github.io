@@ -169,12 +169,12 @@
 <p>Coulomb interaction from VASP.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.elel.Model">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uijkl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vijkl_full</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vijkl_redu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Wmat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/elel.html#Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.elel.Model" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uijkl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vijkl_full</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vijkl_redu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Wmat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">el</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/elel.html#Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.elel.Model" title="Link to this definition"></a></dt>
 <dd><p>Localized model for electron-electron interaction.</p>
 <p>Currently, only square and hexagonal Bravais lattices are supported.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
+<dd class="field-odd"><dl>
 <dt><strong>uijkl</strong><span class="classifier">str</span></dt><dd><p>File with Coulomb tensor in orbital basis on uniform q mesh.</p>
 </dd>
 <dt><strong>vijkl_full, vijkl_redu</strong><span class="classifier">str</span></dt><dd><p>Files with full and reduced bare Coulomb tensors. The difference is
@@ -190,27 +190,27 @@ corresponding interactions from <cite>Wmat</cite> are used unmodified.</p>
 <dt><strong>Wmat</strong><span class="classifier">str</span></dt><dd><p>File with density-density Coulomb matrix in orbitals basis for different
 lattice vectors.</p>
 </dd>
-<dt><strong>a</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Bravais lattice vectors. By default, a 2D lattice with <cite>angle</cite> between
-the first and the second basis vector is assumed.</p>
+<dt><strong>el</strong><span class="classifier"><a class="reference internal" href="el.html#elphmod.el.Model" title="elphmod.el.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">elphmod.el.Model</span></code></a></span></dt><dd><p>Tight-binding model for the electrons.</p>
 </dd>
-<dt><strong>r</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Positions of orbital centers. By default, all orbitals are assumed to be
-located at the origin of the unit cell.</p>
+<dt><strong>a</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Bravais lattice vectors (for backward compatibility). By default, a 2D
+lattice with <cite>angle</cite> between the basis vectors is assumed.</p>
 </dd>
-<dt><strong>angle</strong><span class="classifier">number, default 120</span></dt><dd><p>Angle between lattice vectors in degrees.</p>
+<dt><strong>r</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Positions of orbital centers (for backward compatibility). By default,
+all orbitals are assumed to be located at the origin of the unit cell.</p>
+</dd>
+<dt><strong>angle</strong><span class="classifier">number, default 120</span></dt><dd><p>Angle between lattice vectors in degree (for backward compatibility).</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
+<dd class="field-even"><dl>
+<dt><strong>el</strong><span class="classifier"><a class="reference internal" href="el.html#elphmod.el.Model" title="elphmod.el.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">elphmod.el.Model</span></code></a></span></dt><dd><p>Tight-binding model for the electrons.</p>
+</dd>
 <dt><strong>R</strong><span class="classifier">ndarray</span></dt><dd><p>Lattice vectors <span class="math notranslate nohighlight">\(\vec R\)</span> of Wigner-Seitz supercell.</p>
 </dd>
 <dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>Corresponding density-density interaction in orbital basis.</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int</span></dt><dd><p>Number of Wannier functions.</p>
-</dd>
 <dt><strong>cells</strong><span class="classifier">list of tuple of int, optional</span></dt><dd><p>Lattice vectors of unit cells if the model describes a supercell.</p>
-</dd>
-<dt><strong>N</strong><span class="classifier">list of tuple of int, optional</span></dt><dd><p>Primitive vectors of supercell if the model describes a supercell.</p>
 </dd>
 </dl>
 </dd>
@@ -339,7 +339,7 @@ points.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elel.q2r">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/elel.html#q2r"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.elel.q2r" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elel.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/elel.html#q2r"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.elel.q2r" title="Link to this definition"></a></dt>
 <dd><p>Interpolate electron-electron interaction on uniform q-point mesh.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -348,9 +348,11 @@ points.</p>
 </dd>
 <dt><strong>W</strong><span class="classifier">ndarray</span></dt><dd><p>Density-density interaction matrices on complete uniform q-point mesh.</p>
 </dd>
-<dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Bravais lattice vectors.</p>
+<dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Bravais lattice vectors. This only sets <code class="xref py py-attr docutils literal notranslate"><span class="pre">elel.el.a</span></code> and is kept
+for backward compatibility.</p>
 </dd>
-<dt><strong>r</strong><span class="classifier">ndarray</span></dt><dd><p>Positions of orbital centers.</p>
+<dt><strong>r</strong><span class="classifier">ndarray</span></dt><dd><p>Positions of orbital centers. This only sets <code class="xref py py-attr docutils literal notranslate"><span class="pre">elel.el.rc</span></code> and is
+kept for backward compatibility.</p>
 </dd>
 <dt><strong>fft</strong><span class="classifier">bool</span></dt><dd><p>Perform Fourier transform? If <code class="docutils literal notranslate"><span class="pre">False</span></code>, only the mapping to the
 Wigner-Seitz cell is performed.</p>

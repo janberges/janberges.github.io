@@ -564,7 +564,7 @@ Instead, all degeneracies in the <em>.wigner</em> file are set to one.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.elph.q2r">
-<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/elph.html#q2r"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.elph.q2r" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.elph.</span></span><span class="sig-name descname"><span class="pre">q2r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide_mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reuse_ws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/elph.html#q2r"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.elph.q2r" title="Link to this definition"></a></dt>
 <dd><p>Fourier-transform electron-phonon coupling from reciprocal to real space.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -575,14 +575,18 @@ Instead, all degeneracies in the <em>.wigner</em> file are set to one.</p>
 </dd>
 <dt><strong>g</strong><span class="classifier">ndarray</span></dt><dd><p>Electron-phonon coupling on complete uniform q- and k-point meshes.</p>
 </dd>
-<dt><strong>r</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Positions of orbital centers. If given, the Wigner-Seitz lattice vectors
-are determined again, whereby the distances to the displaced atom and
-the initial orbital are are both measured from the final orbital in the
-unit cell at the origin (first orbital index). This argument is required
-when changing <cite>nq</cite> or <cite>nk</cite>.</p>
+<dt><strong>r</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Positions of orbital centers. This only sets <code class="xref py py-attr docutils literal notranslate"><span class="pre">elph.el.rc</span></code> and is
+kept for backward compatibility.</p>
 </dd>
 <dt><strong>divide_mass</strong><span class="classifier">bool, default True</span></dt><dd><p>Has input coupling been divided by square root of atomic mass? This is
 independent of <code class="docutils literal notranslate"><span class="pre">elph.divide_mass</span></code>, which is always respected.</p>
+</dd>
+<dt><strong>reuse_ws</strong><span class="classifier">bool, default False</span></dt><dd><p>Reuse stored Wigner-Seitz points and degeneracies? This only works for
+the original <cite>nq</cite> and <cite>nk</cite>. By default, they are determined again using
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">elph.ph.a</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">elph.el.rc</span></code>, and <code class="xref py py-attr docutils literal notranslate"><span class="pre">elph.ph.r</span></code>, whereby
+the distances to the displaced atom and the initial orbital are both
+measured from the final orbital in the unit cell at the origin (first
+orbital index).</p>
 </dd>
 <dt><strong>shared_memory</strong><span class="classifier">bool, default False</span></dt><dd><p>Store real-space coupling in shared memory?</p>
 </dd>

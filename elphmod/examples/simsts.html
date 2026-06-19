@@ -177,8 +177,8 @@ an s orbital located at a chosen position above the sample.</p>
 
 <span class="n">nk</span> <span class="o">=</span> <span class="mi">72</span>
 
-<span class="n">tip</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span> <span class="c1"># tip position</span>
-<span class="n">V</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">Ry</span> <span class="c1"># sample bias</span>
+<span class="n">tip</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">])</span> <span class="c1"># tip position (bohr)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="c1"># sample bias (eV)</span>
 
 <span class="n">info</span><span class="p">(</span><span class="s1">&#39;Set up and diagonalize Wannier Hamiltonian&#39;</span><span class="p">)</span>
 
@@ -193,7 +193,7 @@ an s orbital located at a chosen position above the sample.</p>
 <span class="n">info</span><span class="p">(</span><span class="s1">&#39;Set up Bravais lattice vectors&#39;</span><span class="p">)</span>
 
 <span class="n">pwi</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">read_pwi</span><span class="p">(</span><span class="s1">&#39;scf.in&#39;</span><span class="p">)</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">primitives</span><span class="p">(</span><span class="o">**</span><span class="n">pwi</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">primitives</span><span class="p">(</span><span class="o">**</span><span class="n">pwi</span><span class="p">,</span> <span class="n">bohr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculate density of states&#39;</span><span class="p">)</span>
 
@@ -223,15 +223,13 @@ an s orbital located at a chosen position above the sample.</p>
     <span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">R</span><span class="p">),</span> <span class="o">*</span><span class="n">el</span><span class="o">.</span><span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">3</span><span class="p">]))</span>
     <span class="n">overlap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">R</span><span class="p">),</span> <span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
 
-    <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">a0</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>
-
     <span class="k">for</span> <span class="n">iR</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">R</span><span class="p">)):</span>
         <span class="n">dx</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">iR</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">nx</span>
         <span class="n">dy</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">iR</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">ny</span>
 
         <span class="n">shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">iR</span><span class="p">],</span> <span class="n">a</span><span class="p">)</span>
         <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">tip</span> <span class="o">-</span> <span class="n">shift</span> <span class="o">-</span> <span class="n">el</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">d</span> <span class="o">/</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">a0</span><span class="p">)</span> <span class="o">/</span> <span class="n">norm</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
             <span class="n">W</span><span class="p">[</span><span class="n">iR</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">el</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">zt</span><span class="p">]</span>

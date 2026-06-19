@@ -524,7 +524,8 @@
             <span class="n">info</span><span class="p">(</span><span class="s1">&#39;Run &quot;sample_orig&quot; before changing Z, Q, etc.!&#39;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">lr</span><span class="p">:</span>
-            <span class="n">q2r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">nk</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">divide_mass</span><span class="p">)</span>
+            <span class="n">q2r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">nk</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g0</span><span class="p">,</span>
+                <span class="n">divide_mass</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">divide_mass</span><span class="p">,</span> <span class="n">reuse_ws</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="k">return</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">prepare_long_range</span><span class="p">()</span>
@@ -545,7 +546,8 @@
 
         <span class="n">g</span><span class="o">.</span><span class="n">Bcast</span><span class="p">()</span>
 
-        <span class="n">q2r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">nk</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">divide_mass</span><span class="p">)</span></div>
+        <span class="n">q2r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">nq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">nk</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">divide_mass</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">divide_mass</span><span class="p">,</span>
+            <span class="n">reuse_ws</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Model.sample">
@@ -1344,7 +1346,8 @@
 
 <div class="viewcode-block" id="q2r">
 <a class="viewcode-back" href="../../modules/elph.html#elphmod.elph.q2r">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">q2r</span><span class="p">(</span><span class="n">elph</span><span class="p">,</span> <span class="n">nq</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">divide_mass</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">q2r</span><span class="p">(</span><span class="n">elph</span><span class="p">,</span> <span class="n">nq</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">divide_mass</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">reuse_ws</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Fourier-transform electron-phonon coupling from reciprocal to real space.</span>
 
 <span class="sd">    Parameters</span>
@@ -1356,14 +1359,18 @@
 <span class="sd">    g : ndarray</span>
 <span class="sd">        Electron-phonon coupling on complete uniform q- and k-point meshes.</span>
 <span class="sd">    r : ndarray, optional</span>
-<span class="sd">        Positions of orbital centers. If given, the Wigner-Seitz lattice vectors</span>
-<span class="sd">        are determined again, whereby the distances to the displaced atom and</span>
-<span class="sd">        the initial orbital are are both measured from the final orbital in the</span>
-<span class="sd">        unit cell at the origin (first orbital index). This argument is required</span>
-<span class="sd">        when changing `nq` or `nk`.</span>
+<span class="sd">        Positions of orbital centers. This only sets :attr:`elph.el.rc` and is</span>
+<span class="sd">        kept for backward compatibility.</span>
 <span class="sd">    divide_mass : bool, default True</span>
 <span class="sd">        Has input coupling been divided by square root of atomic mass? This is</span>
 <span class="sd">        independent of ``elph.divide_mass``, which is always respected.</span>
+<span class="sd">    reuse_ws : bool, default False</span>
+<span class="sd">        Reuse stored Wigner-Seitz points and degeneracies? This only works for</span>
+<span class="sd">        the original `nq` and `nk`. By default, they are determined again using</span>
+<span class="sd">        :attr:`elph.ph.a`, :attr:`elph.el.rc`, and :attr:`elph.ph.r`, whereby</span>
+<span class="sd">        the distances to the displaced atom and the initial orbital are both</span>
+<span class="sd">        measured from the final orbital in the unit cell at the origin (first</span>
+<span class="sd">        orbital index).</span>
 <span class="sd">    shared_memory : bool, default False</span>
 <span class="sd">        Store real-space coupling in shared memory?</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1395,12 +1402,19 @@
     <span class="n">comm</span><span class="o">.</span><span class="n">Gatherv</span><span class="p">(</span><span class="n">my_data</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">comm</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">my_data</span><span class="o">.</span><span class="n">size</span><span class="p">)))</span>
 
     <span class="k">if</span> <span class="n">r</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">rc</span> <span class="o">=</span> <span class="n">r</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">reuse_ws</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">rc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">info</span><span class="p">(</span><span class="s1">&#39;&quot;q2r&quot; requires orbital centers!&#39;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
         <span class="n">elph</span><span class="o">.</span><span class="n">Rg</span><span class="p">,</span> <span class="n">ndegen_g</span><span class="p">,</span> <span class="n">wslen</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">wigner</span><span class="p">(</span><span class="o">*</span><span class="n">nq</span><span class="p">,</span>
-            <span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="p">)</span>
+            <span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">rc</span><span class="p">,</span> <span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="p">)</span>
 
         <span class="n">elph</span><span class="o">.</span><span class="n">dg</span> <span class="o">=</span> <span class="n">ndegen_g</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
 
-        <span class="n">elph</span><span class="o">.</span><span class="n">Rk</span><span class="p">,</span> <span class="n">ndegen_k</span><span class="p">,</span> <span class="n">wslen</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">wigner</span><span class="p">(</span><span class="o">*</span><span class="n">nk</span><span class="p">,</span> <span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+        <span class="n">elph</span><span class="o">.</span><span class="n">Rk</span><span class="p">,</span> <span class="n">ndegen_k</span><span class="p">,</span> <span class="n">wslen</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">wigner</span><span class="p">(</span><span class="o">*</span><span class="n">nk</span><span class="p">,</span>
+            <span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">rc</span><span class="p">)</span>
 
         <span class="n">elph</span><span class="o">.</span><span class="n">dk</span> <span class="o">=</span> <span class="n">ndegen_k</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 

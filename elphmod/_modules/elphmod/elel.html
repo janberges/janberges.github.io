@@ -158,6 +158,7 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">elphmod.MPI</span>
 
 <span class="n">comm</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">info</span>
 
 <div class="viewcode-block" id="Model">
 <a class="viewcode-back" href="../../modules/elel.html#elphmod.elel.Model">[docs]</a>
@@ -183,27 +184,27 @@
 <span class="sd">    Wmat : str</span>
 <span class="sd">        File with density-density Coulomb matrix in orbitals basis for different</span>
 <span class="sd">        lattice vectors.</span>
+<span class="sd">    el : :class:`elphmod.el.Model`</span>
+<span class="sd">        Tight-binding model for the electrons.</span>
 <span class="sd">    a : ndarray, optional</span>
-<span class="sd">        Bravais lattice vectors. By default, a 2D lattice with `angle` between</span>
-<span class="sd">        the first and the second basis vector is assumed.</span>
+<span class="sd">        Bravais lattice vectors (for backward compatibility). By default, a 2D</span>
+<span class="sd">        lattice with `angle` between the basis vectors is assumed.</span>
 <span class="sd">    r : ndarray, optional</span>
-<span class="sd">        Positions of orbital centers. By default, all orbitals are assumed to be</span>
-<span class="sd">        located at the origin of the unit cell.</span>
+<span class="sd">        Positions of orbital centers (for backward compatibility). By default,</span>
+<span class="sd">        all orbitals are assumed to be located at the origin of the unit cell.</span>
 <span class="sd">    angle : number, default 120</span>
-<span class="sd">        Angle between lattice vectors in degrees.</span>
+<span class="sd">        Angle between lattice vectors in degree (for backward compatibility).</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
+<span class="sd">    el : :class:`elphmod.el.Model`</span>
+<span class="sd">        Tight-binding model for the electrons.</span>
 <span class="sd">    R : ndarray</span>
 <span class="sd">        Lattice vectors :math:`\vec R` of Wigner-Seitz supercell.</span>
 <span class="sd">    data : ndarray</span>
 <span class="sd">        Corresponding density-density interaction in orbital basis.</span>
-<span class="sd">    size : int</span>
-<span class="sd">        Number of Wannier functions.</span>
 <span class="sd">    cells : list of tuple of int, optional</span>
 <span class="sd">        Lattice vectors of unit cells if the model describes a supercell.</span>
-<span class="sd">    N : list of tuple of int, optional</span>
-<span class="sd">        Primitive vectors of supercell if the model describes a supercell.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="Model.W">
 <a class="viewcode-back" href="../../modules/elel.html#elphmod.elel.Model.W">[docs]</a>
@@ -249,7 +250,19 @@
 
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uijkl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vijkl_full</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vijkl_redu</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">nq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">no</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Wmat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+            <span class="n">nq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">no</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Wmat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">el</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">el</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">el</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">R</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># to make supercell mapping work</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">el</span> <span class="o">=</span> <span class="n">el</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">a</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">rc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">rc</span> <span class="o">=</span> <span class="n">r</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">cells</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
 
@@ -263,15 +276,16 @@
         <span class="k">elif</span> <span class="n">nq</span><span class="p">:</span>
             <span class="n">nq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">nq</span><span class="p">,</span> <span class="n">nq</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 
-        <span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-            <span class="n">a</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">translations</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
-            <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">a</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">info</span><span class="p">(</span><span class="s1">&#39;Warning: You should really define the Bravais lattice!&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">a</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">translations</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
 
         <span class="k">if</span> <span class="n">Wmat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">R</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">read_dat_mat</span><span class="p">(</span><span class="n">Wmat</span><span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">Wq</span> <span class="o">=</span> <span class="n">read_orbital_Coulomb_interaction</span><span class="p">(</span><span class="n">uijkl</span><span class="p">,</span> <span class="n">nq</span><span class="p">,</span> <span class="n">no</span><span class="p">,</span> <span class="n">dd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -281,10 +295,10 @@
                 <span class="n">Wq</span> <span class="o">-=</span> <span class="n">read_orbital_Coulomb_interaction</span><span class="p">(</span><span class="n">vijkl_redu</span><span class="p">,</span> <span class="n">nq</span><span class="p">,</span> <span class="n">no</span><span class="p">,</span>
                     <span class="n">dd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">no</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">no</span>
 
-        <span class="k">if</span> <span class="n">r</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">rc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">rc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="n">Wmat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">nq</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -292,14 +306,14 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
                 <span class="k">return</span>
 
-            <span class="n">WR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="o">*</span><span class="n">nq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+            <span class="n">WR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="o">*</span><span class="n">nq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">iR</span><span class="p">,</span> <span class="p">(</span><span class="n">R1</span><span class="p">,</span> <span class="n">R2</span><span class="p">,</span> <span class="n">R3</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
                 <span class="n">WR</span><span class="p">[</span><span class="n">R1</span> <span class="o">%</span> <span class="n">nq</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">R2</span> <span class="o">%</span> <span class="n">nq</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">R3</span> <span class="o">%</span> <span class="n">nq</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">iR</span><span class="p">]</span>
 
-            <span class="n">q2r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">WR</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">fft</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">q2r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">WR</span><span class="p">,</span> <span class="n">fft</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">q2r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Wq</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+            <span class="n">q2r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Wq</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Model.supercell">
 <a class="viewcode-back" href="../../modules/elel.html#elphmod.elel.Model.supercell">[docs]</a>
@@ -318,12 +332,10 @@
 <span class="sd">        object</span>
 <span class="sd">            Localized model for electron-electron interaction for supercell.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">elel</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>
+        <span class="n">elel</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">el</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">supercell</span><span class="p">(</span><span class="n">N1</span><span class="p">,</span> <span class="n">N2</span><span class="p">,</span> <span class="n">N3</span><span class="p">))</span>
 
         <span class="n">supercell</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">supercell</span><span class="p">(</span><span class="n">N1</span><span class="p">,</span> <span class="n">N2</span><span class="p">,</span> <span class="n">N3</span><span class="p">)</span>
         <span class="n">elel</span><span class="o">.</span><span class="n">cells</span> <span class="o">=</span> <span class="n">supercell</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-        <span class="n">elel</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">elel</span><span class="o">.</span><span class="n">cells</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
 
         <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">const</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -332,19 +344,21 @@
                 <span class="n">title</span><span class="o">=</span><span class="s1">&#39;map interaction onto supercell&#39;</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">elel</span><span class="o">.</span><span class="n">cells</span><span class="p">)):</span>
-                <span class="n">A</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+                <span class="n">A</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span>
 
                 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">)):</span>
                     <span class="n">R</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">to_supercell</span><span class="p">(</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">elel</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">supercell</span><span class="p">)</span>
 
-                    <span class="n">B</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+                    <span class="n">B</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span>
 
                     <span class="k">if</span> <span class="n">R</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">const</span><span class="p">:</span>
-                        <span class="n">const</span><span class="p">[</span><span class="n">R</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">elel</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">size</span><span class="p">),</span>
+                        <span class="n">const</span><span class="p">[</span><span class="n">R</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">elel</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">),</span>
                             <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
 
-                    <span class="n">const</span><span class="p">[</span><span class="n">R</span><span class="p">][</span><span class="n">A</span><span class="p">:</span><span class="n">A</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">B</span><span class="p">:</span><span class="n">B</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+                    <span class="n">const</span><span class="p">[</span><span class="n">R</span><span class="p">][</span>
+                        <span class="n">A</span><span class="p">:</span><span class="n">A</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>
+                        <span class="n">B</span><span class="p">:</span><span class="n">B</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
 
                 <span class="n">status</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
@@ -360,7 +374,8 @@
 
         <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">elel</span><span class="o">.</span><span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">count</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-            <span class="n">elel</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">count</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+            <span class="n">elel</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">count</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">),</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
 
         <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">elel</span><span class="o">.</span><span class="n">R</span><span class="p">)</span>
         <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">elel</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
@@ -417,7 +432,8 @@
 
         <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">count</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">count</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">count</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">),</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
 
         <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">)</span>
         <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
@@ -433,8 +449,8 @@
                 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">)):</span>
                     <span class="n">data</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="s1">&#39;</span><span class="si">%12d</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">n</span><span class="p">]))</span>
 
-                    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
-                        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+                        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
                             <span class="n">data</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%5d%4d%20.10f%20.10f</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="p">))</span>
@@ -511,7 +527,7 @@
 
 <div class="viewcode-block" id="q2r">
 <a class="viewcode-back" href="../../modules/elel.html#elphmod.elel.q2r">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">q2r</span><span class="p">(</span><span class="n">elel</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">fft</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">q2r</span><span class="p">(</span><span class="n">elel</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fft</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Interpolate electron-electron interaction on uniform q-point mesh.</span>
 
 <span class="sd">    Parameters</span>
@@ -521,30 +537,42 @@
 <span class="sd">    W : ndarray</span>
 <span class="sd">        Density-density interaction matrices on complete uniform q-point mesh.</span>
 <span class="sd">    a : ndarray</span>
-<span class="sd">        Bravais lattice vectors.</span>
+<span class="sd">        Bravais lattice vectors. This only sets :attr:`elel.el.a` and is kept</span>
+<span class="sd">        for backward compatibility.</span>
 <span class="sd">    r : ndarray</span>
-<span class="sd">        Positions of orbital centers.</span>
+<span class="sd">        Positions of orbital centers. This only sets :attr:`elel.el.rc` and is</span>
+<span class="sd">        kept for backward compatibility.</span>
 <span class="sd">    fft : bool</span>
 <span class="sd">        Perform Fourier transform? If ``False``, only the mapping to the</span>
 <span class="sd">        Wigner-Seitz cell is performed.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">elel</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+    <span class="k">elif</span> <span class="n">elel</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">a</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">info</span><span class="p">(</span><span class="s1">&#39;&quot;q2r&quot; requires Bravais lattice vectors!&#39;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">r</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">elel</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">rc</span> <span class="o">=</span> <span class="n">r</span>
+    <span class="k">elif</span> <span class="n">elel</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">rc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">info</span><span class="p">(</span><span class="s1">&#39;&quot;q2r&quot; requires orbital centers!&#39;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
     <span class="n">nq</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
-    <span class="n">elel</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
 
     <span class="n">nq_orig</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">nq</span><span class="p">)</span>
     <span class="n">nq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">nq</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">nq_orig</span><span class="p">)]</span> <span class="o">=</span> <span class="n">nq_orig</span>
 
     <span class="k">if</span> <span class="n">fft</span><span class="p">:</span>
-        <span class="n">Wq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="n">nq</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+        <span class="n">Wq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="n">nq</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
         <span class="n">WR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifftn</span><span class="p">(</span><span class="n">Wq</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">WR</span> <span class="o">=</span> <span class="n">W</span>
 
-    <span class="n">WR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">WR</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="n">nq</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">WR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">WR</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="n">nq</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
     <span class="n">WR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">WR</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
-    <span class="n">elel</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">short_range_model</span><span class="p">(</span><span class="n">WR</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">sgn</span><span class="o">=+</span><span class="mi">1</span><span class="p">)</span></div>
+    <span class="n">elel</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">short_range_model</span><span class="p">(</span><span class="n">WR</span><span class="p">,</span>
+        <span class="n">elel</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">elel</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">rc</span><span class="p">,</span> <span class="n">sgn</span><span class="o">=+</span><span class="mi">1</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="read_band_Coulomb_interaction">

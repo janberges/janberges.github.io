@@ -538,6 +538,8 @@ input file.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
+<dt><strong>a0</strong><span class="classifier">ndarray</span></dt><dd><p>Primitive lattice vectors.</p>
+</dd>
 <dt><strong>r0</strong><span class="classifier">ndarray</span></dt><dd><p>Origin of the data grid.</p>
 </dd>
 <dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Spanning vectors of the data grid.</p>
@@ -564,7 +566,7 @@ input file.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.misc.read_xyz">
-<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">read_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/misc.html#read_xyz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.misc.read_xyz" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">read_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/misc.html#read_xyz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.misc.read_xyz" title="Link to this definition"></a></dt>
 <dd><p>Iterate over atomic configurations in <em>.xyz</em> file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -686,12 +688,14 @@ input file.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="elphmod.misc.write_xsf">
-<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">write_xsf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xsf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/misc.html#write_xsf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.misc.write_xsf" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">elphmod.misc.</span></span><span class="sig-name descname"><span class="pre">write_xsf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xsf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;elphmod.MPI.Communicator</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/misc.html#write_xsf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.misc.write_xsf" title="Link to this definition"></a></dt>
 <dd><p>Write file in XCrySDen format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>xsf</strong><span class="classifier">str</span></dt><dd><p>Name of XCrySDen file.</p>
+</dd>
+<dt><strong>a0</strong><span class="classifier">ndarray</span></dt><dd><p>Primitive lattice vectors.</p>
 </dd>
 <dt><strong>r0</strong><span class="classifier">ndarray</span></dt><dd><p>Origin of the data grid.</p>
 </dd>
