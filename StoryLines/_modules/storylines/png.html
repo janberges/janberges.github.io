@@ -61,6 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples/fatband.html">Fatbands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/mandelbrot.html">Mandelbrot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/moebius.html">Moebius</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/png.html">PNG</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/project.html">Projection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/shortcut.html">Shortcuts</a></li>
 </ul>
@@ -106,7 +107,7 @@
 
 <div class="viewcode-block" id="save">
 <a class="viewcode-back" href="../../modules/png.html#storylines.png.save">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">trns</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Save image as 8-bit PNG without filtering.</span>
 
 <span class="sd">    Specified at https://www.w3.org/TR/PNG/.</span>
@@ -131,23 +132,31 @@
     <span class="n">image</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">255</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">col</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">image</span><span class="p">]</span>
 
-    <span class="k">if</span> <span class="n">colors</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">colors</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}:</span>
         <span class="n">pixels</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">image</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
 
         <span class="n">plte</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">pixels</span><span class="p">))</span>
 
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">plte</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">256</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">plte</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">256</span><span class="p">:</span>
             <span class="n">color</span> <span class="o">=</span> <span class="mi">3</span>
 
-            <span class="c1"># assign 0 to most common color so that 0 before row (see below)</span>
-            <span class="c1"># does not stand out and compression becomes more effective:</span>
+            <span class="k">if</span> <span class="n">trns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">colors</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="c1"># assign 0 to transparent color:</span>
 
-            <span class="n">count</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+                <span class="n">first</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">trns</span><span class="p">)</span>
+                <span class="n">trns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># assign 0 to most common color so that 0 before row (see below)</span>
+                <span class="c1"># does not stand out and compression becomes more effective:</span>
 
-            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pixels</span><span class="p">:</span>
-                <span class="n">count</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">count</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 
-            <span class="n">imax</span> <span class="o">=</span> <span class="n">plte</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">count</span><span class="o">.</span><span class="n">get</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pixels</span><span class="p">:</span>
+                    <span class="n">count</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+                <span class="n">first</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">count</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+
+            <span class="n">imax</span> <span class="o">=</span> <span class="n">plte</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">first</span><span class="p">)</span>
 
             <span class="n">plte</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">plte</span><span class="p">[</span><span class="n">imax</span><span class="p">]</span> <span class="o">=</span> <span class="n">plte</span><span class="p">[</span><span class="n">imax</span><span class="p">],</span> <span class="n">plte</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
@@ -156,6 +165,10 @@
             <span class="n">image</span> <span class="o">=</span> <span class="p">[[[</span><span class="n">indices</span><span class="p">[</span><span class="n">col</span><span class="p">]]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">image</span><span class="p">]</span>
 
             <span class="n">plte</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">plte</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">col</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">colors</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="n">trns</span> <span class="o">=</span> <span class="n">plte</span><span class="p">[</span><span class="mi">3</span><span class="p">::</span><span class="mi">4</span><span class="p">]</span>
+                <span class="k">del</span> <span class="n">plte</span><span class="p">[</span><span class="mi">3</span><span class="p">::</span><span class="mi">4</span><span class="p">]</span>
 
     <span class="n">byte</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">image</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="n">row</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">col</span><span class="p">]</span>
 
@@ -174,6 +187,12 @@
 
         <span class="k">if</span> <span class="n">color</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
             <span class="n">chunk</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;PLTE&#39;</span><span class="p">,</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">B&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">plte</span><span class="p">),</span> <span class="o">*</span><span class="n">plte</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">trns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">chunk</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;tRNS&#39;</span><span class="p">,</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">B&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">trns</span><span class="p">),</span> <span class="o">*</span><span class="n">trns</span><span class="p">))</span>
+
+        <span class="k">elif</span> <span class="n">trns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">color</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">}:</span>
+            <span class="n">chunk</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;tRNS&#39;</span><span class="p">,</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;!</span><span class="si">%d</span><span class="s1">H&#39;</span> <span class="o">%</span> <span class="n">colors</span><span class="p">,</span> <span class="o">*</span><span class="n">trns</span><span class="p">))</span>
 
         <span class="n">chunk</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;IDAT&#39;</span><span class="p">,</span>
             <span class="n">zlib</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">B&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">byte</span><span class="p">),</span> <span class="o">*</span><span class="n">byte</span><span class="p">),</span> <span class="mi">9</span><span class="p">))</span>
@@ -202,6 +221,8 @@
 
         <span class="n">idat</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
 
+        <span class="n">trns</span> <span class="o">=</span> <span class="kc">None</span>
+
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="n">size</span><span class="p">,</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;!I&#39;</span><span class="p">,</span> <span class="n">png</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">png</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
@@ -220,6 +241,16 @@
                 <span class="n">plte</span> <span class="o">=</span> <span class="p">[[</span><span class="n">byte</span><span class="p">[</span><span class="mi">3</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="n">z</span><span class="p">]</span>
                     <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
                     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">//</span> <span class="mi">3</span><span class="p">)]</span>
+
+            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;tRNS&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">color</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="n">byte</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">B&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">data</span><span class="p">))</span>
+
+                    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">plte</span><span class="p">:</span>
+                        <span class="n">col</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">byte</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+
+                <span class="k">elif</span> <span class="n">color</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">}:</span>
+                    <span class="n">trns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;!</span><span class="si">%d</span><span class="s1">H&#39;</span> <span class="o">%</span> <span class="n">colors</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
 
             <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;IDAT&#39;</span><span class="p">:</span>
                 <span class="n">idat</span> <span class="o">+=</span> <span class="n">data</span>
@@ -266,6 +297,11 @@
             <span class="n">image</span> <span class="o">=</span> <span class="p">[[</span><span class="n">plte</span><span class="p">[</span><span class="n">image</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">x</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
                 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">)]</span>
                 <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">)]</span>
+
+        <span class="k">elif</span> <span class="n">trns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="p">[[</span><span class="n">col</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span> <span class="k">if</span> <span class="n">col</span> <span class="o">==</span> <span class="n">trns</span> <span class="k">else</span> <span class="mi">255</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">image</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="n">image</span></div>
 
