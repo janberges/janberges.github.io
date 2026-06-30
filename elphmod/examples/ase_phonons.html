@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Isolines &mdash; elphmod  documentation</title>
+  <title>Phonons from ASE &mdash; elphmod  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/style.css?v=6b874a89" />
@@ -20,8 +20,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Kekulé distortion" href="kekule.html" />
-    <link rel="prev" title="Intersections" href="intersections.html" /> 
+    <link rel="next" title="Projected bands (carbon chain)" href="projwfc_1d.html" />
+    <link rel="prev" title="Phonon spectral function" href="specfun.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -87,7 +87,7 @@
 <li class="toctree-l1"><a class="reference internal" href="fluctuations.html">Fluctuation diagnostics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="goldstone.html">Goldstone modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intersections.html">Intersections</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Isolines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="isoline.html">Isolines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kekule.html">Kekulé distortion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lr.html">Long-range terms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modes.html">Mode decomposition</a></li>
@@ -99,7 +99,7 @@
 <li class="toctree-l1"><a class="reference internal" href="phrenorm.html">Phonon renormalization (TaS₂)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="specfun.html">Phonon spectral function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ase_phonons.html">Phonons from ASE</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Phonons from ASE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="projwfc_1d.html">Projected bands (carbon chain)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="projwfc.html">Projected bands (graphene)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="projwfc_3d.html">Projected bands (α-Po)</a></li>
@@ -137,9 +137,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Isolines</li>
+      <li class="breadcrumb-item active">Phonons from ASE</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/examples/isoline.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/examples/ase_phonons.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -147,50 +147,61 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="isolines">
-<h1>Isolines<a class="headerlink" href="#isolines" title="Link to this heading"></a></h1>
+  <section id="phonons-from-ase">
+<h1>Phonons from ASE<a class="headerlink" href="#phonons-from-ase" title="Link to this heading"></a></h1>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
 
 <span class="c1"># Copyright (C) 2017-2026 elphmod Developers</span>
 <span class="c1"># This program is free software under the terms of the GNU GPLv3 or later.</span>
+<span class="c1"># The FCC-Al example stems from https://docs.ase-lib.org/ase/phonons.html.</span>
 
+<span class="kn">import</span><span class="w"> </span><span class="nn">ase.build</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ase.calculators.emt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ase.phonons</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">elphmod</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="n">comm</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">4.05</span>
+<span class="n">atoms</span> <span class="o">=</span> <span class="n">ase</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">bulk</span><span class="p">(</span><span class="s1">&#39;Al&#39;</span><span class="p">,</span> <span class="s1">&#39;fcc&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
 
-<span class="n">mu</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1665</span>
-<span class="n">nk</span> <span class="o">=</span> <span class="mi">24</span>
+<span class="n">ph_ase</span> <span class="o">=</span> <span class="n">ase</span><span class="o">.</span><span class="n">phonons</span><span class="o">.</span><span class="n">Phonons</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">ase</span><span class="o">.</span><span class="n">calculators</span><span class="o">.</span><span class="n">emt</span><span class="o">.</span><span class="n">EMT</span><span class="p">(),</span>
+    <span class="n">supercell</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,)</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ase_phonons&#39;</span><span class="p">)</span>
 
-<span class="n">a1</span><span class="p">,</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">translations</span><span class="p">()</span>
-<span class="n">b1</span><span class="p">,</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">reciprocals</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">)</span>
+<span class="n">ph_ase</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">ph_ase</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">acoustic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ph_ase</span><span class="o">.</span><span class="n">clean</span><span class="p">()</span>
 
-<span class="n">el</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;data/NbSe2&#39;</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;GXULGK&#39;</span>
+<span class="n">path_ase</span> <span class="o">=</span> <span class="n">atoms</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">bandpath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">npoints</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">band_ase</span> <span class="o">=</span> <span class="n">ph_ase</span><span class="o">.</span><span class="n">get_band_structure</span><span class="p">(</span><span class="n">path_ase</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">e</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">dispersion_full</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="n">nk</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">q</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">corners</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">ibrav</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">*=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
 
-<span class="k">for</span> <span class="n">contour</span> <span class="ow">in</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dos</span><span class="o">.</span><span class="n">isoline</span><span class="p">(</span><span class="n">e</span><span class="p">)(</span><span class="n">mu</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">k1</span> <span class="o">*</span> <span class="n">b1</span> <span class="o">+</span> <span class="n">k2</span> <span class="o">*</span> <span class="n">b2</span> <span class="k">for</span> <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span> <span class="ow">in</span> <span class="n">contour</span><span class="p">]),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">ph_ase</span><span class="o">=</span><span class="n">ph_ase</span><span class="p">)</span>
+<span class="n">w2</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">dispersion</span><span class="p">(</span><span class="n">ph</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">sgnsqrt</span><span class="p">(</span><span class="n">w2</span><span class="p">)</span> <span class="o">*</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">Ry</span>
 
-<span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">BZ</span><span class="p">()),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">band_ase</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">emin</span><span class="o">=-</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">emax</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ASE&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">)</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;isoline.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Phonon energy (eV)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;ase_phonons.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/isoline.png" src="../_images/isoline.png" />
+<img alt="../_images/ase_phonons.png" src="../_images/ase_phonons.png" />
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="intersections.html" class="btn btn-neutral float-left" title="Intersections" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="kekule.html" class="btn btn-neutral float-right" title="Kekulé distortion" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="specfun.html" class="btn btn-neutral float-left" title="Phonon spectral function" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="projwfc_1d.html" class="btn btn-neutral float-right" title="Projected bands (carbon chain)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

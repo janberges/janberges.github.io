@@ -96,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples/phrenorm.html">Phonon renormalization (TaS₂)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/specfun.html">Phonon spectral function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ase_phonons.html">Phonons from ASE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/projwfc_1d.html">Projected bands (carbon chain)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/projwfc.html">Projected bands (graphene)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/projwfc_3d.html">Projected bands (α-Po)</a></li>
@@ -2105,7 +2106,7 @@
 
         <span class="c1"># read FFT dimensions, ntyp, nat</span>
         <span class="n">tmp</span> <span class="o">=</span> <span class="n">cells</span><span class="p">()</span>
-<span class="c1">#        FFT_dim = list(map(int, tmp[:3]))</span>
+        <span class="c1">#FFT_dim = list(map(int, tmp[:3]))</span>
         <span class="n">FFT_dim</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">tmp</span><span class="p">[:</span><span class="mi">6</span><span class="p">]))</span>
         <span class="n">nat</span><span class="p">,</span> <span class="n">ntyp</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">6</span><span class="p">:]))</span>
 
@@ -2122,10 +2123,10 @@
         <span class="n">A</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">primitives</span><span class="p">(</span><span class="n">ibrav</span><span class="p">)</span>
         <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">celldm</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
         <span class="n">uc_volume</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">*</span> <span class="n">celldm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">3</span>
-<span class="c1">#        B1, B2, B3 = elphmod.bravais.reciprocals(*A)</span>
-<span class="c1">#        B = np.stack((B1, B2, B3), axis=0)</span>
-<span class="c1">#        print(B)</span>
-<span class="c1">#        print(np.linalg.det(B) * (2 * np.pi / celldm[0]) ** 3)</span>
+        <span class="c1">#B1, B2, B3 = elphmod.bravais.reciprocals(*A)</span>
+        <span class="c1">#B = np.stack((B1, B2, B3), axis=0)</span>
+        <span class="c1">#print(B)</span>
+        <span class="c1">#print(np.linalg.det(B) * (2 * np.pi / celldm[0]) ** 3)</span>
 
         <span class="c1"># read valence table</span>
         <span class="n">at</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2315,9 +2316,9 @@
         <span class="n">alat</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">a0</span>
         <span class="n">xk</span> <span class="o">=</span> <span class="n">xk</span> <span class="o">*</span> <span class="n">alat</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 
-<span class="c1">#        # normalize wfcs</span>
-<span class="c1">#        uc_volume = np.linalg.det(A) * alat ** 3</span>
-<span class="c1">#        evc /= np.sqrt(uc_volume)</span>
+        <span class="c1"># normalize wfcs</span>
+        <span class="c1">#uc_volume = np.linalg.det(A) * alat ** 3</span>
+        <span class="c1">#evc /= np.sqrt(uc_volume)</span>
 
         <span class="c1"># calculate reciprocal G vectors</span>
         <span class="n">g_vect</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">igwx</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -2326,8 +2327,8 @@
         <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">igwx</span><span class="p">):</span>
             <span class="n">g_vect</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">mill_g</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">B1</span> <span class="o">+</span> <span class="n">mill_g</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">B2</span>
                 <span class="o">+</span> <span class="n">mill_g</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">B3</span><span class="p">)</span>
-<span class="c1">#            g_vect[ii] = (mill_g[ii, 0] * b1 + mill_g[ii, 1] * b2</span>
-<span class="c1">#                + mill_g[ii, 2] * b3)</span>
+            <span class="c1">#g_vect[ii] = (mill_g[ii, 0] * b1 + mill_g[ii, 1] * b2</span>
+            <span class="c1">#    + mill_g[ii, 2] * b3)</span>
 
             <span class="n">k_plus_G</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="n">xk</span> <span class="o">+</span> <span class="n">g_vect</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span>
 

@@ -96,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples/phrenorm.html">Phonon renormalization (TaS₂)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/specfun.html">Phonon spectral function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ase_phonons.html">Phonons from ASE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/projwfc_1d.html">Projected bands (carbon chain)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/projwfc.html">Projected bands (graphene)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/projwfc_3d.html">Projected bands (α-Po)</a></li>
@@ -546,7 +547,7 @@
 
 <div class="viewcode-block" id="color">
 <a class="viewcode-back" href="../../modules/plot.html#elphmod.plot.color">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">color</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">minimum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maximum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">color</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">minimum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maximum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">to8bit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Colorize data using colormap from StoryLines (parallelized version).</span>
 
 <span class="sd">    Parameters</span>
@@ -557,6 +558,8 @@
 <span class="sd">        Colormap from StoryLines.</span>
 <span class="sd">    minimum, maximum : float</span>
 <span class="sd">        Data values corresponding to minimum and maximum of color scale.</span>
+<span class="sd">    to8bit : bool, default False</span>
+<span class="sd">        Use only 256 colors?</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -577,6 +580,9 @@
 
     <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># Avoid that data slightly exceeds [0, 1]</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># because of numerical inaccuracies.</span>
+
+    <span class="k">if</span> <span class="n">to8bit</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">data</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
 
     <span class="n">shape</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>

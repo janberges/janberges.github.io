@@ -96,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples/phrenorm.html">Phonon renormalization (TaS₂)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/specfun.html">Phonon spectral function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ase_phonons.html">Phonons from ASE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/projwfc_1d.html">Projected bands (carbon chain)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/projwfc.html">Projected bands (graphene)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/projwfc_3d.html">Projected bands (α-Po)</a></li>
@@ -2003,6 +2004,8 @@
 <span class="sd">        labels such as ``G`` (|Ggr|), ``M``, or ``K`` may also be used. Mostly,</span>
 <span class="sd">        the definitions follow https://lampx.tugraz.at/~hadley/ss1/bzones/.</span>
 <span class="sd">        See also: Setyawan and Curtarolo, Comput. Mater. Sci. 49, 299 (2010).</span>
+<span class="sd">        The label ``,`` makes the path jump from the previous to the next point</span>
+<span class="sd">        without accumulating distance.</span>
 <span class="sd">    N : float</span>
 <span class="sd">        Number of points per :math:`2 \pi / a`.</span>
 <span class="sd">    recvec : ndarray, optional</span>
@@ -2032,6 +2035,14 @@
 <span class="sd">    primitives</span>
 <span class="sd">    reciprocals</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">point</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">point</span> <span class="o">==</span> <span class="s1">&#39;,&#39;</span><span class="p">:</span>
+            <span class="n">more</span> <span class="o">=</span> <span class="n">path</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:],</span> <span class="n">N</span><span class="p">,</span> <span class="n">recvec</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">moveG</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">points</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">more</span> <span class="o">=</span> <span class="kc">False</span>
+
     <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
         <span class="mi">1</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># cubic (sc)</span>
             <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
@@ -2178,21 +2189,30 @@
                     <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">corners</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
                         <span class="n">k</span><span class="p">[</span><span class="n">corners</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">moveG</span> <span class="o">*</span> <span class="n">k</span><span class="p">[</span><span class="n">corners</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span>
 
+    <span class="n">k</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">corners</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">corners</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">more</span><span class="p">:</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">more</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">more</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">corners</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">corners</span><span class="p">,</span> <span class="n">more</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">corners</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
     <span class="k">if</span> <span class="n">qe</span><span class="p">:</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;ktyp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;crystal_b&#39;</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;nks&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">corners</span><span class="p">)</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;k_points&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">corners</span><span class="p">),</span> <span class="mi">4</span><span class="p">))</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">corners</span><span class="p">)):</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;k_points&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="n">corners</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;k_points&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="n">corners</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;k_points&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">corners</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">corners</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
                 <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;k_points&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">corners</span><span class="p">,</span> <span class="n">kwargs</span>
+        <span class="k">return</span> <span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">corners</span><span class="p">,</span> <span class="n">kwargs</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">corners</span></div>
+        <span class="k">return</span> <span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">corners</span></div>
 
 
 <div class="viewcode-block" id="GMKG">
@@ -3072,11 +3092,10 @@
         <span class="n">data</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
         <span class="n">data</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
-<span class="c1"># =============================================================================</span>
-<span class="c1">#         data.write(&#39;%d %s\n&#39; % (struct[&#39;nq&#39;], struct[&#39;q_coords_type&#39;]))</span>
-<span class="c1">#         for (qx, qy, qz) in struct[&#39;q&#39;]:</span>
-<span class="c1">#             data.write(&#39;%12.9f %12.9f %12.9f\n&#39; % (qx, qy, qz))</span>
-<span class="c1"># =============================================================================</span>
+
+        <span class="c1">#data.write(&#39;%d %s\n&#39; % (struct[&#39;nq&#39;], struct[&#39;q_coords_type&#39;]))</span>
+        <span class="c1">#for (qx, qy, qz) in struct[&#39;q&#39;]:</span>
+        <span class="c1">#    data.write(&#39;%12.9f %12.9f %12.9f\n&#39; % (qx, qy, qz))</span>
 
 <div class="viewcode-block" id="readPOSCAR">
 <a class="viewcode-back" href="../../modules/bravais.html#elphmod.bravais.readPOSCAR">[docs]</a>
@@ -3094,13 +3113,13 @@
 <span class="sd">        Crystal structure.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">POSCAR</span><span class="p">:</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">POSCAR</span><span class="p">)</span>
+        <span class="nb">next</span><span class="p">(</span><span class="n">POSCAR</span><span class="p">)</span> <span class="c1"># title</span>
 
         <span class="n">a</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">POSCAR</span><span class="p">))</span>
 
-        <span class="n">t1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">POSCAR</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">())))</span>
-        <span class="n">t2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">POSCAR</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">())))</span>
-        <span class="n">t3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">POSCAR</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">())))</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">POSCAR</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">())))</span>
+        <span class="n">t2</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">POSCAR</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">())))</span>
+        <span class="n">t3</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">POSCAR</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">())))</span>
 
         <span class="n">elements</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">POSCAR</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 

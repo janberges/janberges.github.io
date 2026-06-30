@@ -151,6 +151,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../examples/phrenorm.html">Phonon renormalization (TaS₂)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/specfun.html">Phonon spectral function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/ase_phonons.html">Phonons from ASE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/projwfc_1d.html">Projected bands (carbon chain)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/projwfc.html">Projected bands (graphene)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/projwfc_3d.html">Projected bands (α-Po)</a></li>
@@ -614,7 +615,9 @@ respect to fractional indices.</p>
 <dt><strong>points</strong><span class="classifier">ndarray</span></dt><dd><p>List of high-symmetry points in crystal coordinates. Some well-known
 labels such as <code class="docutils literal notranslate"><span class="pre">G</span></code> (Γ), <code class="docutils literal notranslate"><span class="pre">M</span></code>, or <code class="docutils literal notranslate"><span class="pre">K</span></code> may also be used. Mostly,
 the definitions follow <a class="reference external" href="https://lampx.tugraz.at/~hadley/ss1/bzones/">https://lampx.tugraz.at/~hadley/ss1/bzones/</a>.
-See also: Setyawan and Curtarolo, Comput. Mater. Sci. 49, 299 (2010).</p>
+See also: Setyawan and Curtarolo, Comput. Mater. Sci. 49, 299 (2010).
+The label <code class="docutils literal notranslate"><span class="pre">,</span></code> makes the path jump from the previous to the next point
+without accumulating distance.</p>
 </dd>
 <dt><strong>N</strong><span class="classifier">float</span></dt><dd><p>Number of points per <span class="math notranslate nohighlight">\(2 \pi / a\)</span>.</p>
 </dd>
