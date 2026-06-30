@@ -27,7 +27,7 @@
          <span class="Statement">action</span><span class="Statement">=</span><span class="Constant">'read'</span>, <span class="Statement">status</span><span class="Statement">=</span><span class="Constant">'old'</span>, <span class="Statement">access</span><span class="Statement">=</span><span class="Constant">'stream'</span>)
 
       <span class="Statement">if</span> (error <span class="Statement">.ne.</span> <span class="Constant">0</span>) <span class="Statement">then</span>
-         <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Error: Cannot read AIFF file ''', A, '''.')&quot;</span>) path
+         <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Error: Cannot read AIFF file &quot;&quot;&quot;, A, &quot;&quot;&quot;.&quot;)'</span>) path
          <span class="Statement">stop</span>
       <span class="Statement">end if</span>
 
@@ -50,7 +50,7 @@
             s%rate <span class="Statement">=</span> decode(extended)
 
             <span class="Statement">if</span> (sampleSize <span class="Statement">.ne.</span> <span class="Constant">16_i2</span>) <span class="Statement">then</span>
-               <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Error: Only 16 bits supported.')&quot;</span>)
+               <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Error: Only 16 bits supported.&quot;)'</span>)
                <span class="Statement">stop</span>
             <span class="Statement">end if</span>
 
@@ -81,7 +81,7 @@
                <span class="Statement">read</span> (fun, <span class="Statement">iostat</span><span class="Statement">=</span>error) byte
 
                <span class="Statement">if</span> (error <span class="Statement">.ne.</span> <span class="Constant">0</span>) <span class="Statement">then</span>
-                  <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Error: Corrupt AIFF file ''', A, '''.')&quot;</span>) <span class="Special">&amp;</span>
+                  <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Error: Corrupt AIFF file &quot;&quot;&quot;, A, &quot;&quot;&quot;.&quot;)'</span>) <span class="Special">&amp;</span>
                      path
                   <span class="Statement">stop</span>
                <span class="Statement">end if</span>
@@ -114,8 +114,8 @@
 
       <span class="Statement">if</span> (path <span class="Statement">.eq.</span> <span class="Constant">'stdout'</span> <span class="Statement">.or.</span> path <span class="Statement">.eq.</span> <span class="Constant">'http'</span>) <span class="Statement">then</span>
          <span class="Statement">if</span> (path <span class="Statement">.eq.</span> <span class="Constant">'http'</span>) <span class="Statement">then</span>
-            <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">&quot;('Content-Type: audio/x-aiff')&quot;</span>)
-            <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">&quot;('Content-Length: ', I0, /)&quot;</span>) formSize <span class="Statement">+</span> <span class="Constant">8</span>
+            <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">'(&quot;Content-Type: audio/x-aiff&quot;)'</span>)
+            <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">'(&quot;Content-Length: &quot;, I0, /)'</span>) formSize <span class="Statement">+</span> <span class="Constant">8</span>
          <span class="Statement">end if</span>
 
          <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">'(*(A))'</span>, <span class="Statement">advance</span><span class="Statement">=</span><span class="Constant">'no'</span>) <span class="Special">&amp;</span>
@@ -135,7 +135,7 @@
             <span class="Statement">action</span><span class="Statement">=</span><span class="Constant">'write'</span>, <span class="Statement">status</span><span class="Statement">=</span><span class="Constant">'replace'</span>, <span class="Statement">access</span><span class="Statement">=</span><span class="Constant">'stream'</span>)
 
          <span class="Statement">if</span> (error <span class="Statement">.ne.</span> <span class="Constant">0</span>) <span class="Statement">then</span>
-            <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Error: Cannot write AIFF file ''', A, '''.')&quot;</span>) <span class="Special">&amp;</span>
+            <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Error: Cannot write AIFF file &quot;&quot;&quot;, A, &quot;&quot;&quot;.&quot;)'</span>) <span class="Special">&amp;</span>
                path
             <span class="Statement">stop</span>
          <span class="Statement">end if</span>
@@ -672,7 +672,7 @@
          <span class="Statement">action</span><span class="Statement">=</span><span class="Constant">'write'</span>, <span class="Statement">status</span><span class="Statement">=</span><span class="Constant">'replace'</span>, <span class="Statement">access</span><span class="Statement">=</span><span class="Constant">'stream'</span>)
 
       <span class="Statement">if</span> (error <span class="Statement">.ne.</span> <span class="Constant">0</span>) <span class="Statement">then</span>
-         <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Error: Cannot write file ''', A, '''.')&quot;</span>) path
+         <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Error: Cannot write file &quot;&quot;&quot;, A, &quot;&quot;&quot;.&quot;)'</span>) path
          <span class="Statement">stop</span>
       <span class="Statement">end if</span>
 
@@ -700,7 +700,7 @@
 
    <span class="Identifier">call</span> fourier(wave, spectrum)
 
-   <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">&quot;(/ 'f(t) = sum r[n] cos(n omega t - phi[n])' /)&quot;</span>)
+   <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">'(/, &quot;f(t) = sum r[n] cos(n omega t - phi[n])&quot;, /)'</span>)
    <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">'(A2, 2A15)'</span>) <span class="Constant">'n'</span>, <span class="Constant">'r[n]'</span>, <span class="Constant">'phi[n]'</span>
 
    <span class="Statement">do</span> n <span class="Statement">=</span> <span class="Constant">1</span>, <span class="Identifier">size</span>(spectrum)
@@ -739,7 +739,7 @@
       tagID <span class="Statement">=</span> id3(<span class="Constant">1</span>:<span class="Constant">3</span>)
 
       <span class="Statement">if</span> (tagID <span class="Statement">.eq.</span> <span class="Constant">'TAG'</span>) <span class="Statement">then</span>
-         <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Warning: ID3v1 not supported.')&quot;</span>) feature
+         <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Warning: ID3v1 not supported.&quot;)'</span>) feature
          <span class="Statement">return</span>
       <span class="Statement">end if</span>
 
@@ -747,12 +747,12 @@
       revision <span class="Statement">=</span> <span class="Identifier">ichar</span>(id3(<span class="Constant">5</span>:<span class="Constant">5</span>), i1)
 
       <span class="Statement">if</span> (version <span class="Statement">.le.</span> <span class="Constant">2</span>) <span class="Statement">then</span>
-         <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Warning: ', A, 'v2.', I0, ' not supported.')&quot;</span>) <span class="Special">&amp;</span>
+         <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Warning: &quot;, A, &quot;v2.&quot;, I0, &quot; not supported.&quot;)'</span>) <span class="Special">&amp;</span>
             tagID, version
          <span class="Statement">return</span>
       <span class="Statement">end if</span>
 
-      <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Metadata format: ', A, 'v2.', I0, '.', I0)&quot;</span>) <span class="Special">&amp;</span>
+      <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Metadata format: &quot;, A, &quot;v2.&quot;, I0, &quot;.&quot;, I0)'</span>) <span class="Special">&amp;</span>
          tagID, version, revision
 
       flags <span class="Statement">=</span> <span class="Identifier">ichar</span>(id3(<span class="Constant">6</span>:<span class="Constant">6</span>))
@@ -770,7 +770,7 @@
                feature <span class="Statement">=</span> <span class="Constant">'footer'</span>
             <span class="Statement">end select</span>
 
-            <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Warning: ID3 ', A, ' not supported.')&quot;</span>) feature
+            <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Warning: ID3 &quot;, A, &quot; not supported.&quot;)'</span>) feature
             <span class="Statement">return</span>
          <span class="Statement">end if</span>
       <span class="Statement">end do</span>
@@ -827,17 +827,17 @@
 
          flags <span class="Statement">=</span> <span class="Identifier">ichar</span>(id3(i <span class="Statement">+</span> <span class="Constant">9</span>:i <span class="Statement">+</span> <span class="Constant">9</span>))
 
-         <span class="Statement">if</span> (<span class="Identifier">btest</span>(flags, <span class="Constant">6</span>)) <span class="Statement">write</span> (stderr, <span class="Constant">&quot;(A, ' tag-bound')&quot;</span>) frameID
-         <span class="Statement">if</span> (<span class="Identifier">btest</span>(flags, <span class="Constant">5</span>)) <span class="Statement">write</span> (stderr, <span class="Constant">&quot;(A, ' file-bound')&quot;</span>) frameID
-         <span class="Statement">if</span> (<span class="Identifier">btest</span>(flags, <span class="Constant">4</span>)) <span class="Statement">write</span> (stderr, <span class="Constant">&quot;(A, ' read-only')&quot;</span>) frameID
+         <span class="Statement">if</span> (<span class="Identifier">btest</span>(flags, <span class="Constant">6</span>)) <span class="Statement">write</span> (stderr, <span class="Constant">'(A, &quot; tag-bound&quot;)'</span>) frameID
+         <span class="Statement">if</span> (<span class="Identifier">btest</span>(flags, <span class="Constant">5</span>)) <span class="Statement">write</span> (stderr, <span class="Constant">'(A, &quot; file-bound&quot;)'</span>) frameID
+         <span class="Statement">if</span> (<span class="Identifier">btest</span>(flags, <span class="Constant">4</span>)) <span class="Statement">write</span> (stderr, <span class="Constant">'(A, &quot; read-only&quot;)'</span>) frameID
 
          flags <span class="Statement">=</span> <span class="Identifier">ichar</span>(id3(i <span class="Statement">+</span> <span class="Constant">10</span>:i <span class="Statement">+</span> <span class="Constant">10</span>))
 
-         <span class="Statement">if</span> (<span class="Identifier">btest</span>(flags, <span class="Constant">6</span>)) <span class="Statement">write</span> (stderr, <span class="Constant">&quot;(A, ' grouped')&quot;</span>) frameID
-         <span class="Statement">if</span> (<span class="Identifier">btest</span>(flags, <span class="Constant">3</span>)) <span class="Statement">write</span> (stderr, <span class="Constant">&quot;(A, ' compressed')&quot;</span>) frameID
-         <span class="Statement">if</span> (<span class="Identifier">btest</span>(flags, <span class="Constant">2</span>)) <span class="Statement">write</span> (stderr, <span class="Constant">&quot;(A, ' encrypted')&quot;</span>) frameID
-         <span class="Statement">if</span> (<span class="Identifier">btest</span>(flags, <span class="Constant">1</span>)) <span class="Statement">write</span> (stderr, <span class="Constant">&quot;(A, ' unsyrchronised')&quot;</span>) frameID
-         <span class="Statement">if</span> (<span class="Identifier">btest</span>(flags, <span class="Constant">0</span>)) <span class="Statement">write</span> (stderr, <span class="Constant">&quot;(A, ' states length')&quot;</span>) frameID
+         <span class="Statement">if</span> (<span class="Identifier">btest</span>(flags, <span class="Constant">6</span>)) <span class="Statement">write</span> (stderr, <span class="Constant">'(A, &quot; grouped&quot;)'</span>) frameID
+         <span class="Statement">if</span> (<span class="Identifier">btest</span>(flags, <span class="Constant">3</span>)) <span class="Statement">write</span> (stderr, <span class="Constant">'(A, &quot; compressed&quot;)'</span>) frameID
+         <span class="Statement">if</span> (<span class="Identifier">btest</span>(flags, <span class="Constant">2</span>)) <span class="Statement">write</span> (stderr, <span class="Constant">'(A, &quot; encrypted&quot;)'</span>) frameID
+         <span class="Statement">if</span> (<span class="Identifier">btest</span>(flags, <span class="Constant">1</span>)) <span class="Statement">write</span> (stderr, <span class="Constant">'(A, &quot; unsyrchronised&quot;)'</span>) frameID
+         <span class="Statement">if</span> (<span class="Identifier">btest</span>(flags, <span class="Constant">0</span>)) <span class="Statement">write</span> (stderr, <span class="Constant">'(A, &quot; states length&quot;)'</span>) frameID
 
          i <span class="Statement">=</span> i <span class="Statement">+</span> <span class="Constant">10</span>
 
@@ -866,14 +866,14 @@
             <span class="Statement">end do</span>
          <span class="Statement">else</span>
             text <span class="Statement">=</span> <span class="Identifier">repeat</span>(<span class="Constant">' '</span>, <span class="Constant">64</span>)
-            <span class="Statement">write</span> (text, <span class="Constant">&quot;(I0, ' bytes')&quot;</span>) frameSize
+            <span class="Statement">write</span> (text, <span class="Constant">'(I0, &quot; bytes&quot;)'</span>) frameSize
             text <span class="Statement">=</span> <span class="Identifier">trim</span>(text)
          <span class="Statement">end if</span>
 
          <span class="Statement">if</span> (feature <span class="Statement">.ne.</span> <span class="Constant">'unknown'</span>) <span class="Statement">then</span>
-            <span class="Statement">write</span> (stderr, <span class="Constant">&quot;(A, ' (', A, '): ', A)&quot;</span>) frameID, feature, text
+            <span class="Statement">write</span> (stderr, <span class="Constant">'(A, &quot; (&quot;, A, &quot;): &quot;, A)'</span>) frameID, feature, text
          <span class="Statement">else</span>
-            <span class="Statement">write</span> (stderr, <span class="Constant">&quot;(A, ': ', A)&quot;</span>) frameID, text
+            <span class="Statement">write</span> (stderr, <span class="Constant">'(A, &quot;: &quot;, A)'</span>) frameID, text
          <span class="Statement">end if</span>
 
          i <span class="Statement">=</span> i <span class="Statement">+</span> frameSize
@@ -906,7 +906,7 @@
             <span class="Statement">iostat</span><span class="Statement">=</span>error)
 
          <span class="Statement">if</span> (error <span class="Statement">.ne.</span> <span class="Constant">0</span>) <span class="Statement">then</span>
-            <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Error: Cannot read ID3 file ''', A, '''.')&quot;</span>) path
+            <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Error: Cannot read ID3 file &quot;&quot;&quot;, A, &quot;&quot;&quot;.&quot;)'</span>) path
             <span class="Statement">stop</span>
          <span class="Statement">end if</span>
 
@@ -935,7 +935,7 @@
                text <span class="Statement">=</span> mime <span class="Statement">//</span> <span class="Identifier">char</span>(<span class="Constant">0</span>) <span class="Statement">//</span> <span class="Identifier">char</span>(<span class="Constant">3</span>) <span class="Statement">//</span> <span class="Constant">'cover'</span> <span class="Statement">//</span> <span class="Identifier">char</span>(<span class="Constant">0</span>) <span class="Special">&amp;</span>
                   <span class="Statement">//</span> slurp(text)
             <span class="Statement">else</span> <span class="Statement">if</span> (frameID(<span class="Constant">1</span>:<span class="Constant">1</span>) <span class="Statement">.ne.</span> <span class="Constant">'T'</span>) <span class="Statement">then</span>
-               <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Warning: ', A, ' not supported.')&quot;</span>) frameID
+               <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Warning: &quot;, A, &quot; not supported.&quot;)'</span>) frameID
                <span class="Statement">continue</span>
             <span class="Statement">end if</span>
 
@@ -1102,17 +1102,17 @@
       <span class="Statement">stop</span>
 
    <span class="Statement">case</span> <span class="Statement">default</span>
-      <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Error: Unknown filename extension.')&quot;</span>)
+      <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Error: Unknown filename extension.&quot;)'</span>)
       <span class="Statement">stop</span>
    <span class="Statement">end select</span>
 
    <span class="Statement">if</span> (<span class="Identifier">allocated</span>(s%meta)) <span class="Identifier">call</span> read_id3(s%meta)
 
-   <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">&quot;('Number of channels: ', I0)&quot;</span>) s%channels
-   <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">&quot;('Number of sample points: ', I0)&quot;</span>) s%points
-   <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">&quot;('Sample rate: ', F0.1, ' Hz')&quot;</span>) s%rate
-   <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">&quot;('Duration: ', F0.1, ' s')&quot;</span>) s%points <span class="Statement">/</span> s%rate
-   <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">&quot;('Amplitude: ', F0.1)&quot;</span>) s%amplitude
+   <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">'(&quot;Number of channels: &quot;, I0)'</span>) s%channels
+   <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">'(&quot;Number of sample points: &quot;, I0)'</span>) s%points
+   <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">'(&quot;Sample rate: &quot;, F0.1, &quot; Hz&quot;)'</span>) s%rate
+   <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">'(&quot;Duration: &quot;, F0.1, &quot; s&quot;)'</span>) s%points <span class="Statement">/</span> s%rate
+   <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">'(&quot;Amplitude: &quot;, F0.1)'</span>) s%amplitude
 <span class="PreProc">end subroutine</span> inspect
 </pre>
 <h2>interpreter.f90</h2>
@@ -1449,7 +1449,7 @@
                tuned <span class="Statement">=</span> n(<span class="Constant">1.0_dp</span>) <span class="Statement">.ne.</span> <span class="Constant">0.0_dp</span>
 
             <span class="Statement">case</span> (<span class="Constant">'status'</span>)
-               <span class="Statement">write</span> (stderr, <span class="Constant">&quot;(*(A10, ':', F16.9, 1X, A, :, /))&quot;</span>) <span class="Special">&amp;</span>
+               <span class="Statement">write</span> (stderr, <span class="Constant">'(*(A10, &quot;:&quot;, F16.9, 1X, A, :, /))'</span>) <span class="Special">&amp;</span>
                   <span class="Constant">'Time'</span>, t <span class="Statement">/</span> s, <span class="Constant">'s'</span>, <span class="Special">&amp;</span>
                   <span class="Constant">'Frequency'</span>, f <span class="Statement">*</span> s, <span class="Constant">'Hz'</span>, <span class="Special">&amp;</span>
                   <span class="Constant">'Amplitude'</span>, a, <span class="Constant">'arb. units'</span>, <span class="Special">&amp;</span>
@@ -1457,23 +1457,23 @@
                   <span class="Constant">'Phase'</span>, phase, <span class="Constant">'(mod 1)'</span>
 
             <span class="Statement">case</span> (<span class="Constant">'report'</span>)
-               <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Note counts:')&quot;</span>)
+               <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Note counts:&quot;)'</span>)
 
                <span class="Statement">do</span> i <span class="Statement">=</span> <span class="Identifier">lbound</span>(keycount, <span class="Constant">1</span>), <span class="Identifier">ubound</span>(keycount, <span class="Constant">1</span>)
                   <span class="Statement">if</span> (keycount(i) <span class="Statement">.gt.</span> <span class="Constant">0</span>) <span class="Statement">then</span>
                      j <span class="Statement">=</span> <span class="Identifier">modulo</span>(i <span class="Statement">+</span> <span class="Constant">4</span>, <span class="Constant">7</span>) <span class="Statement">+</span> <span class="Constant">1</span>
 
-                     <span class="Statement">write</span> (stderr, <span class="Constant">&quot;(A)&quot;</span>, <span class="Statement">advance</span><span class="Statement">=</span><span class="Constant">'no'</span>) <span class="Constant">'FCGDAEB'</span>(j:j)
+                     <span class="Statement">write</span> (stderr, <span class="Constant">'(A)'</span>, <span class="Statement">advance</span><span class="Statement">=</span><span class="Constant">'no'</span>) <span class="Constant">'FCGDAEB'</span>(j:j)
 
                      j <span class="Statement">=</span> (i <span class="Statement">+</span> <span class="Constant">4</span> <span class="Statement">-</span> (j <span class="Statement">-</span> <span class="Constant">1</span>)) <span class="Statement">/</span> <span class="Constant">7</span>
 
-                     <span class="Statement">if</span> (j <span class="Statement">&lt;</span> <span class="Constant">0</span>) <span class="Statement">write</span> (stderr, <span class="Constant">&quot;(A)&quot;</span>, <span class="Statement">advance</span><span class="Statement">=</span><span class="Constant">'no'</span>) <span class="Special">&amp;</span>
+                     <span class="Statement">if</span> (j <span class="Statement">&lt;</span> <span class="Constant">0</span>) <span class="Statement">write</span> (stderr, <span class="Constant">'(A)'</span>, <span class="Statement">advance</span><span class="Statement">=</span><span class="Constant">'no'</span>) <span class="Special">&amp;</span>
                         <span class="Identifier">repeat</span>(<span class="Constant">'b'</span>, <span class="Statement">-</span>j)
 
-                     <span class="Statement">if</span> (j <span class="Statement">&gt;</span> <span class="Constant">0</span>) <span class="Statement">write</span> (stderr, <span class="Constant">&quot;(A)&quot;</span>, <span class="Statement">advance</span><span class="Statement">=</span><span class="Constant">'no'</span>) <span class="Special">&amp;</span>
+                     <span class="Statement">if</span> (j <span class="Statement">&gt;</span> <span class="Constant">0</span>) <span class="Statement">write</span> (stderr, <span class="Constant">'(A)'</span>, <span class="Statement">advance</span><span class="Statement">=</span><span class="Constant">'no'</span>) <span class="Special">&amp;</span>
                         <span class="Identifier">repeat</span>(<span class="Constant">'#'</span>, j)
 
-                     <span class="Statement">write</span> (stderr, <span class="Constant">&quot;(': ', I0)&quot;</span>) keycount(i)
+                     <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;: &quot;, I0)'</span>) keycount(i)
                   <span class="Statement">end if</span>
                <span class="Statement">end do</span>
 
@@ -1527,7 +1527,7 @@
                <span class="Statement">end if</span>
 
             <span class="Statement">case</span> <span class="Statement">default</span>
-               <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Warning: Unknown action ''', A, '''.')&quot;</span>) word
+               <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Warning: Unknown action &quot;&quot;&quot;, A, &quot;&quot;&quot;.&quot;)'</span>) word
             <span class="Statement">end select</span>
 
          <span class="Statement">case</span> (<span class="Constant">'T'</span>)
@@ -1537,9 +1537,9 @@
             <span class="Statement">case</span> (<span class="Constant">'equal'</span>, <span class="Constant">'pyth'</span>, <span class="Constant">'just'</span>, <span class="Constant">'close'</span>)
                <span class="Statement">continue</span>
             <span class="Statement">case</span> <span class="Statement">default</span>
-               <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Warning: Unknown tuning ''', A, '''.')&quot;</span>) tuning
-               <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('The tuning ''equal'' is used instead.')&quot;</span>)
-               <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('See ''man tz mel'' for list of tunings.')&quot;</span>)
+               <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Warning: Unknown tuning &quot;&quot;&quot;, A, &quot;&quot;&quot;.&quot;)'</span>) tuning
+               <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;The tuning &quot;&quot;equal&quot;&quot; is used instead.&quot;)'</span>)
+               <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;See &quot;&quot;man tz mel&quot;&quot; for list of tunings.&quot;)'</span>)
                tuning <span class="Statement">=</span> <span class="Constant">'equal'</span>
             <span class="Statement">end select</span>
 
@@ -1898,7 +1898,7 @@
 
       <span class="Statement">if</span> (how <span class="Statement">.eq.</span> <span class="Constant">'#'</span>) <span class="Statement">then</span>
          <span class="Statement">if</span> (i <span class="Statement">.gt.</span> <span class="Identifier">command_argument_count</span>() <span class="Statement">-</span> <span class="Constant">3</span>) <span class="Statement">then</span>
-            <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Error: File ', I0, ' missing.')&quot;</span>) i
+            <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Error: File &quot;, I0, &quot; missing.&quot;)'</span>) i
             <span class="Statement">stop</span>
          <span class="Statement">end if</span>
 
@@ -1987,7 +1987,7 @@
             <span class="Statement">action</span><span class="Statement">=</span><span class="Constant">'read'</span>, <span class="Statement">status</span><span class="Statement">=</span><span class="Constant">'old'</span>, <span class="Statement">access</span><span class="Statement">=</span><span class="Constant">'stream'</span>)
 
          <span class="Statement">if</span> (error <span class="Statement">.ne.</span> <span class="Constant">0</span>) <span class="Statement">then</span>
-            <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Error: Cannot read file ''', A, '''.')&quot;</span>) path
+            <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Error: Cannot read file &quot;&quot;&quot;, A, &quot;&quot;&quot;.&quot;)'</span>) path
             <span class="Statement">stop</span>
          <span class="Statement">end if</span>
       <span class="Statement">end if</span>
@@ -2301,7 +2301,7 @@
          <span class="Statement">action</span><span class="Statement">=</span><span class="Constant">'read'</span>, <span class="Statement">status</span><span class="Statement">=</span><span class="Constant">'old'</span>, <span class="Statement">access</span><span class="Statement">=</span><span class="Constant">'stream'</span>)
 
       <span class="Statement">if</span> (error <span class="Statement">.ne.</span> <span class="Constant">0</span>) <span class="Statement">then</span>
-         <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Error: Cannot read RIFF file ''', A, '''.')&quot;</span>) path
+         <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Error: Cannot read RIFF file &quot;&quot;&quot;, A, &quot;&quot;&quot;.&quot;)'</span>) path
          <span class="Statement">stop</span>
       <span class="Statement">end if</span>
 
@@ -2320,7 +2320,7 @@
             s%rate <span class="Statement">=</span> <span class="Identifier">real</span>(sampleRate, dp)
 
             <span class="Statement">if</span> (sampleSize <span class="Statement">.ne.</span> <span class="Constant">16_i2</span>) <span class="Statement">then</span>
-               <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Error: Only 16 bits supported.')&quot;</span>)
+               <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Error: Only 16 bits supported.&quot;)'</span>)
                <span class="Statement">stop</span>
             <span class="Statement">end if</span>
 
@@ -2348,7 +2348,7 @@
                <span class="Statement">read</span> (fun, <span class="Statement">iostat</span><span class="Statement">=</span>error) byte
 
                <span class="Statement">if</span> (error <span class="Statement">.ne.</span> <span class="Constant">0</span>) <span class="Statement">then</span>
-                  <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Error: Corrupt RIFF file ''', A, '''.')&quot;</span>) <span class="Special">&amp;</span>
+                  <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Error: Corrupt RIFF file &quot;&quot;&quot;, A, &quot;&quot;&quot;.&quot;)'</span>) <span class="Special">&amp;</span>
                      path
                   <span class="Statement">stop</span>
                <span class="Statement">end if</span>
@@ -2382,8 +2382,8 @@
 
       <span class="Statement">if</span> (path <span class="Statement">.eq.</span> <span class="Constant">'stdout'</span> <span class="Statement">.or.</span> path <span class="Statement">.eq.</span> <span class="Constant">'http'</span>) <span class="Statement">then</span>
          <span class="Statement">if</span> (path <span class="Statement">.eq.</span> <span class="Constant">'http'</span>) <span class="Statement">then</span>
-            <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">&quot;('Content-Type: audio/x-wav')&quot;</span>)
-            <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">&quot;('Content-Length: ', I0, /)&quot;</span>) riffSize <span class="Statement">+</span> <span class="Constant">8</span>
+            <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">'(&quot;Content-Type: audio/x-wav&quot;)'</span>)
+            <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">'(&quot;Content-Length: &quot;, I0, /)'</span>) riffSize <span class="Statement">+</span> <span class="Constant">8</span>
          <span class="Statement">end if</span>
 
          <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">'(*(A))'</span>, <span class="Statement">advance</span><span class="Statement">=</span><span class="Constant">'no'</span>) <span class="Special">&amp;</span>
@@ -2402,7 +2402,7 @@
             <span class="Statement">action</span><span class="Statement">=</span><span class="Constant">'write'</span>, <span class="Statement">status</span><span class="Statement">=</span><span class="Constant">'replace'</span>, <span class="Statement">access</span><span class="Statement">=</span><span class="Constant">'stream'</span>)
 
          <span class="Statement">if</span> (error <span class="Statement">.ne.</span> <span class="Constant">0</span>) <span class="Statement">then</span>
-            <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Error: Cannot write RIFF file ''', A, '''.')&quot;</span>) <span class="Special">&amp;</span>
+            <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Error: Cannot write RIFF file &quot;&quot;&quot;, A, &quot;&quot;&quot;.&quot;)'</span>) <span class="Special">&amp;</span>
                path
             <span class="Statement">stop</span>
          <span class="Statement">end if</span>
@@ -2544,9 +2544,9 @@
 
       <span class="PreProc">subroutine</span> warn
          <span class="Statement">if</span> (how <span class="Statement">.ne.</span> <span class="Constant">'harmonic'</span>) <span class="Statement">then</span>
-            <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('Warning: Unknown sample ''', A, '''.')&quot;</span>) how
-            <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('The sample ''harmonic'' is used instead.')&quot;</span>)
-            <span class="Statement">write</span> (stderr, <span class="Constant">&quot;('See ''man tz mel'' for list of samples.')&quot;</span>)
+            <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Warning: Unknown sample &quot;&quot;&quot;, A, &quot;&quot;&quot;.&quot;)'</span>) how
+            <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;The sample &quot;&quot;harmonic&quot;&quot; is used instead.&quot;)'</span>)
+            <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;See &quot;&quot;man tz mel&quot;&quot; for list of samples.&quot;)'</span>)
          <span class="Statement">end if</span>
       <span class="PreProc">end subroutine</span> warn
    <span class="PreProc">end subroutine</span> sample
@@ -3108,7 +3108,7 @@
 
          <span class="Statement">if</span> (<span class="Identifier">present</span>(ratio)) <span class="Statement">then</span>
             <span class="Statement">if</span> (ratio) <span class="Statement">then</span>
-               <span class="Statement">write</span> (tmp, <span class="Constant">&quot;(I0, ':', I0)&quot;</span>) i <span class="Statement">-</span> j, beats
+               <span class="Statement">write</span> (tmp, <span class="Constant">'(I0, &quot;:&quot;, I0)'</span>) i <span class="Statement">-</span> j, beats
                sub <span class="Statement">=</span> sub <span class="Statement">//</span> <span class="Identifier">trim</span>(tmp)
             <span class="Statement">end if</span>
          <span class="Statement">end if</span>
@@ -3206,6 +3206,7 @@
 <h2>tz.f90</h2>
 <pre id='vimCodeElement'>
 <span class="PreProc">program</span> tz
+   <span class="PreProc">use</span> constants, <span class="PreProc">only</span>: stderr
    <span class="PreProc">use</span> io, <span class="PreProc">only</span>: command_argument
    <span class="Type">implicit</span> <span class="Type">none</span>
 
@@ -3233,14 +3234,14 @@
    <span class="Statement">case</span> (<span class="Constant">'play'</span>); <span class="Identifier">call</span> playz
    <span class="Statement">case</span> (<span class="Constant">'help'</span>); <span class="Identifier">call</span> help
    <span class="Statement">case</span> <span class="Statement">default</span>
-      <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">&quot;('Unknown command &quot;&quot;', A, '&quot;&quot;', /)&quot;</span>) command
+      <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Error: Unknown command &quot;&quot;&quot;, A, &quot;&quot;&quot;.&quot;)'</span>) command
       <span class="Identifier">call</span> help
    <span class="Statement">end select</span>
 
 <span class="PreProc">contains</span>
 
    <span class="PreProc">subroutine</span> help
-      <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">&quot;(A, /, *(:, /, '    tz ', A))&quot;</span>) <span class="Special">&amp;</span>
+      <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">'(A, /, *(:, /, &quot;    tz &quot;, A))'</span>) <span class="Special">&amp;</span>
          <span class="Constant">'Tonbandfetzen usage:'</span>, <span class="Special">&amp;</span>
          <span class="Constant">'mel [[[wavefile ...] infile] outfile]'</span>, <span class="Special">&amp;</span>
          <span class="Constant">'guitar [infile [outfile]]'</span>, <span class="Special">&amp;</span>
