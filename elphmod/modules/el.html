@@ -212,9 +212,9 @@ This can be omitted if all numbers are even.</p>
 By default, a cubic cell is assumed. Also needed for <a class="reference internal" href="#elphmod.el.k2r" title="elphmod.el.k2r"><code class="xref py py-func docutils literal notranslate"><span class="pre">k2r()</span></code></a>. Use
 bohr units for consistency with the mass-spring model.</p>
 </dd>
-<dt><strong>r</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Positions of orbital centers used to map RESPACK data to Wigner-Seitz
-cell. By default, all orbitals are assumed to be located at the origin
-of the unit cell. Also needed for <a class="reference internal" href="#elphmod.el.k2r" title="elphmod.el.k2r"><code class="xref py py-func docutils literal notranslate"><span class="pre">k2r()</span></code></a> and <code class="xref py py-func docutils literal notranslate"><span class="pre">elph.q2r()</span></code>. Use
+<dt><strong>r</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Orbital centers used to map RESPACK data to Wigner-Seitz cell. By
+default, all orbitals are assumed to be located at the origin of the
+unit cell. Also needed for <a class="reference internal" href="#elphmod.el.k2r" title="elphmod.el.k2r"><code class="xref py py-func docutils literal notranslate"><span class="pre">k2r()</span></code></a> and <a class="reference internal" href="elph.html#elphmod.elph.q2r" title="elphmod.elph.q2r"><code class="xref py py-func docutils literal notranslate"><span class="pre">elphmod.elph.q2r()</span></code></a>. Use
 bohr units for consistency with the mass-spring model.</p>
 </dd>
 <dt><strong>divide_ndegen</strong><span class="classifier">bool, default True</span></dt><dd><p>Divide hopping by degeneracy of Wigner-Seitz point and apply the
@@ -269,7 +269,7 @@ systems. Make sure to delete the binary files <em>seedname_wf.npy</em> and
 <dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Bravais lattice vectors if <cite>read_xsf</cite> or <em>seedname_tb.dat</em> found.
 Alternatively, they can be set at initialization via the parameter <cite>a</cite>.</p>
 </dd>
-<dt><strong>rc</strong><span class="classifier">ndarray</span></dt><dd><p>Positions of orbital centers if <em>seedname_centres.xyz</em> found.
+<dt><strong>rc</strong><span class="classifier">ndarray</span></dt><dd><p>Orbital centers if <em>seedname_centres.xyz</em> found.
 Alternatively, they can be set at initialization via the parameter <cite>r</cite>.</p>
 </dd>
 <dt><strong>tau</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Positions of basis atoms if <cite>read_xsf</cite> or <em>seedname_centres.xyz</em> found.</p>
@@ -591,8 +591,8 @@ the <code class="docutils literal notranslate"><span class="pre">SUBROUTINE</spa
 <dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Bravais lattice vectors. This only sets <code class="xref py py-attr docutils literal notranslate"><span class="pre">el.a</span></code> and is kept for
 backward compatibility.</p>
 </dd>
-<dt><strong>r</strong><span class="classifier">ndarray</span></dt><dd><p>Positions of orbital centers. This only sets <code class="xref py py-attr docutils literal notranslate"><span class="pre">el.rc</span></code> and is kept
-for backward compatibility.</p>
+<dt><strong>r</strong><span class="classifier">ndarray</span></dt><dd><p>Orbital centers. This only sets <code class="xref py py-attr docutils literal notranslate"><span class="pre">el.rc</span></code> and is kept for backward
+compatibility.</p>
 </dd>
 <dt><strong>fft</strong><span class="classifier">bool</span></dt><dd><p>Perform Fourier transform? If <code class="docutils literal notranslate"><span class="pre">False</span></code>, only the mapping to the
 Wigner-Seitz cell is performed.</p>

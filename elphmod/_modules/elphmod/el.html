@@ -182,9 +182,9 @@
 <span class="sd">        By default, a cubic cell is assumed. Also needed for :func:`k2r`. Use</span>
 <span class="sd">        bohr units for consistency with the mass-spring model.</span>
 <span class="sd">    r : ndarray, optional</span>
-<span class="sd">        Positions of orbital centers used to map RESPACK data to Wigner-Seitz</span>
-<span class="sd">        cell. By default, all orbitals are assumed to be located at the origin</span>
-<span class="sd">        of the unit cell. Also needed for :func:`k2r` and :func:`elph.q2r`. Use</span>
+<span class="sd">        Orbital centers used to map RESPACK data to Wigner-Seitz cell. By</span>
+<span class="sd">        default, all orbitals are assumed to be located at the origin of the</span>
+<span class="sd">        unit cell. Also needed for :func:`k2r` and :func:`elphmod.elph.q2r`. Use</span>
 <span class="sd">        bohr units for consistency with the mass-spring model.</span>
 <span class="sd">    divide_ndegen : bool, default True</span>
 <span class="sd">        Divide hopping by degeneracy of Wigner-Seitz point and apply the</span>
@@ -241,7 +241,7 @@
 <span class="sd">        Bravais lattice vectors if `read_xsf` or *seedname_tb.dat* found.</span>
 <span class="sd">        Alternatively, they can be set at initialization via the parameter `a`.</span>
 <span class="sd">    rc : ndarray</span>
-<span class="sd">        Positions of orbital centers if *seedname_centres.xyz* found.</span>
+<span class="sd">        Orbital centers if *seedname_centres.xyz* found.</span>
 <span class="sd">        Alternatively, they can be set at initialization via the parameter `r`.</span>
 <span class="sd">    tau : ndarray, optional</span>
 <span class="sd">        Positions of basis atoms if `read_xsf` or *seedname_centres.xyz* found.</span>
@@ -1031,8 +1031,8 @@
 <span class="sd">        Bravais lattice vectors. This only sets :attr:`el.a` and is kept for</span>
 <span class="sd">        backward compatibility.</span>
 <span class="sd">    r : ndarray</span>
-<span class="sd">        Positions of orbital centers. This only sets :attr:`el.rc` and is kept</span>
-<span class="sd">        for backward compatibility.</span>
+<span class="sd">        Orbital centers. This only sets :attr:`el.rc` and is kept for backward</span>
+<span class="sd">        compatibility.</span>
 <span class="sd">    fft : bool</span>
 <span class="sd">        Perform Fourier transform? If ``False``, only the mapping to the</span>
 <span class="sd">        Wigner-Seitz cell is performed.</span>
