@@ -274,10 +274,16 @@
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    elph, kT, f, n, nk, nq, fixcom</span>
+<span class="sd">    elph, nk, nq, fixcom</span>
 <span class="sd">        Copies of initialization parameters.</span>
 <span class="sd">    mu : float</span>
 <span class="sd">        Current chemical potential.</span>
+<span class="sd">    E : ndarray</span>
+<span class="sd">        Electron eigenenergies.</span>
+<span class="sd">    U : ndarray</span>
+<span class="sd">        Electron eigenstates.</span>
+<span class="sd">    e : ndarray</span>
+<span class="sd">        Electron eigenenergies from chemical potential.</span>
 <span class="sd">    k, q : ndarray</span>
 <span class="sd">        k and q meshes.</span>
 <span class="sd">    C0 : ndarray</span>
@@ -311,10 +317,10 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">elph</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">elph</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">kT</span> <span class="o">=</span> <span class="n">kT0</span> <span class="k">if</span> <span class="n">kT0</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">kT</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">f0</span> <span class="k">if</span> <span class="n">f0</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">f</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span> <span class="o">=</span> <span class="n">kT0</span> <span class="k">if</span> <span class="n">kT0</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">kT</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_f</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">f0</span> <span class="k">if</span> <span class="n">f0</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">f</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n0</span> <span class="k">if</span> <span class="n">n0</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">n</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="n">n0</span> <span class="k">if</span> <span class="n">n0</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">n</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nx</span> <span class="o">=</span> <span class="n">nx</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -359,9 +365,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">C0</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hessian</span><span class="p">(</span><span class="n">gamma_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">C0</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">F0</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">kT</span> <span class="o">=</span> <span class="n">kT</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span> <span class="o">=</span> <span class="n">kT</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_f</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="n">n</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">find_Fermi_level</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">fixcom</span> <span class="o">=</span> <span class="n">fixcom</span>
 
@@ -387,7 +395,7 @@
         <span class="k">if</span> <span class="n">export</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">standardize</span><span class="p">()</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">export</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">forces</span><span class="o">=-</span><span class="bp">self</span><span class="o">.</span><span class="n">F0</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">export</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">,</span> <span class="n">forces</span><span class="o">=-</span><span class="bp">self</span><span class="o">.</span><span class="n">F0</span><span class="p">,</span>
                 <span class="n">supercell</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,)</span> <span class="k">if</span> <span class="n">supercell</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">supercell</span><span class="p">,</span>
                 <span class="n">econv</span><span class="o">=</span><span class="n">econv</span><span class="p">,</span> <span class="n">lconv</span><span class="o">=</span><span class="n">lconv</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">)</span>
 
@@ -396,12 +404,12 @@
 
             <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;F0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">F0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">elph</span><span class="o">.</span><span class="n">cells</span><span class="p">))</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">elph</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">elph</span><span class="o">.</span><span class="n">cells</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">elph</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">elph</span><span class="o">.</span><span class="n">cells</span><span class="p">),</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">nx</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">elph</span><span class="o">.</span><span class="n">cells</span><span class="p">),</span> <span class="n">unscreen</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">u</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Atomic displacements.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Atomic displacements in bohr.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_u</span>
 
     <span class="nd">@u</span><span class="o">.</span><span class="n">setter</span>
@@ -422,12 +430,46 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">r</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Atomic positions.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Atomic positions in bohr.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_u</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
     <span class="nd">@r</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">r</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">kT</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Smearing temperature in Ry.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span>
+
+    <span class="nd">@kT</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">kT</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kT</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">kT</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span> <span class="o">=</span> <span class="n">kT</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">find_Fermi_level</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Particle distribution function.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span>
+
+    <span class="nd">@f</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">f</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_f</span> <span class="o">=</span> <span class="n">f</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">find_Fermi_level</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Number of electrons.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span>
+
+    <span class="nd">@n</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="n">n</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">find_Fermi_level</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Driver.random_displacements">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.random_displacements">[docs]</a>
@@ -462,24 +504,26 @@
 <span class="sd">        float</span>
 <span class="sd">            New chemical potential.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="ow">is</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">two_fermi_dirac</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span> <span class="ow">is</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">two_fermi_dirac</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>
                 <span class="n">info</span><span class="p">(</span><span class="s1">&#39;Photoexcitation requires even number of electrons!&#39;</span><span class="p">,</span>
                     <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-            <span class="n">muv</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">find_Fermi_level</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span>
+            <span class="n">muv</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">find_Fermi_level</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span><span class="p">,</span>
                 <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">fermi_dirac</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">)</span>
 
             <span class="n">muc</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">find_Fermi_level</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">:],</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">:],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span><span class="p">,</span>
                 <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">fermi_dirac</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">muc</span> <span class="o">-</span> <span class="n">muv</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">muc</span> <span class="o">-</span> <span class="n">muv</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="p">(</span><span class="n">muc</span> <span class="o">+</span> <span class="n">muv</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">find_Fermi_level</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">find_Fermi_level</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span></div>
 
@@ -494,9 +538,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">H0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;xijkmn,x-&gt;ijkmn&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_u</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_Fermi_level</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">find_Fermi_level</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="Driver.free_energy">
@@ -526,7 +570,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">update</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="n">E</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">diagrams</span><span class="o">.</span><span class="n">grand_potential</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span>
 
         <span class="n">E</span> <span class="o">+=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_u</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">C0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_u</span><span class="p">)</span>
 
@@ -562,13 +606,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">=</span> <span class="n">u</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span><span class="p">:</span>
-            <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">)[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span><span class="p">)[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="o">.</span><span class="n">T</span>
 
             <span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
                 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">)])</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">F</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">diagrams</span><span class="o">.</span><span class="n">first_order</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span>
-                <span class="n">U</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+            <span class="n">F</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">diagrams</span><span class="o">.</span><span class="n">first_order</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span><span class="p">,</span>
+                <span class="n">U</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
 
         <span class="n">F</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_u</span><span class="p">)</span>
 
@@ -619,9 +663,9 @@
         <span class="n">nq</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">gamma_only</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span> <span class="k">else</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span><span class="p">:</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span>
-            <span class="n">f</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-            <span class="n">d</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">)</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_kT</span><span class="p">)</span>
 
             <span class="n">df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">subtract</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
             <span class="n">de</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">subtract</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
@@ -632,7 +676,7 @@
             <span class="n">dos</span> <span class="o">=</span> <span class="o">-</span><span class="n">d</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># = -np.trace(dfde)</span>
 
             <span class="k">if</span> <span class="n">kT</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">tmp</span> <span class="o">=</span> <span class="n">d</span> <span class="k">if</span> <span class="n">kT</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">/</span> <span class="n">kT</span><span class="p">)</span> <span class="o">/</span> <span class="n">kT</span>
+                <span class="n">tmp</span> <span class="o">=</span> <span class="n">d</span> <span class="k">if</span> <span class="n">kT</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">/</span> <span class="n">kT</span><span class="p">)</span> <span class="o">/</span> <span class="n">kT</span>
                 <span class="n">dd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">tmp</span><span class="p">)</span>
                 <span class="n">dd</span> <span class="o">/=</span> <span class="n">dd</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
@@ -683,10 +727,10 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">[</span><span class="n">iq</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span>
 
             <span class="n">C</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">diagrams</span><span class="o">.</span><span class="n">phonon_self_energy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">[:</span><span class="n">nq</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span>
-                <span class="n">g</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">[:</span><span class="n">nq</span><span class="p">],</span> <span class="n">kT</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">)</span>
+                <span class="n">g</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">[:</span><span class="n">nq</span><span class="p">],</span> <span class="n">kT</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_kT</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">)</span>
 
             <span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">diagrams</span><span class="o">.</span><span class="n">phonon_self_energy_fermi_shift</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kT</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kT</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_kT</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">)</span>
 
         <span class="n">C</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C0</span><span class="p">[:</span><span class="n">nq</span><span class="p">]</span>
 
@@ -716,7 +760,8 @@
 
 <div class="viewcode-block" id="Driver.electrons">
 <a class="viewcode-back" href="../../modules/md.html#elphmod.md.Driver.electrons">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">electrons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seedname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dk1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dk2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dk3</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rydberg</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">electrons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seedname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dk1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dk2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dk3</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rydberg</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">from_fermi</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up tight-binding model for current structure.</span>
 
 <span class="sd">        Parameters</span>
@@ -728,13 +773,17 @@
 <span class="sd">            reduces the size of the Hamiltonian file.</span>
 <span class="sd">        rydberg : bool, default False</span>
 <span class="sd">            Keep Ry units? Otherwise they are converted to eV.</span>
+<span class="sd">        from_fermi : bool</span>
+<span class="sd">            Subtract Fermi level from electronic energies?</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        object</span>
 <span class="sd">            Tight-binding model for the electrons.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="k">if</span> <span class="n">from_fermi</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span>
+
+        <span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">*</span> <span class="n">e</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">dk1</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">dk2</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">dk3</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse</span><span class="p">:</span>
@@ -819,7 +868,7 @@
 <span class="sd">            Minimum phonon energy. Imaginary frequencies are given as negative.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">kT</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">kT</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span>
+            <span class="n">kT</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span>
 
         <span class="n">mm12</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">M</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
@@ -856,7 +905,7 @@
             <span class="n">comm</span><span class="o">.</span><span class="n">Barrier</span><span class="p">()</span>
 
             <span class="n">g2dd</span><span class="p">,</span> <span class="n">dd</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">diagrams</span><span class="o">.</span><span class="n">double_fermi_surface_average</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="n">kT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="n">kT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">)</span>
 
             <span class="n">g2dd</span> <span class="o">=</span> <span class="n">g2dd</span><span class="o">.</span><span class="n">real</span> <span class="o">/</span> <span class="n">dd</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
@@ -864,7 +913,7 @@
         <span class="n">w2</span><span class="p">[</span><span class="n">dangerous</span><span class="p">]</span> <span class="o">=</span> <span class="n">eps</span>
         <span class="n">g2dd</span><span class="p">[</span><span class="n">dangerous</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
 
-        <span class="n">N0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">/</span> <span class="n">kT</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">kT</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span>
+        <span class="n">N0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">/</span> <span class="n">kT</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">kT</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">nk</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span>
 
         <span class="n">V</span> <span class="o">=</span> <span class="n">g2dd</span> <span class="o">/</span> <span class="n">w2</span>
 
@@ -886,7 +935,7 @@
 <span class="sd">            Electron density. Should add up to the number of electrons.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
-            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kT</span><span class="p">),</span>
+            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kT</span><span class="p">),</span>
             <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span></div>
 
 

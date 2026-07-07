@@ -64,12 +64,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.density_per_atom"><code class="docutils literal notranslate"><span class="pre">Driver.density_per_atom()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.diagonalize"><code class="docutils literal notranslate"><span class="pre">Driver.diagonalize()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.electrons"><code class="docutils literal notranslate"><span class="pre">Driver.electrons()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.f"><code class="docutils literal notranslate"><span class="pre">Driver.f</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.find_Fermi_level"><code class="docutils literal notranslate"><span class="pre">Driver.find_Fermi_level()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.free_energy"><code class="docutils literal notranslate"><span class="pre">Driver.free_energy()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.from_xyz"><code class="docutils literal notranslate"><span class="pre">Driver.from_xyz()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.hessian"><code class="docutils literal notranslate"><span class="pre">Driver.hessian()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.jacobian"><code class="docutils literal notranslate"><span class="pre">Driver.jacobian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.kT"><code class="docutils literal notranslate"><span class="pre">Driver.kT</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.load"><code class="docutils literal notranslate"><span class="pre">Driver.load()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.n"><code class="docutils literal notranslate"><span class="pre">Driver.n</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.phonons"><code class="docutils literal notranslate"><span class="pre">Driver.phonons()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.plot"><code class="docutils literal notranslate"><span class="pre">Driver.plot()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.r"><code class="docutils literal notranslate"><span class="pre">Driver.r</span></code></a></li>
@@ -271,9 +274,15 @@ component?</p>
 </dd>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>elph, kT, f, n, nk, nq, fixcom</strong></dt><dd><p>Copies of initialization parameters.</p>
+<dt><strong>elph, nk, nq, fixcom</strong></dt><dd><p>Copies of initialization parameters.</p>
 </dd>
 <dt><strong>mu</strong><span class="classifier">float</span></dt><dd><p>Current chemical potential.</p>
+</dd>
+<dt><strong>E</strong><span class="classifier">ndarray</span></dt><dd><p>Electron eigenenergies.</p>
+</dd>
+<dt><strong>U</strong><span class="classifier">ndarray</span></dt><dd><p>Electron eigenstates.</p>
+</dd>
+<dt><strong>e</strong><span class="classifier">ndarray</span></dt><dd><p>Electron eigenenergies from chemical potential.</p>
 </dd>
 <dt><strong>k, q</strong><span class="classifier">ndarray</span></dt><dd><p>k and q meshes.</p>
 </dd>
@@ -325,7 +334,7 @@ if <cite>shared_memory</cite>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.electrons">
-<span class="sig-name descname"><span class="pre">electrons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rydberg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver.electrons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver.electrons" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">electrons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seedname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dk3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rydberg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_fermi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver.electrons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver.electrons" title="Link to this definition"></a></dt>
 <dd><p>Set up tight-binding model for current structure.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -337,6 +346,8 @@ reduces the size of the Hamiltonian file.</p>
 </dd>
 <dt><strong>rydberg</strong><span class="classifier">bool, default False</span></dt><dd><p>Keep Ry units? Otherwise they are converted to eV.</p>
 </dd>
+<dt><strong>from_fermi</strong><span class="classifier">bool</span></dt><dd><p>Subtract Fermi level from electronic energies?</p>
+</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -346,6 +357,12 @@ reduces the size of the Hamiltonian file.</p>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="elphmod.md.Driver.f">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">f</span></span><a class="headerlink" href="#elphmod.md.Driver.f" title="Link to this definition"></a></dt>
+<dd><p>Particle distribution function.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -459,6 +476,12 @@ is then also returned.</p>
 </dl>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="elphmod.md.Driver.kT">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">kT</span></span><a class="headerlink" href="#elphmod.md.Driver.kT" title="Link to this definition"></a></dt>
+<dd><p>Smearing temperature in Ry.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.load">
 <span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver.load" title="Link to this definition"></a></dt>
@@ -478,6 +501,12 @@ is then also returned.</p>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="elphmod.md.Driver.n">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">n</span></span><a class="headerlink" href="#elphmod.md.Driver.n" title="Link to this definition"></a></dt>
+<dd><p>Number of electrons.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -521,7 +550,7 @@ is then also returned.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="elphmod.md.Driver.r">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">r</span></span><a class="headerlink" href="#elphmod.md.Driver.r" title="Link to this definition"></a></dt>
-<dd><p>Atomic positions.</p>
+<dd><p>Atomic positions in bohr.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -569,7 +598,7 @@ corresponding couplings are set to zero.</p>
 values are <code class="docutils literal notranslate"><span class="pre">None</span></code>. A very small negative value can be chosen to
 skip calculations involving significant imaginary frequencies.</p>
 </dd>
-<dt><strong>kT</strong><span class="classifier">float, optional</span></dt><dd><p>Smearing temperature. By default, <code class="xref py py-attr docutils literal notranslate"><span class="pre">kT</span></code> is used.</p>
+<dt><strong>kT</strong><span class="classifier">float, optional</span></dt><dd><p>Smearing temperature. By default, <a class="reference internal" href="#elphmod.md.Driver.kT" title="elphmod.md.Driver.kT"><code class="xref py py-attr docutils literal notranslate"><span class="pre">kT</span></code></a> is used.</p>
 </dd>
 </dl>
 </dd>
@@ -623,7 +652,7 @@ skip calculations involving significant imaginary frequencies.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="elphmod.md.Driver.u">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">u</span></span><a class="headerlink" href="#elphmod.md.Driver.u" title="Link to this definition"></a></dt>
-<dd><p>Atomic displacements.</p>
+<dd><p>Atomic displacements in bohr.</p>
 </dd></dl>
 
 </dd></dl>
