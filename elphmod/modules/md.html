@@ -60,7 +60,6 @@
 <li class="toctree-l1"><a class="reference internal" href="occupations.html">Occupations</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">MD</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.md.Driver"><code class="docutils literal notranslate"><span class="pre">Driver</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.center_mass"><code class="docutils literal notranslate"><span class="pre">Driver.center_mass()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.density"><code class="docutils literal notranslate"><span class="pre">Driver.density()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.density_per_atom"><code class="docutils literal notranslate"><span class="pre">Driver.density_per_atom()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.diagonalize"><code class="docutils literal notranslate"><span class="pre">Driver.diagonalize()</span></code></a></li>
@@ -73,11 +72,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.load"><code class="docutils literal notranslate"><span class="pre">Driver.load()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.phonons"><code class="docutils literal notranslate"><span class="pre">Driver.phonons()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.plot"><code class="docutils literal notranslate"><span class="pre">Driver.plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.r"><code class="docutils literal notranslate"><span class="pre">Driver.r</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.random_displacements"><code class="docutils literal notranslate"><span class="pre">Driver.random_displacements()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.save"><code class="docutils literal notranslate"><span class="pre">Driver.save()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.superconductivity"><code class="docutils literal notranslate"><span class="pre">Driver.superconductivity()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.to_pwi"><code class="docutils literal notranslate"><span class="pre">Driver.to_pwi()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.to_xyz"><code class="docutils literal notranslate"><span class="pre">Driver.to_xyz()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elphmod.md.Driver.u"><code class="docutils literal notranslate"><span class="pre">Driver.u</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -125,6 +126,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../examples/phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/specfun.html">Phonon spectral function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/ase_phonons.html">Phonons from ASE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/phonopy_phonons.html">Phonons from phonopy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/projwfc_1d.html">Projected bands (carbon chain)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/projwfc.html">Projected bands (graphene)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/projwfc_3d.html">Projected bands (α-Po)</a></li>
@@ -214,7 +216,7 @@ eigenvalues of the linearized active-space Hamiltonian</p>
 for more information.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="elphmod.md.Driver">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">elphmod.md.</span></span><span class="sig-name descname"><span class="pre">Driver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unscreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">econv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lconv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">elphmod.md.</span></span><span class="sig-name descname"><span class="pre">Driver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supercell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unscreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">econv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lconv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixcom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver" title="Link to this definition"></a></dt>
 <dd><p>MD driver for DFPT-based displacements dynamics.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -258,6 +260,9 @@ changed.</p>
 </dd>
 <dt><strong>eps</strong><span class="classifier">float, default 1e-10</span></dt><dd><p>Matrix-element threshold for export in output units.</p>
 </dd>
+<dt><strong>fixcom</strong><span class="classifier">bool, default True</span></dt><dd><p>Fix center of mass by subtracting collective translational displacement
+component?</p>
+</dd>
 <dt><strong>shared_memory</strong><span class="classifier">bool, default True</span></dt><dd><p>Store <code class="xref py py-attr docutils literal notranslate"><span class="pre">d0</span></code> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">d</span></code> in shared memory?</p>
 </dd>
 <dt><strong>**kwargs</strong></dt><dd><p>Attributes to be set initially.</p>
@@ -266,13 +271,11 @@ changed.</p>
 </dd>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>elph, kT, f, n, nk, nq</strong></dt><dd><p>Copies of initialization parameters.</p>
+<dt><strong>elph, kT, f, n, nk, nq, fixcom</strong></dt><dd><p>Copies of initialization parameters.</p>
 </dd>
 <dt><strong>mu</strong><span class="classifier">float</span></dt><dd><p>Current chemical potential.</p>
 </dd>
 <dt><strong>k, q</strong><span class="classifier">ndarray</span></dt><dd><p>k and q meshes.</p>
-</dd>
-<dt><strong>u</strong><span class="classifier">ndarray</span></dt><dd><p>Atomic displacements.</p>
 </dd>
 <dt><strong>C0</strong><span class="classifier">ndarray</span></dt><dd><p>Unscreened force constants.</p>
 </dd>
@@ -294,12 +297,6 @@ if <cite>shared_memory</cite>.</p>
 </dl>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="elphmod.md.Driver.center_mass">
-<span class="sig-name descname"><span class="pre">center_mass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver.center_mass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver.center_mass" title="Link to this definition"></a></dt>
-<dd><p>Subtract collective translational displacement component.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.density">
 <span class="sig-name descname"><span class="pre">density</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver.density"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver.density" title="Link to this definition"></a></dt>
@@ -372,9 +369,9 @@ reduces the size of the Hamiltonian file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>u</strong><span class="classifier">ndarray</span></dt><dd><p>Updated atomic displacements (e.g., from optimization routine).</p>
+<dt><strong>u</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Updated atomic displacements (e.g., from optimization routine).</p>
 </dd>
-<dt><strong>show</strong><span class="classifier">bool</span></dt><dd><p>Print free energy?</p>
+<dt><strong>show</strong><span class="classifier">bool, default True</span></dt><dd><p>Print free energy?</p>
 </dd>
 </dl>
 </dd>
@@ -406,12 +403,12 @@ be controlled via <code class="xref py py-attr docutils literal notranslate"><sp
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.hessian">
-<span class="sig-name descname"><span class="pre">hessian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fildyn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver.hessian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver.hessian" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">hessian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_asr_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fildyn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver.hessian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver.hessian" title="Link to this definition"></a></dt>
 <dd><p>Calculate second derivative of free energy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>parameters</strong><span class="classifier">ndarray</span></dt><dd><p>Dummy positional argument for optimization routines.</p>
+<dt><strong>u</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Updated atomic displacements (e.g., from optimization routine).</p>
 </dd>
 <dt><strong>gamma_only</strong><span class="classifier">bool, default True</span></dt><dd><p>Calculate Hessian for q = 0 only?</p>
 </dd>
@@ -421,7 +418,7 @@ This is done before saving the Hessian to file.</p>
 </dd>
 <dt><strong>fildyn</strong><span class="classifier">str, optional</span></dt><dd><p>Filename to save Hessian.</p>
 </dd>
-<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Smallest allowed absolute value of divisor.</p>
+<dt><strong>eps</strong><span class="classifier">float, default 1e-10</span></dt><dd><p>Smallest allowed absolute value of divisor.</p>
 </dd>
 <dt><strong>kT</strong><span class="classifier">float, optional</span></dt><dd><p>Smearing temperature. If given, it is used to calculate the double
 Fermi-surface average of the electron-phonon coupling squared, which
@@ -442,14 +439,14 @@ is then also returned.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="elphmod.md.Driver.jacobian">
-<span class="sig-name descname"><span class="pre">jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver.jacobian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver.jacobian" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/md.html#Driver.jacobian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.md.Driver.jacobian" title="Link to this definition"></a></dt>
 <dd><p>Calculate first derivative of free energy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>parameters</strong><span class="classifier">ndarray</span></dt><dd><p>Dummy positional argument for optimization routines.</p>
+<dt><strong>u</strong><span class="classifier">ndarray, optional</span></dt><dd><p>Updated atomic displacements (e.g., from optimization routine).</p>
 </dd>
-<dt><strong>show</strong><span class="classifier">bool</span></dt><dd><p>Print free energy?</p>
+<dt><strong>show</strong><span class="classifier">bool, default True</span></dt><dd><p>Print free energy?</p>
 </dd>
 </dl>
 </dd>
@@ -490,7 +487,7 @@ is then also returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>divide_mass</strong><span class="classifier">bool</span></dt><dd><p>Divide force constants by atomic masses?</p>
+<dt><strong>divide_mass</strong><span class="classifier">bool, default True</span></dt><dd><p>Divide force constants by atomic masses?</p>
 </dd>
 <dt><strong>**kwargs</strong></dt><dd><p>Parameters passed to <a class="reference internal" href="ph.html#elphmod.ph.q2r" title="elphmod.ph.q2r"><code class="xref py py-func docutils literal notranslate"><span class="pre">elphmod.ph.q2r()</span></code></a>.</p>
 </dd>
@@ -519,6 +516,12 @@ is then also returned.</p>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="elphmod.md.Driver.r">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">r</span></span><a class="headerlink" href="#elphmod.md.Driver.r" title="Link to this definition"></a></dt>
+<dd><p>Atomic positions.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -559,7 +562,7 @@ is then also returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>eps</strong><span class="classifier">float</span></dt><dd><p>Phonon frequencies squared below <cite>eps</cite> are set to <cite>eps</cite>;
+<dt><strong>eps</strong><span class="classifier">float, default 1e-10</span></dt><dd><p>Phonon frequencies squared below <cite>eps</cite> are set to <cite>eps</cite>;
 corresponding couplings are set to zero.</p>
 </dd>
 <dt><strong>tol</strong><span class="classifier">float, optional</span></dt><dd><p>If any phonon frequency squared is smaller than <cite>tol</cite>, all return
@@ -615,6 +618,12 @@ skip calculations involving significant imaginary frequencies.</p>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="elphmod.md.Driver.u">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">u</span></span><a class="headerlink" href="#elphmod.md.Driver.u" title="Link to this definition"></a></dt>
+<dd><p>Atomic displacements.</p>
 </dd></dl>
 
 </dd></dl>

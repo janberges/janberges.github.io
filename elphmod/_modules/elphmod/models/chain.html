@@ -97,6 +97,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/phrenorm_3d.html">Phonon renormalization (α-Po)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/specfun.html">Phonon spectral function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/ase_phonons.html">Phonons from ASE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/phonopy_phonons.html">Phonons from phonopy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/projwfc_1d.html">Projected bands (carbon chain)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/projwfc.html">Projected bands (graphene)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/projwfc_3d.html">Projected bands (α-Po)</a></li>
@@ -169,7 +170,7 @@
 <span class="n">g0</span> <span class="o">=</span> <span class="mf">0.02</span> <span class="o">/</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">Ry</span> <span class="o">**</span> <span class="mf">1.5</span>
 
 <span class="n">at</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">primitives</span><span class="p">(</span><span class="n">ibrav</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">bohr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mf">0.5</span><span class="p">)</span>
 
 <span class="n">nk</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># for electrons</span>
 <span class="n">nq</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># for phonons</span>
