@@ -206,7 +206,7 @@
         <span class="o">*</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">Ry</span> <span class="o">/</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">a0</span><span class="p">)</span>
 
 <span class="n">ph_phonopy</span><span class="o">.</span><span class="n">forces</span> <span class="o">=</span> <span class="n">forces</span>
-<span class="n">ph_phonopy</span><span class="o">.</span><span class="n">produce_force_constants</span><span class="p">()</span>
+<span class="n">ph_phonopy</span><span class="o">.</span><span class="n">produce_force_constants</span><span class="p">(</span><span class="n">calculate_full_force_constants</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">ph_phonopy</span><span class="o">.</span><span class="n">run_band_structure</span><span class="p">(</span><span class="o">*</span><span class="n">phonopy</span><span class="o">.</span><span class="n">phonon</span><span class="o">.</span><span class="n">band_structure</span>
     <span class="o">.</span><span class="n">get_band_qpoints_and_path_connections</span><span class="p">([</span><span class="n">q</span><span class="p">[</span><span class="n">corners</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)],</span>
