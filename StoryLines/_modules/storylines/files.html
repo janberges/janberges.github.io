@@ -239,7 +239,13 @@
 <span class="sd">    dpi : float, default 300.0</span>
 <span class="sd">        Image resolution in dots per inch.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pdfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">pdfs</span><span class="p">]</span>
+
     <span class="n">stem</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">home</span> <span class="o">=</span> <span class="n">goto</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="n">pdfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">pdfs</span><span class="p">]</span>
+
+    <span class="n">pdfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">path</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.pdf&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="n">path</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">pdfs</span><span class="p">]</span>
 
     <span class="n">png</span> <span class="o">=</span> <span class="n">png</span> <span class="ow">or</span> <span class="n">typ</span> <span class="o">==</span> <span class="s1">&#39;png&#39;</span>
     <span class="n">pdf</span> <span class="o">=</span> <span class="n">pdf</span> <span class="ow">or</span> <span class="n">typ</span> <span class="o">==</span> <span class="s1">&#39;pdf&#39;</span> <span class="ow">or</span> <span class="n">png</span>
