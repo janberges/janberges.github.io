@@ -248,111 +248,111 @@
    query <span class="Statement">=</span> decode(environment_variable(<span class="Constant">'QUERY_STRING'</span>))
 
    <span class="Statement">if</span> (query <span class="Statement">.eq.</span> <span class="Constant">' '</span>) <span class="Statement">then</span>
-      <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">'(A, /, *(:, /, A))'</span>) <span class="Constant">&quot;Content-type: text/html&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;&lt;!DOCTYPE html&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;&lt;html lang='en'&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;  &lt;head&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;    &lt;meta charset='utf-8'&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;    &lt;title&gt;Tonbandfetzen&lt;/title&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;    &lt;link rel='icon' type='image/svg+xml' sizes='any'&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      href='<a href="https://io.janberges.de/Tonbandfetzen/logo.svg">https://io.janberges.de/Tonbandfetzen/logo.svg</a>'&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;    &lt;style&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      body {&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        font: 12px sans-serif;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        color: #cccccc;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        background: #222222;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      }&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      #color {&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        position: absolute;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        color: #ffffff;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        background: #333333;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      }&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      #mel {&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        position: relative;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        color: transparent;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        background: transparent;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        caret-color: #ffffff;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      }&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      #color, #mel, #play, #wav {&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        display: block;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        box-sizing: border-box;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        width: 600px;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      }&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      #color, #mel {&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        height: 300px;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        resize: none;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        overflow-y: auto;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        padding: 5px;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        border: 0;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        margin: 0;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        font: bold 16px monospace;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        white-space: pre-wrap;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        word-wrap: break-word;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      }&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      #play, #wav { margin-bottom: 5mm }&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      .N { color: #bf8040 }&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      .L { color: #afdf00 }&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      .C { color: #da193b }&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      a { color: inherit }&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      a:hover { text-decoration: none }&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;    &lt;/style&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;    &lt;script&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      // @license </span><span class="Special">&amp;</span>
+      <span class="Statement">write</span> (<span class="Statement">*</span>, <span class="Constant">'(A, /, *(:, /, A))'</span>) <span class="Constant">'Content-type: text/html'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'&lt;!DOCTYPE html&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'&lt;html lang=&quot;en&quot;&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'  &lt;head&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'    &lt;meta charset=&quot;utf-8&quot;&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'    &lt;title&gt;Tonbandfetzen&lt;/title&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'    &lt;link rel=&quot;icon&quot; type=&quot;image/svg+xml&quot; sizes=&quot;any&quot;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      href=&quot;<a href="https://io.janberges.de/Tonbandfetzen/logo.svg">https://io.janberges.de/Tonbandfetzen/logo.svg</a>&quot;&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'    &lt;style&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      body {'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        font: 12px sans-serif;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        color: #cccccc;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        background: #222222;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      }'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      #color {'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        position: absolute;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        color: #ffffff;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        background: #333333;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      }'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      #mel {'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        position: relative;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        color: transparent;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        background: transparent;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        caret-color: #ffffff;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      }'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      #color, #mel, #play, #wav {'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        display: block;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        box-sizing: border-box;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        width: 600px;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      }'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      #color, #mel {'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        height: 300px;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        resize: none;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        overflow-y: auto;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        padding: 5px;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        border: 0;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        margin: 0;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        font: bold 16px monospace;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        white-space: pre-wrap;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        word-wrap: break-word;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      }'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      #play, #wav { margin-bottom: 5mm }'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      .N { color: #bf8040 }'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      .L { color: #afdf00 }'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      .C { color: #da193b }'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      a { color: inherit }'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      a:hover { text-decoration: none }'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'    &lt;/style&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'    &lt;script&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      // @license </span><span class="Special">&amp;</span>
 <span class="Constant">         </span><span class="Special">&amp;</span><span class="Constant">magnet:?xt=urn:btih:90dc5c0be029de84e523b9b3922520e79e0e6f08</span><span class="Special">&amp;</span>
-<span class="Constant">         </span><span class="Special">&amp;&amp;</span><span class="Constant">dn=cc0.txt CC0-1.0&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      function enter() {&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        document.getElementById('play').disabled = false&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        var m = document.getElementById('mel').value&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        m = m.replace(/</span><span class="Special">&amp;</span><span class="Constant">/g, '</span><span class="Special">&amp;</span><span class="Constant">AMP;')&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        m = m.replace(/&lt;/g, '</span><span class="Special">&amp;</span><span class="Constant">LT;')&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        m = m.replace(/[\d.:]+/g, '&lt;SPAN CLASS=&quot;&quot;N&quot;&quot;&gt;$</span><span class="Special">&amp;</span><span class="Constant">&lt;/SPAN&gt;')&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        m = m.replace(/[a-z#]+/g, '&lt;SPAN CLASS=&quot;&quot;L&quot;&quot;&gt;$</span><span class="Special">&amp;</span><span class="Constant">&lt;/SPAN&gt;')&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        m = m.replace(/\n$/g, '$</span><span class="Special">&amp;&amp;</span><span class="Constant">nbsp;')&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        m = m.replace(/\*[^*]*\*?/g, function(c) {&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;          c = c.replace(/&lt;.+?&gt;/g, '')&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;          return '&lt;SPAN CLASS=&quot;&quot;C&quot;&quot;&gt;' + c + '&lt;/SPAN&gt;'&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        })&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        document.getElementById('color').innerHTML = m&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      }&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      function move() {&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        document.getElementById('color').scrollTop =&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;          document.getElementById('mel').scrollTop&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      }&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      function play() {&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        document.getElementById('play').disabled = true&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        document.getElementById('wav').src = '?'&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;          + encodeURIComponent(&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;            document.getElementById('mel').value)&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;        document.getElementById('wav').load()&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      }&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      // @license-end&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;    &lt;/script&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;  &lt;/head&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;  &lt;body onload='enter()'&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;    &lt;div id='color'&gt;&lt;/div&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;    &lt;textarea id='mel' spellcheck='false'&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;      oninput='enter()' onscroll='move()'&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;$22050&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;*Harmonic series and cadence*&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;T pyth&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;X synth&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;M A2'8&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;W ,5 A2' A3' E4' A4' C#v5' E5' Gz5' A5'&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;E4|----0~~~|---2~~~~|-----0~~|----0~~~|&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;B3|---2~~~~|--3~~~~~|----0~~~|---2~~~~|&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;G3|--2~~~~~|-2~~~~~~|---1~~~~|--2~~~~~|&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;D3|-2~~~~~~|0~~~~~~~|--2~~~~~|-2~~~~~~|&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;A2|0~~~~~~~|--------|-2~~~~~~|0~~~~~~~|&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;E2|--------|--------|0~~~~~~~|--------|&lt;/textarea&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;    &lt;button id='play' onclick='play()'&gt;Interpret&lt;/button&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;    &lt;audio id='wav' controls autoplay&gt;Sorry&lt;/audio&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;    Please have a look at the&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;    &lt;a href='<a href="https://io.janberges.de/Tonbandfetzen/">https://io.janberges.de/Tonbandfetzen/</a>'&gt;</span><span class="Special">&amp;</span>
-<span class="Constant">         </span><span class="Special">&amp;</span><span class="Constant">documentation&lt;/a&gt; and the&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;    &lt;a href='<a href="https://codeberg.org/janberges/Tonbandfetzen">https://codeberg.org/janberges/Tonbandfetzen</a>'&gt;</span><span class="Special">&amp;</span>
-<span class="Constant">         </span><span class="Special">&amp;</span><span class="Constant">source code&lt;/a&gt;.&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;  &lt;/body&gt;&quot;</span>, <span class="Special">&amp;</span>
-         <span class="Constant">&quot;&lt;/html&gt;&quot;</span>
+<span class="Constant">         </span><span class="Special">&amp;&amp;</span><span class="Constant">dn=cc0.txt CC0-1.0'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      function enter() {'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        document.getElementById(&quot;play&quot;).disabled = false'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        var m = document.getElementById(&quot;mel&quot;).value'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        m = m.replace(/</span><span class="Special">&amp;</span><span class="Constant">/g, &quot;</span><span class="Special">&amp;</span><span class="Constant">AMP;&quot;)'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        m = m.replace(/&lt;/g, &quot;</span><span class="Special">&amp;</span><span class="Constant">LT;&quot;)'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        m = m.replace(/[\d.:]+/g, &quot;&lt;SPAN CLASS=''N''&gt;$</span><span class="Special">&amp;</span><span class="Constant">&lt;/SPAN&gt;&quot;)'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        m = m.replace(/[a-z#]+/g, &quot;&lt;SPAN CLASS=''L''&gt;$</span><span class="Special">&amp;</span><span class="Constant">&lt;/SPAN&gt;&quot;)'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        m = m.replace(/\n$/g, &quot;$</span><span class="Special">&amp;&amp;</span><span class="Constant">nbsp;&quot;)'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        m = m.replace(/\*[^*]*\*?/g, function(c) {'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'          c = c.replace(/&lt;.+?&gt;/g, &quot;&quot;)'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'          return &quot;&lt;SPAN CLASS=''C''&gt;&quot; + c + &quot;&lt;/SPAN&gt;&quot;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        })'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        document.getElementById(&quot;color&quot;).innerHTML = m'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      }'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      function move() {'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        document.getElementById(&quot;color&quot;).scrollTop ='</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'          document.getElementById(&quot;mel&quot;).scrollTop'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      }'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      function play() {'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        document.getElementById(&quot;play&quot;).disabled = true'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        document.getElementById(&quot;wav&quot;).src = &quot;?&quot;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'          + encodeURIComponent('</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'            document.getElementById(&quot;mel&quot;).value)'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'        document.getElementById(&quot;wav&quot;).load()'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      }'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      // @license-end'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'    &lt;/script&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'  &lt;/head&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'  &lt;body onload=&quot;enter()&quot;&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'    &lt;div id=&quot;color&quot;&gt;&lt;/div&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'    &lt;textarea id=&quot;mel&quot; spellcheck=&quot;false&quot;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'      oninput=&quot;enter()&quot; onscroll=&quot;move()&quot;&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'$22050'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'*Harmonic series and cadence*'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'T pyth'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'X synth'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'M A2''8'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'W ,5 A2'' A3'' E4'' A4'' C#v5'' E5'' Gz5'' A5'''</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'E4|----0~~~|---2~~~~|-----0~~|----0~~~|'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'B3|---2~~~~|--3~~~~~|----0~~~|---2~~~~|'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'G3|--2~~~~~|-2~~~~~~|---1~~~~|--2~~~~~|'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'D3|-2~~~~~~|0~~~~~~~|--2~~~~~|-2~~~~~~|'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'A2|0~~~~~~~|--------|-2~~~~~~|0~~~~~~~|'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'E2|--------|--------|0~~~~~~~|--------|&lt;/textarea&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'    &lt;button id=&quot;play&quot; onclick=&quot;play()&quot;&gt;Interpret&lt;/button&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'    &lt;audio id=&quot;wav&quot; controls autoplay&gt;Sorry&lt;/audio&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'    Please have a look at the'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'    &lt;a href=&quot;<a href="https://io.janberges.de/Tonbandfetzen/">https://io.janberges.de/Tonbandfetzen/</a>&quot;&gt;</span><span class="Special">&amp;</span>
+<span class="Constant">         </span><span class="Special">&amp;</span><span class="Constant">documentation&lt;/a&gt; and the'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'    &lt;a href=&quot;<a href="https://codeberg.org/janberges/Tonbandfetzen">https://codeberg.org/janberges/Tonbandfetzen</a>&quot;&gt;</span><span class="Special">&amp;</span>
+<span class="Constant">         </span><span class="Special">&amp;</span><span class="Constant">source code&lt;/a&gt;.'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'  &lt;/body&gt;'</span>, <span class="Special">&amp;</span>
+         <span class="Constant">'&lt;/html&gt;'</span>
    <span class="Statement">else</span>
       <span class="Identifier">call</span> play(preprocess(query), music, limit)
 
