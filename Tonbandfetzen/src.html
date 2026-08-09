@@ -2185,18 +2185,34 @@
    <span class="PreProc">use</span> tab, <span class="PreProc">only</span>: preprocess
    <span class="Type">implicit</span> <span class="Type">none</span>
 
-   <span class="Type">character</span>(:), <span class="Type">allocatable</span> :: infile, outfile
+   <span class="Type">character</span>(:), <span class="Type">allocatable</span> :: infile, outfile, command
    <span class="Type">type</span>(audio) :: s
+   <span class="Type">logical</span> :: macos
+
+   <span class="Statement">inquire</span> (<span class="Statement">file</span><span class="Statement">=</span><span class="Constant">'/usr/bin/sw_vers'</span>, <span class="Statement">exist</span><span class="Statement">=</span>macos)
+
+   <span class="Statement">if</span> (macos) <span class="Statement">then</span>
+      outfile <span class="Statement">=</span> <span class="Constant">'tz-play.tmp.wav'</span>
+      command <span class="Statement">=</span> <span class="Constant">'open -a &quot;QuickTime Player&quot;'</span>
+   <span class="Statement">else</span>
+      outfile <span class="Statement">=</span> <span class="Constant">'/dev/shm/tz-play.tmp.wav'</span>
+      command <span class="Statement">=</span> <span class="Constant">'xdg-open'</span>
+   <span class="Statement">end if</span>
 
    infile <span class="Statement">=</span> command_argument(<span class="Constant">1</span>, <span class="Constant">'/dev/stdin'</span>)
-   outfile <span class="Statement">=</span> command_argument(<span class="Constant">2</span>, <span class="Constant">'/dev/shm/tmp.wav'</span>)
+   outfile <span class="Statement">=</span> command_argument(<span class="Constant">2</span>, outfile)
 
    <span class="Statement">select case</span> (extension(infile))
    <span class="Statement">case</span> (<span class="Constant">'wave'</span>, <span class="Constant">'wav'</span>, <span class="Constant">'mp3'</span>, <span class="Constant">'WAVE'</span>, <span class="Constant">'WAV'</span>, <span class="Constant">'MP3'</span>)
-      <span class="Identifier">call</span> <span class="Identifier">execute_command_line</span>(<span class="Constant">'xdg-open '</span> <span class="Statement">//</span> infile)
+      <span class="Identifier">call</span> <span class="Identifier">execute_command_line</span>(command <span class="Statement">//</span> <span class="Constant">' '</span> <span class="Statement">//</span> infile)
       <span class="Statement">return</span>
 
    <span class="Statement">case</span> (<span class="Constant">'aiff'</span>, <span class="Constant">'aif'</span>, <span class="Constant">'AIFF'</span>, <span class="Constant">'AIF'</span>)
+      <span class="Statement">if</span> (macos) <span class="Statement">then</span>
+         <span class="Identifier">call</span> <span class="Identifier">execute_command_line</span>(command <span class="Statement">//</span> <span class="Constant">' '</span> <span class="Statement">//</span> infile)
+         <span class="Statement">return</span>
+      <span class="Statement">end if</span>
+
       <span class="Identifier">call</span> read_aiff(infile, s)
 
    <span class="Statement">case</span> <span class="Statement">default</span>
@@ -2204,7 +2220,7 @@
    <span class="Statement">end select</span>
 
    <span class="Identifier">call</span> write_riff(outfile, s)
-   <span class="Identifier">call</span> <span class="Identifier">execute_command_line</span>(<span class="Constant">'xdg-open '</span> <span class="Statement">//</span> outfile)
+   <span class="Identifier">call</span> <span class="Identifier">execute_command_line</span>(command <span class="Statement">//</span> <span class="Constant">' '</span> <span class="Statement">//</span> outfile)
 <span class="PreProc">end subroutine</span> playz
 </pre>
 <h2>rationals.f90</h2>
