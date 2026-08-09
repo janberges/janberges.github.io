@@ -1141,6 +1141,7 @@
       <span class="Type">integer</span>, <span class="Type">intent</span>(<span class="Type">in</span>), <span class="Type">optional</span> :: limit
 
       <span class="Type">character</span>(<span class="Statement">*</span>), <span class="Type">parameter</span> :: initial <span class="Statement">=</span> <span class="Constant">'!&quot;%</span><span class="Special">&amp;</span><span class="Constant">+-=?@ABCDEFGNQSUVWXYZ[]`~'</span>
+      <span class="Type">character</span>(<span class="Statement">*</span>), <span class="Type">parameter</span> :: dynamic <span class="Statement">=</span> <span class="Constant">'&quot;''WY`'</span>
 
       <span class="Type">character</span>(:), <span class="Type">allocatable</span> :: symbol, word <span class="Comment">! special/lexical string</span>
 
@@ -1193,10 +1194,11 @@
       <span class="Type">logical</span> :: synth, tuned <span class="Comment">! employ Karplus and Strong's synthesizer?</span>
       <span class="Identifier">real</span>(dp) :: blend, decay <span class="Comment">! blend and inverse decay-stretch factors</span>
 
+      <span class="Type">logical</span> :: slur <span class="Comment">! continue without interruption?</span>
+
       <span class="Identifier">real</span>(dp) :: phase <span class="Comment">! turn = 1</span>
 
       <span class="Type">integer</span> :: i, j, k <span class="Comment">! arbitrary integers/indices</span>
-      <span class="Type">logical</span> :: l <span class="Comment">! arbitrary logical</span>
 
       <span class="Identifier">real</span>(dp) :: s <span class="Comment">! equivalent of a second</span>
 
@@ -1275,6 +1277,8 @@
 
       <span class="Identifier">call</span> reset
       mark_set <span class="Statement">=</span> <span class="Constant">.false.</span>
+
+      slur <span class="Statement">=</span> <span class="Constant">.false.</span>
 
       <span class="Statement">do</span>
          symbol <span class="Statement">=</span> next(special, length<span class="Statement">=</span><span class="Constant">1</span>)
@@ -1374,6 +1378,8 @@
 
       <span class="Identifier">call</span> reset
       mark_set <span class="Statement">=</span> <span class="Constant">.false.</span>
+
+      slur <span class="Statement">=</span> <span class="Constant">.false.</span>
 
       <span class="Statement">do</span>
          symbol <span class="Statement">=</span> next(special, length<span class="Statement">=</span><span class="Constant">1</span>)
@@ -1767,8 +1773,9 @@
       <span class="PreProc">function</span> done()
          <span class="Type">logical</span> :: done
 
-         done <span class="Statement">=</span> symbol <span class="Statement">.eq.</span> <span class="Constant">'none'</span>
-         done <span class="Statement">=</span> done <span class="Statement">.or.</span> <span class="Identifier">scan</span>(symbol, initial) <span class="Statement">.gt.</span> <span class="Constant">0</span>
+         slur <span class="Statement">=</span> <span class="Identifier">scan</span>(symbol, dynamic) <span class="Statement">.eq.</span> <span class="Constant">0</span> <span class="Statement">.and.</span> slur
+         done <span class="Statement">=</span> <span class="Identifier">scan</span>(symbol, initial) <span class="Statement">.ne.</span> <span class="Constant">0</span> <span class="Statement">.and.</span> <span class="Statement">.not.</span> slur
+         done <span class="Statement">=</span> done <span class="Statement">.or.</span> symbol <span class="Statement">.eq.</span> <span class="Constant">'none'</span>
          done <span class="Statement">=</span> done <span class="Statement">.and.</span> c <span class="Statement">.gt.</span> <span class="Constant">0</span>
       <span class="PreProc">end function</span> done
 
@@ -1861,25 +1868,26 @@
                <span class="Statement">end if</span>
             <span class="Statement">end if</span>
 
-         <span class="Statement">case</span> (<span class="Constant">'K'</span>, <span class="Constant">'L'</span>)
+         <span class="Statement">case</span> (<span class="Constant">'K'</span>)
+            slur <span class="Statement">=</span> <span class="Constant">.true.</span>
+
+         <span class="Statement">case</span> (<span class="Constant">'L'</span>)
             <span class="Identifier">call</span> get(i)
             i <span class="Statement">=</span> i <span class="Statement">+</span> <span class="Constant">1</span>
             <span class="Identifier">call</span> set(i)
 
             <span class="Statement">do</span>
                j <span class="Statement">=</span> <span class="Identifier">int</span>(n(<span class="Statement">-</span><span class="Constant">1.0_dp</span>))
-               l <span class="Statement">=</span> i <span class="Statement">.eq.</span> j
-               <span class="Statement">if</span> (l <span class="Statement">.or.</span> j <span class="Statement">.eq.</span> <span class="Statement">-</span><span class="Constant">1</span>) <span class="Statement">exit</span>
+               <span class="Statement">if</span> (i <span class="Statement">.eq.</span> j) <span class="Statement">return</span>
+               <span class="Statement">if</span> (j <span class="Statement">.eq.</span> <span class="Statement">-</span><span class="Constant">1</span>) <span class="Statement">exit</span>
             <span class="Statement">end do</span>
 
-            <span class="Statement">if</span> (symbol <span class="Statement">.eq.</span> <span class="Constant">'K'</span> <span class="Statement">.eqv.</span> l) <span class="Statement">then</span>
-               <span class="Statement">do</span>
-                  <span class="Statement">if</span> (next(special, length<span class="Statement">=</span><span class="Constant">1</span>) <span class="Statement">.ne.</span> <span class="Constant">'*'</span>) <span class="Statement">return</span>
-                  <span class="Statement">if</span> (next(<span class="Constant">'*'</span>, length<span class="Statement">=</span><span class="Constant">1</span>, barrier<span class="Statement">=</span><span class="Constant">'*'</span>) <span class="Statement">.eq.</span> <span class="Constant">'none'</span>) <span class="Statement">exit</span>
-               <span class="Statement">end do</span>
+            <span class="Statement">do</span>
+               <span class="Statement">if</span> (next(special, length<span class="Statement">=</span><span class="Constant">1</span>) <span class="Statement">.ne.</span> <span class="Constant">'*'</span>) <span class="Statement">return</span>
+               <span class="Statement">if</span> (next(<span class="Constant">'*'</span>, length<span class="Statement">=</span><span class="Constant">1</span>, barrier<span class="Statement">=</span><span class="Constant">'*'</span>) <span class="Statement">.eq.</span> <span class="Constant">'none'</span>) <span class="Statement">exit</span>
+            <span class="Statement">end do</span>
 
-               over <span class="Statement">=</span> <span class="Constant">.true.</span>
-            <span class="Statement">end if</span>
+            over <span class="Statement">=</span> <span class="Constant">.true.</span>
 
          <span class="Statement">case</span> (<span class="Constant">'*'</span>)
             <span class="Statement">if</span> (next(<span class="Constant">'*'</span>, length<span class="Statement">=</span><span class="Constant">1</span>, barrier<span class="Statement">=</span><span class="Constant">'*'</span>) <span class="Statement">.eq.</span> <span class="Constant">'none'</span>) over <span class="Statement">=</span> <span class="Constant">.true.</span>
@@ -2225,7 +2233,7 @@
          <span class="Statement">if</span> (error <span class="Statement">.ne.</span> <span class="Constant">0</span>) rational <span class="Statement">=</span> <span class="Constant">0.0_dp</span>
       <span class="Statement">else</span>
          <span class="Statement">read</span> (ratio(:i <span class="Statement">-</span> <span class="Constant">1</span>), <span class="Statement">*</span>, <span class="Statement">iostat</span><span class="Statement">=</span>error) numerator
-         <span class="Statement">if</span> (error <span class="Statement">.ne.</span> <span class="Constant">0</span>) numerator <span class="Statement">=</span> <span class="Constant">0.0_dp</span>
+         <span class="Statement">if</span> (error <span class="Statement">.ne.</span> <span class="Constant">0</span>) numerator <span class="Statement">=</span> <span class="Constant">1.0_dp</span>
 
          <span class="Statement">read</span> (ratio(i <span class="Statement">+</span> <span class="Constant">1</span>:), <span class="Statement">*</span>, <span class="Statement">iostat</span><span class="Statement">=</span>error) denominator
          <span class="Statement">if</span> (error <span class="Statement">.ne.</span> <span class="Constant">0</span>) denominator <span class="Statement">=</span> <span class="Constant">1.0_dp</span>
@@ -2986,14 +2994,17 @@
                from <span class="Statement">=</span> till <span class="Statement">+</span> <span class="Constant">2</span>
 
                <span class="Statement">if</span> (<span class="Identifier">scan</span>(bar, <span class="Constant">'-~'</span>) <span class="Statement">.ne.</span> <span class="Constant">0</span>) <span class="Statement">then</span>
-                  bar <span class="Statement">=</span> sub(bar, <span class="Constant">'X'</span>, replace<span class="Statement">=</span><span class="Constant">'-'</span>)
-                  bar <span class="Statement">=</span> sub(bar, <span class="Constant">'SZNT'</span>, replace<span class="Statement">=</span><span class="Constant">'~'</span>)
+                  bar <span class="Statement">=</span> sub(bar, <span class="Constant">'_X'</span>, replace<span class="Statement">=</span><span class="Constant">'-'</span>)
+                  bar <span class="Statement">=</span> sub(bar, <span class="Constant">'N'</span>, replace<span class="Statement">=</span><span class="Constant">'~'</span>)
+                  bar <span class="Statement">=</span> sub(bar, <span class="Constant">'SZT'</span>, replace<span class="Statement">=</span><span class="Constant">'^'</span>)
 
-                  bar <span class="Statement">=</span> sub(bar, <span class="Constant">'-~'</span>, invert<span class="Statement">=</span><span class="Constant">.true.</span>, <span class="Special">&amp;</span>
+                  bar <span class="Statement">=</span> sub(bar, <span class="Constant">'-~^'</span>, invert<span class="Statement">=</span><span class="Constant">.true.</span>, <span class="Special">&amp;</span>
                      keep<span class="Statement">=</span><span class="Constant">.true.</span>, replace<span class="Statement">=</span><span class="Constant">'~'</span>)
 
-                  bar <span class="Statement">=</span> sub(bar, <span class="Constant">'0.123456789:'</span>, before<span class="Statement">=</span><span class="Constant">'-~'</span>, <span class="Special">&amp;</span>
+                  bar <span class="Statement">=</span> sub(bar, <span class="Constant">'0.123456789:'</span>, before<span class="Statement">=</span><span class="Constant">'-~^'</span>, <span class="Special">&amp;</span>
                      insert<span class="Statement">=</span><span class="Constant">'U'</span>, keep<span class="Statement">=</span><span class="Constant">.true.</span>)
+
+                  bar <span class="Statement">=</span> sub(bar, <span class="Constant">'^'</span>, replace<span class="Statement">=</span><span class="Constant">'~'</span>, add<span class="Statement">=</span><span class="Constant">'K'</span>)
 
                   beats <span class="Statement">=</span> matches(bar, <span class="Constant">'-~'</span>)
 
@@ -3045,10 +3056,10 @@
       <span class="Statement">end do</span>
    <span class="PreProc">end function</span> matches
 
-   <span class="PreProc">function</span> sub(string, set, invert, before, insert, ratio, keep, replace)
+   <span class="PreProc">function</span> sub(string, set, invert, before, insert, ratio, keep, replace, add)
       <span class="Type">character</span>(:), <span class="Type">allocatable</span> :: sub
       <span class="Type">character</span>(<span class="Statement">*</span>), <span class="Type">intent</span>(<span class="Type">in</span>) :: string, set
-      <span class="Type">character</span>(<span class="Statement">*</span>), <span class="Type">intent</span>(<span class="Type">in</span>), <span class="Type">optional</span> :: before, insert, replace
+      <span class="Type">character</span>(<span class="Statement">*</span>), <span class="Type">intent</span>(<span class="Type">in</span>), <span class="Type">optional</span> :: before, insert, replace, add
       <span class="Type">logical</span>, <span class="Type">intent</span>(<span class="Type">in</span>), <span class="Type">optional</span> :: invert, ratio, keep
 
       <span class="Type">integer</span> :: i, j
@@ -3120,6 +3131,8 @@
          <span class="Statement">if</span> (<span class="Identifier">present</span>(replace)) <span class="Statement">then</span>
             sub <span class="Statement">=</span> sub <span class="Statement">//</span> <span class="Identifier">repeat</span>(replace, i <span class="Statement">-</span> j)
          <span class="Statement">end if</span>
+
+         <span class="Statement">if</span> (<span class="Identifier">present</span>(add)) sub <span class="Statement">=</span> sub <span class="Statement">//</span> add
       <span class="Statement">end do</span>
    <span class="PreProc">end function</span> sub
 <span class="PreProc">end module</span> tab
