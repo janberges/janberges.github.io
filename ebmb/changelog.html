@@ -1,0 +1,182 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Changelog &mdash; ebmb  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/style.css?v=48f92ae9" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Spectral function" href="examples/specfun.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #e7f2fa" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/ebmb.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module.html">Module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/selfen.html">Self-energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/gap.html">Order parameter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/dos.html">Density of states</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/residue.html">Residue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/realgw.html">Normal state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/specfun.html">Spectral function</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">More</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v3-0-0-upcoming-release">v3.0.0/upcoming release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-0-0-2024-11-29">v2.0.0/2024-11-29</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v1-1-0-2020-08-10">v1.1.0/2020-08-10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v1-0-0-2016-10-09">v1.0.0/2016-10-09</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #e7f2fa" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ebmb</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Changelog</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/changelog.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading"></a></h1>
+<p>See Git commit history for more detailed list of changes.</p>
+<section id="v3-0-0-upcoming-release">
+<h2>v3.0.0/upcoming release<a class="headerlink" href="#v3-0-0-upcoming-release" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Real-axis implementation of normal-state equations</p></li>
+<li><p>Logarithmic sampling of real axis</p></li>
+<li><p>Coulomb/static contribution to energy shift</p></li>
+<li><p>Separation of self-consistency steps to enable non-self-consistent solutions</p></li>
+<li><p>Improved rescaling of Coulomb pseudopotential using matrix inversion</p></li>
+<li><p>Calculation of quasiparticle density of states using analytic continuation</p></li>
+<li><p>OpenMP parallelization</p></li>
+<li><p>Model input data for one-dimensional chain</p></li>
+<li><p>Improved documentation including website with examples</p></li>
+<li><p>Case-insensitive input parameters</p></li>
+<li><p>New inputs: <code class="docutils literal notranslate"><span class="pre">diag</span></code>, <code class="docutils literal notranslate"><span class="pre">divdos</span></code>, <code class="docutils literal notranslate"><span class="pre">restoren</span></code>, <code class="docutils literal notranslate"><span class="pre">toln</span></code>, <code class="docutils literal notranslate"><span class="pre">chiC</span></code>, <code class="docutils literal notranslate"><span class="pre">align0</span></code>,
+<code class="docutils literal notranslate"><span class="pre">logscale</span></code>, <code class="docutils literal notranslate"><span class="pre">apade</span></code>, <code class="docutils literal notranslate"><span class="pre">realgw</span></code>, <code class="docutils literal notranslate"><span class="pre">krakro</span></code> (aliases: <code class="docutils literal notranslate"><span class="pre">steps</span></code>, <code class="docutils literal notranslate"><span class="pre">points</span></code>, <code class="docutils literal notranslate"><span class="pre">gap</span></code>)</p></li>
+<li><p>Changed inputs: <code class="docutils literal notranslate"><span class="pre">upper</span></code> replaces <code class="docutils literal notranslate"><span class="pre">clip</span></code>, <code class="docutils literal notranslate"><span class="pre">cdosfix</span></code> replaces <code class="docutils literal notranslate"><span class="pre">imitate</span></code></p></li>
+<li><p>New outputs: <code class="docutils literal notranslate"><span class="pre">domega</span></code>, <code class="docutils literal notranslate"><span class="pre">Re[Sigma]</span></code>, <code class="docutils literal notranslate"><span class="pre">Im[Sigma]</span></code>, <code class="docutils literal notranslate"><span class="pre">phi</span></code>, <code class="docutils literal notranslate"><span class="pre">Re[phi]</span></code>, <code class="docutils literal notranslate"><span class="pre">Im[phi]</span></code>,
+<code class="docutils literal notranslate"><span class="pre">chiC</span></code>, <code class="docutils literal notranslate"><span class="pre">states</span></code>, <code class="docutils literal notranslate"><span class="pre">inspect</span></code></p></li>
+</ul>
+</section>
+<section id="v2-0-0-2024-11-29">
+<h2>v2.0.0/2024-11-29<a class="headerlink" href="#v2-0-0-2024-11-29" title="Link to this heading"></a></h2>
+<p>This is the version of the code used for the paper <em>Understanding the origin of
+superconducting dome in electron-doped MoS₂ monolayer</em> by N. Girotto
+Erhardt, J. Berges, S. Poncé, and D. Novko, npj 2D Mater. Appl. <strong>9</strong>, 44
+(2024).</p>
+<ul class="simple">
+<li><p>Support for arbitrary Eliashberg spectral functions (beyond Einstein model)</p></li>
+<li><p>Improved “unscaling” of Coulomb pseudopotential</p></li>
+<li><p>Improved project structure with license, logo, and single source directory</p></li>
+<li><p>New inputs: <code class="docutils literal notranslate"><span class="pre">a2f</span></code>/<code class="docutils literal notranslate"><span class="pre">a2F</span></code>, <code class="docutils literal notranslate"><span class="pre">bands</span></code> (new alias: <code class="docutils literal notranslate"><span class="pre">DOS</span></code>)</p></li>
+<li><p>New outputs: <code class="docutils literal notranslate"><span class="pre">omegaE</span></code>, <code class="docutils literal notranslate"><span class="pre">omegaLog</span></code>, <code class="docutils literal notranslate"><span class="pre">omega2nd</span></code></p></li>
+</ul>
+</section>
+<section id="v1-1-0-2020-08-10">
+<h2>v1.1.0/2020-08-10<a class="headerlink" href="#v1-1-0-2020-08-10" title="Link to this heading"></a></h2>
+<p>This is the version of the code used for my dissertation <em>Many-body
+instabilities in two-dimensional materials</em>, https://doi.org/10.26092/elib/250
+(2020).</p>
+<ul class="simple">
+<li><p>Possibility to provide non-rescaled Coulomb parameter</p></li>
+<li><p>Calculation of quasiparticle density of states</p></li>
+<li><p>Improved Python wrapper (Python-3 support, box-shaped and step-like DOS)</p></li>
+<li><p>New inputs: <code class="docutils literal notranslate"><span class="pre">muC</span></code>, <code class="docutils literal notranslate"><span class="pre">unscale</span></code>, <code class="docutils literal notranslate"><span class="pre">lower</span></code>, <code class="docutils literal notranslate"><span class="pre">upper</span></code>, <code class="docutils literal notranslate"><span class="pre">eta</span></code>/<code class="docutils literal notranslate"><span class="pre">0+</span></code></p></li>
+</ul>
+</section>
+<section id="v1-0-0-2016-10-09">
+<h2>v1.0.0/2016-10-09<a class="headerlink" href="#v1-0-0-2016-10-09" title="Link to this heading"></a></h2>
+<p>This is the original version of the code used for my Master’s thesis <em>On the
+scope of McMillan’s formula</em>, https://scipost.org/theses/132 (2016).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="examples/specfun.html" class="btn btn-neutral float-left" title="Spectral function" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2026 Jan Berges.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
