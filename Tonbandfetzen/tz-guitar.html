@@ -34,29 +34,28 @@ shorthand for the default value.</p>
 <p>The syntax of <em>infile</em> is as described in
 <strong>tz-mel</strong>(1), with the following exception: If a line
 contains at least two vertical bars (<strong>|</strong>), they act as
-separators between regions. If a region contains at least one
-hyphen-minus (<strong>-</strong>) or tilde (<strong>~</strong>), it
-represents one bar/measure. Here, the commands <strong>|</strong>,
-<strong>-</strong>, <strong>_</strong>, <strong>X</strong>,
-<strong>~</strong>, <strong>^</strong>, <strong>S</strong>,
-<strong>Z</strong>, <strong>N</strong>, and <strong>T</strong> cannot be
-applied as usual and the <strong>U</strong> of an ensuing
+separators between regions. If a region contains at least one of the
+commands <strong>|</strong>, <strong>-</strong>, <strong>_</strong>,
+<strong>N</strong>, <strong>~</strong>, <strong>^</strong>,
+<strong>S</strong>, <strong>Z</strong>, <strong>T</strong>, and
+<strong>X</strong>, it represents one bar/measure. Here, these commands
+act differently and the <strong>U</strong> of an ensuing
 <strong>U</strong><em>n</em> can be omitted. The bar duration, defined
 beforehand via the <strong>|</strong><em>n</em> command, is evenly
 distributed among the enclosed characters. The hyphen-minus
 (<strong>-</strong>), the underscore (<strong>_</strong>), and
-<strong>X</strong> represent a string at rest (a pause); the tilde
+<strong>N</strong> represent a string at rest (a pause); the tilde
 (<strong>~</strong>), the circumflex (<strong>^</strong>),
-<strong>S</strong>, <strong>Z</strong>, <strong>N</strong>, and
-<strong>T</strong> represent a vibrating string (sound is played), just
+<strong>S</strong>, <strong>Z</strong>, <strong>T</strong>, and
+<strong>X</strong> represent a vibrating string (sound is played), just
 like all other characters, beyond their usual meanings. Here,
-<strong>^</strong>, <strong>S</strong>, <strong>Z</strong>, and
-<strong>T</strong> imply a legato transition to the ensuing note. Lines
-with tablature that are not separated by an empty line start at the same
-point in time. This is realized via the <strong>M0</strong> mark, which
-shall thus not be used. Special guitar techniques could be indicated
-using <strong>X</strong> (muted string), <strong>^</strong> (hammer-on
-or pull-off), <strong>S</strong>/<strong>Z</strong> (slide down/up),
-<strong>N</strong> (vibrato), and <strong>T</strong> (tap).</p>
+<strong>^</strong> (hammer-on or pull-off),
+<strong>S</strong>/<strong>Z</strong> (slide down/up), and
+<strong>T</strong> (tap) imply a legato transition to the ensuing note,
+while <strong>X</strong> (rhythm) ends the previous note and plucks the
+string (or beats the drum) again. <strong>N</strong> (no sound) could
+denote a muted string. Lines with tablature that are not separated by an
+empty line start at the same point in time. This is realized via the
+<strong>M0</strong> mark, which shall thus not be used.</p>
 </body>
 </html>

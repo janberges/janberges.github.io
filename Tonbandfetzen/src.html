@@ -739,7 +739,7 @@
       tagID <span class="Statement">=</span> id3(<span class="Constant">1</span>:<span class="Constant">3</span>)
 
       <span class="Statement">if</span> (tagID <span class="Statement">.eq.</span> <span class="Constant">'TAG'</span>) <span class="Statement">then</span>
-         <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Warning: ID3v1 not supported.&quot;)'</span>) feature
+         <span class="Statement">write</span> (stderr, <span class="Constant">'(&quot;Warning: ID3v1 not supported.&quot;)'</span>)
          <span class="Statement">return</span>
       <span class="Statement">end if</span>
 
@@ -3009,13 +3009,14 @@
 
                from <span class="Statement">=</span> till <span class="Statement">+</span> <span class="Constant">2</span>
 
-               <span class="Statement">if</span> (<span class="Identifier">scan</span>(bar, <span class="Constant">'-~'</span>) <span class="Statement">.ne.</span> <span class="Constant">0</span>) <span class="Statement">then</span>
-                  bar <span class="Statement">=</span> sub(bar, <span class="Constant">'_X'</span>, replace<span class="Statement">=</span><span class="Constant">'-'</span>)
-                  bar <span class="Statement">=</span> sub(bar, <span class="Constant">'N'</span>, replace<span class="Statement">=</span><span class="Constant">'~'</span>)
+               <span class="Statement">if</span> (<span class="Identifier">scan</span>(bar, <span class="Constant">'-_N~^SZTX'</span>) <span class="Statement">.ne.</span> <span class="Constant">0</span>) <span class="Statement">then</span>
+                  bar <span class="Statement">=</span> sub(bar, <span class="Constant">'_N'</span>, replace<span class="Statement">=</span><span class="Constant">'-'</span>)
                   bar <span class="Statement">=</span> sub(bar, <span class="Constant">'SZT'</span>, replace<span class="Statement">=</span><span class="Constant">'^'</span>)
 
-                  bar <span class="Statement">=</span> sub(bar, <span class="Constant">'-~^'</span>, invert<span class="Statement">=</span><span class="Constant">.true.</span>, <span class="Special">&amp;</span>
+                  bar <span class="Statement">=</span> sub(bar, <span class="Constant">'-~^X'</span>, invert<span class="Statement">=</span><span class="Constant">.true.</span>, <span class="Special">&amp;</span>
                      keep<span class="Statement">=</span><span class="Constant">.true.</span>, replace<span class="Statement">=</span><span class="Constant">'~'</span>)
+
+                  bar <span class="Statement">=</span> sub(bar, <span class="Constant">'X'</span>, replace<span class="Statement">=</span><span class="Constant">'=~'</span>)
 
                   bar <span class="Statement">=</span> sub(bar, <span class="Constant">'0.123456789:'</span>, before<span class="Statement">=</span><span class="Constant">'-~^'</span>, <span class="Special">&amp;</span>
                      insert<span class="Statement">=</span><span class="Constant">'U'</span>, keep<span class="Statement">=</span><span class="Constant">.true.</span>)
