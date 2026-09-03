@@ -175,10 +175,11 @@ optimization:</p>
 <pre><code>make CC=icx CFLAGS=-O2</code></pre>
 <p>LAPACK and BLAS with the standard LP64 interface are required.</p>
 <h2 id="usage">Usage</h2>
-<p>The program accepts one, two, or three arguments:</p>
+<p>The program accepts one, two, three, or four arguments:</p>
 <pre><code>elphy &lt;data file&gt;
 elphy &lt;data file&gt; &lt;socket&gt;
-elphy &lt;data file&gt; &lt;number&gt; &lt;radius&gt;</code></pre>
+elphy &lt;data file&gt; &lt;number&gt; &lt;radius&gt;
+elphy &lt;data file&gt; &lt;number&gt; &lt;lower&gt; &lt;upper&gt;</code></pre>
 <p>With one argument, it alternately reads atomic positions in the XYZ
 format from standard input and writes the supercell vectors, atomic
 positions, free energy, and forces in ASE’s extended XYZ format to
@@ -195,6 +196,13 @@ atomic positions with random displacements smaller than
 <code>&lt;radius&gt;</code> and the corresponding energies and forces in
 ASE’s extended XYZ format. If <code>&lt;number&gt;</code> is negative,
 only the positions are output using i-PI’s standard XYZ format.</p>
+<p>With four arguments, it reads atomic positions in XYZ format from
+standard input and, for <code>&lt;number&gt;</code> scaling factors
+between <code>&lt;lower&gt;</code> and <code>&lt;upper&gt;</code>,
+scales the displacements and writes the result in PLUMED’s XYZ format to
+standard output. Only the end point of a given trajectory is considered.
+This can be used to test collective variables with
+<code>plumed driver --ixyz scaled.xyz --length-units Bohr</code>.</p>
 <p>The <code>&lt;data file&gt;</code> is defined below:</p>
 <pre><code>&lt;temperature kT&gt;
 &lt;number of electrons per unit cell&gt;
