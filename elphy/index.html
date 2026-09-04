@@ -173,7 +173,10 @@ optimization:</p>
 <pre><code>make</code></pre>
 <p>Different compilers and optimization flags can be selected:</p>
 <pre><code>make CC=icx CFLAGS=-O2</code></pre>
-<p>LAPACK and BLAS with the standard LP64 interface are required.</p>
+<p>LAPACK and BLAS with the standard LP64 interface are required. The
+performance depends on the BLAS implementation. For instance, OpenBLAS
+with multithreading should significantly outperform the reference
+implementation on most machines.</p>
 <h2 id="usage">Usage</h2>
 <p>The program accepts one, two, three, or four arguments:</p>
 <pre><code>elphy &lt;data file&gt;
@@ -246,17 +249,18 @@ three Cartesian displacement directions for all atoms. All indices are
 zero-based. All matrix elements <code>&lt;…&gt;</code> are single real
 numbers. The primitive, position, and force vectors <code>a, r, F</code>
 are given in Cartesian, the supercell and lattice vectors
-<code>A, R</code> in integer crystal coordinates.</p>
+<code>A, R</code> in integer crystal coordinates. The atom labels
+<code>X</code> are only used to label the supercell atoms in the
+output.</p>
 <p>No unit conversions are performed, so any consistent energy and
 length units can be used. However, i-PI expects energies and forces in
-Hartree atomic units. The atom labels <code>X</code> are copied to the
-<code>&lt;init file&gt;</code> and define the default masses.</p>
+Hartree atomic units.</p>
 <p>Note that the interatomic force constants are assumed to be partially
 screened: They shall exclude the harmonic term of the electronic
 potential-energy surface. Any forces that the model may generate at zero
 displacements can be compensated by adding a force correction specified
 next to the atomic positions.</p>
-<p>Lattice vectors and atomic positions are multiplied by 1 +
+<p>The primitive and position vectors are multiplied by 1 +
 <code>&lt;strain&gt;</code> and the zero-displacement hopping parameters
 and lattice energy adjusted accordingly.</p>
 <h2 id="tests-and-examples">Tests and examples</h2>
@@ -264,11 +268,12 @@ and lattice energy adjusted accordingly.</p>
 program:</p>
 <ul>
 <li><code>make test model=TaS2</code> (or <code>graphene</code>) creates
-<code>&lt;data file&gt;</code> and <code>&lt;init file&gt;</code> for a
-model and verifies that the computed free energy and forces are
-correct.</li>
+<code>&lt;data file&gt;</code> for a model and verifies that the
+computed free energy and forces are correct.</li>
 <li><code>make ipi</code> lets <code>elphy</code> and i-PI perform a
 structural relaxation together.</li>
+<li><code>make ipi_unix</code> and <code>make ipi_shm</code> use the
+alternative communication modes.</li>
 <li><code>make show</code> displays an animation of the relaxation
 process.</li>
 <li><code>make clean</code> removes compiled files,
