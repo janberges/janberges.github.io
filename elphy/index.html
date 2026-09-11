@@ -178,11 +178,12 @@ performance depends on the BLAS implementation. For instance, OpenBLAS
 with multithreading should significantly outperform the reference
 implementation on most machines.</p>
 <h2 id="usage">Usage</h2>
-<p>The program accepts one, two, three, or four arguments:</p>
+<p>The program accepts one to five arguments:</p>
 <pre><code>elphy &lt;data file&gt;
 elphy &lt;data file&gt; &lt;socket&gt;
 elphy &lt;data file&gt; &lt;number&gt; &lt;radius&gt;
-elphy &lt;data file&gt; &lt;number&gt; &lt;lower&gt; &lt;upper&gt;</code></pre>
+elphy &lt;data file&gt; &lt;number&gt; &lt;lower&gt; &lt;upper&gt;
+elphy &lt;data file&gt; &lt;number&gt; &lt;dt&gt; &lt;damp&gt; &lt;vmax&gt;</code></pre>
 <p>With one argument, it alternately reads atomic positions in the XYZ
 format from standard input and writes the supercell vectors, atomic
 positions, free energy, and forces in ASE’s extended XYZ format to
@@ -206,6 +207,14 @@ scales the displacements and writes the result in PLUMED’s XYZ format to
 standard output. Only the end point of a given trajectory is considered.
 This can be used to test collective variables with
 <code>plumed driver --ixyz scaled.xyz --length-units Bohr</code>.</p>
+<p>With five arguments, it performs an NVE MD simulation using Verlet
+integration. The step count <code>&lt;number&gt;</code> is optionally
+followed by a colon and a stride (which defaults to 1) for writing data
+in ASE’s extended XYZ format to standard output. <code>&lt;dt&gt;</code>
+is the time step and <code>&lt;damp&gt;</code> a damping coefficient
+(inverse time units). In the first step, the atoms leave their
+zero-displacement positions in random directions with random velocities
+up to <code>&lt;vmax&gt;</code>.</p>
 <p>The <code>&lt;data file&gt;</code> is defined below:</p>
 <pre><code>&lt;temperature kT&gt;
 &lt;number of electrons per unit cell&gt;
@@ -274,8 +283,10 @@ computed free energy and forces are correct.</li>
 structural relaxation together.</li>
 <li><code>make ipi_unix</code> and <code>make ipi_shm</code> use the
 alternative communication modes.</li>
-<li><code>make show</code> displays an animation of the relaxation
-process.</li>
+<li><code>make md</code> lets <code>elphy</code> perform a structural
+relaxation using damped dynamics.</li>
+<li><code>make show_ipi</code> and <code>make show_md</code> animate the
+relaxation trajectories.</li>
 <li><code>make clean</code> removes compiled files,
 <code>make distclean</code> all generated files.</li>
 </ul>
