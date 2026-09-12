@@ -228,9 +228,9 @@ a₀₀ a₀₁ a₀₂
 a₁₀ a₁₁ a₁₂
 a₂₀ a₂₁ a₂₂
 &lt;number of atoms per unit cell&gt;
-X₀ r₀₀ r₀₁ r₀₂ F₀₀ F₀₁ F₀₂
-X₁ r₁₀ r₁₁ r₁₂ F₁₀ F₁₁ F₁₂
-X₂ r₂₀ r₂₁ r₂₂ F₂₀ F₂₁ F₂₂
+X₀ M₀ r₀₀ r₀₁ r₀₂ F₀₀ F₀₁ F₀₂
+X₁ M₁ r₁₀ r₁₁ r₁₂ F₁₀ F₁₁ F₁₂
+X₂ M₂ r₂₀ r₂₁ r₂₂ F₂₀ F₂₁ F₂₂
 ⋮
 &lt;number of lattice vectors&gt;
 R₀₀ R₀₁ R₀₂
@@ -258,9 +258,10 @@ three Cartesian displacement directions for all atoms. All indices are
 zero-based. All matrix elements <code>&lt;…&gt;</code> are single real
 numbers. The primitive, position, and force vectors <code>a, r, F</code>
 are given in Cartesian, the supercell and lattice vectors
-<code>A, R</code> in integer crystal coordinates. The atom labels
-<code>X</code> are only used to label the supercell atoms in the
-output.</p>
+<code>A, R</code> in integer crystal coordinates. The atomic symbols
+<code>X</code> are only used to label the supercell atoms in the output.
+The atomic masses <code>M</code> are only used to compute accelerations
+in MD simulations.</p>
 <p>No unit conversions are performed, so any consistent energy and
 length units can be used. However, i-PI expects energies and forces in
 Hartree atomic units.</p>
