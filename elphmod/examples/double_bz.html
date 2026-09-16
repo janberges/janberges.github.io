@@ -186,13 +186,13 @@
     <span class="n">outside</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">outlines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">qxmax</span><span class="p">,</span> <span class="n">qxmax</span><span class="p">,</span> <span class="o">-</span><span class="n">qymax</span><span class="p">,</span> <span class="n">qymax</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;managua&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">qxmax</span><span class="p">,</span> <span class="n">qxmax</span><span class="p">,</span> <span class="o">-</span><span class="n">qymax</span><span class="p">,</span> <span class="n">qymax</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'managua'</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">bz</span> <span class="ow">in</span> <span class="n">BZ</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">bz</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">bz</span><span class="p">),</span> <span class="s1">'k'</span><span class="p">)</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;double_bz.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'double_bz.png'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>

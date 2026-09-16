@@ -149,7 +149,7 @@
 <span></span><span class="c1"># Copyright (C) 2017-2026 elphmod Developers</span>
 <span class="c1"># This program is free software under the terms of the GNU GPLv3 or later.</span>
 
-<span class="sd">&quot;&quot;&quot;Susceptibilities, self-energies, etc.&quot;&quot;&quot;</span>
+<span class="sd">"""Susceptibilities, self-energies, etc."""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -163,8 +163,8 @@
 
 <div class="viewcode-block" id="susceptibility">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.susceptibility">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">susceptibility</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate real part of static electronic susceptibility.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">susceptibility</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">'fd'</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate real part of static electronic susceptibility.</span>
 
 <span class="sd">    .. math::</span>
 
@@ -181,7 +181,7 @@
 <span class="sd">    kT : float</span>
 <span class="sd">        Smearing temperature.</span>
 <span class="sd">    eta : float</span>
-<span class="sd">        Absolute value of &quot;infinitesimal&quot; imaginary number in denominator.</span>
+<span class="sd">        Absolute value of "infinitesimal" imaginary number in denominator.</span>
 <span class="sd">    occupations : function</span>
 <span class="sd">        Particle distribution as a function of energy divided by `kT`.</span>
 
@@ -190,7 +190,7 @@
 <span class="sd">    function</span>
 <span class="sd">        Static electronic susceptibility as a function of :math:`q_1, q_2 \in</span>
 <span class="sd">        [0, 2 \pi)`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">occupations</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">occupations</span><span class="p">)</span>
 
     <span class="n">nk</span><span class="p">,</span> <span class="n">nk</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">shape</span>
@@ -225,7 +225,7 @@
 <div class="viewcode-block" id="susceptibility2">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.susceptibility2">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">susceptibility2</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">nmats</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">hyb_width</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">hyb_height</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate the Lindhard bubble using the Green&#39;s functions explicitly.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate the Lindhard bubble using the Green's functions explicitly.</span>
 
 <span class="sd">    .. math::</span>
 
@@ -262,7 +262,7 @@
 <span class="sd">    function</span>
 <span class="sd">        Static electronic susceptibility as a function of :math:`q_1, q_2 \in</span>
 <span class="sd">        [0, 2 \pi)`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">nk</span><span class="p">,</span> <span class="n">nk</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">shape</span>
 
     <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
@@ -277,7 +277,7 @@
 
     <span class="n">Delta</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="n">j</span> <span class="o">*</span> <span class="n">hyb_height</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">hyb_width</span> <span class="o">/</span> <span class="n">nu</span><span class="p">)</span> <span class="c1"># hybridization</span>
 
-    <span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nmats</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">nk</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">nk</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span> <span class="c1"># Green&#39;s functions</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nmats</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">nk</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">nk</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span> <span class="c1"># Green's functions</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nmats</span><span class="p">):</span>
         <span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">nu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">e</span> <span class="o">-</span> <span class="n">Delta</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
@@ -301,8 +301,8 @@
 
 <div class="viewcode-block" id="polarization">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.polarization">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">polarization</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">subspace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate RPA polarization in orbital basis (density-density).</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">polarization</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">subspace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">'fd'</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate RPA polarization in orbital basis (density-density).</span>
 
 <span class="sd">    .. math::</span>
 
@@ -342,7 +342,7 @@
 <span class="sd">    function</span>
 <span class="sd">        RPA polarization in orbital basis as a function of :math:`q_1, q_2, q_3</span>
 <span class="sd">        \in [0, 2 \pi)`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">occupations</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">occupations</span><span class="p">)</span>
 
     <span class="n">cRPA</span> <span class="o">=</span> <span class="n">subspace</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
@@ -410,7 +410,7 @@
 
                 <span class="n">UU</span> <span class="o">=</span> <span class="n">U</span><span class="p">[</span><span class="n">kq1</span><span class="p">,</span> <span class="n">kq2</span><span class="p">,</span> <span class="n">kq3</span><span class="p">,</span> <span class="p">:,</span> <span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">*</span> <span class="n">U</span><span class="p">[</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">,</span> <span class="p">:,</span> <span class="n">n</span><span class="p">]</span>
 
-                <span class="n">Pi</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;ijka,ijk,ijkb-&gt;ab&#39;</span><span class="p">,</span> <span class="n">UU</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">dfde</span><span class="p">,</span> <span class="n">UU</span><span class="p">)</span>
+                <span class="n">Pi</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">'ijka,ijk,ijkb-&gt;ab'</span><span class="p">,</span> <span class="n">UU</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">dfde</span><span class="p">,</span> <span class="n">UU</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">prefactor</span> <span class="o">*</span> <span class="n">Pi</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
@@ -420,10 +420,10 @@
 <div class="viewcode-block" id="phonon_self_energy">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.phonon_self_energy">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">phonon_self_energy</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-        <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span> <span class="n">fluctuations</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">Delta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Delta_diff</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">Delta_occupations</span><span class="o">=</span><span class="s1">&#39;gauss&#39;</span><span class="p">,</span> <span class="n">Delta_kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">occupations</span><span class="o">=</span><span class="s1">'fd'</span><span class="p">,</span> <span class="n">fluctuations</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">Delta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Delta_diff</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">Delta_occupations</span><span class="o">=</span><span class="s1">'gauss'</span><span class="p">,</span> <span class="n">Delta_kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">symmetrize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">diagonal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">psi</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate phonon self-energy.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate phonon self-energy.</span>
 
 <span class="sd">    .. math::</span>
 
@@ -484,7 +484,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    ndarray</span>
 <span class="sd">        Phonon self-energy.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">occupations</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">occupations</span><span class="p">)</span>
     <span class="n">Delta_occupations</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">Delta_occupations</span><span class="p">)</span>
 
@@ -577,8 +577,8 @@
     <span class="n">dynamic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">omega</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">phshape</span><span class="p">),</span>
-        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;calculate </span><span class="si">%s</span><span class="s1"> phonon self-energy&#39;</span>
-            <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;dynamic&#39;</span> <span class="k">if</span> <span class="n">dynamic</span> <span class="k">else</span> <span class="s1">&#39;static&#39;</span><span class="p">))</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">'calculate </span><span class="si">%s</span><span class="s1"> phonon self-energy'</span>
+            <span class="o">%</span> <span class="p">(</span><span class="s1">'dynamic'</span> <span class="k">if</span> <span class="n">dynamic</span> <span class="k">else</span> <span class="s1">'static'</span><span class="p">))</span>
 
     <span class="k">for</span> <span class="n">my_iq</span><span class="p">,</span> <span class="n">iq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])):</span>
         <span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">iq</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">%</span> <span class="n">nk</span>
@@ -651,7 +651,7 @@
             <span class="n">PiR</span> <span class="o">=</span> <span class="p">[</span><span class="n">prefactor</span> <span class="o">*</span> <span class="p">(</span><span class="n">dfde</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="n">iq</span><span class="p">,</span> <span class="n">nu</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axes</span><span class="p">)</span>
                 <span class="k">for</span> <span class="n">nu</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
 
-            <span class="n">my_Pi</span><span class="p">[</span><span class="n">my_iq</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;u...mn,...mn,v...mn-&gt;uv...&#39;</span><span class="p">,</span> <span class="n">PiL</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">PiR</span><span class="p">)</span>
+            <span class="n">my_Pi</span><span class="p">[</span><span class="n">my_iq</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">'u...mn,...mn,v...mn-&gt;uv...'</span><span class="p">,</span> <span class="n">PiL</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">PiR</span><span class="p">)</span>
 
     <span class="n">Pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nQ</span><span class="p">,</span> <span class="o">*</span><span class="n">phshape</span><span class="p">,</span> <span class="o">*</span><span class="n">omega</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">my_Pi</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
@@ -670,8 +670,8 @@
 
 <div class="viewcode-block" id="phonon_self_energy_fermi_shift">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.phonon_self_energy_fermi_shift">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">phonon_self_energy_fermi_shift</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate phonon self-energy arising from change of chemical potential.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">phonon_self_energy_fermi_shift</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">'fd'</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate phonon self-energy arising from change of chemical potential.</span>
 
 <span class="sd">    :func:`phonon_self_energy` provides the second derivative of the grand</span>
 <span class="sd">    potential. To obtain the second derivative of the free energy, this shift</span>
@@ -692,7 +692,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    ndarray</span>
 <span class="sd">        Phonon self-energy correction.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">occupations</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">occupations</span><span class="p">)</span>
 
     <span class="n">nk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
@@ -706,7 +706,7 @@
     <span class="n">d</span> <span class="o">=</span> <span class="n">occupations</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">kT</span>
 
     <span class="n">dos</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="n">avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;ijkn,xijknn-&gt;x&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="o">/</span> <span class="n">dos</span>
+    <span class="n">avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">'ijkn,xijknn-&gt;x'</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="o">/</span> <span class="n">dos</span>
 
     <span class="k">return</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">nk</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span> <span class="o">*</span> <span class="n">dos</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">avg</span><span class="p">,</span> <span class="n">avg</span><span class="p">)</span> <span class="c1"># one complex conjugate?</span></div>
 
@@ -715,7 +715,7 @@
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.phonon_self_energy2">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">phonon_self_energy2</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">nmats</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">hyb_width</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
         <span class="n">hyb_height</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">GB</span><span class="o">=</span><span class="mf">4.0</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate phonon self-energy using the Green&#39;s functions explicitly.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate phonon self-energy using the Green's functions explicitly.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -745,13 +745,13 @@
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
 <span class="sd">    susceptibility2 : Similar function with `g2` set to one.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">nk</span><span class="p">,</span> <span class="n">nk</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">nQ</span><span class="p">,</span> <span class="n">nmodes</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">nk</span> <span class="o">=</span> <span class="n">g2</span><span class="o">.</span><span class="n">shape</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">nmats</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">nk</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">complex</span><span class="p">)</span><span class="o">.</span><span class="n">itemsize</span> <span class="o">*</span> <span class="n">comm</span><span class="o">.</span><span class="n">size</span>
             <span class="o">&gt;</span> <span class="n">GB</span> <span class="o">*</span> <span class="mf">1e9</span><span class="p">):</span>
-        <span class="n">info</span><span class="p">(</span><span class="s1">&#39;Memory limit (</span><span class="si">%g</span><span class="s1"> GB) exceeded!&#39;</span> <span class="o">%</span> <span class="n">GB</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">info</span><span class="p">(</span><span class="s1">'Memory limit (</span><span class="si">%g</span><span class="s1"> GB) exceeded!'</span> <span class="o">%</span> <span class="n">GB</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 
@@ -762,7 +762,7 @@
 
     <span class="n">Delta</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="n">j</span> <span class="o">*</span> <span class="n">hyb_height</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">hyb_width</span> <span class="o">/</span> <span class="n">nu</span><span class="p">)</span> <span class="c1"># hybridization</span>
 
-    <span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nmats</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">nk</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">nk</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span> <span class="c1"># Green&#39;s functions</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nmats</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">nk</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">nk</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span> <span class="c1"># Green's functions</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nmats</span><span class="p">):</span>
         <span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">nu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">e</span> <span class="o">-</span> <span class="n">Delta</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
@@ -796,20 +796,20 @@
 <div class="viewcode-block" id="renormalize_coupling_band">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.renormalize_coupling_band">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">renormalize_coupling_band</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span>
-        <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span> <span class="n">nbnd_sub</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate renormalized electron-phonon coupling in band basis.</span>
+        <span class="n">occupations</span><span class="o">=</span><span class="s1">'fd'</span><span class="p">,</span> <span class="n">nbnd_sub</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate renormalized electron-phonon coupling in band basis.</span>
 
 <span class="sd">    .. math::</span>
 
 <span class="sd">        \tilde g_{\vec q \nu \vec k m n} = g_{\vec q \nu \vec k m n}</span>
-<span class="sd">            + \frac 2 N \sum_{\vec k&#39; m&#39; n&#39; \alpha \beta \gamma \delta}</span>
+<span class="sd">            + \frac 2 N \sum_{\vec k' m' n' \alpha \beta \gamma \delta}</span>
 <span class="sd">            U_{\vec k + \vec q \alpha m}^* U_{\vec k \beta n}</span>
 <span class="sd">            W_{\vec q \alpha \beta \gamma \delta}</span>
-<span class="sd">            U_{\vec k&#39; + \vec q \gamma m&#39;} U_{\vec k&#39; \delta n&#39;}^*</span>
+<span class="sd">            U_{\vec k' + \vec q \gamma m'} U_{\vec k' \delta n'}^*</span>
 <span class="sd">            \frac</span>
-<span class="sd">                {f(\epsilon_{\vec k&#39; + \vec q m&#39;}) - f(\epsilon_{\vec k&#39; n&#39;})}</span>
-<span class="sd">                {\epsilon_{\vec k&#39; + \vec q m&#39;} - \epsilon_{\vec k&#39; n&#39;}}</span>
-<span class="sd">            g_{\vec q \nu \vec k&#39; m&#39; n&#39;}</span>
+<span class="sd">                {f(\epsilon_{\vec k' + \vec q m'}) - f(\epsilon_{\vec k' n'})}</span>
+<span class="sd">                {\epsilon_{\vec k' + \vec q m'} - \epsilon_{\vec k' n'}}</span>
+<span class="sd">            g_{\vec q \nu \vec k' m' n'}</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -842,7 +842,7 @@
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
 <span class="sd">    renormalize_coupling_orbital</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">occupations</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">occupations</span><span class="p">)</span>
 
     <span class="n">nQ</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
@@ -894,7 +894,7 @@
 
     <span class="k">for</span> <span class="n">my_iq</span><span class="p">,</span> <span class="n">iq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])):</span>
         <span class="k">if</span> <span class="n">status</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Renormalize coupling for q point </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">iq</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">'Renormalize coupling for q point </span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">iq</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 
         <span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">iq</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">%</span> <span class="n">nk</span>
 
@@ -917,18 +917,18 @@
                 <span class="n">dfde</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">][</span><span class="o">~</span><span class="n">ok</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">n</span><span class="p">][</span><span class="o">~</span><span class="n">ok</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">dd</span><span class="p">:</span>
-            <span class="n">indices</span> <span class="o">=</span> <span class="s1">&#39;IJKcM,IJKcN,IJKMN,xIJKMN-&gt;xc&#39;</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="s1">'IJKcM,IJKcN,IJKMN,xIJKMN-&gt;xc'</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">indices</span> <span class="o">=</span> <span class="s1">&#39;IJKcM,IJKdN,IJKMN,xIJKMN-&gt;xcd&#39;</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="s1">'IJKcM,IJKdN,IJKMN,xIJKMN-&gt;xcd'</span>
 
         <span class="n">Pig</span> <span class="o">=</span> <span class="n">prefactor</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span>
             <span class="n">U</span><span class="p">[</span><span class="n">kq1</span><span class="p">,</span> <span class="n">kq2</span><span class="p">,</span> <span class="n">kq3</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:</span><span class="n">nbnd_sub</span><span class="p">],</span> <span class="n">U</span><span class="p">[</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:</span><span class="n">nbnd_sub</span><span class="p">]</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span>
             <span class="n">dfde</span><span class="p">,</span> <span class="n">g</span><span class="p">[</span><span class="n">iq</span><span class="p">,</span> <span class="p">:,</span> <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">,</span> <span class="p">:</span><span class="n">nbnd_sub</span><span class="p">,</span> <span class="p">:</span><span class="n">nbnd_sub</span><span class="p">])</span>
 
         <span class="k">if</span> <span class="n">dd</span><span class="p">:</span>
-            <span class="n">indices</span> <span class="o">=</span> <span class="s1">&#39;ijkam,ijkan,ac,xc-&gt;xijkmn&#39;</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="s1">'ijkam,ijkan,ac,xc-&gt;xijkmn'</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">indices</span> <span class="o">=</span> <span class="s1">&#39;ijkam,ijkbn,abcd,xcd-&gt;xijkmn&#39;</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="s1">'ijkam,ijkbn,abcd,xcd-&gt;xijkmn'</span>
 
         <span class="n">my_g_</span><span class="p">[</span><span class="n">my_iq</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">iq</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span>
             <span class="n">U</span><span class="p">[</span><span class="n">kq1</span><span class="p">,</span> <span class="n">kq2</span><span class="p">,</span> <span class="n">kq3</span><span class="p">]</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">U</span><span class="p">[</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">],</span> <span class="n">W</span><span class="p">[</span><span class="n">iq</span><span class="p">],</span> <span class="n">Pig</span><span class="p">)</span>
@@ -951,20 +951,20 @@
 <div class="viewcode-block" id="renormalize_coupling_orbital">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.renormalize_coupling_orbital">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">renormalize_coupling_orbital</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate renormalized electron-phonon coupling in orbital basis.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate renormalized electron-phonon coupling in orbital basis.</span>
 
 <span class="sd">    .. math::</span>
 
 <span class="sd">        \tilde g_{\vec q \nu \vec k \alpha \beta}</span>
 <span class="sd">            = g_{\vec q \nu \vec k \alpha \beta}</span>
-<span class="sd">            + \frac 2 N \sum_{\vec k m n \alpha&#39; \beta&#39; \gamma \delta}</span>
+<span class="sd">            + \frac 2 N \sum_{\vec k m n \alpha' \beta' \gamma \delta}</span>
 <span class="sd">            W_{\vec q \alpha \beta \gamma \delta}</span>
 <span class="sd">            U_{\vec k + \vec q \gamma m} U_{\vec k \delta n}^*</span>
 <span class="sd">            \frac</span>
 <span class="sd">                {f(\epsilon_{\vec k + \vec q m}) - f(\epsilon_{\vec k n})}</span>
 <span class="sd">                {\epsilon_{\vec k + \vec q m} - \epsilon_{\vec k n}}</span>
-<span class="sd">            U_{\vec k + \vec q \alpha&#39; m}^* U_{\vec k \beta&#39; n}</span>
-<span class="sd">            g_{\vec q \nu \vec k \alpha&#39; \beta&#39;}</span>
+<span class="sd">            U_{\vec k + \vec q \alpha' m}^* U_{\vec k \beta' n}</span>
+<span class="sd">            g_{\vec q \nu \vec k \alpha' \beta'}</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -990,22 +990,22 @@
 <span class="sd">    --------</span>
 <span class="sd">    Pi_g</span>
 <span class="sd">    renormalize_coupling_orbital</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">dd</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">3</span>
 
     <span class="k">if</span> <span class="n">dd</span><span class="p">:</span>
-        <span class="n">indices</span> <span class="o">=</span> <span class="s1">&#39;qac,qxc-&gt;qxa&#39;</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="s1">'qac,qxc-&gt;qxa'</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">indices</span> <span class="o">=</span> <span class="s1">&#39;qabcd,qxcd-&gt;qxab&#39;</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="s1">'qabcd,qxcd-&gt;qxab'</span>
 
     <span class="n">dg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">Pi_g</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">dd</span><span class="o">=</span><span class="n">dd</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
 
     <span class="c1">#            k+q m</span>
-    <span class="c1">#   a     c ___/___ a&#39;</span>
+    <span class="c1">#   a     c ___/___ a'</span>
     <span class="c1">#  \   q   /   \   \   x q</span>
     <span class="c1">#   :::::::         o~~~~~~~</span>
     <span class="c1">#  /       \___\___/</span>
-    <span class="c1">#   b     d    /    b&#39;</span>
+    <span class="c1">#   b     d    /    b'</span>
     <span class="c1">#             k n</span>
 
     <span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -1024,9 +1024,9 @@
 
 <div class="viewcode-block" id="Pi_g">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.Pi_g">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">Pi_g</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span> <span class="n">dd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">Pi_g</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">'fd'</span><span class="p">,</span> <span class="n">dd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">status</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Join electron-phonon coupling and Lindhard bubble in orbital basis.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Join electron-phonon coupling and Lindhard bubble in orbital basis.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1053,7 +1053,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    ndarray</span>
 <span class="sd">        (k-independent) product of electron-phonon coupling and Lindhard bubble.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">occupations</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">occupations</span><span class="p">)</span>
 
     <span class="n">nQ</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
@@ -1098,7 +1098,7 @@
 
     <span class="k">for</span> <span class="n">my_iq</span><span class="p">,</span> <span class="n">iq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])):</span>
         <span class="k">if</span> <span class="n">status</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Calculate &quot;g Pi&quot; for q point </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">iq</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">'Calculate "g Pi" for q point </span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">iq</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 
         <span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">iq</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">%</span> <span class="n">nk</span>
 
@@ -1121,9 +1121,9 @@
                 <span class="n">dfde</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">][</span><span class="o">~</span><span class="n">ok</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">n</span><span class="p">][</span><span class="o">~</span><span class="n">ok</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">dd</span><span class="p">:</span>
-            <span class="n">indices</span> <span class="o">=</span> <span class="s1">&#39;ijkcm,ijkcn,ijkmn,ijkam,ijkbn,xijkab-&gt;xc&#39;</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="s1">'ijkcm,ijkcn,ijkmn,ijkam,ijkbn,xijkab-&gt;xc'</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">indices</span> <span class="o">=</span> <span class="s1">&#39;ijkcm,ijkdn,ijkmn,ijkam,ijkbn,xijkab-&gt;xcd&#39;</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="s1">'ijkcm,ijkdn,ijkmn,ijkam,ijkbn,xijkab-&gt;xcd'</span>
 
         <span class="n">my_Pig</span><span class="p">[</span><span class="n">my_iq</span><span class="p">]</span> <span class="o">=</span> <span class="n">prefactor</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span>
             <span class="n">U</span><span class="p">[</span><span class="n">kq1</span><span class="p">,</span> <span class="n">kq2</span><span class="p">,</span> <span class="n">kq3</span><span class="p">],</span> <span class="n">U</span><span class="p">[</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">]</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">dfde</span><span class="p">,</span>
@@ -1149,9 +1149,9 @@
 
 <div class="viewcode-block" id="double_fermi_surface_average">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.double_fermi_surface_average">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">double_fermi_surface_average</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">double_fermi_surface_average</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">'fd'</span><span class="p">,</span>
         <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate double Fermi-surface average.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate double Fermi-surface average.</span>
 
 <span class="sd">    Please note that not the average itself is returned!</span>
 
@@ -1189,7 +1189,7 @@
 <span class="sd">    ndarray</span>
 <span class="sd">        Denominator of double Fermi-surface average before :math:`\vec q`</span>
 <span class="sd">        summation.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">occupations</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">occupations</span><span class="p">)</span>
 
     <span class="n">nQ</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
@@ -1259,8 +1259,8 @@
 
 <div class="viewcode-block" id="grand_potential">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.grand_potential">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">grand_potential</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate (zeroth order of) grand potential.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">grand_potential</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">'fd'</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate (zeroth order of) grand potential.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1275,7 +1275,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    real</span>
 <span class="sd">        Grand potential.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">occupations</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">occupations</span><span class="p">)</span>
 
     <span class="n">x</span> <span class="o">=</span> <span class="n">e</span> <span class="o">/</span> <span class="n">kT</span>
@@ -1295,8 +1295,8 @@
 
 <div class="viewcode-block" id="first_order">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.first_order">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">first_order</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate first-order diagram of grand potential.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">first_order</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">'fd'</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate first-order diagram of grand potential.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1319,7 +1319,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    complex</span>
 <span class="sd">        Value of first-order diagram.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">occupations</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">occupations</span><span class="p">)</span>
 
     <span class="n">nk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
@@ -1339,44 +1339,44 @@
     <span class="n">f</span> <span class="o">=</span> <span class="n">occupations</span><span class="p">(</span><span class="n">e</span> <span class="o">/</span> <span class="n">kT</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">U</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;ijkam,ijkm,ijkbm-&gt;ijkab&#39;</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">U</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">'ijkam,ijkm,ijkbm-&gt;ijkab'</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">U</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span>
 
-        <span class="n">indices</span> <span class="o">=</span> <span class="s1">&#39;ijkab,xijkba-&gt;x&#39;</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="s1">'ijkab,xijkba-&gt;x'</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">indices</span> <span class="o">=</span> <span class="s1">&#39;ijkm,xijkmm-&gt;x&#39;</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="s1">'ijkm,xijkmm-&gt;x'</span>
 
     <span class="k">return</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">nk</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="triangle">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.triangle">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">triangle</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">gq</span><span class="p">,</span> <span class="n">gQ</span><span class="p">,</span> <span class="n">gqQ</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">triangle</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">gq</span><span class="p">,</span> <span class="n">gQ</span><span class="p">,</span> <span class="n">gqQ</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">'fd'</span><span class="p">,</span>
         <span class="n">fluctuations</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate triangle diagram (third order of grand potential).</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate triangle diagram (third order of grand potential).</span>
 
 <span class="sd">    .. math::</span>
 
-<span class="sd">        \chi_{\vec q \mu \vec q&#39; \nu}</span>
+<span class="sd">        \chi_{\vec q \mu \vec q' \nu}</span>
 <span class="sd">            &amp;= \sum_{\vec k \alpha \beta \gamma} \frac</span>
 <span class="sd">            {</span>
 <span class="sd">                \epsilon_{\vec k \alpha}</span>
-<span class="sd">                    (f_{\vec k + \vec q \beta} - f_{\vec k + \vec q&#39; \gamma})</span>
+<span class="sd">                    (f_{\vec k + \vec q \beta} - f_{\vec k + \vec q' \gamma})</span>
 <span class="sd">                + \epsilon_{\vec k + \vec q \beta}</span>
-<span class="sd">                    (f_{\vec k + \vec q&#39; \gamma} - f_{\vec k \alpha})</span>
-<span class="sd">                + \epsilon_{\vec k + \vec q&#39; \gamma}</span>
+<span class="sd">                    (f_{\vec k + \vec q' \gamma} - f_{\vec k \alpha})</span>
+<span class="sd">                + \epsilon_{\vec k + \vec q' \gamma}</span>
 <span class="sd">                    (f_{\vec k \alpha} - f_{\vec k + \vec q \beta})</span>
 <span class="sd">            }{</span>
 <span class="sd">                (\epsilon_{\vec k + \vec q \beta}</span>
-<span class="sd">                    - \epsilon_{\vec k + \vec q&#39; \gamma})</span>
-<span class="sd">                (\epsilon_{\vec k + \vec q&#39; \gamma}</span>
+<span class="sd">                    - \epsilon_{\vec k + \vec q' \gamma})</span>
+<span class="sd">                (\epsilon_{\vec k + \vec q' \gamma}</span>
 <span class="sd">                    - \epsilon_{\vec k \alpha})</span>
 <span class="sd">                (\epsilon_{\vec k \alpha}</span>
 <span class="sd">                    - \epsilon_{\vec k + \vec q \beta})</span>
 <span class="sd">            }</span>
 <span class="sd">            \\ &amp;\times</span>
 <span class="sd">            g^*_{\vec q \mu \vec k \beta \alpha}</span>
-<span class="sd">            g_{\vec q&#39; \nu \vec k \gamma \alpha}</span>
-<span class="sd">            g_{\vec q - \vec q&#39; \nu \vec k + \vec q&#39; \beta \gamma}</span>
+<span class="sd">            g_{\vec q' \nu \vec k \gamma \alpha}</span>
+<span class="sd">            g_{\vec q - \vec q' \nu \vec k + \vec q' \beta \gamma}</span>
 
 <span class="sd">    .. code-block:: text</span>
 
@@ -1390,12 +1390,12 @@
 <span class="sd">              /           \</span>
 <span class="sd">             /             \</span>
 <span class="sd">            o-------&gt;-------o</span>
-<span class="sd">        q&#39; v     k+q&#39; c      q-q&#39; v</span>
+<span class="sd">        q' v     k+q' c      q-q' v</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    q, Q : tuple</span>
-<span class="sd">        q points in crystal coordinates :math:`q_i, q&#39;_i \in [0, 2 \pi)`.</span>
+<span class="sd">        q points in crystal coordinates :math:`q_i, q'_i \in [0, 2 \pi)`.</span>
 <span class="sd">    e : ndarray</span>
 <span class="sd">        Electron dispersion on uniform mesh. The Fermi level must be at zero.</span>
 <span class="sd">    gq, gQ, gqQ : ndarray</span>
@@ -1413,7 +1413,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    complex</span>
 <span class="sd">        Value of triangle.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">occupations</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">occupations</span><span class="p">)</span>
 
     <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -1511,7 +1511,7 @@
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
         <span class="n">gqQ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">gqQ</span><span class="p">,</span> <span class="n">shift</span><span class="o">=-</span><span class="n">Q</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
 
-    <span class="n">chi_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;abcijk,ijkba,ijkca,ijkbc-&gt;ijkabc&#39;</span><span class="p">,</span>
+    <span class="n">chi_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">'abcijk,ijkba,ijkca,ijkbc-&gt;ijkabc'</span><span class="p">,</span>
         <span class="n">chi</span><span class="p">,</span> <span class="n">gq</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">gQ</span><span class="p">,</span> <span class="n">gqQ</span><span class="p">)</span>
 
     <span class="n">chi</span> <span class="o">=</span> <span class="n">prefactor</span> <span class="o">*</span> <span class="n">chi_k</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -1524,9 +1524,9 @@
 
 <div class="viewcode-block" id="fan_migdal_self_energy">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.fan_migdal_self_energy">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">fan_migdal_self_energy</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fan_migdal_self_energy</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">'fd'</span><span class="p">,</span>
         <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate Fan-Migdal electron self-energy (to be tested).</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate Fan-Migdal electron self-energy (to be tested).</span>
 
 <span class="sd">    See Eq. (4) by Abramovitch et al., Phys. Rev. Mater. 7, 093801 (2023).</span>
 
@@ -1551,7 +1551,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    ndarray</span>
 <span class="sd">        Fan-Migdal electron self-energy.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">occupations</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">occupations</span><span class="p">)</span>
 
     <span class="n">nK</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
@@ -1586,7 +1586,7 @@
     <span class="n">my_Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">nbnd</span><span class="p">,</span> <span class="n">omega</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
 
     <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span>
-        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;calculate Fan-Migdal electron self-energy&#39;</span><span class="p">)</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">'calculate Fan-Migdal electron self-energy'</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">my_ik</span><span class="p">,</span> <span class="n">ik</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])):</span>
         <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="n">ik</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">%</span> <span class="n">nq</span>
@@ -1616,8 +1616,8 @@
 <div class="viewcode-block" id="green_kubo_conductivity">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.green_kubo_conductivity">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">green_kubo_conductivity</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span>
-        <span class="n">occupations</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dc_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate Green-Kubo optical conductivity in the bubble approximation.</span>
+        <span class="n">occupations</span><span class="o">=</span><span class="s1">'fd'</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dc_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate Green-Kubo optical conductivity in the bubble approximation.</span>
 
 <span class="sd">    .. math::</span>
 
@@ -1637,7 +1637,7 @@
 <span class="sd">            \frac \omega {\omega^2 + \eta^2} \Re \sigma_{x y}(\omega + \Omega)</span>
 
 <span class="sd">    It is also possible to consider the off-diagonal elements of the velocities,</span>
-<span class="sd">    see Eq. (85) by Lihm and Ponce&#39;, arXiv:2506.18139 (2025).</span>
+<span class="sd">    see Eq. (85) by Lihm and Ponce', arXiv:2506.18139 (2025).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1650,7 +1650,7 @@
 <span class="sd">    kT : float</span>
 <span class="sd">        Smearing temperature.</span>
 <span class="sd">    eta : float</span>
-<span class="sd">        Absolute value of &quot;infinitesimal&quot; imaginary number in denominator. Only</span>
+<span class="sd">        Absolute value of "infinitesimal" imaginary number in denominator. Only</span>
 <span class="sd">        used to compute the imaginary part through the Kramers-Kronig relation.</span>
 <span class="sd">    eps : float</span>
 <span class="sd">        Negligible difference between two floating-point numbers.</span>
@@ -1669,7 +1669,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    ndarray</span>
 <span class="sd">        Green-Kubo optical conductivity.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">occupations</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">occupations</span><span class="o">.</span><span class="n">smearing</span><span class="p">(</span><span class="n">occupations</span><span class="p">)</span>
 
     <span class="n">nbnd</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
@@ -1728,12 +1728,12 @@
         <span class="n">domega</span> <span class="o">=</span> <span class="n">omega</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">omega</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span> <span class="o">-</span> <span class="n">domega</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">eps</span><span class="p">):</span>
-            <span class="n">info</span><span class="p">(</span><span class="s1">&#39;Frequency sampling must be equidistant!&#39;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">info</span><span class="p">(</span><span class="s1">'Frequency sampling must be equidistant!'</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="n">iw0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">omega</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">omega</span><span class="p">[</span><span class="n">iw0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">eps</span><span class="p">:</span>
-            <span class="n">info</span><span class="p">(</span><span class="s1">&#39;Frequency sampling should include zero!&#39;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">info</span><span class="p">(</span><span class="s1">'Frequency sampling should include zero!'</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="n">f</span> <span class="o">=</span> <span class="n">occupations</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
@@ -1743,7 +1743,7 @@
         <span class="n">my_sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">ndim</span><span class="p">,</span> <span class="n">ndim</span><span class="p">))</span>
 
         <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span>
-            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;calculate Green-Kubo optical conductivity&#39;</span><span class="p">)</span>
+            <span class="n">title</span><span class="o">=</span><span class="s1">'calculate Green-Kubo optical conductivity'</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">my_iw</span><span class="p">,</span> <span class="n">iw</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])):</span>
             <span class="n">diw</span> <span class="o">=</span> <span class="n">iw</span> <span class="o">-</span> <span class="n">iw0</span>

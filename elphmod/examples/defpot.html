@@ -162,12 +162,12 @@
 <span class="n">nu</span> <span class="o">=</span> <span class="mi">8</span> <span class="c1"># ionic displacement</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># electronic orbital</span>
 
-<span class="n">el</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;TaS2&#39;</span><span class="p">)</span>
-<span class="n">ph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;dfpt.dyn&#39;</span><span class="p">,</span> <span class="n">apply_asr_simple</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">elph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;dfpt.epmatwp&#39;</span><span class="p">,</span> <span class="s1">&#39;wigner.fmt&#39;</span><span class="p">,</span> <span class="n">el</span><span class="p">,</span> <span class="n">ph</span><span class="p">,</span>
+<span class="n">el</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">'TaS2'</span><span class="p">)</span>
+<span class="n">ph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">'dfpt.dyn'</span><span class="p">,</span> <span class="n">apply_asr_simple</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">elph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">'dfpt.epmatwp'</span><span class="p">,</span> <span class="s1">'wigner.fmt'</span><span class="p">,</span> <span class="n">el</span><span class="p">,</span> <span class="n">ph</span><span class="p">,</span>
     <span class="n">divide_mass</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;GMKG&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">'GMKG'</span>
 <span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">corners</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">ibrav</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
 <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
@@ -178,13 +178,13 @@
 <span class="n">g</span> <span class="o">*=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">Ry</span> <span class="o">/</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">a0</span>
 
 <span class="k">if</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\langle \vec k d_{z^2}| &#39;</span>
-        <span class="sa">r</span><span class="s1">&#39;\partial V / \partial z_{\mathrm</span><span class="si">{S}</span><span class="s1">} &#39;</span>
-        <span class="sa">r</span><span class="s1">&#39;|\vec k d_{z^2} \rangle$ &#39;</span>
-        <span class="sa">r</span><span class="s1">&#39;($\mathrm{eV/\AA}$)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">'$\langle \vec k d_{z^2}| '</span>
+        <span class="sa">r</span><span class="s1">'\partial V / \partial z_{\mathrm</span><span class="si">{S}</span><span class="s1">} '</span>
+        <span class="sa">r</span><span class="s1">'|\vec k d_{z^2} \rangle$ '</span>
+        <span class="sa">r</span><span class="s1">'($\mathrm{eV/\AA}$)'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">corners</span><span class="p">],</span> <span class="n">path</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;defpot.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'defpot.png'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>

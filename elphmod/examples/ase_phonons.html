@@ -164,16 +164,16 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">a</span> <span class="o">=</span> <span class="mf">4.05</span>
-<span class="n">atoms</span> <span class="o">=</span> <span class="n">ase</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">bulk</span><span class="p">(</span><span class="s1">&#39;Al&#39;</span><span class="p">,</span> <span class="s1">&#39;fcc&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
+<span class="n">atoms</span> <span class="o">=</span> <span class="n">ase</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">bulk</span><span class="p">(</span><span class="s1">'Al'</span><span class="p">,</span> <span class="s1">'fcc'</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
 
 <span class="n">ph_ase</span> <span class="o">=</span> <span class="n">ase</span><span class="o">.</span><span class="n">phonons</span><span class="o">.</span><span class="n">Phonons</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">ase</span><span class="o">.</span><span class="n">calculators</span><span class="o">.</span><span class="n">emt</span><span class="o">.</span><span class="n">EMT</span><span class="p">(),</span>
-    <span class="n">supercell</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,)</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ase_phonons&#39;</span><span class="p">)</span>
+    <span class="n">supercell</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,)</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'ase_phonons'</span><span class="p">)</span>
 
 <span class="n">ph_ase</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="n">ph_ase</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">acoustic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">ph_ase</span><span class="o">.</span><span class="n">clean</span><span class="p">()</span>
 
-<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;GXULGK&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">'GXULGK'</span>
 <span class="n">path_ase</span> <span class="o">=</span> <span class="n">atoms</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">bandpath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">npoints</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">band_ase</span> <span class="o">=</span> <span class="n">ph_ase</span><span class="o">.</span><span class="n">get_band_structure</span><span class="p">(</span><span class="n">path_ase</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -185,11 +185,11 @@
 <span class="n">w</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">sgnsqrt</span><span class="p">(</span><span class="n">w2</span><span class="p">)</span> <span class="o">*</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">Ry</span>
 
 <span class="k">if</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">band_ase</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">emin</span><span class="o">=-</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">emax</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ASE&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+    <span class="n">band_ase</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">emin</span><span class="o">=-</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">emax</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'ASE'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="s1">'k--'</span><span class="p">)</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Phonon energy (eV)&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;ase_phonons.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Phonon energy (eV)'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'ase_phonons.png'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>

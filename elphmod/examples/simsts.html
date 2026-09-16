@@ -182,28 +182,28 @@ an s orbital located at a chosen position above the sample.</p>
 <span class="n">tip</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">])</span> <span class="c1"># tip position (bohr)</span>
 <span class="n">V</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="c1"># sample bias (eV)</span>
 
-<span class="n">info</span><span class="p">(</span><span class="s1">&#39;Set up and diagonalize Wannier Hamiltonian&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s1">'Set up and diagonalize Wannier Hamiltonian'</span><span class="p">)</span>
 
-<span class="n">el</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;graphene&#39;</span><span class="p">,</span> <span class="n">read_xsf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">normalize_wf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="n">el</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">'graphene'</span><span class="p">,</span> <span class="n">read_xsf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">normalize_wf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">check_ortho</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">e</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">dispersion_full_nosym</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span>
     <span class="n">vectors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">e</span> <span class="o">-=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">read_Fermi_level</span><span class="p">(</span><span class="s1">&#39;scf.out&#39;</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">-=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">read_Fermi_level</span><span class="p">(</span><span class="s1">'scf.out'</span><span class="p">)</span>
 
-<span class="n">info</span><span class="p">(</span><span class="s1">&#39;Set up Bravais lattice vectors&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s1">'Set up Bravais lattice vectors'</span><span class="p">)</span>
 
-<span class="n">pwi</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">read_pwi</span><span class="p">(</span><span class="s1">&#39;scf.in&#39;</span><span class="p">)</span>
+<span class="n">pwi</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">read_pwi</span><span class="p">(</span><span class="s1">'scf.in'</span><span class="p">)</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">primitives</span><span class="p">(</span><span class="o">**</span><span class="n">pwi</span><span class="p">,</span> <span class="n">bohr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculate density of states&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s1">'Calculate density of states'</span><span class="p">)</span>
 
 <span class="n">w</span><span class="p">,</span> <span class="n">dw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">e</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">300</span><span class="p">,</span> <span class="n">retstep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">DOS</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">elphmod</span><span class="o">.</span><span class="n">dos</span><span class="o">.</span><span class="n">hexDOS</span><span class="p">(</span><span class="n">e</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">n</span><span class="p">])(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
 
-<span class="n">info</span><span class="p">(</span><span class="s1">&#39;Determine indices of unit-cell corners and vertical tip position&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s1">'Determine indices of unit-cell corners and vertical tip position'</span><span class="p">)</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">indices</span><span class="p">(</span><span class="n">point</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">r</span> <span class="o">-</span> <span class="n">point</span><span class="p">,</span>
@@ -216,7 +216,7 @@ an s orbital located at a chosen position above the sample.</p>
 <span class="n">nx</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span>
 <span class="n">ny</span> <span class="o">=</span> <span class="n">y1</span> <span class="o">-</span> <span class="n">y0</span>
 
-<span class="n">info</span><span class="p">(</span><span class="s1">&#39;Shift Wannier functions and calculate overlap with tip&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s1">'Shift Wannier functions and calculate overlap with tip'</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
     <span class="n">cells</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
@@ -245,7 +245,7 @@ an s orbital located at a chosen position above the sample.</p>
 
             <span class="n">overlap</span><span class="p">[</span><span class="n">iR</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s</span> <span class="o">*</span> <span class="n">el</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="o">*</span> <span class="n">el</span><span class="o">.</span><span class="n">dV</span>
 
-<span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculate scanning-tunneling image and weight electronic eigenstates&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s1">'Calculate scanning-tunneling image and weight electronic eigenstates'</span><span class="p">)</span>
 
 <span class="n">STM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">))</span>
 <span class="n">weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -259,7 +259,7 @@ an s orbital located at a chosen position above the sample.</p>
                 <span class="k">if</span> <span class="n">V</span> <span class="o">&lt;</span> <span class="n">e</span><span class="p">[</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="mf">0.0</span> <span class="o">&lt;</span> <span class="n">e</span><span class="p">[</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">V</span><span class="p">:</span>
                     <span class="n">tmp</span> <span class="o">=</span> <span class="mf">0.0</span>
                     <span class="k">for</span> <span class="n">iR</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">R</span><span class="p">)):</span>
-                        <span class="n">tmp</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;nxy,n&#39;</span><span class="p">,</span> <span class="n">W</span><span class="p">[</span><span class="n">iR</span><span class="p">,</span> <span class="p">:,</span> <span class="n">x0</span><span class="p">:</span><span class="n">x1</span><span class="p">,</span> <span class="n">y0</span><span class="p">:</span><span class="n">y1</span><span class="p">],</span>
+                        <span class="n">tmp</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">'nxy,n'</span><span class="p">,</span> <span class="n">W</span><span class="p">[</span><span class="n">iR</span><span class="p">,</span> <span class="p">:,</span> <span class="n">x0</span><span class="p">:</span><span class="n">x1</span><span class="p">,</span> <span class="n">y0</span><span class="p">:</span><span class="n">y1</span><span class="p">],</span>
                             <span class="n">U</span><span class="p">[</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="p">:,</span> <span class="n">n</span><span class="p">])</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span>
                             <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">*</span> <span class="n">R</span><span class="p">[</span><span class="n">iR</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">k2</span> <span class="o">*</span> <span class="n">R</span><span class="p">[</span><span class="n">iR</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">scale</span><span class="p">)</span>
                     <span class="n">STM</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
@@ -274,17 +274,17 @@ an s orbital located at a chosen position above the sample.</p>
 <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">STM</span><span class="p">)</span>
 <span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span>
 
-<span class="n">info</span><span class="p">(</span><span class="s1">&#39;Plot scanning-tunnelling image&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s1">'Plot scanning-tunnelling image'</span><span class="p">)</span>
 
 <span class="n">plot</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">STM</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;afmhot&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;simsts_1.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'afmhot'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'simsts_1.png'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculate scanning-tunnelling spectrum&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s1">'Calculate scanning-tunnelling spectrum'</span><span class="p">)</span>
 
 <span class="n">STS</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">elphmod</span><span class="o">.</span><span class="n">dos</span><span class="o">.</span><span class="n">hexa2F</span><span class="p">(</span><span class="n">e</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">n</span><span class="p">],</span> <span class="n">weight</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">n</span><span class="p">])(</span><span class="n">w</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
@@ -293,12 +293,12 @@ an s orbital located at a chosen position above the sample.</p>
 
 <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">DOS</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;DOS&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">STS</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;STS&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density of states (1/eV)&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Electron energy (eV)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">DOS</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'DOS'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">STS</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'STS'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Density of states (1/eV)'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Electron energy (eV)'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;simsts_2.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'simsts_2.png'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>

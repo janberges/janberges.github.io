@@ -554,12 +554,12 @@ the <code class="docutils literal notranslate"><span class="pre">SUBROUTINE</spa
 </pre></div>
 </div>
 <p>and:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">9062</span> <span class="n">FORMAT</span><span class="p">(</span> <span class="s1">&#39;     one-electron contribution =&#39;</span><span class="p">,</span><span class="n">F17</span><span class="mf">.8</span><span class="p">,</span><span class="s1">&#39; Ry&#39;</span> <span class="o">&amp;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">9062</span> <span class="n">FORMAT</span><span class="p">(</span> <span class="s1">'     one-electron contribution ='</span><span class="p">,</span><span class="n">F17</span><span class="mf">.8</span><span class="p">,</span><span class="s1">' Ry'</span> <span class="o">&amp;</span>
 </pre></div>
 </div>
 <p>to:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">9062</span> <span class="n">FORMAT</span><span class="p">(</span> <span class="s1">&#39;     sum bands                 =&#39;</span><span class="p">,</span><span class="n">F17</span><span class="mf">.8</span><span class="p">,</span><span class="s1">&#39; Ry&#39;</span> <span class="o">&amp;</span>
-            <span class="o">/</span><span class="s1">&#39;     one-electron contribution =&#39;</span><span class="p">,</span><span class="n">F17</span><span class="mf">.8</span><span class="p">,</span><span class="s1">&#39; Ry&#39;</span> <span class="o">&amp;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">9062</span> <span class="n">FORMAT</span><span class="p">(</span> <span class="s1">'     sum bands                 ='</span><span class="p">,</span><span class="n">F17</span><span class="mf">.8</span><span class="p">,</span><span class="s1">' Ry'</span> <span class="o">&amp;</span>
+            <span class="o">/</span><span class="s1">'     one-electron contribution ='</span><span class="p">,</span><span class="n">F17</span><span class="mf">.8</span><span class="p">,</span><span class="s1">' Ry'</span> <span class="o">&amp;</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -611,9 +611,9 @@ independent of <code class="docutils literal notranslate"><span class="pre">el.r
 <span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">proj_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orbitals</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/el.html#proj_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.el.proj_sum" title="Link to this definition"></a></dt>
 <dd><p>Sum over selected atomic projections.</p>
 <p>Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">proj</span> <span class="o">=</span> <span class="n">read_atomic_projections</span><span class="p">(</span><span class="s1">&#39;atomic_proj.xml&#39;</span><span class="p">)</span>
-<span class="n">orbitals</span> <span class="o">=</span> <span class="n">read_projwf_out</span><span class="p">(</span><span class="s1">&#39;projwfc.out&#39;</span><span class="p">)</span>
-<span class="n">proj</span> <span class="o">=</span> <span class="n">proj_sum</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">orbitals</span><span class="p">,</span> <span class="s1">&#39;S-p&#39;</span><span class="p">,</span> <span class="s1">&#39;Ta-d{z2, x2-y2, xy}&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">proj</span> <span class="o">=</span> <span class="n">read_atomic_projections</span><span class="p">(</span><span class="s1">'atomic_proj.xml'</span><span class="p">)</span>
+<span class="n">orbitals</span> <span class="o">=</span> <span class="n">read_projwf_out</span><span class="p">(</span><span class="s1">'projwfc.out'</span><span class="p">)</span>
+<span class="n">proj</span> <span class="o">=</span> <span class="n">proj_sum</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">orbitals</span><span class="p">,</span> <span class="s1">'S-p'</span><span class="p">,</span> <span class="s1">'Ta-d{z2, x2-y2, xy}'</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">

@@ -166,7 +166,7 @@
 <span class="n">nk</span> <span class="o">=</span> <span class="mi">120</span>
 <span class="n">points</span> <span class="o">=</span> <span class="mi">500</span>
 
-<span class="n">el</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;data/NbSe2&#39;</span><span class="p">)</span>
+<span class="n">el</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">'data/NbSe2'</span><span class="p">)</span>
 
 <span class="n">e</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">dispersion_full</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="n">nk</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span>
 
@@ -177,12 +177,12 @@
 <span class="n">dedk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dedkx</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">dedky</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">dedk</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;fermi_velocity.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">dedk</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'Greys'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'fermi_velocity.png'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">info</span><span class="p">(</span><span class="s1">&#39;Min./max./mean number of k-points for meV resolution:&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s1">'Min./max./mean number of k-points for meV resolution:'</span><span class="p">)</span>
 
 <span class="n">FS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">dedk</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">))</span>
 

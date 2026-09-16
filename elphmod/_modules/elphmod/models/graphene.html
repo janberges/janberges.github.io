@@ -190,7 +190,7 @@
 <div class="viewcode-block" id="hamiltonian">
 <a class="viewcode-back" href="../../../modules/models/graphene.html#elphmod.models.graphene.hamiltonian">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">hamiltonian</span><span class="p">(</span><span class="n">k1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate electrons of, e.g., Phys. Rev. B 90, 085422 (2014).&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Calculate electrons of, e.g., Phys. Rev. B 90, 085422 (2014)."""</span>
 
     <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
 
@@ -225,7 +225,7 @@
 <div class="viewcode-block" id="dynamical_matrix">
 <a class="viewcode-back" href="../../../modules/models/graphene.html#elphmod.models.graphene.dynamical_matrix">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">dynamical_matrix</span><span class="p">(</span><span class="n">q1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate phonons shown in Fig. 2.9 of doi:10.26092/elib/250.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Calculate phonons shown in Fig. 2.9 of doi:10.26092/elib/250."""</span>
 
     <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
 
@@ -250,7 +250,7 @@
 <div class="viewcode-block" id="coupling">
 <a class="viewcode-back" href="../../../modules/models/graphene.html#elphmod.models.graphene.coupling">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">coupling</span><span class="p">(</span><span class="n">q1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q3</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k3</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">ignore</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate el.-ph. coupling as in Sec. S9 of PRB 105, L241109 (2022).&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Calculate el.-ph. coupling as in Sec. S9 of PRB 105, L241109 (2022)."""</span>
 
     <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
 
@@ -272,7 +272,7 @@
 <div class="viewcode-block" id="coulomb_interaction">
 <a class="viewcode-back" href="../../../modules/models/graphene.html#elphmod.models.graphene.coulomb_interaction">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">coulomb_interaction</span><span class="p">(</span><span class="n">q1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">q3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate Coulomb interaction of Phys. Rev. Lett. 106, 236805 (2011).&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Calculate Coulomb interaction of Phys. Rev. Lett. 106, 236805 (2011)."""</span>
 
     <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
 
@@ -289,7 +289,7 @@
 <div class="viewcode-block" id="create">
 <a class="viewcode-back" href="../../../modules/models/graphene.html#elphmod.models.graphene.create">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rydberg</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">divide_mass</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create tight-binding, mass-spring, and coupling data files for graphene.</span>
+<span class="w">    </span><span class="sd">"""Create tight-binding, mass-spring, and coupling data files for graphene.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -311,7 +311,7 @@
 <span class="sd">        Localized electron-phonon coupling.</span>
 <span class="sd">    object</span>
 <span class="sd">        Localized electron-electron interaction.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">H</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">dynamical_matrix</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
     <span class="n">g</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">coupling</span><span class="p">,</span> <span class="n">q</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">nk</span><span class="p">)</span>
@@ -321,7 +321,7 @@
     <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">k2r</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">rydberg</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">el</span><span class="o">.</span><span class="n">standardize</span><span class="p">(</span><span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">)</span>
 
-    <span class="n">ph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">amass</span><span class="o">=</span><span class="p">[</span><span class="n">M</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">at</span><span class="o">=</span><span class="n">at</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">atom_order</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">ph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">amass</span><span class="o">=</span><span class="p">[</span><span class="n">M</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">at</span><span class="o">=</span><span class="n">at</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">atom_order</span><span class="o">=</span><span class="p">[</span><span class="s1">'C'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
         <span class="n">divide_mass</span><span class="o">=</span><span class="n">divide_mass</span><span class="p">)</span>
     <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">q2r</span><span class="p">(</span><span class="n">ph</span><span class="p">,</span> <span class="n">D_full</span><span class="o">=</span><span class="n">D</span><span class="p">)</span>
     <span class="n">ph</span><span class="o">.</span><span class="n">standardize</span><span class="p">(</span><span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">)</span>
@@ -336,9 +336,9 @@
 
     <span class="k">if</span> <span class="n">prefix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">el</span><span class="o">.</span><span class="n">to_hrdat</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span>
-        <span class="n">ph</span><span class="o">.</span><span class="n">to_flfrc</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.ifc&#39;</span> <span class="o">%</span> <span class="n">prefix</span><span class="p">)</span>
+        <span class="n">ph</span><span class="o">.</span><span class="n">to_flfrc</span><span class="p">(</span><span class="s1">'</span><span class="si">%s</span><span class="s1">.ifc'</span> <span class="o">%</span> <span class="n">prefix</span><span class="p">)</span>
         <span class="n">elph</span><span class="o">.</span><span class="n">to_epmatwp</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span>
-        <span class="n">elel</span><span class="o">.</span><span class="n">to_Wmat</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.Wmat&#39;</span> <span class="o">%</span> <span class="n">prefix</span><span class="p">)</span>
+        <span class="n">elel</span><span class="o">.</span><span class="n">to_Wmat</span><span class="p">(</span><span class="s1">'</span><span class="si">%s</span><span class="s1">.Wmat'</span> <span class="o">%</span> <span class="n">prefix</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">el</span><span class="p">,</span> <span class="n">ph</span><span class="p">,</span> <span class="n">elph</span><span class="p">,</span> <span class="n">elel</span></div>
 

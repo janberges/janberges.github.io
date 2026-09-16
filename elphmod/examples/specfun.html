@@ -162,7 +162,7 @@
 <span class="n">comm</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">info</span>
 
-<span class="n">info</span><span class="p">(</span><span class="s1">&#39;Define parameters&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s1">'Define parameters'</span><span class="p">)</span>
 
 <span class="n">to_screen</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -182,20 +182,20 @@
 <span class="n">epsxy</span> <span class="o">=</span> <span class="mf">1.37</span>
 <span class="n">epsz</span> <span class="o">=</span> <span class="mf">1.16</span>
 <span class="n">Z</span> <span class="o">=</span> <span class="mf">0.64</span>
-<span class="n">L</span> <span class="o">=</span> <span class="mf">5.0</span> <span class="c1"># cf. Ponce&#39; et al., Phys. Rev. B 107, 155424 (2023)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">5.0</span> <span class="c1"># cf. Ponce' et al., Phys. Rev. B 107, 155424 (2023)</span>
 
-<span class="n">info</span><span class="p">(</span><span class="s1">&#39;Load model Hamiltonian for graphene&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s1">'Load model Hamiltonian for graphene'</span><span class="p">)</span>
 
-<span class="n">elphmod</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">graphene</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;data/graphene&#39;</span><span class="p">)</span>
+<span class="n">elphmod</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">graphene</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">'data/graphene'</span><span class="p">)</span>
 
-<span class="n">el</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;data/graphene&#39;</span><span class="p">)</span>
-<span class="n">ph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;data/graphene.ifc&#39;</span><span class="p">)</span>
-<span class="n">elph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;data/graphene.epmatwp&#39;</span><span class="p">,</span> <span class="s1">&#39;data/graphene.wigner&#39;</span><span class="p">,</span>
+<span class="n">el</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">'data/graphene'</span><span class="p">)</span>
+<span class="n">ph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">'data/graphene.ifc'</span><span class="p">)</span>
+<span class="n">elph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">elph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">'data/graphene.epmatwp'</span><span class="p">,</span> <span class="s1">'data/graphene.wigner'</span><span class="p">,</span>
     <span class="n">el</span><span class="p">,</span> <span class="n">ph</span><span class="p">)</span>
 
 <span class="n">el</span><span class="o">.</span><span class="n">data</span> <span class="o">/=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">Ry</span>
 
-<span class="n">info</span><span class="p">(</span><span class="s1">&#39;Sample and diagonalize model Hamiltonian&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s1">'Sample and diagonalize model Hamiltonian'</span><span class="p">)</span>
 
 <span class="n">q</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">GMKG</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">GMKG</span><span class="p">(</span><span class="n">nk</span><span class="p">,</span> <span class="n">corner_indices</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mesh</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">straight</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lift_degen</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -221,7 +221,7 @@
 <span class="k">else</span><span class="p">:</span>
     <span class="n">G</span> <span class="o">=</span> <span class="n">g</span>
 
-<span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculate retarded displacement-displacement correlation function&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s1">'Calculate retarded displacement-displacement correlation function'</span><span class="p">)</span>
 
 <span class="n">w</span><span class="p">,</span> <span class="n">dw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">w0</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">),</span> <span class="n">retstep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -234,7 +234,7 @@
 
 <span class="n">A</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">spectral_function</span><span class="p">(</span><span class="n">Dw</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">eta2</span><span class="p">)</span>
 
-<span class="n">info</span><span class="p">(</span><span class="s1">&#39;Plot results&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s1">'Plot results'</span><span class="p">)</span>
 
 <span class="n">maximum</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
@@ -246,21 +246,21 @@
     <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">gridspec_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">height_ratios</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
 
-    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Phonon energy (Ry)&#39;</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Integral&#39;</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Wave vector&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Phonon energy (Ry)'</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Integral'</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Wave vector'</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">GMKG</span><span class="p">])</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="s1">&#39;GMKG&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="s1">'GMKG'</span><span class="p">)</span>
 
     <span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">A</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
-        <span class="n">vmin</span><span class="o">=-</span><span class="n">maximum</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">maximum</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w0</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+        <span class="n">vmin</span><span class="o">=-</span><span class="n">maximum</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">maximum</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'bwr'</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w0</span><span class="p">,</span> <span class="s1">'k'</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'auto'</span><span class="p">)</span>
 
     <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">integral</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;specfun.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'specfun.png'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>

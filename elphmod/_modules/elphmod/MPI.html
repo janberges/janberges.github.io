@@ -149,7 +149,7 @@
 <span></span><span class="c1"># Copyright (C) 2017-2026 elphmod Developers</span>
 <span class="c1"># This program is free software under the terms of the GNU GPLv3 or later.</span>
 
-<span class="sd">&quot;&quot;&quot;Work distribution and shared memory.&quot;&quot;&quot;</span>
+<span class="sd">"""Work distribution and shared memory."""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
@@ -239,7 +239,7 @@
 <div class="viewcode-block" id="distribute">
 <a class="viewcode-back" href="../../modules/MPI.html#elphmod.MPI.distribute">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">distribute</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Distribute work among processes.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Distribute work among processes."""</span>
 
     <span class="k">if</span> <span class="n">chunks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">chunks</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">size</span>
@@ -271,7 +271,7 @@
 <div class="viewcode-block" id="matrix">
 <a class="viewcode-back" href="../../modules/MPI.html#elphmod.MPI.matrix">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create sub-communicators.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Create sub-communicators."""</span>
 
     <span class="n">sizes</span><span class="p">,</span> <span class="n">cumsum</span> <span class="o">=</span> <span class="n">distribute</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">)</span>
 
@@ -284,7 +284,7 @@
 <div class="viewcode-block" id="shm_split">
 <a class="viewcode-back" href="../../modules/MPI.html#elphmod.MPI.shm_split">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">shm_split</span><span class="p">(</span><span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create communicators for use with shared memory.</span>
+<span class="w">    </span><span class="sd">"""Create communicators for use with shared memory.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -322,20 +322,20 @@
 
 <span class="sd">    Since both ``node.rank`` and ``images.rank`` are sorted by ``comm.rank``,</span>
 <span class="sd">    ``comm.rank == 0`` is equivalent to ``node.rank == images.rank == 0``.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">shared_memory</span> <span class="ow">or</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_TYPE_SHARED</span> <span class="o">==</span> <span class="n">MPI</span><span class="o">.</span><span class="n">UNDEFINED</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">shared_memory</span> <span class="ow">and</span> <span class="n">comm</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">info</span><span class="p">(</span><span class="s1">&#39;Shared memory not implemented&#39;</span><span class="p">)</span>
+            <span class="n">info</span><span class="p">(</span><span class="s1">'Shared memory not implemented'</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">I</span><span class="p">,</span> <span class="n">comm</span>
 
     <span class="c1"># From article from Intel Developer Zone:</span>
-    <span class="c1"># &#39;An Introduction to MPI-3 Shared Memory Programming&#39;</span>
+    <span class="c1"># 'An Introduction to MPI-3 Shared Memory Programming'</span>
 
     <span class="n">node</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Split_type</span><span class="p">(</span><span class="n">MPI</span><span class="o">.</span><span class="n">COMM_TYPE_SHARED</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">)</span>
 
     <span class="c1"># From Gilles reply to Stack Overflow question:</span>
-    <span class="c1"># &#39;get Nodes with MPI program in C&#39;</span>
+    <span class="c1"># 'get Nodes with MPI program in C'</span>
 
     <span class="n">images</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Split</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">rank</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">)</span>
 
@@ -346,7 +346,7 @@
 <a class="viewcode-back" href="../../modules/MPI.html#elphmod.MPI.shared_array">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">shared_array</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">single_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">only_info</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create array whose memory is shared among all processes on same node.</span>
+<span class="w">    </span><span class="sd">"""Create array whose memory is shared among all processes on same node.</span>
 
 <span class="sd">    With ``shared_memory=False`` (``single_memory=True``) a conventional array</span>
 <span class="sd">    is created on each (only one) processor, which however allows for the same</span>
@@ -367,7 +367,7 @@
 
 <span class="sd">        # Wait if node.rank != 0:</span>
 <span class="sd">        comm.Barrier()</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">buffer</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
 
@@ -380,7 +380,7 @@
         <span class="n">node</span><span class="p">,</span> <span class="n">images</span> <span class="o">=</span> <span class="n">shm_split</span><span class="p">(</span><span class="n">comm</span><span class="p">,</span> <span class="n">shared_memory</span><span class="p">)</span>
 
         <span class="c1"># Shared memory allocation following Lisandro Dalcin on Google Groups:</span>
-        <span class="c1"># &#39;Shared memory for data structures and mpi4py.MPI.Win.Allocate_shared&#39;</span>
+        <span class="c1"># 'Shared memory for data structures and mpi4py.MPI.Win.Allocate_shared'</span>
 
         <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -393,7 +393,7 @@
 
             <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="mf">1e9</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;About to allocate </span><span class="si">%.6f</span><span class="s1"> GB of shared memory&#39;</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">'About to allocate </span><span class="si">%.6f</span><span class="s1"> GB of shared memory'</span>
                         <span class="o">%</span> <span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="mf">1e9</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">only_info</span><span class="p">:</span>
@@ -405,12 +405,12 @@
 <div class="viewcode-block" id="SharedArray">
 <a class="viewcode-back" href="../../modules/MPI.html#elphmod.MPI.SharedArray">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SharedArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create array whose memory is shared among all processes on same node.</span>
+<span class="w">    </span><span class="sd">"""Create array whose memory is shared among all processes on same node.</span>
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
 <span class="sd">    shared_array</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">node</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">shared_array</span><span class="p">(</span><span class="n">only_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -425,8 +425,8 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">__array_finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">array</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">array</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="n">I</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">images</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">,</span> <span class="n">comm</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="s1">'node'</span><span class="p">,</span> <span class="n">I</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">images</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="s1">'images'</span><span class="p">,</span> <span class="n">comm</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">Bcast</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -438,14 +438,14 @@
 <div class="viewcode-block" id="Buffer">
 <a class="viewcode-back" href="../../modules/MPI.html#elphmod.MPI.Buffer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Buffer</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper for ``pickle`` in parallel context.</span>
+<span class="w">    </span><span class="sd">"""Wrapper for ``pickle`` in parallel context.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    buf : str, default None</span>
 <span class="sd">        Name of buffer file with pickled object. By default, the buffer is not</span>
 <span class="sd">        used and :meth:`get` and :meth:`set` do nothing and return ``None``.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buf</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">global</span> <span class="n">pickle</span>
         <span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
@@ -455,13 +455,13 @@
 <div class="viewcode-block" id="Buffer.get">
 <a class="viewcode-back" href="../../modules/MPI.html#elphmod.MPI.Buffer.get">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read object from buffer and broadcast it.</span>
+<span class="w">        </span><span class="sd">"""Read object from buffer and broadcast it.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        object</span>
 <span class="sd">            Object if buffer exists, ``None`` otherwise.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">buf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
 
@@ -469,7 +469,7 @@
 
         <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buf</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buf</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
                     <span class="n">obj</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
                 <span class="n">obj</span> <span class="o">=</span> <span class="kc">None</span>
@@ -480,18 +480,18 @@
 <div class="viewcode-block" id="Buffer.set">
 <a class="viewcode-back" href="../../modules/MPI.html#elphmod.MPI.Buffer.set">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write object to buffer on single processor.</span>
+<span class="w">        </span><span class="sd">"""Write object to buffer on single processor.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        object</span>
 <span class="sd">            Object to write.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">buf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
 
         <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buf</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buf</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
                 <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span></div>
 </div>
 
@@ -499,7 +499,7 @@
 <div class="viewcode-block" id="load">
 <a class="viewcode-back" href="../../modules/MPI.html#elphmod.MPI.load">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">txt</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read and broadcast NumPy data.</span>
+<span class="w">    </span><span class="sd">"""Read and broadcast NumPy data.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -512,14 +512,14 @@
 <span class="sd">    -------</span>
 <span class="sd">    ndarray</span>
 <span class="sd">        Data.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">txt</span><span class="p">:</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span>
-                    <span class="n">mmap_mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span> <span class="k">if</span> <span class="n">shared_memory</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+                    <span class="n">mmap_mode</span><span class="o">=</span><span class="s1">'r'</span> <span class="k">if</span> <span class="n">shared_memory</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
 
         <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -556,13 +556,13 @@
 <div class="viewcode-block" id="info">
 <a class="viewcode-back" href="../../modules/MPI.html#elphmod.MPI.info">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">info</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Print status message from first process.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Print status message from first process."""</span>
 
     <span class="n">comm</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
 
     <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">error</span><span class="p">:</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Error: &#39;</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'Error: '</span><span class="p">)</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
@@ -575,7 +575,7 @@
 <div class="viewcode-block" id="idle_wait">
 <a class="viewcode-back" href="../../modules/MPI.html#elphmod.MPI.idle_wait">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">idle_wait</span><span class="p">(</span><span class="n">busy</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sleep</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wait for busy process to finish without using up much CPU time.</span>
+<span class="w">    </span><span class="sd">"""Wait for busy process to finish without using up much CPU time.</span>
 
 <span class="sd">    This can be used to efficiently run an OpenMP-parallelized program from one</span>
 <span class="sd">    of the MPI processes. In the below example, without calling this function,</span>
@@ -599,7 +599,7 @@
 <span class="sd">        Rank of busy process.</span>
 <span class="sd">    sleep : float, default 0.2</span>
 <span class="sd">        Sleeping period in seconds between checking if process is still busy.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span>
 
@@ -617,7 +617,7 @@
 <div class="viewcode-block" id="elphmodenv">
 <a class="viewcode-back" href="../../modules/MPI.html#elphmod.MPI.elphmodenv">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">elphmodenv</span><span class="p">(</span><span class="n">num_threads</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Print commands to change number of threads.</span>
+<span class="w">    </span><span class="sd">"""Print commands to change number of threads.</span>
 
 <span class="sd">    Run ``eval $(elphmodenv)`` before your Python scripts to prevent NumPy from</span>
 <span class="sd">    using multiple processors for linear algebra. This is advantageous when</span>
@@ -627,16 +627,16 @@
 <span class="sd">    Combine ``eval $(elphmodenv X)`` with ``mpirun -n Y python3 script.py``,</span>
 <span class="sd">    where the product of X an Y is the number of available CPUs, for hybrid</span>
 <span class="sd">    parallelization.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">num_threads</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-    <span class="c1"># From MehmedB @ Stack Overflow: &quot;How to limit number of CPU&#39;s used by a</span>
-    <span class="c1"># python script w/o terminal or multiprocessing library?&quot;</span>
+    <span class="c1"># From MehmedB @ Stack Overflow: "How to limit number of CPU's used by a</span>
+    <span class="c1"># python script w/o terminal or multiprocessing library?"</span>
 
-    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;MKL_NUM_THREADS&#39;</span><span class="p">,</span> <span class="s1">&#39;NUMEXPR_NUM_THREADS&#39;</span><span class="p">,</span> <span class="s1">&#39;OMP_NUM_THREADS&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;OPENBLAS_NUM_THREADS&#39;</span><span class="p">,</span> <span class="s1">&#39;VECLIB_MAXIMUM_THREADS&#39;</span><span class="p">]:</span>
-        <span class="n">info</span><span class="p">(</span><span class="s1">&#39;export </span><span class="si">%s</span><span class="s1">=</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">num_threads</span><span class="p">))</span></div>
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'MKL_NUM_THREADS'</span><span class="p">,</span> <span class="s1">'NUMEXPR_NUM_THREADS'</span><span class="p">,</span> <span class="s1">'OMP_NUM_THREADS'</span><span class="p">,</span>
+            <span class="s1">'OPENBLAS_NUM_THREADS'</span><span class="p">,</span> <span class="s1">'VECLIB_MAXIMUM_THREADS'</span><span class="p">]:</span>
+        <span class="n">info</span><span class="p">(</span><span class="s1">'export </span><span class="si">%s</span><span class="s1">=</span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">num_threads</span><span class="p">))</span></div>
 
 </pre></div>
 

@@ -149,7 +149,7 @@
 <span></span><span class="c1"># Copyright (C) 2017-2026 elphmod Developers</span>
 <span class="c1"># This program is free software under the terms of the GNU GPLv3 or later.</span>
 
-<span class="sd">&quot;&quot;&quot;BZ plots, fatbands, etc.&quot;&quot;&quot;</span>
+<span class="sd">"""BZ plots, fatbands, etc."""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -162,13 +162,13 @@
 <div class="viewcode-block" id="choose_backend">
 <a class="viewcode-back" href="../../modules/plot.html#elphmod.plot.choose_backend">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">choose_backend</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Switch to non-GUI Matplotlib backend if necessary.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Switch to non-GUI Matplotlib backend if necessary."""</span>
 
     <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
 
-    <span class="k">if</span> <span class="s1">&#39;DISPLAY&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
-        <span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;agg&#39;</span><span class="p">)</span></div>
+    <span class="k">if</span> <span class="s1">'DISPLAY'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
+        <span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'agg'</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="plot">
@@ -176,7 +176,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">kxmin</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">kxmax</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">kymin</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">kymax</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
         <span class="n">interpolation</span><span class="o">=</span><span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">linear_interpolation</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
         <span class="n">return_k</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot in Cartesian reciprocal coordinates.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Plot in Cartesian reciprocal coordinates."""</span>
 
     <span class="n">nk</span><span class="p">,</span> <span class="n">nk</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">shape</span>
 
@@ -200,7 +200,7 @@
 
     <span class="n">my_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">mesh</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
-    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;plot&#39;</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">'plot'</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])):</span>
         <span class="n">i</span> <span class="o">=</span> <span class="n">m</span> <span class="o">//</span> <span class="n">nkx</span>
@@ -234,7 +234,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">double_plot</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">nq</span><span class="p">,</span> <span class="n">qxmin</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">qxmax</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">qymin</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">qymax</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
         <span class="n">resolution</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">linear_interpolation</span><span class="p">,</span>
         <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">outside</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">outlines</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Show f(q1, q2, k1, k2) on &quot;Brillouin zone made of Brillouin zones&quot;.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Show f(q1, q2, k1, k2) on "Brillouin zone made of Brillouin zones"."""</span>
 
     <span class="n">nQ</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">nk</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">shape</span>
 
@@ -263,7 +263,7 @@
 
     <span class="n">my_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">mesh</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
-    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;double plot&#39;</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">'double plot'</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])):</span>
         <span class="n">i</span> <span class="o">=</span> <span class="n">m</span> <span class="o">//</span> <span class="n">nqx</span>
@@ -339,7 +339,7 @@
 <a class="viewcode-back" href="../../modules/plot.html#elphmod.plot.colorbar">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">colorbar</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span>
         <span class="n">minimum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maximum</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add colorbar to image.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Add colorbar to image."""</span>
 
     <span class="n">image_height</span><span class="p">,</span> <span class="n">image_width</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
 
@@ -383,7 +383,7 @@
         <span class="n">interpolation</span><span class="o">=</span><span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">linear_interpolation</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">angle0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">outside</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">return_k</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_only_k</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">even</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">broadcast</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Map data on uniform grid onto (wedge of) Brillouin zone.</span>
+<span class="w">    </span><span class="sd">"""Map data on uniform grid onto (wedge of) Brillouin zone.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -391,7 +391,7 @@
 <span class="sd">        Angle between first and second Bravais-lattice vector in degrees.</span>
 <span class="sd">    angle0 : float</span>
 <span class="sd">        Angle between x axis and first Bravais-lattice vector in degrees.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">translations</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">angle0</span><span class="p">)</span>
     <span class="n">b1</span><span class="p">,</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">reciprocals</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">)</span>
 
@@ -449,7 +449,7 @@
     <span class="n">angle0</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
     <span class="n">scale</span> <span class="o">=</span> <span class="n">ndata</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 
-    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;BZ plot&#39;</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">'BZ plot'</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])):</span>
         <span class="n">i</span> <span class="o">=</span> <span class="n">m</span> <span class="o">//</span> <span class="n">nkx</span>
@@ -490,7 +490,7 @@
 <div class="viewcode-block" id="rectify">
 <a class="viewcode-back" href="../../modules/plot.html#elphmod.plot.rectify">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">rectify</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">lt</span><span class="p">,</span> <span class="n">rt</span><span class="p">,</span> <span class="n">lb</span><span class="p">,</span> <span class="n">rb</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Map skew image selection onto rectangular area.</span>
+<span class="w">    </span><span class="sd">"""Map skew image selection onto rectangular area.</span>
 
 <span class="sd">    This function could turn a photograph of a document and its surroundings,</span>
 <span class="sd">    taken at any unfortunate angle, into a rectangular image of the document</span>
@@ -519,7 +519,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    ndarray</span>
 <span class="sd">        Rectangular view of image selection.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">Ny</span><span class="p">,</span> <span class="n">Nx</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
 
     <span class="n">nx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">Nx</span> <span class="o">*</span> <span class="n">width</span><span class="p">))</span>
@@ -549,7 +549,7 @@
 <div class="viewcode-block" id="color">
 <a class="viewcode-back" href="../../modules/plot.html#elphmod.plot.color">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">color</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">minimum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maximum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">to8bit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Colorize data using colormap from StoryLines (parallelized version).</span>
+<span class="w">    </span><span class="sd">"""Colorize data using colormap from StoryLines (parallelized version).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -566,7 +566,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    list of list of list</span>
 <span class="sd">        RGB image.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">minimum</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">minimum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
@@ -592,7 +592,7 @@
 
     <span class="n">my_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span>
 
-    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;color&#39;</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">'color'</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">my_i</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])):</span>
         <span class="n">my_image</span><span class="p">[</span><span class="n">my_i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="n">RGB</span><span class="p">()</span>
@@ -608,7 +608,7 @@
 <div class="viewcode-block" id="adjust_pixels">
 <a class="viewcode-back" href="../../modules/plot.html#elphmod.plot.adjust_pixels">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">adjust_pixels</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">distances</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Even out image with block-wise equidistant columns.</span>
+<span class="w">    </span><span class="sd">"""Even out image with block-wise equidistant columns.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -627,7 +627,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    ndarray</span>
 <span class="sd">        Adjusted image with overall equidistant columns.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span> <span class="o">-</span> <span class="n">distances</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="n">new_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">distances</span> <span class="o">/</span> <span class="n">distances</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
@@ -649,7 +649,7 @@
 <div class="viewcode-block" id="compline">
 <a class="viewcode-back" href="../../modules/plot.html#elphmod.plot.compline">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">compline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">composition</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot composition along line.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Plot composition along line."""</span>
 
     <span class="n">nx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">composition</span><span class="p">)</span>
     <span class="n">composition</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">composition</span><span class="p">,</span> <span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
@@ -692,7 +692,7 @@
 <div class="viewcode-block" id="AtomsPlot">
 <a class="viewcode-back" href="../../modules/plot.html#elphmod.plot.AtomsPlot">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">AtomsPlot</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;3D plot of atomic positions and displacements.</span>
+<span class="w">    </span><span class="sd">"""3D plot of atomic positions and displacements.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -711,7 +711,7 @@
 <span class="sd">        Marker size for atoms in points squared.</span>
 <span class="sd">    pause : float, default 1e-3</span>
 <span class="sd">        Minimal frame duration for interactive plots in seconds.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">positions</span><span class="p">,</span> <span class="n">elements</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">)</span>
@@ -730,21 +730,21 @@
 <div class="viewcode-block" id="AtomsPlot.set_positions">
 <a class="viewcode-back" href="../../modules/plot.html#elphmod.plot.AtomsPlot.set_positions">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">positions</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set atomic positions.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Set atomic positions."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="AtomsPlot.set_displacements">
 <a class="viewcode-back" href="../../modules/plot.html#elphmod.plot.AtomsPlot.set_displacements">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_displacements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">displacements</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set atomic displacements.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Set atomic displacements."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">displacements</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="AtomsPlot.set_radii">
 <a class="viewcode-back" href="../../modules/plot.html#elphmod.plot.AtomsPlot.set_radii">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_radii</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radii</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set atomic radii, i.e., scaling factors for marker size.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Set atomic radii, i.e., scaling factors for marker size."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">radii</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span></div>
 
 
@@ -753,7 +753,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
             <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pause</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">elev</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">azim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot crystal structure and displacements.</span>
+<span class="w">        </span><span class="sd">"""Plot crystal structure and displacements.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -777,7 +777,7 @@
 <span class="sd">            Elevation and azimuthal view angles.</span>
 <span class="sd">        show : bool, optional</span>
 <span class="sd">            Show figure?</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span>
 
@@ -797,19 +797,19 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">pause</span> <span class="o">=</span> <span class="n">pause</span>
 
         <span class="k">if</span> <span class="n">elev</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">elev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">elev</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;axes&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="mi">90</span>
+            <span class="n">elev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">elev</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">'axes'</span><span class="p">)</span> <span class="k">else</span> <span class="mi">90</span>
 
         <span class="k">if</span> <span class="n">azim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">azim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">azim</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;axes&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mi">90</span>
+            <span class="n">azim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">azim</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">'axes'</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mi">90</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">'3d'</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="n">elev</span><span class="p">,</span> <span class="n">azim</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">scatter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="p">,</span>
-            <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#</span><span class="si">%02x%02x%02x</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">colors</span><span class="p">[</span><span class="n">X</span><span class="p">]</span> <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">])</span>
+            <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="s1">'#</span><span class="si">%02x%02x%02x</span><span class="s1">'</span> <span class="o">%</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">colors</span><span class="p">[</span><span class="n">X</span><span class="p">]</span> <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">])</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">quiver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
-            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">label</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">na</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">)):</span>
@@ -842,7 +842,7 @@
 <div class="viewcode-block" id="AtomsPlot.update">
 <a class="viewcode-back" href="../../modules/plot.html#elphmod.plot.AtomsPlot.update">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update open plot.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Update open plot."""</span>
 
         <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span>
@@ -853,7 +853,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">quiver</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">quiver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
-            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">)</span>
 
         <span class="n">plt</span><span class="o">.</span><span class="n">pause</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pause</span><span class="p">)</span></div>
 </div>

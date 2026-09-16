@@ -162,17 +162,17 @@
 <span class="n">comm</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">info</span>
 
-<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> <span class="s1">&#39;dodgerblue&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'skyblue'</span><span class="p">,</span> <span class="s1">'dodgerblue'</span><span class="p">,</span> <span class="s1">'orange'</span><span class="p">]</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;NbSe2_cDFPT&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="s1">'NbSe2_cDFPT'</span>
 
-<span class="n">info</span><span class="p">(</span><span class="s1">&#39;Set up mass-spring model&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s1">'Set up mass-spring model'</span><span class="p">)</span>
 
-<span class="n">ph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;data/</span><span class="si">%s</span><span class="s1">.ifc&#39;</span> <span class="o">%</span> <span class="n">data</span><span class="p">,</span> <span class="n">apply_asr_simple</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ph</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">'data/</span><span class="si">%s</span><span class="s1">.ifc'</span> <span class="o">%</span> <span class="n">data</span><span class="p">,</span> <span class="n">apply_asr_simple</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">info</span><span class="p">(</span><span class="s1">&#39;Diagonalize dynamical matrix along G-M-K-G&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s1">'Diagonalize dynamical matrix along G-M-K-G'</span><span class="p">)</span>
 
-<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;GMKG&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">'GMKG'</span>
 <span class="n">q</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">corners</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">ibrav</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
 
 <span class="n">w2</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">dispersion</span><span class="p">(</span><span class="n">ph</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span>
@@ -183,14 +183,14 @@
 
     <span class="n">pol</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">ph</span><span class="o">.</span><span class="n">polarization</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Load reference from Quantum ESPRESSO&#39;s &#39;matdyn.x&#39;&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Load reference from Quantum ESPRESSO's 'matdyn.x'"</span><span class="p">)</span>
 
-    <span class="n">ref</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;data/</span><span class="si">%s</span><span class="s1">.disp.gp&#39;</span> <span class="o">%</span> <span class="n">data</span><span class="p">)</span> <span class="o">*</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">cmm1</span> <span class="o">*</span> <span class="mf">1e3</span>
+    <span class="n">ref</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">'data/</span><span class="si">%s</span><span class="s1">.disp.gp'</span> <span class="o">%</span> <span class="n">data</span><span class="p">)</span> <span class="o">*</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">cmm1</span> <span class="o">*</span> <span class="mf">1e3</span>
 
     <span class="n">x0</span> <span class="o">=</span> <span class="n">ref</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">ref</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">w0</span> <span class="o">=</span> <span class="n">ref</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Plot dispersions&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Plot dispersions'</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">nu</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ph</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
         <span class="n">fatbands</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">compline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">[:,</span> <span class="n">nu</span><span class="p">],</span> <span class="n">pol</span><span class="p">[:,</span> <span class="n">nu</span><span class="p">])</span>
@@ -198,13 +198,13 @@
         <span class="k">for</span> <span class="n">fatband</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">fatbands</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="o">*</span><span class="n">fatband</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
 
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">w0</span><span class="p">[:,</span> <span class="n">nu</span><span class="p">],</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;QE&#39;</span> <span class="k">if</span> <span class="n">nu</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">w0</span><span class="p">[:,</span> <span class="n">nu</span><span class="p">],</span> <span class="s1">'k'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'QE'</span> <span class="k">if</span> <span class="n">nu</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Phonon energy (meV)&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Wave vector&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Phonon energy (meV)'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Wave vector'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">corners</span><span class="p">],</span> <span class="n">path</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;phonons.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'phonons.png'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>

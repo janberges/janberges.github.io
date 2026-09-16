@@ -149,7 +149,7 @@
 <span></span><span class="c1"># Copyright (C) 2017-2026 elphmod Developers</span>
 <span class="c1"># This program is free software under the terms of the GNU GPLv3 or later.</span>
 
-<span class="sd">&quot;&quot;&quot;Diagonalization on paths and meshes.&quot;&quot;&quot;</span>
+<span class="sd">"""Diagonalization on paths and meshes."""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -164,7 +164,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">dispersion</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">vectors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gauge</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rotate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hermitian</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">order_kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Diagonalize Hamiltonian or dynamical matrix for given k points.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Diagonalize Hamiltonian or dynamical matrix for given k points.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -206,7 +206,7 @@
 <span class="sd">        Corresponding eigenvectors.</span>
 <span class="sd">    ndarray, optional</span>
 <span class="sd">        Indices which have been used to order the bands.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
         <span class="n">kshape</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">.</span><span class="n">ndim</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
@@ -242,7 +242,7 @@
     <span class="c1"># diagonalize matrix for local lists of k points:</span>
 
     <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">my_points</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span>
-        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;calculate dispersion&#39;</span><span class="p">)</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">'calculate dispersion'</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">rotate</span><span class="p">:</span>
         <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">translations</span><span class="p">(</span><span class="mi">180</span> <span class="o">-</span> <span class="n">angle</span><span class="p">)</span>
@@ -371,7 +371,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">dispersion_full</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">vectors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gauge</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">rotate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hermitian</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">order_kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Diagonalize Hamiltonian or dynamical matrix on uniform k-point mesh.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Diagonalize Hamiltonian or dynamical matrix on uniform k-point mesh."""</span>
 
     <span class="c1"># choose irreducible set of k points:</span>
 
@@ -432,7 +432,7 @@
         <span class="k">if</span> <span class="n">order</span> <span class="ow">and</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">o</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">points</span><span class="p">,</span> <span class="n">bands</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
 
-            <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;disentangle bands&#39;</span><span class="p">)</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'disentangle bands'</span><span class="p">)</span>
 
             <span class="n">main_path</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">points</span><span class="p">)</span> <span class="k">if</span> <span class="n">on_main_path</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
             <span class="n">main_order</span> <span class="o">=</span> <span class="n">band_order</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">main_path</span><span class="p">],</span> <span class="n">V</span><span class="p">[</span><span class="n">main_path</span><span class="p">],</span> <span class="o">**</span><span class="n">order_kwargs</span><span class="p">)</span>
@@ -515,14 +515,14 @@
 <a class="viewcode-back" href="../../modules/dispersion.html#elphmod.dispersion.dispersion_full_nosym">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">dispersion_full_nosym</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">vectors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Diagonalize Hamiltonian or dynamical matrix on uniform k-point mesh.</span>
+<span class="w">    </span><span class="sd">"""Diagonalize Hamiltonian or dynamical matrix on uniform k-point mesh.</span>
 
 <span class="sd">    Use this routine to get eigenvectors less symmetric than the eigenvalues!</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># set up k-point mesh:</span>
 
     <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">order</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">'__iter__'</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">order</span><span class="p">:</span>
             <span class="n">k</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="o">*</span><span class="n">size</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">k</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
@@ -567,7 +567,7 @@
 <div class="viewcode-block" id="sample">
 <a class="viewcode-back" href="../../modules/dispersion.html#elphmod.dispersion.sample">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate Hamiltonian or dynamical matrix for given k points.</span>
+<span class="w">    </span><span class="sd">"""Calculate Hamiltonian or dynamical matrix for given k points.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -577,7 +577,7 @@
 <span class="sd">        k points.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Keyword arguments passed to `matrix`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
     <span class="n">kshape</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">.</span><span class="n">ndim</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
     <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">kshape</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
@@ -589,7 +589,7 @@
     <span class="n">my_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="o">*</span><span class="n">template</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span>
         <span class="n">dtype</span><span class="o">=</span><span class="n">template</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
-    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;sample something&#39;</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">'sample something'</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">my_ik</span><span class="p">,</span> <span class="n">ik</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])):</span>
         <span class="n">my_matrix</span><span class="p">[</span><span class="n">my_ik</span><span class="p">]</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">(</span><span class="o">*</span><span class="n">k</span><span class="p">[</span><span class="n">ik</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -605,8 +605,8 @@
 
 <div class="viewcode-block" id="band_order">
 <a class="viewcode-back" href="../../modules/dispersion.html#elphmod.dispersion.band_order">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">band_order</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">by_mean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dv</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">),</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sort bands by overlap of eigenvectors at neighboring k points.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">band_order</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">by_mean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dv</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s1">'inf'</span><span class="p">),</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Sort bands by overlap of eigenvectors at neighboring k points.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -626,7 +626,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    ndarray</span>
 <span class="sd">        List of band indices that sort eigenstates.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">points</span><span class="p">,</span> <span class="n">bands</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">shape</span>
 
     <span class="n">o</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">points</span><span class="p">,</span> <span class="n">bands</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
@@ -634,7 +634,7 @@
     <span class="n">n0</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">o</span><span class="p">[</span><span class="n">n0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span>
 
-    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;disentangle bands&#39;</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'disentangle bands'</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
         <span class="n">available</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">bands</span><span class="p">))</span>
@@ -664,7 +664,7 @@
 <div class="viewcode-block" id="map_dispersions">
 <a class="viewcode-back" href="../../modules/dispersion.html#elphmod.dispersion.map_dispersions">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">map_dispersions</span><span class="p">(</span><span class="n">V1</span><span class="p">,</span> <span class="n">V2</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Map two similar arrays of eigenvectors onto each other.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Map two similar arrays of eigenvectors onto each other."""</span>
 
     <span class="n">shape</span> <span class="o">=</span> <span class="n">V1</span><span class="o">.</span><span class="n">shape</span>
 
@@ -691,7 +691,7 @@
 <div class="viewcode-block" id="unfolding_weights">
 <a class="viewcode-back" href="../../modules/dispersion.html#elphmod.dispersion.unfolding_weights">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">unfolding_weights</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">U0</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">blocks0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">blocks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sgn</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate weights for &quot;unfolding&quot; of supercell dispersions.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate weights for "unfolding" of supercell dispersions.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -725,7 +725,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    ndarray</span>
 <span class="sd">        Weights of the supercell states.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">bands0</span> <span class="o">=</span> <span class="n">U0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">bands</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
@@ -742,7 +742,7 @@
 
     <span class="n">my_w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">bands</span><span class="p">))</span>
 
-    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;unfold bands&#39;</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">StatusBar</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">'unfold bands'</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">my_ik</span><span class="p">,</span> <span class="n">ik</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">:</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])):</span>
         <span class="n">my_w</span><span class="p">[</span><span class="n">my_ik</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sgn</span> <span class="o">*</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="n">ik</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="n">ir</span><span class="p">]))</span>

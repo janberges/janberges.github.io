@@ -165,35 +165,35 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">elphmod</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;gray&#39;</span><span class="p">]</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$s$&#39;</span><span class="p">,</span> <span class="s1">&#39;$p_{x, y}$&#39;</span><span class="p">,</span> <span class="s1">&#39;$p_z$&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'red'</span><span class="p">,</span> <span class="s1">'blue'</span><span class="p">,</span> <span class="s1">'black'</span><span class="p">,</span> <span class="s1">'gray'</span><span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'$s$'</span><span class="p">,</span> <span class="s1">'$p_{x, y}$'</span><span class="p">,</span> <span class="s1">'$p_z$'</span><span class="p">,</span> <span class="s1">'other'</span><span class="p">]</span>
 
 <span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">proj</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">read_atomic_projections</span><span class="p">(</span>
-    <span class="s1">&#39;work/C.save/atomic_proj.xml&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="s1">'work/C.save/atomic_proj.xml'</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">eps</span> <span class="o">*=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">Ry</span>
 
-<span class="n">orbitals</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">read_projwfc_out</span><span class="p">(</span><span class="s1">&#39;projwfc.out&#39;</span><span class="p">)</span>
+<span class="n">orbitals</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">read_projwfc_out</span><span class="p">(</span><span class="s1">'projwfc.out'</span><span class="p">)</span>
 
-<span class="n">width</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">proj_sum</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">orbitals</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;p{x, y}&#39;</span><span class="p">,</span> <span class="s1">&#39;pz&#39;</span><span class="p">,</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">proj_sum</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">orbitals</span><span class="p">,</span> <span class="s1">'s'</span><span class="p">,</span> <span class="s1">'p{x, y}'</span><span class="p">,</span> <span class="s1">'pz'</span><span class="p">,</span>
     <span class="n">other</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">pwi</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">read_pwi</span><span class="p">(</span><span class="s1">&#39;scf.in&#39;</span><span class="p">)</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">read_Fermi_level</span><span class="p">(</span><span class="s1">&#39;scf.out&#39;</span><span class="p">)</span>
+<span class="n">pwi</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">read_pwi</span><span class="p">(</span><span class="s1">'scf.in'</span><span class="p">)</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">read_Fermi_level</span><span class="p">(</span><span class="s1">'scf.out'</span><span class="p">)</span>
 
-<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;GZ&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">'GZ'</span>
 <span class="n">K</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">corners</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">bravais</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="o">**</span><span class="n">pwi</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">*=</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="n">el</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+<span class="n">el</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">el</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">'C'</span><span class="p">)</span>
 <span class="n">E</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">dispersion</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">E</span> <span class="o">-=</span> <span class="n">mu</span>
 
 <span class="k">if</span> <span class="n">elphmod</span><span class="o">.</span><span class="n">MPI</span><span class="o">.</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
     <span class="k">raise</span> <span class="ne">SystemExit</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Electron energy (eV)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Wave vector&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Electron energy (eV)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Wave vector'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">corners</span><span class="p">],</span> <span class="n">path</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">eps</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
@@ -204,10 +204,10 @@
             <span class="n">label</span><span class="o">=</span><span class="kc">None</span> <span class="k">if</span> <span class="n">n</span> <span class="k">else</span> <span class="n">label</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">E</span><span class="p">[:,</span> <span class="n">n</span><span class="p">],</span> <span class="s1">&#39;y:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span> <span class="k">if</span> <span class="n">n</span> <span class="k">else</span> <span class="s1">&#39;W90&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">E</span><span class="p">[:,</span> <span class="n">n</span><span class="p">],</span> <span class="s1">'y:'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span> <span class="k">if</span> <span class="n">n</span> <span class="k">else</span> <span class="s1">'W90'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;projwfc_1d.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'projwfc_1d.png'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
