@@ -53,6 +53,7 @@
 <li class="toctree-l1"><a class="reference internal" href="examples/selfen.html">Self-energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/gap.html">Order parameter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/dos.html">Density of states</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/renorm.html">Bandwidth renormalization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/residue.html">Residue</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/realgw.html">Normal state</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/specfun.html">Spectral function</a></li>
@@ -94,20 +95,25 @@
 <a class="reference external" href="https://io.janberges.de/ebmb">here</a>.</p>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
-<p>The makefile is designed for the GNU or Intel Fortran compiler:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>make FC=gfortran FFLAGS=&#39;-O3 -fopenmp&#39;
-python3 -m pip install -e .
+<p>The makefile is designed for the GNU, Intel, and LLVM Fortran compilers:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>make FC=gfortran FFLAGS='-O3 -fopenmp'
+</pre></div>
+</div>
+<p>LAPACK and BLAS are required. To also install the Python wrapper:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python3 -m pip install -e .
 </pre></div>
 </div>
 </section>
 <section id="acknowledgment">
 <h2>Acknowledgment<a class="headerlink" href="#acknowledgment" title="Link to this heading"></a></h2>
-<p>Parts of the program are inspired by the EPW code and work of Malte Roesner.</p>
+<p>Parts of the program are inspired by the EPW code and work of Malte Rösner.</p>
 </section>
-<section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
-<p>ebmb is stored on Zenodo: <a class="reference external" href="https://doi.org/10.5281/zenodo.13341224">https://doi.org/10.5281/zenodo.13341224</a>.</p>
-<p>The theory is described here: <a class="reference external" href="https://scipost.org/theses/132/">https://scipost.org/theses/132/</a>.</p>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>ebmb is stored on Zenodo: <a class="reference external" href="https://doi.org/10.5281/zenodo.13341224">https://doi.org/10.5281/zenodo.13341224</a>.</p></li>
+<li><p>The theory is described here: <a class="reference external" href="https://scipost.org/theses/132/">https://scipost.org/theses/132/</a>.</p></li>
+</ul>
 </section>
 <section id="licence">
 <h2>Licence<a class="headerlink" href="#licence" title="Link to this heading"></a></h2>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Density of states &mdash; ebmb  documentation</title>
+  <title>Bandwidth renormalization &mdash; ebmb  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/style.css?v=48f92ae9" />
@@ -20,8 +20,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Bandwidth renormalization" href="renorm.html" />
-    <link rel="prev" title="Order parameter" href="gap.html" /> 
+    <link rel="next" title="Residue" href="residue.html" />
+    <link rel="prev" title="Density of states" href="dos.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,8 +53,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="selfen.html">Self-energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gap.html">Order parameter</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Density of states</a></li>
-<li class="toctree-l1"><a class="reference internal" href="renorm.html">Bandwidth renormalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dos.html">Density of states</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Bandwidth renormalization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="residue.html">Residue</a></li>
 <li class="toctree-l1"><a class="reference internal" href="realgw.html">Normal state</a></li>
 <li class="toctree-l1"><a class="reference internal" href="specfun.html">Spectral function</a></li>
@@ -79,9 +79,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Density of states</li>
+      <li class="breadcrumb-item active">Bandwidth renormalization</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/examples/dos.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/examples/renorm.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -89,52 +89,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="density-of-states">
-<h1>Density of states<a class="headerlink" href="#density-of-states" title="Link to this heading"></a></h1>
+  <section id="bandwidth-renormalization">
+<h1>Bandwidth renormalization<a class="headerlink" href="#bandwidth-renormalization" title="Link to this heading"></a></h1>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">ebmb</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">e</span><span class="p">,</span> <span class="n">dos</span> <span class="o">=</span> <span class="n">ebmb</span><span class="o">.</span><span class="n">square_dos</span><span class="p">(</span><span class="s1">'dos.in'</span><span class="p">)</span>
-
-<span class="n">mu</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">e</span><span class="p">,</span> <span class="n">dos</span> <span class="o">=</span> <span class="n">ebmb</span><span class="o">.</span><span class="n">chain_dos</span><span class="p">(</span><span class="s1">'dos.in'</span><span class="p">,</span> <span class="n">de</span><span class="o">=</span><span class="mf">5e-3</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">w</span><span class="p">,</span> <span class="n">a2f</span> <span class="o">=</span> <span class="n">ebmb</span><span class="o">.</span><span class="n">chain_a2F</span><span class="p">(</span><span class="s1">'a2f.in'</span><span class="p">,</span> <span class="n">dw</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">wlog</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">ebmb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-   <span class="n">tell</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-   <span class="n">normal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-   <span class="n">lamda</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+   <span class="n">realgw</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+   <span class="n">normal</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+   <span class="n">conserve</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
    <span class="n">dos</span><span class="o">=</span><span class="s1">'dos.in'</span><span class="p">,</span>
-   <span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span>
-   <span class="n">lower</span><span class="o">=-</span><span class="mf">0.25</span><span class="p">,</span>
-   <span class="n">upper</span><span class="o">=+</span><span class="mf">0.25</span><span class="p">,</span>
-   <span class="n">eta</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
-   <span class="n">points</span><span class="o">=</span><span class="mi">10001</span><span class="p">,</span>
+   <span class="n">a2F</span><span class="o">=</span><span class="s1">'a2f.in'</span><span class="p">,</span>
+   <span class="n">lower</span><span class="o">=-</span><span class="mf">15.0</span><span class="p">,</span>
+   <span class="n">upper</span><span class="o">=+</span><span class="mf">15.0</span><span class="p">,</span>
+   <span class="n">points</span><span class="o">=</span><span class="mi">1001</span><span class="p">,</span>
+   <span class="n">logscale</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+   <span class="n">eta</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+   <span class="n">T</span><span class="o">=</span><span class="mf">300.0</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">'Integral of noninteracting DOS: </span><span class="si">%g</span><span class="s1">'</span> <span class="o">%</span> <span class="n">results</span><span class="p">[</span><span class="s1">'states'</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'Integral of quasi-particle DOS: </span><span class="si">%g</span><span class="s1">'</span> <span class="o">%</span> <span class="n">results</span><span class="p">[</span><span class="s1">'inspect'</span><span class="p">])</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">e</span> <span class="o">-</span> <span class="n">mu</span><span class="p">,</span> <span class="n">dos</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'lightgray'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">dos</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'lightgray'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">'omega'</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s1">'DOS'</span><span class="p">])</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">'Energy (eV)'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">'Density of states (1/eV)'</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'dos.png'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'renorm.png'</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="Output" src="../_images/dos.png" />
+<img alt="Output" src="../_images/renorm.png" />
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="gap.html" class="btn btn-neutral float-left" title="Order parameter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="renorm.html" class="btn btn-neutral float-right" title="Bandwidth renormalization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dos.html" class="btn btn-neutral float-left" title="Density of states" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="residue.html" class="btn btn-neutral float-right" title="Residue" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

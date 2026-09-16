@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Normal state" href="realgw.html" />
-    <link rel="prev" title="Density of states" href="dos.html" /> 
+    <link rel="prev" title="Bandwidth renormalization" href="renorm.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,6 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="selfen.html">Self-energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gap.html">Order parameter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dos.html">Density of states</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renorm.html">Bandwidth renormalization</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Residue</a></li>
 <li class="toctree-l1"><a class="reference internal" href="realgw.html">Normal state</a></li>
 <li class="toctree-l1"><a class="reference internal" href="specfun.html">Spectral function</a></li>
@@ -106,23 +107,23 @@
 
     <span class="n">residue</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
 
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">summation</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span>
-        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\sum_{n = -N}^{N - 1} \frac</span><span class="si">{1}</span><span class="s1">{x - \mathrm</span><span class="si">{i}</span><span class="s1"> (2 n + 1) \pi}$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">summation</span><span class="p">,</span> <span class="s1">'k'</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">'$\sum_{n = -N}^{N - 1} \frac</span><span class="si">{1}</span><span class="s1">{x - \mathrm</span><span class="si">{i}</span><span class="s1"> (2 n + 1) \pi}$'</span><span class="p">)</span>
 
-    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">summation</span><span class="p">,</span> <span class="n">summation</span> <span class="o">+</span> <span class="n">residue</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span>
-        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\frac</span><span class="si">{1}</span><span class="s1">{\pi} \arctan \frac</span><span class="si">{x}</span><span class="s1">{(2 N + 1) \pi}$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">summation</span><span class="p">,</span> <span class="n">summation</span> <span class="o">+</span> <span class="n">residue</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'orange'</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">'$\frac</span><span class="si">{1}</span><span class="s1">{\pi} \arctan \frac</span><span class="si">{x}</span><span class="s1">{(2 N + 1) \pi}$'</span><span class="p">)</span>
 
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span>
-        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\frac</span><span class="si">{1}{2}</span><span class="s1"> \tanh \frac</span><span class="si">{x}{2}</span><span class="s1">$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'k--'</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">'$\frac</span><span class="si">{1}{2}</span><span class="s1"> \tanh \frac</span><span class="si">{x}{2}</span><span class="s1">$'</span><span class="p">)</span>
 
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;$N = </span><span class="si">%g</span><span class="s1">$&#39;</span> <span class="o">%</span> <span class="n">N</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">'$N = </span><span class="si">%g</span><span class="s1">$'</span> <span class="o">%</span> <span class="n">N</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">'left'</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">'top'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">'$x$'</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">label_outer</span><span class="p">()</span>
 
-<span class="n">sub</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="o">*</span><span class="n">ax</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">(),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">sub</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">sub</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="o">*</span><span class="n">ax</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">(),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">'center'</span><span class="p">)</span>
+<span class="n">sub</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;residue.png&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'residue.png'</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="Output" src="../_images/residue.png" />
@@ -132,7 +133,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dos.html" class="btn btn-neutral float-left" title="Density of states" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="renorm.html" class="btn btn-neutral float-left" title="Bandwidth renormalization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="realgw.html" class="btn btn-neutral float-right" title="Normal state" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
