@@ -207,12 +207,16 @@ scales the displacements and writes the result in PLUMED’s XYZ format to
 standard output. Only the end point of a given trajectory is considered.
 This can be used to test collective variables with
 <code>plumed driver --ixyz scaled.xyz --length-units Bohr</code>.</p>
-<p>With five arguments, it performs an NVE MD simulation using Verlet
+<p>With five arguments, it performs an NVT MD simulation using Verlet
 integration. The step count <code>&lt;number&gt;</code> is optionally
 followed by a colon and a stride (which defaults to 1) for writing data
-in ASE’s extended XYZ format to standard output. <code>&lt;dt&gt;</code>
-is the time step and <code>&lt;damp&gt;</code> a damping coefficient
-(inverse time units). In the first step, the atoms leave their
+in ASE’s extended XYZ format to standard output. The current step and
+instantaneous temperature are displayed via standard error.
+<code>&lt;dt&gt;</code> is the time step and <code>&lt;damp&gt;</code> a
+damping coefficient (inverse time units). The temperature is regulated
+using the Langevin thermostat. A minus sign before
+<code>&lt;damp&gt;</code> disables fluctuations but keeps dissipation,
+enabling damped dynamics. In the first step, the atoms leave their
 zero-displacement positions in random directions with random velocities
 up to <code>&lt;vmax&gt;</code>.</p>
 <p>The <code>&lt;data file&gt;</code> is defined below:</p>
