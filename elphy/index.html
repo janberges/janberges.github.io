@@ -208,17 +208,16 @@ standard output. Only the end point of a given trajectory is considered.
 This can be used to test collective variables with
 <code>plumed driver --ixyz scaled.xyz --length-units Bohr</code>.</p>
 <p>With five arguments, it performs a dynamics simulation using Verlet
-integration. The trajectory (with the same time step) given on standard
-input is continued. The step count <code>&lt;number&gt;</code> is
+integration. It continues any trajectory (same step!) given in XYZ
+format on standard input. The step count <code>&lt;number&gt;</code> is
 optionally followed by a colon and a stride (which defaults to 1) for
-writing positions in PLUMED’s XYZ format to standard output. Total,
-potential, kinetic, and thermal energies are written to standard error.
-The stride of 1 before the final positions allows for continuing the
-trajectory. <code>&lt;dt&gt;</code> is the time step and
-<code>&lt;damp&gt;</code> a damping coefficient (inverse time units).
-The target lattice temperature <code>&lt;kT&gt;</code> is regulated
-using a Langevin thermostat. A value of zero disables fluctuations but
-keeps dissipation.</p>
+writing data in ASE’s extended XYZ format to standard output.
+<code>&lt;dt&gt;</code> is the time step and <code>&lt;damp&gt;</code> a
+damping coefficient (inverse time units). The target lattice temperature
+<code>&lt;kT&gt;</code> is regulated using a Langevin thermostat. A
+value of zero disables fluctuations but keeps dissipation. For follow-up
+runs, the tail of the trajectory is written in PLUMED’s XYZ format to
+standard error.</p>
 <p>The <code>&lt;data file&gt;</code> is defined below:</p>
 <pre><code>&lt;temperature kT&gt;
 &lt;number of electrons per unit cell&gt;
