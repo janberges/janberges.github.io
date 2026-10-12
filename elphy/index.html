@@ -171,8 +171,10 @@ class="uri">https://codeberg.org/janberges/elphy</a>.</p>
 <p>The following command compiles the program using GCC without
 optimization:</p>
 <pre><code>make</code></pre>
-<p>Different compilers and optimization flags can be selected:</p>
-<pre><code>make CC=icx CFLAGS=-O2</code></pre>
+<p>Different compilers and flags can be selected, for example:</p>
+<pre><code>make CC=tcc CFLAGS=-Wall
+make CC=clang CFLAGS=&#39;-O2 -w&#39;
+make CC=icx LDLIBS=&#39;-lmkl_intel_lp64 -lmkl_sequential -lmkl_core&#39;</code></pre>
 <p>LAPACK and BLAS with the standard LP64 interface are required. The
 performance depends on the BLAS implementation. For instance, OpenBLAS
 with multithreading should significantly outperform the reference
