@@ -162,8 +162,9 @@ program to calculate free energies and forces for tight-binding models
 on supercells, complemented with linear electron-phonon coupling and a
 harmonic potential. It is a faster rewrite of the Python module
 <code>elphmod.md</code> and thus primarily a driver for the
-path-integral molecular-dynamics code i-PI. It is written in ANSI C
-(C89/C99).</p>
+path-integral molecular-dynamics code i-PI. Basic dynamics simulations
+can be run without i-PI, optionally using the enhanced-sampling plugin
+PLUMED. It is written in ANSI C.</p>
 <p>The source-code repository is found at <a
 href="https://codeberg.org/janberges/elphy"
 class="uri">https://codeberg.org/janberges/elphy</a>.</p>
@@ -174,18 +175,19 @@ optimization:</p>
 <p>Different compilers and flags can be selected, for example:</p>
 <pre><code>make CC=tcc CFLAGS=-Wall
 make CC=clang CFLAGS=&#39;-O2 -w&#39;
-make CC=icx LDLIBS=&#39;-lmkl_intel_lp64 -lmkl_sequential -lmkl_core&#39;</code></pre>
+make CC=icx LDLIBS=&#39;-lmkl_intel_lp64 -lmkl_sequential -lmkl_core&#39;
+make CFLAGS=-D_PLUMED LDLIBS=&#39;-llapack -lblas -lm -lplumed&#39;</code></pre>
 <p>LAPACK and BLAS with the standard LP64 interface are required. The
 performance depends on the BLAS implementation. For instance, OpenBLAS
 with multithreading should significantly outperform the reference
-implementation on most machines.</p>
+implementation on most machines. The PLUMED library is optional.</p>
 <h2 id="usage">Usage</h2>
-<p>The program accepts one to five arguments:</p>
+<p>The program accepts one to six arguments:</p>
 <pre><code>elphy &lt;data file&gt;
 elphy &lt;data file&gt; &lt;socket&gt;
 elphy &lt;data file&gt; &lt;number&gt; &lt;radius&gt;
 elphy &lt;data file&gt; &lt;number&gt; &lt;lower&gt; &lt;upper&gt;
-elphy &lt;data file&gt; &lt;number&gt; &lt;dt&gt; &lt;damp&gt; &lt;kT&gt;</code></pre>
+elphy &lt;data file&gt; &lt;number&gt; &lt;dt&gt; &lt;damp&gt; &lt;kT&gt; [&lt;plumed file&gt;]</code></pre>
 <p>With one argument, it alternately reads atomic positions in the XYZ
 format from standard input and writes the supercell vectors, atomic
 positions, free energy, and forces in ASE’s extended XYZ format to
@@ -211,7 +213,7 @@ This can be used to test collective variables with
 <code>plumed driver --ixyz scaled.xyz --length-units Bohr</code>.</p>
 <p>With five arguments, it performs a dynamics simulation using Verlet
 integration. It continues any trajectory (same step!) given in XYZ
-format on standard input. The step count <code>&lt;number&gt;</code> is
+format on standard input. <code>&lt;number&gt;</code> is the step count
 optionally followed by a colon and a stride (which defaults to 1) for
 writing data in ASE’s extended XYZ format to standard output.
 <code>&lt;dt&gt;</code> is the time step and <code>&lt;damp&gt;</code> a
@@ -221,6 +223,10 @@ Different initial and final values (linear profile) may be separated by
 a colon. A value of zero disables fluctuations but keeps dissipation.
 For follow-up runs, the tail of the trajectory is written in PLUMED’s
 XYZ format to standard error.</p>
+<p>With six arguments, it performs an enhanced-sampling simulation using
+PLUMED. <code>&lt;plumed file&gt;</code> is the PLUMED input file
+optionally followed by a colon and a log file. The program must have
+been compiled with <code>-D_PLUMED</code> (see above).</p>
 <p>The <code>&lt;data file&gt;</code> is defined below:</p>
 <pre><code>&lt;temperature kT&gt;
 &lt;number of electrons per unit cell&gt;
@@ -268,9 +274,9 @@ are given in Cartesian, the supercell and lattice vectors
 <code>X</code> are only used to label the supercell atoms in the output.
 The atomic masses <code>M</code> are only used for accelerations in
 dynamics simulations.</p>
-<p>No unit conversions are performed, so any consistent energy and
-length units can be used. However, i-PI expects energies and forces in
-Hartree atomic units.</p>
+<p>No unit conversions are performed, so any length, energy, mass, and
+time units can be used. However, i-PI expects Hartree atomic units,
+while PLUMED uses nm, kJ/mol, u, and ps.</p>
 <p>Note that the interatomic force constants are assumed to be partially
 screened: They shall exclude the harmonic term of the electronic
 potential-energy surface. Any forces that the model may generate at zero
@@ -293,8 +299,10 @@ structural relaxation together.</li>
 alternative communication modes.</li>
 <li><code>make md</code> lets <code>elphy</code> perform NVT, NVE, and
 damped dynamics simulations.</li>
-<li><code>make show_ipi</code> and <code>make show_md</code> animate the
-trajectories.</li>
+<li><code>make metad</code> lets <code>elphy</code> and PLUMED perform
+metadynamics together.</li>
+<li><code>make show_ipi</code>, <code>make show_md</code>, and
+<code>make show_metad</code> plot the trajectories.</li>
 <li><code>make clean</code> removes compiled files,
 <code>make distclean</code> all generated files.</li>
 </ul>
