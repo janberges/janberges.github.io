@@ -164,7 +164,8 @@ harmonic potential. It is a faster rewrite of the Python module
 <code>elphmod.md</code> and thus primarily a driver for the
 path-integral molecular-dynamics code i-PI. Basic dynamics simulations
 can be run without i-PI, optionally using the enhanced-sampling plugin
-PLUMED. It is written in ANSI C with some POSIX 2001 extensions.</p>
+PLUMED. It is written in ANSI C with some POSIX 2001 or Windows
+extensions.</p>
 <p>The source-code repository is found at <a
 href="https://codeberg.org/janberges/elphy"
 class="uri">https://codeberg.org/janberges/elphy</a>.</p>
@@ -176,7 +177,8 @@ optimization:</p>
 <pre><code>make CC=tcc CFLAGS=-Wall
 make CC=clang CFLAGS=&#39;-O2 -w&#39;
 make CC=icx LDLIBS=&#39;-lmkl_intel_lp64 -lmkl_sequential -lmkl_core&#39;
-make CFLAGS=-D_PLUMED LDLIBS=&#39;-llapack -lblas -lm -lplumed&#39;</code></pre>
+make CFLAGS=-D_PLUMED LDLIBS=&#39;-llapack -lblas -lm -lplumed&#39;
+make CC=x86_64-w64-mingw32-gcc LDLIBS=&#39;-llapack -lblas -lm -lws2_32&#39;</code></pre>
 <p>LAPACK and BLAS with the standard LP64 interface are required. The
 performance depends on the BLAS implementation. For instance, OpenBLAS
 with multithreading should significantly outperform the reference
