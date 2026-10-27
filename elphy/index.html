@@ -174,11 +174,11 @@ class="uri">https://codeberg.org/janberges/elphy</a>.</p>
 optimization:</p>
 <pre><code>make</code></pre>
 <p>Different compilers and flags can be selected, for example:</p>
-<pre><code>make CC=tcc CFLAGS=-Wall
-make CC=clang CFLAGS=&#39;-O2 -w&#39;
+<pre><code>make CC=tcc CFLAGS=
+make CC=clang CFLAGS=-O2
 make CC=icx LDLIBS=&#39;-lmkl_intel_lp64 -lmkl_sequential -lmkl_core&#39;
-make CFLAGS=-D_PLUMED LDLIBS=&#39;-llapack -lblas -lm -lplumed&#39;
-make CC=x86_64-w64-mingw32-gcc LDLIBS=&#39;-llapack -lblas -lm -lws2_32&#39;</code></pre>
+make CFLAGS=-D_PLUMED EXTRA_LDLIBS=-lplumed
+make CC=x86_64-w64-mingw32-gcc EXTRA_LDLIBS=-lws2_32</code></pre>
 <p>LAPACK and BLAS with the standard LP64 interface are required. The
 performance depends on the BLAS implementation. For instance, OpenBLAS
 with multithreading should significantly outperform the reference
@@ -307,6 +307,7 @@ metadynamics together.</li>
 <code>make show_metad</code> plot the trajectories.</li>
 <li><code>make clean</code> removes compiled files,
 <code>make distclean</code> all generated files.</li>
+<li><code>make lint</code> conducts a static code analysis.</li>
 </ul>
 <p>The Python packages <code>elphmod</code>, <code>ipi</code>, and
 <code>matplotlib</code> are required.</p>
