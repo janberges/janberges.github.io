@@ -1563,8 +1563,8 @@
     <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">info</span><span class="p">(</span><span class="n">orbital</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">'(?:([A-Z][a-z]?)(\d*))?-?(\d*)(?:([spdfx])(\S*))?'</span><span class="p">,</span>
-            <span class="n">orbital</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">'(?:([A-Z][a-z]?)(\d*))?-?(\d*)'</span>
+            <span class="sa">r</span><span class="s1">'(?:([spdfx])(\S*?)([du]?))?$'</span><span class="p">,</span> <span class="n">orbital</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
 
     <span class="n">other</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'other'</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
@@ -1595,9 +1595,9 @@
     <span class="k">return</span> <span class="n">summed</span></div>
 
 
-<div class="viewcode-block" id="clebsh_gordan">
-<a class="viewcode-back" href="../../modules/el.html#elphmod.el.clebsh_gordan">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">clebsh_gordan</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+<div class="viewcode-block" id="clebsch_gordan">
+<a class="viewcode-back" href="../../modules/el.html#elphmod.el.clebsch_gordan">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">clebsch_gordan</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Set up transform between spin-orbit-coupled and decoupled orbitals.</span>
 
 <span class="sd">    Parameters</span>
