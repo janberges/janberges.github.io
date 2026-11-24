@@ -100,6 +100,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples/phonopy_phonons.html">Phonons from phonopy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/projwfc_1d.html">Projected bands (carbon chain)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/projwfc.html">Projected bands (graphene)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/projwfc_tas2.html">Projected bands (TaS2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/projwfc_3d.html">Projected bands (α-Po)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/quadrupole.html">Quadrupole fitting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/skiing.html">Skiing</a></li>
@@ -301,7 +302,8 @@
 
 <div class="viewcode-block" id="polarization">
 <a class="viewcode-back" href="../../modules/diagrams.html#elphmod.diagrams.polarization">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">polarization</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">subspace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">'fd'</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">polarization</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">subspace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">occupations</span><span class="o">=</span><span class="s1">'fd'</span><span class="p">,</span>
+        <span class="n">exchange</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate RPA polarization in orbital basis (density-density).</span>
 
 <span class="sd">    .. math::</span>
@@ -336,6 +338,9 @@
 <span class="sd">        Boolean array to select k points and/or bands in cRPA target subspace.</span>
 <span class="sd">    occupations : function</span>
 <span class="sd">        Particle distribution as a function of energy divided by `kT`.</span>
+<span class="sd">    exchange : bool</span>
+<span class="sd">        Calculate exchange instead of density-density elements, i.e., swap</span>
+<span class="sd">        :math:`\alpha` and :math:`\beta` in the first and last bracket above?</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -408,9 +413,14 @@
 
                     <span class="n">dfde</span><span class="p">[</span><span class="n">exclude</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
 
-                <span class="n">UU</span> <span class="o">=</span> <span class="n">U</span><span class="p">[</span><span class="n">kq1</span><span class="p">,</span> <span class="n">kq2</span><span class="p">,</span> <span class="n">kq3</span><span class="p">,</span> <span class="p">:,</span> <span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">*</span> <span class="n">U</span><span class="p">[</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">,</span> <span class="p">:,</span> <span class="n">n</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">exchange</span><span class="p">:</span>
+                    <span class="n">UU</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">,</span> <span class="p">:,</span> <span class="n">n</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+                    <span class="n">VV</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="n">kq1</span><span class="p">,</span> <span class="n">kq2</span><span class="p">,</span> <span class="n">kq3</span><span class="p">,</span> <span class="p">:,</span> <span class="n">m</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">UU</span> <span class="o">=</span> <span class="n">U</span><span class="p">[</span><span class="n">kq1</span><span class="p">,</span> <span class="n">kq2</span><span class="p">,</span> <span class="n">kq3</span><span class="p">,</span> <span class="p">:,</span> <span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">*</span> <span class="n">U</span><span class="p">[</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">,</span> <span class="p">:,</span> <span class="n">n</span><span class="p">]</span>
+                    <span class="n">VV</span> <span class="o">=</span> <span class="n">UU</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>
 
-                <span class="n">Pi</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">'ijka,ijk,ijkb-&gt;ab'</span><span class="p">,</span> <span class="n">UU</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">dfde</span><span class="p">,</span> <span class="n">UU</span><span class="p">)</span>
+                <span class="n">Pi</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">'ijka,ijk,ijkb-&gt;ab'</span><span class="p">,</span> <span class="n">VV</span><span class="p">,</span> <span class="n">dfde</span><span class="p">,</span> <span class="n">UU</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">prefactor</span> <span class="o">*</span> <span class="n">Pi</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
@@ -422,7 +432,8 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">phonon_self_energy</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
         <span class="n">occupations</span><span class="o">=</span><span class="s1">'fd'</span><span class="p">,</span> <span class="n">fluctuations</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">Delta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Delta_diff</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">Delta_occupations</span><span class="o">=</span><span class="s1">'gauss'</span><span class="p">,</span> <span class="n">Delta_kT</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">symmetrize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">diagonal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">psi</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
+        <span class="n">symmetrize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">diagonal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">psi</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exchange</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""Calculate phonon self-energy.</span>
 
 <span class="sd">    .. math::</span>
@@ -479,6 +490,9 @@
 <span class="sd">        Eigenvectors of Wannier Hamiltonian belonging to considered bands. If</span>
 <span class="sd">        present, the RPA polarization in the orbital basis is calculated instead</span>
 <span class="sd">        of the phonon self-energy in the basis of phonon modes or displacements.</span>
+<span class="sd">    exchange : bool</span>
+<span class="sd">        Calculate exchange instead of density-density elements? Only used if</span>
+<span class="sd">        `psi` is present.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -613,8 +627,12 @@
                     <span class="n">dfde</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">*=</span> <span class="n">envelope</span>
 
         <span class="k">if</span> <span class="n">psi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">G</span> <span class="o">=</span> <span class="n">g</span> <span class="o">=</span> <span class="p">(</span><span class="n">psi</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">kq1</span><span class="p">,</span> <span class="n">kq2</span><span class="p">,</span> <span class="n">kq3</span><span class="p">,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>
-                <span class="o">*</span> <span class="n">psi</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:])</span>
+            <span class="k">if</span> <span class="n">exchange</span><span class="p">:</span>
+                <span class="n">G</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">psi</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:])</span> <span class="o">**</span> <span class="mi">2</span>
+                <span class="n">g</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">psi</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">kq1</span><span class="p">,</span> <span class="n">kq2</span><span class="p">,</span> <span class="n">kq3</span><span class="p">,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">G</span> <span class="o">=</span> <span class="n">g</span> <span class="o">=</span> <span class="p">(</span><span class="n">psi</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">kq1</span><span class="p">,</span> <span class="n">kq2</span><span class="p">,</span> <span class="n">kq3</span><span class="p">,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>
+                    <span class="o">*</span> <span class="n">psi</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:])</span>
             <span class="n">iq</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="k">for</span> <span class="n">nu</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndindex</span><span class="p">(</span><span class="o">*</span><span class="n">phshape</span><span class="p">):</span>

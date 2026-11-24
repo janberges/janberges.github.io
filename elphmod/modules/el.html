@@ -63,6 +63,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#elphmod.el.Model.v"><code class="docutils literal notranslate"><span class="pre">Model.v()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.clebsh_gordan"><code class="docutils literal notranslate"><span class="pre">clebsh_gordan()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elphmod.el.complex_to_real_orbitals"><code class="docutils literal notranslate"><span class="pre">complex_to_real_orbitals()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.el.decayH"><code class="docutils literal notranslate"><span class="pre">decayH()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.el.demet_from_qe_pwo"><code class="docutils literal notranslate"><span class="pre">demet_from_qe_pwo()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elphmod.el.eband"><code class="docutils literal notranslate"><span class="pre">eband()</span></code></a></li>
@@ -145,6 +147,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../examples/phonopy_phonons.html">Phonons from phonopy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/projwfc_1d.html">Projected bands (carbon chain)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/projwfc.html">Projected bands (graphene)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/projwfc_tas2.html">Projected bands (TaS2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/projwfc_3d.html">Projected bands (α-Po)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/quadrupole.html">Quadrupole fitting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/skiing.html">Skiing</a></li>
@@ -482,6 +485,48 @@ the Cartesian and band basis afterward (Hellmann-Feynman theorem).</p>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.clebsh_gordan">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">clebsh_gordan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/el.html#clebsh_gordan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.el.clebsh_gordan" title="Link to this definition"></a></dt>
+<dd><p>Set up transform between spin-orbit-coupled and decoupled orbitals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>l</strong><span class="classifier">int</span></dt><dd><p>Angular-momentum quantum number.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Transformation matrix.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="elphmod.el.complex_to_real_orbitals">
+<span class="sig-prename descclassname"><span class="pre">elphmod.el.</span></span><span class="sig-name descname"><span class="pre">complex_to_real_orbitals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/elphmod/el.html#complex_to_real_orbitals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#elphmod.el.complex_to_real_orbitals" title="Link to this definition"></a></dt>
+<dd><p>Set up transform between complex and real spherical harmonics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>l</strong><span class="classifier">int</span></dt><dd><p>Angular-momentum quantum number.</p>
+</dd>
+<dt><strong>spin</strong><span class="classifier">bool, default True</span></dt><dd><p>Include spin degree of freedom?</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ndarray</dt><dd><p>Transformation matrix.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -894,9 +939,10 @@ points.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>list of str</dt><dd><p>Common names of (pseudo) atomic orbitals listed in <cite>projwfc_out</cite> (in
-that order). If spin-orbit coupling is considered, symmetry labels
-related to the magnetic quantum number are omitted.</p>
+<dt>list of str</dt><dd><p>Translated names of (pseudo) atomic orbitals listed in <cite>projwfc_out</cite> (in
+that order). In the noncollinear case, <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">d</span></code> for spin up and
+down (without spin-orbit coupling) or the quantum numbers of the total
+angular momentum multiplied by two (with spin-orbit coupling) are added.</p>
 </dd>
 <dt><strong>other</strong><span class="classifier">bool, default True</span></dt><dd><p>Add name <code class="docutils literal notranslate"><span class="pre">X-x</span></code> to list of orbitals, which corresponds to “other”
 orbitals from <a class="reference internal" href="#elphmod.el.read_atomic_projections" title="elphmod.el.read_atomic_projections"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_atomic_projections()</span></code></a>?</p>
