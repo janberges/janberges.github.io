@@ -1429,7 +1429,7 @@
         <span class="k">for</span> <span class="n">nt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ntyp</span><span class="p">):</span>
             <span class="n">tmp</span> <span class="o">=</span> <span class="n">cells</span><span class="p">()</span>
 
-            <span class="n">atm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+            <span class="n">atm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
             <span class="n">amass</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
         <span class="c1"># read types and positions of individual atoms:</span>
@@ -1450,7 +1450,7 @@
         <span class="n">atom_order</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">ityp</span><span class="p">:</span>
-            <span class="n">atom_order</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">atm</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+            <span class="n">atom_order</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">atm</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
 
         <span class="n">alph</span> <span class="o">=</span> <span class="n">epsil</span> <span class="o">=</span> <span class="n">zeu</span> <span class="o">=</span> <span class="kc">None</span>
 

@@ -340,7 +340,7 @@
 <span class="sd">        Particle distribution as a function of energy divided by `kT`.</span>
 <span class="sd">    exchange : bool</span>
 <span class="sd">        Calculate exchange instead of density-density elements, i.e., swap</span>
-<span class="sd">        :math:`\alpha` and :math:`\beta` in the first and last bracket above?</span>
+<span class="sd">        :math:`\alpha` and :math:`\beta` in the inner brackets above?</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -516,9 +516,9 @@
     <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="n">nk</span><span class="p">,</span> <span class="n">nbnd</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">psi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">psi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nbnd</span><span class="p">,</span> <span class="o">*</span><span class="n">nk</span><span class="p">,</span> <span class="n">nbnd</span><span class="p">))</span>
+        <span class="n">psi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">nk</span><span class="p">,</span> <span class="n">nbnd</span><span class="p">))</span>
 
-        <span class="n">phshape</span> <span class="o">=</span> <span class="p">(</span><span class="n">nbnd</span><span class="p">,</span> <span class="n">nbnd</span><span class="p">)</span>
+        <span class="n">phshape</span> <span class="o">=</span> <span class="n">psi</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
     <span class="k">elif</span> <span class="n">g</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">g2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">g2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nQ</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
